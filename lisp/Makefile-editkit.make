@@ -26,8 +26,7 @@ else
 endif
 
 PACKAGE_NAME=casual-editkit
-ELISP_INCLUDES=casual-editkit-version.el	\
-casual-editkit-constants.el			\
+ELISP_INCLUDES=casual-editkit-constants.el	\
 casual-editkit-utils.el				\
 casual-editkit-settings.el
 ELISP_PACKAGES=

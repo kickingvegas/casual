@@ -26,8 +26,7 @@ else
 endif
 
 PACKAGE_NAME=casual-isearch
-ELISP_INCLUDES=casual-isearch-version.el	\
-casual-isearch-utils.el				\
+ELISP_INCLUDES=casual-isearch-utils.el		\
 casual-isearch-settings.el
 ELISP_PACKAGES=
 ELISP_TEST_INCLUDES=casual-isearch-test-utils.el

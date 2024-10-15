@@ -81,7 +81,7 @@ This function requires GNU ls from coreutils installed."
     ("m" "Date Modified" casual-dired--sort-by-date-modified :transient nil)
     ("M" "Date Metadata Changed" casual-dired--sort-by-date-metadata-changed
      :transient nil)
-    ("v" "Version" casual-dired--sort-by-version :transient nil)
+
     ("s" "Size" casual-dired--sort-by-size :transient nil)]]
 
   [:class transient-row

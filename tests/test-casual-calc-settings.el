@@ -82,7 +82,7 @@
                            ("S" . calc-save-modes)
                            ("O" . casual-calc-open-settings-file)
                            ("" . calc-reset)
-                           ("v" . casual-calc-version)
+
                            ("á" . casual-calc-about))))
       (casualt-suffix-testbench-runner test-vectors
                                        #'casual-calc-modes-tmenu

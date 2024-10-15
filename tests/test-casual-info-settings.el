@@ -33,7 +33,7 @@
   (let ((test-vectors (list)))
     (push (casualt-suffix-test-vector "u" #'casual-lib-customize-casual-lib-use-unicode) test-vectors)
     (push (casualt-suffix-test-vector "a" #'casual-info-about) test-vectors)
-    (push (casualt-suffix-test-vector "v" #'casual-info-version) test-vectors)
+
     (casualt-suffix-testbench-runner test-vectors
                                      #'casual-info-settings-tmenu
                                      '(lambda () (random 5000))))

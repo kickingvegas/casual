@@ -26,7 +26,7 @@ else
 endif
 
 PACKAGE_NAME=casual-info
-ELISP_INCLUDES=casual-info-version.el casual-info-variables.el casual-info-utils.el
+ELISP_INCLUDES=casual-info-variables.el casual-info-utils.el
 ELISP_PACKAGES=casual-info-settings.el
 ELISP_TEST_INCLUDES=casual-info-test-utils.el
 CASUAL_BASE_DIR=$(HOME)/Projects/elisp

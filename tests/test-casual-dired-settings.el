@@ -43,7 +43,6 @@
     (push (casualt-suffix-test-vector "R" #'casual-dired--customize-dired-vc-rename-file) test-vectors)
     (push (casualt-suffix-test-vector "d" #'casual-dired--customize-dired-group) test-vectors)
     (push (casualt-suffix-test-vector "a" #'casual-dired-about) test-vectors)
-    (push (casualt-suffix-test-vector "v" #'casual-dired-version) test-vectors)
 
     (casualt-suffix-testbench-runner test-vectors
                                      #'casual-dired-settings-tmenu

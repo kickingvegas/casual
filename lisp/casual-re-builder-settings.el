@@ -25,7 +25,7 @@
 (require 'transient)
 (require 're-builder)
 (require 'casual-lib)
-(require 'casual-re-builder-version)
+
 
 (transient-define-prefix casual-re-builder-settings-tmenu ()
   "Casual RE-Builder settings menu."
@@ -38,7 +38,7 @@
   [:class transient-row
           (casual-lib-quit-one)
           ("a" "About" casual-re-builder-about :transient nil)
-          ("v" "Version" casual-re-builder-version :transient nil)
+
           (casual-lib-quit-all)])
 
 (defun casual-re-builder--customize-group ()

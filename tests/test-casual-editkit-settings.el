@@ -35,8 +35,7 @@
       (let ((test-vectors
              '((:binding "u" :command casual-lib-customize-casual-lib-use-unicode)
                (:binding "n" :command casual-lib-customize-casual-lib-hide-navigation)
-               (:binding "a" :command casual-editkit-about)
-               (:binding "v" :command casual-editkit-version))))
+               (:binding "a" :command casual-editkit-about))))
 
         (casualt-suffix-testcase-runner test-vectors
                                         #'casual-editkit-settings-tmenu

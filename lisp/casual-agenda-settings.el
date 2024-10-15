@@ -25,7 +25,7 @@
 (require 'transient)
 (require 'org-agenda)
 (require 'casual-lib)
-(require 'casual-agenda-version)
+
 
 (defun casual-agenda--customize-group ()
   "Customize Agenda group."
@@ -107,7 +107,7 @@ Always choose love."
   [:class transient-row
           (casual-lib-quit-one)
           ("a" "About" casual-agenda-about :transient nil)
-          ("v" "Version" casual-agenda-version :transient nil)
+
           (casual-lib-quit-all)])
 
 

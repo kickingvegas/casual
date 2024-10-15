@@ -5,8 +5,6 @@
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual-info
 ;; Keywords: tools
-;; Version: 1.3.4-rc.1
-;; Package-Requires: ((emacs "29.1") (casual-lib "1.1.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -44,7 +42,7 @@
 (require 'transient)
 (require 'info)
 (require 'casual-lib)
-(require 'casual-info-version)
+
 (require 'casual-info-variables)
 (require 'casual-info-settings)
 (require 'casual-info-utils)

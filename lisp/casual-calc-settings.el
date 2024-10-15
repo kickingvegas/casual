@@ -27,7 +27,7 @@
 (require 'transient)
 (require 'casual-lib)
 (require 'casual-calc-labels)
-(require 'casual-calc-version)
+
 (require 'casual-calc-angle-measure)
 (require 'casual-calc-utils)
 
@@ -114,7 +114,7 @@
 
   [:class transient-row
           (casual-lib-quit-one)
-          ("v" "Version" casual-calc-version :transient nil)
+
           ("M-a" "About" casual-calc-about :transient nil)
           (casual-lib-quit-all)])
 

@@ -26,8 +26,7 @@ else
 endif
 
 PACKAGE_NAME=casual-agenda
-ELISP_INCLUDES=casual-agenda-version.el	\
-casual-agenda-utils.el				\
+ELISP_INCLUDES=casual-agenda-utils.el		\
 casual-agenda-settings.el
 ELISP_PACKAGES=
 ELISP_TEST_INCLUDES=casual-agenda-test-utils.el

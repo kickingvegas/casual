@@ -37,7 +37,7 @@
          (casualt-suffix-test-vector "u" #'casual-lib-customize-casual-lib-use-unicode)
          (casualt-suffix-test-vector "n" #'casual-lib-customize-casual-lib-hide-navigation)
          (casualt-suffix-test-vector "a" #'casual-bookmarks-about)
-         (casualt-suffix-test-vector "v" #'casual-bookmarks-version))))
+ )))
     (casualt-suffix-testbench-runner test-vectors
                                      #'casual-bookmarks-settings-tmenu
                                      '(lambda () (random 5000))))

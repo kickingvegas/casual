@@ -28,7 +28,7 @@ info-tests					\
 isearch-tests					\
 re-builder-tests
 
-SRC_DIR=../lisp
+SRC_DIR=.
 
 tests: lib-tests				\
 agenda-tests					\
@@ -42,31 +42,31 @@ isearch-tests					\
 re-builder-tests
 
 lib-tests:
-	$(MAKE) -C $(SRC_DIR) $@
+	$(MAKE) -C $(SRC_DIR) -f Makefile-lib.make tests
 
 agenda-tests:
-	$(MAKE) -C $(SRC_DIR) $@
+	$(MAKE) -C $(SRC_DIR) -f Makefile-agenda.make tests
 
 bookmarks-tests:
-	$(MAKE) -C $(SRC_DIR) $@
+	$(MAKE) -C $(SRC_DIR) -f Makefile-bookmarks.make tests
 
 calc-tests:
-	$(MAKE) -C $(SRC_DIR) $@
+	$(MAKE) -C $(SRC_DIR) -f Makefile-calc.make tests
 
 dired-tests:
-	$(MAKE) -C $(SRC_DIR) $@
+	$(MAKE) -C $(SRC_DIR) -f Makefile-dired.make tests
 
 editkit-tests:
-	$(MAKE) -C $(SRC_DIR) $@
+	$(MAKE) -C $(SRC_DIR) -f Makefile-editkit.make tests
 
 ibuffer-tests:
-	$(MAKE) -C $(SRC_DIR) $@
+	$(MAKE) -C $(SRC_DIR) -f Makefile-ibuffer.make tests
 
 info-tests:
-	$(MAKE) -C $(SRC_DIR) $@
+	$(MAKE) -C $(SRC_DIR) -f Makefile-info.make tests
 
 isearch-tests:
-	$(MAKE) -C $(SRC_DIR) $@
+	$(MAKE) -C $(SRC_DIR) -f Makefile-isearch.make tests
 
 re-builder-tests:
-	$(MAKE) -C $(SRC_DIR) $@
+	$(MAKE) -C $(SRC_DIR) -f Makefile-re-builder.make tests

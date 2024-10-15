@@ -29,7 +29,7 @@
 (require 'casual-lib)
 (require 'casual-dired-utils)
 (require 'casual-dired-variables)
-(require 'casual-dired-version)
+
 
 ;;; Menus
 (transient-define-prefix casual-dired-settings-tmenu ()
@@ -94,7 +94,7 @@
   [:class transient-row
           (casual-lib-quit-one)
           ("a" "About" casual-dired-about :transient nil)
-          ("v" "Version" casual-dired-version :transient nil)
+
           (casual-lib-quit-all)])
 
 ;;; Functions

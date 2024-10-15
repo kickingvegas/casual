@@ -5,8 +5,6 @@
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual-dired
 ;; Keywords: tools
-;; Version: 1.8.4-rc.1
-;; Package-Requires: ((emacs "29.1") (casual-lib "1.1.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -52,7 +50,7 @@
 (require 'image-dired)
 (require 'casual-lib)
 (require 'casual-dired-sort-by)
-(require 'casual-dired-version)
+
 (require 'casual-dired-variables)
 (require 'casual-dired-settings)
 (require 'casual-dired-utils)

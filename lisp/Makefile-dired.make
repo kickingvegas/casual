@@ -26,7 +26,7 @@ else
 endif
 
 PACKAGE_NAME=casual-dired
-ELISP_INCLUDES=casual-dired-version.el casual-dired-variables.el casual-dired-utils.el
+ELISP_INCLUDES=casual-dired-variables.el casual-dired-utils.el
 ELISP_PACKAGES=casual-dired-settings.el casual-dired-sort-by.el
 ELISP_TEST_INCLUDES=casual-dired-test-utils.el
 CASUAL_BASE_DIR=$(HOME)/Projects/elisp
@@ -35,7 +35,6 @@ CASUAL_LIB_LISP_DIR=$(CASUAL_LIB_DIR)/lisp
 CASUAL_LIB_TEST_INCLUDES=$(CASUAL_LIB_DIR)/tests/casual-lib-test-utils.el
 EMACS_CONFIG_DIR=$(HOME)/.config/emacs
 PACKAGE_PATHS=-L $(CASUAL_LIB_LISP_DIR)
-
 
 .PHONY: tests compile regression
 

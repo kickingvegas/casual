@@ -38,8 +38,7 @@ casual-calc-radix.el				\
 casual-calc-angle-measure.el			\
 casual-calc-stack.el				\
 casual-calc-variables.el			\
-casual-calc-graphics.el				\
-casual-calc-version.el
+casual-calc-graphics.el
 
 ELISP_PACKAGES=					\
 casual-calc-binary.el				\

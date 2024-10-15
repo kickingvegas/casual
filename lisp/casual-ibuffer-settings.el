@@ -25,7 +25,7 @@
 (require 'transient)
 (require 'ibuffer)
 (require 'casual-lib)
-(require 'casual-ibuffer-version)
+
 
 (transient-define-prefix casual-ibuffer-settings-tmenu ()
   "Casual IBuffer settings menu."
@@ -39,7 +39,7 @@
 
   [:class transient-row
           ("a" "About" casual-ibuffer-about :transient nil)
-          ("v" "Version" casual-ibuffer-version :transient nil)
+
           (casual-lib-quit-one)
           (casual-lib-quit-all)])
 

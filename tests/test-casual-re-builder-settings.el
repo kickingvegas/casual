@@ -36,7 +36,7 @@
     (push (casualt-suffix-test-vector "u" #'casual-lib-customize-casual-lib-use-unicode) test-vectors)
     (push (casualt-suffix-test-vector "n" #'casual-lib-customize-casual-lib-hide-navigation) test-vectors)
     (push (casualt-suffix-test-vector "a" #'casual-re-builder-about) test-vectors)
-    (push (casualt-suffix-test-vector "v" #'casual-re-builder-version) test-vectors)
+
 
     (casualt-suffix-testbench-runner test-vectors
                                      #'casual-re-builder-settings-tmenu

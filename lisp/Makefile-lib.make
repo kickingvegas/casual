@@ -25,7 +25,7 @@ else
   EXEC_NAME=emacs
 endif
 
-ELISP_INCLUDES=casual-lib-version.el
+ELISP_INCLUDES=
 ELISP_PACKAGES=
 ELISP_TEST_INCLUDES=casual-lib-test-utils.el
 PACKAGE_NAME=casual-lib

@@ -5,8 +5,6 @@
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual-lib
 ;; Keywords: tools
-;; Version: 1.1.5-rc.1
-;; Package-Requires: ((emacs "29.1") (transient "0.6.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -33,7 +31,7 @@
 
 ;;; Code:
 (require 'transient)
-(require 'casual-lib-version)
+
 
 (defcustom casual-lib-hide-navigation nil
   "If non-nil then hide navigation controls.

@@ -38,7 +38,7 @@
     (push (casualt-suffix-test-vector "a" #'casual-dired--sort-by-date-added) test-vectors)
     (push (casualt-suffix-test-vector "m" #'casual-dired--sort-by-date-modified) test-vectors)
     (push (casualt-suffix-test-vector "M" #'casual-dired--sort-by-date-metadata-changed) test-vectors)
-    (push (casualt-suffix-test-vector "v" #'casual-dired--sort-by-version) test-vectors)
+
     (push (casualt-suffix-test-vector "s" #'casual-dired--sort-by-size) test-vectors)
 
     (casualt-suffix-testbench-runner test-vectors

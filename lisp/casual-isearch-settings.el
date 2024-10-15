@@ -24,7 +24,7 @@
 ;;; Code:
 (require 'isearch)
 (require 'casual-lib)
-(require 'casual-isearch-version)
+
 
 (transient-define-prefix casual-isearch-settings-tmenu ()
   "Casual I-Search settings menu."
@@ -37,7 +37,7 @@
   [:class transient-row
           (casual-lib-quit-one)
           ("a" "About" casual-isearch-about :transient nil)
-          ("v" "Version" casual-isearch-version :transient nil)
+
           (casual-lib-quit-all)])
 
 (defun casual-isearch--customize-group ()

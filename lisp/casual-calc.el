@@ -5,8 +5,6 @@
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual-calc
 ;; Keywords: tools
-;; Version: 1.11.5-rc.1
-;; Package-Requires: ((emacs "29.1") (casual-lib "1.1.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -57,7 +55,7 @@
 (require 'transient)
 (require 'casual-lib)
 (require 'casual-calc-utils)
-(require 'casual-calc-version)
+
 (require 'casual-calc-binary)
 (require 'casual-calc-complex)
 (require 'casual-calc-conversion)

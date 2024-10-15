@@ -26,8 +26,7 @@ else
 endif
 
 PACKAGE_NAME=casual-bookmarks
-ELISP_INCLUDES=casual-bookmarks-version.el	\
-casual-bookmarks-utils.el				\
+ELISP_INCLUDES=casual-bookmarks-utils.el	\
 casual-bookmarks-settings.el
 ELISP_PACKAGES=
 ELISP_TEST_INCLUDES=casual-bookmarks-test-utils.el

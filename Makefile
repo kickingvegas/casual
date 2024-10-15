@@ -43,8 +43,7 @@
 #   $ make new-sprint
 
 LISP_DIR=./lisp
-MAIN_EL=$(LISP_DIR)/casual-editkit.el
-VERSION_EL=$(LISP_DIR)/casual-editkit-version.el
+MAIN_EL=$(LISP_DIR)/casual.el
 
 TIMESTAMP := $(shell /bin/date "+%Y%m%d_%H%M%S")
 VERSION := $(shell ./scripts/read-version.sh $(MAIN_EL))
@@ -54,16 +53,6 @@ VERSION_BUMP := $(shell python -m semver bump $(BUMP_LEVEL) $(VERSION))
 VERSION_LAST_TAG := $(shell git tag --sort=-creatordate | head -n 1)
 
 .PHONY: tests					\
-lib-tests					\
-agenda-tests					\
-bookmarks-tests					\
-calc-tests					\
-dired-tests					\
-editkit-tests					\
-ibuffer-tests					\
-info-tests					\
-isearch-tests					\
-re-builder-tests				\
 create-pr					\
 bump-casual					\
 bump						\
@@ -79,54 +68,15 @@ create-gh-release				\
 status
 
 ## Run test regression
-tests: lib-tests				\
-agenda-tests					\
-bookmarks-tests					\
-calc-tests					\
-dired-tests					\
-editkit-tests					\
-ibuffer-tests					\
-info-tests					\
-isearch-tests					\
-re-builder-tests
-
-lib-tests:
-	$(MAKE) -C $(LISP_DIR) -f Makefile-lib.make tests
-
-agenda-tests:
-	$(MAKE) -C $(LISP_DIR) -f Makefile-agenda.make tests
-
-bookmarks-tests:
-	$(MAKE) -C $(LISP_DIR) -f Makefile-bookmarks.make tests
-
-calc-tests:
-	$(MAKE) -C $(LISP_DIR) -f Makefile-calc.make tests
-
-dired-tests:
-	$(MAKE) -C $(LISP_DIR) -f Makefile-dired.make tests
-
-editkit-tests:
-	$(MAKE) -C $(LISP_DIR) -f Makefile-editkit.make tests
-
-ibuffer-tests:
-	$(MAKE) -C $(LISP_DIR) -f Makefile-ibuffer.make tests
-
-info-tests:
-	$(MAKE) -C $(LISP_DIR) -f Makefile-info.make tests
-
-isearch-tests:
-	$(MAKE) -C $(LISP_DIR) -f Makefile-isearch.make tests
-
-re-builder-tests:
-	$(MAKE) -C $(LISP_DIR) -f Makefile-re-builder.make tests
+tests:
+	$(MAKE) -C $(LISP_DIR) tests
 
 ## Bump Patch Version
 bump-casual:
 	sed -i 's/;; Version: $(VERSION)/;; Version: $(VERSION_BUMP)/' $(MAIN_EL)
-	sed -i 's/(defconst casual-editkit-version "$(VERSION)"/(defconst casual-editkit-version "$(VERSION_BUMP)"/' $(VERSION_EL)
 
 bump: bump-casual
-	git commit -m 'Bump version to $(VERSION_BUMP)' $(MAIN_EL) $(VERSION_EL)
+	git commit -m 'Bump version to $(VERSION_BUMP)' $(MAIN_EL)
 	git push
 
 checkout-development:

@@ -27,7 +27,7 @@
 (require 'info)
 (require 'casual-lib)
 (require 'casual-info-variables)
-(require 'casual-info-version)
+
 (require 'casual-info-utils)
 
 ;;; Menus
@@ -53,7 +53,7 @@
   [:class transient-row
           (casual-lib-quit-one)
           ("a" "About" casual-info-about :transient nil)
-          ("v" "Version" casual-info-version :transient nil)
+
           (casual-lib-quit-all)])
 
 ;;; Functions

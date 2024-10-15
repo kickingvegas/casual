@@ -23,7 +23,7 @@
 
 ;;; Code:
 (require 'casual-lib)
-(require 'casual-bookmarks-version)
+
 
 (transient-define-prefix casual-bookmarks-settings-tmenu ()
   "Casual Bookmarks settings menu."
@@ -36,7 +36,7 @@
   [:class transient-row
           (casual-lib-quit-one)
           ("a" "About" casual-bookmarks-about :transient nil)
-          ("v" "Version" casual-bookmarks-version :transient nil)
+
           (casual-lib-quit-all)])
 
 (defun casual-bookmarks--customize-group ()

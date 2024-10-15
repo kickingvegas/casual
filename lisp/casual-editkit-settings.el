@@ -23,7 +23,7 @@
 
 ;;; Code:
 (require 'casual-lib)
-(require 'casual-editkit-version)
+
 
 (transient-define-prefix casual-editkit-settings-tmenu ()
   "Casual EditKit settings menu."
@@ -35,7 +35,7 @@
   [:class transient-row
    (casual-lib-quit-one)
    ("a" "About" casual-editkit-about :transient nil)
-   ("v" "Version" casual-editkit-version :transient nil)
+
    (casual-lib-quit-all)])
 
 (defun casual-editkit-about-editkit ()

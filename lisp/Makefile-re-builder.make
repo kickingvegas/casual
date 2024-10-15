@@ -26,8 +26,7 @@ else
 endif
 
 PACKAGE_NAME=casual-re-builder
-ELISP_INCLUDES=casual-re-builder-version.el	\
-casual-re-builder-utils.el				\
+ELISP_INCLUDES=casual-re-builder-utils.el	\
 casual-re-builder-settings.el
 ELISP_PACKAGES=
 ELISP_TEST_INCLUDES=casual-re-builder-test-utils.el
