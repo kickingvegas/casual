@@ -15,4 +15,4 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-grep 'Version: ' $1 | awk '{print $3}'
+awk '/Version: / {print $3}' $1
