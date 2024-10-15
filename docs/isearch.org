@@ -1,0 +1,79 @@
+[[../README.org][❮ Back to Casual]]
+
+* Casual I-Search
+
+This package contains a [[https://github.com/magit/transient][Transient]] menu for I-Search. When in basic I-Search mode, this menu can be raised by pressing the ~C-o~ key. A menu of different isearch commands will be offered as shown below:
+
+[[file:images/casual-isearch-tmenu.png]]
+
+* Install
+Use the following lines to install casual-isearch-tmenu.
+#+begin_src elisp :lexical yes
+  (require 'casual-isearch)
+  (keymap-set isearch-mode-map "C-o" #'casual-isearch-tmenu)
+#+end_src
+
+Alternately install with ~use-package~ using the following initialization:
+#+begin_src elisp :lexical no
+  (use-package casual-isearch
+    :ensure t
+    :bind (:map isearch-mode-map ("C-o" . casual-isearch-tmenu)))
+#+end_src
+
+The keybinding to ~casual-isearch-tmenu~ can be changed to user preference.
+
+
+
+* Menu Commands
+The following I-Search commands are grouped as follows in the Transient menu ~casual-isearch-tmenu~. Keys associated with each command are shown enclosed in parentheses.
+
+** Edit Search String
+- ~isearch-edit-string~ (~e~)
+- ~isearch-yank-word-or-char~ (~w~)
+- ~isearch-yank-symbol-or-char~ (~s~)
+- ~isearch-yank-line~ (~l~)
+- ~isearch-yank-kill~ (~y~)
+- ~isearch-forward-thing-at-point~ (~t~)
+** Replace
+- ~isearch-query-replace~ (~r~)
+- ~isearch-query-replace-regexp~ (~x~)
+** Toggle
+- ~isearch-toggle-regexp~ (~X~)
+- ~isearch-toggle-symbol~ (~S~)
+- ~isearch-toggle-word~ (~W~)
+- ~isearch-toggle-case-fold~ (~F~)
+- ~isearch-toggle-lax-whitespace~ (~L~)
+** Misc
+- ~isearch-occur~ (~o~)
+- ~isearch-highlight-regexp~ (~h~)
+- ~isearch-highlight-lines-matching-regexp~ (~H~)
+- ~unhighlight-regexp~ (~u~)
+** Navigation
+- ~isearch-repeat-forward~ (~n~)
+- ~isearch-repeat-backward~ (~p~)
+
+** Exit
+To exit search, press the ~RET~ key. This will leave the point at the last successful search item.
+
+
+* Usage
+When in search mode (typically via the keybinding ~C-s~ or ~C-r~), pressing the keybinding ~C-o~ (or binding of your preference) will raise the Transient menu ~casual-isearch-tmenu~. Once raised, only the /I-Search/ commands in the *Replace* and *Misc* sections will automatically dismiss the menu when selected. All other /I-Search/ commands will /not/ dismiss the menu.
+
+Note that editing the search text via ~isearch-edit-string~ will enter a recursive editing mode that is normally exited when pressing the return (~RET~) key.
+
+Use ~C-g~ to dismiss this Transient menu.
+
+* Sponsorship
+If you enjoy using Casual I-Search, consider making a modest financial contribution to help support its development and maintenance.
+
+[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
+
+
+* See Also
+- [[file:agenda.org][Agenda]]
+- [[file:bookmarks.org][Bookmarks]]
+- [[file:calc.org][Calc]]
+- [[file:dired.org][Dired]]
+- [[file:editkit.org][EditKit (numerous editing commands)]]
+- [[file:info.org][Info]]
+- [[file:re-builder.org][Re-Builder]]

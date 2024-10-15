@@ -32,6 +32,8 @@
   (let ((tmpfile "casual-editkit-main-tmenu.txt"))
     (casualt-editkit-setup tmpfile)
     (cl-letf (((symbol-function #'casual-editkit-version-controlled-p) (lambda () t))
+              ((symbol-function #'casual-editkit-package-symbol-overlay-installed-p) (lambda () t))
+              ((symbol-function #'casual-editkit-package-magit-installed-p) (lambda () t))
               (casualt-mock #'find-file)
               (casualt-mock #'dired-jump-other-window)
               (casualt-mock #'ibuffer)
@@ -73,7 +75,7 @@
                (:binding "a" :command org-agenda)
                (:binding "C" :command compile)
                (:binding "g" :command casual-editkit-select-magit-command)
-               (:binding "h" :command symbol-overlay-put)
+               (:binding "h" :command casual-editkit-symbol-overlay-put)
 
                (:binding "B" :command casual-editkit-bookmarks-tmenu)
                (:binding "J" :command bookmark-jump)
