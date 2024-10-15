@@ -1,0 +1,73 @@
+[[../README.org][❮ Back to Casual]]
+
+* Casual Info
+An opinionated [[https://github.com/magit/transient][Transient]]-based user interface for the Emacs [[https://www.gnu.org/software/emacs/manual/html_node/info/][Info]] reader.
+
+[[file:images/casual-info-screenshot.png]]
+
+* Install
+If installed via MELPA then add these lines to your Emacs initialization file with your binding of preference. 
+#+begin_src elisp :lexical no
+  (require 'casual-info) ;; optional
+  (keymap-set Info-mode-map "C-o" #'casual-info-tmenu)
+#+end_src
+
+If you use ~use-package~, here is the recipe for installing it.
+#+begin_src elisp :lexical no
+  (use-package casual-info
+    :ensure t
+    :bind (:map Info-mode-map ("C-o" . 'casual-info-tmenu)))
+#+end_src
+
+** A Note on Package Dependencies
+Casual Info requires Casual Lib which in turn requires a recent installation of Transient 0.6.0+ from either [[https://elpa.gnu.org/packages/transient.html][ELPA]] or [[https://melpa.org/#/transient][MELPA]]. As an older version of Transient is built-in to the Emacs release, the package manager ~package.el~ will /not/ update this package unless the customizable variable ~package-install-upgrade-built-in~ is set to ~t~. Set this variable and proceed with installing Casual Info. Alternately invoking ~package-install~ with a prefix (~C-u~) will temporarily coerce the update of the built-in package. (example: ~C-u M-x package-install~ ~casual-info~)
+
+As Transient is closely tied to Magit, installing the latest version of Magit (via [[https://elpa.nongnu.org/nongnu/magit.html][non-GNU ELPA]] or [[https://melpa.org/#/magit][MELPA]]) before installing Casual Info can also pick up the latest version of Transient.
+
+** Customization
+While not required, adding this configuration to your Emacs initialization file will synchronize keybindings between Casual Info and the Info reader. A nice visual improvement is to use ~hl-line-mode~ to highlight the line where the cursor is at. Enabling ~scroll-lock-mode~ will enable scrolling the buffer for content that is larger than its window size with the navigation keys.
+
+#+begin_src elisp :lexical no
+  ;; # Info
+  ;; Use web-browser history navigation bindings
+  (keymap-set Info-mode-map "M-[" #'Info-history-back)
+  (keymap-set Info-mode-map "M-]" #'Info-history-forward)
+  ;; Bind p and n to paragraph navigation
+  (keymap-set Info-mode-map "p" #'casual-info-browse-backward-paragraph)
+  (keymap-set Info-mode-map "n" #'casual-info-browse-forward-paragraph)
+  ;; Bind h and l to navigate to previous and next nodes
+  ;; Bind j and k to navigate to next and previous references
+  (keymap-set Info-mode-map "h" #'Info-prev)
+  (keymap-set Info-mode-map "j" #'Info-next-reference)
+  (keymap-set Info-mode-map "k" #'Info-prev-reference)
+  (keymap-set Info-mode-map "l" #'Info-next)
+  ;; Bind / to search
+  (keymap-set Info-mode-map "/" #'Info-search)
+  ;; Set Bookmark
+  (keymap-set Info-mode-map "B" #'bookmark-set)
+
+  (add-hook 'Info-mode-hook #'hl-line-mode)
+  (add-hook 'Info-mode-hook #'scroll-lock-mode)
+#+end_src
+
+
+* Usage
+1. Invoke ~M-x info~ to launch the Info reader.
+2. When the point is in the Info window, invoke ~C-o~ (or a binding of your choosing) to launch the Casual Info menu.
+
+** Unicode Symbol Support
+By enabling “Use Unicode Symbols” from the Settings menu, Casual Info will use Unicode symbols as appropriate in its menus. 
+
+* Sponsorship
+If you enjoy using Casual Info, consider making a modest financial contribution to help support its development and maintenance.
+
+[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
+
+* See Also
+- [[file:agenda.org][Agenda]]
+- [[file:bookmarks.org][Bookmarks]]
+- [[file:calc.org][Calc]]
+- [[file:dired.org][Dired]]
+- [[file:editkit.org][EditKit (numerous editing commands)]]
+- [[file:isearch.org][I-Search]]
+- [[file:re-builder.org][Re-Builder]]
