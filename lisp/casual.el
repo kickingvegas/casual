@@ -6,7 +6,7 @@
 ;; URL: https://github.com/kickingvegas/casual
 ;; Keywords: tools, wp
 ;; Version: 0.1.1-rc.1
-;; Package-Requires: ((emacs "29.1") (transient "0.6.0") (org "9.7.1"))
+;; Package-Requires: ((emacs "28.1") (transient "0.6.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
