@@ -5,22 +5,46 @@ Casual is organized into different user interface (UI) libraries tuned for diffe
 
 - [[file:docs/agenda.org][Agenda]] (Elisp library: ~casual-agenda~)
   An interface for Org Agenda to help you plan your day.
+  
+  [[file:docs/agenda.org][file:docs/images/casual-agenda-screenshot.png]]
+  
 - [[file:docs/bookmarks.org][Bookmarks]] (Elisp library: ~casual-bookmarks~)
   An interface for editing your bookmark collection.
+
+  [[file:docs/bookmarks.org][file:docs/images/casual-bookmarks-screenshot.png]]
+  
 - [[file:docs/calc.org][Calc]] (Elisp library: ~casual-calc~)
   An interface for Emacs Calc, an embarrasingly feature-rich calculator.
+
+  [[file:docs/calc.org][file:docs/images/casual-calc-tmenu.png]]
+  
 - [[file:docs/dired.org][Dired]] (Elisp library: ~casual-dired~)
   An interface for the venerable file manager Dired.
+
+  [[file:docs/dired.org][file:docs/images/casual-dired-screenshot.png]]
+  
 - [[file:docs/editkit.org][EditKit]] (Elisp library: ~casual-editkit~)
   A cornucopia of interfaces for the different editing features (e.g. marking, copying, killing, duplicating, transforming, deleting) of Emacs. Included are interfaces for rectangle, register, macro, and project commands.
+
+  [[file:docs/editkit.org][file:docs/images/casual-editkit-main-screenshot.png]]
+  
 - [[file:docs/info.org][Info]] (Elisp library: casual-info)
   An interface for the Info documentation system.
+
+  [[file:docs/info.org][file:docs/images/casual-info-screenshot.png]]
+  
 - [[file:docs/isearch.org][I-Search]] (Elisp library: ~casual-isearch~)
   An interface for the many commands supported by I-Search.
+
+  [[file:docs/isearch.org][file:docs/images/casual-isearch-tmenu.png]]
+  
 - [[file:docs/re-builder.org][Re-Builder]] (Elisp library: ~casual-re-builder~)
-  An interface for the Emacs regular expression tool. 
+  An interface for the Emacs regular expression tool.
+
+  [[file:docs/re-builder.org][file:docs/images/casual-re-builder-screenshot.png]]
 
 Users can choose any or all of the user interfaces made available by Casual at their pleasure.
+
 
 * Motivation
 Emacs has many commands that are easy to forget if not used frequently. Menus are a user interface (UI) affordance that offers discoverability and recognition. While menus are commonly associated with mouse-driven UI, the inclusion of Transient in Emacs core allows for building a keyboard-driven menu UI. Transient menus are appealing to users who prefer keyboard-driven workflows.
@@ -33,10 +57,9 @@ That said, Casual has no aims to be a mutually exclusive user interface. All exi
 - To be a frequently used interface to the modes Casual does support.
 
 ** Non-Goals
-- Full coverage of all Emacs commands. Casual is not intended to be a power user tool nor is it intended to be a replacement for mouse-driven menus.
+- Full coverage of all Emacs commands. Casual is not intended to be a power user tool nor is it intended to be a replacement for mouse-driven menus. Casual has no intent to exhaustively cover all modes available in Emacs with keyboard-driven menus.
 - Strict adherence to Emacs command naming. While Casual is *mostly* in alignment with Emacs command naming, there are cases where it will make an opinionated change if the name is deemed too vague or idiomatic.
 - No intention is made by Casual to help on-board users to the existing default bindings of a mode, nor to cater to users who already know them. That said, many existing default Emacs bindings are replicated in Casual. Such correspondence should be considered incidental.
-- Casual has no intent to exhaustively cover all modes available in Emacs with keyboard-driven menus.
 - UX Stability (for now). Given that Casual is early in its life-cycle, expect changes to its user experience in terms of menu hierarchy and keybinding choices in future releases.
   
 Editorially, all design decisions for Casual are ultimately the opinion of Charles Y. Choi. People comfortable with this are invited to use Casual at their discretion.
@@ -44,7 +67,6 @@ Editorially, all design decisions for Casual are ultimately the opinion of Charl
 * Requirements
 Casual requires usage of
 - Emacs ≥ 29.1
-- Magit ≥ 3.0.0
   
 Casual has been verified with the following configuration. 
 - Emacs 29.4 (macOS 14.5, Ubuntu Linux 22.04.4 LTS)
