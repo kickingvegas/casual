@@ -73,14 +73,16 @@
 ;; UPGRADING to Casual 2.x
 
 ;; If you have installed any Casual package that is version 1.x, you should
-;; immediately run the following command upon installation of casual.
+;; immediately run the following commands upon installation of casual.
 
+;; M-x load-libary casual
 ;; M-x casual-upgrade-base-to-version-2
 
 ;; This command will uninstall any Casual v1.x packages that have been
 ;; superseded by this package.
 
 ;;; Code:
+(require 'package)
 (require 'casual-lib)
 
 (defun casual-upgrade-base-to-version-2 (enable)
