@@ -25,6 +25,7 @@
 ;;; Code:
 (require 'calc)
 (require 'calc-math)
+(require 'casual-calc-utils)
 
 ;; !!! While not a label function, it is called from modules that call labels.
 (defun casual-calc-open-settings-file ()

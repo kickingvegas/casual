@@ -1,0 +1,84 @@
+[[../README.org][❮ Back to Casual]]
+
+* Casual Calc
+An opinionated [[https://github.com/magit/transient][Transient]]-based user interface to support the casual usage of Emacs [[https://www.gnu.org/software/emacs/manual/html_mono/calc.html][Calc]].
+
+[[file:images/casual-calc-tmenu.png]]
+
+* Install
+Casual Calc is available on [[https://melpa.org/#/casual-calc][MELPA]].
+
+If installed via ~list-packages~ then add this line to your Emacs initialization file.
+#+begin_src elisp :lexical no
+  (require 'casual-calc) ;; optional
+  (keymap-set calc-mode-map "C-o" #'casual-calc-tmenu)
+  (keymap-set calc-alg-map "C-o" #'casual-calc-tmenu)
+#+end_src
+
+If you use ~use-package~, here is the recipe for installing it.
+#+begin_src elisp :lexical no
+  (use-package calc
+    :defer t)
+
+  (use-package casual-calc
+    :ensure nil
+    :bind (:map
+           calc-mode-map
+           ("C-o" . casual-calc-tmenu)
+           :map
+           calc-alg-map
+           ("C-o" . casual-calc-tmenu))
+    :after (calc))
+#+end_src
+
+** A Note on Package Dependencies
+Casual Calc requires Casual Lib which in turn requires a recent installation of Transient 0.6.0+ from either [[https://elpa.gnu.org/packages/transient.html][ELPA]] or [[https://melpa.org/#/transient][MELPA]]. As an older version of Transient is built-in to the Emacs release, the package manager ~package.el~ will /not/ update this package unless the customizable variable ~package-install-upgrade-built-in~ is set to ~t~. Set this variable and proceed with installing Casual Calc. Alternately invoking ~package-install~ with a prefix (~C-u~) will temporarily coerce the update of the built-in package. (example: ~C-u M-x package-install~ ~casual-calc~)
+
+As Transient is closely tied to Magit, installing the latest version of Magit (via [[https://elpa.nongnu.org/nongnu/magit.html][non-GNU ELPA]] or [[https://melpa.org/#/magit][MELPA]]) before installing Casual Calc can also pick up the latest version of Transient.
+
+
+* Usage
+1. Invoke ~M-x calc~ to launch Calc.
+2. When the point is in the Calc window, invoke ~C-o~ (or a binding of your choosing) to launch the Casual Calc interface.
+
+Once raised, the Casual Calc interface can be dismissed via:
+- ~C-g~ to dismiss the current menu.
+- ~C-q~ to dismiss the interface completely.
+
+For nearly all menus, algebraic entry via the ' binding is available, as well as basic calculator operations (addition, subtraction, multiplication, division) and stack operations (pop, enter).
+
+* Calc Basics
+It helps to know some basics about Calc.
+
+- Calc is a stack-based calculator that supports both RPN and algebraic style entry.
+  - By default it uses RPN entry, but this can be changed to algebraic.
+- Stack based operations are always RPN-style.
+- Undo has the keybinding ~U~, redo is ~D~.
+- The top of the stack is referred to as ~1:~
+- Calc vectors are punctuated with ~[~ and ~]~ (e.g. ~[2 3]~)  Matrix values are represented as vectors within a vector. For example, ~[[1 0] [0 1]]~ is a square diagonal matrix.
+- Calc vector indexes are 1-offset.
+- Intervals
+  - Inclusive intervals are represented as [𝑛..𝑚], where 𝑛 < 𝑚.
+  - Exclusive intervals are represented as (𝑛..𝑚), where 𝑛 < 𝑚.
+  - Any combination of lower and upper bounds set to be inclusive or exclusive is supported.
+- Complex numbers are entered as (𝑟, 𝑖), where 𝑟 is the real part and 𝑖 is the imaginary.
+- Radix numbers are entered as 𝑏#𝑛 where 𝑏 is the base value and 𝑛 is the number. For example entering ~2#0101~ will put ~5~ on the stack.
+- H:M:S values are default entered as ℎ@ 𝑚" 𝑠'.
+- Org-mode active timestamps can be entered into Calc.
+- The top of the stack (1:) can be edited by pressing the ~`~ key.
+- Entering a single quote (') will prompt you for an algebraic entry.
+
+* Sponsorship
+If you enjoy using Casual Calc, consider making a modest financial contribution to help support its development and maintenance.
+
+[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
+
+
+* See Also
+- [[file:agenda.org][Agenda]]
+- [[file:bookmarks.org][Bookmarks]]
+- [[file:dired.org][Dired]]
+- [[file:editkit.org][EditKit (numerous editing commands)]]
+- [[file:info.org][Info]]
+- [[file:isearch.org][I-Search]]
+- [[file:re-builder.org][Re-Builder]]

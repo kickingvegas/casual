@@ -3,7 +3,6 @@
 ;; Copyright (C) 2024  Charles Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
-;; URL: https://github.com/kickingvegas/casual-editkit
 ;; Keywords: tools, wp
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -90,8 +89,11 @@ user-customized menu."
     ("C" "Compile…" compile)
     ("g" "Magit Status" casual-editkit-select-magit-command
      :description casual-editkit-select-magit-command-description
-     :if casual-editkit-version-controlled-p)
-    ("h" "Highlight Symbol" symbol-overlay-put)]]
+     :if (lambda ()
+           (and (casual-editkit-package-magit-installed-p)
+                (casual-editkit-version-controlled-p))))
+    ("h" "Highlight Symbol" casual-editkit-symbol-overlay-put
+     :if casual-editkit-package-symbol-overlay-installed-p)]]
 
   [[;;"Bookmarks"
     ("B" "Bookmarks›" casual-editkit-bookmarks-tmenu)

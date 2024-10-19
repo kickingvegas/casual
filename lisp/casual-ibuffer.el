@@ -3,7 +3,6 @@
 ;; Copyright (C) 2024  Charles Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
-;; URL: https://github.com/kickingvegas/casual-ibuffer
 ;; Keywords: tools
 
 ;; This program is free software; you can redistribute it and/or modify

@@ -3,7 +3,6 @@
 ;; Copyright (C) 2024  Charles Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
-;; URL: https://github.com/kickingvegas/casual-lib
 ;; Keywords: tools
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -32,6 +31,9 @@
 ;;; Code:
 (require 'transient)
 
+(defgroup casual nil
+  "Settings for Casual user interfaces."
+  :group 'convenience)
 
 (defcustom casual-lib-hide-navigation nil
   "If non-nil then hide navigation controls.
@@ -80,7 +82,7 @@ plain ASCII-range string."
 ;; Predicates
 (defun casual-lib-display-line-numbers-mode-p ()
   "Predicate to test if `display-line-numbers-mode' is enabled."
-  (if display-line-numbers t nil))
+  (bound-and-true-p display-line-numbers))
 
 (defun casual-lib-buffer-writeable-p ()
   "Predicate to test if buffer is writeable."
