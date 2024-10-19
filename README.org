@@ -1,40 +1,80 @@
 * Casual
-A collection of opinionated [[https://github.com/magit/transient][Transient]]-based user interfaces for Emacs.
+A collection of opinionated [[https://github.com/magit/transient][Transient]]-based keyboard-driven user interfaces for various built-in Emacs modes.
 
-*THIS PROJECT IS WIP.*
+Casual is organized into different user interface (UI) libraries tuned for different modes. Different user interfaces for the following modes are supported:
 
-Looking for Casual Calc? Go to https://github.com/kickingvegas/casual-calc
+- [[file:docs/agenda.org][Agenda]] (Elisp library: ~casual-agenda~)
+  An interface for Org Agenda to help you plan your day.
+- [[file:docs/bookmarks.org][Bookmarks]] (Elisp library: ~casual-bookmarks~)
+  An interface for editing your bookmark collection.
+- [[file:docs/calc.org][Calc]] (Elisp library: ~casual-calc~)
+  An interface for Emacs Calc, an embarrasingly feature-rich calculator.
+- [[file:docs/dired.org][Dired]] (Elisp library: ~casual-dired~)
+  An interface for the venerable file manager Dired.
+- [[file:docs/editkit.org][EditKit]] (Elisp library: ~casual-editkit~)
+  A cornucopia of interfaces for the different editing features (e.g. marking, copying, killing, duplicating, transforming, deleting) of Emacs. Included are interfaces for rectangle, register, macro, and project commands.
+- [[file:docs/info.org][Info]] (Elisp library: casual-info)
+  An interface for the Info documentation system.
+- [[file:docs/isearch.org][I-Search]] (Elisp library: ~casual-isearch~)
+  An interface for the many commands supported by I-Search.
+- [[file:docs/re-builder.org][Re-Builder]] (Elisp library: ~casual-re-builder~)
+  An interface for the Emacs regular expression tool. 
+
+Users can choose any or all of the user interfaces made available by Casual at their pleasure.
 
 * Motivation
-Emacs has many commands that are easy to forget if not used frequently. Menus are a user interface (UI) affordance that offers discoverability and recognition that can lower its learning curve. While menus are commonly associated with mouse-driven UI, the inclusion of Transient in Emacs core allows for building a keyboard-driven menu UI. Casual endeavors to offer this as many Emacs users prefer keyboard-driven workflows.
+Emacs has many commands that are easy to forget if not used frequently. Menus are a user interface (UI) affordance that offers discoverability and recognition. While menus are commonly associated with mouse-driven UI, the inclusion of Transient in Emacs core allows for building a keyboard-driven menu UI. Transient menus are appealing to users who prefer keyboard-driven workflows.
+
+That said, Casual has no aims to be a mutually exclusive user interface. All existing user interfaces to commands (keybinding, mini-buffer prompt, mouse menus) are still available to the user.
 
 ** Goals
-- To provide a keyboard-driven menu UI toolkit for common Emacs editing commands.
-- To provide casual access to the above commands.
+- To provide a keyboard-driven menu UI toolkit for common Emacs commands.
+- To allow for casual discovery and use of infrequently used Emacs commands.
+- To be a frequently used interface to the modes Casual does support.
 
 ** Non-Goals
-- Full coverage of all Emacs editing commands. Casual is not intended to be a power user tool nor is it intended to be a replacement for mouse-driven menus.
-- Strict adherence to Emacs editing command naming. While Casual is *mostly* in alignment with Emacs command naming, there are cases where it will make an opinionated change if the name is deemed too vague or idiomatic.
+- Full coverage of all Emacs commands. Casual is not intended to be a power user tool nor is it intended to be a replacement for mouse-driven menus.
+- Strict adherence to Emacs command naming. While Casual is *mostly* in alignment with Emacs command naming, there are cases where it will make an opinionated change if the name is deemed too vague or idiomatic.
+- No intention is made by Casual to help on-board users to the existing default bindings of a mode, nor to cater to users who already know them. That said, many existing default Emacs bindings are replicated in Casual. Such correspondence should be considered incidental.
+- Casual has no intent to exhaustively cover all modes available in Emacs with keyboard-driven menus.
 - UX Stability (for now). Given that Casual is early in its life-cycle, expect changes to its user experience in terms of menu hierarchy and keybinding choices in future releases.
+  
+Editorially, all design decisions for Casual are ultimately the opinion of Charles Y. Choi. People comfortable with this are invited to use Casual at their discretion.
 
 * Requirements
 Casual requires usage of
 - Emacs ≥ 29.1
-- Magit ≥ 4.0.0
-- Casual Lib ≥ 1.1.0
+- Magit ≥ 3.0.0
   
 Casual has been verified with the following configuration. 
 - Emacs 29.4 (macOS 14.5, Ubuntu Linux 22.04.4 LTS)
 
 * Asks
-As Casual is new, we are looking for early adopters! Your [[https://github.com/kickingvegas/casual-symbol-overlay/discussions][feedback]] is welcome as it will likely impact Casual's evolution, particularly with regards to UI.
+As Casual is new, we are looking for early adopters! Your [[https://github.com/kickingvegas/casual/discussions][feedback]] is welcome as it will likely impact Casual's evolution, particularly with regards to UI.
 
 * Install
+For a mode of interest, go to the *Install* section of a link below for guidance on installation and configuration of a Casual user interface.
+
+- [[file:docs/agenda.org::*Install][Agenda]]
+- [[file:docs/bookmarks.org::*Install][Bookmarks]]
+- [[file:docs/calc.org::*Install][Calc]]
+- [[file:docs/dired.org::*Install][Dired]]
+- [[file:docs/editkit.org::*Install][EditKit]]
+- [[file:docs/info.org::*Install][Info]]
+- [[file:docs/isearch.org::*Install][I-Search]]
+- [[file:docs/re-builder.org::*Install][Re-Builder]]
+
+** Upgrading to Casual 2.x
+If you have installed any Casual package that is version 1.x, you should immediately run the following command upon installation of ~casual~.
+
+~M-x~ ~casual-upgrade-base-to-version-2~
+
+This command will uninstall any Casual v1.x packages that have been superseded by this package.
 
 ** A Note on Package Dependencies
-Casual requires Casual Lib which in turn requires a recent installation of Transient 0.6.0+ from either [[https://elpa.gnu.org/packages/transient.html][ELPA]] or [[https://melpa.org/#/transient][MELPA]]. As an older version of Transient is built-in to the Emacs release, the package manager ~package.el~ will /not/ update this package unless the customizable variable ~package-install-upgrade-built-in~ is set to ~t~. Set this variable and proceed with installing Casual. Alternately invoking ~package-install~ with a prefix (~C-u~) will temporarily coerce the update of the built-in package. (example: ~C-u M-x package-install~ ~casual-editkit~)
+Casual requires a recent installation of Transient 0.6.0+ from either [[https://elpa.gnu.org/packages/transient.html][ELPA]] or [[https://melpa.org/#/transient][MELPA]]. If your version of Emacs is ≤ 30 but also includes Transient as a built-in package, you will need to set the customizable variable ~package-install-upgrade-built-in~ to ~t~ to enable updating it via ~package.el~.  Set this variable and proceed with installing Casual.  Alternately invoking ~package-install~ with a prefix (~C-u~) will temporarily coerce the update of dependent built-in packages (example: ~C-u M-x package-install~ ~casual~).
 
-As Transient is closely tied to Magit, installing the latest version of Magit (via [[https://elpa.nongnu.org/nongnu/magit.html][non-GNU ELPA]] or [[https://melpa.org/#/magit][MELPA]]) before installing Casual can also pick up the latest version of Transient.
+If you already have the latest version of Magit installed (via [[https://elpa.nongnu.org/nongnu/magit.html][non-GNU ELPA]] or [[https://melpa.org/#/magit][MELPA]]), you can bypass the above instruction as Magit already includes the Transient package as a dependency.
 
 * Common Menu Actions
 Casual is built using Transient menus and as such adopts its default behavior.
@@ -60,8 +100,15 @@ If you enjoy using Casual, consider making a modest financial contribution to he
 [[https://www.buymeacoffee.com/kickingvegas][file:docs/images/default-yellow.png]]
 
 * See Also
-Casual is part of a suite of user interfaces for different Emacs packages called [[https://github.com/kickingvegas/casual-suite][Casual Suite]].
+While the package ~casual~ focuses on user interfaces for built-in Emacs modes, there are other third party packages which receive the “Casual” treatment. Two such packages are:
+
+- [[https://github.com/kickingvegas/casual-avy][Casual Avy]] (Elisp package: ~casual-avy~)
+  - An interface for the highly capable Avy navigation package.
+- [[https://github.com/kickingvegas/casual-symbol-overlay][Casual Symbol Overlay]] (Elisp package: ~casual-symbol-overlay~)
+  - An interface for the Symbol Overlay package.
+
+Users interested in getting all current and future Casual interfaces for both built-in and third party packages should install [[https://github.com/kickingvegas/casual-suite][Casual Suite]], which includes all of the above packages including ~casual~. 
 
 * Acknowledgments
-A heartfelt thanks to all the contributors to Emacs, [[https://github.com/magit/transient][Transient]], Org Mode, and Magit. This package would not be possible without your efforts.
+A heartfelt thanks to all the contributors to [[https://github.com/magit/transient][Transient]]/[[https://magit.vc][Magit]], [[https://orgmode.org][Org Mode]], and [[https://www.gnu.org/software/emacs/][Emacs]]. This package would not be possible without your efforts.
 

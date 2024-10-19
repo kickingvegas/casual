@@ -1,0 +1,101 @@
+[[../README.org][❮ Back to Casual]] 
+
+* Casual Agenda
+An opinionated [[https://github.com/magit/transient][Transient]]-based user interface for [[https://orgmode.org/manual/Agenda-Views.html][Org Agenda]], a feature of Emacs [[https://orgmode.org/features.html][Org mode]] to help plan your day.
+
+[[file:images/casual-agenda-screenshot.png]]
+
+
+* Install
+Add these lines to your Emacs initialization file with your binding of preference.
+#+begin_src elisp :lexical no
+  (keymap-set org-agenda-mode-map "C-o" #'casual-agenda-tmenu)
+#+end_src
+
+If you use ~use-package~, here is the recipe for installing it.
+#+begin_src elisp :lexical no
+  (use-package casual-agenda
+    :ensure nil
+    :bind (:map
+           org-agenda-mode-map
+           ("C-o" . casual-agenda-tmenu))
+    :after (org-agenda))
+#+end_src
+
+
+** Configuration
+Use these bindings to configure Org Agenda to be consistent with bindings used by Casual Agenda. This is optional.
+
+#+begin_src elisp :lexical no
+  ; bindings to make jumping consistent between Org Agenda and Casual Agenda
+  (keymap-set org-agenda-mode-map "M-j" #'org-agenda-clock-goto) ; optional
+  (keymap-set org-agenda-mode-map "J" #'bookmark-jump) ; optional
+#+end_src
+
+If you use ~use-package~, modify your configuration as follows:
+#+begin_src elisp :lexical no
+  (use-package casual-agenda
+    :ensure nil
+    :bind (:map
+           org-agenda-mode-map
+           ("C-o" . casual-agenda-tmenu)
+           ("M-j" . org-agenda-clock-goto) ; optional
+           ("J" . bookmark-jump))) ; optional
+#+end_src
+
+
+* Usage
+
+The main menu is divided into five sections:
+
+- *Agenda* - Modify the view duration (day, week, year)
+- *Filter* - Filter displayed headlines with different criteria
+- *Actions* - Perform an activity on a headline, create/capture a headline or even generate a different agenda view.
+- *Navigation* - move the point to where you want it to be.
+- *Utils* - Set a timer, get almanac info.
+
+** Unicode Symbol Support
+By enabling “(u) Use Unicode Symbols” from the Settings menu, Casual Agenda will use Unicode symbols as appropriate in its menus.
+
+[[file:images/casual-agenda-unicode-screenshot.png]]
+
+
+** Operating on Headlines
+
+Use the /Operations/ menu to alter attributes about it such as TODO state, scheduling, tags, and priority. To use it, move the point to the line of a heading you wish to change and from the main menu select "(o) Operations". The following menu will be displayed.
+
+[[file:images/casual-agenda-operations-screenshot.png]]
+
+** Marking Headlines
+
+User the /Mark/ menu to mark different headlines and perform a bulk action on them. From the main menu, select "(m) Mark" to display the following menu:
+
+[[file:images/casual-agenda-mark-screenshot.png]]
+
+
+** Changing Modes and Settings
+
+Agenda views have different display modes and behavior that can be modified from the /Settings/ menu. From the main menu, select "(,) Settings" to display the following menu:
+
+[[file:images/casual-agenda-settings-screenshot.png]]
+
+
+** Almanac
+Get sunrise/sunset times, lunar cycle dates, and holidays with respect to a date via the /Almanac/ menu. From the main menu, select "(l) Almanac" to display the following menu.
+
+[[file:images/casual-agenda-almanac-screenshot.png]]
+
+
+* Sponsorship
+If you enjoy using Casual Agenda, consider making a modest financial contribution to help support its development and maintenance.
+
+[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
+
+* See Also
+- [[file:bookmarks.org][Bookmarks]]
+- [[file:calc.org][Calc]]
+- [[file:dired.org][Dired]]
+- [[file:editkit.org][EditKit (numerous editing commands)]]
+- [[file:info.org][Info]]
+- [[file:isearch.org][I-Search]]
+- [[file:re-builder.org][Re-Builder]]

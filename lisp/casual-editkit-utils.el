@@ -27,10 +27,6 @@
 (require 'org-agenda)
 (require 'recentf)
 (require 'simple)
-(require 'magit-status)
-(require 'magit-files)
-(require 'symbol-overlay)
-(require 'transpose-frame)
 (require 'casual-lib)
 (require 'casual-editkit-constants)
 
@@ -61,17 +57,50 @@
   "Predicate for `buffer-read-only'."
   (if buffer-read-only t nil))
 
+(defun casual-editkit-package-symbol-overlay-installed-p ()
+  "Predicate to test if package `symbol-overlay' is installed."
+  (package-installed-p 'symbol-overlay))
+
+(defun casual-editkit-package-magit-installed-p ()
+  "Predicate to test if package `magit' is installed."
+  (package-installed-p 'magit))
+
+(defun casual-editkit-package-transpose-frame-installed-p ()
+  "Predicate to test if package `transpose-frame' is installed."
+  (package-installed-p 'transpose-frame))
+
+(defun casual-editkit-transpose-frame ()
+  "Dynamically dispatch command call to `transpose-frame'."
+  (interactive)
+  (if (fboundp 'transpose-frame)
+      (call-interactively #'transpose-frame)  ; autoloaded
+    (message "%s not installed. Unable to call %s"
+             (symbol-name 'transpose-frame)
+             (symbol-name 'transpose-frame))))
+
+(defun casual-editkit-symbol-overlay-put ()
+  "Dynamically dispatch command call to `symbol-overlay'."
+  (interactive)
+  (if (fboundp 'symbol-overlay-put)
+      (call-interactively #'symbol-overlay-put)  ; autoloaded
+    (message "%s not installed. Unable to call %s"
+             (symbol-name 'symbol-overlay)
+             (symbol-name 'symbol-overlay-put))))
+
 (defun casual-editkit-select-magit-command ()
-  "Select appropriate Magit command given context."
+  "Dynamically dispatch appropriate Magit command call given context."
   (interactive)
   (if (casual-editkit-version-controlled-p)
       (cond
-       ((derived-mode-p 'dired-mode) (funcall-interactively #'magit-status))
-       ((or (derived-mode-p 'prog-mode)
-            (derived-mode-p 'text-mode))
-        (funcall-interactively #'magit-file-dispatch))
-       (t (funcall-interactively #'magit-status)))
-
+       ((derived-mode-p 'dired-mode)
+        (if (fboundp 'magit-status)
+            (funcall-interactively #'magit-status)))
+       ((or (derived-mode-p 'prog-mode) (derived-mode-p 'text-mode))
+        (if (fboundp 'magit-file-dispatch)
+            (funcall-interactively #'magit-file-dispatch)))
+       (t
+        (if (fboundp 'magit-status)
+            (funcall-interactively #'magit-status))))
     (message "Not a version controlled buffer.")))
 
 (defun casual-editkit-select-magit-command-description ()
@@ -440,7 +469,8 @@ Commands pertaining to window management operations can be accessed here."
      :description (lambda () (casual-editkit-unicode-get :split-window-horizontally)))]
 
    ["Misc"
-    ("t" "Transpose" transpose-frame)
+    ("t" "Transpose" casual-editkit-transpose-frame
+     :if casual-editkit-package-transpose-frame-installed-p)
     ;; ("T" "Toggle Tab Bar" mac-toggle-tab-bar
     ;;  :if casual-editkit-window-system-mac-p)
     ;;("J" "Jump to Window…" ace-select-window)

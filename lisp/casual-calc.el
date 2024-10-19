@@ -1,9 +1,8 @@
-;;; casual-calc.el --- Transient UI for Calc              -*- lexical-binding: t; -*-
+;;; casual-calc.el --- Transient UI for Calc -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2024  Charles Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
-;; URL: https://github.com/kickingvegas/casual-calc
 ;; Keywords: tools
 
 ;; This program is free software; you can redistribute it and/or modify
