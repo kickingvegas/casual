@@ -63,11 +63,11 @@
 
 Learn more about using Casual IBuffer at our discussion group on GitHub.
 Any questions or comments about it should be made there.
-URL `https://github.com/kickingvegas/casual-ibuffer/discussions'
+URL `https://github.com/kickingvegas/casual/discussions'
 
 If you find a bug or have an enhancement request, please file an issue.
 Our best effort will be made to answer it.
-URL `https://github.com/kickingvegas/casual-ibuffer/issues'
+URL `https://github.com/kickingvegas/casual/issues'
 
 If you enjoy using Casual IBuffer, consider making a modest financial
 contribution to help support its development and maintenance.
