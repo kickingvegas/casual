@@ -5,7 +5,7 @@
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual
 ;; Keywords: tools, wp
-;; Version: 2.0.1
+;; Version: 2.0.2-rc.1
 ;; Package-Requires: ((emacs "29.1") (transient "0.6.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -73,14 +73,16 @@
 ;; UPGRADING to Casual 2.x
 
 ;; If you have installed any Casual package that is version 1.x, you should
-;; immediately run the following command upon installation of casual.
+;; immediately run the following commands upon installation of casual.
 
+;; M-x load-libary casual
 ;; M-x casual-upgrade-base-to-version-2
 
 ;; This command will uninstall any Casual v1.x packages that have been
 ;; superseded by this package.
 
 ;;; Code:
+(require 'package)
 (require 'casual-lib)
 
 (defun casual-upgrade-base-to-version-2 (enable)

@@ -86,9 +86,12 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[file:docs/re-builder.org::*Install][Re-Builder]]
 
 ** Upgrading to Casual 2.x
-If you have installed any Casual package that is version 1.x, you should immediately run the following command upon installation of ~casual~.
+If you have installed any Casual package that is version 1.x, you should immediately run the following commands upon installation of ~casual~.
 
-~M-x~ ~casual-upgrade-base-to-version-2~
+#+BEGIN_SRC elisp
+M-x load-library casual
+M-x casual-upgrade-base-to-version-2
+#+END_SRC
 
 This command will uninstall any Casual v1.x packages that have been superseded by this package.
 
