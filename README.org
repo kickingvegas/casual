@@ -3,42 +3,42 @@ A collection of opinionated [[https://github.com/magit/transient][Transient]]-ba
 
 Casual is organized into different user interface (UI) libraries tuned for different modes. Different user interfaces for the following modes are supported:
 
-- [[file:docs/agenda.org][Agenda]] (Elisp library: ~casual-agenda~)
+** [[file:docs/agenda.org][Agenda]] (Elisp library: ~casual-agenda~)
   An interface for Org Agenda to help you plan your day.
   
   [[file:docs/agenda.org][file:docs/images/casual-agenda-screenshot.png]]
   
-- [[file:docs/bookmarks.org][Bookmarks]] (Elisp library: ~casual-bookmarks~)
+** [[file:docs/bookmarks.org][Bookmarks]] (Elisp library: ~casual-bookmarks~)
   An interface for editing your bookmark collection.
 
   [[file:docs/bookmarks.org][file:docs/images/casual-bookmarks-screenshot.png]]
   
-- [[file:docs/calc.org][Calc]] (Elisp library: ~casual-calc~)
+** [[file:docs/calc.org][Calc]] (Elisp library: ~casual-calc~)
   An interface for Emacs Calc, an embarrasingly feature-rich calculator.
 
   [[file:docs/calc.org][file:docs/images/casual-calc-tmenu.png]]
   
-- [[file:docs/dired.org][Dired]] (Elisp library: ~casual-dired~)
+** [[file:docs/dired.org][Dired]] (Elisp library: ~casual-dired~)
   An interface for the venerable file manager Dired.
 
   [[file:docs/dired.org][file:docs/images/casual-dired-screenshot.png]]
   
-- [[file:docs/editkit.org][EditKit]] (Elisp library: ~casual-editkit~)
+** [[file:docs/editkit.org][EditKit]] (Elisp library: ~casual-editkit~)
   A cornucopia of interfaces for the different editing features (e.g. marking, copying, killing, duplicating, transforming, deleting) of Emacs. Included are interfaces for rectangle, register, macro, and project commands.
 
   [[file:docs/editkit.org][file:docs/images/casual-editkit-main-screenshot.png]]
   
-- [[file:docs/info.org][Info]] (Elisp library: casual-info)
+** [[file:docs/info.org][Info]] (Elisp library: casual-info)
   An interface for the Info documentation system.
 
   [[file:docs/info.org][file:docs/images/casual-info-screenshot.png]]
   
-- [[file:docs/isearch.org][I-Search]] (Elisp library: ~casual-isearch~)
+** [[file:docs/isearch.org][I-Search]] (Elisp library: ~casual-isearch~)
   An interface for the many commands supported by I-Search.
 
   [[file:docs/isearch.org][file:docs/images/casual-isearch-tmenu.png]]
   
-- [[file:docs/re-builder.org][Re-Builder]] (Elisp library: ~casual-re-builder~)
+** [[file:docs/re-builder.org][Re-Builder]] (Elisp library: ~casual-re-builder~)
   An interface for the Emacs regular expression tool.
 
   [[file:docs/re-builder.org][file:docs/images/casual-re-builder-screenshot.png]]
@@ -71,11 +71,10 @@ Casual requires usage of
 Casual has been verified with the following configuration. 
 - Emacs 29.4 (macOS 14.5, Ubuntu Linux 22.04.4 LTS)
 
-* Asks
-As Casual is new, we are looking for early adopters! Your [[https://github.com/kickingvegas/casual/discussions][feedback]] is welcome as it will likely impact Casual's evolution, particularly with regards to UI.
-
 * Install
-For a mode of interest, go to the *Install* section of a link below for guidance on installation and configuration of a Casual user interface.
+Standard installation of the ~casual~ package is via MELPA distribution. 
+
+Configuration of a particular Casual user interface is performed per mode. Go to the *Install* section for a mode of interest below for guidance on its configuration.
 
 - [[file:docs/agenda.org::*Install][Agenda]]
 - [[file:docs/bookmarks.org::*Install][Bookmarks]]
@@ -97,6 +96,9 @@ This command will uninstall any Casual v1.x packages that have been superseded b
 Casual requires a recent installation of Transient 0.6.0+ from either [[https://elpa.gnu.org/packages/transient.html][ELPA]] or [[https://melpa.org/#/transient][MELPA]]. If your version of Emacs is ≤ 30 but also includes Transient as a built-in package, you will need to set the customizable variable ~package-install-upgrade-built-in~ to ~t~ to enable updating it via ~package.el~.  Set this variable and proceed with installing Casual.  Alternately invoking ~package-install~ with a prefix (~C-u~) will temporarily coerce the update of dependent built-in packages (example: ~C-u M-x package-install~ ~casual~).
 
 If you already have the latest version of Magit installed (via [[https://elpa.nongnu.org/nongnu/magit.html][non-GNU ELPA]] or [[https://melpa.org/#/magit][MELPA]]), you can bypass the above instruction as Magit already includes the Transient package as a dependency.
+
+* Asks
+As Casual is new, we are looking for early adopters! Your [[https://github.com/kickingvegas/casual/discussions][feedback]] is welcome as it will likely impact Casual's evolution, particularly with regards to UI.
 
 * Common Menu Actions
 Casual is built using Transient menus and as such adopts its default behavior.
@@ -132,5 +134,5 @@ While the package ~casual~ focuses on user interfaces for built-in Emacs modes, 
 Users interested in getting all current and future Casual interfaces for both built-in and third party packages should install [[https://github.com/kickingvegas/casual-suite][Casual Suite]], which includes all of the above packages including ~casual~. 
 
 * Acknowledgments
-A heartfelt thanks to all the contributors to [[https://github.com/magit/transient][Transient]]/[[https://magit.vc][Magit]], [[https://orgmode.org][Org Mode]], and [[https://www.gnu.org/software/emacs/][Emacs]]. This package would not be possible without your efforts.
+A heartfelt thanks to all the contributors to [[https://github.com/magit/transient][Transient]], [[https://magit.vc][Magit]], [[https://orgmode.org][Org Mode]], and [[https://www.gnu.org/software/emacs/][Emacs]]. This package would not be possible without your efforts.
 
