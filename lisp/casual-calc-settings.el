@@ -156,16 +156,16 @@
   casual-calc-navigation-group)
 
 ;; = Functions =
-(defun casual-calc-about-casual ()
+(defun casual-calc-about-calc ()
   "Casual Calc is an opinionated user interface for the Emacs calculator.
 
 Learn more about using Casual Calc at our discussion group on GitHub.
 Any questions or comments about Casual should be made there.
-URL `https://github.com/kickingvegas/casual-calc/discussions'
+URL `https://github.com/kickingvegas/casual/discussions'
 
 If you find a bug or have an enhancement request, please file an issue.
 Our best effort will be made to answer it.
-URL `https://github.com/kickingvegas/casual-calc/issues'
+URL `https://github.com/kickingvegas/casual/issues'
 
 If you enjoy using Casual Calc, consider making a modest financial
 contribution to help support its development and maintenance.
@@ -182,7 +182,7 @@ Always choose love."
 (defun casual-calc-about ()
   "About information for Casual."
   (interactive)
-  (describe-function 'casual-calc-about-casual))
+  (describe-function 'casual-calc-about-calc))
 
 (defun casual-calc--infinite-mode ()
   "Toggle infinite mode on or off.
