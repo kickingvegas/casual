@@ -26,7 +26,6 @@
 (require 'org-agenda)
 (require 'casual-lib)
 
-
 (defun casual-agenda--customize-group ()
   "Customize Agenda group."
   (interactive)
@@ -37,11 +36,11 @@
 
 Learn more about using Casual Agenda at our discussion group on GitHub.
 Any questions or comments about it should be made there.
-URL `https://github.com/kickingvegas/casual-agenda/discussions'
+URL `https://github.com/kickingvegas/casual/discussions'
 
 If you find a bug or have an enhancement request, please file an issue.
 Our best effort will be made to answer it.
-URL `https://github.com/kickingvegas/casual-agenda/issues'
+URL `https://github.com/kickingvegas/casual/issues'
 
 If you enjoy using Casual Agenda, consider making a modest financial
 contribution to help support its development and maintenance.
