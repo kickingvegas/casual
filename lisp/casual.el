@@ -5,7 +5,7 @@
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual
 ;; Keywords: tools, wp
-;; Version: 2.0.0
+;; Version: 2.0.1-rc.1
 ;; Package-Requires: ((emacs "29.1") (transient "0.6.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -34,38 +34,38 @@
 
 ;; - Agenda (Elisp library: `casual-agenda')
 ;;   An interface for Org Agenda to help you plan your day.
-;;   URL `https://github.com/kickingvegas/casual/docs/agenda.org'
+;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/agenda.org'
 
 ;; - Bookmarks (Elisp library: `casual-bookmarks')
 ;;   An interface for editing your bookmark collection.
-;;   URL `https://github.com/kickingvegas/casual/docs/bookmarks.org'
+;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/bookmarks.org'
 
 ;; - Calc (Elisp library: `casual-calc')
 ;;   An interface for Emacs Calc, an embarrasingly feature-rich calculator.
-;;   URL `https://github.com/kickingvegas/casual/docs/calc.org'
+;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/calc.org'
 
 ;; - Dired (Elisp library: `casual-dired')
 ;;   An interface for the venerable file manager Dired.
-;;   URL `https://github.com/kickingvegas/casual/docs/dired.org'
+;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/dired.org'
 
 ;; - EditKit (Elisp library: `casual-editkit')
 ;;   A cornucopia of interfaces for the different editing features (e.g.
 ;;   marking, copying, killing, duplicating, transforming, deleting) of Emacs.
 ;;   Included are interfaces for rectangle, register, macro, and project
 ;;   commands.
-;;   URL `https://github.com/kickingvegas/casual/docs/editkit.org'
+;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/editkit.org'
 
 ;; - Info (Elisp library: `casual-info')
 ;;   An interface for the Info documentation system.
-;;   URL: `https://github.com/kickingvegas/casual/docs/info.org'
+;;   URL: `https://github.com/kickingvegas/casual/blob/main/docs/info.org'
 
 ;; - I-Search (Elisp library: `casual-isearch')
 ;;   An interface for the many commands supported by I-Search.
-;;   URL: `https://github.com/kickingvegas/casual/docs/isearch.org'
+;;   URL: `https://github.com/kickingvegas/casual/blob/main/docs/isearch.org'
 
 ;; - Re-Builder (Elisp library: `casual-re-builder')
 ;;   An interface for the Emacs regular expression tool.
-;;   URL: `https://github.com/kickingvegas/casual/docs/re-builder.org'
+;;   URL: `https://github.com/kickingvegas/casual/blob/main/docs/re-builder.org'
 
 ;; Users can choose any or all of the user interfaces made available by Casual
 ;; at their pleasure.
