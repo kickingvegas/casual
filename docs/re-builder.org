@@ -64,7 +64,6 @@ If you enjoy using Casual RE-Builder, consider making a modest financial contrib
 - [[file:calc.org][Calc]]
 - [[file:dired.org][Dired]]
 - [[file:editkit.org][EditKit (numerous editing commands)]]
+- [[file:ibuffer.org][IBuffer]]
 - [[file:info.org][Info]]
 - [[file:isearch.org][I-Search]]
-
-

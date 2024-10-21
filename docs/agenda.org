@@ -75,6 +75,7 @@ If you enjoy using Casual Agenda, consider making a modest financial contributio
 - [[file:calc.org][Calc]]
 - [[file:dired.org][Dired]]
 - [[file:editkit.org][EditKit (numerous editing commands)]]
+- [[file:ibuffer.org][IBuffer]]
 - [[file:info.org][Info]]
 - [[file:isearch.org][I-Search]]
 - [[file:re-builder.org][Re-Builder]]
