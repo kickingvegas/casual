@@ -23,28 +23,15 @@
 ;; Casual Calc is an opinionated Transient-based user interface for Emacs Calc.
 
 ;; INSTALLATION
-;; (require 'casual-calc)
+;; (require 'casual-calc) ; optional if using autoloaded menu
 ;; (keymap-set calc-mode-map "C-o" #'casual-calc-tmenu)
 ;; (keymap-set calc-alg-map "C-o" #'casual-calc-tmenu)
 
-;; Alternately using `use-package':
-;; (use-package calc
-;;   :defer t)
-;; (use-package casual-calc
-;;   :ensure nil
-;;   :bind (:map
-;;          calc-mode-map
-;;          ("C-o" . casual-calc-tmenu)
-;;          :map
-;;          calc-alg-map
-;;          ("C-o" . casual-calc-tmenu))
-;;   :after (calc))
-
-;; NOTE: This package requires `casual-lib' which in turn requires an update of
-;; the built-in package `transient' ≥ 0.6.0. Please customize the variable
-;; `package-install-upgrade-built-in' to t to allow for `transient' to be
-;; updated. For further details, consult the INSTALL section of this package's
-;; README.
+;; If you are using Emacs ≤ 30.0, you will need to update the built-in package
+;; `transient'. By default, `package.el' will not upgrade a built-in package.
+;; Set the customizable variable `package-install-upgrade-built-in' to `t' to
+;; override this. For more details, please refer to the "Install" section on
+;; this project's repository web page.
 
 ;;; Code:
 

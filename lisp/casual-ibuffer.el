@@ -23,36 +23,30 @@
 ;; Casual IBuffer is an opinionated Transient-based porcelain for Emacs IBuffer.
 
 ;; INSTALLATION
-;; (require 'casual-ibuffer) ;; optional
+;; (require 'casual-ibuffer) ; optional if using autoloaded menu
 ;; (keymap-set ibuffer-mode-map "C-o" #'casual-ibuffer-tmenu)
 ;; (keymap-set ibuffer-mode-map "F" #'casual-ibuffer-filter-tmenu)
 ;; (keymap-set ibuffer-mode-map "s" #'casual-ibuffer-sortby-tmenu)
 
-;; Alternately with `use-package':
-;; (use-package ibuffer
-;;   :hook (ibuffer-mode . ibuffer-auto-mode)
-;;   :defer t)
-;; (use-package casual-ibuffer
-;;   :ensure t
-;;   :bind (:map
-;;          ibuffer-mode-map
-;;          ("C-o" . casual-ibuffer-tmenu)
-;;          ("F" . casual-ibuffer-filter-tmenu)
-;;          ("s" . casual-ibuffer-sortby-tmenu)
-;;          ("<double-mouse-1>" . ibuffer-visit-buffer) ; optional
-;;          ("M-<double-mouse-1>" . ibuffer-visit-buffer-other-window) ; optional
-;;          ("{" . ibuffer-backwards-next-marked) ; optional
-;;          ("}" . ibuffer-forward-next-marked)   ; optional
-;;          ("[" . ibuffer-backward-filter-group) ; optional
-;;          ("]" . ibuffer-forward-filter-group)  ; optional
-;;          ("$" . ibuffer-toggle-filter-group))  ; optional
-;;   :after (ibuffer))
+;; While optional, this configuration can be used to align the bindings in
+;; `ibuffer-mode-map' with the bindings used by the Casual menus.
+;; (keymap-set ibuffer-mode-map "<double-mouse-1>" #'ibuffer-visit-buffer)
+;; (keymap-set ibuffer-mode-map "M-<double-mouse-1>" #'ibuffer-visit-buffer-other-window)
+;; (keymap-set ibuffer-mode-map "{" #'ibuffer-backwards-next-marked)
+;; (keymap-set ibuffer-mode-map "}" #'ibuffer-forward-next-marked)
+;; (keymap-set ibuffer-mode-map "[" #'ibuffer-backward-filter-group)
+;; (keymap-set ibuffer-mode-map "]" #'ibuffer-forward-filter-group)
+;; (keymap-set ibuffer-mode-map "$" #'ibuffer-toggle-filter-group)
 
-;; NOTE: This package requires `casual-lib' which in turn requires an update of
-;; the built-in package `transient' ≥ 0.6.0. Please customize the variable
-;; `package-install-upgrade-built-in' to t to allow for `transient' to be
-;; updated. For further details, consult the INSTALL section of this package's
-;; README.
+;; These are some convenience hooks.
+;; (add-hook 'ibuffer-mode-hook #'hl-line-mode)
+;; (add-hook 'ibuffer-mode-hook #'ibuffer-auto-mode)
+
+;; If you are using Emacs ≤ 30.0, you will need to update the built-in package
+;; `transient'. By default, `package.el' will not upgrade a built-in package.
+;; Set the customizable variable `package-install-upgrade-built-in' to `t' to
+;; override this. For more details, please refer to the "Install" section on
+;; this project's repository web page.
 
 ;;; Code:
 (require 'ibuffer)

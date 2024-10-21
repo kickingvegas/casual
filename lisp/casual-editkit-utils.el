@@ -885,8 +885,8 @@ with no space between."
              (end (region-end))
              (content (string-trim (buffer-substring start end))))
         (delete-region start end)
-        (insert (concat open-quote content close-quote)))
-    (insert (concat open-quote close-quote))))
+        (insert open-quote content close-quote))
+    (insert open-quote close-quote)))
 
 (defun casual-editkit-smart-single-quote-dwim ()
   "Insert or enclose a region with smart single quotes."

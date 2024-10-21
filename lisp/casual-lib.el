@@ -22,11 +22,11 @@
 
 ;; Library routines for Casual user interfaces.
 
-;; INSTALLATION
-;; Casual Lib is intended to be implicitly installed as a dependency to the
-;; Casual suite of packages. If you are running Emacs 29.x, you will need to
-;; configure `package-install-upgrade-built-in' to t to support an update of the
-;; built-in package `transient'.
+;; If you are using Emacs ≤ 30.0, you will need to update the built-in package
+;; `transient'. By default, `package.el' will not upgrade a built-in package.
+;; Set the customizable variable `package-install-upgrade-built-in' to `t' to
+;; override this. For more details, please refer to the "Install" section on
+;; this project's repository web page.
 
 ;;; Code:
 (require 'transient)
