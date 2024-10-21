@@ -8,29 +8,10 @@ An opinionated [[https://github.com/magit/transient][Transient]]-based user inte
 * Install
 If installed via [[https://melpa.org/#/casual-re-builder][MELPA]] then add these lines to your Emacs initialization file with your binding of preference. 
 #+begin_src elisp :lexical no
-  (require 'casual-re-builder) ;; optional
+  (require 'casual-re-builder) ; optional
   (keymap-set reb-mode-map "C-o" #'casual-re-builder-tmenu)
   (keymap-set reb-lisp-mode-map "C-o" #'casual-re-builder-tmenu)
 #+end_src
-
-If you use ~use-package~, here is the recipe for installing and configuring it. 
-#+begin_src elisp :lexical no
-  (use-package re-builder
-    :defer t)
-
-  (use-package casual-re-builder
-    :ensure t
-    :bind (:map
-           reb-mode-map ("C-o" . casual-re-builder-tmenu)
-           :map
-           reb-lisp-mode-map ("C-o" . casual-re-builder-tmenu))
-    :after (re-builder))
-#+end_src
-
-** A Note on Package Dependencies
-Casual RE-Builder requires Casual Lib which in turn requires a recent installation of Transient 0.6.0+ from either [[https://elpa.gnu.org/packages/transient.html][ELPA]] or [[https://melpa.org/#/transient][MELPA]]. As an older version of Transient is built-in to the Emacs release, the package manager ~package.el~ will /not/ update this package unless the customizable variable ~package-install-upgrade-built-in~ is set to ~t~. Set this variable and proceed with installing Casual RE-Builder. Alternately invoking ~package-install~ with a prefix (~C-u~) will temporarily coerce the update of the built-in package. (example: ~C-u M-x package-install~ ~casual-re-builder~)
-
-As Transient is closely tied to Magit, installing the latest version of Magit (via [[https://elpa.nongnu.org/nongnu/magit.html][non-GNU ELPA]] or [[https://melpa.org/#/magit][MELPA]]) before installing Casual RE-Builder can also pick up the latest version of Transient.
 
 * Usage
 

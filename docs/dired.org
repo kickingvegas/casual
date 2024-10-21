@@ -5,23 +5,30 @@ An opinionated [[https://github.com/magit/transient][Transient]]-based user inte
 
 [[file:images/casual-dired-screenshot.png]]
 
+* Requirements
+Casual Dired requires that the ~ls~ utility from GNU coreutils ≥ 8.32 be installed.
+
+The following links provide guidance for installing GNU coreutils on different platforms.
+
+** macOS
+Note that the default packaged ~ls~ on macOS is BSD-flavored which is not supported by Casual Dired. Users wishing to use Casual Dired on macOS are recommended to install GNU coreutils and configure their Emacs to point to its version of ~ls~ accordingly.
+
+- [[https://ports.macports.org/port/coreutils/][MacPorts]]
+- [[https://formulae.brew.sh/formula/coreutils#default][Homebrew]]
+
+** Windows
+For users running on Microsoft Windows, use [[https://www.gnu.org/software/emacs/manual/html_node/efaq-w32/Dired-ls.html][this guidance]] to configure Emacs to use an external install of ~ls~.
+
+- [[https://gitforwindows.org/][Git for Windows]] (includes ~ls~ in Git BASH)
+- [[https://www.cygwin.com/][Cygwin]]
+
 * Install
 If installed via MELPA then add these lines to your Emacs initialization file with your binding of preference. 
 #+begin_src elisp :lexical no
-  (require 'casual-dired) 
+  (require 'casual-dired) ; optional if using autoloaded menu
   (keymap-set dired-mode-map "C-o" #'casual-dired-tmenu)
   (keymap-set dired-mode-map "s" #'casual-dired-sort-by-tmenu) ; optional
   (keymap-set dired-mode-map "/" #'casual-dired-search-replace-tmenu) ; optional
-#+end_src
-
-If you use ~use-package~, here is the recipe for installing it.
-#+begin_src elisp :lexical no
-  (use-package casual-dired
-    :ensure t
-    :bind (:map dired-mode-map
-                ("C-o" . #'casual-dired-tmenu)
-                ("s" . #'casual-dired-sort-by-tmenu)
-                ("/" . #'casual-dired-search-replace-tmenu)))
 #+end_src
 
 In addition to binding the main menu ~casual-dired-tmenu~, the user can also bind the sort-by menu ~casual-dired-sort-by-tmenu~ and the search & replace menu ~casual-dired-search-replace-tmenu~. 
@@ -40,47 +47,13 @@ Included is a standard keymap for Dired sorting commands (~casual-dired-sort-men
   (add-hook 'dired-mode-hook 'context-menu-mode)
 #+end_src
 
-For users running on Microsoft Windows, use [[https://www.gnu.org/software/emacs/manual/html_node/efaq-w32/Dired-ls.html][this guidance]] to configure GNU ~ls~ for running with Dired.
-
-** A Note on Package Dependencies
-Casual Dired requires Casual Lib which in turn requires a recent installation of Transient 0.6.0+ from either [[https://elpa.gnu.org/packages/transient.html][ELPA]] or [[https://melpa.org/#/transient][MELPA]]. As an older version of Transient is built-in to the Emacs release, the package manager ~package.el~ will /not/ update this package unless the customizable variable ~package-install-upgrade-built-in~ is set to ~t~. Set this variable and proceed with installing Casual Dired. Alternately invoking ~package-install~ with a prefix (~C-u~) will temporarily coerce the update of the built-in package. (example: ~C-u M-x package-install~ ~casual-dired~)
-
-As Transient is closely tied to Magit, installing the latest version of Magit (via [[https://elpa.nongnu.org/nongnu/magit.html][non-GNU ELPA]] or [[https://melpa.org/#/magit][MELPA]]) before installing Casual Dired can also pick up the latest version of Transient.
 
 
-* Usage
-1. Invoke ~M-x dired~ to launch Dired.
-2. When the point is in the Dired window, invoke ~C-o~ (or a binding of your choosing) to launch the Casual Dired menu.
-
-** Enhanced Sorting
-Casual Dired offers enhanced sorting capabilities through GNU ~ls~. Use this to sort your Dired buffer to preference. Filter dot files (.*) by disabling the ~--all~ option is available here.
-
-[[file:images/casual-dired-sort-by-screenshot.png]]
-
-With the *Sort By* menu raised, one can save the switch settings for future use via the binding ~C-x C-s~ (~transient-save~). Note this is a global setting and will apply to all future calls to the *Sort By* menu.
-
-** Search & Replace
-Search and replace in multiple marked files using the ~/~ /Search & Replace/ menu item. This will raise a menu of Dired commands that will work on marked files. 
-
-[[file:images/casual-dired-search-replace.png]]
-
-While most Dired commands use Emacs-style [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Regular-Expressions.html][regular expression syntax]], there are two commands that instead take instead *grep*-style syntax:
-
-- (~g~) Find regex… (~dired-do-find-regexp~)
-- (~G~) Find regex and replace… (~dired-do-find-regexp-and-replace~)
-
-The *grep*-style syntax is dependent on the ~grep~ implementation that is installed and used by Emacs.
-
-** Bulk Dired Operations
-Casual Dired organizes a number of Dired commands that work on a set of marked files. These commands are presented in the *Utils* menu.
-
-[[file:images/casual-dired-utils-screenshot.png]]
-
-* Configuration
+** Configuration
 
 As Dired has been around for a long time, the different ways of configuring it are myriad. Described below is a configuration used by the author that is consistent with the bindings used in Casual Dired.
 
-** Initialization
+*** Initialization
 
 #+begin_src elisp :lexical no
   (require 'dired)
@@ -120,7 +93,7 @@ As Dired has been around for a long time, the different ways of configuring it a
   (keymap-set image-dired-thumbnail-mode-map "p" #'image-dired-display-previous)
 #+end_src
 
-** Variables
+*** Variables
 
 Casual Dired offers a settings menu to customize a set of commonly used Dired variables. Use this to customize your Dired behavior to taste.
 
@@ -128,13 +101,41 @@ Casual Dired offers a settings menu to customize a set of commonly used Dired va
 
 If you have GNU ~ls~ installed and configured, use the ~l~ key to set the variable ~dired-use-ls-dired~ to ~t~ ("Use GNU ‘ls’ with --dired"). Otherwise this should be disabled.
 
-** Unicode Symbol Support
+*** Unicode Symbol Support
 
 By enabling “Use Unicode Symbols” from the Settings menu, Casual Dired will use Unicode symbols as appropriate in its menus. An example is shown below.
 
 [[file:images/casual-dired-screenshot-unicode.png]]
 
 To ensure proper layout and spacing, your default typeface should be fixed-width or monospace and *must* support the Unicode symbols used.
+
+* Usage
+1. Invoke ~M-x dired~ to launch Dired.
+2. When the point is in the Dired window, invoke ~C-o~ (or a binding of your choosing) to launch the Casual Dired menu.
+
+** Enhanced Sorting
+Casual Dired offers enhanced sorting capabilities through GNU ~ls~. Use this to sort your Dired buffer to preference. Filter dot files (.*) by disabling the ~--all~ option is available here.
+
+[[file:images/casual-dired-sort-by-screenshot.png]]
+
+With the *Sort By* menu raised, one can save the switch settings for future use via the binding ~C-x C-s~ (~transient-save~). Note this is a global setting and will apply to all future calls to the *Sort By* menu.
+
+** Search & Replace
+Search and replace in multiple marked files using the ~/~ /Search & Replace/ menu item. This will raise a menu of Dired commands that will work on marked files. 
+
+[[file:images/casual-dired-search-replace.png]]
+
+While most Dired commands use Emacs-style [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Regular-Expressions.html][regular expression syntax]], there are two commands that instead take instead *grep*-style syntax:
+
+- (~g~) Find regex… (~dired-do-find-regexp~)
+- (~G~) Find regex and replace… (~dired-do-find-regexp-and-replace~)
+
+The *grep*-style syntax is dependent on the ~grep~ implementation that is installed and used by Emacs.
+
+** Bulk Dired Operations
+Casual Dired organizes a number of Dired commands that work on a set of marked files. These commands are presented in the *Utils* menu.
+
+[[file:images/casual-dired-utils-screenshot.png]]
 
 * Sponsorship
 If you enjoy using Casual Dired, consider making a modest financial contribution to help support its development and maintenance.
