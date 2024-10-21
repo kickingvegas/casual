@@ -8,22 +8,8 @@ An opinionated [[https://github.com/magit/transient][Transient]]-based user inte
 * Install
 If installed via MELPA then add these lines to your Emacs initialization file with your binding of preference. 
 #+begin_src elisp :lexical no
-  (require 'casual-bookmarks) ;; optional
+  (require 'casual-bookmarks) ; optional if using autoloaded menu
   (keymap-set bookmark-bmenu-mode-map "C-o" #'casual-bookmarks-tmenu)
-#+end_src
-
-If you use ~use-package~, here is the recipe for installing and configuring it.
-#+begin_src elisp :lexical no
-  (use-package bookmark
-    :ensure nil
-    :defer t)
-  (use-package casual-bookmarks
-    :ensure t
-    :bind (:map bookmark-bmenu-mode-map
-                ("C-o" . casual-bookmarks-tmenu)
-                ("S" . casual-bookmarks-sortby-tmenu)
-                ("J" . bookmark-jump))
-    :after (bookmark))
 #+end_src
 
 ** Configuration

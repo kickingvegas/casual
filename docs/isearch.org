@@ -9,20 +9,11 @@ This package contains a [[https://github.com/magit/transient][Transient]] menu f
 * Install
 Use the following lines to install casual-isearch-tmenu.
 #+begin_src elisp :lexical yes
-  (require 'casual-isearch)
+  (require 'casual-isearch) ; optional if using autoloaded menu
   (keymap-set isearch-mode-map "C-o" #'casual-isearch-tmenu)
 #+end_src
 
-Alternately install with ~use-package~ using the following initialization:
-#+begin_src elisp :lexical no
-  (use-package casual-isearch
-    :ensure t
-    :bind (:map isearch-mode-map ("C-o" . casual-isearch-tmenu)))
-#+end_src
-
 The keybinding to ~casual-isearch-tmenu~ can be changed to user preference.
-
-
 
 * Menu Commands
 The following I-Search commands are grouped as follows in the Transient menu ~casual-isearch-tmenu~. Keys associated with each command are shown enclosed in parentheses.

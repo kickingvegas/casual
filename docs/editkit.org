@@ -48,15 +48,8 @@ Emacs has many commands that are easy to forget if not used frequently. Menus ar
 Typical installation of Casual EditKit is via MELPA. A reference menu (~casual-editkit-main-tmenu~) illustrating nearly all the different menus offered by Casual EditKit is provided. This menu can be used “as-is” with your binding of preference. For consistency with other Casual Packages, the binding ~C-o~ is used in the example below. Other candidate bindings include ~M-o~ and ~F10~. To facilitate default access to this menu, the configuration below sets this binding to be global which can be overridden per mode. This is /not/ mandatory and users are free to integrate Casual EditKit into their Emacs configuration however they see fit. 
 
 #+begin_src elisp :lexical no
-  (require 'casual-editkit) ;; optional
+  (require 'casual-editkit) ; optional if using autoloaded menu
   (keymap-global-set "C-o" #'casual-editkit-main-tmenu)
-#+end_src
-
-If you use ~use-package~, here is the recipe for installing and configuring it.
-#+begin_src elisp :lexical no
-  (use-package casual-editkit
-    :ensure nil
-    :bind (("C-o" . casual-editkit-main-tmenu)))
 #+end_src
 
 For motivated users desiring a bespoke solution, it is recommended that they use Casual EditKit as a library of menus to build their own workflows.

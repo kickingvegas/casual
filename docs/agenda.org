@@ -9,19 +9,9 @@ An opinionated [[https://github.com/magit/transient][Transient]]-based user inte
 * Install
 Add these lines to your Emacs initialization file with your binding of preference.
 #+begin_src elisp :lexical no
+  (require 'casual-agenda) ; optional if using autoloaded menu
   (keymap-set org-agenda-mode-map "C-o" #'casual-agenda-tmenu)
 #+end_src
-
-If you use ~use-package~, here is the recipe for installing it.
-#+begin_src elisp :lexical no
-  (use-package casual-agenda
-    :ensure nil
-    :bind (:map
-           org-agenda-mode-map
-           ("C-o" . casual-agenda-tmenu))
-    :after (org-agenda))
-#+end_src
-
 
 ** Configuration
 Use these bindings to configure Org Agenda to be consistent with bindings used by Casual Agenda. This is optional.
@@ -30,17 +20,6 @@ Use these bindings to configure Org Agenda to be consistent with bindings used b
   ; bindings to make jumping consistent between Org Agenda and Casual Agenda
   (keymap-set org-agenda-mode-map "M-j" #'org-agenda-clock-goto) ; optional
   (keymap-set org-agenda-mode-map "J" #'bookmark-jump) ; optional
-#+end_src
-
-If you use ~use-package~, modify your configuration as follows:
-#+begin_src elisp :lexical no
-  (use-package casual-agenda
-    :ensure nil
-    :bind (:map
-           org-agenda-mode-map
-           ("C-o" . casual-agenda-tmenu)
-           ("M-j" . org-agenda-clock-goto) ; optional
-           ("J" . bookmark-jump))) ; optional
 #+end_src
 
 

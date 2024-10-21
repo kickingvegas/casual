@@ -81,6 +81,12 @@
 ;; This command will uninstall any Casual v1.x packages that have been
 ;; superseded by this package.
 
+;; If you are using Emacs ≤ 30.0, you will need to update the built-in package
+;; `transient'. By default, `package.el' will not upgrade a built-in package.
+;; Set the customizable variable `package-install-upgrade-built-in' to `t' to
+;; override this. For more details, please refer to the "Install" section on
+;; this project's repository web page.
+
 ;;; Code:
 (require 'package)
 (require 'casual-lib)

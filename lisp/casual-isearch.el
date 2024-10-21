@@ -30,21 +30,16 @@
 
 ;; INSTALLATION
 ;; Enter the code below into your init file to load and install
-;; `casual-isearch-tmenu'.  Tune the keybinding to your taste.
+;; `casual-isearch-tmenu'. Tune the keybinding to your taste.
 
-;; (require 'casual-isearch)
+;; (require 'casual-isearch) ; optional if using autoloaded menu
 ;; (keymap-set isearch-mode-map "C-o" #'casual-isearch-tmenu)
 
-;; Alternately with `use-package':
-;; (use-package casual-isearch
-;;   :ensure t
-;;   :bind (:map isearch-mode-map ("C-o" . casual-isearch-tmenu)))
-
-;; NOTE: This package requires `casual-lib' which in turn requires an update of
-;; the built-in package `transient' ≥ 0.6.0. Please customize the variable
-;; `package-install-upgrade-built-in' to t to allow for `transient' to be
-;; updated. For further details, consult the INSTALL section of this package's
-;; README.
+;; If you are using Emacs ≤ 30.0, you will need to update the built-in package
+;; `transient'. By default, `package.el' will not upgrade a built-in package.
+;; Set the customizable variable `package-install-upgrade-built-in' to `t' to
+;; override this. For more details, please refer to the "Install" section on
+;; this project's repository web page.
 
 ;;; Code:
 (require 'casual-lib)
