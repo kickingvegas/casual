@@ -1,0 +1,173 @@
+[[../README.org][❮ Back to Casual]]
+
+* Casual IBuffer
+An opinionated [[https://github.com/magit/transient][Transient]]-based user interface for [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Buffer-Menus.html][IBuffer]], a buffer management tool for Emacs.
+
+[[file:images/casual-ibuffer-screenshot.png]]
+
+
+* Install
+If installed via MELPA then add these lines to your Emacs initialization file with your binding of preference. 
+#+begin_src elisp :lexical no
+  (require 'casual-ibuffer) ; optional if using autoloaded menu
+  (keymap-set ibuffer-mode-map "C-o" #'casual-ibuffer-tmenu)
+  (keymap-set ibuffer-mode-map "F" #'casual-ibuffer-filter-tmenu)
+  (keymap-set ibuffer-mode-map "s" #'casual-ibuffer-sortby-tmenu)
+#+end_src
+
+
+** A Note on Package Dependencies
+Casual IBuffer requires a recent installation of Transient 0.6.0+ from either [[https://elpa.gnu.org/packages/transient.html][ELPA]] or [[https://melpa.org/#/transient][MELPA]]. If your version of Emacs is ≤ 30 but also includes Transient as a built-in package, you will need to set the customizable variable ~package-install-upgrade-built-in~ to ~t~ to enable updating it via ~package.el~.  Set this variable and proceed with installing Casual.  Alternately invoking ~package-install~ with a prefix (~C-u~) will temporarily coerce the update of dependent built-in packages (example: ~C-u M-x package-install~ ~casual~).
+
+As Transient is closely tied to Magit, installing the latest version of Magit (via [[https://elpa.nongnu.org/nongnu/magit.html][non-GNU ELPA]] or [[https://melpa.org/#/magit][MELPA]]) before installing Casual IBuffer can also pick up the latest version of Transient.
+
+** Configuration
+Use these keybindings to configure IBuffer to be consistent with keybindings used by Casual IBuffer.
+
+#+begin_src elisp :lexical no
+  (keymap-set ibuffer-mode-map "{" #'ibuffer-backwards-next-marked)
+  (keymap-set ibuffer-mode-map "}" #'ibuffer-forward-next-marked)
+  (keymap-set ibuffer-mode-map "[" #'ibuffer-backward-filter-group)
+  (keymap-set ibuffer-mode-map "]" #'ibuffer-forward-filter-group)
+  (keymap-set ibuffer-mode-map "$" #'ibuffer-toggle-filter-group)  
+#+end_src
+
+While not necessary for Casual IBuffer, enabling ~hl-line-mode~ and binding mouse clicks in IBuffer adds to a more comfortable IBuffer experience. Also, adding ~ibuffer-auto-mode~ to ~ibuffer-mode-hook~ will enable auto-updating. 
+#+begin_src elisp :lexical no
+  (require 'hl-line)
+  (require 'mouse)
+  (add-hook 'ibuffer-mode-hook #'hl-line-mode)
+  (add-hook 'ibuffer-mode-hook #'ibuffer-auto-mode)
+  (keymap-set ibuffer-mode-map "<double-mouse-1>" #'ibuffer-visit-buffer)
+  (keymap-set ibuffer-mode-map "M-<double-mouse-1>" #'ibuffer-visit-buffer-other-window)
+#+end_src
+
+* Usage
+Casual IBuffer organizes commands into three menus:
+1. The main menu (~casual-ibuffer-tmenu~) holding commands for marking and operating on buffers. Display, find/replace, and navigation commands are also included in this menu.
+2. The filter menu (~casual-ibuffer-filter-tmenu~) holding commands for defining filters, filter groups, and collections of filter groups.
+3. The sort menu (~casual-ibuffer-sortby-tmenu~) holding commands for sorting buffers.
+
+** Marking and Operating
+[[file:images/casual-ibuffer-main-screenshot.png]]
+
+Buffers can be marked using different criteria. Marked buffers can be operated on. Common operations include saving and deleting buffers. Note that deleting a buffer populated with a visited file is /not the same/ as deleting the visited file.
+
+From the main menu shown above, control of the display and find/replace operations are offered.
+
+Note that the menu item /Visit/Toggle/ has "do what I mean"  (DWIM) behavior. If the point is currently on a filter group (described below) then pressing the ~return~ key will toggle the visibility of items matching that filter group. Otherwise, it will visit (open) the buffer.
+
+As with other Casual user interfaces, the ability to jump to a bookmark is available.
+
+** Filtering
+[[file:images/casual-ibuffer-filter-screenshot.png]]
+
+
+IBuffer is embarrasingly rich in the ways it can filter buffers. Once mastered, IBuffer filtering offers a way to create different views on your buffer list, enabling you to tailor bespoke views for different workflows. Such capability comes with a price though: you'll need to understand how IBuffer wants to organize filters.
+
+Key is the concept of a /Filter Group/ which is IBuffer's analog to a Dired [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Subdirectories-in-Dired.html][subdirectory]] (subdir). But whereas a subdir only maps to a file system directory, a filter group can be constructed from a diverse set of rules to categorize a buffer.
+
+IBuffer organizes filtering with the following taxonomy:
+
+1. *Filter rule*
+   
+   The smallest unit of filtering. There are many types of filter rules:
+   - filter by major mode
+   - filter by derived mode
+   - filter by buffer name
+   - filter by buffer content
+   - filter by basename
+   - filter by directory name
+   - filter by filename
+   - filter by file extension
+   - filter by modified buffers
+   - filter by an arbitrary Lisp predicate
+   - filter by buffer size
+   - filter by special buffers
+   - filter by buffers visiting files
+
+    Casual IBuffer makes the design decision to *not* enumerate the above in a menu, delegating the work of filter selection to the command  ~ibuffer-filter-chosen-by-completion~.
+    
+2. *Filter*
+
+   A /filter/ is a logical combination of filter rules. Logic operators such as AND (&), OR (|) and NOT (!) are used to compose rules into a /filter/. A single filter rule can also be construed as a filter.
+
+   Properties of filters:
+
+   - A filter can be defined and saved for subsequent use.
+     - Filters are saved in the customizable variable =ibuffer-saved-filters=.
+     - Multiple filters can be applied at the same time to a set of buffers.
+   - Multiple filters are applied in LIFO order. Removing a filter is a "pop" operation.
+     - Rules that are combined with a logic operator are treated as a single element of the LIFO stack.
+     - To individually edit the combination, use the /Decompose/ command to remove the logic operator first.
+
+3. *Filter Group*
+
+   A filter group is set of filters. The set itself is named with an identifier that is user-defined.
+
+   Properties of filter groups:
+
+   - A filter group can be defined and saved for subsequent use but with a special qualifier:
+     - Filter groups are only saved as a collection (more below) in the customizable variable =ibuffer-saved-filter-groups=. A filter group can not be saved individually.
+   - Multiple filter groups can be applied to partition the buffer list.
+   - Multiple filter groups are applied in LIFO order. Removing a filter group is a "pop" operation.
+     - Similar LIFO and decompose behavior applicable to a filter group is supported.
+
+4. *Filter Group Collection*
+
+   A /collection/ is a set of filter groups that can be named with a user-defined identifier. Only one collection can be applied to a buffer list at a time. However, many different collections can be defined, allowing for different views of the same buffer list.
+   
+*** Creating Filters
+
+The basic procedure for making a filter that applies to the entire buffer list is as follows:
+
+1. From the *Filter* menu, create a filter via /(SPC) Rule.../ and some desired combination of operators.
+2. Save the filter via /(s) Save.../. You will be prompted to provide a name for the filter. This filter will be saved in the variable =ibuffer-saved-filters=.
+3. To recall this filter at a subsequent time, use /(r) Switch to.../ in the *Add* section of the *Filter* menu.
+
+*** Creating a Collection of Filter Groups
+Here is where the taxonomy becomes significant as the IBuffer command set unfortunately does not provide much observability on edit operations to filters.
+
+1. Create a filter as described above.
+2. In the *Add* section of the *Filter* menu, select /(g) Create Filter Group.../ to convert the filter into a filter group. You will be prompted to name the filter group. This group name will be enclosed by square brackets [].
+3. Multiple filter groups can be created by repeating steps 1 and 2 above. Note that when constructing a filter group, the IBuffer window will /not/ provide observability of existing filter groups on the buffer list.
+4. You can save the set of filter groups as a /collection/ in the *Collection* section with the command /(S) Save.../. You will be prompted to name the collection. Note that only one collection can be used at a time in IBuffer.
+
+Out of the box, it is best to think of the IBuffer commands for editing buffer filters as a kit of parts and an arguably incomplete one at that. The Casual IBuffer filter menu (=casual-ibuffer-filter-tmenu=) is my attempt to build a comprehensible filter editor UI from this kit. Whether it succeeds in being comprehensible is left to user feedback.
+
+
+** Sorting
+[[file:images/casual-ibuffer-sortby-screenshot.png]]
+
+The buffer list can be sorted using different criteria as shown in the screenshot above.
+
+Sort ordering can be reversed via the /Invert/ command.
+
+** Unicode Symbol Support
+By enabling “Use Unicode Symbols” from the Settings menu, Casual IBuffer will use Unicode symbols as appropriate in its menus. The following mapping is shown in the table below:
+
+| Name      | Plain    | Unicode |
+|-----------+----------+---------|
+| :previous | Previous | ↑       |
+| :next     | Next     | ↓       |
+| :marked   | Marked   | ❯       |
+| :group    | Group    | []      |
+| :jump     | Jump     | 🚀     |
+
+* Sponsorship
+If you enjoy using Casual IBuffer, consider making a modest financial contribution to help support its development and maintenance.
+
+[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
+
+* See Also
+- [[file:agenda.org][Agenda]]
+- [[file:bookmarks.org][Bookmarks]]
+- [[file:calc.org][Calc]]
+- [[file:editkit.org][EditKit (numerous editing commands)]]
+- [[file:info.org][Info]]
+- [[file:isearch.org][I-Search]]
+- [[file:re-builder.org][Re-Builder]]
+
+* Acknowledgments
+A heartfelt thanks to all the contributors to IBuffer and [[https://github.com/magit/transient][Transient]]. Casual IBuffer would not be possible without your efforts.
+

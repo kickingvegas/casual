@@ -169,6 +169,7 @@ If you enjoy using Casual EditKit, consider making a modest financial contributi
 - [[file:bookmarks.org][Bookmarks]]
 - [[file:calc.org][Calc]]
 - [[file:dired.org][Dired]]
+- [[file:ibuffer.org][IBuffer]]
 - [[file:info.org][Info]]
 - [[file:isearch.org][I-Search]]
 - [[file:re-builder.org][Re-Builder]]

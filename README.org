@@ -28,7 +28,12 @@ Casual is organized into different user interface (UI) libraries tuned for diffe
 
   [[file:docs/editkit.org][file:docs/images/casual-editkit-main-screenshot.png]]
   
-** [[file:docs/info.org][Info]] (Elisp library: casual-info)
+** [[file:docs/ibuffer.org][IBuffer]] (Elisp library: ~casual-ibuffer~)
+  An interface for the Info documentation system.
+
+  [[file:docs/info.org][file:docs/images/casual-ibuffer-screenshot.png]]
+
+** [[file:docs/info.org][Info]] (Elisp library: ~casual-info~)
   An interface for the Info documentation system.
 
   [[file:docs/info.org][file:docs/images/casual-info-screenshot.png]]
@@ -81,6 +86,7 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[file:docs/calc.org::*Install][Calc]]
 - [[file:docs/dired.org::*Install][Dired]]
 - [[file:docs/editkit.org::*Install][EditKit]]
+- [[file:docs/ibuffer.org::*Install][IBuffer]]  
 - [[file:docs/info.org::*Install][Info]]
 - [[file:docs/isearch.org::*Install][I-Search]]
 - [[file:docs/re-builder.org::*Install][Re-Builder]]
