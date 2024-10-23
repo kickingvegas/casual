@@ -118,7 +118,8 @@ casual-suite, casual-avy, or casual-symbol-overlay is installed."
                     'casual-ibuffer
                     'casual-info
                     'casual-isearch
-                    'casual-re-builder)))
+                    'casual-re-builder
+                    'casual-lib)))
       (mapc (lambda (pkg)
               (when (package-installed-p pkg)
                 (display-warning
@@ -128,35 +129,7 @@ casual-suite, casual-avy, or casual-symbol-overlay is installed."
                   (symbol-name pkg)))
                 (package-delete (package-get-descriptor pkg) t)
                 (package-refresh-contents)))
-            pkglist))
-
-    (let* ((pkglist (list
-                     'casual-suite
-                     'casual-avy
-                     'casual-symbol-overlay))
-           (test (seq-reduce (lambda (a b) (or a b))
-                             (mapcar #'package-installed-p pkglist)
-                             nil)))
-      ;; TODO: add this logic to upgrade existing 3rd party packages when they are ready.
-      ;; (mapc (lambda (pkg)
-      ;;         (when (package-installed-p pkg)
-      ;;           (display-warning
-      ;;            :warning
-      ;;            (format
-      ;;             "Casual 2.0 Migration: Upgrading package %s"
-      ;;             (symbol-name pkg)))
-      ;;           (package-upgrade pkg)))
-      ;;       pkglist)
-
-      ;; TODO: change logic to delete casual-lib when 3rd party packages are updated.
-      (when (and (not test) (package-installed-p 'casual-lib))
-        (display-warning
-                 :warning
-                 (format
-                  "Casual 2.0 Migration: Deleting obsolete package %s"
-                  (symbol-name 'casual-lib)))
-        (package-delete (package-get-descriptor 'casual-lib) t)
-        (package-refresh-contents)))))
+            pkglist))))
 
 (defun casual-get-package-version (pkg)
   "Get package version of symbol PKG."
