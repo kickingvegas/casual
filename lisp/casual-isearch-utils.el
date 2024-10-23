@@ -27,7 +27,9 @@
 (require 'casual-lib)
 
 (defconst casual-isearch-unicode-db
-  '((:previous . '("↑" "Previous"))
+  '((:first . '("⤒" "First"))
+    (:last . '("⤓" "Last"))
+    (:previous . '("↑" "Previous"))
     (:next . '("↓" "Next")))
 
   "Unicode symbol DB to use for RE-Builder Transient menus.")
