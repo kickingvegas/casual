@@ -70,6 +70,8 @@
                (:binding "H" :command isearch-highlight-lines-matching-regexp)
                (:binding "n" :command isearch-repeat-forward)
                (:binding "p" :command isearch-repeat-backward)
+               (:binding ">" :command isearch-end-of-buffer)
+               (:binding "<" :command isearch-beginning-of-buffer)
                (:binding "RET" :command isearch-exit))))
 
         (casualt-suffix-testcase-runner test-vectors

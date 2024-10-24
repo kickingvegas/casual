@@ -112,6 +112,12 @@
      :transient t)
     ("n" "Next" isearch-repeat-forward
      :description (lambda () (casual-isearch-unicode-get :next))
+     :transient t)
+    ("<" "First" isearch-beginning-of-buffer
+     :description (lambda () (casual-isearch-unicode-get :first))
+     :transient t)
+    (">" "Last" isearch-end-of-buffer
+     :description (lambda () (casual-isearch-unicode-get :last))
      :transient t)]]
 
   [:class transient-row

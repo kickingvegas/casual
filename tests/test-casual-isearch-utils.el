@@ -30,11 +30,15 @@
 (ert-deftest test-casual-isearch-unicode-get ()
   (let ((casual-lib-use-unicode nil))
     (should (string-equal (casual-isearch-unicode-get :previous) "Previous"))
-    (should (string-equal (casual-isearch-unicode-get :next) "Next")))
+    (should (string-equal (casual-isearch-unicode-get :next) "Next"))
+    (should (string-equal (casual-isearch-unicode-get :first) "First"))
+    (should (string-equal (casual-isearch-unicode-get :last) "Last")))
 
   (let ((casual-lib-use-unicode t))
     (should (string-equal (casual-isearch-unicode-get :previous) "↑"))
-    (should (string-equal (casual-isearch-unicode-get :next) "↓"))))
+    (should (string-equal (casual-isearch-unicode-get :next) "↓"))
+    (should (string-equal (casual-isearch-unicode-get :first) "⤒"))
+    (should (string-equal (casual-isearch-unicode-get :last) "⤓"))))
 
 (provide 'test-casual-isearch-utils)
 ;;; test-casual-isearch-utils.el ends here

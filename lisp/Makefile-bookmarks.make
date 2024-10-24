@@ -31,7 +31,7 @@ casual-bookmarks-settings.el
 ELISP_PACKAGES=
 ELISP_TEST_INCLUDES=casual-bookmarks-test-utils.el
 CASUAL_BASE_DIR=$(HOME)/Projects/elisp
-CASUAL_LIB_DIR=$(CASUAL_BASE_DIR)/casual-lib
+CASUAL_LIB_DIR=$(CASUAL_BASE_DIR)/casual
 CASUAL_LIB_LISP_DIR=$(CASUAL_LIB_DIR)/lisp
 CASUAL_LIB_TEST_INCLUDES=$(CASUAL_LIB_DIR)/tests/casual-lib-test-utils.el
 EMACS_ELPA_DIR=$(HOME)/.config/emacs/elpa
