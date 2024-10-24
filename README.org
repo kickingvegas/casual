@@ -97,12 +97,14 @@ If you have been using an earlier version 1.x of Casual, thank you. Please use t
 *** If you do not use ~use-package~ to configure Casual
 Before installing Casual, you should update all of your existing Casual packages. This is most easily done via the [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Package-Menu.html][package menu buffer]]. After updating your packages, install the ~casual~ package.
 
+Migrate your existing Casual packages from 1.x to 2.x by running the following commands:
+
 #+BEGIN_SRC elisp
 M-x load-library casual
 M-x casual-upgrade-base-to-version-2
 #+END_SRC
 
-This command will uninstall any Casual v1.x packages that have been superseded by this package.
+Any Casual v1.x packages that have been superseded by this package will be uninstalled.
 
 While not necessary, it is recommended to run ~M-x package-autoremove~ to purge any dangling dependent packages. Cautious readers can choose to audit any packages that are targeted to be removed.
 
