@@ -59,7 +59,7 @@ casual-calc-symbolic.el
 ELISP_TEST_INCLUDES=casual-calc-test-utils.el
 
 CASUAL_BASE_DIR=$(HOME)/Projects/elisp
-CASUAL_LIB_DIR=$(CASUAL_BASE_DIR)/casual-lib
+CASUAL_LIB_DIR=$(CASUAL_BASE_DIR)/casual
 CASUAL_LIB_LISP_DIR=$(CASUAL_LIB_DIR)/lisp
 CASUAL_LIB_TEST_INCLUDES=$(CASUAL_LIB_DIR)/tests/casual-lib-test-utils.el
 EMACS_CONFIG_DIR=$(HOME)/.config/emacs
