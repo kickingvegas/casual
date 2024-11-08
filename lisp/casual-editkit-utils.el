@@ -570,7 +570,7 @@ Commands pertaining to invoking different tools can be accessed here."
 
    ["Almanac"
     :pad-keys t
-    ("M-c" "Calendar" calendar)
+    ("a" "Calendar" calendar)
     ("C" "World Clock" world-clock)
     ("S" "Sunrise/Sunset" sunrise-sunset)]
 
