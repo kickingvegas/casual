@@ -148,8 +148,8 @@
      :transient t)]
    [("R" "Refile…" org-agenda-refile)
     ("z" "Add Note" org-agenda-add-note)]
-   [("A" "Archive…" org-agenda-archive-default-with-confirmation)]]
-
+   [("S" "Set Property…" org-agenda-set-property)
+    ("A" "Archive…" org-agenda-archive-default-with-confirmation)]]
 
   ["Clock"
    :class transient-row

@@ -554,7 +554,7 @@ accessed here."
 
 Commands pertaining to invoking different tools can be accessed here."
   ["Tools"
-   ["Shells & Interpreters"
+   ["Shells & REPLs"
     ("s" "Shell" shell)
     ("e" "Eshell" eshell)
     ("i" "IELM" ielm)
@@ -563,11 +563,21 @@ Commands pertaining to invoking different tools can be accessed here."
 
    ["Utilities"
     ("c" "Calc" calc)
-    ;;("W" "Weather" weather)
     ("r" "RE-Builder" re-builder)
-    ("w" "Word Count" (lambda () (interactive) (call-interactively #'count-words)))
+    ("w" "Word Count" (lambda ()
+                        (interactive)
+                        (call-interactively #'count-words)))]
+
+   ["Almanac"
+    :pad-keys t
+    ("a" "Calendar" calendar)
     ("C" "World Clock" world-clock)
     ("S" "Sunrise/Sunset" sunrise-sunset)]
+
+   ["Misc"
+    :pad-keys t
+    ("E" "erc" erc)
+    ("M-e" "eww" eww)]
 
    ["Fun"
     ("T" "Tetris" tetris)

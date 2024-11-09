@@ -1,3 +1,5 @@
+[[https://melpa.org/#/casual][file:https://melpa.org/packages/casual-badge.svg]] [[https://stable.melpa.org/#/casual][file:https://stable.melpa.org/packages/casual-badge.svg]]
+
 * Casual
 A collection of opinionated [[https://github.com/magit/transient][Transient]]-based keyboard-driven user interfaces for various built-in Emacs modes.
 
