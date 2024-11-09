@@ -204,7 +204,8 @@
             (casualt-mock #'org-agenda-redo)
             (casualt-mock #'org-agenda-redo-all)
             (casualt-mock #'org-agenda-goto-date)
-            (casualt-mock #'org-agenda-clock-goto))
+            (casualt-mock #'org-agenda-clock-goto)
+            (casualt-mock #'org-agenda-set-property))
 
     (let ((test-vectors
            '((:binding "t" :command org-agenda-todo)
@@ -215,6 +216,7 @@
              (:binding "-" :command org-agenda-priority-down)
              (:binding "R" :command org-agenda-refile)
              (:binding "z" :command org-agenda-add-note)
+             (:binding "S" :command org-agenda-set-property)
              (:binding "A" :command org-agenda-archive-default-with-confirmation)
 
              (:binding "I" :command casual-agenda-clock-in)
