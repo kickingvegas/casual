@@ -510,7 +510,7 @@
                (:binding "c" :command calc)
                (:binding "r" :command re-builder)
                (:binding "w" :command count-words)
-               (:binding "M-c" :command calendar)
+               (:binding "a" :command calendar)
                (:binding "C" :command world-clock)
                (:binding "S" :command sunrise-sunset)
                (:binding "E" :command erc)
