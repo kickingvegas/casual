@@ -52,6 +52,7 @@
   "Transient menu for Dired."
   [["File"
     ("o" "Open Other" dired-find-file-other-window :transient nil)
+    ("v" "View" dired-view-file)
     ("C" "Copy to…" dired-do-copy :transient t)
     ("R" "Rename…" dired-do-rename :transient t)
     ("D" "Delete…" dired-do-delete :transient t)
