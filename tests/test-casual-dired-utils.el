@@ -80,9 +80,13 @@
   (casualt-dired-setup)
 
   (let ((test-vectors (list)))
+    (push (casualt-suffix-test-vector "s" #'dired-do-symlink) test-vectors)
+    (push (casualt-suffix-test-vector "S" #'dired-do-symlink-regexp) test-vectors)
+    (push (casualt-suffix-test-vector "r" #'dired-do-relsymlink) test-vectors)
+    (push (casualt-suffix-test-vector "R" #'dired-do-relsymlink-regexp) test-vectors)
     (push (casualt-suffix-test-vector "h" #'dired-do-hardlink) test-vectors)
     (push (casualt-suffix-test-vector "H" #'dired-do-hardlink-regexp) test-vectors)
-    (push (casualt-suffix-test-vector "S" #'dired-do-symlink-regexp) test-vectors)
+
 
     (casualt-suffix-testbench-runner test-vectors
                                      #'casual-dired-link-tmenu

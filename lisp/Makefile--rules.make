@@ -14,14 +14,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-include Makefile--defines.make
-
-ELISP_INCLUDES=
-ELISP_PACKAGES=
-ELISP_TEST_INCLUDES=casual-lib-test-utils.el
-PACKAGE_NAME=casual-lib
-PACKAGE_PATHS=
-
 .PHONY: tests compile regression
 
 .SUFFIXES: .el .elc .elt
@@ -31,12 +23,13 @@ PACKAGE_PATHS=
 -f batch-byte-compile $<
 
 .el.elt :
-	$(EXEC_NAME) -Q --batch \
-$(PACKAGE_PATHS) \
-$(patsubst %, -l %, $(ELISP_INCLUDES)) \
--l $< \
--l $(patsubst %, ../tests/%, $(ELISP_TEST_INCLUDES)) \
--l $(patsubst %, ../tests/test-%, $<) \
+	$(EXEC_NAME) -Q --batch				\
+$(PACKAGE_PATHS)					\
+$(patsubst %, -l %, $(ELISP_INCLUDES))			\
+-l $<							\
+-l $(CASUAL_LIB_TEST_INCLUDES)				\
+-l $(patsubst %, ../tests/%, $(ELISP_TEST_INCLUDES))	\
+-l $(patsubst %, ../tests/test-%, $<)			\
 -f ert-run-tests-batch-and-exit
 
 tests: $(ELISP_PACKAGES:.el=.elt) $(ELISP_INCLUDES:.el=.elt) $(PACKAGE_NAME).elt
@@ -44,18 +37,20 @@ tests: $(ELISP_PACKAGES:.el=.elt) $(ELISP_INCLUDES:.el=.elt) $(PACKAGE_NAME).elt
 compile: $(ELISP_PACKAGES:.el=.elc) $(ELISP_INCLUDES:.el=.elc) $(PACKAGE_NAME).elc
 
 $(PACKAGE_NAME).elc: $(PACKAGE_NAME).el
-	$(EXEC_NAME) -Q --batch $(patsubst %, -l %, $(ELISP_INCLUDES)) \
-$(patsubst %, -l %, $(ELISP_PACKAGES)) \
+	$(EXEC_NAME) -Q --batch $(patsubst %, -l %, $(ELISP_INCLUDES))	\
+$(patsubst %, -l %, $(ELISP_PACKAGES))					\
+$(PACKAGE_PATHS)							\
 -f batch-byte-compile $<
 
 $(PACKAGE_NAME).elt: $(PACKAGE_NAME).el
-	$(EXEC_NAME) -Q --batch \
-$(PACKAGE_PATHS) \
-$(patsubst %, -l %, $(ELISP_INCLUDES)) \
-$(patsubst %, -l %, $(ELISP_PACKAGES)) \
--l $< \
--l ../tests/$(ELISP_TEST_INCLUDES) \
--l $(patsubst %, ../tests/test-%, $<) \
+	$(EXEC_NAME) -Q --batch			\
+$(PACKAGE_PATHS)				\
+$(patsubst %, -l %, $(ELISP_INCLUDES))		\
+$(patsubst %, -l %, $(ELISP_PACKAGES))		\
+-l $<						\
+-l $(CASUAL_LIB_TEST_INCLUDES)			\
+-l ../tests/$(ELISP_TEST_INCLUDES)		\
+-l $(patsubst %, ../tests/test-%, $<)		\
 -f ert-run-tests-batch-and-exit
 
 regression: clean compile tests

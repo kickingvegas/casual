@@ -56,7 +56,7 @@
     ("C" "Copy to…" dired-do-copy :transient t)
     ("R" "Rename…" dired-do-rename :transient t)
     ("D" "Delete…" dired-do-delete :transient t)
-    ("S" "Symlink…" dired-do-symlink :transient nil)
+    ("l" "Link›" casual-dired-link-tmenu :transient nil)
     ("c" "Change›" casual-dired-change-tmenu :transient nil)
     ("y" "Type" dired-show-file-type :transient t)
     ("w" "Copy Name" dired-copy-filename-as-kill :transient nil)

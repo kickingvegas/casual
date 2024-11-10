@@ -13,17 +13,7 @@
 
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-TIMESTAMP := $(shell /bin/date "+%Y%m%d_%H%M%S")
-
-EMACS_MAC_APP_HOME=/Applications/MacPorts/EmacsMac.app
-EMACS_MAC_APP_SH=$(EMACS_MAC_APP_HOME)/Contents/MacOS/Emacs.sh
-
-ifneq ("$(wildcard $(EMACS_MAC_APP_SH))","")
-  EXEC_NAME=$(EMACS_MAC_APP_SH)
-else
-  EXEC_NAME=emacs
-endif
+include Makefile--defines.make
 
 PACKAGE_NAME=casual-calc
 
@@ -58,53 +48,6 @@ casual-calc-symbolic.el
 
 ELISP_TEST_INCLUDES=casual-calc-test-utils.el
 
-CASUAL_BASE_DIR=$(HOME)/Projects/elisp
-CASUAL_LIB_DIR=$(CASUAL_BASE_DIR)/casual
-CASUAL_LIB_LISP_DIR=$(CASUAL_LIB_DIR)/lisp
-CASUAL_LIB_TEST_INCLUDES=$(CASUAL_LIB_DIR)/tests/casual-lib-test-utils.el
-EMACS_CONFIG_DIR=$(HOME)/.config/emacs
 PACKAGE_PATHS=-L $(CASUAL_LIB_LISP_DIR)
 
-.PHONY: tests compile regression
-
-.SUFFIXES: .el .elc .elt
-
-.el.elc :
-	$(EXEC_NAME) -Q --batch $(patsubst %, -l %, $(ELISP_INCLUDES)) \
--f batch-byte-compile $<
-
-.el.elt :
-	$(EXEC_NAME) -Q --batch				\
-$(PACKAGE_PATHS)					\
-$(patsubst %, -l %, $(ELISP_INCLUDES))			\
--l $<							\
--l $(CASUAL_LIB_TEST_INCLUDES)				\
--l $(patsubst %, ../tests/%, $(ELISP_TEST_INCLUDES))	\
--l $(patsubst %, ../tests/test-%, $<)			\
--f ert-run-tests-batch-and-exit
-
-tests: $(ELISP_PACKAGES:.el=.elt) $(ELISP_INCLUDES:.el=.elt) $(PACKAGE_NAME).elt
-
-compile: $(ELISP_PACKAGES:.el=.elc) $(ELISP_INCLUDES:.el=.elc) $(PACKAGE_NAME).elc
-
-$(PACKAGE_NAME).elc: $(PACKAGE_NAME).el
-	$(EXEC_NAME) -Q --batch $(patsubst %, -l %, $(ELISP_INCLUDES))	\
-$(patsubst %, -l %, $(ELISP_PACKAGES))					\
-$(PACKAGE_PATHS)							\
--f batch-byte-compile $<
-
-$(PACKAGE_NAME).elt: $(PACKAGE_NAME).el
-	$(EXEC_NAME) -Q --batch			\
-$(PACKAGE_PATHS)				\
-$(patsubst %, -l %, $(ELISP_INCLUDES))		\
-$(patsubst %, -l %, $(ELISP_PACKAGES))		\
--l $<						\
--l $(CASUAL_LIB_TEST_INCLUDES)			\
--l ../tests/$(ELISP_TEST_INCLUDES)		\
--l $(patsubst %, ../tests/test-%, $<)		\
--f ert-run-tests-batch-and-exit
-
-regression: clean compile tests
-
-clean:
-	rm -f *.elc
+include Makefile--rules.make
