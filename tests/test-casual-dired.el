@@ -38,6 +38,7 @@
 
     (let ((test-vectors (list)))
       (push (casualt-suffix-test-vector "o" #'dired-find-file-other-window) test-vectors)
+      (push (casualt-suffix-test-vector "v" #'dired-view-file) test-vectors)
       (push (casualt-suffix-test-vector "C" #'dired-do-copy) test-vectors)
       (push (casualt-suffix-test-vector "R" #'dired-do-rename) test-vectors)
       (push (casualt-suffix-test-vector "D" #'dired-do-delete) test-vectors)
