@@ -52,8 +52,11 @@
     (:arcsin . '("𝑎𝑟𝑐𝑠𝑖𝑛" "arcsin"))
     (:arccos . '("𝑎𝑟𝑐𝑐𝑜𝑠" "arccos"))
     (:arctan . '("𝑎𝑟𝑐𝑡𝑎𝑛" "arctan"))
-    (:degrees . '("°" "Degrees"))
-    (:radians . '("𝑟𝑎𝑑" "Radians"))
+    (:degrees . '("°" "degrees"))
+    (:radians . '("𝑟𝑎𝑑" "radians"))
+    (:hms . '("ℎ𝑚𝑠" "HMS"))
+    (:float . '("𝑓𝑙𝑜𝑎𝑡" "float"))
+    (:fraction . '("𝑓𝑟𝑎𝑐𝑡𝑖𝑜𝑛" "fraction"))
     (:to . '("→" "to")))
   "Unicode symbol DB to use for Calc Transient menus.")
 
