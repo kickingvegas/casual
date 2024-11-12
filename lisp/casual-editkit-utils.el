@@ -136,6 +136,13 @@ also available from here."
     ("V" "Visit other…" find-file-read-only-other-window)
     ("M-v" "Visit in frame…" find-file-read-only-other-frame)]
 
+   ["Rename"
+    :pad-keys t
+    ("r" "File…" rename-visited-file
+     :inapt-if-not buffer-file-name)
+    ("R" "Buffer…" rename-buffer)
+    ("M-r" "Buffer Uniquely" rename-uniquely)]
+
    ["Project"
     ("p" "Project›" casual-editkit-project-tmenu)]]
 

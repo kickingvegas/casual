@@ -31,8 +31,9 @@
   (let ((tmpfile "casual-editkit-open-tmenu.txt"))
     (casualt-editkit-setup tmpfile)
 
-    (cl-letf (;;((symbol-function #') (lambda () t))
+    (cl-letf (;; ((symbol-function #'buffer-file-name) (lambda () t))
               (casualt-mock #'find-file)
+              (casualt-mock #'rename-visited-file)
               (casualt-mock #'find-file-other-window)
               (casualt-mock #'find-file-other-frame)
               (casualt-mock #'find-alternate-file)
@@ -41,6 +42,9 @@
 
       (let ((test-vectors
              '((:binding "f" :command find-file)
+               (:binding "r" :command rename-visited-file)
+               (:binding "R" :command rename-buffer)
+               (:binding "M-r" :command rename-uniquely)
                (:binding "F" :command find-file-other-window)
                (:binding "M-n" :command find-file-other-frame)
                (:binding "a" :command find-alternate-file)
