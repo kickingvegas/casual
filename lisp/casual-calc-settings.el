@@ -100,7 +100,8 @@
     ("H" "ℎ𝑚𝑠 Format" calc-hms-notation
      :description (lambda ()
                     (format
-                     "Set ℎ𝑚𝑠 Format (now %s)"
+                     "Set %s Format (now %s)"
+                     (casual-calc-unicode-get :hms)
                      (format calc-hms-format "" "" "")))
      :transient t)]
 
