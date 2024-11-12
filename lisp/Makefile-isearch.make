@@ -14,27 +14,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-TIMESTAMP := $(shell /bin/date "+%Y%m%d_%H%M%S")
-
-EMACS_MAC_APP_HOME=/Applications/MacPorts/EmacsMac.app
-EMACS_MAC_APP_SH=$(EMACS_MAC_APP_HOME)/Contents/MacOS/Emacs.sh
-
-ifneq ("$(wildcard $(EMACS_MAC_APP_SH))","")
-  EXEC_NAME=$(EMACS_MAC_APP_SH)
-else
-  EXEC_NAME=emacs
-endif
+include Makefile--defines.make
 
 PACKAGE_NAME=casual-isearch
 ELISP_INCLUDES=casual-isearch-utils.el		\
 casual-isearch-settings.el
 ELISP_PACKAGES=
 ELISP_TEST_INCLUDES=casual-isearch-test-utils.el
-CASUAL_BASE_DIR=$(HOME)/Projects/elisp
-CASUAL_LIB_DIR=$(CASUAL_BASE_DIR)/casual
-CASUAL_LIB_LISP_DIR=$(CASUAL_LIB_DIR)/lisp
-CASUAL_LIB_TEST_INCLUDES=$(CASUAL_LIB_DIR)/tests/casual-lib-test-utils.el
-EMACS_ELPA_DIR=$(HOME)/.config/emacs/elpa
 PACKAGE_PATHS=					\
 -L $(EMACS_ELPA_DIR)/compat-30.0.0.0		\
 -L $(EMACS_ELPA_DIR)/seq-2.24			\
