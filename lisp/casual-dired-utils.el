@@ -106,9 +106,17 @@ ASCII-range string."
 
 (transient-define-prefix casual-dired-link-tmenu ()
   ["Link"
-    ("h" "Hard link…" dired-do-hardlink :transient nil)
-    ("H" "Hard link names with regexp…" dired-do-hardlink-regexp :transient nil)
-    ("S" "Symbolic link names with regexp…" dired-do-symlink-regexp :transient nil)]
+   ["Symbolic"
+    ("s" "Absolute…" dired-do-symlink)
+    ("S" "Absolute regexp…" dired-do-symlink-regexp)]
+
+   ["Relative"
+    ("r" "Relative…" dired-do-relsymlink)
+    ("R" "Relative regexp…" dired-do-relsymlink-regexp)]
+
+   ["Hard"
+    ("h" "Hard…" dired-do-hardlink)
+    ("H" "Hard regexp…" dired-do-hardlink-regexp)]]
 
   [:class transient-row
           (casual-lib-quit-one)

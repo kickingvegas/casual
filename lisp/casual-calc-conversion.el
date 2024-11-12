@@ -30,7 +30,9 @@
 
 (transient-define-prefix casual-calc-conversions-tmenu ()
   "Casual conversion functions menu."
-  [["Conversions"
+  ["Conversions"
+
+   ["Angle"
     ("d" "To Degrees" calc-to-degrees
      :description (lambda ()
                     (format "%s %s %s"
@@ -44,10 +46,35 @@
                             (casual-calc-unicode-get :degrees)
                             (casual-calc-unicode-get :to)
                             (casual-calc-unicode-get :radians)))
-     :transient t)
-    ("h" "To HMS" calc-to-hms :transient t)
-    ("f" "To Float" calc-float :transient t)
-    ("F" "To Fraction" calc-fraction :transient t)]]
+     :transient t)]
+
+    ["HMS"
+     ("h" "To ℎ𝑚𝑠" calc-to-hms
+      :description (lambda ()
+                    (format "real %s %s"
+                            (casual-calc-unicode-get :to)
+                            (casual-calc-unicode-get :hms)))
+      :transient t)
+     ("H" "From ℎ𝑚𝑠" calc-from-hms
+      :description (lambda ()
+                     (format "%s %s real"
+                             (casual-calc-unicode-get :hms)
+                             (casual-calc-unicode-get :to)))
+      :transient t)]
+
+    ["Numeric"
+     ("f" "To Float" calc-float
+      :description (lambda ()
+                     (format "%s %s"
+                             (casual-calc-unicode-get :to)
+                             (casual-calc-unicode-get :float)))
+      :transient t)
+     ("F" "To Fraction" calc-fraction
+      :description (lambda ()
+                     (format "%s %s"
+                             (casual-calc-unicode-get :to)
+                             (casual-calc-unicode-get :fraction)))
+      :transient t)]]
 
   casual-calc-operators-group-row
 

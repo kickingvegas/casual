@@ -128,7 +128,7 @@ Operations related to search and replace are captured by this menu. Note that th
 [[file:images/casual-editkit-search-screenshot.png]]
 
 ** Open commands (~casual-editkit-open-tmenu~)
-Commands related to opening a file (either for writing or read-only) are supported here. The *Project* sub-menu is also offered here.
+Commands related to opening a file (either for writing or read-only) are supported here. Included are commands for visiting and renaming a file or buffer. The *Project* sub-menu is also offered here.
 
 [[file:images/casual-editkit-open-screenshot.png]]
 

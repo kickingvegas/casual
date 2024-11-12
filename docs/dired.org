@@ -48,7 +48,6 @@ Included is a standard keymap for Dired sorting commands (~casual-dired-sort-men
 #+end_src
 
 
-
 ** Configuration
 
 As Dired has been around for a long time, the different ways of configuring it are myriad. Described below is a configuration used by the author that is consistent with the bindings used in Casual Dired.
@@ -136,6 +135,12 @@ The *grep*-style syntax is dependent on the ~grep~ implementation that is instal
 Casual Dired organizes a number of Dired commands that work on a set of marked files. These commands are presented in the *Utils* menu.
 
 [[file:images/casual-dired-utils-screenshot.png]]
+
+** Link
+Create symbolic and hard links via the *Link* menu. Both absolute and relative symbolic links (symlinks) are supported.
+
+[[file:images/casual-dired-link.png]]
+
 
 * Sponsorship
 If you enjoy using Casual Dired, consider making a modest financial contribution to help support its development and maintenance.

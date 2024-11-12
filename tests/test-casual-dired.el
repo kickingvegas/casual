@@ -38,10 +38,11 @@
 
     (let ((test-vectors (list)))
       (push (casualt-suffix-test-vector "o" #'dired-find-file-other-window) test-vectors)
+      (push (casualt-suffix-test-vector "v" #'dired-view-file) test-vectors)
       (push (casualt-suffix-test-vector "C" #'dired-do-copy) test-vectors)
       (push (casualt-suffix-test-vector "R" #'dired-do-rename) test-vectors)
       (push (casualt-suffix-test-vector "D" #'dired-do-delete) test-vectors)
-      (push (casualt-suffix-test-vector "S" #'dired-do-symlink) test-vectors)
+      (push (casualt-suffix-test-vector "l" #'casual-dired-link-tmenu) test-vectors)
       (push (casualt-suffix-test-vector "c" #'casual-dired-change-tmenu) test-vectors)
       (push (casualt-suffix-test-vector "y" #'dired-show-file-type) test-vectors)
       (push (casualt-suffix-test-vector "w" #'dired-copy-filename-as-kill) test-vectors)
