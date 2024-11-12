@@ -643,11 +643,11 @@ Commands pertaining to rectangle operations can be accessed here."
      :transient t)]
 
    ["Replace"
-    ("s" "String" string-rectangle
+    ("s" "String…" string-rectangle
      :if-not casual-editkit-buffer-read-only-p
      :inapt-if-not use-region-p
      :transient t)
-    ("i" "String Insert" string-insert-rectangle
+    ("i" "String Insert…" string-insert-rectangle
      :if-not casual-editkit-buffer-read-only-p
      :inapt-if-not use-region-p
      :transient t)
