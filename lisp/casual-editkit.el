@@ -54,7 +54,11 @@ user-customized menu."
      :if (lambda () (buffer-file-name)))
     ("b" "List Buffers" ibuffer)
     ("R" "Recent Files" recentf-open-files)
-    ("s" "Save" save-buffer)]
+    ("v" "Revert…" revert-buffer
+     :inapt-if-not buffer-modified-p
+     :if-not (lambda () buffer-read-only))
+    ("s" "Save" save-buffer
+     :if-not (lambda () buffer-read-only))]
 
    ["Edit"
     :pad-keys t
