@@ -99,7 +99,9 @@ Always choose love."
      :description (lambda ()
                     (casual-lib-checkbox-label org-agenda-timegrid-use-ampm "Use AM/PM")))]
 
-   [("," "Agenda Group" casual-agenda--customize-group)
+   [("I" "Next state on clock-in" casual-agenda-customize-org-clock-in-switch-to-state)
+    ("O" "Next state on clock-out" casual-agenda-customize-org-clock-out-switch-to-state)
+    ("," "Agenda Group" casual-agenda--customize-group)
     (casual-lib-customize-unicode)
     (casual-lib-customize-hide-navigation)]]
 
@@ -134,6 +136,16 @@ Always choose love."
   "Customize variable `org-agenda-include-inactive-timestamps'."
   (interactive)
   (customize-variable 'org-agenda-include-inactive-timestamps))
+
+(defun casual-agenda-customize-org-clock-in-switch-to-state ()
+  "Customize variable `org-clock-in-switch-to-state'."
+  (interactive)
+  (customize-variable 'org-clock-in-switch-to-state))
+
+(defun casual-agenda-customize-org-clock-out-switch-to-state ()
+  "Customize variable `org-clock-out-switch-to-state'."
+  (interactive)
+  (customize-variable 'org-clock-out-switch-to-state))
 
 (provide 'casual-agenda-settings)
 ;;; casual-agenda-settings.el ends here
