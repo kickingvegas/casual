@@ -168,6 +168,7 @@ If you enjoy using Casual EditKit, consider making a modest financial contributi
 - [[file:agenda.org][Org Agenda]]
 - [[file:bookmarks.org][Bookmarks]]
 - [[file:calc.org][Calc]]
+- [[file:calendar.org][Calendar]]
 - [[file:dired.org][Dired]]
 - [[file:ibuffer.org][IBuffer]]
 - [[file:info.org][Info]]

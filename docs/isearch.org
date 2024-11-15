@@ -64,6 +64,7 @@ If you enjoy using Casual I-Search, consider making a modest financial contribut
 - [[file:agenda.org][Agenda]]
 - [[file:bookmarks.org][Bookmarks]]
 - [[file:calc.org][Calc]]
+- [[file:calendar.org][Calendar]]
 - [[file:dired.org][Dired]]
 - [[file:editkit.org][EditKit (numerous editing commands)]]
 - [[file:ibuffer.org][IBuffer]]

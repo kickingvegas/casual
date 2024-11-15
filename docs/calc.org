@@ -6,7 +6,7 @@ An opinionated [[https://github.com/magit/transient][Transient]]-based user inte
 [[file:images/casual-calc-tmenu.png]]
 
 * Install
-Casual Calc is available on [[https://melpa.org/#/casual-calc][MELPA]].
+Casual Calc is available on [[https://melpa.org/#/casual][MELPA]].
 
 If installed via ~list-packages~ then add this line to your Emacs initialization file.
 #+begin_src elisp :lexical no
@@ -56,6 +56,7 @@ If you enjoy using Casual Calc, consider making a modest financial contribution 
 * See Also
 - [[file:agenda.org][Agenda]]
 - [[file:bookmarks.org][Bookmarks]]
+- [[file:calendar.org][Calendar]]
 - [[file:dired.org][Dired]]
 - [[file:editkit.org][EditKit (numerous editing commands)]]
 - [[file:ibuffer.org][IBuffer]]

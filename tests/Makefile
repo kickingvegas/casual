@@ -21,6 +21,7 @@ lib-tests					\
 agenda-tests					\
 bookmarks-tests					\
 calc-tests					\
+calendar-tests					\
 dired-tests					\
 editkit-tests					\
 ibuffer-tests					\
@@ -34,6 +35,7 @@ tests: lib-tests				\
 agenda-tests					\
 bookmarks-tests					\
 calc-tests					\
+calendar-tests					\
 dired-tests					\
 editkit-tests					\
 ibuffer-tests					\
@@ -51,6 +53,9 @@ bookmarks-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 calc-tests:
+	$(MAKE) -C $(SRC_DIR) $@
+
+calendar-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 dired-tests:

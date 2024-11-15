@@ -152,6 +152,7 @@ If you enjoy using Casual Dired, consider making a modest financial contribution
 - [[file:agenda.org][Agenda]]
 - [[file:bookmarks.org][Bookmarks]]
 - [[file:calc.org][Calc]]
+- [[file:calendar.org][Calendar]]
 - [[file:editkit.org][EditKit (numerous editing commands)]]
 - [[file:ibuffer.org][IBuffer]]
 - [[file:info.org][Info]]

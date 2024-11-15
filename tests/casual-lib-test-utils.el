@@ -149,5 +149,11 @@ COMMAND is an interactive function."
   (let ((buf (concat (casualt-macro-callable-symbol command) keys)))
     (kmacro buf)))
 
+(defun casualt-unicode-db-assert (key control cmd)
+  "DB Assert."
+  (let ((test (funcall cmd key)))
+    (should (string= test control))))
+
+
 (provide 'casual-lib-test-utils)
 ;;; casual-lib-test-utils.el ends here
