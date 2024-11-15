@@ -38,6 +38,7 @@
               (casualt-mock #'dired-jump-other-window)
               (casualt-mock #'ibuffer)
               (casualt-mock #'recentf-open-files)
+              (casualt-mock #'revert-buffer)
               (casualt-mock #'save-buffer)
 
               (casualt-mock #'insert-char)
@@ -58,6 +59,7 @@
                (:binding "d" :command dired-jump-other-window)
                (:binding "b" :command ibuffer)
                (:binding "R" :command recentf-open-files)
+               (:binding "v" :command revert-buffer)
                (:binding "s" :command save-buffer)
 
                (:binding "e" :command casual-editkit-edit-tmenu)
@@ -91,9 +93,13 @@
                (:binding "," :command casual-editkit-settings-tmenu)
                (:binding "x" :command save-buffers-kill-emacs))))
 
+
+        (insert "hello")
         (casualt-suffix-testcase-runner test-vectors
                                         #'casual-editkit-main-tmenu
-                                        '(lambda () (random 5000)))))
+                                        '(lambda () (random 5000)))
+        (save-buffer)))
+
     (casualt-editkit-breakdown tmpfile)))
 
 (provide 'test-casual-editkit)
