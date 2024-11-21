@@ -33,7 +33,7 @@ Customize settings for Calendar and Diary modes."
 
   ["Calendar"
    ["Customize"
-    ("G" "Calendar Group" casual-calendar--customize-calendar-group)
+    ("C" "Calendar Group" casual-calendar--customize-calendar-group)
     ("H" "Mark Holidays" casual-calendar--customize-calendar-mark-holidays-flag
      :description (lambda ()
                     (casual-lib-checkbox-label
