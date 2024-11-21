@@ -34,7 +34,7 @@
     ("n" "Now" calc-now :transient t)
     ("f" "First Day of›" casual-calc-first-day-tmenu)
     ("i" "Increment Month" calc-inc-month :transient t)
-    ("u" "To Unix Time" calc-unix-time :transient t)
+    ("u" "To/From Unix Time" calc-unix-time :transient t)
     ("a" "Add Business Days" calc-business-days-plus :transient t)
     ("s" "Subtract Business Days" calc-business-days-minus :transient t)]
    casual-calc-operators-group]
