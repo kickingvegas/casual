@@ -33,7 +33,7 @@
     (casualt-calendar-setup)
     (cl-letf ()
       (let ((test-vectors
-             '((:binding "G" :command casual-calendar--customize-calendar-group)
+             '((:binding "C" :command casual-calendar--customize-calendar-group)
                (:binding "H" :command casual-calendar--customize-calendar-mark-holidays-flag)
                (:binding "v" :command casual-calendar--customize-calendar-move-hook)
                (:binding "N" :command casual-calendar--customize-calendar-location-name)
