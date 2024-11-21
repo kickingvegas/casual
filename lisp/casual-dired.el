@@ -89,7 +89,7 @@
      :transient t)
     ("k" "Kill (Hide) Line(s)" dired-do-kill-lines :transient t)
     ("g" "Revert" revert-buffer :transient t)
-    ("f" "Filter…" casual-dired-find-dired-regexp :transient nil)
+    ("f" "Filter by name…" casual-dired-find-dired-regexp :transient nil)
     ("E" "Edit (wdired)" wdired-change-to-wdired-mode :transient nil)
     ("T" "Thumbnails…" image-dired :if display-graphic-p :transient n)
     ("d" "Dired…" dired :transient t)]
@@ -242,7 +242,17 @@ This buffer is created by the command `find-lisp-find-dired'."
        (not (casual-dired-lisp-dired-buffer-p))))
 
 (defun casual-dired-find-dired-regexp (REGEXP)
-  "Find files in current directory whose names match REGEXP."
+  "Recursively find file names in current directory matching REGEXP.
+
+Recursively find all files whose name matches the Elisp REGEXP
+from the current directory `default-directory'. The value of
+REGEXP will be interactively prompted for.
+
+The command `find-lisp-find-dired' does all the heavy lifting
+here.
+
+* References
+- Info node `(elisp) Regular Expressions'"
   (interactive "sFind filenames with regex: ")
   (find-lisp-find-dired default-directory REGEXP))
 
