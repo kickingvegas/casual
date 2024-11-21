@@ -20,6 +20,13 @@ Casual is organized into different user interface (UI) libraries tuned for diffe
 
   [[file:docs/calc.org][file:docs/images/casual-calc-tmenu.png]]
   
+** [[file:docs/calendar.org][Calendar]] (Elisp library: ~casual-calendar~)
+
+An interface for [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Calendar_002fDiary.html][Calendar & Diary]]. 
+
+[[file:docs/images/casual-calendar-screenshot.png]]
+
+
 ** [[file:docs/dired.org][Dired]] (Elisp library: ~casual-dired~)
   An interface for the venerable file manager Dired.
 
@@ -86,6 +93,7 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[file:docs/agenda.org::*Install][Agenda]]
 - [[file:docs/bookmarks.org::*Install][Bookmarks]]
 - [[file:docs/calc.org::*Install][Calc]]
+- [[file:docs/calendar.org::*Install][Calendar]]
 - [[file:docs/dired.org::*Install][Dired]]
 - [[file:docs/editkit.org::*Install][EditKit]]
 - [[file:docs/ibuffer.org::*Install][IBuffer]]  

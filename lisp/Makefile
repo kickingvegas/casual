@@ -21,6 +21,7 @@ lib-tests					\
 agenda-tests					\
 bookmarks-tests					\
 calc-tests					\
+calendar-tests					\
 dired-tests					\
 editkit-tests					\
 ibuffer-tests					\
@@ -34,6 +35,7 @@ tests: lib-tests				\
 agenda-tests					\
 bookmarks-tests					\
 calc-tests					\
+calendar-tests					\
 dired-tests					\
 editkit-tests					\
 ibuffer-tests					\
@@ -52,6 +54,9 @@ bookmarks-tests:
 
 calc-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-calc.make tests
+
+calendar-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-calendar.make tests
 
 dired-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-dired.make tests

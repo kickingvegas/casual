@@ -44,6 +44,10 @@
 ;;   An interface for Emacs Calc, an embarrasingly feature-rich calculator.
 ;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/calc.org'
 
+;; - Calendar (Elisp library: `casual-calendar')
+;;   An interface for the built-in calendar and diary of Emacs.
+;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/calendar.org'
+
 ;; - Dired (Elisp library: `casual-dired')
 ;;   An interface for the venerable file manager Dired.
 ;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/dired.org'
