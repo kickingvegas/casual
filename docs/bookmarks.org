@@ -70,6 +70,7 @@ If you enjoy using Casual Bookmarks, consider making a modest financial contribu
 * See Also
 - [[file:agenda.org][Agenda]]
 - [[file:calc.org][Calc]]
+- [[file:calendar.org][Calendar]]
 - [[file:dired.org][Dired]]
 - [[file:editkit.org][EditKit (numerous editing commands)]]
 - [[file:ibuffer.org][IBuffer]]

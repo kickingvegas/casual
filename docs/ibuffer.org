@@ -163,6 +163,7 @@ If you enjoy using Casual IBuffer, consider making a modest financial contributi
 - [[file:agenda.org][Agenda]]
 - [[file:bookmarks.org][Bookmarks]]
 - [[file:calc.org][Calc]]
+- [[file:calendar.org][Calendar]]
 - [[file:editkit.org][EditKit (numerous editing commands)]]
 - [[file:info.org][Info]]
 - [[file:isearch.org][I-Search]]

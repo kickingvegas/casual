@@ -6,7 +6,7 @@ An opinionated [[https://github.com/magit/transient][Transient]]-based user inte
 [[file:images/casual-re-builder-screenshot.png]]
 
 * Install
-If installed via [[https://melpa.org/#/casual-re-builder][MELPA]] then add these lines to your Emacs initialization file with your binding of preference. 
+If installed via [[https://melpa.org/#/casual][MELPA]] then add these lines to your Emacs initialization file with your binding of preference. 
 #+begin_src elisp :lexical no
   (require 'casual-re-builder) ; optional
   (keymap-set reb-mode-map "C-o" #'casual-re-builder-tmenu)
@@ -62,6 +62,7 @@ If you enjoy using Casual RE-Builder, consider making a modest financial contrib
 - [[file:agenda.org][Agenda]]
 - [[file:bookmarks.org][Bookmarks]]
 - [[file:calc.org][Calc]]
+- [[file:calendar.org][Calendar]]
 - [[file:dired.org][Dired]]
 - [[file:editkit.org][EditKit (numerous editing commands)]]
 - [[file:ibuffer.org][IBuffer]]

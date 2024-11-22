@@ -54,6 +54,8 @@
              (:binding "i" :command casual-agenda-customize-agenda-include-inactive-timestamps)
              (:binding "x" :command casual-agenda-customize-agenda-include-deadlines)
              (:binding "m" :command casual-agenda-customize-ampm)
+             (:binding "I" :command casual-agenda-customize-org-clock-in-switch-to-state)
+             (:binding "O" :command casual-agenda-customize-org-clock-out-switch-to-state)
              (:binding "," :command casual-agenda--customize-group))))
 
       (casualt-suffix-testcase-runner test-vectors

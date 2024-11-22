@@ -195,7 +195,8 @@ Commands pertaining to editing operations can be accessed here."
     ("c" "Copy›" casual-editkit-copy-tmenu)
     ("k" "Kill (Cut)›" casual-editkit-kill-tmenu
      :if-not casual-editkit-buffer-read-only-p)
-    ("y" "Yank (Paste)" yank)]
+    ("y" "Yank (Paste)" yank
+    :if-not (lambda () buffer-read-only))]
 
    [("t" "Transpose›" casual-editkit-transpose-tmenu
      :if-not casual-editkit-buffer-read-only-p)

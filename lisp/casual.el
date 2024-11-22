@@ -5,7 +5,7 @@
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual
 ;; Keywords: tools, wp
-;; Version: 2.1.0
+;; Version: 2.1.1-rc.1
 ;; Package-Requires: ((emacs "29.1") (transient "0.6.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -43,6 +43,10 @@
 ;; - Calc (Elisp library: `casual-calc')
 ;;   An interface for Emacs Calc, an embarrasingly feature-rich calculator.
 ;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/calc.org'
+
+;; - Calendar (Elisp library: `casual-calendar')
+;;   An interface for the built-in calendar and diary of Emacs.
+;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/calendar.org'
 
 ;; - Dired (Elisp library: `casual-dired')
 ;;   An interface for the venerable file manager Dired.
