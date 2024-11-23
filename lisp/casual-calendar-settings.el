@@ -38,7 +38,12 @@ Customize settings for Calendar and Diary modes."
      :description (lambda ()
                     (casual-lib-checkbox-label
                      calendar-mark-holidays-flag
-                     "Mark Holidays")))]
+                     "Mark Holidays")))
+    ("E" "Mark Diary Entries" casual-calendar--customize-calendar-mark-diary-entries-flag
+     :description (lambda ()
+                    (casual-lib-checkbox-label
+                     calendar-mark-diary-entries-flag
+                     "Mark Diary Entries")))]
 
    ["Hooks"
     ("v" "Move Hook" casual-calendar--customize-calendar-move-hook)]
@@ -116,6 +121,11 @@ Customize settings for Calendar and Diary modes."
   "Customize variable `calendar-mark-holidays-flag'."
   (interactive)
   (customize-variable 'calendar-mark-holidays-flag))
+
+(defun casual-calendar--customize-calendar-mark-diary-entries-flag ()
+  "Customize variable `calendar-mark-diary-entries-flag'."
+  (interactive)
+  (customize-variable 'calendar-mark-diary-entries-flag))
 
 (defun casual-calendar--customize-calendar-location-name ()
   "Customize variable `calendar-location-name'."

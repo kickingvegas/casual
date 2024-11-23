@@ -35,6 +35,7 @@
       (let ((test-vectors
              '((:binding "C" :command casual-calendar--customize-calendar-group)
                (:binding "H" :command casual-calendar--customize-calendar-mark-holidays-flag)
+               (:binding "E" :command casual-calendar--customize-calendar-mark-diary-entries-flag)
                (:binding "v" :command casual-calendar--customize-calendar-move-hook)
                (:binding "N" :command casual-calendar--customize-calendar-location-name)
                (:binding "A" :command casual-calendar--customize-calendar-latitude)
