@@ -32,11 +32,11 @@ by this menu."
 
   ["Diary and Goto"
    ["Diary Insert"
-    ("e" "Entry" diary-insert-entry :transient t)
-    ("w" "Weekly" diary-insert-weekly-entry :transient t)
-    ("m" "Monthly" diary-insert-monthly-entry :transient t)
-    ("y" "Yearly" diary-insert-yearly-entry :transient t)
-    ("a" "Anniversary" diary-insert-anniversary-entry :transient t)]
+    ("e" "Entry" diary-insert-entry)
+    ("w" "Weekly" diary-insert-weekly-entry)
+    ("m" "Monthly" diary-insert-monthly-entry)
+    ("y" "Yearly" diary-insert-yearly-entry)
+    ("a" "Anniversary" diary-insert-anniversary-entry)]
 
    ["Goto"
     ("g" "Date…" calendar-goto-date :transient t)
