@@ -86,6 +86,11 @@ Main menu for `calendar' commands.
      :description (lambda () (format "%s Month" (casual-calendar-unicode-get :sunrise)))
      :transient t)]]
 
+  ["Region"
+    :class transient-row
+    ("C-SPC" "Set Mark" calendar-set-mark :transient t)
+    ("=" "Count Days" calendar-count-days-region :transient t)]
+
   [:class transient-row
    (casual-lib-quit-one)
    ("RET" "Dismiss" transient-quit-all)
