@@ -74,6 +74,8 @@
               (casualt-mock #'calendar-lunar-phases)
               (casualt-mock #'calendar-sunrise-sunset)
               (casualt-mock #'calendar-sunrise-sunset-month)
+              (casualt-mock #'calendar-set-mark)
+              (casualt-mock #'calendar-count-days-region)
 
               (casualt-mock #'calendar-exit))
 
@@ -119,7 +121,9 @@
                (:binding "s" :command diary-show-all-entries)
                (:binding "M" :command calendar-lunar-phases)
                (:binding "S" :command calendar-sunrise-sunset)
-               (:binding "M-m" :command calendar-sunrise-sunset-month))))
+               (:binding "M-m" :command calendar-sunrise-sunset-month)
+               (:binding "C-SPC" :command calendar-set-mark)
+               (:binding "=" :command calendar-count-days-region))))
 
         (casualt-suffix-testcase-runner test-vectors
                                         #'casual-calendar-tmenu
