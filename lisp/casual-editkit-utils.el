@@ -578,6 +578,8 @@ Commands pertaining to invoking different tools can be accessed here."
   ["Tools"
    ["Shells & REPLs"
     ("s" "Shell" shell)
+    ("!" "Shell Command…" shell-command)
+    ("&" "Shell Command &…" async-shell-command)
     ("e" "Eshell" eshell)
     ("i" "IELM" ielm)
     ("t" "term" term)

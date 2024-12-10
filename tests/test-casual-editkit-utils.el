@@ -489,6 +489,8 @@
     (casualt-editkit-setup tmpfile)
     (cl-letf (;;((symbol-function #') (lambda () t))
               (casualt-mock #'shell)
+              (casualt-mock #'shell-command)
+              (casualt-mock #'async-shell-command)
               (casualt-mock #'eshell)
               (casualt-mock #'ielm)
               (casualt-mock #'term)
@@ -507,6 +509,8 @@
 
       (let ((test-vectors
              '((:binding "s" :command shell)
+               (:binding "!" :command shell-command)
+               (:binding "&" :command async-shell-command)
                (:binding "e" :command eshell)
                (:binding "i" :command ielm)
                (:binding "t" :command term)
