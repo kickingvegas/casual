@@ -36,7 +36,8 @@
        ((symbol-function #'dired-do-async-shell-command) (lambda (x) (interactive)(print "WARNING: override")))
        ((symbol-function #'image-dired) (lambda (x) (interactive)(print "WARNING: override"))))
 
-    (let ((test-vectors (list)))
+    (let ((test-vectors (list))
+          (dired-use-ls-dired t))
       (push (casualt-suffix-test-vector "o" #'dired-find-file-other-window) test-vectors)
       (push (casualt-suffix-test-vector "v" #'dired-view-file) test-vectors)
       (push (casualt-suffix-test-vector "C" #'dired-do-copy) test-vectors)
@@ -88,6 +89,7 @@
 
       ;;(push (casualt-suffix-test-vector "+q" #'dired-create-directory) test-vectors)
       (push (casualt-suffix-test-vector "F" #'dired-create-empty-file) test-vectors)
+      (push (casualt-suffix-test-vector "æ" #'rgrep) test-vectors)
 
       (casualt-suffix-testbench-runner test-vectors
                                        #'casual-dired-tmenu

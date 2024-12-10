@@ -68,20 +68,22 @@ ASCII-range string."
           (casual-lib-quit-one)
           (casual-lib-quit-all)])
 
+;;;###autoload (autoload 'casual-dired-search-replace-tmenu "casual-dired-utils" nil t)
 (transient-define-prefix casual-dired-search-replace-tmenu ()
   ["Search & Replace"
    ["Search in Files"
      :pad-keys t
-     ("C-s" "I-search…" dired-do-isearch :transient nil)
-     ("M-s" "I-search regexp…" dired-do-isearch-regexp :transient nil)
-     ("s" "Search first regexp match…" dired-do-search :transient nil)]
-
-    ["Replace in Files"
-     ("r" "Query regexp and replace…" dired-do-query-replace-regexp :transient nil)]]
+     ("C-s" "I-search…" dired-do-isearch)
+     ("M-s" "I-search regexp…" dired-do-isearch-regexp)
+     ("s" "Search first regexp match…" dired-do-search)]
+   ["Replace in Files"
+     ("r" "Query regexp and replace…" dired-do-query-replace-regexp)]]
 
   ["grep-style regex"
-   ("g" "Find regex…" dired-do-find-regexp :transient nil)
-   ("G" "Find regex and replace…" dired-do-find-regexp-and-replace :transient nil)]
+   [("g" "Find regex…" dired-do-find-regexp)
+    ("G" "Find regex and replace…" dired-do-find-regexp-and-replace)]
+
+   [("f" "Find in files (rgrep)…" rgrep)]]
 
   [:class transient-row
           (casual-lib-quit-one)

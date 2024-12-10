@@ -114,6 +114,7 @@
        (t "Magit Status"))
     (message "Not a version controlled buffer.")))
 
+;;;###autoload (autoload 'casual-editkit-open-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-open-tmenu ()
   "Menu for ‘Open’ commands.
 
@@ -148,6 +149,7 @@ also available from here."
 
   casual-editkit-navigation-group)
 
+;;;###autoload (autoload 'casual-editkit-project-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-project-tmenu ()
   "Menu for ‘Project’ commands.
 
@@ -186,6 +188,7 @@ Commands pertaining to project operations can be accessed here."
 
   casual-editkit-navigation-group)
 
+;;;###autoload (autoload 'casual-editkit-edit-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-edit-tmenu ()
   "Menu for ‘Edit’ commands.
 
@@ -233,6 +236,7 @@ Commands pertaining to editing operations can be accessed here."
    ("U" "Undo" undo :transient t)
    (casual-lib-quit-all)])
 
+;;;###autoload (autoload 'casual-editkit-emoji-symbols-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-emoji-symbols-tmenu ()
     "Menu for ‘Emoji & Symbols’ commands.
 
@@ -284,6 +288,7 @@ inserting common miscellaneous symbols."
    ("U" "Undo" undo :transient t)
    (casual-lib-quit-all)])
 
+;;;###autoload (autoload 'casual-editkit-mark-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-mark-tmenu ()
   "Menu for ‘Mark’ commands.
 
@@ -298,6 +303,7 @@ Commands pertaining to marking operations can be accessed here."
   casual-editkit-cursor-navigation-group
   casual-editkit-navigation-group)
 
+;;;###autoload (autoload 'casual-editkit-copy-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-copy-tmenu ()
   "Menu for ‘Copy’ commands.
 
@@ -315,6 +321,7 @@ Commands pertaining to copying can be accessed here."
   casual-editkit-cursor-navigation-group
   casual-editkit-navigation-group)
 
+;;;###autoload (autoload 'casual-editkit-kill-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-kill-tmenu ()
   "Menu for ‘Kill (Cut)’ commands.
 
@@ -331,6 +338,7 @@ Commands pertaining to kill ring operations can be accessed here."
   casual-editkit-cursor-navigation-group
   casual-editkit-navigation-group)
 
+;;;###autoload (autoload 'casual-editkit-sort-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-sort-tmenu ()
   "Menu for ‘Sort’ commands.
 
@@ -350,6 +358,7 @@ Commands pertaining to sorting operations can be accessed here."
   casual-editkit-cursor-navigation-group
   casual-editkit-navigation-group)
 
+;;;###autoload (autoload 'casual-editkit-transpose-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-transpose-tmenu ()
   "Menu for ‘Transpose’ commands.
 
@@ -365,6 +374,7 @@ Commands pertaining to transpose operations can be accessed here."
   casual-editkit-cursor-navigation-group
   casual-editkit-navigation-group)
 
+;;;###autoload (autoload 'casual-editkit-delete-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-delete-tmenu ()
   "Menu for ‘Delete’ commands.
 
@@ -383,6 +393,7 @@ Commands pertaining to delete can be accessed here."
   casual-editkit-cursor-navigation-group
   casual-editkit-navigation-group)
 
+;;;###autoload (autoload 'casual-editkit-move-text-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-move-text-tmenu ()
   "Menu for ‘Move’ commands.
 
@@ -431,6 +442,7 @@ can be accessed here."
   casual-editkit-cursor-navigation-group
   casual-editkit-navigation-group)
 
+;;;###autoload (autoload 'casual-editkit-windows-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-windows-tmenu ()
   "Menu for ‘Window’ commands.
 
@@ -504,6 +516,7 @@ Commands pertaining to window management operations can be accessed here."
 
   casual-editkit-navigation-group)
 
+;;;###autoload (autoload 'casual-editkit-windows-delete-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-windows-delete-tmenu ()
     "Menu for ‘Window Delete’ commands.
 
@@ -516,7 +529,7 @@ accessed here."
    ("f" "On Right" windmove-delete-right)]
   [(casual-lib-quit-all)])
 
-
+;;;###autoload (autoload 'casual-editkit-bookmarks-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-bookmarks-tmenu ()
     "Menu for ‘Bookmarks’ commands.
 
@@ -528,6 +541,7 @@ accessed here."
    ("J" "Jump to Bookmark…" bookmark-jump)]
   casual-editkit-navigation-group)
 
+;;;###autoload (autoload 'casual-editkit-search-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-search-tmenu ()
   "Menu for ‘Search & Replace’ commands.
 
@@ -556,7 +570,7 @@ accessed here."
 
   casual-editkit-navigation-group)
 
-
+;;;###autoload (autoload 'casual-editkit-tools-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-tools-tmenu ()
     "Menu for ‘Tools’ commands.
 
@@ -564,6 +578,8 @@ Commands pertaining to invoking different tools can be accessed here."
   ["Tools"
    ["Shells & REPLs"
     ("s" "Shell" shell)
+    ("!" "Shell Command…" shell-command)
+    ("&" "Shell Command &…" async-shell-command)
     ("e" "Eshell" eshell)
     ("i" "IELM" ielm)
     ("t" "term" term)
@@ -593,6 +609,7 @@ Commands pertaining to invoking different tools can be accessed here."
 
   casual-editkit-navigation-group)
 
+;;;###autoload (autoload 'casual-editkit-registers-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-registers-tmenu ()
   "Menu for ‘Registers’ commands.
 
@@ -618,6 +635,7 @@ Commands pertaining to register operations can be accessed here."
 
   casual-editkit-navigation-group)
 
+;;;###autoload (autoload 'casual-editkit-rectangle-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-rectangle-tmenu ()
   "Menu for ‘Rectangle’ commands.
 
@@ -674,6 +692,7 @@ Commands pertaining to rectangle operations can be accessed here."
   casual-editkit-cursor-navigation-group
   casual-editkit-navigation-group)
 
+;;;###autoload (autoload 'casual-editkit-transform-text-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-transform-text-tmenu ()
   "Menu for ‘Transform’ commands.
 
@@ -687,6 +706,7 @@ Commands pertaining to transformation operations can be accessed here."
   casual-editkit-cursor-navigation-group
   casual-editkit-navigation-group)
 
+;;;###autoload (autoload 'casual-editkit-macro-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-macro-tmenu ()
   "Menu for ‘Macro’ commands.
 
