@@ -63,6 +63,7 @@ The value from `ibuffer-saved-filter-groups' is used."
 (advice-add #'ibuffer-update :after #'casual-ibuffer--ibuffer-update)
 
 ;; Transients
+;;;###autoload (autoload 'casual-ibuffer-filter-tmenu "casual-ibuffer-filter" nil t)
 (transient-define-prefix casual-ibuffer-filter-tmenu ()
   "Casual IBuffer filter menu."
   :refresh-suffixes t

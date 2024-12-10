@@ -53,6 +53,7 @@
 (require 'casual-dired-utils)
 (require 'casual-dired-variables)
 
+;;;###autoload (autoload 'casual-dired-sort-by-tmenu "casual-dired-sort-by" nil t)
 (transient-define-prefix casual-dired-sort-by-tmenu ()
   "Transient menu to sort Dired buffer by different criteria.
 

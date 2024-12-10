@@ -170,6 +170,7 @@
           (casual-lib-quit-one)
           (casual-lib-quit-all)])
 
+;;;###autoload (autoload 'casual-ibuffer-sortby-tmenu "casual-ibuffer" nil t)
 (transient-define-prefix casual-ibuffer-sortby-tmenu ()
   ["IBuffer: Sort By"
    [("v" "Recency" ibuffer-do-sort-by-recency)
