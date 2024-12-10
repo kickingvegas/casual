@@ -102,7 +102,8 @@
     ("~" "Flag Backups" dired-flag-backup-files :transient t)
     ("x" "Delete Flagged" dired-do-flagged-delete :transient t)
     ("r" "Regexp›" casual-dired-regexp-tmenu :transient nil)
-    ("#" "Utils›" casual-dired-utils-tmenu :transient nil)]
+    ("#" "Utils›" casual-dired-utils-tmenu :transient nil)
+    ("/" "Search & Replace›" casual-dired-search-replace-tmenu :transient nil)]
 
    ["Navigation"
     :pad-keys t
@@ -190,7 +191,7 @@
     :pad-keys t
     ("C-s" "I-Search…" dired-isearch-filenames :transient nil)
     ("M-s" "I-Search Regexp…" dired-isearch-filenames-regexp :transient nil)
-    ("/" "Search & Replace›" casual-dired-search-replace-tmenu :transient nil)]
+    ("M-f" "Find in files (rgrep)…" rgrep)]
 
    ["New"
     ("+" "Directory" dired-create-directory :transient t)

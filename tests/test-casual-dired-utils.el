@@ -48,19 +48,28 @@
 
 (ert-deftest test-casual-dired-search-replace-tmenu-bindings ()
   (casualt-dired-setup)
+  (cl-letf ((casualt-mock #'dired-do-find-regexp)
+            (casualt-mock #'dired-do-isearch)
+            (casualt-mock #'dired-do-isearch-regexp)
+            (casualt-mock #'dired-do-search)
+            (casualt-mock #'dired-do-query-replace-regexp)
+            (casualt-mock #'dired-do-find-regexp-and-replace)
+            (casualt-mock #'rgrep))
 
-  (let ((test-vectors (list)))
-    (push (casualt-suffix-test-vector "g" #'dired-do-find-regexp) test-vectors)
-    (push (casualt-suffix-test-vector "" #'dired-do-isearch) test-vectors)
-    (push (casualt-suffix-test-vector "ó" #'dired-do-isearch-regexp) test-vectors)
-    (push (casualt-suffix-test-vector "s" #'dired-do-search) test-vectors)
-    (push (casualt-suffix-test-vector "r" #'dired-do-query-replace-regexp) test-vectors)
-    (push (casualt-suffix-test-vector "G" #'dired-do-find-regexp-and-replace) test-vectors)
+    (let ((test-vectors
+           '((:binding "C-s" :command dired-do-isearch)
+             (:binding "M-s" :command dired-do-isearch-regexp)
+             (:binding "s" :command dired-do-search)
+             (:binding "r" :command dired-do-query-replace-regexp)
+             (:binding "g" :command dired-do-find-regexp)
+             (:binding "G" :command dired-do-find-regexp-and-replace)
+             (:binding "f" :command rgrep))))
 
-    (casualt-suffix-testbench-runner test-vectors
-                                     #'casual-dired-search-replace-tmenu
-                                     '(lambda () (random 5000))))
-  (casualt-dired-breakdown t))
+      (casualt-suffix-testcase-runner test-vectors
+                                      #'casual-dired-search-replace-tmenu
+                                      '(lambda () (random 5000)))))
+  (casualt-dired-breakdown))
+
 
 (ert-deftest test-casual-dired-elisp-tmenu-bindings ()
   (casualt-dired-setup)

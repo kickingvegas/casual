@@ -89,6 +89,7 @@
 
       ;;(push (casualt-suffix-test-vector "+q" #'dired-create-directory) test-vectors)
       (push (casualt-suffix-test-vector "F" #'dired-create-empty-file) test-vectors)
+      (push (casualt-suffix-test-vector "æ" #'rgrep) test-vectors)
 
       (casualt-suffix-testbench-runner test-vectors
                                        #'casual-dired-tmenu
