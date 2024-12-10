@@ -68,6 +68,7 @@ ASCII-range string."
           (casual-lib-quit-one)
           (casual-lib-quit-all)])
 
+;;;###autoload (autoload 'casual-dired-search-replace-tmenu "casual-dired-utils" nil t)
 (transient-define-prefix casual-dired-search-replace-tmenu ()
   ["Search & Replace"
    ["Search in Files"

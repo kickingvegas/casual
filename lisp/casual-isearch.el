@@ -64,6 +64,7 @@
   (isearch-toggle-symbol)
   (isearch-edit-string))
 
+;;;###autoload (autoload 'casual-isearch-tmenu "casual-isearch" nil t)
 (transient-define-prefix casual-isearch-tmenu ()
   "Transient menu for I-Search."
   [["Edit Search String"
