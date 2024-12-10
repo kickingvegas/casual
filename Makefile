@@ -43,7 +43,7 @@
 #   $ make new-sprint
 
 LISP_DIR=./lisp
-MAIN_EL=$(LISP_DIR)/casual.el
+MAIN_EL=$(realpath $(LISP_DIR)/casual.el)
 
 TIMESTAMP := $(shell /bin/date "+%Y%m%d_%H%M%S")
 VERSION := $(shell ./scripts/read-version.sh $(MAIN_EL))
