@@ -37,7 +37,6 @@
 
 ;;; Code:
 (require 'casual-editkit-utils)
-(require 'casual-editkit-settings)
 
 ;;;###autoload (autoload 'casual-editkit-main-tmenu "casual-editkit" nil t)
 (transient-define-prefix casual-editkit-main-tmenu ()
