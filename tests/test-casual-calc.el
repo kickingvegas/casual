@@ -57,7 +57,7 @@
                         ("=" . casual-calc--evaluate)
                         ("A" . casual-calc--abs)
                         ("!" . casual-calc--factorial)
-                        ("%" . casual-calc--percent)
+                        ("%" . casual-calc--percent-of)
                         ("D" . casual-calc--percent-change)
                         ("p" . casual-calc--pi)
                         ("e" . casual-calc--e-constant)
