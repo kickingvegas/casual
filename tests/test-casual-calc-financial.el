@@ -186,7 +186,8 @@
                            ("t" . casual-calc-fin-periods-to-target-tmenu)
                            ("r" . casual-calc-fin-rate-of-return-tmenu)
 
-                           ("%" . calc-percent)
+                           ("%" . casual-calc--percent-of)
+                           ("P" . casual-calc--percent)
                            ("c" . calc-convert-percent)
                            ("D" . calc-percent-change)
                            ("=" . calc-evaluate)

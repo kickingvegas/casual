@@ -66,7 +66,7 @@
     (should (string-equal (casual-calc-unicode-get :power) "𝑦ˣ"))
     (should (string-equal (casual-calc-unicode-get :abs) "|𝑥|"))
     (should (string-equal (casual-calc-unicode-get :factorial) " !"))
-    (should (string-equal (casual-calc-unicode-get :percent) " ٪"))
+    (should (string-equal (casual-calc-unicode-get :percent) "%"))
     (should (string-equal (casual-calc-unicode-get :percent-change) " Δ%"))
     (should (string-equal (casual-calc-unicode-get :pi) "𝜋"))
     (should (string-equal (casual-calc-unicode-get :e) "𝑒"))
