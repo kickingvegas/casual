@@ -130,7 +130,8 @@
                (:binding "K" :command keep-lines)
                (:binding "f" :command fill-paragraph)
                (:binding "a" :command align-regexp)
-               (:binding "R" :command casual-editkit-rectangle-tmenu))))
+               (:binding "R" :command casual-editkit-rectangle-tmenu)
+               (:binding "r" :command casual-editkit-reformat-tmenu))))
         (casualt-mock-active-region)
         (casualt-suffix-testcase-runner test-vectors
                                         #'casual-editkit-edit-tmenu
@@ -618,6 +619,46 @@
 
         (casualt-suffix-testcase-runner test-vectors
                                         #'casual-editkit-transform-text-tmenu
+                                        '(lambda () (random 5000)))))
+    (casualt-editkit-breakdown tmpfile)))
+
+
+(ert-deftest test-casual-editkit-reformat-tmenu ()
+  (let ((tmpfile "casual-editkit-reformat-tmenu.txt"))
+    (casualt-editkit-setup tmpfile)
+    (cl-letf (((symbol-function #'use-region-p) (lambda () t))
+              (casualt-mock #'fill-paragraph)
+              (casualt-mock #'fill-region)
+              (casualt-mock #'fill-region-as-paragraph)
+              (casualt-mock #'fill-individual-paragraphs)
+              (casualt-mock #'fill-nonuniform-paragraphs)
+              (casualt-mock #'center-line)
+              (casualt-mock #'center-region)
+              (casualt-mock #'center-paragraph)
+              (casualt-mock #'repunctuate-sentences)
+              (casualt-mock #'untabify)
+              (casualt-mock #'auto-fill-mode)
+              (casualt-mock #'set-fill-column))
+
+      (let ((test-vectors
+             '((:binding "p" :command fill-paragraph)
+               (:binding "r" :command fill-region)
+               (:binding "P" :command fill-region-as-paragraph)
+               (:binding "M-p" :command fill-individual-paragraphs)
+               (:binding "n" :command fill-nonuniform-paragraphs)
+               (:binding "C-l" :command center-line)
+               (:binding "C-r" :command center-region)
+               (:binding "C-p" :command center-paragraph)
+               (:binding "R" :command repunctuate-sentences)
+               (:binding "u" :command untabify)
+               (:binding "a" :command auto-fill-mode)
+               (:binding "d" :command casual-editkit--customize-sentence-end-double-space)
+               (:binding "C" :command set-fill-column)
+
+               )))
+        (set-mark-command nil)
+        (casualt-suffix-testcase-runner test-vectors
+                                        #'casual-editkit-reformat-tmenu
                                         '(lambda () (random 5000)))))
     (casualt-editkit-breakdown tmpfile)))
 

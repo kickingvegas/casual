@@ -73,7 +73,7 @@ tests:
 
 ## Bump Patch Version
 bump-casual:
-	gsed -i 's/;; Version: $(VERSION)/;; Version: $(VERSION_BUMP)/' $(MAIN_EL)
+	sed -i 's/;; Version: $(VERSION)/;; Version: $(VERSION_BUMP)/' $(MAIN_EL)
 
 bump: bump-casual
 	git commit -m 'Bump version to $(VERSION_BUMP)' $(MAIN_EL)

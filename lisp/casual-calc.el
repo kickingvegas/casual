@@ -85,9 +85,7 @@
     ("!" " !" casual-calc--factorial
      :description (lambda () (casual-calc-unicode-get :factorial))
      :transient t)
-    ("%" " ٪" casual-calc--percent
-     :description (lambda () (casual-calc-unicode-get :percent))
-     :transient t)
+    ("%" "𝑎𝑏%" casual-calc--percent-of :transient t)
     ("D" " Δ%" casual-calc--percent-change
      :description (lambda () (casual-calc-unicode-get :percent-change))
      :transient t)]

@@ -110,6 +110,12 @@ Sorting operations on different sections of text are supported, as well as suppo
 
 [[file:images/casual-editkit-sort-screenshot.png]]
 
+*** Reformat (~casual-editkit-reformat-tmenu~)
+Commands to reformat text such as filling, centering, and repunctuating sentences are provided here. Press ~?~ or ~C-h~ to get help for a specific command.
+
+[[file:images/casual-editkit-reformat-screenshot.png]]
+
+
 ** Window management (~casual-editkit-window-tmenu~)
 This menu provides support for different Emacs window management commands. Note that in Emacs, /window/ is defined [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Basic-Windows.html#:~:text=A%20window%20is%20an%20area,view%20several%20buffers%20at%20once.][differently]] than its usage in contemporary graphical user interfaces. 
 [[file:images/casual-editkit-window-screenshot.png]]
@@ -157,6 +163,17 @@ This menu holds an assorted collection of different tools/utilities provided by 
 Commands for managing macros are provided for by this menu. Note that macro creation commands are /not/ supported as they are tightly-bound to keybindings. 
 
 [[file:images/casual-editkit-macro-screenshot.png]]
+
+** Settings (~casual-editkit-settings-tmenu~)
+Configuration of common editing-related settings are provided here. Most all settings are set via the ~customize-variable~ interface with the following exceptions for:
+
+- “Auto-fill Mode (~auto-fill-mode~)”
+- “Indent Tabs Mode (~indent-tabs-mode~)”
+- “Fill Column (~set-fill-column~)”
+
+Those commands will instead apply to the current buffer. The variables listed above can be more permanently set via ~M-x customize-variable~.
+
+[[file:images/casual-editkit-settings-screenshot.png]]
 
 
 * Sponsorship
