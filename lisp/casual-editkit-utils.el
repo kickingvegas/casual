@@ -27,8 +27,10 @@
 (require 'org-agenda)
 (require 'recentf)
 (require 'simple)
-(require 'casual-lib)
+(require 'text-mode)
+(require 'tabify)
 (require 'casual-editkit-constants)
+(require 'casual-editkit-settings)
 
 ;;; Predicates
 
@@ -227,7 +229,9 @@ Commands pertaining to editing operations can be accessed here."
      :if-not casual-editkit-buffer-read-only-p)
     ("a" "Align Regexp" align-regexp
      :inapt-if-not use-region-p)
-    ("R" "Rectangle›" casual-editkit-rectangle-tmenu)]]
+    ("R" "Rectangle›" casual-editkit-rectangle-tmenu)
+    ("r" "Reformat›" casual-editkit-reformat-tmenu
+     :if-not (lambda () buffer-read-only))]]
 
 
   [:class transient-row
@@ -725,6 +729,51 @@ Commands pertaining to macro operations can be accessed here."
 
   [("I" "ⓘ Keyboard Macros" casual-editkit-macro-info)]
 
+  casual-editkit-navigation-group)
+
+;;;###autoload (autoload 'casual-editkit-reformat-tmenu "casual-editkit-utils" nil t)
+(transient-define-prefix casual-editkit-reformat-tmenu ()
+  "Menu for ‘Reformat’ commands.
+
+Commands pertaining to reformat operations such as refill can be
+accessed here."
+
+
+  ["Reformat"
+   ["Fill"
+    :pad-keys t
+    ("p" "Paragraph" fill-paragraph)
+    ("r" "Region" fill-region
+     :inapt-if-not use-region-p)
+    ("P" "Region as Paragraph" fill-region-as-paragraph
+     :inapt-if-not use-region-p)
+    ("M-p" "Individual Paragraphs" fill-individual-paragraphs
+     :inapt-if-not use-region-p)
+    ("n" "Non-Uniform Paragraphs" fill-nonuniform-paragraphs
+     :inapt-if-not use-region-p)]
+
+   ["Center"
+    ("C-l" "Line" center-line)
+    ("C-r" "Region" center-region
+     :inapt-if-not use-region-p)
+    ("C-p" "Paragraph" center-paragraph)]
+
+   ["Misc"
+    ("R" "Repunctuate" repunctuate-sentences)
+    ("u" "Untabify" untabify
+     :inapt-if-not use-region-p)]]
+
+  ["Configure"
+   ("a" "Auto-fill Mode" auto-fill-mode
+     :description (lambda ()
+                    (casual-lib-checkbox-label auto-fill-function "Auto-fill Mode")))
+   ("d" "Double Space" casual-editkit--customize-sentence-end-double-space
+     :description (lambda ()
+                    (casual-lib-checkbox-label sentence-end-double-space "Double Space Sentences")))
+
+   ("C" "Fill Column" set-fill-column
+     :description (lambda ()
+                    (format "Fill Column (%d)" fill-column)))]
   casual-editkit-navigation-group)
 
 ;;; Functions

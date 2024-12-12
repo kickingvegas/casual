@@ -17,8 +17,8 @@ include Makefile--defines.make
 
 PACKAGE_NAME=casual-editkit
 ELISP_INCLUDES=casual-editkit-constants.el	\
-casual-editkit-utils.el				\
-casual-editkit-settings.el
+casual-editkit-settings.el			\
+casual-editkit-utils.el
 ELISP_PACKAGES=
 ELISP_TEST_INCLUDES=casual-editkit-test-utils.el
 PACKAGE_PATHS=					\
