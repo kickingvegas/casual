@@ -62,7 +62,7 @@ from `kill-ring' operations."
 
 ;; Wrapped Functions
 (defun casual-calc--stack-roll-all ()
-  "Roll down stack accounting for all elements currently on the stack.
+  "Roll down all elements currently on the stack.
 
 * References
 - info node `(calc) Stack Manipulation'
