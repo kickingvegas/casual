@@ -82,7 +82,8 @@
                         ("C" . casual-calc--stack-clear)
                         ("L" . casual-calc--stack-last)
                         ("w" . casual-calc--copy-as-kill)
-                        ("z" . casual-calc-variable-crud-tmenu))))
+                        ("z" . casual-calc-variable-crud-tmenu)
+                        ("	" . casual-calc-roll-down))))
     (casualt-suffix-testbench-runner test-vectors
                                      #'casual-calc-tmenu
                                      '(lambda () (random 5000))))

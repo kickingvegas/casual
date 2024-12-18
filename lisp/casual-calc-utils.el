@@ -112,6 +112,16 @@ plain ASCII-range string."
   (interactive)
   (call-interactively #'calc-edit))
 
+(transient-define-suffix casual-calc-roll-down ()
+  "Roll stack down.
+
+Invokes command `calc-roll-down'."
+  :transient t
+  :key "TAB"
+  :description "Roll↓"
+  (interactive)
+  (call-interactively #'calc-roll-down))
+
 (defconst casual-calc-operators-group
   ["Operators"
     ("+" "add" casual-calc--plus :transient t)
@@ -141,10 +151,10 @@ plain ASCII-range string."
           (casual-lib-quit-one)
           (casual-calc-algebraic-entry)
           (casual-calc-enter)
+          (casual-calc-roll-down)
           (casual-calc-pop)
           (casual-calc-undo-suffix)
           (casual-lib-quit-all)])
-
 
 (defun casual-calc--percent-of ()
   "Apply percentage at top of stack (1:) to value above it (2:).
