@@ -33,7 +33,7 @@
     (should (string-equal (casual-ibuffer-unicode-get :next) "Next"))
     (should (string-equal (casual-ibuffer-unicode-get :jump) "Jump"))
     (should (string-equal (casual-ibuffer-unicode-get :marked) "Marked"))
-    (should (string-equal (casual-ibuffer-unicode-get :group) ""))
+    (should (string-equal (casual-ibuffer-unicode-get :group) "Group"))
     (should (string-equal (casual-ibuffer-unicode-get :jumpgroup) "Jump to Group")))
 
   (let ((casual-lib-use-unicode t))

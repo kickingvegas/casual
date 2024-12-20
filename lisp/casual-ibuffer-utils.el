@@ -31,7 +31,7 @@
     (:next . '("↓" "Next"))
     (:jump . '("🚀" "Jump"))
     (:marked . '("❯" "Marked"))
-    (:group . '("[]" ""))
+    (:group . '("[]" "Group"))
     (:jumpgroup . '("🚀[]" "Jump to Group")))
 
   "Unicode symbol DB to use for IBuffer Transient menus.")

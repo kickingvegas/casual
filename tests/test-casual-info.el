@@ -28,59 +28,101 @@
 (require 'casual-info-test-utils)
 (require 'casual-info)
 
-(ert-deftest test-casual-info-tmenu-bindings ()
-  (casualt-info-setup)
-  (let ((test-vectors (list)))
-    (push (casualt-suffix-test-vector "d" #'Info-directory) test-vectors)
-    (push (casualt-suffix-test-vector "t" #'Info-top-node) test-vectors)
-    (push (casualt-suffix-test-vector "T" #'Info-toc) test-vectors)
-    ;;(push (casualt-suffix-test-vector "m" #'Info-menu) test-vectors)
-    ;;(push (casualt-suffix-test-vector "g" #'Info-goto-node) test-vectors)
-    ;;(push (casualt-suffix-test-vector "i" #'Info-index) test-vectors)
-    ;;(push (casualt-suffix-test-vector "I" #'Info-virtual-index) test-vectors)
+(ert-deftest test-casual-info-tmenu ()
+  (let ((tmpfile "casual-info-tmenu.txt"))
+    (casualt-info-setup)
+    (cl-letf (
+              (casualt-mock #'Info-directory)
+              (casualt-mock #'Info-top-node)
+              (casualt-mock #'Info-toc)
+              (casualt-mock #'Info-menu)
+              (casualt-mock #'Info-goto-node)
+              (casualt-mock #'Info-index)
+              (casualt-mock #'Info-virtual-index)
+              (casualt-mock #'Info-history)
+              (casualt-mock #'Info-history-back)
+              (casualt-mock #'Info-history-forward)
+              (casualt-mock #'Info-search)
+              (casualt-mock #'isearch-forward)
+              (casualt-mock #'Info-search-case-sensitively)
+              (casualt-mock #'Info-scroll-up)
+              (casualt-mock #'Info-scroll-down)
+              (casualt-mock #'Info-prev-reference)
+              (casualt-mock #'Info-next-reference)
+              (casualt-mock #'Info-backward-node)
+              (casualt-mock #'Info-forward-node)
+              (casualt-mock #'Info-prev)
+              (casualt-mock #'Info-next)
+              (casualt-mock #'Info-top-node)
+              (casualt-mock #'Info-final-node)
+              (casualt-mock #'Info-follow-nearest-node)
+              (casualt-mock #'Info-up)
+              (casualt-mock #'Info-copy-current-node-name)
+              (casualt-mock #'Info-goto-node-web)
+              (casualt-mock #'clone-buffer)
+              (casualt-mock #'bookmark-jump)
+              (casualt-mock #'bookmark-set)
+              (casualt-mock #'ibuffer)
+              (casualt-mock #'quit-window)
+              (casualt-mock #'info-apropos))
 
-    (push (casualt-suffix-test-vector "L" #'Info-history) test-vectors)
-    (push (casualt-suffix-test-vector "Û" #'Info-history-back) test-vectors)
-    (push (casualt-suffix-test-vector "Ý" #'Info-history-forward) test-vectors)
+      (let ((test-vectors
+             '(;; Overview
+               (:binding "d" :command Info-directory)
+               (:binding "t" :command Info-top-node)
+               (:binding "T" :command Info-toc)
 
-    (push (casualt-suffix-test-vector " " #'Info-scroll-up) test-vectors)
-    (push (casualt-suffix-test-vector "" #'Info-scroll-down) test-vectors)
+               ;; Goto
+               (:binding "m" :command Info-menu)
+               ;;(:binding "g" :command Info-goto-node)
+               (:binding "i" :command Info-index)
+               (:binding "I" :command Info-virtual-index)
 
-    (push (casualt-suffix-test-vector "k" #'Info-prev-reference) test-vectors)
-    (push (casualt-suffix-test-vector "j" #'Info-next-reference) test-vectors)
+               ;; Search
+               (:binding "C-s" :command isearch-forward)
+               (:binding "s" :command Info-search)
+               (:binding "S" :command Info-search-case-sensitively)
+               (:binding "a" :command info-apropos)
 
-    (push (casualt-suffix-test-vector "p" #'casual-info-browse-backward-paragraph) test-vectors)
-    (push (casualt-suffix-test-vector "n" #'casual-info-browse-forward-paragraph) test-vectors)
+               ;; History
+               (:binding "L" :command Info-history)
+               (:binding "M-[" :command Info-history-back)
+               (:binding "M-]" :command Info-history-forward)
 
-    (push (casualt-suffix-test-vector "[" #'Info-backward-node) test-vectors)
-    (push (casualt-suffix-test-vector "]" #'Info-forward-node) test-vectors)
+               ;; Scroll
+               ;;(:binding "S-SPC" :command Info-scroll-down)
+               (:binding "SPC" :command Info-scroll-up)
+               (:binding "DEL" :command Info-scroll-down)
 
-    (push (casualt-suffix-test-vector "h" #'Info-prev) test-vectors)
-    (push (casualt-suffix-test-vector "l" #'Info-next) test-vectors)
+               ;; Navigation
+               (:binding "k" :command Info-prev-reference)
+               (:binding "j" :command Info-next-reference)
+               (:binding "p" :command casual-info-browse-backward-paragraph)
+               (:binding "n" :command casual-info-browse-forward-paragraph)
+               (:binding "[" :command Info-backward-node)
+               (:binding "]" :command Info-forward-node)
+               (:binding "h" :command Info-prev)
+               (:binding "l" :command Info-next)
+               (:binding "<" :command Info-top-node)
+               (:binding ">" :command Info-final-node)
+               (:binding "RET" :command Info-follow-nearest-node)
+               (:binding "^" :command Info-up)
 
-    (push (casualt-suffix-test-vector "<" #'Info-top-node) test-vectors)
-    (push (casualt-suffix-test-vector ">" #'Info-final-node) test-vectors)
+               ;; Quick
+               (:binding "c" :command Info-copy-current-node-name)
+               (:binding "M-n" :command clone-buffer)
+               (:binding "C-M-n" :command casual-info-new-info-frame)
+               (:binding "G" :command Info-goto-node-web)
 
-    (push (casualt-suffix-test-vector "^" #'Info-up) test-vectors)
+               ;; Menu Navigation
+               (:binding "," :command casual-info-settings-tmenu)
+               (:binding "q" :command quit-window))))
 
-    (push (casualt-suffix-test-vector "J" #'bookmark-jump) test-vectors)
-    (push (casualt-suffix-test-vector "B" #'bookmark-set) test-vectors)
-    (push (casualt-suffix-test-vector "b" #'ibuffer) test-vectors)
-    (push (casualt-suffix-test-vector "c" #'Info-copy-current-node-name) test-vectors)
-    ;;(push (casualt-suffix-test-vector "G" #'Info-goto-node-web) test-vectors)
-
-    (push (casualt-suffix-test-vector "" #'casual-info-new-info-frame) test-vectors)
-    (push (casualt-suffix-test-vector "î" #'clone-buffer) test-vectors)
-    ;;(push (casualt-suffix-test-vector "" #'Info-follow-nearest-node) test-vectors)
-    ;;(push (casualt-suffix-test-vector " " #'Info-scroll-up) test-vectors)
-
-    (push (casualt-suffix-test-vector "," #'casual-info-settings-tmenu) test-vectors)
-    (push (casualt-suffix-test-vector "q" #'quit-window) test-vectors)
-
-    (casualt-suffix-testbench-runner test-vectors
-                                     #'casual-info-tmenu
-                                     '(lambda () (random 5000))))
-  (casualt-info-breakdown t))
+        (info "Emacs")
+        (casualt-suffix-testcase-runner test-vectors
+                                        #'casual-info-tmenu
+                                        '(lambda () (random 5000)))))
+    (casualt-info-breakdown t)))
 
 (provide 'test-casual-info)
 ;;; test-casual-info.el ends here
