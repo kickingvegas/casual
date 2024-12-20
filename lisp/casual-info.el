@@ -62,7 +62,8 @@
     :pad-keys t
     ("C-s" "I-search…" isearch-forward)
     ("s" "Search…" Info-search)
-    ("S" "Case sensitive…" Info-search-case-sensitively)]
+    ("S" "Case sensitive…" Info-search-case-sensitively)
+    ("a" "Apropos…" info-apropos)]
 
    ["History"
     :pad-keys t
