@@ -22,8 +22,8 @@ casual-editkit-utils.el
 ELISP_PACKAGES=
 ELISP_TEST_INCLUDES=casual-editkit-test-utils.el
 PACKAGE_PATHS=					\
--L $(EMACS_ELPA_DIR)/compat-30.0.0.0		\
--L $(EMACS_ELPA_DIR)/seq-2.24			\
+-L $(EMACS_ELPA_DIR)/compat-current		\
+-L $(EMACS_ELPA_DIR)/seq-current		\
 -L $(EMACS_ELPA_DIR)/transpose-frame-current	\
 -L $(EMACS_ELPA_DIR)/transient-current		\
 -L $(EMACS_ELPA_DIR)/magit-current		\

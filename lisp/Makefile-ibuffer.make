@@ -21,8 +21,8 @@ casual-ibuffer-settings.el
 ELISP_PACKAGES=casual-ibuffer-filter.el
 ELISP_TEST_INCLUDES=casual-ibuffer-test-utils.el
 PACKAGE_PATHS=					\
--L $(EMACS_ELPA_DIR)/compat-30.0.0.0		\
--L $(EMACS_ELPA_DIR)/seq-2.24			\
+-L $(EMACS_ELPA_DIR)/compat-current		\
+-L $(EMACS_ELPA_DIR)/seq-current		\
 -L $(EMACS_ELPA_DIR)/transient-current		\
 -L $(CASUAL_LIB_LISP_DIR)
 
