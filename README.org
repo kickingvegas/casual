@@ -1,10 +1,61 @@
 [[https://melpa.org/#/casual][file:https://melpa.org/packages/casual-badge.svg]] [[https://stable.melpa.org/#/casual][file:https://stable.melpa.org/packages/casual-badge.svg]]
 
 * Casual
-A collection of opinionated [[https://github.com/magit/transient][Transient]]-based keyboard-driven user interfaces for various built-in Emacs modes.
 
-Casual is organized into different user interface (UI) libraries tuned for different modes. Different user interfaces for the following modes are supported:
+Casual is a project to re-imagine the primary user interface for Emacs using keyboard-driven menus.
 
+Emacs has many commands that are easy to forget if not used frequently. Menus are a user interface (UI) affordance that offers discoverability and recognition. While menus are commonly associated with mouse-driven UI, the inclusion of [[https://github.com/magit/transient][Transient]] in Emacs core allows for building menus that are keyboard-driven instead. This appeals to users that prefer keyboard-driven workflows.
+
+Casual organizes itself primarily around the different built-in modes Emacs provides. For each mode Casual supports, there is a bespoke designed library of Transient menus for that mode's command set.
+
+Casual has no aims to be a mutually exclusive user interface. All existing user interfaces to commands (keybinding, mini-buffer prompt, mouse menus) are still available to the user.
+
+To learn more about the motivations and design considerations for Casual as well as seeing it at work, please watch the presentation [[https://emacsconf.org/2024/talks/casual/][“Re-imagining the Emacs User Experience with Casual Suite”]] from EmacsConf 2024.
+
+** Goals
+- To provide a keyboard-driven menu UI toolkit for common Emacs commands.
+- To allow for casual discovery and use of infrequently used Emacs commands.
+- To be a frequently used interface to the modes Casual does support.
+
+** Non-Goals
+- Full coverage of all Emacs commands. Casual is not intended to be a power user tool nor is it intended to be a replacement for mouse-driven menus. Casual has no intent to exhaustively cover all modes available in Emacs with keyboard-driven menus.
+- Strict adherence to Emacs command naming. While Casual is *mostly* in alignment with Emacs command naming, there are cases where it will make an opinionated change if the name is deemed too vague or idiomatic.
+- No intention is made by Casual to help on-board users to the existing default bindings of a mode, nor to cater to users who already know them. That said, many existing default Emacs bindings are replicated in Casual. Such correspondence should be considered incidental.
+- UX Stability (for now). Given that Casual is early in its life-cycle, expect changes to its user experience in terms of menu hierarchy and keybinding choices in future releases.
+  
+Editorially, all design decisions for Casual are ultimately the opinion of Charles Y. Choi.
+
+
+* Table of Contents                                                   :TOC_3:
+- [[#casual][Casual]]
+  - [[#goals][Goals]]
+  - [[#non-goals][Non-Goals]]
+- [[#supported-modes][Supported Modes]]
+  - [[#agenda-elisp-library-casual-agenda][Agenda (Elisp library: ~casual-agenda~)]]
+  - [[#bookmarks-elisp-library-casual-bookmarks][Bookmarks (Elisp library: ~casual-bookmarks~)]]
+  - [[#calc-elisp-library-casual-calc][Calc (Elisp library: ~casual-calc~)]]
+  - [[#calendar-elisp-library-casual-calendar][Calendar (Elisp library: ~casual-calendar~)]]
+  - [[#dired-elisp-library-casual-dired][Dired (Elisp library: ~casual-dired~)]]
+  - [[#editkit-elisp-library-casual-editkit][EditKit (Elisp library: ~casual-editkit~)]]
+  - [[#ibuffer-elisp-library-casual-ibuffer][IBuffer (Elisp library: ~casual-ibuffer~)]]
+  - [[#info-elisp-library-casual-info][Info (Elisp library: ~casual-info~)]]
+  - [[#i-search-elisp-library-casual-isearch][I-Search (Elisp library: ~casual-isearch~)]]
+  - [[#re-builder-elisp-library-casual-re-builder][Re-Builder (Elisp library: ~casual-re-builder~)]]
+- [[#requirements][Requirements]]
+- [[#install][Install]]
+  - [[#upgrading-to-casual-2x][Upgrading to Casual 2.x]]
+    - [[#if-you-do-not-use-use-package-to-configure-casual][If you do not use ~use-package~ to configure Casual]]
+    - [[#if-you-have-used-use-package-to-configure-casual][If you have used ~use-package~ to configure Casual]]
+  - [[#a-note-on-package-dependencies][A Note on Package Dependencies]]
+- [[#customization][Customization]]
+- [[#asks][Asks]]
+- [[#common-menu-actions][Common Menu Actions]]
+- [[#development][Development]]
+- [[#sponsorship][Sponsorship]]
+- [[#see-also][See Also]]
+- [[#acknowledgments][Acknowledgments]]
+
+* Supported Modes
 ** [[file:docs/agenda.org][Agenda]] (Elisp library: ~casual-agenda~)
   An interface for Org Agenda to help you plan your day.
   
@@ -60,24 +111,6 @@ An interface for [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Cal
 Users can choose any or all of the user interfaces made available by Casual at their pleasure.
 
 
-* Motivation
-Emacs has many commands that are easy to forget if not used frequently. Menus are a user interface (UI) affordance that offers discoverability and recognition. While menus are commonly associated with mouse-driven UI, the inclusion of Transient in Emacs core allows for building a keyboard-driven menu UI. Transient menus are appealing to users who prefer keyboard-driven workflows.
-
-That said, Casual has no aims to be a mutually exclusive user interface. All existing user interfaces to commands (keybinding, mini-buffer prompt, mouse menus) are still available to the user.
-
-** Goals
-- To provide a keyboard-driven menu UI toolkit for common Emacs commands.
-- To allow for casual discovery and use of infrequently used Emacs commands.
-- To be a frequently used interface to the modes Casual does support.
-
-** Non-Goals
-- Full coverage of all Emacs commands. Casual is not intended to be a power user tool nor is it intended to be a replacement for mouse-driven menus. Casual has no intent to exhaustively cover all modes available in Emacs with keyboard-driven menus.
-- Strict adherence to Emacs command naming. While Casual is *mostly* in alignment with Emacs command naming, there are cases where it will make an opinionated change if the name is deemed too vague or idiomatic.
-- No intention is made by Casual to help on-board users to the existing default bindings of a mode, nor to cater to users who already know them. That said, many existing default Emacs bindings are replicated in Casual. Such correspondence should be considered incidental.
-- UX Stability (for now). Given that Casual is early in its life-cycle, expect changes to its user experience in terms of menu hierarchy and keybinding choices in future releases.
-  
-Editorially, all design decisions for Casual are ultimately the opinion of Charles Y. Choi. People comfortable with this are invited to use Casual at their discretion.
-
 * Requirements
 Casual requires usage of
 - Emacs ≥ 29.1
@@ -128,6 +161,14 @@ Casual requires a recent installation of Transient 0.6.0+ from either [[https://
 
 If you already have the latest version of Magit installed (via [[https://elpa.nongnu.org/nongnu/magit.html][non-GNU ELPA]] or [[https://melpa.org/#/magit][MELPA]]), you can bypass the above instruction as Magit already includes the Transient package as a dependency.
 
+
+* Customization
+
+Users who wish to extend or alter existing Casual menus can do so via the mechanisms offered by the Transient package (see [[https://www.gnu.org/software/emacs/manual/html_mono/transient.html#Modifying-Existing-Transients][Modifying Existing Transients]]).
+
+Casual menus can also be configured to use Unicode symbols for labels. This is controlled by the variable ~casual-lib-use-unicode~ which can be customized via a mode's settings menu. If ~casual-lib-use-unicode~ is set to ~t~, it is also recommended that the variable ~transient-align-variable-pitch~ also be set to ~t~. 
+
+
 * Asks
 As Casual is new, we are looking for early adopters! Your [[https://github.com/kickingvegas/casual/discussions][feedback]] is welcome as it will likely impact Casual's evolution, particularly with regards to UI.
 
@@ -167,3 +208,4 @@ Users interested in getting all current and future Casual interfaces for both bu
 * Acknowledgments
 A heartfelt thanks to all the contributors to [[https://github.com/magit/transient][Transient]], [[https://magit.vc][Magit]], [[https://orgmode.org][Org Mode]], and [[https://www.gnu.org/software/emacs/][Emacs]]. This package would not be possible without your efforts.
 
+#+HTML: <p align='center'>© 2024-2025 Charles Y. Choi</p>
