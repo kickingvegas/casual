@@ -85,6 +85,8 @@ user-customized menu."
     ("T" "Tools›" casual-editkit-tools-tmenu)
     ("a" "Org Agenda" org-agenda)
     ("C" "Compile…" compile)
+    ("*" "Quick Calc…" quick-calc)
+    ("!" "Shell Command…" shell-command)
     ("g" "Magit Status" casual-editkit-select-magit-command
      :description casual-editkit-select-magit-command-description
      :if (lambda ()
