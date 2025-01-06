@@ -1,6 +1,6 @@
 ;;; test-casual-editkit.el --- Casual IBuffer Tests -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024  Charles Choi
+;; Copyright (C) 2024-2025  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -49,6 +49,11 @@
               (casualt-mock #'kill-sexp)
               (casualt-mock #'transpose-sexps)
 
+              (casualt-mock #'org-agenda)
+              (casualt-mock #'compile)
+              (casualt-mock #'quick-calc)
+              (casualt-mock #'shell-command)
+
               (casualt-mock #'make-frame-command)
               (casualt-mock #'undo)
               (casualt-mock #'save-buffers-kill-emacs))
@@ -76,6 +81,8 @@
                (:binding "T" :command casual-editkit-tools-tmenu)
                (:binding "a" :command org-agenda)
                (:binding "C" :command compile)
+               (:binding "*" :command quick-calc)
+               (:binding "!" :command shell-command)
                (:binding "g" :command casual-editkit-select-magit-command)
                (:binding "h" :command casual-editkit-symbol-overlay-put)
 

@@ -1,5 +1,5 @@
 ##
-# Copyright 2024 Charles Y. Choi
+# Copyright (C) 2024-2025 Charles Y. Choi
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

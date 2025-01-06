@@ -1,6 +1,6 @@
 ;;; casual-editkit.el --- Transient user interface library for editing commands -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024  Charles Choi
+;; Copyright (C) 2024-2025  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools, wp
@@ -85,6 +85,8 @@ user-customized menu."
     ("T" "Tools›" casual-editkit-tools-tmenu)
     ("a" "Org Agenda" org-agenda)
     ("C" "Compile…" compile)
+    ("*" "Quick Calc…" quick-calc)
+    ("!" "Shell Command…" shell-command)
     ("g" "Magit Status" casual-editkit-select-magit-command
      :description casual-editkit-select-magit-command-description
      :if (lambda ()

@@ -1,11 +1,11 @@
 ;;; casual.el --- Transient user interfaces for various modes -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024 Charles Choi
+;; Copyright (C) 2024-2025 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual
 ;; Keywords: tools, wp
-;; Version: 2.2.7
+;; Version: 2.2.8-rc.1
 ;; Package-Requires: ((emacs "29.1") (transient "0.6.0"))
 
 ;; This program is free software; you can redistribute it and/or modify

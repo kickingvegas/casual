@@ -1,6 +1,6 @@
 ;;; test-casual-agenda-utils.el --- Casual Agenda Utils Tests  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024  Charles Choi
+;; Copyright (C) 2024-2025  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
