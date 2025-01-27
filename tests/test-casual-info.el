@@ -33,6 +33,7 @@
     (casualt-info-setup)
     (cl-letf (
               (casualt-mock #'Info-directory)
+              (casualt-mock #'info-display-manual)
               (casualt-mock #'Info-top-node)
               (casualt-mock #'Info-toc)
               (casualt-mock #'Info-menu)
@@ -69,6 +70,7 @@
       (let ((test-vectors
              '(;; Overview
                (:binding "d" :command Info-directory)
+               (:binding "M" :command info-display-manual)
                (:binding "t" :command Info-top-node)
                (:binding "T" :command Info-toc)
 
