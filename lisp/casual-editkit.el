@@ -70,6 +70,8 @@ user-customized menu."
     ("C-o" "Open line" open-line
      :transient t
      :if-not casual-editkit-buffer-read-only-p)
+    ("N" "Narrow›" casual-editkit-narrow-tmenu :if-not buffer-narrowed-p)
+    ("W" "Widen" widen :if buffer-narrowed-p)
     ("E" "Emoji & Symbols›" casual-editkit-emoji-symbols-tmenu
      :if-not casual-editkit-buffer-read-only-p)]
 

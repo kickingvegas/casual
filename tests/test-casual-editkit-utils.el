@@ -665,6 +665,121 @@
                                         '(lambda () (random 5000)))))
     (casualt-editkit-breakdown tmpfile)))
 
+
+(ert-deftest test-casual-editkit-narrow-tmenu ()
+  ;; TODO: need to test for region.
+  (let ((tmpfile "casual-editkit-narrow-tmenu.el"))
+    (casualt-editkit-setup tmpfile)
+    (cl-letf ((casualt-mock #'narrow-to-defun))
+      (let ((test-vectors
+             '((:binding "d" :command narrow-to-defun))))
+
+        (emacs-lisp-mode)
+        (insert "(defun foo() (message \"hi.\"))")
+        (goto-char (point-min))
+        (save-buffer)
+
+        (casualt-suffix-testcase-runner test-vectors
+                                        #'casual-editkit-narrow-tmenu
+                                        '(lambda () (random 5000)))))
+
+    (casualt-editkit-breakdown tmpfile))
+
+  (let ((tmpfile "casual-editkit-narrow-tmenu.org"))
+    (casualt-editkit-setup tmpfile)
+    (cl-letf ((casualt-mock #'org-narrow-to-subtree)
+              (casualt-mock #'org-narrow-to-block)
+              (casualt-mock #'org-narrow-to-element))
+
+      (let ((test-vectors
+             '((:binding "s" :command org-narrow-to-subtree)
+               ;; (:binding "e" :command org-narrow-to-element)
+               )))
+
+        (org-mode)
+        (insert "* Header 1\n")
+
+        (casualt-suffix-testcase-runner test-vectors
+                                        #'casual-editkit-narrow-tmenu
+                                        '(lambda () (random 5000))))
+      (widen)
+      (let ((test-vectors
+             '((:binding "b" :command org-narrow-to-block)
+               ;; (:binding "e" :command org-narrow-to-element)
+               )))
+
+        (insert "#+begin_src elisp\n")
+        (insert "hi there\n")
+        (insert "#+end_src\n")
+        (previous-line 2)
+
+        (casualt-suffix-testcase-runner test-vectors
+                                        #'casual-editkit-narrow-tmenu
+                                        '(lambda () (random 5000))))
+      (widen)
+      (let ((test-vectors
+             '((:binding "e" :command org-narrow-to-element))))
+
+        (insert "This is a bogus sentence.")
+        (beginning-of-line)
+
+        (casualt-suffix-testcase-runner test-vectors
+                                        #'casual-editkit-narrow-tmenu
+                                        '(lambda () (random 5000))))
+      (widen)
+      (save-buffer)
+      (casualt-editkit-breakdown tmpfile)))
+
+
+  ;; (let ((tmpfile "casual-editkit-narrow-tmenu.md"))
+  ;;   (casualt-editkit-setup tmpfile)
+  ;;   (cl-letf ((casualt-mock #'markdown-narrow-to-subtree)
+  ;;             (casualt-mock #'markdown-narrow-to-block)
+  ;;             (casualt-mock #'markdown-narrow-to-page))
+
+  ;;     (let ((test-vectors
+  ;;            '((:binding "s" :command markdown-narrow-to-subtree)
+
+  ;;              )))
+
+  ;;       (markdown-mode)
+  ;;       (insert "# Header 1\n")
+
+  ;;       (casualt-suffix-testcase-runner test-vectors
+  ;;                                       #'casual-editkit-narrow-tmenu
+  ;;                                       '(lambda () (random 5000))))
+
+  ;;     (widen)
+  ;;     (let ((test-vectors
+  ;;            '((:binding "b" :command markdown-narrow-to-block)
+  ;;              ;; (:binding "e" :command org-narrow-to-element)
+  ;;              )))
+
+  ;;       (insert "    #!python\n")
+  ;;       (insert "    def foo(a):\n")
+  ;;       (insert "        return a + 2\n")
+  ;;       (previous-line 2)
+
+  ;;       (casualt-suffix-testcase-runner test-vectors
+  ;;                                       #'casual-editkit-narrow-tmenu
+  ;;                                       '(lambda () (random 5000))))
+
+  ;;     (widen)
+
+  ;;     (let ((test-vectors
+  ;;            '((:binding "p" :command markdown-narrow-to-page))))
+
+  ;;       (insert "This is a bogus sentence.")
+  ;;       (beginning-of-line)
+
+  ;;       (casualt-suffix-testcase-runner test-vectors
+  ;;                                       #'casual-editkit-narrow-tmenu
+  ;;                                       '(lambda () (random 5000))))
+  ;;     (widen)
+  ;;     (save-buffer)
+  ;;     (casualt-editkit-breakdown tmpfile)))
+  )
+
 ;; -------
 (provide 'test-casual-editkit-utils)
 ;;; test-casual-editkit-utils.el ends here
