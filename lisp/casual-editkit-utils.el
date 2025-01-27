@@ -702,8 +702,12 @@ Commands pertaining to rectangle operations can be accessed here."
 
 Commands pertaining to transformation operations can be accessed here."
   ["Transform"
-   [("c" "Capitialize" capitalize-dwim :transient t)
-    ("l" "Make Lower Case" downcase-dwim :transient t)
+   [("c" "Capitalize" capitalize-dwim :transient t)
+    ("t" "Title Region (Upcase Initials)" upcase-initials-region
+     :transient t
+     :inapt-if-not use-region-p)]
+
+   [("l" "Make Lower Case" downcase-dwim :transient t)
     ("u" "Make Upper Case" upcase-dwim :transient t)]
 
    [("RET" "Done" transient-quit-all)]]
