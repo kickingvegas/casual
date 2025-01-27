@@ -608,15 +608,18 @@
   (let ((tmpfile "casual-editkit-transform-text-tmenu.txt"))
     (casualt-editkit-setup tmpfile)
     (cl-letf ((casualt-mock #'capitalize-dwim)
+              (casualt-mock #'upcase-initials-region)
               (casualt-mock #'downcase-dwim)
               (casualt-mock #'upcase-dwim))
 
       (let ((test-vectors
              '((:binding "c" :command capitalize-dwim)
+               (:binding "t" :command upcase-initials-region)
                (:binding "l" :command downcase-dwim)
                (:binding "u" :command upcase-dwim)
                (:binding "RET" :command transient-quit-all))))
 
+        (casualt-mock-active-region)
         (casualt-suffix-testcase-runner test-vectors
                                         #'casual-editkit-transform-text-tmenu
                                         '(lambda () (random 5000)))))
