@@ -59,6 +59,13 @@
 ;;   commands.
 ;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/editkit.org'
 
+;; - Image (Elisp library: `casual-image')
+;;   An interface for viewing an image file with `image-mode'.
+;;   Resizing an image is supported if ImageMagick 6 or 7 is installed. This
+;;   interface deviates significantly with naming conventions used by
+;;   `image-mode' to be more in alignment with conventional image editing tools.
+;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/image.org'
+
 ;; - Info (Elisp library: `casual-info')
 ;;   An interface for the Info documentation system.
 ;;   URL: `https://github.com/kickingvegas/casual/blob/main/docs/info.org'

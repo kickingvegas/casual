@@ -15,22 +15,9 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 TIMESTAMP := $(shell /bin/date "+%Y%m%d_%H%M%S")
-
-.PHONY: tests					\
-lib-tests					\
-agenda-tests					\
-bookmarks-tests					\
-calc-tests					\
-calendar-tests					\
-dired-tests					\
-editkit-tests					\
-ibuffer-tests					\
-info-tests					\
-isearch-tests					\
-re-builder-tests
-
 SRC_DIR=.
 
+.PHONY: tests
 tests: lib-tests				\
 agenda-tests					\
 bookmarks-tests					\
@@ -43,35 +30,51 @@ info-tests					\
 isearch-tests					\
 re-builder-tests
 
+
+.PHONY: lib-tests
 lib-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-lib.make tests
 
+.PHONY: agenda-tests
 agenda-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-agenda.make tests
 
+.PHONY: bookmarks-tests
 bookmarks-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-bookmarks.make tests
 
+.PHONY: calc-tests
 calc-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-calc.make tests
 
+.PHONY: calendar-tests
 calendar-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-calendar.make tests
 
+.PHONY: dired-tests
 dired-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-dired.make tests
 
+.PHONY: editkit-tests
 editkit-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-editkit.make tests
 
+.PHONY: image-tests
+image-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-image.make tests
+
+.PHONY: ibuffer-tests
 ibuffer-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-ibuffer.make tests
 
+.PHONY: info-tests
 info-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-info.make tests
 
+.PHONY: isearch-tests
 isearch-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-isearch.make tests
 
+.PHONY: re-builder-tests
 re-builder-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-re-builder.make tests

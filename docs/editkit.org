@@ -212,6 +212,7 @@ If you enjoy using Casual EditKit, consider making a modest financial contributi
 - [[file:calendar.org][Calendar]]
 - [[file:dired.org][Dired]]
 - [[file:ibuffer.org][IBuffer]]
+- [[file:image.org][Image]]
 - [[file:info.org][Info]]
 - [[file:isearch.org][I-Search]]
 - [[file:re-builder.org][Re-Builder]]

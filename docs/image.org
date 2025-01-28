@@ -1,0 +1,88 @@
+[[../README.org][❮ Back to Casual]]
+
+* Casual Image
+An interface for viewing an image file with [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Image-Mode.html#Image-Mode][image-mode]]. Resizing an image is supported if ImageMagick 6 or 7 is installed. This interface deviates significantly with naming conventions used by ~image-mode~ to be more in alignment with conventional image editing tools.
+[[file:images/casual-image-main-screenshot.png]]
+
+* Install
+If installed via MELPA then add these lines to your Emacs initialization file with your binding of preference.
+
+#+begin_src elisp :lexical no
+  (require 'casual-image) ; optional if using autoloaded menu
+  (keymap-set image-mode-map "C-o" #'casual-image-tmenu)
+#+end_src
+
+
+* Usage
+
+** Command Naming
+
+Casual Image makes a number of opinionated changes to the naming of commands provided by ~image-mode~. 
+
+The table below shows the mapping between names used by Casual to commands provided by ~image-mode~.
+
+| Casual Name           | Image Mode Name                   | Notes                                                                                            |
+|-----------------------+-----------------------------------+--------------------------------------------------------------------------------------------------|
+| Zoom In               | ~image-increase-size~               | “Zoom” is more commonly used.                                                                    |
+| Zoom Out              | ~image-decrease-size~               | “Zoom” is more commonly used.                                                                    |
+| Original Size         | ~image-transform-reset-to-original~ | Using a more concise name.                                                                       |
+| Fit to Window         | ~image-transform-fit-to-window~     | Using a more concise name.                                                                       |
+| Rotate Clockwise 90°x | ~image-transform-set-rotation~      | Rotation command is absolute and only works in increments of 90°.                                |
+| % of Original         | ~image-transform-set-percent~       | Percent command is absolute in that it computes from the original image size.                    |
+| Crop                  | ~image-crop~                        | Command modifies image.                                                                          |
+| Fill                  | ~image-cut~                         | Command modifies image. This command is primarily a fill operation, so is renamed appropriately. |
+| Set Fill Color        | ~image-cut-color~                   | This variable supports a fill operation, so is renamed appropriately.                            |
+| Save                  | ~save-buffer~                       | Saves modified image file.                                                                       |
+| Save as               | ~image-save~                        | Command to save mutated image as another file via a mini-buffer prompt.                          |
+| Rename                | ~rename-visited-file~               | Renames the current image file.                                                                  |
+| Revert                | ~revert-buffer~                     | Reverts the current image file.                                                                  |
+| Scroll Up             | ~image-previous-line~               | Rename to use arrow key direction.                                                               |
+| Scroll Down           | ~image-next-line~                   | Rename to use arrow key direction.                                                               |
+| Scroll Left           | ~image-backward-hscroll~            | Rename to use arrow key direction.                                                               |
+| Scroll Right          | ~image-forward-hscroll~             | Rename to use arrow key direction.                                                               |
+| Left Edge             | ~image-bol~                         | Rename to use better descriptive term.                                                           |
+| Right Edge            | ~image-eol~                         | Rename to use better descriptive term.                                                           |
+| Top-left              | ~image-bob~                         | Rename to use better descriptive term.                                                           |
+| Bottom-right          | ~image-eob~                         | Rename to use better descriptive term.                                                           |
+| Previous Image        | ~image-previous-file~               | Visit the preceding image in the same directory as the current file.                             |
+| Next Image            | ~image-next-file~                   | Visit the next image in the same directory as the current file.                                  |
+| Mark Image            | ~image-mode-mark-file~              | Mark the current file in the appropriate Dired buffer(s).                                        |
+| Unmark Image          | ~image-mode-unmark-file~            | Unmark the current file in the appropriate Dired buffer(s).                                      |
+| Copy filename         | ~image-mode-copy-file-name-as-kill~ | Push the currently visited file name onto the kill ring.                                         |
+
+
+** Resize
+
+If ImageMagick (version 6 or 7) is installed, Casual Image can resize an image using it. The Transient ~casual-image-resize-tmenu~ is a streamlined interface to the ImageMagick ~-resize~ function.
+
+Note that if the image file has been modified, the resize interface will be disabled. Save the image file before resizing.
+
+[[file:images/casual-image-resize-screenshot.png]]
+
+*** Options
+- (g) Geometry - ImageMagick specifier for the resize geometry.
+- (o) Output to another file - If enabled, then the user will be prompted for a different output file, else it will /irreversibly/ update the current image file.
+- (t) Type - Specify if /adaptive/ or /interpolative/ resizing should be used. If nothing is specified then /standard/ resizing is used.
+
+** Unicode Symbol Support
+
+By enabling “Use Unicode Symbols” from the Settings menu, Casual Image will use Unicode symbols as appropriate in its menus. 
+
+* Sponsorship
+If you enjoy using Casual Image, consider making a modest financial contribution to help support its development and maintenance.
+
+[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
+
+* See Also
+- [[file:agenda.org][Agenda]]
+- [[file:bookmarks.org][Bookmarks]]
+- [[file:calc.org][Calc]]
+- [[file:calendar.org][Calendar]]
+- [[file:dired.org][Dired]]
+- [[file:editkit.org][EditKit (numerous editing commands)]]
+- [[file:ibuffer.org][IBuffer]]
+- [[file:info.org][Info]]
+- [[file:isearch.org][I-Search]]
+- [[file:re-builder.org][Re-Builder]]
+
+
