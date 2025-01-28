@@ -780,6 +780,38 @@ accessed here."
                     (format "Fill Column (%d)" fill-column)))]
   casual-editkit-navigation-group)
 
+;;;###autoload (autoload 'casual-editkit-narrow-tmenu "casual-editkit-utils" nil t)
+(transient-define-prefix casual-editkit-narrow-tmenu ()
+  "Menu for narrow commands."
+
+  ["Narrow"
+   ["Programming"
+    ("d" "Defun" narrow-to-defun
+     :if (lambda () (derived-mode-p 'prog-mode)))]
+
+   ["Org"
+    :if (lambda () (derived-mode-p 'org-mode))
+    ("s" "Subtree" org-narrow-to-subtree)
+    ("b" "Block" org-narrow-to-block)
+    ("e" "Element" org-narrow-to-element)]
+
+   ["Region"
+    ("r" "Region" narrow-to-region
+     :inapt-if-not use-region-p)]]
+
+  casual-editkit-navigation-group)
+
+;; !!!
+;; If markdown-mode is installed, then this will add markdown-mode specific
+;; narrowing commands to casual-editkit-narrow-tmenu.
+;;
+;; (transient-append-suffix 'casual-editkit-narrow-tmenu '(0 0)
+;;    ["Markdown"
+;;     :if (lambda () (derived-mode-p 'markdown-mode))
+;;     ("s" "Subtree" markdown-narrow-to-subtree)
+;;     ("b" "Block" markdown-narrow-to-block)
+;;     ("p" "Page" markdown-narrow-to-page)])
+
 ;;; Functions
 (defun casual-editkit-macro-info ()
   "Get Info for syntax of regexps."
