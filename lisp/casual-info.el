@@ -48,7 +48,8 @@
   "CC Info Transient menu."
 
   [["Overview"
-    ("d" "Directory" Info-directory :transient nil)
+    ("d" "Directory" Info-directory)
+    ("M" "Manual…" info-display-manual)
     ("t" "Top" Info-top-node)
     ("T" "ToC" Info-toc :transient nil)]
 

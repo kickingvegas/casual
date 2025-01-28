@@ -40,6 +40,7 @@
               (casualt-mock #'recentf-open-files)
               (casualt-mock #'revert-buffer)
               (casualt-mock #'save-buffer)
+              (casualt-mock #'widen)
 
               (casualt-mock #'insert-char)
               (casualt-mock #'fill-paragraph)
@@ -71,6 +72,9 @@
                (:binding "p" :command fill-paragraph)
                (:binding "l" :command join-line)
                (:binding "C-o" :command open-line)
+               (:binding "N" :command casual-editkit-narrow-tmenu)
+               ;; (:binding "W" :command widen)
+
                (:binding "E" :command casual-editkit-emoji-symbols-tmenu)
 
                (:binding "m" :command mark-sexp)
@@ -100,13 +104,23 @@
                (:binding "," :command casual-editkit-settings-tmenu)
                (:binding "x" :command save-buffers-kill-emacs))))
 
-
         (insert "hello")
         (casualt-suffix-testcase-runner test-vectors
                                         #'casual-editkit-main-tmenu
                                         '(lambda () (random 5000)))
         (save-buffer)))
 
+    (cl-letf (((symbol-function #'buffer-narrowed-p) (lambda () t))
+              (casualt-mock #'widen))
+
+      (let ((test-vectors
+             '((:binding "W" :command widen))))
+
+        (insert "hello")
+        (casualt-suffix-testcase-runner test-vectors
+                                        #'casual-editkit-main-tmenu
+                                        '(lambda () (random 5000)))
+        (save-buffer)))
     (casualt-editkit-breakdown tmpfile)))
 
 (provide 'test-casual-editkit)
