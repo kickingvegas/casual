@@ -5,7 +5,7 @@
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual
 ;; Keywords: tools, wp
-;; Version: 2.2.9
+;; Version: 2.2.10-rc.1
 ;; Package-Requires: ((emacs "29.1") (transient "0.6.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -58,6 +58,13 @@
 ;;   Included are interfaces for rectangle, register, macro, and project
 ;;   commands.
 ;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/editkit.org'
+
+;; - Image (Elisp library: `casual-image')
+;;   An interface for viewing an image file with `image-mode'.
+;;   Resizing an image is supported if ImageMagick 6 or 7 is installed. This
+;;   interface deviates significantly with naming conventions used by
+;;   `image-mode' to be more in alignment with conventional image editing tools.
+;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/image.org'
 
 ;; - Info (Elisp library: `casual-info')
 ;;   An interface for the Info documentation system.
