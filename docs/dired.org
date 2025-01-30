@@ -155,6 +155,7 @@ If you enjoy using Casual Dired, consider making a modest financial contribution
 - [[file:calendar.org][Calendar]]
 - [[file:editkit.org][EditKit (numerous editing commands)]]
 - [[file:ibuffer.org][IBuffer]]
+- [[file:image.org][Image]]
 - [[file:info.org][Info]]
 - [[file:isearch.org][I-Search]]
 - [[file:re-builder.org][Re-Builder]]

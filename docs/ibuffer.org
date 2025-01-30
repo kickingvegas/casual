@@ -165,6 +165,7 @@ If you enjoy using Casual IBuffer, consider making a modest financial contributi
 - [[file:calc.org][Calc]]
 - [[file:calendar.org][Calendar]]
 - [[file:editkit.org][EditKit (numerous editing commands)]]
+- [[file:image.org][Image]]
 - [[file:info.org][Info]]
 - [[file:isearch.org][I-Search]]
 - [[file:re-builder.org][Re-Builder]]

@@ -59,5 +59,6 @@ If you enjoy using Casual Info, consider making a modest financial contribution 
 - [[file:dired.org][Dired]]
 - [[file:editkit.org][EditKit (numerous editing commands)]]
 - [[file:ibuffer.org][IBuffer]]
+- [[file:image.org][Image]]
 - [[file:isearch.org][I-Search]]
 - [[file:re-builder.org][Re-Builder]]

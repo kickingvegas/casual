@@ -68,5 +68,6 @@ If you enjoy using Casual I-Search, consider making a modest financial contribut
 - [[file:dired.org][Dired]]
 - [[file:editkit.org][EditKit (numerous editing commands)]]
 - [[file:ibuffer.org][IBuffer]]
+- [[file:image.org][Image]]
 - [[file:info.org][Info]]
 - [[file:re-builder.org][Re-Builder]]
