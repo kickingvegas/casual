@@ -386,7 +386,8 @@ Commands pertaining to delete can be accessed here."
   ["Delete"
    [("o" "Just One Space" just-one-space)
     ("j" "Join Line" join-line)
-    ("h" "Horizontal Space" delete-horizontal-space)]
+    ("h" "Horizontal Space" delete-horizontal-space)
+    ("p" "Pair" delete-pair)]
 
    [("b" "Blank Lines" delete-blank-lines)
     ("w" "Whitespace Cleanup" whitespace-cleanup)
