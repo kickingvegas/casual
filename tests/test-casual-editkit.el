@@ -34,6 +34,7 @@
     (cl-letf (((symbol-function #'casual-editkit-version-controlled-p) (lambda () t))
               ((symbol-function #'casual-editkit-package-symbol-overlay-installed-p) (lambda () t))
               ((symbol-function #'casual-editkit-package-magit-installed-p) (lambda () t))
+              ((symbol-function #'display-graphic-p) (lambda (&optional d) t))
               (casualt-mock #'find-file)
               (casualt-mock #'dired-jump-other-window)
               (casualt-mock #'ibuffer)
@@ -54,6 +55,7 @@
               (casualt-mock #'compile)
               (casualt-mock #'quick-calc)
               (casualt-mock #'shell-command)
+              (casualt-mock #'text-scale-adjust)
 
               (casualt-mock #'make-frame-command)
               (casualt-mock #'undo)
@@ -98,6 +100,8 @@
 
                (:binding "P" :command casual-editkit-project-tmenu)
                (:binding "/" :command casual-editkit-search-tmenu)
+               (:binding "M" :command casual-editkit-macro-tmenu)
+               (:binding "F" :command text-scale-adjust)
 
                (:binding "r" :command casual-editkit-registers-tmenu)
                (:binding "U" :command undo)

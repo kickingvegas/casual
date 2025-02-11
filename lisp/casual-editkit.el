@@ -109,7 +109,9 @@ user-customized menu."
     ("/" "Search/Replace›" casual-editkit-search-tmenu)
     ("P" "Project›" casual-editkit-project-tmenu)]
 
-   [("M" "Macros›" casual-editkit-macro-tmenu)]]
+   [("M" "Macros›" casual-editkit-macro-tmenu)
+    ("F" "Font Scale…" text-scale-adjust
+     :if display-graphic-p)]]
 
   ;; casual-editkit-cursor-navigation-group
 
