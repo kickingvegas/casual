@@ -25,6 +25,7 @@
 ;;; Code:
 
 (require 'image)
+(require 'image-crop)
 (require 'casual-lib)
 
 (defconst casual-image-unicode-db
