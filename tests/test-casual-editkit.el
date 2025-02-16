@@ -35,7 +35,7 @@
               ((symbol-function #'casual-editkit-package-symbol-overlay-installed-p) (lambda () t))
               ((symbol-function #'casual-editkit-package-magit-installed-p) (lambda () t))
               ((symbol-function #'display-graphic-p) (lambda (&optional d) t))
-              (casualt-mock #'find-file)
+              (casualt-mock #'find-file-at-point)
               (casualt-mock #'dired-jump-other-window)
               (casualt-mock #'ibuffer)
               (casualt-mock #'recentf-open-files)
@@ -63,7 +63,7 @@
 
       (let ((test-vectors
              '((:binding "o" :command casual-editkit-open-tmenu)
-               (:binding "f" :command find-file)
+               (:binding "f" :command find-file-at-point)
                (:binding "d" :command dired-jump-other-window)
                (:binding "b" :command ibuffer)
                (:binding "R" :command recentf-open-files)
