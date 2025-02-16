@@ -48,7 +48,7 @@ It can be used as-is or serve as a template for building a
 user-customized menu."
   [["File"
     ("o" "Open›" casual-editkit-open-tmenu)
-    ("f" "Open file…" find-file)
+    ("f" "Open file…" find-file-at-point)
     ("d" "Open in Dired" dired-jump-other-window
      :if (lambda () (buffer-file-name)))
     ("b" "List Buffers" ibuffer)
