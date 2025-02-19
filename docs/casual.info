@@ -2,7 +2,7 @@ This is casual.info, produced by makeinfo version 7.1 from casual.texi.
 
 INFO-DIR-SECTION Emacs misc features
 START-INFO-DIR-ENTRY
-* Casual: (casual).     Casual is a collection of Transient-based user interfaces for different Emacs modes.
+* Casual: (casual).     Transient user interfaces for different Emacs modes.
 END-INFO-DIR-ENTRY
 
 
@@ -1137,8 +1137,8 @@ File: casual.info,  Node: About,  Next: Acknowledgments,  Prev: Sponsorship,  Up
 9 About
 *******
 
-Casual was conceived and crafted by Charles Choi in San Francisco,
-California.
+Casual (https://github.com/kickingvegas/casual) was conceived and
+crafted by Charles Choi in San Francisco, California.
 
 Thank you for using Casual.
 
@@ -1230,30 +1230,30 @@ File: casual.info,  Node: Variable Index,  Prev: Index,  Up: Top
 
 
 Tag Table:
-Node: Top260
-Node: Motivations1947
-Node: Requirements3440
-Node: Transient Conventions3704
-Node: Casual Modes5432
-Node: Agenda6415
-Node: Bookmarks7972
-Node: Calc10247
-Node: Calendar13388
-Node: Dired14736
-Node: EditKit17961
-Node: IBuffer19685
-Node: Image21750
-Node: Info22991
-Node: I-Search24457
-Node: RE-Builder25624
-Node: UX Conventions29035
-Node: Customization31736
-Node: Feedback & Discussion32110
-Node: Sponsorship32528
-Node: About32822
-Node: Acknowledgments33058
-Node: Index33440
-Node: Variable Index37123
+Node: Top228
+Node: Motivations1915
+Node: Requirements3408
+Node: Transient Conventions3672
+Node: Casual Modes5400
+Node: Agenda6383
+Node: Bookmarks7940
+Node: Calc10215
+Node: Calendar13356
+Node: Dired14704
+Node: EditKit17929
+Node: IBuffer19653
+Node: Image21718
+Node: Info22959
+Node: I-Search24425
+Node: RE-Builder25592
+Node: UX Conventions29003
+Node: Customization31704
+Node: Feedback & Discussion32078
+Node: Sponsorship32496
+Node: About32790
+Node: Acknowledgments33067
+Node: Index33449
+Node: Variable Index37132
 
 End Tag Table
 

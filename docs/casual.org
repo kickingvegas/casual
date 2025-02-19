@@ -819,7 +819,7 @@ https://www.buymeacoffee.com/kickingvegas
 * About
 #+CINDEX: About
 
-Casual was conceived and crafted by Charles Choi in San Francisco, California.
+[[https://github.com/kickingvegas/casual][Casual]] was conceived and crafted by Charles Choi in San Francisco, California.
 
 Thank you for using Casual.
 
