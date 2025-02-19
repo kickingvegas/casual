@@ -1,0 +1,1147 @@
+\input texinfo    @c -*- texinfo -*-
+@c %**start of header
+@setfilename casual.info
+@settitle Casual User Guide
+@documentencoding UTF-8
+@documentlanguage en
+@syncodeindex pg cp
+@paragraphindent none
+@c %**end of header
+
+@dircategory Emacs misc features
+@direntry
+* Casual: (casual).     Casual is a collection of Transient-based user interfaces for different Emacs modes.
+@end direntry
+
+@finalout
+@titlepage
+@title Casual User Guide
+@subtitle for version 2.4.0
+@author Charles Y@. Choi (@email{kickingvegas@@gmail.com})
+@end titlepage
+
+@contents
+
+@ifnottex
+@node Top
+@top Casual User Guide
+
+Version: 2.4.0
+
+Casual is a project to re-imagine the primary user interface for Emacs using keyboard-driven menus.
+
+Emacs has many commands that are easy to forget if not used frequently. Menus are a user interface (UI) affordance that offers discoverability and recognition. While menus are commonly associated with mouse-driven UI, the inclusion of @uref{https://github.com/magit/transient, Transient} in Emacs core allows for building menus that are keyboard-driven instead. This appeals to users that prefer keyboard-driven workflows.
+
+Casual organizes itself primarily around the different built-in modes Emacs provides. For each mode Casual supports, there is a bespoke designed library of Transient menus for that mode's command set.
+
+Casual has no aims to be a mutually exclusive user interface. All existing user interfaces to commands (keybinding, mini-buffer prompt, mouse menus) are still available to the user.
+
+To learn more about the motivations and design considerations for Casual as well as seeing it at work, please watch the presentation @uref{https://emacsconf.org/2024/talks/casual/, “Re-imagining the Emacs User Experience with Casual Suite”} from EmacsConf 2024.
+
+@end ifnottex
+
+@menu
+* Motivations::
+* Requirements::
+* Transient Conventions::
+* Casual Modes::
+* UX Conventions::
+* Customization::
+* Feedback & Discussion::
+* Sponsorship::
+* About::
+* Acknowledgments::
+* Index::
+* Variable Index::
+
+@detailmenu
+--- The Detailed Node Listing ---
+
+Casual Modes
+
+* Agenda::
+* Bookmarks::
+* Calc::
+* Calendar::
+* Dired::
+* EditKit::
+* IBuffer::
+* Image::
+* Info::
+* I-Search::
+* RE-Builder::
+
+@end detailmenu
+@end menu
+
+@node Motivations
+@chapter Motivations
+
+@cindex Motivations
+
+@unnumberedsec Goals
+
+@itemize
+@item
+To provide a keyboard-driven menu UI toolkit for common Emacs commands.
+
+@item
+To allow for casual discovery and use of infrequently used Emacs commands.
+
+@item
+To be a frequently used interface to the modes Casual does support.
+@end itemize
+
+@unnumberedsec Non-Goals
+
+@itemize
+@item
+Full coverage of all Emacs commands. Casual is not intended to be a power user tool nor is it intended to be a replacement for mouse-driven menus. Casual has no intent to exhaustively cover all modes available in Emacs with keyboard-driven menus.
+
+@item
+Strict adherence to Emacs command naming. While Casual is @strong{mostly} in alignment with Emacs command naming, there are cases where it will make an opinionated change if the name is deemed too vague or idiomatic.
+
+@item
+No intention is made by Casual to help on-board users to the existing default bindings of a mode, nor to cater to users who already know them. That said, many existing default Emacs bindings are replicated in Casual. Such correspondence should be considered incidental.
+
+@item
+UX Stability (for now). Given that Casual is early in its life-cycle, expect changes to its user experience in terms of menu hierarchy and keybinding choices in future releases.
+@end itemize
+
+Editorially, all design decisions for Casual are ultimately the opinion of Charles Y@. Choi.
+
+@node Requirements
+@chapter Requirements
+
+@cindex Requirements
+
+Casual requires Emacs 29.1+.
+
+Certain menus require more:
+
+@itemize
+@item
+Casual Dired: GNU Coreutils 
+@item
+Casual Image: ImageMagick 6+
+@end itemize
+
+@node Transient Conventions
+@chapter Transient Conventions
+
+@cindex Transient Conventions
+
+Casual is built using Transient menus and as such adopts its default behavior.
+
+Each menu item has a @emph{key} and a @emph{label}. The @emph{key} is what is typed by the user to select the menu item. A key can be prefixed with a meta @code{M-} or control @code{C-} key.
+
+Transient supports nested menus. Exiting a menu can be done in two ways:
+
+@itemize
+@item
+@code{C-g} (@code{transient-quit-one}) will exit the current sub-menu and return you back to its parent menu.
+
+@item
+@code{C-q} (@code{transient-quit-all}) will exit you completely from a Transient menu stack.
+@end itemize
+
+If a mouse is available, a menu item can be selected by moving the mouse cursor over its label and pressing down button 1.
+
+Pressing the @code{?} key or @code{C-h} will toggle help for all the menu items. Press the key of interest to get help for it.
+
+When a Transient menu is raised, a prefix argument (@code{C-u}) and an optional argument can be entered before selecting a menu item.
+
+For Transient menus that offer setting different values, the following bindings will allow you save them:
+
+@itemize
+@item
+@code{C-x s} (@code{transient-set})
+
+Saves the value of the active transient for this Emacs session.
+
+@item
+@code{C-x C-s} (@code{transient-save})
+
+Saves the value of the active transient persistently across Emacs sessions.
+
+@item
+@code{C-x C-k} (@code{transient-reset})
+
+Clears the set and saved values of the active transient.
+@end itemize
+
+@unnumberedsec References
+@itemize
+@item
+@ref{Aborting and Resuming Transients,Aborting and Resuming Transients,,transient,}
+@item
+@ref{Saving Values,Saving Values,,transient,}
+@end itemize
+
+@node Casual Modes
+@chapter Casual Modes
+
+@cindex Casual Modes
+
+Casual employs the convention of using the same keybinding to invoke a mode-specific main menu. This keybinding is re-used for each mode-specific keymap. The document recommends the default keybinding @code{C-o} for this purpose. Users who prefer a different binding are always free to use another.
+
+Casual is organized into different libraries typically using the naming convention of @code{casual-<mode name>}. Each library has within it a ``main menu'' which serves as the top level interface to access functions related to that mode. All main menus are auto-loaded, which means that it is not necessary to include a @code{require} call to load that library.
+
+The following modes are supported by Casual:
+
+@menu
+* Agenda::
+* Bookmarks::
+* Calc::
+* Calendar::
+* Dired::
+* EditKit::
+* IBuffer::
+* Image::
+* Info::
+* I-Search::
+* RE-Builder::
+@end menu
+
+@node Agenda
+@section Agenda
+
+@cindex Agenda (Org)
+Casual Agenda is a user interface for Org Agenda. Its top-level library is @code{casual-agenda}.
+
+@unnumberedsec Configuration
+@cindex Agenda (Org) Configuration
+
+The main menu for Casual Agenda is the Transient menu @code{casual-agenda-tmenu}. Bind this menu in the keymap @code{org-agenda-mode-map} as follows in your initialization file.
+
+@lisp
+(keymap-set org-agenda-mode-map "C-o" #'casual-agenda-tmenu)
+@end lisp
+
+Use these bindings to configure Org Agenda to be consistent with bindings used by Casual Agenda. This is optional.
+
+@lisp
+; bindings to make jumping consistent between Org Agenda and Casual Agenda
+(keymap-set org-agenda-mode-map "M-j" #'org-agenda-clock-goto) ; optional
+(keymap-set org-agenda-mode-map "J" #'bookmark-jump) ; optional
+@end lisp
+
+@unnumberedsec Usage
+@cindex Agenda Usage
+
+Casual Agenda organizes its main menu into the following sections:
+
+@itemize
+@item
+@strong{Agenda}
+
+Modify the view duration (day, week, fortnight, month, year).
+
+@item
+@strong{Filter}
+
+Filter displayed headlines with different criteria.
+
+@item
+@strong{Actions}
+
+Perform an activity on a headline, create/capture a headline or even generate a different agenda view.
+
+@item
+@strong{Navigation}
+
+Navigate to different agenda items by line, heading, or date. Move the point to where you want it to be.
+
+@item
+@strong{Utils}
+
+Miscellaneous commands such as setting a time, showing the calendar, and getting almanac information (sunrise/sunset, lunar cycle).
+@end itemize
+
+
+@unnumberedsec References
+@itemize
+@item
+@ref{Agenda Views,Org Agenda,,org,}
+@end itemize
+
+@node Bookmarks
+@section Bookmarks
+
+@cindex Bookmarks
+
+Casual Bookmarks is a user interface for the Emacs Bookmarks list. Its top-level library is @code{casual-bookmarks}.
+
+@unnumberedsec Configuration
+@cindex Bookmarks Configuration
+
+The main menu for Casual Bookmarks is @code{casual-bookmarks-tmenu}. Bind this menu in the keymap @code{bookmark-bmenu-mode-map} as follows in your initialization file.
+
+@lisp
+(keymap-set bookmark-bmenu-mode-map "C-o" #'casual-bookmarks-tmenu)
+@end lisp
+
+Use these keybindings to configure bookmark list to be consistent with keybindings used by Casual Bookmarks.
+
+@lisp
+(keymap-set bookmark-bmenu-mode-map "J" #'bookmark-jump)
+@end lisp
+
+Casual Bookmarks also includes the keymap @code{casual-bookmarks-main-menu} which inserts a @emph{Bookmarks} menu into the main menu bar.
+
+To enable this, add the following configuration to your initialization file.
+
+@lisp
+(require 'casual-bookmarks)
+(easy-menu-add-item global-map '(menu-bar)
+                    casual-bookmarks-main-menu
+                    "Tools")
+@end lisp
+
+While not necessary, having the current bookmark highlighted is convenient. Enable  @code{hl-line-mode} for the bookmark list as shown below.
+
+@lisp
+(require 'hl-line)
+(add-hook 'bookmark-bmenu-mode-hook #'hl-line-mode)
+@end lisp
+
+Finally, customize the variable @code{bookmark-save-flag} to the value @code{1} to ensure that your bookmark changes are always saved.
+
+The above guidance largely extends the work done in the blog post @uref{http://yummymelon.com/devnull/using-bookmarks-in-emacs-like-you-do-in-web-browsers.html, Using Bookmarks in Emacs like you do in Web Browsers}. 
+
+@unnumberedsec Usage
+@cindex Bookmarks Usage
+
+Casual Bookmarks organizes its main menu into the following sections:
+
+@itemize
+@item
+@strong{Operations}
+
+Commands that can operate on a bookmark such as editing or opening them.
+
+@item
+@strong{Mark}
+
+Commands that allow for bulk operation on multiple bookmarks.
+
+@item
+@strong{Display}
+
+Control how bookmarks are displayed and filtered.
+
+@item
+@strong{Annotation}
+
+Commands for annotating a bookmark.
+
+@item
+@strong{Navigation}
+
+Commands for navigating to a bookmark.
+
+@item
+@strong{Column}
+
+Commands to navigate and control the display of the table layout for bookmarks.
+@end itemize
+
+@unnumberedsec References
+@itemize
+@item
+@ref{Bookmarks,Bookmarks,,emacs,}
+@end itemize
+
+@node Calc
+@section Calc
+
+@cindex Calc
+
+Casual Calc is a user interface for Emacs Calc. Its top-level library is @code{casual-calc}.
+
+@unnumberedsec Configuration
+@cindex Calc Configuration
+
+The main menu for Casual Calc is @code{casual-calc-tmenu}. Bind this menu in the keymaps @code{calc-mode-map} and @code{calc-alg-map} as follows in your initialization file.
+
+@lisp
+(keymap-set calc-mode-map "C-o" #'casual-calc-tmenu)
+(keymap-set calc-alg-map "C-o" #'casual-calc-tmenu)
+@end lisp
+
+
+@unnumberedsec Usage
+@cindex Calc Usage
+
+Casual Calc organizes its main menu into the following sections:
+
+@itemize
+@item
+@strong{Calc}
+
+Commands for common calculator functions.
+
+@item
+@strong{Constants}
+
+Common math constants.
+
+@item
+@strong{Operators}
+
+Common math operators.
+
+@item
+@strong{Stack}
+
+Commands for stack operations.
+
+@item
+@strong{Arithmetic}
+
+Entry point for sub-menus of commands classified as arithmetic operations.
+
+@item
+@strong{Functions}
+
+Entry point for sub-menus of commands organized into different classes of functionality.
+
+@item
+@strong{Settings}
+
+Entry point for sub-menus of commands to configure Calc settings.
+@end itemize
+
+To see the main menu in action do the following:
+
+@enumerate
+@item
+Invoke @code{M-x calc} to launch Calc.
+@item
+When the point is in the Calc window, invoke @code{C-o} (or a binding of your choosing) to launch the Casual Calc interface.
+@end enumerate
+
+For nearly all menus, algebraic entry via the @code{'} binding is available, as well as basic calculator operations (addition, subtraction, multiplication, division) and stack operations (pop, enter).
+
+@subsection Calc Basics
+It helps to know some basics about Calc.
+
+@itemize
+@item
+Calc is a stack-based calculator that supports both RPN and algebraic style entry.
+@itemize
+@item
+By default it uses RPN entry, but this can be changed to algebraic.
+@end itemize
+@item
+Stack based operations are always RPN-style.
+@item
+Undo has the keybinding @code{U}, redo is @code{D}.
+@item
+The top of the stack is referred to as @code{1:}
+@item
+Calc vectors are punctuated with @code{[} and @code{]} (e.g. @code{[2 3]})  Matrix values are represented as vectors within a vector. For example, @code{[[1 0] [0 1]]} is a square diagonal matrix.
+@item
+Calc vector indexes are 1-offset.
+@item
+Intervals
+@itemize
+@item
+Inclusive intervals are represented as [𝑛..𝑚], where 𝑛 < 𝑚.
+@item
+Exclusive intervals are represented as (𝑛..𝑚), where 𝑛 < 𝑚.
+@item
+Any combination of lower and upper bounds set to be inclusive or exclusive is supported.
+@end itemize
+@item
+Complex numbers are entered as (𝑟, 𝑖), where 𝑟 is the real part and 𝑖 is the imaginary.
+@item
+Radix numbers are entered as 𝑏#𝑛 where 𝑏 is the base value and 𝑛 is the number. For example entering @code{2#0101} will put @code{5} on the stack.
+@item
+H:M:S values are default entered as ℎ@@ 𝑚" 𝑠'.
+@item
+Org-mode active timestamps can be entered into Calc.
+@item
+The top of the stack (1:) can be edited by pressing the @code{`} key.
+@item
+Entering a single quote @code{'} will prompt you for an algebraic entry.
+@end itemize
+
+@unnumberedsec References
+@itemize
+@item
+@ref{Top,Calc,,calc,}
+@end itemize
+
+@node Calendar
+@section Calendar
+
+@cindex Calendar
+
+Casual Calendar is a user interface for Emacs Calendar/Diary. Its top-level library is @code{casual-calendar}. Access to numerous calendar and diary commands are made available, most notably support for non-Gregorian calendar systems.
+
+@unnumberedsec Configuration
+@cindex Calendar Configuration
+
+The main menu for Casual Calendar is @code{casual-calendar-tmenu} that is wrapped by the command @code{casual-calendar}.  Bind this command in the keymap @code{calendar-mode-map} as follows in your initialization file.
+
+@lisp
+(keymap-set calendar-mode-map "C-o" #'casual-calendar)
+@end lisp
+
+
+@unnumberedsec Usage
+@cindex Calendar Usage
+
+Casual Calendar organizes its main menu into the following sections:
+
+@itemize
+@item
+@strong{Navigation}
+
+Commands to move the point to a desired date, adjusting the view as necessary.
+
+@item
+@strong{Conversions}
+
+Commands to convert a date across different calendar systems.
+
+@item
+@strong{Holidays}
+
+Holiday related commands.
+
+@item
+@strong{Misc}
+
+Commands related to the Diary and Org Agenda are placed here.
+
+@item
+@strong{Almanac}
+
+Almanac-related commands such the lunar phase, sunrise/sunset times are found here.
+@end itemize
+
+
+@itemize
+@item
+@strong{Region}
+
+Support for counting days defined in a region is offered here.
+@end itemize
+
+
+@unnumberedsec References
+@itemize
+@item
+@ref{Calendar/Diary,Calendar/Diary,,emacs,}
+@end itemize
+
+@node Dired
+@section Dired
+
+@cindex Dired
+
+Casual Dired provides a user interface for Dired, the Emacs file manager. Its top-level library is @code{casual-dired}. 
+
+@unnumberedsec Requirements
+@cindex Dired Requirements
+
+Casual Dired requires that the @code{ls} utility from GNU coreutils ≥ 8.32 be installed.
+
+The following links provide guidance for installing GNU coreutils on different platforms.
+
+@unnumberedsubsec macOS
+Note that the default packaged @code{ls} on macOS is BSD-flavored which is not supported by Casual Dired. Users wishing to use Casual Dired on macOS are recommended to install GNU coreutils and configure their Emacs to point to its version of @code{ls} accordingly.
+
+@itemize
+@item
+@uref{https://ports.macports.org/port/coreutils/, MacPorts}
+@item
+@uref{https://formulae.brew.sh/formula/coreutils#default, Homebrew}
+@end itemize
+
+@unnumberedsubsec Windows
+For users running on Microsoft Windows, use @uref{https://www.gnu.org/software/emacs/manual/html_node/efaq-w32/Dired-ls.html, this guidance} to configure Emacs to use an external install of @code{ls}.
+
+@itemize
+@item
+@uref{https://gitforwindows.org/, Git for Windows} (includes @code{ls} in Git BASH)
+@item
+@uref{https://www.cygwin.com/, Cygwin}
+@end itemize
+
+@unnumberedsec Configuration
+@cindex Dired Configuration
+
+The main menu for Dired is @code{casual-dired-tmenu}. Bind this menu in the keymap @code{dired-mode-map} as follows in your initialization file.
+
+@lisp
+(keymap-set dired-mode-map "C-o" #'casual-dired-tmenu)
+@end lisp
+
+In addition, it is convenient to have both the sort-by (@code{casual-dired-sort-by-tmenu}) and search & replace (@code{casual-dired-search-replace-tmenu}) menus bound. Listed below is an example of binding the sort-by and search & replace menus to @code{s} and @code{/} respectively.
+
+@lisp
+(keymap-set dired-mode-map "s" #'casual-dired-sort-by-tmenu) ; optional
+(keymap-set dired-mode-map "/" #'casual-dired-search-replace-tmenu) ; optional
+@end lisp
+
+@unnumberedsec Usage
+@cindex Dired Usage
+
+Casual Dired organizes its main menu into the following sections:
+
+@itemize
+@item
+@strong{File}
+
+File-related commands are placed here. Most of the commands will also operate on marked files (see @strong{Mark} item below).
+
+@item
+@strong{Directory}
+
+Directory-related commands. Subdir view commands are also made available in this section. To remove a subdir view, use the prefix @code{C-u} before pressing the binding @code{k} to kill a subdir view. 
+
+@item
+@strong{Mark}
+
+Marking operations are available here. Commands in the @emph{Utils} sub-menu can be used to operate on marked items. In addition, many commands from the @strong{Files} section can be operate on marked items.
+
+The @emph{Regexp} sub-menu provides commands to mark via @ref{Regular Expressions,regular expression,,elisp,}. 
+
+@item
+@strong{Navigation}
+
+Navigation commands to move the point in Dired are offered here. 
+
+@item
+@strong{Quick}
+
+Convenience commands for bookmarks and listing buffers are made available in this section.
+
+@item
+@strong{Search}
+
+Commands to find a filename via I-Search or to recursively search for pattern inside files contained in a directory tree (@code{rgrep}) are made available here.
+
+@item
+@strong{New}
+
+Create a new file or directory with the commands in this section.
+@end itemize
+
+
+@unnumberedsec References
+@itemize
+@item
+@ref{Dired,Dired,,emacs,}
+@end itemize
+
+@node EditKit
+@section EditKit
+
+@cindex EditKit
+
+Casual EditKit provides a user interface for the numerous editing commands offered by Emacs. Its top-level library is @code{casual-editkit}. As text editing is a core feature of Emacs, the menus provided here are intended to be made available in a global fashion for buffers that are intended to be edited.
+
+@unnumberedsec Configuration
+@cindex EditKit Configuration
+
+The main menu for EditKit is @code{casual-editkit-main-tmenu}. Bind this menu in the global keymap to have general access to it whenever you are in a buffer whose mode does @emph{not} have Casual specific main menu as follows in your initialization file.
+
+@lisp
+(keymap-global-set "C-o" #'casual-editkit-main-tmenu)
+@end lisp
+
+@unnumberedsec Usage
+@cindex EditKit Usage
+
+The main menu of Casual EditKit (@code{casual-editkit-main-tmenu}) is organized into the following sections:
+
+@itemize
+@item
+@strong{File}
+
+Commands related to opening files or buffers are provided here.
+
+@item
+@strong{Edit}
+
+Text editing commands are provided here.
+
+From this section, rectangle commands are made available via the @code{(e) Edit → (R) Rectangle} binding combination.
+
+@item
+@strong{Sexp}
+
+Text editing commands specific for a balanced expression (Sexp) are provided here.
+
+@item
+@strong{Tools}
+
+Commands for invoking different tools are provided here. 
+
+@item
+@strong{Miscellaneous} (unlabeled)
+
+Commands related to bookmarks, window management, project (Emacs file organization), search & replace, and macros are found here.
+@end itemize
+
+Casual EditKit has support for Register commands by providing a sub-menu for it in the navigation row at the bottom of the main menu.
+
+@unnumberedsec References
+@itemize
+@item
+@ref{Registers,Registers,,emacs,}
+@end itemize
+
+@node IBuffer
+@section IBuffer
+
+@cindex IBuffer
+
+Casual IBuffer provides a user interface to Emacs IBuffer, a mode designed for managing buffers. Its top-level library is @code{casual-ibuffer}.
+
+IBuffer is a powerful tool for managing Emacs workflows. As Emacs is often compared to an operating system, through that lens one could compare IBuffer to being a task manager interface, managing instantiated buffers as opposed to processes. 
+
+@unnumberedsec Configuration
+@cindex IBuffer Configuration
+
+The main menu for IBuffer is @code{casual-ibuffer-tmenu}. Bind this menu in the keymap @code{ibuffer-mode-map} as follows in your initialization file.
+
+@lisp
+(keymap-set ibuffer-mode-map "C-o" #'casual-ibuffer-tmenu)
+@end lisp
+
+Like with Casual Dired, it is convenient to have the menus for filtering and sorting bound as well. Listed below shows an example of binding @code{casual-ibuffer-filter-tmenu} and @code{casual-ibuffer-sortby-tmenu} to @code{F} and @code{s} respectively.
+
+@lisp
+(keymap-set ibuffer-mode-map "F" #'casual-ibuffer-filter-tmenu)
+(keymap-set ibuffer-mode-map "s" #'casual-ibuffer-sortby-tmenu)
+@end lisp
+
+
+@unnumberedsec Usage
+@cindex IBuffer Usage
+
+The main menu of Casual IBuffer (@code{casual-ibuffer-tmenu}) is organized into the following sections:
+
+@itemize
+@item
+@strong{Operations}
+
+Commands to operate either on the buffer at point or on marked buffers.
+
+@item
+@strong{Mark}
+
+Commands to support the marking of buffers. 
+
+@item
+@strong{Display}
+
+Commands to control the display of buffers. Buffers can be sorted by different criteria.
+
+@item
+@strong{Navigation}
+
+Commands to navigate the buffer list.
+
+@item
+@strong{Filter}
+
+Commands related to filtering/organizing buffers. Support for defining @emph{Filter Groups} is provided here.
+
+@item
+@strong{Find/Replace in Marked}
+
+Commands to search & replace text in marked buffers are provided here. Note that commands in this section that modify buffers do @emph{not} save said buffers. 
+
+@item
+@strong{Quick}
+
+Command to jump to a bookmark.
+@end itemize
+
+@unnumberedsec References
+@itemize
+@item
+@ref{Buffer Menus,IBuffer,,emacs,}
+@end itemize
+
+@node Image
+@section Image
+
+@cindex Image
+
+Casual Image is a user interface for Image Mode. Its top level library is @code{casual-image}.
+
+@unnumberedsec Configuration
+@cindex Image Configuration
+
+The main menu for Casual Image is @code{casual-image-tmenu}. Bind this menu in the keymap @code{image-mode-map} as follows in your initialization file.
+
+@lisp
+(keymap-set image-mode-map "C-o" #'casual-image-tmenu)
+@end lisp
+
+
+@unnumberedsec Usage
+@cindex Image Usage
+
+The main menu for Casual Image (@code{casual-image-tmenu}) is organized into the following sections:
+
+@itemize
+@item
+@strong{View}
+
+Commands to control the display of the image. None of these commands will mutate the image file.
+
+@item
+@strong{Edit}
+
+Commands to edit the image file.
+
+@item
+@strong{Scroll}
+
+Commands to scroll an image view that is larger than its window size.
+
+@item
+@strong{Edge}
+
+Commands to navigate to the edges of an image view that is larger than its window size.
+
+@item
+@strong{Traverse}
+
+Commands to navigate to other image files in the same directory as the current image.
+
+@item
+@strong{Mark}
+
+Commands to mark in Dired the current image.
+
+@item
+@strong{Misc}
+
+Miscellaneous commands.
+@end itemize
+
+@unnumberedsec References
+@itemize
+@item
+@ref{Image Mode,Image Mode,,emacs,}
+@end itemize
+
+@node Info
+@section Info
+
+@cindex Info
+
+Casual Info is a user interface for the Emacs Info Reader. Its top level library is @code{casual-info}.
+
+@unnumberedsec Configuration
+@cindex Info Configuration
+
+The main menu for Casual Info is @code{casual-info-tmenu}. Bind this menu in the keymap @code{Info-mode-map} as follows in your initialization file.
+
+@lisp
+(keymap-set Info-mode-map "C-o" #'casual-info-tmenu)
+@end lisp
+
+
+@unnumberedsec Usage
+@cindex Info Usage
+
+The main menu for Casual Info is organized into the following sections:
+
+@itemize
+@item
+@strong{Overview}
+
+Commands that navigate you to a starting point in the info documentation.
+@end itemize
+
+
+@itemize
+@item
+@strong{Goto}
+
+Commands that have you specify where to goto in the structure of an Info document.
+
+@item
+@strong{Search}
+
+Commands for searching Info.
+
+@item
+@strong{History}
+
+Commands related to the history of pages (nodes) navigated to in Info. Note that these commands should not be confused with structural navigation.
+
+@item
+@strong{Scroll}
+
+Commands to scroll down or up the current Info page.
+
+@item
+@strong{Navigation}
+
+Command related to structurally navigating an Info document. Note that these commands should not be confused with historical navigation.
+
+@item
+@strong{Quick}
+
+Miscellaneous commands for working with an Info document. Included are commands for bookmarks, copying the current node name, and cloning the buffer.
+@end itemize
+
+@unnumberedsec References
+@itemize
+@item
+@ref{Top,Info,,info,}
+@end itemize
+
+@node I-Search
+@section I-Search
+
+@cindex ISearch
+@cindex I-Search
+
+Casual I-Search is a user interface for Incremental Search. Its top level library is @code{casual-isearch}.
+
+@unnumberedsec Configuration
+@cindex I-Search Configuration
+
+The main menu for Casual I-Search is @code{casual-isearch-tmenu}. Bind this menu in the keymap @code{isearch-mode-map} as follows in your initialization file.
+
+@lisp
+(keymap-set isearch-mode-map "C-o" #'casual-isearch-tmenu)
+@end lisp
+
+@unnumberedsec Usage
+@cindex I-Search Usage
+
+The main menu for Casual I-Search is organized into the following sections:
+
+@itemize
+@item
+@strong{Edit Search String}
+
+Commands to edit the search string. The type/extent of the string (word, symbol, line, thing) can be specified here.
+
+@item
+@strong{Replace}
+
+Invoke @code{query-replace} or @code{query-replace-regexp} on matched strings.
+
+@item
+@strong{Toggle}
+
+Commands to configure the type of search.
+
+@item
+@strong{Misc}
+
+Miscellaneous commands. From here the search string can be fed into @code{occur} or be highlighted.
+
+@item
+@strong{Navigation}
+
+Navigation commands for matched strings.
+@end itemize
+
+@unnumberedsec References
+@itemize
+@item
+@ref{Incremental Search,I-Search,,emacs,}
+@end itemize
+
+@node RE-Builder
+@section RE-Builder
+
+@cindex RE-Builder
+
+Casual RE-Builder is a user interface for RE-Builder. Its top level library is @code{casual-re-builder}.
+
+@unnumberedsec Configuration
+@cindex RE-Builder Configuration
+
+The main menu for Casual RE-Builder is @code{casual-re-builder-tmenu}. Bind this menu in the keymaps @code{reb-mode-map} and @code{reb-lisp-mode-map} as follows in your initialization file.
+
+@lisp
+(keymap-set reb-mode-map "C-o" #'casual-re-builder-tmenu)
+(keymap-set reb-lisp-mode-map "C-o" #'casual-re-builder-tmenu)
+@end lisp
+
+@unnumberedsec Usage
+@cindex RE-Builder Usage
+
+@unnumberedsubsec Basic Usage
+When the command @code{re-builder} is invoked, a buffer named ``✳︎RE-Builder✳︎'' is created. Activate Casual RE-Builder with the binding @code{C-o} (or one of your preference). 
+
+At the top of the menu shows the title ``RE-Builder'' with the target buffer enclosed in parenthesis. The regexp pattern will be applied to the target buffer. The target buffer can be changed with the (b) @strong{Target buffer} menu item.
+
+Emacs supports three different regexp syntax: 1) read, 2) string, 3) Rx.  Use the (x) @strong{Syntax} menu item to alter it. The current syntax is shown in parenthesis.
+
+If multiple sub-expressions are in the regexp pattern, then they can be observed via the (s) @strong{Subexp mode} menu item.
+
+If the regexp pattern entered in the ``✳︎RE-Builder✳︎'' finds multiple matches, a match can be navigated to via the (p) @strong{Previous} and (n) @strong{Next} menu items.
+
+@unnumberedsubsec Exporting the Regexp Pattern
+Once a desired regexp pattern is defined, there are two menu items that can be used to export (copy) it to the kill-ring for further use.
+
+@itemize
+@item
+(w) @strong{Interactive} will copy the regexp to the kill-ring so that it can be yanked in an interactive command that requires a regexp (e.g. @code{query-replace-regexp}).
+@itemize
+@item
+This can only be used when the regexp syntax is set to @code{string}.
+@item
+❗️When yanking (typically @code{C-y}) a regexp into an interactive prompt, you @emph{must} have the point/focus in the minibuffer prompt (typically via mouse). Otherwise the desired content can be altered with extra escaping.
+@end itemize
+@item
+(c) @strong{Code} will copy the regexp to the kill-ring so that it can be yanked into a Elisp code that requires a regexp argument.
+@item
+(g) @strong{Interactive grep} will copy the regexp so that it can be used with command that take a GNU grep regex argument.
+@itemize
+@item
+Example commands that do this are @code{dired-do-find-regexp} and @code{dired-do-find-regexp-and-replace}.
+@item
+This command presumes that you have GNU grep installed and configured for use by Emacs.
+@item
+❗️At current this is an experimental feature. The regexp exported from RE-Builder may not work. If so please report an @uref{https://github.com/kickingvegas/casual-re-builder/issues, issue} describing the desired regexp and the target text.
+@item
+This can only be used when the regexp syntax is set to @code{string}.    
+@end itemize
+@end itemize
+
+@unnumberedsubsec Regexp Syntax Help
+The menu item (i) will invoke the Info page for regexp syntax with respect to the current syntax type.
+
+@unnumberedsubsec Quitting RE-Builder
+Select (q) @strong{Quit} to exit the RE-Builder tool. 
+
+@unnumberedsec References
+@itemize
+@item
+@ref{Regular Expressions,Regular Expressions,,elisp,}
+@end itemize
+
+@node UX Conventions
+@chapter UX Conventions
+
+@cindex UX Conventions
+
+The Casual menus share common user experience (UX) conventions to facilitate usability. This section details this.
+
+@unnumberedsec Common Menu Navigation
+
+Casual organizes a mode's command set into a menu hierarchy. As the user descends down different menu levels, the user is given the option to dismiss the current menu or to dismiss completely all menu levels descended. Transient provides a standard convention for menu dismissal via the @code{C-g} (@code{transient-quit-one}) and @code{C-q} (@code{transient-quit-all}) commands. By default Transient does not display these commands in the menu though, rather they make the assumption that the user already knows these bindings.
+
+@vindex casual-lib-hide-navigation
+In contrast, Casual makes these bindings explicitly known to user by displaying them at the bottom of the menu. Users who wish to have them hidden can set the customizable variable @code{casual-lib-hide-navigation} to a non-nil value. This can be changed from a Casual mode-specific settings menu.
+
+@unnumberedsec Settings Menu
+
+Most all Casual main menus support invoking a mode-specific settings menu via the binding ','. 
+
+@unnumberedsec Unicode Symbol Support
+@vindex casual-lib-use-unicode
+
+The customizable variable named @code{casual-lib-use-unicode} which when non-nil will inform Casual menus to use Unicode symbol labels whenever supported. This can be changed from Casual mode-specific settings menu.
+
+If @code{casual-lib-use-unicode} is set to @code{t}, it is also recommended that the variable @code{transient-align-variable-pitch} also be set to @code{t}. 
+
+@unnumberedsec Common Key Bindings
+
+@itemize
+@item
+(J) @code{Jump to Bookmark…}
+
+Casual places great emphasis on using Emacs Bookmarks to track different places of note. The binding @code{J} is used in many main menus to support this.
+
+@item
+(,) @code{Settings›}
+
+Many modes have settings specific to them. The binding @code{,} is used in many main menus to support the configuration of mode-specific settings.
+
+@item
+(j) @code{Goto…} (mode specific)
+
+Many modes provide a list of items. The binding @code{j} is used to map to the command to move the point to an item that the user explicitly specifies. 
+
+@item
+(n), (p) @code{Next}, @code{Previous}
+
+For modes that provide a list of items, navigation to a next or previous item is bound to @code{n} and @code{p} respectively.
+
+@item
+([), (]) @code{Next Section}, @code{Previous Section}
+
+For modes that organize items into sections, navigation to a next or previous section is bound to @code{[} and @code{]} respectively.
+@end itemize
+
+@node Customization
+@chapter Customization
+
+@cindex Customization
+
+Users who wish to extend or alter existing Casual menus can do so via the mechanisms offered by the Transient package. 
+
+@unnumberedsec References
+@itemize
+@item
+@ref{Modifying Existing Transients,Modifying Existing Transients,,transient,}
+@end itemize
+
+@node Feedback & Discussion
+@chapter Feedback & Discussion
+
+@cindex Feedback
+Please report any feedback about Casual to the @uref{https://github.com/kickingvegas/casual/issues, issue tracker on GitHub}.
+
+@cindex Discussion
+To participate in general discussion about using Casual, please join the @uref{https://github.com/kickingvegas/casual/discussions, discussion group}.
+
+@node Sponsorship
+@chapter Sponsorship
+
+@cindex Sponsorship
+
+If you enjoy using Casual, consider making a modest financial contribution to help support its development and maintenance.
+
+@uref{https://www.buymeacoffee.com/kickingvegas}
+
+@node About
+@chapter About
+
+@cindex About
+
+Casual was conceived and crafted by Charles Choi in San Francisco, California.
+
+Thank you for using Casual.
+
+Always choose love.
+
+@node Acknowledgments
+@chapter Acknowledgments
+
+@cindex Acknowledgments
+
+A heartfelt thanks to all the contributors to @uref{https://github.com/magit/transient, Transient}, @uref{https://magit.vc, Magit}, @uref{https://orgmode.org, Org Mode}, and @uref{https://www.gnu.org/software/emacs/, Emacs}.
+
+This package would not be possible without your efforts.
+
+@node Index
+@chapter Index
+
+@printindex cp
+
+@node Variable Index
+@chapter Variable Index
+
+@printindex vr
+
+@bye
