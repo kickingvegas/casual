@@ -15,7 +15,7 @@
 #+TEXINFO_DIR_CATEGORY: Emacs misc features
 #+TEXINFO_DIR_TITLE: Casual: (casual)
 #+TEXINFO_DIR_NAME: Casual
-#+TEXINFO_DIR_DESC: Casual is a collection of Transient-based user interfaces for different Emacs modes.
+#+TEXINFO_DIR_DESC: Transient user interfaces for different Emacs modes.
 #+TEXINFO_PRINTED_TITLE: Casual User Guide
 
 Version: {{{version}}}
@@ -819,7 +819,7 @@ https://www.buymeacoffee.com/kickingvegas
 * About
 #+CINDEX: About
 
-Casual was conceived and crafted by Charles Choi in San Francisco, California.
+[[https://github.com/kickingvegas/casual][Casual]] was conceived and crafted by Charles Choi in San Francisco, California.
 
 Thank you for using Casual.
 
