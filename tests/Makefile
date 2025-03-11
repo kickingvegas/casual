@@ -27,6 +27,7 @@ editkit-tests					\
 ibuffer-tests					\
 info-tests					\
 isearch-tests					\
+make-mode-tests					\
 re-builder-tests
 
 SRC_DIR=../lisp
@@ -41,6 +42,7 @@ editkit-tests					\
 ibuffer-tests					\
 info-tests					\
 isearch-tests					\
+make-mode-tests					\
 re-builder-tests
 
 lib-tests:
@@ -71,6 +73,9 @@ info-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 isearch-tests:
+	$(MAKE) -C $(SRC_DIR) $@
+
+make-mode-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 re-builder-tests:

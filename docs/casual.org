@@ -695,7 +695,63 @@ The main menu for Casual I-Search is organized into the following sections:
 
 #+TEXINFO: @unnumberedsec References
 - [[info:emacs#Incremental Search][I-Search]]
+
+
+** Make
+#+CINDEX: Make
+
+Casual Make is a user interface to ~make-mode~, a mode tailored for editing a Makefile.
+
+#+TEXINFO: @unnumberedsec Configuration
+#+CINDEX: Make Configuration
+
+In your initialization file, bind the Transient ~casual-make-tmenu~ to your key binding of preference. Two suggested bindings are ~M-m~ or ~C-c m~.
+
+#+begin_src elisp :lexical no
+  (keymap-set makefile-mode-map "M-m" #'casual-make-tmenu)
+#+end_src
+
+#+TEXINFO: @unnumberedsec Usage
+#+CINDEX: Make Usage
+
+It is recommended that some basic knowledge of the *make* command is known before using Casual Make.
+
+#+TEXINFO: @unnumberedsubsec Basic Usage
+
+When in a Makefile buffer, use ~M-m~ (or your binding of choice) to raise the menu ~casual-make-tmenu~. You will be presented with a menu with the following sections:
+
+- Edit
+
+  Commands for editing the makefile. Note that the backslash and comment commands require a region to be selected.
   
+- Pickup as targets
+  
+  Commands for synchronizing ~make-mode~ with the target definitions in the makefile. Use these commands if trying to insert a target (via the ':' binding) does not include a target you have recently entered.
+    
+- Misc
+  
+  Miscellaneous commands related to working with a makefile. 
+  
+- Navigate
+    
+  Commands to support navigation within the makefile.
+  
+
+#+TEXINFO: @unnumberedsubsec Makefile Type Selection
+
+As there are different variants of *make* and makefile formats, you can configure the mode for different specific makefile types. This can be done by selecting 'm' keybinding in ~casual-make-tmenu~.  
+
+#+TEXINFO: @unnumberedsubsec Automatic Variables
+
+Casual Make provides a menu to enter GNU Make-style automatic variables.  Note that each keybinding is identical to the automatic variable it represents to both reinforce its declaration and to avoid making another mapping. This menu is available from the 'i' keybinding in ~casual-make-tmenu~.
+
+Unless you edit makefiles frequently, it is very unlikely to be able to recall what an automatic variable declaration means. Casual Make provides the command ~casual-make-identify-autovar-region~ to identify a selected automatic variable via the binding '.' in ~casual-make-tmenu~. A short description of the automatic variable is shown in the mini-buffer.
+
+
+#+TEXINFO: @unnumberedsec References
+- [[info:make#Automatic Variables][Automatic Variables]]
+
+
 ** RE-Builder
 #+CINDEX: RE-Builder
 
