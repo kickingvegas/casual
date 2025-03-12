@@ -28,8 +28,8 @@ editkit-tests					\
 ibuffer-tests					\
 info-tests					\
 isearch-tests					\
+make-mode-tests					\
 re-builder-tests
-
 
 .PHONY: lib-tests
 lib-tests:
@@ -74,6 +74,10 @@ info-tests:
 .PHONY: isearch-tests
 isearch-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-isearch.make tests
+
+.PHONY: make-mode-tests
+make-mode-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-make-mode.make tests
 
 .PHONY: re-builder-tests
 re-builder-tests:

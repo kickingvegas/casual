@@ -74,6 +74,10 @@
 ;;   An interface for the many commands supported by I-Search.
 ;;   URL: `https://github.com/kickingvegas/casual/blob/main/docs/isearch.org'
 
+;; - Make (Elisp library: `casual-make')
+;;   An interface to `make-mode'.
+;;   URL: `https://github.com/kickingvegas/casual/blob/main/docs/make-mode.org'
+
 ;; - Re-Builder (Elisp library: `casual-re-builder')
 ;;   An interface for the Emacs regular expression tool.
 ;;   URL: `https://github.com/kickingvegas/casual/blob/main/docs/re-builder.org'

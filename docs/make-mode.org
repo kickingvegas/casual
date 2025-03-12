@@ -1,0 +1,76 @@
+[[../README.org][❮ Back to Casual]]
+
+* Casual Make
+
+Casual Make is a user interface to ~make-mode~, a mode tailored for editing a Makefile.
+
+[[file:images/casual-make-screenshot.png]]
+
+* Install
+
+In your initialization file, bind the Transient ~casual-make-tmenu~ to your key binding of preference. Two suggested bindings are ~M-m~ or ~C-c m~.
+
+#+begin_src elisp :lexical no
+  (require 'casual-make) ; optional
+  (keymap-set makefile-mode-map "M-m" #'casual-make-tmenu)
+#+end_src
+
+* Usage
+
+It is recommended that some basic knowledge of the *make* command is known before using Casual Make.
+
+** Basic Usage
+
+When in a Makefile buffer, use ~M-m~ (or your binding of choice) to raise the menu ~casual-make-tmenu~. You will be presented with a menu with the following sections:
+
+- Edit
+  
+  Commands for editing the makefile. Note that the backslash and comment commands require a region to be selected.
+  
+- Pickup as targets
+  
+  Commands for synchronizing ~make-mode~ with the target definitions in the makefile. Use these commands if trying to insert a target (via the ':' binding) does not include a target you have recently entered.
+    
+- Misc
+  
+  Miscellaneous commands related to working with a makefile. 
+  
+- Navigate
+  
+  Commands to support navigation within the makefile.
+  
+** Makefile Type Selection
+
+As there are different variants of *make* and makefile formats, you can configure the mode for different specific makefile types. This can be done by selecting 'm' keybinding in ~casual-make-tmenu~.  
+
+[[file:images/casual-make-mode-select-screenshot.png]]
+
+
+** Automatic Variables
+
+Casual Make provides a menu to enter GNU Make-style [[https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html][automatic variables]].  Note that each keybinding is identical to the automatic variable it represents to both reinforce its declaration and to avoid making another mapping. This menu is available from the 'i' keybinding in ~casual-make-tmenu~.
+
+[[file:images/casual-make-automatic-variables-screenshot.png]]
+
+Unless you edit makefiles frequently, it is very unlikely to be able to recall what an automatic variable declaration means. Casual Make provides the command ~casual-make-identify-autovar-region~ to identify a selected automatic variable via the binding '.' in ~casual-make-tmenu~. A short description of the automatic variable is shown in the mini-buffer.
+
+** Unicode Symbol Support
+By enabling “Use Unicode Symbols” from the Settings menu, Casual Make will use Unicode symbols as appropriate in its menus. 
+
+* Sponsorship
+If you enjoy using Casual Make, consider making a modest financial contribution to help support its development and maintenance.
+
+[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
+
+* See Also
+- [[file:agenda.org][Agenda]]
+- [[file:bookmarks.org][Bookmarks]]
+- [[file:calc.org][Calc]]
+- [[file:calendar.org][Calendar]]
+- [[file:dired.org][Dired]]
+- [[file:editkit.org][EditKit (numerous editing commands)]]
+- [[file:ibuffer.org][IBuffer]]
+- [[file:image.org][Image]]
+- [[file:info.org][Info]]
+- [[file:isearch.org][I-Search]]
+- [[file:re-builder.org][RE-Builder]]
