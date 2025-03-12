@@ -278,7 +278,7 @@ inserting common miscellaneous symbols."
    ("b" "•" (lambda () (interactive) (insert "•")))
    ("m" "—" (lambda () (interactive) (insert "—")))
    ("o" "°" (lambda () (interactive) (insert "°")))
-   ("?" "¿" (lambda () (interactive) (insert "¿")))
+   ("/" "¿" (lambda () (interactive) (insert "¿")))
    ("!" "¡" (lambda () (interactive) (insert "¡")))
    ("p" "¶" (lambda () (interactive) (insert "¶")))
    ("s" "§" (lambda () (interactive) (insert "§")))

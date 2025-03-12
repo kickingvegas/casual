@@ -82,7 +82,7 @@
 
       (let ((test-vectors
              '((:binding "f" :command project-find-file)
-               (:binding "BC-g" :command project-switch-to-buffer)
+               (:binding "Bcasual" :command project-switch-to-buffer)
                (:binding "d" :command project-dired)
                (:binding "D" :command project-find-dir)
                (:binding "v" :command project-vc-dir)
@@ -142,9 +142,9 @@
   (let ((tmpfile "casual-editkit-emoji-symbols-tmenu.txt"))
     (casualt-editkit-setup tmpfile)
     (emacs-lisp-mode)
-    (cl-letf ()
+    (cl-letf ((casualt-mock #'emoji-search))
       (let ((test-vectors
-             '((:binding "e" :command emoji-search)
+             '((:binding "e😀" :command emoji-search)
                (:binding "l" :command emoji-list)
                (:binding "d" :command emoji-describe)
                (:binding "+" :command emoji-zoom-increase)
@@ -524,7 +524,7 @@
                (:binding "a" :command calendar)
                (:binding "C" :command world-clock)
                (:binding "S" :command sunrise-sunset)
-               (:binding "E" :command erc)
+               (:binding "Ey" :command erc)
                (:binding "M-e" :command eww)
                (:binding "z" :command zone)
                (:binding "T" :command tetris))))

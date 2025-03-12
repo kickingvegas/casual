@@ -1,0 +1,1347 @@
+This is casual.info, produced by makeinfo version 7.2 from casual.texi.
+
+INFO-DIR-SECTION Emacs misc features
+START-INFO-DIR-ENTRY
+* Casual: (casual).     Transient user interfaces for different Emacs modes.
+END-INFO-DIR-ENTRY
+
+
+File: casual.info,  Node: Top,  Next: Motivations,  Up: (dir)
+
+Casual User Guide
+*****************
+
+Version: 2.4.0
+
+Casual is a project to re-imagine the primary user interface for Emacs
+using keyboard-driven menus.
+
+Emacs has many commands that are easy to forget if not used frequently.
+Menus are a user interface (UI) affordance that offers discoverability
+and recognition.  While menus are commonly associated with mouse-driven
+UI, the inclusion of Transient (https://github.com/magit/transient) in
+Emacs core allows for building menus that are keyboard-driven instead.
+This appeals to users that prefer keyboard-driven workflows.
+
+Casual organizes itself primarily around the different built-in modes
+Emacs provides.  For each mode Casual supports, there is a bespoke
+designed library of Transient menus for that mode's command set.
+
+Casual has no aims to be a mutually exclusive user interface.  All
+existing user interfaces to commands (keybinding, mini-buffer prompt,
+mouse menus) are still available to the user.
+
+To learn more about the motivations and design considerations for Casual
+as well as seeing it at work, please watch the presentation
+“Re-imagining the Emacs User Experience with Casual Suite”
+(https://emacsconf.org/2024/talks/casual/) from EmacsConf 2024.
+
+* Menu:
+
+* Motivations::
+* Requirements::
+* Transient Conventions::
+* Casual Modes::
+* UX Conventions::
+* Customization::
+* Feedback & Discussion::
+* Sponsorship::
+* About::
+* Acknowledgments::
+* Index::
+* Variable Index::
+
+-- The Detailed Node Listing --
+
+Casual Modes
+
+* Agenda::
+* Bookmarks::
+* Calc::
+* Calendar::
+* Dired::
+* EditKit::
+* IBuffer::
+* Image::
+* Info::
+* I-Search::
+* Make::
+* RE-Builder::
+
+
+File: casual.info,  Node: Motivations,  Next: Requirements,  Prev: Top,  Up: Top
+
+1 Motivations
+*************
+
+Goals
+=====
+
+   • To provide a keyboard-driven menu UI toolkit for common Emacs
+     commands.
+
+   • To allow for casual discovery and use of infrequently used Emacs
+     commands.
+
+   • To be a frequently used interface to the modes Casual does support.
+
+Non-Goals
+=========
+
+   • Full coverage of all Emacs commands.  Casual is not intended to be
+     a power user tool nor is it intended to be a replacement for
+     mouse-driven menus.  Casual has no intent to exhaustively cover all
+     modes available in Emacs with keyboard-driven menus.
+
+   • Strict adherence to Emacs command naming.  While Casual is *mostly*
+     in alignment with Emacs command naming, there are cases where it
+     will make an opinionated change if the name is deemed too vague or
+     idiomatic.
+
+   • No intention is made by Casual to help on-board users to the
+     existing default bindings of a mode, nor to cater to users who
+     already know them.  That said, many existing default Emacs bindings
+     are replicated in Casual.  Such correspondence should be considered
+     incidental.
+
+   • UX Stability (for now).  Given that Casual is early in its
+     life-cycle, expect changes to its user experience in terms of menu
+     hierarchy and keybinding choices in future releases.
+
+Editorially, all design decisions for Casual are ultimately the opinion
+of Charles Y.  Choi.
+
+
+File: casual.info,  Node: Requirements,  Next: Transient Conventions,  Prev: Motivations,  Up: Top
+
+2 Requirements
+**************
+
+Casual requires Emacs 29.1+.
+
+Certain menus require more:
+
+   • Casual Dired: GNU Coreutils
+   • Casual Image: ImageMagick 6+
+
+
+File: casual.info,  Node: Transient Conventions,  Next: Casual Modes,  Prev: Requirements,  Up: Top
+
+3 Transient Conventions
+***********************
+
+Casual is built using Transient menus and as such adopts its default
+behavior.
+
+Each menu item has a _key_ and a _label_.  The _key_ is what is typed by
+the user to select the menu item.  A key can be prefixed with a meta
+‘M-’ or control ‘C-’ key.
+
+Transient supports nested menus.  Exiting a menu can be done in two
+ways:
+
+   • ‘C-g’ (‘transient-quit-one’) will exit the current sub-menu and
+     return you back to its parent menu.
+
+   • ‘C-q’ (‘transient-quit-all’) will exit you completely from a
+     Transient menu stack.
+
+If a mouse is available, a menu item can be selected by moving the mouse
+cursor over its label and pressing down button 1.
+
+Pressing the ‘?’ key or ‘C-h’ will toggle help for all the menu items.
+Press the key of interest to get help for it.
+
+When a Transient menu is raised, a prefix argument (‘C-u’) and an
+optional argument can be entered before selecting a menu item.
+
+For Transient menus that offer setting different values, the following
+bindings will allow you save them:
+
+   • ‘C-x s’ (‘transient-set’)
+
+     Saves the value of the active transient for this Emacs session.
+
+   • ‘C-x C-s’ (‘transient-save’)
+
+     Saves the value of the active transient persistently across Emacs
+     sessions.
+
+   • ‘C-x C-k’ (‘transient-reset’)
+
+     Clears the set and saved values of the active transient.
+
+References
+==========
+
+   • *note Aborting and Resuming Transients: (transient)Aborting and
+     Resuming Transients.
+   • *note Saving Values: (transient)Saving Values.
+
+
+File: casual.info,  Node: Casual Modes,  Next: UX Conventions,  Prev: Transient Conventions,  Up: Top
+
+4 Casual Modes
+**************
+
+Casual employs the convention of using the same keybinding to invoke a
+mode-specific main menu.  This keybinding is re-used for each
+mode-specific keymap.  The document recommends the default keybinding
+‘C-o’ for this purpose.  Users who prefer a different binding are always
+free to use another.
+
+Casual is organized into different libraries typically using the naming
+convention of ‘casual-<mode name>’.  Each library has within it a "main
+menu" which serves as the top level interface to access functions
+related to that mode.  All main menus are auto-loaded, which means that
+it is not necessary to include a ‘require’ call to load that library.
+
+The following modes are supported by Casual:
+
+* Menu:
+
+* Agenda::
+* Bookmarks::
+* Calc::
+* Calendar::
+* Dired::
+* EditKit::
+* IBuffer::
+* Image::
+* Info::
+* I-Search::
+* Make::
+* RE-Builder::
+
+
+File: casual.info,  Node: Agenda,  Next: Bookmarks,  Up: Casual Modes
+
+4.1 Agenda
+==========
+
+Casual Agenda is a user interface for Org Agenda.  Its top-level library
+is ‘casual-agenda’.
+
+Configuration
+=============
+
+The main menu for Casual Agenda is the Transient menu
+‘casual-agenda-tmenu’.  Bind this menu in the keymap
+‘org-agenda-mode-map’ as follows in your initialization file.
+
+     (keymap-set org-agenda-mode-map "C-o" #'casual-agenda-tmenu)
+
+Use these bindings to configure Org Agenda to be consistent with
+bindings used by Casual Agenda.  This is optional.
+
+     ; bindings to make jumping consistent between Org Agenda and Casual Agenda
+     (keymap-set org-agenda-mode-map "M-j" #'org-agenda-clock-goto) ; optional
+     (keymap-set org-agenda-mode-map "J" #'bookmark-jump) ; optional
+
+Usage
+=====
+
+Casual Agenda organizes its main menu into the following sections:
+
+   • *Agenda*
+
+     Modify the view duration (day, week, fortnight, month, year).
+
+   • *Filter*
+
+     Filter displayed headlines with different criteria.
+
+   • *Actions*
+
+     Perform an activity on a headline, create/capture a headline or
+     even generate a different agenda view.
+
+   • *Navigation*
+
+     Navigate to different agenda items by line, heading, or date.  Move
+     the point to where you want it to be.
+
+   • *Utils*
+
+     Miscellaneous commands such as setting a time, showing the
+     calendar, and getting almanac information (sunrise/sunset, lunar
+     cycle).
+
+References
+==========
+
+   • *note Org Agenda: (org)Agenda Views.
+
+
+File: casual.info,  Node: Bookmarks,  Next: Calc,  Prev: Agenda,  Up: Casual Modes
+
+4.2 Bookmarks
+=============
+
+Casual Bookmarks is a user interface for the Emacs Bookmarks list.  Its
+top-level library is ‘casual-bookmarks’.
+
+Configuration
+=============
+
+The main menu for Casual Bookmarks is ‘casual-bookmarks-tmenu’.  Bind
+this menu in the keymap ‘bookmark-bmenu-mode-map’ as follows in your
+initialization file.
+
+     (keymap-set bookmark-bmenu-mode-map "C-o" #'casual-bookmarks-tmenu)
+
+Use these keybindings to configure bookmark list to be consistent with
+keybindings used by Casual Bookmarks.
+
+     (keymap-set bookmark-bmenu-mode-map "J" #'bookmark-jump)
+
+Casual Bookmarks also includes the keymap ‘casual-bookmarks-main-menu’
+which inserts a _Bookmarks_ menu into the main menu bar.
+
+To enable this, add the following configuration to your initialization
+file.
+
+     (require 'casual-bookmarks)
+     (easy-menu-add-item global-map '(menu-bar)
+                         casual-bookmarks-main-menu
+                         "Tools")
+
+While not necessary, having the current bookmark highlighted is
+convenient.  Enable ‘hl-line-mode’ for the bookmark list as shown below.
+
+     (require 'hl-line)
+     (add-hook 'bookmark-bmenu-mode-hook #'hl-line-mode)
+
+Finally, customize the variable ‘bookmark-save-flag’ to the value ‘1’ to
+ensure that your bookmark changes are always saved.
+
+The above guidance largely extends the work done in the blog post Using
+Bookmarks in Emacs like you do in Web Browsers
+(http://yummymelon.com/devnull/using-bookmarks-in-emacs-like-you-do-in-web-browsers.html).
+
+Usage
+=====
+
+Casual Bookmarks organizes its main menu into the following sections:
+
+   • *Operations*
+
+     Commands that can operate on a bookmark such as editing or opening
+     them.
+
+   • *Mark*
+
+     Commands that allow for bulk operation on multiple bookmarks.
+
+   • *Display*
+
+     Control how bookmarks are displayed and filtered.
+
+   • *Annotation*
+
+     Commands for annotating a bookmark.
+
+   • *Navigation*
+
+     Commands for navigating to a bookmark.
+
+   • *Column*
+
+     Commands to navigate and control the display of the table layout
+     for bookmarks.
+
+References
+==========
+
+   • *note Bookmarks: (emacs)Bookmarks.
+
+
+File: casual.info,  Node: Calc,  Next: Calendar,  Prev: Bookmarks,  Up: Casual Modes
+
+4.3 Calc
+========
+
+Casual Calc is a user interface for Emacs Calc.  Its top-level library
+is ‘casual-calc’.
+
+Configuration
+=============
+
+The main menu for Casual Calc is ‘casual-calc-tmenu’.  Bind this menu in
+the keymaps ‘calc-mode-map’ and ‘calc-alg-map’ as follows in your
+initialization file.
+
+     (keymap-set calc-mode-map "C-o" #'casual-calc-tmenu)
+     (keymap-set calc-alg-map "C-o" #'casual-calc-tmenu)
+
+Usage
+=====
+
+Casual Calc organizes its main menu into the following sections:
+
+   • *Calc*
+
+     Commands for common calculator functions.
+
+   • *Constants*
+
+     Common math constants.
+
+   • *Operators*
+
+     Common math operators.
+
+   • *Stack*
+
+     Commands for stack operations.
+
+   • *Arithmetic*
+
+     Entry point for sub-menus of commands classified as arithmetic
+     operations.
+
+   • *Functions*
+
+     Entry point for sub-menus of commands organized into different
+     classes of functionality.
+
+   • *Settings*
+
+     Entry point for sub-menus of commands to configure Calc settings.
+
+To see the main menu in action do the following:
+
+  1. Invoke ‘M-x calc’ to launch Calc.
+  2. When the point is in the Calc window, invoke ‘C-o’ (or a binding of
+     your choosing) to launch the Casual Calc interface.
+
+For nearly all menus, algebraic entry via the ‘'’ binding is available,
+as well as basic calculator operations (addition, subtraction,
+multiplication, division) and stack operations (pop, enter).
+
+Calc Basics
+-----------
+
+It helps to know some basics about Calc.
+
+   • Calc is a stack-based calculator that supports both RPN and
+     algebraic style entry.
+        • By default it uses RPN entry, but this can be changed to
+          algebraic.
+   • Stack based operations are always RPN-style.
+   • Undo has the keybinding ‘U’, redo is ‘D’.
+   • The top of the stack is referred to as ‘1:’
+   • Calc vectors are punctuated with ‘[’ and ‘]’ (e.g.  ‘[2 3]’) Matrix
+     values are represented as vectors within a vector.  For example,
+     ‘[[1 0] [0 1]]’ is a square diagonal matrix.
+   • Calc vector indexes are 1-offset.
+   • Intervals
+        • Inclusive intervals are represented as [𝑛..𝑚], where 𝑛 < 𝑚.
+        • Exclusive intervals are represented as (𝑛..𝑚), where 𝑛 < 𝑚.
+        • Any combination of lower and upper bounds set to be inclusive
+          or exclusive is supported.
+   • Complex numbers are entered as (𝑟, 𝑖), where 𝑟 is the real part and
+     𝑖 is the imaginary.
+   • Radix numbers are entered as 𝑏#𝑛 where 𝑏 is the base value and 𝑛 is
+     the number.  For example entering ‘2#0101’ will put ‘5’ on the
+     stack.
+   • H:M:S values are default entered as ℎ@ 𝑚" 𝑠'.
+   • Org-mode active timestamps can be entered into Calc.
+   • The top of the stack (1:) can be edited by pressing the ‘`’ key.
+   • Entering a single quote ‘'’ will prompt you for an algebraic entry.
+
+References
+==========
+
+   • *note Calc: (calc)Top.
+
+
+File: casual.info,  Node: Calendar,  Next: Dired,  Prev: Calc,  Up: Casual Modes
+
+4.4 Calendar
+============
+
+Casual Calendar is a user interface for Emacs Calendar/Diary.  Its
+top-level library is ‘casual-calendar’.  Access to numerous calendar and
+diary commands are made available, most notably support for
+non-Gregorian calendar systems.
+
+Configuration
+=============
+
+The main menu for Casual Calendar is ‘casual-calendar-tmenu’ that is
+wrapped by the command ‘casual-calendar’.  Bind this command in the
+keymap ‘calendar-mode-map’ as follows in your initialization file.
+
+     (keymap-set calendar-mode-map "C-o" #'casual-calendar)
+
+Usage
+=====
+
+Casual Calendar organizes its main menu into the following sections:
+
+   • *Navigation*
+
+     Commands to move the point to a desired date, adjusting the view as
+     necessary.
+
+   • *Conversions*
+
+     Commands to convert a date across different calendar systems.
+
+   • *Holidays*
+
+     Holiday related commands.
+
+   • *Misc*
+
+     Commands related to the Diary and Org Agenda are placed here.
+
+   • *Almanac*
+
+     Almanac-related commands such the lunar phase, sunrise/sunset times
+     are found here.
+
+   • *Region*
+
+     Support for counting days defined in a region is offered here.
+
+References
+==========
+
+   • *note Calendar/Diary: (emacs)Calendar/Diary.
+
+
+File: casual.info,  Node: Dired,  Next: EditKit,  Prev: Calendar,  Up: Casual Modes
+
+4.5 Dired
+=========
+
+Casual Dired provides a user interface for Dired, the Emacs file
+manager.  Its top-level library is ‘casual-dired’.
+
+Requirements
+============
+
+Casual Dired requires that the ‘ls’ utility from GNU coreutils ≥ 8.32 be
+installed.
+
+The following links provide guidance for installing GNU coreutils on
+different platforms.
+
+macOS
+-----
+
+Note that the default packaged ‘ls’ on macOS is BSD-flavored which is
+not supported by Casual Dired.  Users wishing to use Casual Dired on
+macOS are recommended to install GNU coreutils and configure their Emacs
+to point to its version of ‘ls’ accordingly.
+
+   • MacPorts (https://ports.macports.org/port/coreutils/)
+   • Homebrew (https://formulae.brew.sh/formula/coreutils#default)
+
+Windows
+-------
+
+For users running on Microsoft Windows, use this guidance
+(https://www.gnu.org/software/emacs/manual/html_node/efaq-w32/Dired-ls.html)
+to configure Emacs to use an external install of ‘ls’.
+
+   • Git for Windows (https://gitforwindows.org/) (includes ‘ls’ in Git
+     BASH)
+   • Cygwin (https://www.cygwin.com/)
+
+Configuration
+=============
+
+The main menu for Dired is ‘casual-dired-tmenu’.  Bind this menu in the
+keymap ‘dired-mode-map’ as follows in your initialization file.
+
+     (keymap-set dired-mode-map "C-o" #'casual-dired-tmenu)
+
+In addition, it is convenient to have both the sort-by
+(‘casual-dired-sort-by-tmenu’) and search & replace
+(‘casual-dired-search-replace-tmenu’) menus bound.  Listed below is an
+example of binding the sort-by and search & replace menus to ‘s’ and ‘/’
+respectively.
+
+     (keymap-set dired-mode-map "s" #'casual-dired-sort-by-tmenu) ; optional
+     (keymap-set dired-mode-map "/" #'casual-dired-search-replace-tmenu) ; optional
+
+Usage
+=====
+
+Casual Dired organizes its main menu into the following sections:
+
+   • *File*
+
+     File-related commands are placed here.  Most of the commands will
+     also operate on marked files (see *Mark* item below).
+
+   • *Directory*
+
+     Directory-related commands.  Subdir view commands are also made
+     available in this section.  To remove a subdir view, use the prefix
+     ‘C-u’ before pressing the binding ‘k’ to kill a subdir view.
+
+   • *Mark*
+
+     Marking operations are available here.  Commands in the _Utils_
+     sub-menu can be used to operate on marked items.  In addition, many
+     commands from the *Files* section can be operate on marked items.
+
+     The _Regexp_ sub-menu provides commands to mark via *note regular
+     expression: (elisp)Regular Expressions.
+
+   • *Navigation*
+
+     Navigation commands to move the point in Dired are offered here.
+
+   • *Quick*
+
+     Convenience commands for bookmarks and listing buffers are made
+     available in this section.
+
+   • *Search*
+
+     Commands to find a filename via I-Search or to recursively search
+     for pattern inside files contained in a directory tree (‘rgrep’)
+     are made available here.
+
+   • *New*
+
+     Create a new file or directory with the commands in this section.
+
+References
+==========
+
+   • *note Dired: (emacs)Dired.
+
+
+File: casual.info,  Node: EditKit,  Next: IBuffer,  Prev: Dired,  Up: Casual Modes
+
+4.6 EditKit
+===========
+
+Casual EditKit provides a user interface for the numerous editing
+commands offered by Emacs.  Its top-level library is ‘casual-editkit’.
+As text editing is a core feature of Emacs, the menus provided here are
+intended to be made available in a global fashion for buffers that are
+intended to be edited.
+
+Configuration
+=============
+
+The main menu for EditKit is ‘casual-editkit-main-tmenu’.  Bind this
+menu in the global keymap to have general access to it whenever you are
+in a buffer whose mode does _not_ have Casual specific main menu as
+follows in your initialization file.
+
+     (keymap-global-set "C-o" #'casual-editkit-main-tmenu)
+
+Usage
+=====
+
+The main menu of Casual EditKit (‘casual-editkit-main-tmenu’) is
+organized into the following sections:
+
+   • *File*
+
+     Commands related to opening files or buffers are provided here.
+
+   • *Edit*
+
+     Text editing commands are provided here.
+
+     From this section, rectangle commands are made available via the
+     ‘(e) Edit → (R) Rectangle’ binding combination.
+
+   • *Sexp*
+
+     Text editing commands specific for a balanced expression (Sexp) are
+     provided here.
+
+   • *Tools*
+
+     Commands for invoking different tools are provided here.
+
+   • *Miscellaneous* (unlabeled)
+
+     Commands related to bookmarks, window management, project (Emacs
+     file organization), search & replace, and macros are found here.
+
+Casual EditKit has support for Register commands by providing a sub-menu
+for it in the navigation row at the bottom of the main menu.
+
+References
+==========
+
+   • *note Registers: (emacs)Registers.
+
+
+File: casual.info,  Node: IBuffer,  Next: Image,  Prev: EditKit,  Up: Casual Modes
+
+4.7 IBuffer
+===========
+
+Casual IBuffer provides a user interface to Emacs IBuffer, a mode
+designed for managing buffers.  Its top-level library is
+‘casual-ibuffer’.
+
+IBuffer is a powerful tool for managing Emacs workflows.  As Emacs is
+often compared to an operating system, through that lens one could
+compare IBuffer to being a task manager interface, managing instantiated
+buffers as opposed to processes.
+
+Configuration
+=============
+
+The main menu for IBuffer is ‘casual-ibuffer-tmenu’.  Bind this menu in
+the keymap ‘ibuffer-mode-map’ as follows in your initialization file.
+
+     (keymap-set ibuffer-mode-map "C-o" #'casual-ibuffer-tmenu)
+
+Like with Casual Dired, it is convenient to have the menus for filtering
+and sorting bound as well.  Listed below shows an example of binding
+‘casual-ibuffer-filter-tmenu’ and ‘casual-ibuffer-sortby-tmenu’ to ‘F’
+and ‘s’ respectively.
+
+     (keymap-set ibuffer-mode-map "F" #'casual-ibuffer-filter-tmenu)
+     (keymap-set ibuffer-mode-map "s" #'casual-ibuffer-sortby-tmenu)
+
+Usage
+=====
+
+The main menu of Casual IBuffer (‘casual-ibuffer-tmenu’) is organized
+into the following sections:
+
+   • *Operations*
+
+     Commands to operate either on the buffer at point or on marked
+     buffers.
+
+   • *Mark*
+
+     Commands to support the marking of buffers.
+
+   • *Display*
+
+     Commands to control the display of buffers.  Buffers can be sorted
+     by different criteria.
+
+   • *Navigation*
+
+     Commands to navigate the buffer list.
+
+   • *Filter*
+
+     Commands related to filtering/organizing buffers.  Support for
+     defining _Filter Groups_ is provided here.
+
+   • *Find/Replace in Marked*
+
+     Commands to search & replace text in marked buffers are provided
+     here.  Note that commands in this section that modify buffers do
+     _not_ save said buffers.
+
+   • *Quick*
+
+     Command to jump to a bookmark.
+
+References
+==========
+
+   • *note IBuffer: (emacs)Buffer Menus.
+
+
+File: casual.info,  Node: Image,  Next: Info,  Prev: IBuffer,  Up: Casual Modes
+
+4.8 Image
+=========
+
+Casual Image is a user interface for Image Mode.  Its top level library
+is ‘casual-image’.
+
+Configuration
+=============
+
+The main menu for Casual Image is ‘casual-image-tmenu’.  Bind this menu
+in the keymap ‘image-mode-map’ as follows in your initialization file.
+
+     (keymap-set image-mode-map "C-o" #'casual-image-tmenu)
+
+Usage
+=====
+
+The main menu for Casual Image (‘casual-image-tmenu’) is organized into
+the following sections:
+
+   • *View*
+
+     Commands to control the display of the image.  None of these
+     commands will mutate the image file.
+
+   • *Edit*
+
+     Commands to edit the image file.
+
+   • *Scroll*
+
+     Commands to scroll an image view that is larger than its window
+     size.
+
+   • *Edge*
+
+     Commands to navigate to the edges of an image view that is larger
+     than its window size.
+
+   • *Traverse*
+
+     Commands to navigate to other image files in the same directory as
+     the current image.
+
+   • *Mark*
+
+     Commands to mark in Dired the current image.
+
+   • *Misc*
+
+     Miscellaneous commands.
+
+References
+==========
+
+   • *note Image Mode: (emacs)Image Mode.
+
+
+File: casual.info,  Node: Info,  Next: I-Search,  Prev: Image,  Up: Casual Modes
+
+4.9 Info
+========
+
+Casual Info is a user interface for the Emacs Info Reader.  Its top
+level library is ‘casual-info’.
+
+Configuration
+=============
+
+The main menu for Casual Info is ‘casual-info-tmenu’.  Bind this menu in
+the keymap ‘Info-mode-map’ as follows in your initialization file.
+
+     (keymap-set Info-mode-map "C-o" #'casual-info-tmenu)
+
+Usage
+=====
+
+The main menu for Casual Info is organized into the following sections:
+
+   • *Overview*
+
+     Commands that navigate you to a starting point in the info
+     documentation.
+
+   • *Goto*
+
+     Commands that have you specify where to goto in the structure of an
+     Info document.
+
+   • *Search*
+
+     Commands for searching Info.
+
+   • *History*
+
+     Commands related to the history of pages (nodes) navigated to in
+     Info.  Note that these commands should not be confused with
+     structural navigation.
+
+   • *Scroll*
+
+     Commands to scroll down or up the current Info page.
+
+   • *Navigation*
+
+     Command related to structurally navigating an Info document.  Note
+     that these commands should not be confused with historical
+     navigation.
+
+   • *Quick*
+
+     Miscellaneous commands for working with an Info document.  Included
+     are commands for bookmarks, copying the current node name, and
+     cloning the buffer.
+
+References
+==========
+
+   • *note Info: (info)Top.
+
+
+File: casual.info,  Node: I-Search,  Next: Make,  Prev: Info,  Up: Casual Modes
+
+4.10 I-Search
+=============
+
+Casual I-Search is a user interface for Incremental Search.  Its top
+level library is ‘casual-isearch’.
+
+Configuration
+=============
+
+The main menu for Casual I-Search is ‘casual-isearch-tmenu’.  Bind this
+menu in the keymap ‘isearch-mode-map’ as follows in your initialization
+file.
+
+     (keymap-set isearch-mode-map "C-o" #'casual-isearch-tmenu)
+
+Usage
+=====
+
+The main menu for Casual I-Search is organized into the following
+sections:
+
+   • *Edit Search String*
+
+     Commands to edit the search string.  The type/extent of the string
+     (word, symbol, line, thing) can be specified here.
+
+   • *Replace*
+
+     Invoke ‘query-replace’ or ‘query-replace-regexp’ on matched
+     strings.
+
+   • *Toggle*
+
+     Commands to configure the type of search.
+
+   • *Misc*
+
+     Miscellaneous commands.  From here the search string can be fed
+     into ‘occur’ or be highlighted.
+
+   • *Navigation*
+
+     Navigation commands for matched strings.
+
+References
+==========
+
+   • *note I-Search: (emacs)Incremental Search.
+
+
+File: casual.info,  Node: Make,  Next: RE-Builder,  Prev: I-Search,  Up: Casual Modes
+
+4.11 Make
+=========
+
+Casual Make is a user interface to ‘make-mode’, a mode tailored for
+editing a Makefile.
+
+Configuration
+=============
+
+In your initialization file, bind the Transient ‘casual-make-tmenu’ to
+your key binding of preference.  Two suggested bindings are ‘M-m’ or
+‘C-c m’.
+
+     (keymap-set makefile-mode-map "M-m" #'casual-make-tmenu)
+
+Usage
+=====
+
+It is recommended that some basic knowledge of the *make* command is
+known before using Casual Make.
+
+Basic Usage
+-----------
+
+When in a Makefile buffer, use ‘M-m’ (or your binding of choice) to
+raise the menu ‘casual-make-tmenu’.  You will be presented with a menu
+with the following sections:
+
+   • Edit
+
+     Commands for editing the makefile.  Note that the backslash and
+     comment commands require a region to be selected.
+
+   • Pickup as targets
+
+     Commands for synchronizing ‘make-mode’ with the target definitions
+     in the makefile.  Use these commands if trying to insert a target
+     (via the ':' binding) does not include a target you have recently
+     entered.
+
+   • Misc
+
+     Miscellaneous commands related to working with a makefile.
+
+   • Navigate
+
+     Commands to support navigation within the makefile.
+
+Makefile Type Selection
+-----------------------
+
+As there are different variants of *make* and makefile formats, you can
+configure the mode for different specific makefile types.  This can be
+done by selecting 'm' keybinding in ‘casual-make-tmenu’.
+
+Automatic Variables
+-------------------
+
+Casual Make provides a menu to enter GNU Make-style automatic variables.
+Note that each keybinding is identical to the automatic variable it
+represents to both reinforce its declaration and to avoid making another
+mapping.  This menu is available from the 'i' keybinding in
+‘casual-make-tmenu’.
+
+Unless you edit makefiles frequently, it is very unlikely to be able to
+recall what an automatic variable declaration means.  Casual Make
+provides the command ‘casual-make-identify-autovar-region’ to identify a
+selected automatic variable via the binding '.'  in ‘casual-make-tmenu’.
+A short description of the automatic variable is shown in the
+mini-buffer.
+
+References
+==========
+
+   • *note Automatic Variables: (make)Automatic Variables.
+
+
+File: casual.info,  Node: RE-Builder,  Prev: Make,  Up: Casual Modes
+
+4.12 RE-Builder
+===============
+
+Casual RE-Builder is a user interface for RE-Builder.  Its top level
+library is ‘casual-re-builder’.
+
+Configuration
+=============
+
+The main menu for Casual RE-Builder is ‘casual-re-builder-tmenu’.  Bind
+this menu in the keymaps ‘reb-mode-map’ and ‘reb-lisp-mode-map’ as
+follows in your initialization file.
+
+     (keymap-set reb-mode-map "C-o" #'casual-re-builder-tmenu)
+     (keymap-set reb-lisp-mode-map "C-o" #'casual-re-builder-tmenu)
+
+Usage
+=====
+
+Basic Usage
+-----------
+
+When the command ‘re-builder’ is invoked, a buffer named "✳︎RE-Builder✳︎"
+is created.  Activate Casual RE-Builder with the binding ‘C-o’ (or one
+of your preference).
+
+At the top of the menu shows the title "RE-Builder" with the target
+buffer enclosed in parenthesis.  The regexp pattern will be applied to
+the target buffer.  The target buffer can be changed with the (b)
+*Target buffer* menu item.
+
+Emacs supports three different regexp syntax: 1) read, 2) string, 3) Rx.
+Use the (x) *Syntax* menu item to alter it.  The current syntax is shown
+in parenthesis.
+
+If multiple sub-expressions are in the regexp pattern, then they can be
+observed via the (s) *Subexp mode* menu item.
+
+If the regexp pattern entered in the "✳︎RE-Builder✳︎" finds multiple
+matches, a match can be navigated to via the (p) *Previous* and (n)
+*Next* menu items.
+
+Exporting the Regexp Pattern
+----------------------------
+
+Once a desired regexp pattern is defined, there are two menu items that
+can be used to export (copy) it to the kill-ring for further use.
+
+   • (w) *Interactive* will copy the regexp to the kill-ring so that it
+     can be yanked in an interactive command that requires a regexp
+     (e.g.  ‘query-replace-regexp’).
+        • This can only be used when the regexp syntax is set to
+          ‘string’.
+        • ❗️When yanking (typically ‘C-y’) a regexp into an interactive
+          prompt, you _must_ have the point/focus in the minibuffer
+          prompt (typically via mouse).  Otherwise the desired content
+          can be altered with extra escaping.
+   • (c) *Code* will copy the regexp to the kill-ring so that it can be
+     yanked into a Elisp code that requires a regexp argument.
+   • (g) *Interactive grep* will copy the regexp so that it can be used
+     with command that take a GNU grep regex argument.
+        • Example commands that do this are ‘dired-do-find-regexp’ and
+          ‘dired-do-find-regexp-and-replace’.
+        • This command presumes that you have GNU grep installed and
+          configured for use by Emacs.
+        • ❗️At current this is an experimental feature.  The regexp
+          exported from RE-Builder may not work.  If so please report an
+          issue
+          (https://github.com/kickingvegas/casual-re-builder/issues)
+          describing the desired regexp and the target text.
+        • This can only be used when the regexp syntax is set to
+          ‘string’.
+
+Regexp Syntax Help
+------------------
+
+The menu item (i) will invoke the Info page for regexp syntax with
+respect to the current syntax type.
+
+Quitting RE-Builder
+-------------------
+
+Select (q) *Quit* to exit the RE-Builder tool.
+
+References
+==========
+
+   • *note Regular Expressions: (elisp)Regular Expressions.
+
+
+File: casual.info,  Node: UX Conventions,  Next: Customization,  Prev: Casual Modes,  Up: Top
+
+5 UX Conventions
+****************
+
+The Casual menus share common user experience (UX) conventions to
+facilitate usability.  This section details this.
+
+Common Menu Navigation
+======================
+
+Casual organizes a mode's command set into a menu hierarchy.  As the
+user descends down different menu levels, the user is given the option
+to dismiss the current menu or to dismiss completely all menu levels
+descended.  Transient provides a standard convention for menu dismissal
+via the ‘C-g’ (‘transient-quit-one’) and ‘C-q’ (‘transient-quit-all’)
+commands.  By default Transient does not display these commands in the
+menu though, rather they make the assumption that the user already knows
+these bindings.
+
+In contrast, Casual makes these bindings explicitly known to user by
+displaying them at the bottom of the menu.  Users who wish to have them
+hidden can set the customizable variable ‘casual-lib-hide-navigation’ to
+a non-nil value.  This can be changed from a Casual mode-specific
+settings menu.
+
+Settings Menu
+=============
+
+Most all Casual main menus support invoking a mode-specific settings
+menu via the binding ','.
+
+Unicode Symbol Support
+======================
+
+The customizable variable named ‘casual-lib-use-unicode’ which when
+non-nil will inform Casual menus to use Unicode symbol labels whenever
+supported.  This can be changed from Casual mode-specific settings menu.
+
+If ‘casual-lib-use-unicode’ is set to ‘t’, it is also recommended that
+the variable ‘transient-align-variable-pitch’ also be set to ‘t’.
+
+Common Key Bindings
+===================
+
+   • (J) ‘Jump to Bookmark…’
+
+     Casual places great emphasis on using Emacs Bookmarks to track
+     different places of note.  The binding ‘J’ is used in many main
+     menus to support this.
+
+   • (,) ‘Settings›’
+
+     Many modes have settings specific to them.  The binding ‘,’ is used
+     in many main menus to support the configuration of mode-specific
+     settings.
+
+   • (j) ‘Goto…’ (mode specific)
+
+     Many modes provide a list of items.  The binding ‘j’ is used to map
+     to the command to move the point to an item that the user
+     explicitly specifies.
+
+   • (n), (p) ‘Next’, ‘Previous’
+
+     For modes that provide a list of items, navigation to a next or
+     previous item is bound to ‘n’ and ‘p’ respectively.
+
+   • ([), (]) ‘Next Section’, ‘Previous Section’
+
+     For modes that organize items into sections, navigation to a next
+     or previous section is bound to ‘[’ and ‘]’ respectively.
+
+
+File: casual.info,  Node: Customization,  Next: Feedback & Discussion,  Prev: UX Conventions,  Up: Top
+
+6 Customization
+***************
+
+Users who wish to extend or alter existing Casual menus can do so via
+the mechanisms offered by the Transient package.
+
+References
+==========
+
+   • *note Modifying Existing Transients: (transient)Modifying Existing
+     Transients.
+
+
+File: casual.info,  Node: Feedback & Discussion,  Next: Sponsorship,  Prev: Customization,  Up: Top
+
+7 Feedback & Discussion
+***********************
+
+Please report any feedback about Casual to the issue tracker on GitHub
+(https://github.com/kickingvegas/casual/issues).
+
+To participate in general discussion about using Casual, please join the
+discussion group (https://github.com/kickingvegas/casual/discussions).
+
+
+File: casual.info,  Node: Sponsorship,  Next: About,  Prev: Feedback & Discussion,  Up: Top
+
+8 Sponsorship
+*************
+
+If you enjoy using Casual, consider making a modest financial
+contribution to help support its development and maintenance.
+
+<https://www.buymeacoffee.com/kickingvegas>
+
+
+File: casual.info,  Node: About,  Next: Acknowledgments,  Prev: Sponsorship,  Up: Top
+
+9 About
+*******
+
+Casual (https://github.com/kickingvegas/casual) was conceived and
+crafted by Charles Choi in San Francisco, California.
+
+Thank you for using Casual.
+
+Always choose love.
+
+
+File: casual.info,  Node: Acknowledgments,  Next: Index,  Prev: About,  Up: Top
+
+10 Acknowledgments
+******************
+
+A heartfelt thanks to all the contributors to Transient
+(https://github.com/magit/transient), Magit (https://magit.vc), Org Mode
+(https://orgmode.org), and Emacs (https://www.gnu.org/software/emacs/).
+
+This package would not be possible without your efforts.
+
+
+File: casual.info,  Node: Index,  Next: Variable Index,  Prev: Acknowledgments,  Up: Top
+
+11 Index
+********
+
+ [index ]
+* Menu:
+
+* About:                                 About.                (line  6)
+* Acknowledgments:                       Acknowledgments.      (line  6)
+* Agenda (Org):                          Agenda.               (line  6)
+* Agenda (Org) Configuration:            Agenda.               (line 12)
+* Agenda Usage:                          Agenda.               (line 28)
+* Bookmarks:                             Bookmarks.            (line  6)
+* Bookmarks Configuration:               Bookmarks.            (line 12)
+* Bookmarks Usage:                       Bookmarks.            (line 50)
+* Calc:                                  Calc.                 (line  6)
+* Calc Configuration:                    Calc.                 (line 12)
+* Calc Usage:                            Calc.                 (line 22)
+* Calendar:                              Calendar.             (line  6)
+* Calendar Configuration:                Calendar.             (line 14)
+* Calendar Usage:                        Calendar.             (line 23)
+* Casual Modes:                          Casual Modes.         (line  6)
+* Customization:                         Customization.        (line  6)
+* Dired:                                 Dired.                (line  6)
+* Dired Configuration:                   Dired.                (line 43)
+* Dired Requirements:                    Dired.                (line 12)
+* Dired Usage:                           Dired.                (line 60)
+* Discussion:                            Feedback & Discussion.
+                                                               (line  9)
+* EditKit:                               EditKit.              (line  6)
+* EditKit Configuration:                 EditKit.              (line 15)
+* EditKit Usage:                         EditKit.              (line 25)
+* Feedback:                              Feedback & Discussion.
+                                                               (line  6)
+* I-Search:                              I-Search.             (line  6)
+* I-Search Configuration:                I-Search.             (line 12)
+* I-Search Usage:                        I-Search.             (line 21)
+* IBuffer:                               IBuffer.              (line  6)
+* IBuffer Configuration:                 IBuffer.              (line 18)
+* IBuffer Usage:                         IBuffer.              (line 34)
+* Image:                                 Image.                (line  6)
+* Image Configuration:                   Image.                (line 12)
+* Image Usage:                           Image.                (line 20)
+* Info:                                  Info.                 (line  6)
+* Info Configuration:                    Info.                 (line 12)
+* Info Usage:                            Info.                 (line 20)
+* ISearch:                               I-Search.             (line  6)
+* Make:                                  Make.                 (line  6)
+* Make Configuration:                    Make.                 (line 12)
+* Make Usage:                            Make.                 (line 21)
+* Motivations:                           Motivations.          (line  5)
+* RE-Builder:                            RE-Builder.           (line  6)
+* RE-Builder Configuration:              RE-Builder.           (line 12)
+* RE-Builder Usage:                      RE-Builder.           (line 21)
+* Requirements:                          Requirements.         (line  6)
+* Sponsorship:                           Sponsorship.          (line  6)
+* Transient Conventions:                 Transient Conventions.
+                                                               (line  6)
+* UX Conventions:                        UX Conventions.       (line  6)
+
+
+File: casual.info,  Node: Variable Index,  Prev: Index,  Up: Top
+
+12 Variable Index
+*****************
+
+ [index ]
+* Menu:
+
+* casual-lib-hide-navigation:            UX Conventions.       (line 21)
+* casual-lib-use-unicode:                UX Conventions.       (line 36)
+
+
+Tag Table:
+Node: Top228
+Node: Motivations1923
+Node: Requirements3416
+Node: Transient Conventions3680
+Node: Casual Modes5408
+Node: Agenda6400
+Node: Bookmarks7957
+Node: Calc10232
+Node: Calendar13373
+Node: Dired14721
+Node: EditKit17946
+Node: IBuffer19670
+Node: Image21735
+Node: Info22976
+Node: I-Search24442
+Node: Make25603
+Node: RE-Builder27975
+Node: UX Conventions31382
+Node: Customization34083
+Node: Feedback & Discussion34457
+Node: Sponsorship34875
+Node: About35169
+Node: Acknowledgments35446
+Node: Index35828
+Node: Variable Index39730
+
+End Tag Table
+
+
+Local Variables:
+coding: utf-8
+Info-documentlanguage: en
+End:
