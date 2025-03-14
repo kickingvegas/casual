@@ -91,7 +91,7 @@ An interface for [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Cal
   [[file:docs/editkit.org][file:docs/images/casual-editkit-main-screenshot.png]]
   
 ** [[file:docs/ibuffer.org][IBuffer]] (Elisp library: ~casual-ibuffer~)
-  An interface for the Info documentation system.
+  An interface for [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Buffer-Menus.html][IBuffer]], a tool for managing buffers in Emacs. If one was to fancifully consider Emacs as an OS, consider this to be its task manager.
 
   [[file:docs/info.org][file:docs/images/casual-ibuffer-screenshot.png]]
 
@@ -113,7 +113,7 @@ An interface for the many commands supported by I-Search.
 [[file:docs/isearch.org][file:docs/images/casual-isearch-tmenu.png]]
 
 ** [[file:docs/make-mode.org][Make]] (Elisp library: ~casual-make~)
-An interface to ~make-mode~, a mode tailored for editing a Makefile.
+An interface for ~make-mode~, a mode tailored for editing a Makefile.
 
 [[file:docs/make-mode.org][file:docs/images/casual-make-screenshot.png]]
 
