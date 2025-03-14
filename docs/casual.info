@@ -11,7 +11,7 @@ File: casual.info,  Node: Top,  Next: Motivations,  Up: (dir)
 Casual User Guide
 *****************
 
-Version: 2.4.0
+Version: 2.4.1
 
 Casual is a project to re-imagine the primary user interface for Emacs
 using keyboard-driven menus.
@@ -984,7 +984,7 @@ Makefile Type Selection
 
 As there are different variants of *make* and makefile formats, you can
 configure the mode for different specific makefile types.  This can be
-done by selecting 'm' keybinding in ‘casual-make-tmenu’.
+done by selecting the ‘t’ keybinding in ‘casual-make-tmenu’.
 
 Automatic Variables
 -------------------
@@ -992,7 +992,7 @@ Automatic Variables
 Casual Make provides a menu to enter GNU Make-style automatic variables.
 Note that each keybinding is identical to the automatic variable it
 represents to both reinforce its declaration and to avoid making another
-mapping.  This menu is available from the 'i' keybinding in
+mapping.  This menu is available from the ‘a’ keybinding in
 ‘casual-make-tmenu’.
 
 Unless you edit makefiles frequently, it is very unlikely to be able to
@@ -1328,15 +1328,15 @@ Node: Image21735
 Node: Info22976
 Node: I-Search24442
 Node: Make25603
-Node: RE-Builder27975
-Node: UX Conventions31382
-Node: Customization34083
-Node: Feedback & Discussion34457
-Node: Sponsorship34875
-Node: About35169
-Node: Acknowledgments35446
-Node: Index35828
-Node: Variable Index39730
+Node: RE-Builder27987
+Node: UX Conventions31394
+Node: Customization34095
+Node: Feedback & Discussion34469
+Node: Sponsorship34887
+Node: About35181
+Node: Acknowledgments35458
+Node: Index35840
+Node: Variable Index39742
 
 End Tag Table
 
