@@ -89,10 +89,10 @@
      :transient t)
     ("k" "Kill (Hide) Line(s)" dired-do-kill-lines :transient t)
     ("g" "Revert" revert-buffer :transient t)
-    ("f" "Filter by name…" casual-dired-find-dired-regexp :transient nil)
-    ("E" "Edit (wdired)" wdired-change-to-wdired-mode :transient nil)
-    ("T" "Thumbnails…" image-dired :if display-graphic-p :transient n)
-    ("d" "Dired…" dired :transient t)]
+    ("f" "Filter by name…" casual-dired-find-dired-regexp)
+    ("E" "Edit (wdired)" wdired-change-to-wdired-mode)
+    ("T" "Thumbnails…" image-dired :if display-graphic-p)
+    ("d" "Dired…" dired)]
 
    ["Mark"
     ("m" "Mark" dired-mark :transient t)
