@@ -45,6 +45,7 @@
     (push (casualt-suffix-test-vector "," #'casual-re-builder-settings-tmenu) test-vectors)
     (push (casualt-suffix-test-vector "i" #'casual-re-builder-regexp-info) test-vectors)
     (push (casualt-suffix-test-vector "q" #'reb-quit) test-vectors)
+    (push (casualt-suffix-test-vector "o" #'casual-reb-occur) test-vectors)
     (casualt-suffix-testbench-runner test-vectors
                                      #'casual-re-builder-tmenu
                                      '(lambda () (random 5000))))
