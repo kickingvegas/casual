@@ -83,6 +83,9 @@ regexp interactively.
     ("s" "Subexp mode" reb-enter-subexp-mode)
     ("f" "Force update" reb-force-update :transient t)]]
 
+  ["Misc"
+   ("o" "Occur" casual-reb-occur)]
+
   [:class transient-row
           (casual-lib-quit-one)
           ("i" "ⓘ Regexp Syntax" casual-re-builder-regexp-info

@@ -108,5 +108,17 @@ This is useful for commands such as `dired-do-find-regexp' and
   (interactive)
   (info "(elisp) Rx Notation"))
 
+(defun casual-reb-occur ()
+  "Run `occur' with the current `reb-regexp' in the `re-builder' target buffer.
+
+This code is taken from Argletrough post on Reddit.
+URL `https://www.reddit.com/r/emacs/comments/1j2qs3f/integration_of_rebuilder_and_occur_use_rx_syntax/'"
+  (interactive)
+  (let ((target-buffer reb-target-buffer)
+        (regexp (with-current-buffer reb-target-buffer reb-regexp)))
+    (reb-quit)
+    (switch-to-buffer target-buffer)
+    (occur regexp)))
+
 (provide 'casual-re-builder-utils)
 ;;; casual-re-builder-utils.el ends here
