@@ -48,6 +48,17 @@ casual-calc-symbolic.el
 
 ELISP_TEST_INCLUDES=casual-calc-test-utils.el
 
-PACKAGE_PATHS=-L $(CASUAL_LIB_LISP_DIR)
+PACKAGE_PATHS=					\
+-L $(EMACS_ELPA_DIR)/compat-current		\
+-L $(EMACS_ELPA_DIR)/seq-current		\
+-L $(EMACS_ELPA_DIR)/transpose-frame-current	\
+-L $(EMACS_ELPA_DIR)/transient-current		\
+-L $(EMACS_ELPA_DIR)/magit-current		\
+-L $(EMACS_ELPA_DIR)/magit-section-current	\
+-L $(EMACS_ELPA_DIR)/dash-current		\
+-L $(EMACS_ELPA_DIR)/with-editor-current	\
+-L $(EMACS_ELPA_DIR)/symbol-overlay-current	\
+-L $(CASUAL_LIB_LISP_DIR)
+
 
 include Makefile--rules.make

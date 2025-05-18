@@ -122,7 +122,7 @@ Invokes command `calc-roll-down'."
   (interactive)
   (call-interactively #'calc-roll-down))
 
-(defconst casual-calc-operators-group
+(transient-define-group casual-calc-operators-group
   ["Operators"
     ("+" "add" casual-calc--plus :transient t)
     ("-" "sub" casual-calc--minus :transient t)
@@ -130,7 +130,7 @@ Invokes command `calc-roll-down'."
     ("/" "div" casual-calc--divide :transient t)
     ("%" "mod" casual-calc--mod :transient t)])
 
-(defconst casual-calc-operators-group-row
+(transient-define-group casual-calc-operators-group-row
   ["Operators"
    :class transient-row
     ("+" "add" casual-calc--plus :transient t)
@@ -139,14 +139,14 @@ Invokes command `calc-roll-down'."
     ("/" "div" casual-calc--divide :transient t)
     ("%" "mod" casual-calc--mod :transient t)])
 
-(defconst casual-calc-basic-operators-group
+(transient-define-group casual-calc-basic-operators-group
   ["Operators"
     ("+" "add" casual-calc--plus :transient t)
     ("-" "sub" casual-calc--minus :transient t)
     ("*" "mul" casual-calc--times :transient t)
     ("/" "div" casual-calc--divide :transient t)])
 
-(defconst casual-calc-navigation-group
+(transient-define-group casual-calc-navigation-group
   [:class transient-row
           (casual-lib-quit-one)
           (casual-calc-algebraic-entry)

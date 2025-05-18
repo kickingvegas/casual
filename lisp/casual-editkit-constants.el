@@ -57,21 +57,21 @@ is non-nil, then the Unicode symbol is returned, otherwise a
 plain ASCII-range string."
   (casual-lib-unicode-db-get key casual-editkit-unicode-db))
 
-(defconst casual-editkit-navigation-group
+;; Transient navigation group for Casual EditKit menus.
+(transient-define-group casual-editkit-navigation-group
   [:class transient-row
    (casual-lib-quit-one)
    ("U" "Undo" undo :transient t)
-   (casual-lib-quit-all)]
-  "Transient navigation group for Casual EditKit menus.")
+   (casual-lib-quit-all)])
 
-(defconst casual-editkit-cursor-navigation-group
+;; Transient cursor navigation group for Casual EditKit menus.
+(transient-define-group casual-editkit-cursor-navigation-group
   ["Cursor"
    :class transient-row
    ("<left>" "←" backward-char :transient t)
    ("<right>" "→" forward-char :transient t)
    ("<up>" "↑" previous-line :transient t)
-   ("<down>" "↓" next-line :transient t)]
-  "Transient cursor navigation group for Casual EditKit menus.")
+   ("<down>" "↓" next-line :transient t)])
 
 (provide 'casual-editkit-constants)
 ;;; casual-editkit-constants.el ends here
