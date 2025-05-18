@@ -55,16 +55,17 @@ is non-nil, then the Unicode symbol is returned, otherwise a
 plain ASCII-range string."
   (casual-lib-unicode-db-get key casual-agenda-unicode-db))
 
-(defconst casual-agenda-navigation-group
+;; Casual Agenda menu navigation group.
+(transient-define-group casual-agenda-navigation-group
   [:class transient-row
    (casual-lib-quit-one)
    ("RET" "Open" org-agenda-switch-to)
    ("." "Now" casual-agenda-goto-now :transient t)
    ("C-/" "Undo" org-agenda-undo :transient t)
-   (casual-lib-quit-all)]
-  "Casual Agenda menu navigation group.")
+   (casual-lib-quit-all)])
 
-(defconst casual-agenda-agenda-navigation-group
+;; Casual Agenda navigation group within an Agenda.
+(transient-define-group casual-agenda-agenda-navigation-group
   ["Navigation"
     ["Line"
      ("p" "↑" org-agenda-previous-line
@@ -117,9 +118,7 @@ plain ASCII-range string."
      ("M-j" "🚀 ⏰" org-agenda-clock-goto
       :inapt-if-not org-clocking-p
       :description (lambda () (format "%s…" (casual-agenda-unicode-get :jumpclocked)))
-      :transient t)]]
-  "Casual Agenda navigation group within an Agenda.")
-
+      :transient t)]])
 
 (defun casual-agenda-goto-now ()
   "Redo agenda view and move point to current time \"now\"."
