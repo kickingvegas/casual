@@ -142,7 +142,8 @@
   (let ((tmpfile "casual-editkit-emoji-symbols-tmenu.txt"))
     (casualt-editkit-setup tmpfile)
     (emacs-lisp-mode)
-    (cl-letf ((casualt-mock #'emoji-search))
+    (cl-letf ((casualt-mock #'emoji-search)
+              (casualt-mock #'electric-quote-mode))
       (let ((test-vectors
              '((:binding "e😀" :command emoji-search)
                (:binding "l" :command emoji-list)
@@ -154,6 +155,7 @@
                (:binding "\"" :command casual-editkit-smart-double-quote-dwim)
                (:binding "_" :command casual-editkit-smart-low-quote-dwim)
                (:binding "c" :command casual-editkit-smart-comillas-quote-dwim)
+               (:binding "Q" :command electric-quote-mode)
                ;;(:binding "i" :command insert-char)
                )))
 

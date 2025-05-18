@@ -158,7 +158,7 @@ Commands edit, add, or jump to a bookmark are captured in this menu.
 
 ** Emoji & Symbol Insertion (~casual-editkit-emoji-symbol-tmenu~)
 
-Insert emoji and symbol characters with this menu. Smart quotes are also supported by this menu and can be applied to a text region.
+Insert emoji and symbol characters with this menu. Smart quotes are also supported by this menu and can be applied to a text region. This menu also offers the command ~electric-quote-mode~ which is bound to ~Q~.w
 
 [[file:images/casual-editkit-emoji-symbols-screenshot.png]]
 

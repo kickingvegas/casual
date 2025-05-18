@@ -29,6 +29,7 @@
 (require 'simple)
 (require 'text-mode)
 (require 'tabify)
+(require 'electric)
 (require 'casual-editkit-constants)
 (require 'casual-editkit-settings)
 
@@ -270,7 +271,12 @@ inserting common miscellaneous symbols."
    ("\"" "“double”" casual-editkit-smart-double-quote-dwim)
    ("_" "„low”" casual-editkit-smart-low-quote-dwim)
    ("c" "«comillas»" casual-editkit-smart-comillas-quote-dwim)
-   ("a" "’" (lambda () (interactive) (insert "’")))]
+   ("a" "’" (lambda () (interactive) (insert "’")))
+   ("Q" "Electric Quote"
+    electric-quote-mode
+    :description
+    (lambda () (casual-lib-checkbox-label
+                electric-quote-mode "Electric Quote")))]
 
   ["Misc"
    :class transient-row
