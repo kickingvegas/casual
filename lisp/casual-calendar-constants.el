@@ -57,8 +57,8 @@ is non-nil, then the Unicode symbol is returned, otherwise a
 plain ASCII-range string."
   (casual-lib-unicode-db-get key casual-calendar-unicode-db))
 
-
-(defconst casual-calendar--navigation-group
+;; Transient navigation group for calendar.
+(transient-define-group casual-calendar--navigation-group
   ["Navigation"
    ["Day"
     ("b" "Behind" calendar-backward-day
@@ -137,16 +137,14 @@ plain ASCII-range string."
      :transient t)
     ("C-l" "Redraw" calendar-redraw
      :description (lambda () (casual-calendar-unicode-get :redraw))
-     :transient t)]]
-  "Transient navigation group for calendar.")
+     :transient t)]])
 
-
-(defconst casual-calendar--menu-navigation-group
+;; Transient menu navigation group for calendar.
+(transient-define-group casual-calendar--menu-navigation-group
   [:class transient-row
    (casual-lib-quit-one)
    ("RET" "Dismiss" transient-quit-all)
-   (casual-lib-quit-all)]
-  "Transient menu navigation group for calendar.")
+   (casual-lib-quit-all)])
 
 (provide 'casual-calendar-constants)
 ;;; casual-calendar-constants.el ends here
