@@ -28,7 +28,8 @@ ibuffer-tests					\
 info-tests					\
 isearch-tests					\
 make-mode-tests					\
-re-builder-tests
+re-builder-tests \
+timezone-tests
 
 SRC_DIR=../lisp
 
@@ -43,7 +44,8 @@ ibuffer-tests					\
 info-tests					\
 isearch-tests					\
 make-mode-tests					\
-re-builder-tests
+re-builder-tests \
+timezone-tests
 
 lib-tests:
 	$(MAKE) -C $(SRC_DIR) $@
@@ -79,4 +81,7 @@ make-mode-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 re-builder-tests:
+	$(MAKE) -C $(SRC_DIR) $@
+
+timezone-tests:
 	$(MAKE) -C $(SRC_DIR) $@

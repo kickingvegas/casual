@@ -509,27 +509,29 @@
               (casualt-mock #'sunrise-sunset)
               (casualt-mock #'erc)
               (casualt-mock #'eww)
+              (casualt-mock #'casual-timezone-tmenu)
               (casualt-mock #'tetris)
               (casualt-mock #'zone))
 
       (let ((test-vectors
-             '((:binding "s" :command shell)
+             '((:binding "sh" :command shell)
                (:binding "!" :command shell-command)
                (:binding "&" :command async-shell-command)
-               (:binding "e" :command eshell)
-               (:binding "i" :command ielm)
-               (:binding "t" :command term)
-               (:binding "p" :command run-python)
-               (:binding "c" :command calc)
-               (:binding "r" :command re-builder)
-               (:binding "w" :command count-words)
-               (:binding "a" :command calendar)
-               (:binding "C" :command world-clock)
-               (:binding "S" :command sunrise-sunset)
-               (:binding "Ey" :command erc)
-               (:binding "M-e" :command eww)
-               (:binding "z" :command zone)
-               (:binding "T" :command tetris))))
+               (:binding "es" :command eshell)
+               (:binding "ie" :command ielm)
+               (:binding "te" :command term)
+               (:binding "py" :command run-python)
+               (:binding "cc" :command calc)
+               (:binding "re" :command re-builder)
+               (:binding "wc" :command count-words)
+               (:binding "ca" :command calendar)
+               (:binding "cl" :command world-clock)
+               (:binding "su" :command sunrise-sunset)
+               (:binding "ery" :command erc)
+               (:binding "ew" :command eww)
+               (:binding "tz" :command casual-timezone-tmenu)
+               (:binding "zo" :command zone)
+               (:binding "ts" :command tetris))))
 
         (casualt-suffix-testcase-runner test-vectors
                                         #'casual-editkit-tools-tmenu

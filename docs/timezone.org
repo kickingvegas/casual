@@ -1,0 +1,51 @@
+[[../README.org][❮ Back to Casual]]
+
+* Casual Timezone
+
+Casual Timezone is a library of commands to work with different time zones. Answer the questions "what time is it over there?" or conversely "what is the time over there, here?" with ease using this. Its top level library is ~casual-timezone~. Commands from Casual Timezone are found in the menu ~casual-timezone-tmenu~, which itself is integrated into the menu ~casual-editkit-tools-tmenu~.
+
+Casual Timezone only supports systems that have a [[https://en.wikipedia.org/wiki/Tz_database][tz database]].
+
+[[file:images/casual-timezone-planner-screenshot.png]]
+
+* Install
+
+Casual Timezone is configured as part of [[file:editkit.org][Casual Editkit]] in the Tools menu (~casual-editkit-tools-tmenu~). Refer to the [[file:editkit.org::*Install][EditKit Install]] section for instructions on how to install it.
+
+The main menu for Casual Timezone is ~casual-timezone-tmenu~ for users who wish to access it directly.
+
+* Usage
+** Basic Usage
+
+Casual Timezone offers the following commands:
+
+- ~casual-timezone-local-time-to-remote~ (menu binding: ~l~) will convert a local date to its equivalent in remote time zone.
+
+- ~casual-timezone-remote-time-to-local~ (menu binding: ~r~) will convert a date in a remote time zone to its local equivalent.
+
+- ~casual-timezone-planner~ (menu binding: ~z~) will generate a table comparing hours between the local and a remote timezone on a certain date.
+
+These commands are offered in the menu ~casual-timezone-tmenu~ shown below.
+
+[[file:images/casual-timezone-tmenu-screenshot.png]]
+
+** Unicode Symbol Support
+By enabling “Use Unicode Symbols” from the Settings menu, Casual Timezone will use Unicode symbols as appropriate in its menus.
+
+* Sponsorship
+If you enjoy using Casual Timezone, consider making a modest financial contribution to help support its development and maintenance.
+
+[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
+
+* See Also
+- [[file:agenda.org][Agenda]]
+- [[file:bookmarks.org][Bookmarks]]
+- [[file:calc.org][Calc]]
+- [[file:calendar.org][Calendar]]
+- [[file:dired.org][Dired]]
+- [[file:editkit.org][EditKit (numerous editing commands)]]
+- [[file:ibuffer.org][IBuffer]]
+- [[file:image.org][Image]]
+- [[file:info.org][Info]]
+- [[file:isearch.org][I-Search]]
+- [[file:re-builder.org][RE-Builder]]
