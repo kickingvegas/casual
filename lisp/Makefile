@@ -29,7 +29,8 @@ ibuffer-tests					\
 info-tests					\
 isearch-tests					\
 make-mode-tests					\
-re-builder-tests
+re-builder-tests				\
+timezone-tests
 
 .PHONY: lib-tests
 lib-tests:
@@ -82,3 +83,7 @@ make-mode-tests:
 .PHONY: re-builder-tests
 re-builder-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-re-builder.make tests
+
+.PHONY: timezone-tests
+timezone-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-timezone.make tests
