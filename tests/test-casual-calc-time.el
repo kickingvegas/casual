@@ -32,10 +32,12 @@
   (cl-letf
       (((symbol-function #'calc-now) (lambda (x) (interactive)(print "WARNING: override")))
        ((symbol-function #'calc-inc-month) (lambda (x) (interactive)(print "WARNING: override")))
+       ((symbol-function #'casual-calc-push-timestamp) (lambda (x) (interactive)(print "WARNING: override")))
        ((symbol-function #'calc-unix-time) (lambda (x) (interactive)(print "WARNING: override")))
        ((symbol-function #'calc-business-days-plus) (lambda (x) (interactive)(print "WARNING: override")))
        ((symbol-function #'calc-business-days-minus) (lambda (x) (interactive)(print "WARNING: override"))))
     (let* ((test-vectors '(("n" . calc-now)
+                           ("t" . casual-calc-push-timestamp)
                            ("f" . casual-calc-first-day-tmenu)
                            ("i" . calc-inc-month)
                            ("u" . calc-unix-time)
