@@ -24,19 +24,39 @@
 
 ;;; Code:
 (require 'calc)
+(require 'calc-forms)
+(require 'org)
 (require 'transient)
 (require 'casual-lib)
 (require 'casual-calc-utils)
 
+(defun casual-calc-push-timestamp ()
+  "Push timestamp on stack using `org-read-date' interface."
+  (interactive)
+  (unless (derived-mode-p 'calc-mode) (error "Not in calc mode"))
+  (let* ((ts (org-read-date t nil nil nil nil
+                           (format-time-string
+                            "%H:%M"
+                            (current-time))))
+         (calc-ts (math-parse-date ts)))
+    (calc-push calc-ts)))
+
 (transient-define-prefix casual-calc-time-tmenu ()
   "Casual time functions menu."
-  [["Time"
+  ["Time"
+   ["Stack"
     ("n" "Now" calc-now :transient t)
+    ("t" "Timestamp" casual-calc-push-timestamp :transient t)]
+
+   ["Functions"
     ("f" "First Day of›" casual-calc-first-day-tmenu)
     ("i" "Increment Month" calc-inc-month :transient t)
-    ("u" "To/From Unix Time" calc-unix-time :transient t)
-    ("a" "Add Business Days" calc-business-days-plus :transient t)
-    ("s" "Subtract Business Days" calc-business-days-minus :transient t)]
+    ("u" "To/From Unix Time" calc-unix-time :transient t)]
+
+   ["Business Days"
+    ("a" "Add" calc-business-days-plus :transient t)
+    ("s" "Subtract" calc-business-days-minus :transient t)]
+
    casual-calc-operators-group]
   casual-calc-navigation-group)
 
