@@ -29,10 +29,16 @@
 
 (ert-deftest test-casual-timezone-unicode-get ()
   (let ((casual-lib-use-unicode nil))
+    (should (string-equal (casual-timezone-unicode-get :forward) "Forward"))
+    (should (string-equal (casual-timezone-unicode-get :backward) "Backward"))
+    (should (string-equal (casual-timezone-unicode-get :current) "Current Hour"))
     (should (string-equal (casual-timezone-unicode-get :previous) "Previous"))
     (should (string-equal (casual-timezone-unicode-get :next) "Next")))
 
   (let ((casual-lib-use-unicode t))
+    (should (string-equal (casual-timezone-unicode-get :forward) "→"))
+    (should (string-equal (casual-timezone-unicode-get :backward) "←"))
+    (should (string-equal (casual-timezone-unicode-get :current) "⨀"))
     (should (string-equal (casual-timezone-unicode-get :previous) "↑"))
     (should (string-equal (casual-timezone-unicode-get :next) "↓"))))
 
@@ -42,20 +48,26 @@
     (cl-letf ((casualt-mock #'casual-timezone-jump-to-relative-now)
               (casualt-mock #'previous-line)
               (casualt-mock #'next-line)
+              (casualt-mock #'casual-timezone-planner-forward-day)
+              (casualt-mock #'casual-timezone-planner-backward-day)
               (casualt-mock #'casual-timezone-planner-current-time)
               (casualt-mock #'casual-timezone-planner-current-local)
               (casualt-mock #'casual-timezone-planner-current-remote)
               (casualt-mock #'casual-timezone-planner)
+              (casualt-mock #'world-clock)
               (casualt-mock #'quit-window))
 
       (let ((test-vectors
              '((:binding "." :command casual-timezone-jump-to-relative-now)
                (:binding "p" :command previous-line)
                (:binding "n" :command next-line)
+               (:binding "f" :command casual-timezone-planner-forward-day)
+               (:binding "b" :command casual-timezone-planner-backward-day)
                (:binding "t" :command casual-timezone-planner-current-time)
                (:binding "l" :command casual-timezone-planner-current-local)
                (:binding "r" :command casual-timezone-planner-current-remote)
                (:binding "z" :command casual-timezone-planner)
+               (:binding "w" :command world-clock)
                (:binding "q" :command quit-window))))
 
         (casualt-suffix-testcase-runner test-vectors

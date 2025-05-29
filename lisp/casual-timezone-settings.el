@@ -28,10 +28,21 @@
 (transient-define-prefix casual-timezone-settings-tmenu ()
   "Casual Timezone settings menu."
   ["Timezone: Settings"
-   ["Customize"
-    ("w" "Working Hours" casual-timezone--customize-working-hours-range)
-    (casual-lib-customize-unicode)
-    (casual-lib-customize-hide-navigation)]
+   ["Working Hours"
+    ("r" "Range" casual-timezone--customize-working-hours-range
+     :description (lambda ()
+                    (format
+                     "Range (%d..%d)"
+                     (map-elt casual-timezone-working-hours-range :start)
+                     (map-elt casual-timezone-working-hours-range :stop))))
+
+    ("g" "Glyph" casual-timezone--customize-working-hour-glyph
+     :description (lambda ()
+                    (format
+                     "Glyph (%s)"
+                     casual-timezone-working-hour-glyph)))
+
+    ("F" "Face" casual-timezone--customize-planner-working-highlight)]
 
    ["Formats"
     ("c" "Convert" casual-timezone--customize-convert-timestamp-format
@@ -52,10 +63,28 @@
     ("f" "Describe Format" casual-timezone--describe-format-time-string)]]
 
   [:class transient-row
+   (casual-lib-customize-unicode)
+   (casual-lib-customize-hide-navigation)]
+
+  [:class transient-row
    (casual-lib-quit-one)
    ("a" "About" casual-timezone-about :transient nil)
 
    (casual-lib-quit-all)])
+
+(defun casual-timezone--customize-working-hour-glyph ()
+  "Set working hour glyph.
+
+This customizes the variable `casual-timezone-working-hour-glyph'."
+  (interactive)
+  (customize-variable 'casual-timezone-working-hour-glyph))
+
+(defun casual-timezone--customize-planner-working-highlight ()
+  "Set working hour highlight face.
+
+This customizes the face `casual-timezone-working-highlight'."
+  (interactive)
+  (customize-face 'casual-timezone-planner-working-highlight))
 
 (defun casual-timezone--customize-working-hours-range ()
   "Set working hours range.

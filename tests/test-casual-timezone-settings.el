@@ -33,12 +33,16 @@
     (casualt-timezone-setup)
     (cl-letf ((casualt-mock #'casual-timezone-about)
               (casualt-mock #'casual-timezone--customize-working-hours-range)
+              (casualt-mock #'casual-timezone--customize-working-hour-glyph)
+              (casualt-mock #'casual-timezone--customize-planner-working-highlight)
               (casualt-mock #'casual-timezone--customize-convert-timestamp-format)
               (casualt-mock #'casual-timezone--customize-datestamp-format)
               (casualt-mock #'casual-timezone--describe-format-time-string))
 
       (let ((test-vectors
-             '((:binding "w" :command casual-timezone--customize-working-hours-range)
+             '((:binding "r" :command casual-timezone--customize-working-hours-range)
+               (:binding "g" :command casual-timezone--customize-working-hour-glyph)
+               (:binding "F" :command casual-timezone--customize-planner-working-highlight)
                (:binding "c" :command casual-timezone--customize-convert-timestamp-format)
                (:binding "p" :command casual-timezone--customize-datestamp-format)
                (:binding "f" :command casual-timezone--describe-format-time-string)
