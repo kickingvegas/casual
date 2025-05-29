@@ -57,7 +57,11 @@ user-customized menu."
      :inapt-if-not buffer-modified-p
      :if-not (lambda () buffer-read-only))
     ("s" "Save" save-buffer
-     :if-not (lambda () buffer-read-only))]
+     :if-not (lambda () buffer-read-only))
+    ("S" "Save as…" write-file
+     :if-not (lambda () buffer-read-only))
+    ("y" "Write region…" write-region
+     :if use-region-p)]
 
    ["Edit"
     :pad-keys t
