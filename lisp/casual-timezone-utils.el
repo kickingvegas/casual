@@ -30,6 +30,8 @@
 (defconst casual-timezone-unicode-db
   '((:previous . '("↑" "Previous"))
     (:next . '("↓" "Next"))
+    (:forward . '("→" "Forward"))
+    (:backward . '("←" "Backward"))
     (:current . '("⨀" "Current Hour")))
 
   "Unicode symbol DB to use for Timezone Transient menus.")
@@ -62,7 +64,6 @@ The specification of this variable conforms to the format string used by
   :type 'string
   :group 'casual)
 
-
 (defcustom casual-timezone-datestamp-format "%a %b %-e %Y, %l:%M %p"
   "Datestamp format used by `casual-timezone-planner'.
 
@@ -74,6 +75,31 @@ Parsing'.
 
 If 24 hour clock time is preferred, use ‘%k’ instead of ‘%l’."
   :type 'string
+  :group 'casual)
+
+(defcustom casual-timezone-working-hour-glyph "☼"
+  "Working hour glyph used by `casual-timezone-planner'.
+
+This customizable variable contains the glyph used to annotate a
+working hour in `casual-timezone-planner'."
+  :type 'string
+  :group 'casual)
+
+(defface casual-timezone-planner-working-highlight
+  '((((type tty) (class color))
+     :background "gray25")
+    (((class color) (min-colors 88) (background light))
+     :background "#FDFEB1" :foreground "black")
+    (((class color) (min-colors 88) (background dark))
+     :background "gray25")
+    (((class color) (min-colors 16) (background light))
+     :background "yellow")
+    (((class color) (min-colors 16) (background dark))
+     :background "olive")
+    (((class color) (min-colors 8))
+     :background "olive" :foreground "black")
+    (t :inverse-video t))
+  "Casual Timezone Planner working hours highlight."
   :group 'casual)
 
 (defun casual-timezone-zone-info ()
@@ -207,6 +233,8 @@ The format of the timestamp is defined in the variable
   "t" #'casual-timezone-planner-current-time
   "l" #'casual-timezone-planner-current-local
   "r" #'casual-timezone-planner-current-remote
+  "f" #'casual-timezone-planner-forward-day
+  "b" #'casual-timezone-planner-backward-day
   "p" #'previous-line
   "n" #'next-line
   "q" #'quit-window
@@ -263,7 +291,6 @@ customized via the variable `casual-timezone-working-hours-range'."
 
     (get-buffer-create tz-buffer-name)
     (switch-to-buffer (set-buffer tz-buffer-name))
-    ;;(read-only-mode)
     (casual-timezone-planner-mode)
 
     (let ((inhibit-read-only t))
@@ -381,11 +408,46 @@ This formats the output result using the customizable variables
 
     (if (and (>= hour (map-elt casual-timezone-working-hours-range :start))
              (<= hour (map-elt casual-timezone-working-hours-range :stop)))
-        (concat datestamp " " "☼")
+        (propertize
+         (concat datestamp " " casual-timezone-working-hour-glyph)
+         'face
+         'casual-timezone-planner-working-highlight)
       datestamp)))
 
-;; Transients
+(defun casual-timezone-planner-forward-day ()
+  "Move forward one day in timezone planner.
 
+Note: This command relies on `vtable-update-object' which breaks if the
+window width has changed."
+  (interactive)
+  (unless (vtable-current-table) (error "No planner table"))
+  (casual-timezone--planner-adjust-day nil))
+
+(defun casual-timezone-planner-backward-day ()
+  "Move backward one day in timezone planner.
+
+Note: This command relies on `vtable-update-object' which breaks if the
+window width has changed."
+  (interactive)
+  (unless (vtable-current-table) (error "No planner table"))
+  (casual-timezone--planner-adjust-day t))
+
+(defun casual-timezone--planner-adjust-day (backward)
+  "If BACKWARD is non-nil, adjust timezone planner -24 hours, otherwise ahead."
+  (let* ((table (vtable-current-table))
+         (objects (oref table objects))
+         (posix-day 86400)
+         (time-adjust (if backward
+                          (* -1 posix-day)
+                        posix-day)))
+    (mapc (lambda (obj)
+            (let ((adjusted-obj
+                   (seq-map (lambda (x) (+ x time-adjust)) obj)))
+              (vtable-update-object table adjusted-obj obj)))
+          objects)
+    (casual-timezone-jump-to-relative-now)))
+
+;; Transients
 (transient-define-prefix casual-timezone-planner-tmenu ()
   "Main menu for Casual Timezone."
 
@@ -401,13 +463,22 @@ This formats the output result using the customizable variables
      :description (lambda () (casual-timezone-unicode-get :next))
      :transient t)]
 
+   ["Day"
+    ("f" "Forward" casual-timezone-planner-forward-day
+     :description (lambda () (casual-timezone-unicode-get :forward))
+     :transient t)
+    ("b" "Backward" casual-timezone-planner-backward-day
+     :description (lambda () (casual-timezone-unicode-get :backward))
+     :transient t)]
+
    ["Copy Time"
-    ("t" "Time" casual-timezone-planner-current-time)
+    ("t" "Times" casual-timezone-planner-current-time)
     ("l" "Local" casual-timezone-planner-current-local)
     ("r" "Remote" casual-timezone-planner-current-remote)]
 
    ["Misc"
-    ("z" "Planner…" casual-timezone-planner)]]
+    ("z" "Planner…" casual-timezone-planner)
+    ("w" "World Clock" world-clock)]]
 
   [:class transient-row
    (casual-lib-quit-one)

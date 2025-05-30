@@ -6,7 +6,7 @@
 #+OPTIONS: ':t toc:t author:t email:t compact-itemx:t
 #+LANGUAGE: en
 
-#+MACRO: version 2.4.3
+#+MACRO: version 2.5.0
 
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_HEADER: @syncodeindex pg cp
@@ -849,6 +849,19 @@ The following table shows which format variable applies to which command.
 | ~casual-timezone-local-time-to-remote~ | ~casual-timezone-convert-datestamp-format~ |
 | ~casual-timezone-remote-time-to-local~ | ~casual-timezone-convert-datestamp-format~ |
 
+These variables can be customized via the Transient menu ~casual-timezone-settings-tmenu~. 
+
+#+TEXINFO: @unnumberedsec Planner Configuration
+#+CINDEX: Timezone Planner Configuration
+
+The following variables can control how working hours are displayed in the timezone planner.
+
+- ~casual-timezone-working-hours-range~  will set the range (start, stop) of working hours. The values are integers that map to 24-hour time (0..23).
+- ~casual-timezone-working-hour-glyph~ will set the glyph used to denote a working hour (default is ☼).
+- ~casual-timezone-planner-working-highlight~ will set the face used to highlight a working hour.
+
+These variables can be customized via the Transient menu ~casual-timezone-settings-tmenu~. 
+  
 * UX Conventions
 #+CINDEX: UX Conventions
 

@@ -11,7 +11,7 @@ File: casual.info,  Node: Top,  Next: Motivations,  Up: (dir)
 Casual User Guide
 *****************
 
-Version: 2.4.3
+Version: 2.5.0
 
 Casual is a project to re-imagine the primary user interface for Emacs
 using keyboard-driven menus.
@@ -1166,6 +1166,26 @@ Command                                  Format
 ‘casual-timezone-local-time-to-remote’   ‘casual-timezone-convert-datestamp-format’
 ‘casual-timezone-remote-time-to-local’   ‘casual-timezone-convert-datestamp-format’
 
+These variables can be customized via the Transient menu
+‘casual-timezone-settings-tmenu’.
+
+Planner Configuration
+=====================
+
+The following variables can control how working hours are displayed in
+the timezone planner.
+
+   • ‘casual-timezone-working-hours-range’ will set the range (start,
+     stop) of working hours.  The values are integers that map to
+     24-hour time (0..23).
+   • ‘casual-timezone-working-hour-glyph’ will set the glyph used to
+     denote a working hour (default is ☼).
+   • ‘casual-timezone-planner-working-highlight’ will set the face used
+     to highlight a working hour.
+
+These variables can be customized via the Transient menu
+‘casual-timezone-settings-tmenu’.
+
 
 File: casual.info,  Node: UX Conventions,  Next: Customization,  Prev: Casual Modes,  Up: Top
 
@@ -1364,6 +1384,7 @@ File: casual.info,  Node: Index,  Next: Variable Index,  Prev: Acknowledgments, 
 * Timezone:                              Timezone.             (line  6)
 * Timezone Configuration:                Timezone.             (line 19)
 * Timezone Formatting:                   Timezone.             (line 47)
+* Timezone Planner Configuration:        Timezone.             (line 71)
 * Timezone Usage:                        Timezone.             (line 31)
 * Transient Conventions:                 Transient Conventions.
                                                                (line  6)
@@ -1401,14 +1422,14 @@ Node: I-Search24468
 Node: Make25629
 Node: RE-Builder28013
 Node: Timezone31437
-Node: UX Conventions33834
-Node: Customization36535
-Node: Feedback & Discussion36909
-Node: Sponsorship37327
-Node: About37621
-Node: Acknowledgments37898
-Node: Index38280
-Node: Variable Index42474
+Node: UX Conventions34567
+Node: Customization37268
+Node: Feedback & Discussion37642
+Node: Sponsorship38060
+Node: About38354
+Node: Acknowledgments38631
+Node: Index39013
+Node: Variable Index43280
 
 End Tag Table
 
