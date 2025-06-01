@@ -6,7 +6,7 @@
 #+OPTIONS: ':t toc:t author:t email:t compact-itemx:t
 #+LANGUAGE: en
 
-#+MACRO: version 2.4.1
+#+MACRO: version 2.5.0
 
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_HEADER: @syncodeindex pg cp
@@ -804,6 +804,64 @@ Select (q) *Quit* to exit the RE-Builder tool.
 - [[info:elisp#Regular Expressions][Regular Expressions]]
 
 
+** Timezone
+#+CINDEX: Timezone
+
+Casual Timezone is a library of commands to work with different time zones. Answer the questions "what time is it over there?" or conversely "what is the time over there, here?" with ease using this. Its top level library is ~casual-timezone~. Commands from Casual Timezone are found in the menu ~casual-timezone-tmenu~, which itself is integrated into the menu ~casual-editkit-tools-tmenu~.
+
+Casual Timezone only supports systems that have a [[https://en.wikipedia.org/wiki/Tz_database][tz database]].
+
+#+TEXINFO: @unnumberedsec Configuration
+#+CINDEX: Timezone Configuration
+
+Casual Timezone is configured as part of Casual EditKit in the Tools menu (~casual-editkit-tools-tmenu~). Refer to the EditKit Install section for instructions on how to install it.
+
+The main menu for Casual Timezone is ~casual-timezone-tmenu~ for users who wish to access it directly.
+
+For more info, [[*EditKit][Casual EditKit]].
+
+#+TEXINFO: @unnumberedsec Usage
+#+CINDEX: Timezone Usage
+
+Casual Timezone offers the following commands in the menu ~casual-timezone-tmenu~.
+
+- ~casual-timezone-local-time-to-remote~ (menu binding: ~l~) will convert a local date to its equivalent in remote time zone.
+
+- ~casual-timezone-remote-time-to-local~ (menu binding: ~r~) will convert a date in a remote time zone to its local equivalent.
+
+- ~casual-timezone-planner~ (menu binding: ~z~) will generate a table comparing hours between the local and a remote timezone on a certain date.
+
+#+TEXINFO: @unnumberedsec Formatting
+#+CINDEX: Timezone Formatting
+
+The formatted representation of time in Casual Timezone is set by the following customizable variables:
+
+- ~casual-timezone-datestamp-format~
+- ~casual-timezone-convert-datestamp-format~
+
+The format specification of these variables conforms to the specification defined in [[info:elisp#Time Parsing][format-time-string]].
+
+The following table shows which format variable applies to which command.
+
+| Command                              | Format                                   |
+|--------------------------------------+------------------------------------------|
+| ~casual-timezone-planner~              | ~casual-timezone-datestamp-format~         |
+| ~casual-timezone-local-time-to-remote~ | ~casual-timezone-convert-datestamp-format~ |
+| ~casual-timezone-remote-time-to-local~ | ~casual-timezone-convert-datestamp-format~ |
+
+These variables can be customized via the Transient menu ~casual-timezone-settings-tmenu~. 
+
+#+TEXINFO: @unnumberedsec Planner Configuration
+#+CINDEX: Timezone Planner Configuration
+
+The following variables can control how working hours are displayed in the timezone planner.
+
+- ~casual-timezone-working-hours-range~  will set the range (start, stop) of working hours. The values are integers that map to 24-hour time (0..23).
+- ~casual-timezone-working-hour-glyph~ will set the glyph used to denote a working hour (default is ☼).
+- ~casual-timezone-planner-working-highlight~ will set the face used to highlight a working hour.
+
+These variables can be customized via the Transient menu ~casual-timezone-settings-tmenu~. 
+  
 * UX Conventions
 #+CINDEX: UX Conventions
 

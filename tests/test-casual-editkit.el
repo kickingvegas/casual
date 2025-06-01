@@ -41,7 +41,9 @@
               (casualt-mock #'recentf-open-files)
               (casualt-mock #'revert-buffer)
               (casualt-mock #'save-buffer)
+              (casualt-mock #'write-file)
               (casualt-mock #'widen)
+              (casualt-mock #'write-region)
 
               (casualt-mock #'insert-char)
               (casualt-mock #'fill-paragraph)
@@ -49,7 +51,7 @@
               (casualt-mock #'join-line)
               (casualt-mock #'mark-sexp)
               (casualt-mock #'kill-sexp)
-              (casualt-mock #'transpose-sexps)
+              (casualt-mock #'transpose-sexp)
 
               (casualt-mock #'org-agenda)
               (casualt-mock #'compile)
@@ -69,6 +71,8 @@
                (:binding "R" :command recentf-open-files)
                (:binding "v" :command revert-buffer)
                (:binding "s" :command save-buffer)
+               (:binding "S" :command write-file)
+               (:binding "y" :command write-region)
 
                (:binding "e" :command casual-editkit-edit-tmenu)
                (:binding "p" :command fill-paragraph)
@@ -109,6 +113,7 @@
                (:binding "x" :command save-buffers-kill-emacs))))
 
         (insert "hello")
+        (casualt-mock-active-region)
         (casualt-suffix-testcase-runner test-vectors
                                         #'casual-editkit-main-tmenu
                                         '(lambda () (random 5000)))
