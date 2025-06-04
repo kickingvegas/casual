@@ -37,6 +37,7 @@
               (casualt-mock #'casual-timezone--customize-planner-working-highlight)
               (casualt-mock #'casual-timezone--customize-convert-timestamp-format)
               (casualt-mock #'casual-timezone--customize-datestamp-format)
+              (casualt-mock #'casual-timezone--customize-zone-info-database)
               (casualt-mock #'casual-timezone--describe-format-time-string))
 
       (let ((test-vectors
@@ -46,6 +47,7 @@
                (:binding "c" :command casual-timezone--customize-convert-timestamp-format)
                (:binding "p" :command casual-timezone--customize-datestamp-format)
                (:binding "f" :command casual-timezone--describe-format-time-string)
+               (:binding "D" :command casual-timezone--customize-zone-info-database)
                (:binding "a" :command casual-timezone-about)
                )))
 

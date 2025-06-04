@@ -64,7 +64,8 @@
 
   [:class transient-row
    (casual-lib-customize-unicode)
-   (casual-lib-customize-hide-navigation)]
+   (casual-lib-customize-hide-navigation)
+   ("D" "Zoneinfo DB" casual-timezone--customize-zone-info-database)]
 
   [:class transient-row
    (casual-lib-quit-one)
@@ -78,6 +79,14 @@
 This customizes the variable `casual-timezone-working-hour-glyph'."
   (interactive)
   (customize-variable 'casual-timezone-working-hour-glyph))
+
+
+(defun casual-timezone--customize-zone-info-database ()
+  "Set path for zoneinfo database.
+
+This customizes the variable `casual-timezone-zone-info-database'."
+  (interactive)
+  (customize-variable 'casual-timezone-zone-info-database))
 
 (defun casual-timezone--customize-planner-working-highlight ()
   "Set working hour highlight face.
