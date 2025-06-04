@@ -166,13 +166,13 @@ The format of the timestamp is defined in the variable
                          (casual-timezone-zone-info))))
          (parse-ts (string-split datestr))
          (datestamp (nth 0 parse-ts))
-         (timestamp (nth 1 parse-ts))
+         (timestamp (or (nth 1 parse-ts) "00:00"))
          (local-tz (nth 1 (current-time-zone)))
          (remote-time
           (format-time-string
            casual-timezone-convert-datestamp-format
            (date-to-time
-            (concat datestamp "T" timestamp ":00" " " local-tz))
+            (concat datestamp " " timestamp ":00" " " local-tz))
            remote-tz))
          (remote-time-tz (concat remote-tz " " remote-time)))
     (kill-new remote-time-tz)
@@ -204,12 +204,12 @@ The format of the timestamp is defined in the variable
                   (nth 0 (current-time-zone nil remote-tz))))
          (parse-ts (string-split datestr))
          (datestamp (nth 0 parse-ts))
-         (timestamp (nth 1 parse-ts))
+         (timestamp (or (nth 1 parse-ts) "00:00"))
          ;; (local-tz (nth 1 (current-time-zone)))
          (index-time
           (format-time-string
            casual-timezone-convert-datestamp-format
-           (date-to-time (concat datestamp "T" timestamp ":00" " " tzcode)))))
+           (date-to-time (concat datestamp " " timestamp ":00" " " tzcode)))))
     (kill-new index-time)
     (message index-time)
     index-time))
