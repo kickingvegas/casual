@@ -11,7 +11,7 @@ File: casual.info,  Node: Top,  Next: Motivations,  Up: (dir)
 Casual User Guide
 *****************
 
-Version: 2.5.0
+Version: 2.5.1
 
 Casual is a project to re-imagine the primary user interface for Emacs
 using keyboard-driven menus.
@@ -1186,6 +1186,13 @@ the timezone planner.
 These variables can be customized via the Transient menu
 ‘casual-timezone-settings-tmenu’.
 
+Zoneinfo Database Configuration
+===============================
+
+The variable ‘casual-timezone-zone-info-database’ is default set to the
+path "/usr/share/zoneinfo/tzdata.zi".  Customize this variable if the
+zoneinfo database is located at a different path.
+
 
 File: casual.info,  Node: UX Conventions,  Next: Customization,  Prev: Casual Modes,  Up: Top
 
@@ -1389,6 +1396,7 @@ File: casual.info,  Node: Index,  Next: Variable Index,  Prev: Acknowledgments, 
 * Transient Conventions:                 Transient Conventions.
                                                                (line  6)
 * UX Conventions:                        UX Conventions.       (line  6)
+* Zoneinfo Database Configuration:       Timezone.             (line 88)
 
 
 File: casual.info,  Node: Variable Index,  Prev: Index,  Up: Top
@@ -1422,14 +1430,14 @@ Node: I-Search24468
 Node: Make25629
 Node: RE-Builder28013
 Node: Timezone31437
-Node: UX Conventions34567
-Node: Customization37268
-Node: Feedback & Discussion37642
-Node: Sponsorship38060
-Node: About38354
-Node: Acknowledgments38631
-Node: Index39013
-Node: Variable Index43280
+Node: UX Conventions34829
+Node: Customization37530
+Node: Feedback & Discussion37904
+Node: Sponsorship38322
+Node: About38616
+Node: Acknowledgments38893
+Node: Index39275
+Node: Variable Index43615
 
 End Tag Table
 
