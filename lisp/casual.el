@@ -6,7 +6,7 @@
 ;; URL: https://github.com/kickingvegas/casual
 ;; Keywords: tools, wp
 ;; Version: 2.5.1-rc.1
-;; Package-Requires: ((emacs "29.1") (transient "0.6.0"))
+;; Package-Requires: ((emacs "29.1") (transient "0.9.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -82,6 +82,10 @@
 ;;   An interface for the Emacs regular expression tool.
 ;;   URL: `https://github.com/kickingvegas/casual/blob/main/docs/re-builder.org'
 
+;; - Timezone (Elisp library: `casual-timezone')
+;;   A library of commands to work with different time zones.
+;;   URL: `https://github.com/kickingvegas/casual/blob/main/docs/timezone.org'
+
 ;; Users can choose any or all of the user interfaces made available by Casual
 ;; at their pleasure.
 
@@ -124,11 +128,11 @@
 ;; must remove that configuration. After doing so, please follow the above
 ;; instructions for installing `casual'.
 
-;; If you are using Emacs ≤ 30.0, you will need to update the built-in package
-;; `transient'. By default, `package.el' will not upgrade a built-in package.
-;; Set the customizable variable `package-install-upgrade-built-in' to `t' to
-;; override this. For more details, please refer to the "Install" section on
-;; this project's repository web page.
+;; Casual relies on the latest stable release of `transient' which may differ
+;; from the version that is preinstalled as a built-in. By b default, `package.el'
+;; will not upgrade a built-in package. Set the customizable variable
+;; `package-install-upgrade-built-in' to `t' to override this. For more details,
+;; please refer to the "Install" section on this project's repository web page.
 
 ;;; Code:
 (require 'package)
