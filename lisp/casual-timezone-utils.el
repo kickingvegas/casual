@@ -85,6 +85,11 @@ working hour in `casual-timezone-planner'."
   :type 'string
   :group 'casual)
 
+(defcustom casual-timezone-zone-info-database "/usr/share/zoneinfo/tzdata.zi"
+  "Path to the tzdata.zi file used by `casual-timezone-zone-info'."
+  :type 'file
+  :group 'casual)
+
 (defface casual-timezone-planner-working-highlight
   '((((type tty) (class color))
      :background "gray25")
@@ -108,8 +113,9 @@ working hour in `casual-timezone-planner'."
 This function reads the local zoneinfo database to obtain the
 list of timezones.
 
-This function requires that /usr/share/zoneinfo/tzdata.zi exists
-and that awk is installed."
+This function requires that the zoneinfo database in
+`casual-timezone-zone-info-database' exists and that awk is
+installed."
   (unless (not (eq system-type 'windows-nt))
     (error "Not available on Windows"))
 
@@ -119,7 +125,7 @@ and that awk is installed."
      nil
      (current-buffer)
      nil
-     "/^Z/ { print $2 }; /^L/ { print $3 }" "/usr/share/zoneinfo/tzdata.zi")
+     "/^Z/ { print $2 }; /^L/ { print $3 }" casual-timezone-zone-info-database)
     (split-string (buffer-string))))
 
 (defun casual-timezone-map-local-to-timezone (ts remote-tz)
