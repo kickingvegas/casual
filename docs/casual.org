@@ -6,7 +6,7 @@
 #+OPTIONS: ':t toc:t author:t email:t compact-itemx:t
 #+LANGUAGE: en
 
-#+MACRO: version 2.5.0
+#+MACRO: version 2.5.1
 
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_HEADER: @syncodeindex pg cp
@@ -860,7 +860,13 @@ The following variables can control how working hours are displayed in the timez
 - ~casual-timezone-working-hour-glyph~ will set the glyph used to denote a working hour (default is ☼).
 - ~casual-timezone-planner-working-highlight~ will set the face used to highlight a working hour.
 
-These variables can be customized via the Transient menu ~casual-timezone-settings-tmenu~. 
+These variables can be customized via the Transient menu ~casual-timezone-settings-tmenu~.
+
+#+TEXINFO: @unnumberedsec Zoneinfo Database Configuration
+#+CINDEX: Zoneinfo Database Configuration
+
+The variable ~casual-timezone-zone-info-database~ is default set to the path "/usr/share/zoneinfo/tzdata.zi". Customize this variable if the zoneinfo database is located at a different path.
+
   
 * UX Conventions
 #+CINDEX: UX Conventions
