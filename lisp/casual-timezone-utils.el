@@ -26,6 +26,7 @@
 (require 'org)
 (require 'vtable)
 (require 'casual-lib)
+(require 'iso8601)
 
 (defconst casual-timezone-unicode-db
   '((:previous . '("↑" "Previous"))
@@ -167,17 +168,27 @@ The format of the timestamp is defined in the variable
          (parse-ts (string-split datestr))
          (datestamp (nth 0 parse-ts))
          (timestamp (or (nth 1 parse-ts) "00:00"))
-         (local-tz (nth 1 (current-time-zone)))
+         (ctz (current-time-zone))
+         (local-tz (casual-timezone--zone-seconds-to-hours (nth 0 ctz)))
          (remote-time
           (format-time-string
            casual-timezone-convert-datestamp-format
-           (date-to-time
-            (concat datestamp " " timestamp ":00" " " local-tz))
+           (encode-time (iso8601-parse
+                         (concat datestamp "T" timestamp ":00" local-tz)))
            remote-tz))
          (remote-time-tz (concat remote-tz " " remote-time)))
     (kill-new remote-time-tz)
     (message remote-time-tz)
     remote-time-tz))
+
+(defun casual-timezone--zone-seconds-to-hours (tz)
+  "Convert TZ in seconds to ISO8601 timezone string."
+  (let* ((abs-tz (abs tz))
+         (hours (/ abs-tz 3600))
+         (remain (round (* (/ (mod abs-tz 3600) 3600.0) 60)))
+         (sign (if (< tz 0) "-" "+"))
+         (result (format "%s%02d%02d" sign hours remain)))
+    result))
 
 (defun casual-timezone-remote-time-to-local (&optional datestr remote-tz)
   "Convert date string DATESTR in remote timezone REMOTE-TZ to local.
@@ -209,7 +220,8 @@ The format of the timestamp is defined in the variable
          (index-time
           (format-time-string
            casual-timezone-convert-datestamp-format
-           (date-to-time (concat datestamp " " timestamp ":00" " " tzcode)))))
+           (encode-time
+            (iso8601-parse (concat datestamp "T" timestamp ":00" tzcode))))))
     (kill-new index-time)
     (message index-time)
     index-time))
