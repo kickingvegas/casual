@@ -122,11 +122,18 @@
     (should (eq (keymap-lookup test-map "z") #'casual-timezone-planner))
     (should (eq (keymap-lookup test-map "c") #'calendar))))
 
-
 (ert-deftest test-casual-timezone-local-time-to-remote ()
   (let* ((read-date "2025-05-23 12:00")
          (remote-tz "Europe/Berlin")
          (control "Europe/Berlin 2025-05-23 21:00:00 CEST")
+         (result (casual-timezone-local-time-to-remote read-date remote-tz)))
+
+    (should (string-equal control result))))
+
+(ert-deftest test-casual-timezone-local-time-to-remote-victoria ()
+  (let* ((read-date "2025-05-23 12:00")
+         (remote-tz "Australia/Victoria")
+         (control "Australia/Victoria 2025-05-24 05:00:00 AEST")
          (result (casual-timezone-local-time-to-remote read-date remote-tz)))
 
     (should (string-equal control result))))
@@ -139,6 +146,52 @@
 
     (should (string-equal control result))))
 
+(ert-deftest test-timezone-sanity-check ()
+  (let* ((ts "2025-06-04T17:00")
+         (control "2025-06-04 17:00:00 AEST")
+         (result
+          (format-time-string
+           casual-timezone-convert-datestamp-format
+           (encode-time (iso8601-parse (concat ts "+1000")))
+           "Australia/Victoria")))
+
+    (should (string-equal control result))))
+
+;; (format-time-string casual-timezone-convert-datestamp-format (encode-time (iso8601-parse "2025-06-04T17:00:00+0200")) "America/New_York")
+;; 2025-06-04 11:00:00 EDT
+
+(ert-deftest test-timezone-sanity-check2 ()
+  (let ((ts "2025-06-04T17:00")
+        (db (list
+             (list "+1000" "Australia/Victoria" "2025-06-04 17:00:00 AEST")
+             (list "+0200" "Europe/Berlin" "2025-06-04 17:00:00 CEST")
+             (list "+0500" "Asia/Karachi" "2025-06-04 17:00:00 PKT")
+             (list "+0530" "Asia/Kolkata" "2025-06-04 17:00:00 IST")
+             (list "+0900" "Asia/Seoul" "2025-06-04 17:00:00 KST")
+             (list "-0700" "America/Los_Angeles" "2025-06-04 17:00:00 PDT")
+             (list "-0400" "America/New_York" "2025-06-04 17:00:00 EDT"))))
+
+    (mapc (lambda (test-vector)
+            (let* ((offset (nth 0 test-vector))
+                   (tz (nth 1 test-vector))
+                   (control (nth 2 test-vector))
+                   (result
+                    (format-time-string
+                     casual-timezone-convert-datestamp-format
+                     (encode-time (iso8601-parse (concat ts offset)))
+                     tz)))
+              (print control)
+              (should (string-equal result control))))
+          db)))
+
+
+(ert-deftest test-casual-timezone--zone-seconds-to-hours ()
+  ;; (current-time-zone (current-time) "America/Chicago")
+  (should (string-equal (casual-timezone--zone-seconds-to-hours 32400) "+0900"))
+  (should (string-equal (casual-timezone--zone-seconds-to-hours 36000) "+1000"))
+  (should (string-equal (casual-timezone--zone-seconds-to-hours -18000) "-0500"))
+  (should (string-equal (casual-timezone--zone-seconds-to-hours +28800) "+0800"))
+  )
 
 (provide 'test-casual-timezone-utils)
 ;;; test-casual-timezone-utils.el ends here
