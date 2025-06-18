@@ -62,12 +62,20 @@ plain ASCII-range string."
   (backward-paragraph 2)
   (forward-line))
 
+(make-obsolete #'casual-info-browse-backward-paragraph
+               #'casual-lib-browse-backward-paragraph
+               "2.6.0")
+
 (defun casual-info-browse-forward-paragraph ()
   "Move point forward paragraph such that the first line is highlighted.
 \nThis function is intended to be used with `hl-line-mode'."
   (interactive)
   (forward-paragraph)
   (forward-line))
+
+(make-obsolete #'casual-info-browse-forward-paragraph
+               #'casual-lib-browse-forward-paragraph
+               "2.6.0")
 
 (provide 'casual-info-utils)
 ;;; casual-info-utils.el ends here

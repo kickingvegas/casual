@@ -69,7 +69,7 @@ when appropriate."
 - KEY symbol used to lookup Unicode symbol in DB.
 - DB alist containing Unicode symbol map.
 
-If the value of customizable variable `casual-lib-use-unicode'
+ the value of customizable variable `casual-lib-use-unicode'
 is non-nil, then the Unicode symbol is returned, otherwise a
 plain ASCII-range string."
   (let* ((db db)
@@ -129,6 +129,20 @@ V is either nil or non-nil."
   (if transient--stack
       "‹Back"
     "Dismiss"))
+
+(defun casual-lib-browse-backward-paragraph ()
+  "Move point backward paragraph such that the first line is highlighted.
+\nThis function is intended to be used with `hl-line-mode'."
+  (interactive)
+  (backward-paragraph 2)
+  (forward-line))
+
+(defun casual-lib-browse-forward-paragraph ()
+  "Move point forward paragraph such that the first line is highlighted.
+\nThis function is intended to be used with `hl-line-mode'."
+  (interactive)
+  (forward-paragraph)
+  (forward-line))
 
 ;; Transients
 (transient-define-suffix casual-lib-quit-all ()
