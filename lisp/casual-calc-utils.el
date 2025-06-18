@@ -144,7 +144,8 @@ Invokes command `calc-roll-down'."
     ("+" "add" casual-calc--plus :transient t)
     ("-" "sub" casual-calc--minus :transient t)
     ("*" "mul" casual-calc--times :transient t)
-    ("/" "div" casual-calc--divide :transient t)])
+    ("/" "div" casual-calc--divide :transient t)
+    ("M" "mod" casual-calc--mod :transient t)])
 
 (transient-define-group casual-calc-navigation-group
   [:class transient-row
