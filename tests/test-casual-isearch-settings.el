@@ -25,23 +25,33 @@
 ;;; Code:
 
 (require 'ert)
+(require 'casual-lib-test-utils)
 (require 'casual-isearch-test-utils)
 (require 'casual-isearch-settings)
 
-(ert-deftest test-casual-isearch-settings-tmenu-bindings ()
-  (casualt-setup)
-  (let ((test-vectors (list)))
-    (push (casualt-suffix-test-vector "G" #'casual-isearch--customize-group) test-vectors)
+(ert-deftest test-casual-isearch-settings-tmenu ()
+  (let ()
+    (casualt-setup)
+    (cl-letf ((casualt-mock #'casual-isearch--customize-group)
+              (casualt-mock #'casual-isearch--customize-allow-scroll)
+              (casualt-mock #'casual-isearch--customize-allow-motion)
+              (casualt-mock #'casual-isearch--customize-lazy-count)
+              (casualt-mock #'casual-isearch--customize-lazy-highlight))
 
-    (push (casualt-suffix-test-vector "u" #'casual-lib-customize-casual-lib-use-unicode) test-vectors)
-    (push (casualt-suffix-test-vector "n" #'casual-lib-customize-casual-lib-hide-navigation) test-vectors)
-    (push (casualt-suffix-test-vector "a" #'casual-isearch-about) test-vectors)
+      (let ((test-vectors
+             '((:binding "s" :command casual-isearch--customize-allow-scroll)
+               (:binding "m" :command casual-isearch--customize-allow-motion)
+               (:binding "h" :command casual-isearch--customize-lazy-highlight)
+               (:binding "c" :command casual-isearch--customize-lazy-count)
+               (:binding "G" :command casual-isearch--customize-group)
+               (:binding "u" :command casual-lib-customize-casual-lib-use-unicode)
+               (:binding "n" :command casual-lib-customize-casual-lib-hide-navigation)
+               (:binding "a" :command casual-isearch-about))))
 
-
-    (casualt-suffix-testbench-runner test-vectors
-                                     #'casual-isearch-settings-tmenu
-                                     '(lambda () (random 5000))))
-  (casualt-breakdown t))
+        (casualt-suffix-testcase-runner test-vectors
+                                        #'casual-isearch-settings-tmenu
+                                        '(lambda () (random 5000)))))
+    (casualt-breakdown)))
 
 (ert-deftest test-casual-isearch-about ()
   (should (stringp (casual-isearch-about))))

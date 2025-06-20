@@ -28,22 +28,64 @@
 
 (transient-define-prefix casual-isearch-settings-tmenu ()
   "Casual I-Search settings menu."
+  :refresh-suffixes t
   ["I-Search: Settings"
-   ["Customize"
-    ("G" "I-Search Group" casual-isearch--customize-group)
-    (casual-lib-customize-unicode)
-    (casual-lib-customize-hide-navigation)]]
+    ["Allow"
+     ("s" "Scroll" casual-isearch--customize-allow-scroll)
+     ("m" "Motion" casual-isearch--customize-allow-motion
+      :description (lambda ()
+                     (casual-lib-checkbox-label isearch-allow-motion "Motion")))]
+
+    ["Lazy"
+     ("h" "Highlight" casual-isearch--customize-lazy-highlight)
+     ("c" "Count" casual-isearch--customize-lazy-count
+      :description (lambda ()
+                     (casual-lib-checkbox-label isearch-lazy-count "Count")))]
+
+    ["Misc"
+     ("G" "Group" casual-isearch--customize-group)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-isearch-about :transient nil)
+   (casual-lib-customize-unicode)
+   (casual-lib-customize-hide-navigation)]
 
-          (casual-lib-quit-all)])
+  [:class transient-row
+   (casual-lib-quit-one)
+   ("a" "About" casual-isearch-about :transient nil)
+   (casual-lib-quit-all)])
 
 (defun casual-isearch--customize-group ()
   "Customize I-Search group."
   (interactive)
   (customize-group "isearch"))
+
+(defun casual-isearch--customize-allow-scroll ()
+  "Whether scrolling is allowed during incremental search.
+
+Customizes variable `isearch-allow-scroll'."
+  (interactive)
+  (customize-variable 'isearch-allow-scroll))
+
+(defun casual-isearch--customize-allow-motion ()
+  "Whether to allow movement between isearch matches by cursor motion commands.
+
+Customizes variable `isearch-allow-motion'."
+  (interactive)
+  (customize-variable 'isearch-allow-motion))
+
+(defun casual-isearch--customize-lazy-count ()
+  "Show match numbers in the search prompt.
+
+Customizes variable `isearch-lazy-count'."
+  (interactive)
+  (customize-variable 'isearch-lazy-count))
+
+(defun casual-isearch--customize-lazy-highlight ()
+  "Controls the lazy-highlighting during incremental search.
+
+Customizes variable `isearch-lazy-highlight'."
+  (interactive)
+  (customize-variable 'isearch-lazy-highlight))
 
 (defun casual-isearch-about-isearch ()
   "Casual I-Search is a Transient menu for I-Search.
