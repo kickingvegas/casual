@@ -56,6 +56,7 @@ If you enjoy using Casual Calc, consider making a modest financial contribution 
 * See Also
 - [[file:agenda.org][Agenda]]
 - [[file:bookmarks.org][Bookmarks]]
+- [[file:calc.org][Calc]]
 - [[file:calendar.org][Calendar]]
 - [[file:dired.org][Dired]]
 - [[file:editkit.org][EditKit (numerous editing commands)]]
@@ -63,4 +64,7 @@ If you enjoy using Casual Calc, consider making a modest financial contribution 
 - [[file:image.org][Image]]
 - [[file:info.org][Info]]
 - [[file:isearch.org][I-Search]]
-- [[file:re-builder.org][Re-Builder]]
+- [[file:make-mode.org][Make]]
+- [[file:man.org][Man]]  
+- [[file:re-builder.org][RE-Builder]]
+- [[file:timezone.org][Timezone]]

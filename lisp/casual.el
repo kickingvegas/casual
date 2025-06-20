@@ -78,6 +78,10 @@
 ;;   An interface to `make-mode'.
 ;;   URL: `https://github.com/kickingvegas/casual/blob/main/docs/make-mode.org'
 
+;; - Man (Elisp library: `casual-man')
+;;   An interface to `Man-mode'.
+;;   URL: `https://github.com/kickingvegas/casual/blob/main/docs/man.org'
+
 ;; - Re-Builder (Elisp library: `casual-re-builder')
 ;;   An interface for the Emacs regular expression tool.
 ;;   URL: `https://github.com/kickingvegas/casual/blob/main/docs/re-builder.org'

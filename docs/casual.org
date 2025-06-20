@@ -6,7 +6,7 @@
 #+OPTIONS: ':t toc:t author:t email:t compact-itemx:t
 #+LANGUAGE: en
 
-#+MACRO: version 2.5.1
+#+MACRO: version 2.6.0
 
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_HEADER: @syncodeindex pg cp
@@ -751,6 +751,69 @@ Unless you edit makefiles frequently, it is very unlikely to be able to recall w
 #+TEXINFO: @unnumberedsec References
 - [[info:make#Automatic Variables][Automatic Variables]]
 
+** Man
+#+CINDEX: Man
+
+Casual Man is a user interface for ~Man-mode~, a Man page reader.
+
+#+TEXINFO: @unnumberedsec Configuration
+#+CINDEX: Man Configuration
+
+In your initialization file, bind the Transient ~casual-man-tmenu~ to your key binding of preference.
+
+#+begin_src elisp :lexical no
+  (require 'casual-man) ; optional
+  (keymap-set Man-mode-map "C-o" #'casual-man-tmenu)
+#+end_src
+
+~casual-man-tmenu~ deviates from the default bindings of ~Man-mode-map~ as shown in the table below.
+
+| Default Binding | Casual Binding | Command                               | Notes                                                   |
+|-----------------+----------------+---------------------------------------+---------------------------------------------------------|
+| n               | [              | Man-previous-section                  | Make consistent with Casual Dired and IBuffer behavior. |
+| p               | ]              | Man-next-section                      | Make consistent with Casual Dired and IBuffer behavior. |
+| k               | K              | Man Kill                              | Reserve k for navigation.                               |
+|                 | k              | previous-line                         |                                                         |
+|                 | j              | next-line                             |                                                         |
+|                 | n              | casual-lib-browser-forward-paragraph  | Use to navigate paragraph forward.                      |
+|                 | p              | casual-lib-browser-backward-paragraph | Use to navigate paragraph backward.                     |
+
+The following keybindings are recommended to support consistent behavior between ~Man-mode~ and ~casual-man-tmenu~.
+
+#+begin_src elisp :lexical no
+  (keymap-set Man-mode-map "n" #'casual-lib-browse-forward-paragraph)
+  (keymap-set Man-mode-map "p" #'casual-lib-browse-backward-paragraph)
+  (keymap-set Man-mode-map "[" #'Man-previous-section)
+  (keymap-set Man-mode-map "]" #'Man-next-section)
+  (keymap-set Man-mode-map "j" #'next-line)
+  (keymap-set Man-mode-map "k" #'previous-line)
+  (keymap-set Man-mode-map "o" #'casual-man-occur-options)
+#+end_src
+
+#+TEXINFO: @unnumberedsec Usage
+#+CINDEX: Man Usage
+
+#+TEXINFO: @unnumberedsubsec Basic Usage
+
+The Man page reader can be invoked via ~M-x man~, where the user is prompted for a search key. This search key is typically the name of a command that has an associated Man page. In the Man page window, pressing ~C-o~ (or your binding of preference) will raise the menu ~casual-man-tmenu~.
+
+The following sections are offered in the menu:
+
+- Navigation :: Navigation commands with the document.
+- Paragraph :: Navigation commands by paragraph.
+- Section :: Navigation commands by section.
+- Link :: Jump to other Man pages referenced in the current Man page.
+- Page :: If the Man page reader is configured to display all manual pages for a given search key, navigation commands for multiple pages is provided.
+
+#+TEXINFO: @unnumberedsubsec Options Navigation
+
+~casual-man-tmenu~ provides the menu item ‘o’ which runs the command ~casual-man-occur-options~. This will invoke ~occur~ with a regexp that searches for command line options (for example, "--foo", "-a") that can be navigated via the ~occur~ interface.
+
+#+TEXINFO: @unnumberedsubsec Settings
+
+By default, the Man page reader will /not/ display all manual pages for given search key. This can be changed in the Settings menu ~casual-man-settings-tmenu~ that can be invoked by pressing ‘,’ in ~casual-man-tmenu~. 
+
+Press ‘s’ and configure ~Man-switches~ to have the value "-a" to get all manual pages.
 
 ** RE-Builder
 #+CINDEX: RE-Builder

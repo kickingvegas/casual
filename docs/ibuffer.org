@@ -164,12 +164,13 @@ If you enjoy using Casual IBuffer, consider making a modest financial contributi
 - [[file:bookmarks.org][Bookmarks]]
 - [[file:calc.org][Calc]]
 - [[file:calendar.org][Calendar]]
+- [[file:dired.org][Dired]]
 - [[file:editkit.org][EditKit (numerous editing commands)]]
+- [[file:ibuffer.org][IBuffer]]
 - [[file:image.org][Image]]
 - [[file:info.org][Info]]
 - [[file:isearch.org][I-Search]]
-- [[file:re-builder.org][Re-Builder]]
-
-* Acknowledgments
-A heartfelt thanks to all the contributors to IBuffer and [[https://github.com/magit/transient][Transient]]. Casual IBuffer would not be possible without your efforts.
-
+- [[file:make-mode.org][Make]]
+- [[file:man.org][Man]]  
+- [[file:re-builder.org][RE-Builder]]
+- [[file:timezone.org][Timezone]]

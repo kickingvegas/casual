@@ -99,8 +99,8 @@
                ;; Navigation
                (:binding "k" :command Info-prev-reference)
                (:binding "j" :command Info-next-reference)
-               (:binding "p" :command casual-info-browse-backward-paragraph)
-               (:binding "n" :command casual-info-browse-forward-paragraph)
+               (:binding "p" :command casual-lib-browse-backward-paragraph)
+               (:binding "n" :command casual-lib-browse-forward-paragraph)
                (:binding "[" :command Info-backward-node)
                (:binding "]" :command Info-forward-node)
                (:binding "h" :command Info-prev)

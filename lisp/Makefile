@@ -29,6 +29,7 @@ ibuffer-tests					\
 info-tests					\
 isearch-tests					\
 make-mode-tests					\
+man-tests					\
 re-builder-tests				\
 timezone-tests
 
@@ -79,6 +80,10 @@ isearch-tests:
 .PHONY: make-mode-tests
 make-mode-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-make-mode.make tests
+
+.PHONY: man-tests
+man-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-man.make tests
 
 .PHONY: re-builder-tests
 re-builder-tests:

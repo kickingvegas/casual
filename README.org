@@ -42,6 +42,7 @@ Editorially, all design decisions for Casual are ultimately the opinion of Charl
   - [[#info-elisp-library-casual-info][Info (Elisp library: ~casual-info~)]]
   - [[#i-search-elisp-library-casual-isearch][I-Search (Elisp library: ~casual-isearch~)]]
   - [[#make-elisp-library-casual-make][Make (Elisp library: ~casual-make~)]]
+  - [[#man-elisp-library-casual-man][Man (Elisp library: ~casual-man~)]]
   - [[#re-builder-elisp-library-casual-re-builder][Re-Builder (Elisp library: ~casual-re-builder~)]]
   - [[#timezone-elisp-library-casual-timezone][Timezone (Elisp library: ~casual-timezone~)]]
 - [[#requirements][Requirements]]
@@ -80,7 +81,6 @@ An interface for [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Cal
 
 [[file:docs/images/casual-calendar-screenshot.png]]
 
-
 ** [[file:docs/dired.org][Dired]] (Elisp library: ~casual-dired~)
   An interface for the venerable file manager Dired.
 
@@ -117,6 +117,11 @@ An interface for the many commands supported by I-Search.
 An interface for ~make-mode~, a mode tailored for editing a Makefile.
 
 [[file:docs/make-mode.org][file:docs/images/casual-make-screenshot.png]]
+
+** [[file:docs/man.org][Man]] (Elisp library: ~casual-man~)
+An interface for ~Man-mode~, a Man page reader.
+
+[[file:docs/man.org][file:docs/images/casual-man-screenshot.png]]
 
 ** [[file:docs/re-builder.org][Re-Builder]] (Elisp library: ~casual-re-builder~)
 An interface for the Emacs regular expression tool.
@@ -155,6 +160,7 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[file:docs/info.org::*Install][Info]]
 - [[file:docs/isearch.org::*Install][I-Search]]
 - [[file:docs/make-mode.org::*Install][Make]]
+- [[file:docs/man.org::*Install][Man]]
 - [[file:docs/re-builder.org::*Install][Re-Builder]]
 
 ** Upgrading to Casual 2.x

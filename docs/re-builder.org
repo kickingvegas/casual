@@ -69,3 +69,7 @@ If you enjoy using Casual RE-Builder, consider making a modest financial contrib
 - [[file:image.org][Image]]
 - [[file:info.org][Info]]
 - [[file:isearch.org][I-Search]]
+- [[file:make-mode.org][Make]]
+- [[file:man.org][Man]]  
+- [[file:re-builder.org][RE-Builder]]
+- [[file:timezone.org][Timezone]]
