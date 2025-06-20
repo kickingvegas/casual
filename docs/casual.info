@@ -61,6 +61,7 @@ Casual Modes
 * Calendar::
 * Dired::
 * EditKit::
+* Help::
 * IBuffer::
 * Image::
 * Info::
@@ -208,6 +209,7 @@ The following modes are supported by Casual:
 * Calendar::
 * Dired::
 * EditKit::
+* Help::
 * IBuffer::
 * Image::
 * Info::
@@ -622,7 +624,7 @@ References
    • *note Dired: (emacs)Dired.
 
 
-File: casual.info,  Node: EditKit,  Next: IBuffer,  Prev: Dired,  Up: Casual Modes
+File: casual.info,  Node: EditKit,  Next: Help,  Prev: Dired,  Up: Casual Modes
 
 4.6 EditKit
 ===========
@@ -683,9 +685,77 @@ References
    • *note Registers: (emacs)Registers.
 
 
-File: casual.info,  Node: IBuffer,  Next: Image,  Prev: EditKit,  Up: Casual Modes
+File: casual.info,  Node: Help,  Next: IBuffer,  Prev: EditKit,  Up: Casual Modes
 
-4.7 IBuffer
+4.7 Help
+========
+
+Casual Help is a user interface for ‘help-mode’, a major mode for
+viewing help text and navigating references in it.
+
+Configuration
+=============
+
+In your initialization file, bind the Transient ‘casual-help-tmenu’ to
+your key binding of preference.
+
+     (require 'casual-help) ; optional
+     (keymap-set help-mode-map "C-o" #'casual-help-tmenu)
+
+‘casual-help-tmenu’ deviates from the default bindings of
+‘help-mode-map’ as shown in the table below.
+
+Default Binding   Casual Binding   Command                                 Notes
+------------------------------------------------------------------------------------------------------------------------
+l                 M-[              help-go-back                            Make consistent with Casual Info behavior.
+r                 M-]              help-go-forward                         Make consistent with Casual Info behavior.
+n                 N                help-goto-next-page                     Use to navigate to next page.
+p                 P                help-goto-previous-page                 Use to navigate to previous page.
+                  n                casual-lib-browser-forward-paragraph    Use to navigate paragraph forward.
+                  p                casual-lib-browser-backward-paragraph   Use to navigate paragraph backward.
+
+The following keybindings are recommended to support consistent behavior
+between ‘help-mode’ and ‘casual-help-tmenu’.
+
+     (keymap-set help-mode-map "M-[" #'help-go-back)
+     (keymap-set help-mode-map "M-]" #'help-go-forward)
+     (keymap-set help-mode-map "p" #'casual-lib-browse-backward-paragraph)
+     (keymap-set help-mode-map "n" #'casual-lib-browse-forward-paragraph)
+     (keymap-set help-mode-map "P" #'help-goto-previous-page)
+     (keymap-set help-mode-map "N" #'help-goto-next-page)
+     (keymap-set help-mode-map "j" #'forward-button)
+     (keymap-set help-mode-map "k" #'backward-button)
+
+Usage
+=====
+
+Basic Usage
+-----------
+
+After invoking help via a ‘describe-’ command, invoke
+‘casual-help-tmenu’ using the binding ‘C-o’ (or your binding of
+preference).
+
+The following sections are offered in the menu:
+
+Navigation
+     Navigation commands with the document.
+History
+     Navigate history of help invocations.
+Link
+     Navigate to different references in the help buffer.
+Describe
+     Get help for different Elisp types.
+Info
+     If available, then open this help topic in Info (info.org).
+Source
+     Show the Elisp source.  If the help displayed is for a customizable
+     variable, then show a customize menu item.
+
+
+File: casual.info,  Node: IBuffer,  Next: Image,  Prev: Help,  Up: Casual Modes
+
+4.8 IBuffer
 ===========
 
 Casual IBuffer provides a user interface to Emacs IBuffer, a mode
@@ -760,7 +830,7 @@ References
 
 File: casual.info,  Node: Image,  Next: Info,  Prev: IBuffer,  Up: Casual Modes
 
-4.8 Image
+4.9 Image
 =========
 
 Casual Image is a user interface for Image Mode.  Its top level library
@@ -820,8 +890,8 @@ References
 
 File: casual.info,  Node: Info,  Next: I-Search,  Prev: Image,  Up: Casual Modes
 
-4.9 Info
-========
+4.10 Info
+=========
 
 Casual Info is a user interface for the Emacs Info Reader.  Its top
 level library is ‘casual-info’.
@@ -883,7 +953,7 @@ References
 
 File: casual.info,  Node: I-Search,  Next: Make,  Prev: Info,  Up: Casual Modes
 
-4.10 I-Search
+4.11 I-Search
 =============
 
 Casual I-Search is a user interface for Incremental Search.  Its top
@@ -935,7 +1005,7 @@ References
 
 File: casual.info,  Node: Make,  Next: Man,  Prev: I-Search,  Up: Casual Modes
 
-4.11 Make
+4.12 Make
 =========
 
 Casual Make is a user interface to ‘make-mode’, a mode tailored for
@@ -1014,7 +1084,7 @@ References
 
 File: casual.info,  Node: Man,  Next: RE-Builder,  Prev: Make,  Up: Casual Modes
 
-4.12 Man
+4.13 Man
 ========
 
 Casual Man is a user interface for ‘Man-mode’, a Man page reader.
@@ -1101,7 +1171,7 @@ manual pages.
 
 File: casual.info,  Node: RE-Builder,  Next: Timezone,  Prev: Man,  Up: Casual Modes
 
-4.13 RE-Builder
+4.14 RE-Builder
 ===============
 
 Casual RE-Builder is a user interface for RE-Builder.  Its top level
@@ -1193,7 +1263,7 @@ References
 
 File: casual.info,  Node: Timezone,  Prev: RE-Builder,  Up: Casual Modes
 
-4.14 Timezone
+4.15 Timezone
 =============
 
 Casual Timezone is a library of commands to work with different time
@@ -1455,6 +1525,9 @@ File: casual.info,  Node: Index,  Next: Variable Index,  Prev: Acknowledgments, 
 * EditKit Usage:                         EditKit.              (line 25)
 * Feedback:                              Feedback & Discussion.
                                                                (line  6)
+* Help:                                  Help.                 (line  6)
+* Help Configuration:                    Help.                 (line 12)
+* Help Usage:                            Help.                 (line 44)
 * I-Search:                              I-Search.             (line  6)
 * I-Search Configuration:                I-Search.             (line 12)
 * I-Search Usage:                        I-Search.             (line 21)
@@ -1505,32 +1578,33 @@ File: casual.info,  Node: Variable Index,  Prev: Index,  Up: Top
 
 Tag Table:
 Node: Top228
-Node: Motivations1944
-Node: Requirements3437
-Node: Transient Conventions3701
-Node: Casual Modes5429
-Node: Agenda6442
-Node: Bookmarks7999
-Node: Calc10274
-Node: Calendar13415
-Node: Dired14763
-Node: EditKit17988
-Node: IBuffer19712
-Node: Image21777
-Node: Info23018
-Node: I-Search24484
-Node: Make25645
-Node: Man28022
-Node: RE-Builder31409
-Node: Timezone34832
-Node: UX Conventions38224
-Node: Customization40925
-Node: Feedback & Discussion41299
-Node: Sponsorship41717
-Node: About42011
-Node: Acknowledgments42288
-Node: Index42670
-Node: Variable Index47229
+Node: Motivations1953
+Node: Requirements3446
+Node: Transient Conventions3710
+Node: Casual Modes5438
+Node: Agenda6460
+Node: Bookmarks8017
+Node: Calc10292
+Node: Calendar13433
+Node: Dired14781
+Node: EditKit18006
+Node: Help19727
+Node: IBuffer22436
+Node: Image24498
+Node: Info25739
+Node: I-Search27207
+Node: Make28368
+Node: Man30745
+Node: RE-Builder34132
+Node: Timezone37555
+Node: UX Conventions40947
+Node: Customization43648
+Node: Feedback & Discussion44022
+Node: Sponsorship44440
+Node: About44734
+Node: Acknowledgments45011
+Node: Index45393
+Node: Variable Index50171
 
 End Tag Table
 

@@ -37,6 +37,7 @@ Editorially, all design decisions for Casual are ultimately the opinion of Charl
   - [[#calendar-elisp-library-casual-calendar][Calendar (Elisp library: ~casual-calendar~)]]
   - [[#dired-elisp-library-casual-dired][Dired (Elisp library: ~casual-dired~)]]
   - [[#editkit-elisp-library-casual-editkit][EditKit (Elisp library: ~casual-editkit~)]]
+  - [[#help-elisp-library-casual-help][Help (Elisp library: ~casual-help~)]]
   - [[#ibuffer-elisp-library-casual-ibuffer][IBuffer (Elisp library: ~casual-ibuffer~)]]
   - [[#image-elisp-library-casual-image][Image (Elisp library: ~casual-image~)]]
   - [[#info-elisp-library-casual-info][Info (Elisp library: ~casual-info~)]]
@@ -87,14 +88,22 @@ An interface for [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Cal
   [[file:docs/dired.org][file:docs/images/casual-dired-screenshot.png]]
   
 ** [[file:docs/editkit.org][EditKit]] (Elisp library: ~casual-editkit~)
-  A cornucopia of interfaces for the different editing features (e.g. marking, copying, killing, duplicating, transforming, deleting) of Emacs. Included are interfaces for rectangle, register, macro, and project commands.
+A cornucopia of interfaces for the different editing features (e.g. marking, copying, killing, duplicating, transforming, deleting) of Emacs. Included are interfaces for rectangle, register, macro, and project commands.
 
   [[file:docs/editkit.org][file:docs/images/casual-editkit-main-screenshot.png]]
+
+
+** [[file:docs/help.org][Help]] (Elisp library: ~casual-help~)
+
+An interface for ~help-mode~, a major mode for viewing help text and navigating references in it.
+
+[[file:docs/help.org][file:docs/images/casual-help-screenshot.png]]
+  
   
 ** [[file:docs/ibuffer.org][IBuffer]] (Elisp library: ~casual-ibuffer~)
-  An interface for [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Buffer-Menus.html][IBuffer]], a tool for managing buffers in Emacs. If one was to fancifully consider Emacs as an OS, consider this to be its task manager.
+An interface for [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Buffer-Menus.html][IBuffer]], a tool for managing buffers in Emacs. If one was to fancifully consider Emacs as an OS, consider this to be its task manager.
 
-  [[file:docs/info.org][file:docs/images/casual-ibuffer-screenshot.png]]
+[[file:docs/info.org][file:docs/images/casual-ibuffer-screenshot.png]]
 
 ** [[file:docs/image.org][Image]] (Elisp library: ~casual-image~)
 An interface for viewing an image file with [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Image-Mode.html#Image-Mode][image-mode]]. This interface deviates significantly with naming conventions used by ~image-mode~ to be more in alignment with conventional image editing tools.
@@ -155,6 +164,7 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[file:docs/calendar.org::*Install][Calendar]]
 - [[file:docs/dired.org::*Install][Dired]]
 - [[file:docs/editkit.org::*Install][EditKit]]
+- [[file:docs/help.org::*Install][Help]]
 - [[file:docs/ibuffer.org::*Install][IBuffer]]
 - [[file:docs/image.org::*Install][Image]]
 - [[file:docs/info.org::*Install][Info]]
@@ -162,7 +172,8 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[file:docs/make-mode.org::*Install][Make]]
 - [[file:docs/man.org::*Install][Man]]
 - [[file:docs/re-builder.org::*Install][Re-Builder]]
-
+- [[file:docs/timezone.org::*Install][Timezone]]
+  
 ** Upgrading to Casual 2.x
 If you have been using an earlier version 1.x of Casual, thank you. Please use the following guidance:
 
