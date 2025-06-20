@@ -24,6 +24,7 @@
 
 ;;; Code:
 (require 'ert)
+(require 'casual-lib-test-utils)
 (require 'casual-info-test-utils)
 (require 'casual-info-utils)
 

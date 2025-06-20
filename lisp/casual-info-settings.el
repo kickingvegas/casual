@@ -33,51 +33,66 @@
 ;;; Menus
 (transient-define-prefix casual-info-settings-tmenu ()
   ["Customize Info"
-   ("A" "Additional directories list"
-    casual-info--customize-info-additional-directory-list)
-   ("i" "I-search multiple nodes"
-    casual-info--customize-info-isearch-search
-    :description (lambda ()
-                   (casual-lib-checkbox-label
-                    Info-isearch-search
-                    "I-search through multiple nodes")))
+   [("h" "Hide note references"
+     casual-info--customize-info-hide-note-references)
+    ("A" "Additional directories list"
+     casual-info--customize-info-additional-directory-list)
+
+    ("G" "Info Group"
+     casual-info--customize-info-group)
+    ]
+
+   [("i" "I-search multiple nodes"
+     casual-info--customize-info-isearch-search
+     :description (lambda ()
+                    (casual-lib-checkbox-label
+                     Info-isearch-search
+                     "I-search through multiple nodes")))
+    ("c" "Prefer subnodes when scrolling"
+     casual-info--customize-info-scroll-prefer-subnodes
+     :description (lambda ()
+                    (casual-lib-checkbox-label
+                     Info-scroll-prefer-subnodes
+                     "Prefer subnodes when scrolling")))]]
+
+  [:class transient-row
    (casual-lib-customize-unicode)
-   ("c" "Prefer subnodes when scrolling"
-    casual-info--customize-info-scroll-prefer-subnodes
-    :description (lambda ()
-                   (casual-lib-checkbox-label
-                    Info-scroll-prefer-subnodes
-                    "Prefer subnodes when scrolling")))
    (casual-lib-customize-hide-navigation)]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-info-about :transient nil)
-
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("a" "About" casual-info-about :transient nil)
+   (casual-lib-quit-all)])
 
 ;;; Functions
 (defun casual-info--customize-info-isearch-search ()
-  "Customize variable `Info-isearch-search'.
+  "If non-nil, isearch through multiple nodes.
 
-If non-nil, isearch in Info searches through multiple nodes."
+Customize variable `Info-isearch-search'."
   (interactive)
   (customize-variable 'Info-isearch-search))
 
 (defun casual-info--customize-info-additional-directory-list ()
-  "Customize variable `Info-additional-directory-list'.
+  "List of additional directories to search for Info documentation files.
 
-List of additional directories to search for Info documentation files.
+Customize variable `Info-additional-directory-list'.
 These directories are searched after those in `Info-directory-list'."
   (interactive)
   (customize-variable 'Info-additional-directory-list))
 
 (defun casual-info--customize-info-scroll-prefer-subnodes ()
-  "Customize variable `Info-scroll-prefer-subnodes'.
+  "If non-nil, \\<Info-mode-map>\\[Info-scroll-up] in a menu visits subnodes.
 
-If non-nil, \\<Info-mode-map>\\[Info-scroll-up] in a menu visits subnodes."
+Customize variable `Info-scroll-prefer-subnodes'."
   (interactive)
   (customize-variable 'Info-scroll-prefer-subnodes))
+
+(defun casual-info--customize-info-hide-note-references ()
+  "If non-nil, hide the tag and section reference in *note and * menu items.
+
+Customize variable `Info-hide-note-references'."
+  (interactive)
+  (customize-variable 'Info-hide-note-references))
 
 (defun casual-info--customize-info-group ()
   "Call the Info customization group.
