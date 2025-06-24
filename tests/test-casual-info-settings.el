@@ -25,19 +25,32 @@
 ;;; Code:
 
 (require 'ert)
+(require 'casual-lib-test-utils)
 (require 'casual-info-test-utils)
 (require 'casual-info-settings)
 
-(ert-deftest test-casual-info-settings-tmenu-bindings ()
-  (casualt-info-setup)
-  (let ((test-vectors (list)))
-    (push (casualt-suffix-test-vector "u" #'casual-lib-customize-casual-lib-use-unicode) test-vectors)
-    (push (casualt-suffix-test-vector "a" #'casual-info-about) test-vectors)
+(ert-deftest test-casual-info-settings-tmenu ()
+  (let ()
+    (casualt-info-setup)
+    (cl-letf ((casualt-mock #'casual-info--customize-info-group)
+              (casualt-mock #'casual-info--customize-info-hide-note-references)
+              (casualt-mock #'casual-info--customize-info-additional-directory-list)
+              (casualt-mock #'casual-info--customize-info-isearch-search)
+              (casualt-mock #'casual-info--customize-info-scroll-prefer-subnodes)
+              (casualt-mock #'casual-info-about))
 
-    (casualt-suffix-testbench-runner test-vectors
-                                     #'casual-info-settings-tmenu
-                                     '(lambda () (random 5000))))
-  (casualt-info-breakdown t))
+      (let ((test-vectors
+             '((:binding "h" :command casual-info--customize-info-hide-note-references)
+               (:binding "A" :command casual-info--customize-info-additional-directory-list)
+               (:binding "i" :command casual-info--customize-info-isearch-search)
+               (:binding "c" :command casual-info--customize-info-scroll-prefer-subnodes)
+               (:binding "G" :command casual-info--customize-info-group)
+               (:binding "a" :command casual-info-about))))
+
+        (casualt-suffix-testcase-runner test-vectors
+                                        #'casual-info-settings-tmenu
+                                        '(lambda () (random 5000)))))
+    (casualt-info-breakdown)))
 
 (provide 'test-casual-info-settings)
 ;;; test-casual-info-setttings.el ends here

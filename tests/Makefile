@@ -24,11 +24,13 @@ calc-tests					\
 calendar-tests					\
 dired-tests					\
 editkit-tests					\
+help-tests					\
 ibuffer-tests					\
 info-tests					\
 isearch-tests					\
 make-mode-tests					\
-re-builder-tests \
+man-tests					\
+re-builder-tests				\
 timezone-tests
 
 SRC_DIR=../lisp
@@ -40,11 +42,13 @@ calc-tests					\
 calendar-tests					\
 dired-tests					\
 editkit-tests					\
+help-tests					\
 ibuffer-tests					\
 info-tests					\
 isearch-tests					\
 make-mode-tests					\
-re-builder-tests \
+man-tests					\
+re-builder-tests				\
 timezone-tests
 
 lib-tests:
@@ -68,6 +72,9 @@ dired-tests:
 editkit-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
+help-tests:
+	$(MAKE) -C $(SRC_DIR) $@
+
 ibuffer-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
@@ -78,6 +85,9 @@ isearch-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 make-mode-tests:
+	$(MAKE) -C $(SRC_DIR) $@
+
+man-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 re-builder-tests:

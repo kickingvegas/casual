@@ -5,7 +5,7 @@
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual
 ;; Keywords: tools, wp
-;; Version: 2.5.3
+;; Version: 2.5.4-rc.1
 ;; Package-Requires: ((emacs "29.1") (transient "0.9.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -77,6 +77,10 @@
 ;; - Make (Elisp library: `casual-make')
 ;;   An interface to `make-mode'.
 ;;   URL: `https://github.com/kickingvegas/casual/blob/main/docs/make-mode.org'
+
+;; - Man (Elisp library: `casual-man')
+;;   An interface to `Man-mode'.
+;;   URL: `https://github.com/kickingvegas/casual/blob/main/docs/man.org'
 
 ;; - Re-Builder (Elisp library: `casual-re-builder')
 ;;   An interface for the Emacs regular expression tool.

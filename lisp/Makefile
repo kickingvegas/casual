@@ -25,10 +25,12 @@ calc-tests					\
 calendar-tests					\
 dired-tests					\
 editkit-tests					\
+help-tests					\
 ibuffer-tests					\
 info-tests					\
 isearch-tests					\
 make-mode-tests					\
+man-tests					\
 re-builder-tests				\
 timezone-tests
 
@@ -60,6 +62,10 @@ dired-tests:
 editkit-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-editkit.make tests
 
+.PHONY: help-tests
+help-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-help.make tests
+
 .PHONY: image-tests
 image-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-image.make tests
@@ -79,6 +85,10 @@ isearch-tests:
 .PHONY: make-mode-tests
 make-mode-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-make-mode.make tests
+
+.PHONY: man-tests
+man-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-man.make tests
 
 .PHONY: re-builder-tests
 re-builder-tests:

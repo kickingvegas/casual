@@ -107,10 +107,10 @@
 
    ["Paragraph"
     :description (lambda () (casual-info-unicode-get :paragraph))
-    ("p" "Previous" casual-info-browse-backward-paragraph
+    ("p" "Previous" casual-lib-browse-backward-paragraph
      :description (lambda () (casual-info-unicode-get :up-arrow))
      :transient t)
-    ("n" "Next" casual-info-browse-forward-paragraph
+    ("n" "Next" casual-lib-browse-forward-paragraph
      :description (lambda () (casual-info-unicode-get :down-arrow))
      :transient t)]
 
