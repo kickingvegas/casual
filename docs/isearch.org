@@ -61,17 +61,4 @@ If you enjoy using Casual I-Search, consider making a modest financial contribut
 
 
 * See Also
-- [[file:agenda.org][Agenda]]
-- [[file:bookmarks.org][Bookmarks]]
-- [[file:calc.org][Calc]]
-- [[file:calendar.org][Calendar]]
-- [[file:dired.org][Dired]]
-- [[file:editkit.org][EditKit (numerous editing commands)]]
-- [[file:ibuffer.org][IBuffer]]
-- [[file:image.org][Image]]
-- [[file:info.org][Info]]
-- [[file:isearch.org][I-Search]]
-- [[file:make-mode.org][Make]]
-- [[file:man.org][Man]]  
-- [[file:re-builder.org][RE-Builder]]
-- [[file:timezone.org][Timezone]]
+[[file:agenda.org][Agenda]], [[file:bookmarks.org][Bookmarks]], [[file:calc.org][Calc]], [[file:calendar.org][Calendar]], [[file:dired.org][Dired]], [[file:editkit.org][EditKit (numerous editing commands)]], [[file:help.org][Help]], [[file:ibuffer.org][IBuffer]], [[file:image.org][Image]], [[file:info.org][Info]], [[file:isearch.org][I-Search]], [[file:make-mode.org][Make]], [[file:man.org][Man]], [[file:re-builder.org][RE-Builder]], [[file:timezone.org][Timezone]]

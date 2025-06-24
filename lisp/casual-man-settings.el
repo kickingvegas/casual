@@ -22,6 +22,7 @@
 ;;
 
 ;;; Code:
+(require 'man)
 (require 'casual-lib)
 
 (transient-define-prefix casual-man-settings-tmenu ()

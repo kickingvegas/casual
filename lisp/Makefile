@@ -25,6 +25,7 @@ calc-tests					\
 calendar-tests					\
 dired-tests					\
 editkit-tests					\
+help-tests					\
 ibuffer-tests					\
 info-tests					\
 isearch-tests					\
@@ -60,6 +61,10 @@ dired-tests:
 .PHONY: editkit-tests
 editkit-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-editkit.make tests
+
+.PHONY: help-tests
+help-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-help.make tests
 
 .PHONY: image-tests
 image-tests:
