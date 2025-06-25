@@ -39,6 +39,14 @@ The following keybindings are recommended to support consistent behavior between
   (keymap-set help-mode-map "k" #'backward-button)
 #+end_src
 
+** helpful mode
+
+"[[https://github.com/Wilfred/helpful][Helpful]] is an alternative to the built-in Emacs help that provides much
+more contextual information." It works as a drop-in replacement for the
+base emacs ~help~ mode, and the above installation instructions for
+~casual-help-tmenu~ work, /mutatis mutandis/ (just use
+~helpful-mode-map~), for ~helpful~.
+
 * Usage
 
 ** Basic Usage
@@ -53,7 +61,7 @@ The following sections are offered in the menu:
 - Describe :: Get help for different Elisp types.
 - Info :: If available, then open this help topic in [[file:info.org][Info]].
 - Source :: Show the Elisp source. If the help displayed is for a customizable variable, then show a customize menu item.
-  
+
 *** Unicode Symbol Support
 By enabling “Use Unicode Symbols” from the Settings menu, Casual Man will use Unicode symbols as appropriate in its menus.
 
