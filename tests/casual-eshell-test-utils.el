@@ -1,4 +1,4 @@
-;;; casual-man-test-utils.el --- Casual Test Utils       -*- lexical-binding: t; -*-
+;;; casual-eshell-test-utils.el --- Casual Test Utils       -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2025  Charles Y. Choi
 
@@ -27,14 +27,13 @@
 (require 'casual-lib)
 (require 'kmacro)
 
-(defun casualt-man-setup ()
-  "Casual man setup."
-  (setopt Man-prefer-synchronous-call t)
-  (man "tar"))
+(defun casualt-eshell-setup ()
+  "Casual Eshell setup."
+    )
 
-(defun casualt-man-breakdown ()
+(defun casualt-eshell-breakdown ()
   "Casual man breakdown."
   )
 
-(provide 'casual-man-test-utils)
-;;; casual-man-test-utils.el ends here
+(provide 'casual-eshell-test-utils)
+;;; casual-eshell-test-utils.el ends here

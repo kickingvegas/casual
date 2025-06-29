@@ -25,6 +25,7 @@ calc-tests					\
 calendar-tests					\
 dired-tests					\
 editkit-tests					\
+eshell-tests					\
 help-tests					\
 ibuffer-tests					\
 info-tests					\
@@ -61,6 +62,10 @@ dired-tests:
 .PHONY: editkit-tests
 editkit-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-editkit.make tests
+
+.PHONY: eshell-tests
+eshell-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-eshell.make tests
 
 .PHONY: help-tests
 help-tests:
