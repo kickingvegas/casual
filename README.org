@@ -37,6 +37,7 @@ Editorially, all design decisions for Casual are ultimately the opinion of Charl
   - [[#calendar-elisp-library-casual-calendar][Calendar (Elisp library: ~casual-calendar~)]]
   - [[#dired-elisp-library-casual-dired][Dired (Elisp library: ~casual-dired~)]]
   - [[#editkit-elisp-library-casual-editkit][EditKit (Elisp library: ~casual-editkit~)]]
+  - [[#eshell-elisp-library-casual-eshell][Eshell (Elisp library: ~casual-eshell~)]]
   - [[#help-elisp-library-casual-help][Help (Elisp library: ~casual-help~)]]
   - [[#ibuffer-elisp-library-casual-ibuffer][IBuffer (Elisp library: ~casual-ibuffer~)]]
   - [[#image-elisp-library-casual-image][Image (Elisp library: ~casual-image~)]]
@@ -92,6 +93,10 @@ A cornucopia of interfaces for the different editing features (e.g. marking, cop
 
   [[file:docs/editkit.org][file:docs/images/casual-editkit-main-screenshot.png]]
 
+** [[file:docs/eshell.org][Eshell]] (Elisp library: ~casual-eshell~)
+An interface for ~Eshell~, a shell-like command interpreter implemented in Emacs Lisp.
+
+  [[file:docs/eshell.org][file:docs/images/casual-eshell-screenshot.png]]
 
 ** [[file:docs/help.org][Help]] (Elisp library: ~casual-help~)
 
@@ -164,6 +169,7 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[file:docs/calendar.org::*Install][Calendar]]
 - [[file:docs/dired.org::*Install][Dired]]
 - [[file:docs/editkit.org::*Install][EditKit]]
+- [[file:docs/eshell.org::*Install][Eshell]]
 - [[file:docs/help.org::*Install][Help]]
 - [[file:docs/ibuffer.org::*Install][IBuffer]]
 - [[file:docs/image.org::*Install][Image]]

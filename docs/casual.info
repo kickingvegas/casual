@@ -11,7 +11,7 @@ File: casual.info,  Node: Top,  Next: Motivations,  Up: (dir)
 Casual User Guide
 *****************
 
-Version: 2.6.0
+Version: 2.7.0
 
 Casual is a project to re-imagine the primary user interface for Emacs
 using keyboard-driven menus.
@@ -61,6 +61,7 @@ Casual Modes
 * Calendar::
 * Dired::
 * EditKit::
+* Eshell::
 * Help::
 * IBuffer::
 * Image::
@@ -209,6 +210,7 @@ The following modes are supported by Casual:
 * Calendar::
 * Dired::
 * EditKit::
+* Eshell::
 * Help::
 * IBuffer::
 * Image::
@@ -624,7 +626,7 @@ References
    • *note Dired: (emacs)Dired.
 
 
-File: casual.info,  Node: EditKit,  Next: Help,  Prev: Dired,  Up: Casual Modes
+File: casual.info,  Node: EditKit,  Next: Eshell,  Prev: Dired,  Up: Casual Modes
 
 4.6 EditKit
 ===========
@@ -685,9 +687,57 @@ References
    • *note Registers: (emacs)Registers.
 
 
-File: casual.info,  Node: Help,  Next: IBuffer,  Prev: EditKit,  Up: Casual Modes
+File: casual.info,  Node: Eshell,  Next: Help,  Prev: EditKit,  Up: Casual Modes
 
-4.7 Help
+4.7 Eshell
+==========
+
+Casual Eshell is a user interface for ‘Eshell’, a shell-like command
+interpreter implemented in Emacs Lisp.
+
+Configuration
+=============
+
+In your initialization file, bind the Transient ‘casual-eshell-tmenu’ to
+your key binding of preference.
+
+     (require 'casual-eshell) ; optional
+     (keymap-set eshell-mode-map "C-o" #'casual-eshell-tmenu)
+
+Usage
+=====
+
+Basic Usage
+-----------
+
+Eshell can be invoked via ‘M-x eshell’.  In any Eshell window, pressing
+‘C-o’ (or your binding of preference) will raise the menu
+‘casual-eshell-tmenu’.
+
+The following sections are offered in the menu:
+
+Input
+     Commands supporting input to the current prompt.
+Argument
+     Commands supporting arguments in the current prompt.
+Prompt
+     Navigation of previous prompt commands.
+Output
+     Commands related to display of prompt.  Commands marked with an ‘n’
+     superscript support an optional prefix (‘C-u’) value.
+Misc
+     Miscellaneous commands.
+
+If a process is running, a section for managing signals to send to it is
+provided.
+
+Process
+     Signal commands to send to the process.
+
+
+File: casual.info,  Node: Help,  Next: IBuffer,  Prev: Eshell,  Up: Casual Modes
+
+4.8 Help
 ========
 
 Casual Help is a user interface for ‘help-mode’, a major mode for
@@ -755,7 +805,7 @@ Source
 
 File: casual.info,  Node: IBuffer,  Next: Image,  Prev: Help,  Up: Casual Modes
 
-4.8 IBuffer
+4.9 IBuffer
 ===========
 
 Casual IBuffer provides a user interface to Emacs IBuffer, a mode
@@ -830,8 +880,8 @@ References
 
 File: casual.info,  Node: Image,  Next: Info,  Prev: IBuffer,  Up: Casual Modes
 
-4.9 Image
-=========
+4.10 Image
+==========
 
 Casual Image is a user interface for Image Mode.  Its top level library
 is ‘casual-image’.
@@ -890,7 +940,7 @@ References
 
 File: casual.info,  Node: Info,  Next: I-Search,  Prev: Image,  Up: Casual Modes
 
-4.10 Info
+4.11 Info
 =========
 
 Casual Info is a user interface for the Emacs Info Reader.  Its top
@@ -953,7 +1003,7 @@ References
 
 File: casual.info,  Node: I-Search,  Next: Make,  Prev: Info,  Up: Casual Modes
 
-4.11 I-Search
+4.12 I-Search
 =============
 
 Casual I-Search is a user interface for Incremental Search.  Its top
@@ -1005,7 +1055,7 @@ References
 
 File: casual.info,  Node: Make,  Next: Man,  Prev: I-Search,  Up: Casual Modes
 
-4.12 Make
+4.13 Make
 =========
 
 Casual Make is a user interface to ‘make-mode’, a mode tailored for
@@ -1084,7 +1134,7 @@ References
 
 File: casual.info,  Node: Man,  Next: RE-Builder,  Prev: Make,  Up: Casual Modes
 
-4.13 Man
+4.14 Man
 ========
 
 Casual Man is a user interface for ‘Man-mode’, a Man page reader.
@@ -1171,7 +1221,7 @@ manual pages.
 
 File: casual.info,  Node: RE-Builder,  Next: Timezone,  Prev: Man,  Up: Casual Modes
 
-4.14 RE-Builder
+4.15 RE-Builder
 ===============
 
 Casual RE-Builder is a user interface for RE-Builder.  Its top level
@@ -1263,7 +1313,7 @@ References
 
 File: casual.info,  Node: Timezone,  Prev: RE-Builder,  Up: Casual Modes
 
-4.15 Timezone
+4.16 Timezone
 =============
 
 Casual Timezone is a library of commands to work with different time
@@ -1523,6 +1573,9 @@ File: casual.info,  Node: Index,  Next: Variable Index,  Prev: Acknowledgments, 
 * EditKit:                               EditKit.              (line  6)
 * EditKit Configuration:                 EditKit.              (line 15)
 * EditKit Usage:                         EditKit.              (line 25)
+* Eshell:                                Eshell.               (line  6)
+* Eshell Configuration:                  Eshell.               (line 12)
+* Eshell Usage:                          Eshell.               (line 20)
 * Feedback:                              Feedback & Discussion.
                                                                (line  6)
 * Help:                                  Help.                 (line  6)
@@ -1578,33 +1631,34 @@ File: casual.info,  Node: Variable Index,  Prev: Index,  Up: Top
 
 Tag Table:
 Node: Top228
-Node: Motivations1953
-Node: Requirements3446
-Node: Transient Conventions3710
-Node: Casual Modes5438
-Node: Agenda6460
-Node: Bookmarks8017
-Node: Calc10292
-Node: Calendar13433
-Node: Dired14781
-Node: EditKit18006
-Node: Help19727
-Node: IBuffer22436
-Node: Image24498
-Node: Info25739
-Node: I-Search27207
-Node: Make28368
-Node: Man30745
-Node: RE-Builder34132
-Node: Timezone37555
-Node: UX Conventions40947
-Node: Customization43648
-Node: Feedback & Discussion44022
-Node: Sponsorship44440
-Node: About44734
-Node: Acknowledgments45011
-Node: Index45393
-Node: Variable Index50171
+Node: Motivations1964
+Node: Requirements3457
+Node: Transient Conventions3721
+Node: Casual Modes5449
+Node: Agenda6482
+Node: Bookmarks8039
+Node: Calc10314
+Node: Calendar13455
+Node: Dired14803
+Node: EditKit18028
+Node: Eshell19751
+Node: Help20966
+Node: IBuffer23674
+Node: Image25736
+Node: Info26979
+Node: I-Search28447
+Node: Make29608
+Node: Man31985
+Node: RE-Builder35372
+Node: Timezone38795
+Node: UX Conventions42187
+Node: Customization44888
+Node: Feedback & Discussion45262
+Node: Sponsorship45680
+Node: About45974
+Node: Acknowledgments46251
+Node: Index46633
+Node: Variable Index51630
 
 End Tag Table
 
