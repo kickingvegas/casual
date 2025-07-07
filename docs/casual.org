@@ -6,7 +6,7 @@
 #+OPTIONS: ':t toc:t author:t email:t compact-itemx:t
 #+LANGUAGE: en
 
-#+MACRO: version 2.6.0
+#+MACRO: version 2.7.0
 
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_HEADER: @syncodeindex pg cp
@@ -487,6 +487,40 @@ Casual EditKit has support for Register commands by providing a sub-menu for it 
 
 #+TEXINFO: @unnumberedsec References
 - [[info:emacs#Registers][Registers]]
+
+** Eshell
+#+CINDEX: Eshell
+
+Casual Eshell is a user interface for ~Eshell~, a shell-like command interpreter implemented in Emacs Lisp.
+
+#+TEXINFO: @unnumberedsec Configuration
+#+CINDEX: Eshell Configuration
+
+In your initialization file, bind the Transient ~casual-eshell-tmenu~ to your key binding of preference.
+
+#+begin_src elisp :lexical no
+  (require 'casual-eshell) ; optional
+  (keymap-set eshell-mode-map "C-o" #'casual-eshell-tmenu)
+#+end_src
+
+#+TEXINFO: @unnumberedsec Usage
+#+CINDEX: Eshell Usage
+
+#+TEXINFO: @unnumberedsubsec Basic Usage
+
+Eshell can be invoked via ~M-x eshell~. In any Eshell window, pressing ~C-o~ (or your binding of preference) will raise the menu ~casual-eshell-tmenu~.
+
+The following sections are offered in the menu:
+
+- Input :: Commands supporting input to the current prompt. 
+- Argument :: Commands supporting arguments in the current prompt.
+- Prompt :: Navigation of previous prompt commands.
+- Output :: Commands related to display of prompt. Commands marked with an ~n~ superscript support an optional prefix (~C-u~) value.
+- Misc :: Miscellaneous commands.
+
+If a process is running, a section for managing signals to send to it is provided.
+  
+- Process :: Signal commands to send to the process.
 
 ** Help
 #+CINDEX: Help

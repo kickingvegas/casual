@@ -1,0 +1,49 @@
+[[../README.org][❮ Back to Casual]]
+
+* Casual Eshell
+
+Casual Eshell is a user interface for ~Eshell~, a shell-like command interpreter implemented in Emacs Lisp.
+
+[[file:images/casual-eshell-screenshot.png]]
+
+* Install
+
+In your initialization file, bind the Transient ~casual-eshell-tmenu~ to your key binding of preference.
+
+#+begin_src elisp :lexical no
+  (require 'casual-eshell) ; optional
+  (keymap-set eshell-mode-map "C-o" #'casual-eshell-tmenu)
+#+end_src
+
+
+* Usage
+
+** Basic Usage
+
+Eshell can be invoked via ~M-x eshell~. In any Eshell window, pressing ~C-o~ (or your binding of preference) will raise the menu ~casual-eshell-tmenu~.
+
+The following sections are offered in the menu:
+
+- Input :: Commands supporting input to the current prompt. 
+- Argument :: Commands supporting arguments in the current prompt.
+- Prompt :: Navigation of previous prompt commands.
+- Output :: Commands related to display of prompt. Commands marked with an ~n~ superscript support an optional prefix (~C-u~) value.
+- Misc :: Miscellaneous commands.
+
+If a process is running, a section for managing signals to send to it is provided.
+  
+- Process :: Signal commands to send to the process.
+
+  [[file:images/casual-eshell-process-screenshot.png]]
+
+  
+*** Unicode Symbol Support
+By enabling “Use Unicode Symbols” from the Settings menu, Casual Eshell will use Unicode symbols as appropriate in its menus.
+
+* Sponsorship
+If you enjoy using Casual Eshell, consider making a modest financial contribution to help support its development and maintenance.
+
+[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
+
+* See Also
+[[file:agenda.org][Agenda]], [[file:bookmarks.org][Bookmarks]], [[file:calc.org][Calc]], [[file:calendar.org][Calendar]], [[file:dired.org][Dired]], [[file:editkit.org][EditKit (numerous editing commands)]], [[file:eshell.org][Eshell]], [[file:help.org][Help]], [[file:ibuffer.org][IBuffer]], [[file:image.org][Image]], [[file:info.org][Info]], [[file:isearch.org][I-Search]], [[file:make-mode.org][Make]], [[file:man.org][Man]], [[file:re-builder.org][RE-Builder]], [[file:timezone.org][Timezone]]
