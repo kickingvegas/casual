@@ -1,4 +1,6 @@
+#+begin_comment
 [[../README.org][❮ Back to Casual]] 
+#+end_comment
 
 * Casual Agenda
 An opinionated [[https://github.com/magit/transient][Transient]]-based user interface for [[https://orgmode.org/manual/Agenda-Views.html][Org Agenda]], a feature of Emacs [[https://orgmode.org/features.html][Org mode]] to help plan your day.
