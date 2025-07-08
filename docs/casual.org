@@ -109,6 +109,8 @@ Casual is organized into different libraries typically using the naming conventi
 
 The following modes are supported by Casual:
 
+#+INCLUDE: "./agenda.org" :minlevel 2
+
 ** Agenda
 #+CINDEX: Agenda (Org)
 Casual Agenda is a user interface for Org Agenda. Its top-level library is ~casual-agenda~.
