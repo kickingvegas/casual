@@ -1,0 +1,87 @@
+/**
+
+ */
+
+body {
+    margin: 0pt;
+    padding: 0.5in;
+    font-family: Optima, Helvetica, Arial;
+    font-size: 12pt;
+    //counter-reset: chapter;
+}
+
+/* h1:before { */
+/*     content: counter(chapter) ". "; */
+/*     counter-increment: chapter; */
+/* } */
+
+h1 {
+    // background-color: lightgrey;
+    font-size: 16pt;
+    //counter-reset: section1;
+}
+
+h2 {
+    font-size: 14pt;
+}
+
+h3 {
+    // font-style: oblique;
+    font-size: 14pt;
+}
+
+h4 {
+    font-size: 14pt;
+    //font-style: oblique;
+}
+
+table {
+   border-style: solid;
+   border-width: 1px;
+   border-color: grey;
+   width: 95%;
+   page-break-inside: auto;
+}
+
+tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+}
+
+td {
+   border-bottom: 1px solid grey;
+   border-right: 1px solid grey;
+   font-size: 10pt;
+}
+
+th {
+   border-bottom: 3px solid black;
+   border-right: 1px solid grey;
+   font-size: 10pt;
+}
+
+thead {
+    display: table-header-group;
+}
+
+tfoot {
+    display: table-footer-group;
+}
+
+
+pre {
+     background-color: #ECECEC
+}
+
+.break {
+     page-break-before: always;
+}
+
+.seqdia {
+    width: 5in;
+    height: 5in;
+}
+
+@view-transition {
+  navigation: auto;
+}

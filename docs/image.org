@@ -1,21 +1,67 @@
-[[../README.org][❮ Back to Casual]]
+* Image
+#+CINDEX: Image
+#+VINDEX: casual-image-tmenu
 
-* Casual Image
-An interface for viewing an image file with [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Image-Mode.html#Image-Mode][image-mode]]. Resizing an image is supported if ImageMagick 6 or 7 is installed. This interface deviates significantly with naming conventions used by ~image-mode~ to be more in alignment with conventional image editing tools.
+Casual Image is a user interface for Image Mode ([[info:emacs#Image Mode]]). Its top level library is ~casual-image~.
+
+Resizing an image is supported if ImageMagick 6 or 7 is installed. This interface deviates significantly with naming conventions used by ~image-mode~ to be more in alignment with conventional image editing tools.
+
 [[file:images/casual-image-main-screenshot.png]]
 
-* Install
-If installed via MELPA then add these lines to your Emacs initialization file with your binding of preference.
+** Image Install
+:PROPERTIES:
+:CUSTOM_ID: image-install
+:END:
+
+#+CINDEX: Image Install
+
+The main menu for Casual Image is ~casual-image-tmenu~. Bind this menu in the keymap ~image-mode-map~ as follows in your initialization file.
 
 #+begin_src elisp :lexical no
-  (require 'casual-image) ; optional if using autoloaded menu
   (keymap-set image-mode-map "C-o" #'casual-image-tmenu)
 #+end_src
 
 
-* Usage
+** Image Usage
+#+CINDEX: Image Usage
 
-** Command Naming
+[[file:images/casual-image-main-screenshot.png]]
+
+The main menu for Casual Image (~casual-image-tmenu~) is organized into the following sections:
+
+- View :: Commands to control the display of the image. None of these commands will mutate the image file.
+
+- Edit :: Commands to edit the image file.
+
+- Scroll :: Commands to scroll an image view that is larger than its window size.
+
+- Edge :: Commands to navigate to the edges of an image view that is larger than its window size.
+
+- Traverse :: Commands to navigate to other image files in the same directory as the current image.
+
+- Mark :: Commands to mark in Dired the current image.
+
+- Misc :: Miscellaneous commands.
+
+*** Image Resize
+#+CINDEX: Image Resize
+
+If ImageMagick (version 6 or 7) is installed, Casual Image can resize an image using it. The Transient ~casual-image-resize-tmenu~ is a streamlined interface to the ImageMagick ~-resize~ function.
+
+Note that if the image file has been modified, the resize interface will be disabled. Save the image file before resizing.
+
+[[file:images/casual-image-resize-screenshot.png]]
+
+#+TEXINFO: @majorheading Image Resize Options
+- (g) Geometry - [[https://imagemagick.org/script/command-line-processing.php#geometry][ImageMagick specifier]] for the resize geometry.
+- (o) Output to another file - If enabled, then the user will be prompted for a different output file, else it will /irreversibly/ update the current image file.
+- (t) Type - Specify if /adaptive/ or /interpolative/ resizing should be used. If nothing is specified then /standard/ resizing is used.
+
+*** Image Unicode Symbol Support
+
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Image will use Unicode symbols as appropriate in its menus. 
+
+*** Image Mode Command Naming
 
 Casual Image makes a number of opinionated changes to the naming of commands provided by ~image-mode~. 
 
@@ -50,28 +96,3 @@ The table below shows the mapping between names used by Casual to commands provi
 | Unmark Image          | ~image-mode-unmark-file~            | Unmark the current file in the appropriate Dired buffer(s).                                      |
 | Copy filename         | ~image-mode-copy-file-name-as-kill~ | Push the currently visited file name onto the kill ring.                                         |
 
-
-** Resize
-
-If ImageMagick (version 6 or 7) is installed, Casual Image can resize an image using it. The Transient ~casual-image-resize-tmenu~ is a streamlined interface to the ImageMagick ~-resize~ function.
-
-Note that if the image file has been modified, the resize interface will be disabled. Save the image file before resizing.
-
-[[file:images/casual-image-resize-screenshot.png]]
-
-*** Options
-- (g) Geometry - [[https://imagemagick.org/script/command-line-processing.php#geometry][ImageMagick specifier]] for the resize geometry.
-- (o) Output to another file - If enabled, then the user will be prompted for a different output file, else it will /irreversibly/ update the current image file.
-- (t) Type - Specify if /adaptive/ or /interpolative/ resizing should be used. If nothing is specified then /standard/ resizing is used.
-
-** Unicode Symbol Support
-
-By enabling “Use Unicode Symbols” from the Settings menu, Casual Image will use Unicode symbols as appropriate in its menus. 
-
-* Sponsorship
-If you enjoy using Casual Image, consider making a modest financial contribution to help support its development and maintenance.
-
-[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
-
-* See Also
-[[file:agenda.org][Agenda]], [[file:bookmarks.org][Bookmarks]], [[file:calc.org][Calc]], [[file:calendar.org][Calendar]], [[file:dired.org][Dired]], [[file:editkit.org][EditKit (numerous editing commands)]], [[file:help.org][Help]], [[file:ibuffer.org][IBuffer]], [[file:image.org][Image]], [[file:info.org][Info]], [[file:isearch.org][I-Search]], [[file:make-mode.org][Make]], [[file:man.org][Man]], [[file:re-builder.org][RE-Builder]], [[file:timezone.org][Timezone]]

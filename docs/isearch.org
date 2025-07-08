@@ -1,64 +1,45 @@
-[[../README.org][❮ Back to Casual]]
+* I-Search
+#+CINDEX: ISearch
+#+CINDEX: I-Search
+#+VINDEX: casual-isearch-tmenu
 
-* Casual I-Search
-
-This package contains a [[https://github.com/magit/transient][Transient]] menu for I-Search. When in basic I-Search mode, this menu can be raised by pressing the ~C-o~ key. A menu of different isearch commands will be offered as shown below:
+Casual I-Search is a user interface for Emacs Incremental Search ([[info:emacs#Incremental Search][emacs#Incremental Search)]]. Its top level library is ~casual-isearch~.
 
 [[file:images/casual-isearch-tmenu.png]]
 
-* Install
-Use the following lines to install casual-isearch-tmenu.
+** I-Search Install
+:PROPERTIES:
+:CUSTOM_ID: i-search-install
+:END:
+#+CINDEX: I-Search Install
+
+The main menu for Casual I-Search is ~casual-isearch-tmenu~. Bind this menu in the keymap ~isearch-mode-map~ as follows in your initialization file.
+
 #+begin_src elisp :lexical yes
-  (require 'casual-isearch) ; optional if using autoloaded menu
   (keymap-set isearch-mode-map "C-o" #'casual-isearch-tmenu)
 #+end_src
 
 The keybinding to ~casual-isearch-tmenu~ can be changed to user preference.
 
-* Menu Commands
-The following I-Search commands are grouped as follows in the Transient menu ~casual-isearch-tmenu~. Keys associated with each command are shown enclosed in parentheses.
+** I-Search Usage
+#+CINDEX: I-Search Usage
 
-** Edit Search String
-- ~isearch-edit-string~ (~e~)
-- ~isearch-yank-word-or-char~ (~w~)
-- ~isearch-yank-symbol-or-char~ (~s~)
-- ~isearch-yank-line~ (~l~)
-- ~isearch-yank-kill~ (~y~)
-- ~isearch-forward-thing-at-point~ (~t~)
-** Replace
-- ~isearch-query-replace~ (~r~)
-- ~isearch-query-replace-regexp~ (~x~)
-** Toggle
-- ~isearch-toggle-regexp~ (~X~)
-- ~isearch-toggle-symbol~ (~S~)
-- ~isearch-toggle-word~ (~W~)
-- ~isearch-toggle-case-fold~ (~F~)
-- ~isearch-toggle-lax-whitespace~ (~L~)
-** Misc
-- ~isearch-occur~ (~o~)
-- ~isearch-highlight-regexp~ (~h~)
-- ~isearch-highlight-lines-matching-regexp~ (~H~)
-- ~unhighlight-regexp~ (~u~)
-** Navigation
-- ~isearch-repeat-forward~ (~n~)
-- ~isearch-repeat-backward~ (~p~)
+[[file:images/casual-isearch-tmenu.png]]
 
-** Exit
-To exit search, press the ~RET~ key. This will leave the point at the last successful search item.
+The main menu for Casual I-Search is organized into the following sections:
 
+- Edit Search String :: Commands to edit the search string. The type/extent of the string (word, symbol, line, thing) can be specified here.
 
-* Usage
-When in search mode (typically via the keybinding ~C-s~ or ~C-r~), pressing the keybinding ~C-o~ (or binding of your preference) will raise the Transient menu ~casual-isearch-tmenu~. Once raised, only the /I-Search/ commands in the *Replace* and *Misc* sections will automatically dismiss the menu when selected. All other /I-Search/ commands will /not/ dismiss the menu.
+- Replace :: Invoke ~query-replace~ or ~query-replace-regexp~ on matched strings.
+
+- Toggle :: Commands to configure the type of search.
+
+- Misc :: Miscellaneous commands. From here the search string can be fed into ~occur~ or be highlighted.
+
+- Navigation :: Navigation commands for matched strings.
+
+When in search mode (typically via the keybinding {{{kbd(C-s)}}} or {{{kbd(C-r)}}}), pressing the keybinding {{{kbd(C-o)}}} (or binding of your preference) will raise the Transient menu ~casual-isearch-tmenu~. Once raised, only the /I-Search/ commands in the *Replace* and *Misc* sections will automatically dismiss the menu when selected. All other /I-Search/ commands will /not/ dismiss the menu.
 
 Note that editing the search text via ~isearch-edit-string~ will enter a recursive editing mode that is normally exited when pressing the return (~RET~) key.
 
-Use ~C-g~ to dismiss this Transient menu.
-
-* Sponsorship
-If you enjoy using Casual I-Search, consider making a modest financial contribution to help support its development and maintenance.
-
-[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
-
-
-* See Also
-[[file:agenda.org][Agenda]], [[file:bookmarks.org][Bookmarks]], [[file:calc.org][Calc]], [[file:calendar.org][Calendar]], [[file:dired.org][Dired]], [[file:editkit.org][EditKit (numerous editing commands)]], [[file:help.org][Help]], [[file:ibuffer.org][IBuffer]], [[file:image.org][Image]], [[file:info.org][Info]], [[file:isearch.org][I-Search]], [[file:make-mode.org][Make]], [[file:man.org][Man]], [[file:re-builder.org][RE-Builder]], [[file:timezone.org][Timezone]]
+Use {{{kbd(C-g)}}} to dismiss this Transient menu.

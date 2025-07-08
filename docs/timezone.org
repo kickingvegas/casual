@@ -1,6 +1,6 @@
-[[../README.org][❮ Back to Casual]]
-
-* Casual Timezone
+* Timezone
+#+CINDEX: Timezone
+#+VINDEX: casual-timezone-tmenu
 
 Casual Timezone is a library of commands to work with different time zones. Answer the questions "what time is it over there?" or conversely "what is the time over there, here?" with ease using this. Its top level library is ~casual-timezone~. Commands from Casual Timezone are found in the menu ~casual-timezone-tmenu~, which itself is integrated into the menu ~casual-editkit-tools-tmenu~.
 
@@ -8,14 +8,20 @@ Casual Timezone only supports systems that have a [[https://en.wikipedia.org/wik
 
 [[file:images/casual-timezone-planner-screenshot.png]]
 
-* Install
+** Timezone Install
+:PROPERTIES:
+:CUSTOM_ID: timezone-install
+:END:
+#+CINDEX: Timezone Install
 
-Casual Timezone is configured as part of [[file:editkit.org][Casual Editkit]] in the Tools menu (~casual-editkit-tools-tmenu~). Refer to the [[file:editkit.org::*Install][EditKit Install]] section for instructions on how to install it.
+Casual Timezone is configured as part of Casual EditKit in the Tools menu (~casual-editkit-tools-tmenu~). Refer to the [[#editkit-install][EditKit Install]] section for instructions on how to install it.
 
 The main menu for Casual Timezone is ~casual-timezone-tmenu~ for users who wish to access it directly.
 
-* Usage
-** Basic Usage
+** Timezone Usage
+#+CINDEX: Timezone Usage
+
+[[file:images/casual-timezone-planner-screenshot.png]]
 
 Casual Timezone offers the following commands:
 
@@ -29,13 +35,40 @@ These commands are offered in the menu ~casual-timezone-tmenu~ shown below.
 
 [[file:images/casual-timezone-tmenu-screenshot.png]]
 
-** Unicode Symbol Support
-By enabling “Use Unicode Symbols” from the Settings menu, Casual Timezone will use Unicode symbols as appropriate in its menus.
 
-* Sponsorship
-If you enjoy using Casual Timezone, consider making a modest financial contribution to help support its development and maintenance.
+*** Timezone Formatting
 
-[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
+The formatted representation of time in Casual Timezone is set by the following customizable variables:
 
-* See Also
-[[file:agenda.org][Agenda]], [[file:bookmarks.org][Bookmarks]], [[file:calc.org][Calc]], [[file:calendar.org][Calendar]], [[file:dired.org][Dired]], [[file:editkit.org][EditKit (numerous editing commands)]], [[file:help.org][Help]], [[file:ibuffer.org][IBuffer]], [[file:image.org][Image]], [[file:info.org][Info]], [[file:isearch.org][I-Search]], [[file:make-mode.org][Make]], [[file:man.org][Man]], [[file:re-builder.org][RE-Builder]], [[file:timezone.org][Timezone]]
+- ~casual-timezone-datestamp-format~
+- ~casual-timezone-convert-datestamp-format~
+
+The format specification of these variables conforms to the specification defined in [[info:elisp#Time Parsing][format-time-string]].
+
+The following table shows which format variable applies to which command.
+
+| Command                              | Format                                   |
+|--------------------------------------+------------------------------------------|
+| ~casual-timezone-planner~              | ~casual-timezone-datestamp-format~         |
+| ~casual-timezone-local-time-to-remote~ | ~casual-timezone-convert-datestamp-format~ |
+| ~casual-timezone-remote-time-to-local~ | ~casual-timezone-convert-datestamp-format~ |
+
+These variables can be customized via the Transient menu ~casual-timezone-settings-tmenu~.
+
+*** Planner Configuration
+
+The following variables can control how working hours are displayed in the timezone planner.
+
+- ~casual-timezone-working-hours-range~  will set the range (start, stop) of working hours. The values are integers that map to 24-hour time (0..23).
+- ~casual-timezone-working-hour-glyph~ will set the glyph used to denote a working hour (default is ☼).
+- ~casual-timezone-planner-working-highlight~ will set the face used to highlight a working hour.
+
+These variables can be customized via the Transient menu ~casual-timezone-settings-tmenu~.
+
+*** Zoneinfo Database
+
+The variable ~casual-timezone-zone-info-database~ is default set to the path "/usr/share/zoneinfo/tzdata.zi". Customize this variable if the zoneinfo database is located at a different path.
+
+
+*** Timezone Unicode Symbol Support
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Timezone will use Unicode symbols as appropriate in its menus.

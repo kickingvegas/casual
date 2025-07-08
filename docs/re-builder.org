@@ -1,62 +1,64 @@
-[[../README.org][❮ Back to Casual]]
+* RE-Builder
+#+CINDEX: RE-Builder
+#+VINDEX: casual-re-builder-tmenu
 
-* Casual RE-Builder
-An opinionated [[https://github.com/magit/transient][Transient]]-based user interface for [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Regular-Expressions.html][RE-Builder]], a tool for building Emacs regular expressions (regexps).
+Casual RE-Builder is a user interface for RE-Builder. Its top level library is ~casual-re-builder~.
 
 [[file:images/casual-re-builder-screenshot.png]]
 
-* Install
-If installed via [[https://melpa.org/#/casual][MELPA]] then add these lines to your Emacs initialization file with your binding of preference. 
+** RE-Builder Install
+:PROPERTIES:
+:CUSTOM_ID: re-builder-install
+:END:
+
+#+CINDEX: RE-Builder Install
+
+The main menu for Casual RE-Builder is ~casual-re-builder-tmenu~. Bind this menu to your preference in the keymaps ~reb-mode-map~ and ~reb-lisp-mode-map~ as follows in your initialization file.
+
 #+begin_src elisp :lexical no
-  (require 'casual-re-builder) ; optional
   (keymap-set reb-mode-map "C-o" #'casual-re-builder-tmenu)
   (keymap-set reb-lisp-mode-map "C-o" #'casual-re-builder-tmenu)
 #+end_src
 
-* Usage
+** RE-Builder Usage
+#+CINDEX: RE-Builder Usage
 
-** Basic Usage
-When the command ~re-builder~ is invoked, a buffer named "✳︎RE-Builder✳︎" is created. Activate Casual RE-Builder with the binding ~C-o~ (or one of your preference). 
+[[file:images/casual-re-builder-screenshot.png]]
 
-At the top of the menu shows the title "RE-Builder" with the target buffer enclosed in parenthesis. The regexp pattern will be applied to the target buffer. The target buffer can be changed with the /(b) Target buffer/ menu item.
+When the command ~re-builder~ is invoked, a buffer named "✳︎RE-Builder✳︎" is created. Activate Casual RE-Builder with the binding {{{kbd(C-o}}} (or one of your preference). 
 
-Emacs supports three different regexp syntax: 1) read, 2) string, 3) Rx.  Use the /(x) Syntax/ menu item to alter it. The current syntax is shown in parenthesis.
+At the top of the menu shows the title "RE-Builder" with the target buffer enclosed in parenthesis. The regexp pattern will be applied to the target buffer. The target buffer can be changed with the “{{{kbd(b)}}} Target buffer” menu item.
 
-If multiple sub-expressions are in the regexp pattern, then they can be observed via the /(s) Subexp mode/ menu item.
+Emacs supports three different regexp syntax: 1) read, 2) string, 3) Rx.  Use the “{{{kbd(x)}}} Syntax” menu item to alter it. The current syntax is shown in parenthesis.
 
-If the regexp pattern entered in the "✳︎RE-Builder✳︎" finds multiple matches, a match can be navigated to via the /(p) Previous/ and /(n) Next/ menu items.
+If multiple sub-expressions are in the regexp pattern, then they can be observed via the “{{{kbd(s)}}} Subexp mode” menu item.
 
-** Exporting the Regexp Pattern
+If the regexp pattern entered in "✳︎RE-Builder✳︎" finds multiple matches, a match can be navigated to via the  “{{{kbd(p)}}} Previous” and “{{{kbd(n)}}} Next” menu items.
+
+#+TEXINFO: @majorheading Exporting the Regexp Pattern
 Once a desired regexp pattern is defined, there are two menu items that can be used to export (copy) it to the kill-ring for further use.
 
-- /(w) Interactive/ will copy the regexp to the kill-ring so that it can be yanked in an interactive command that requires a regexp (e.g. ~query-replace-regexp~).
+- “{{{kbd(w)}}} Interactive” will copy the regexp to the kill-ring so that it can be yanked in an interactive command that requires a regexp (e.g. ~query-replace-regexp~).
   - This can only be used when the regexp syntax is set to ~string~.
-  - ❗️When yanking (typically ~C-y~) a regexp into an interactive prompt, you /must/ have the point/focus in the minibuffer prompt (typically via mouse). Otherwise the desired content can be altered with extra escaping.
-- /(c) Code/ will copy the regexp to the kill-ring so that it can be yanked into a Elisp code that requires a regexp argument.
-- /(g) Interactive grep/ will copy the regexp so that it can be used with command that take a GNU grep regex argument.
+  - ❗️When yanking (typically {{{kbd(C-y)}}}) a regexp into an interactive prompt, you /must/ have the point/focus in the minibuffer prompt (typically via mouse). Otherwise the desired content can be altered with extra escaping.
+- “{{{kbd(c)}}} Code” will copy the regexp to the kill-ring so that it can be yanked into a Elisp code that requires a regexp argument.
+- “{{{kbd(g)}}} Interactive grep” will copy the regexp so that it can be used with command that take a GNU grep regex argument.
   - Example commands that do this are ~dired-do-find-regexp~ and ~dired-do-find-regexp-and-replace~.
   - This command presumes that you have GNU grep installed and configured for use by Emacs.
   - ❗️At current this is an experimental feature. The regexp exported from RE-Builder may not work. If so please report an [[https://github.com/kickingvegas/casual-re-builder/issues][issue]] describing the desired regexp and the target text.
   - This can only be used when the regexp syntax is set to ~string~.    
 
-** Regexp Syntax Help
-The menu item /(i)/ will invoke the Info page for regexp syntax with respect to the current syntax type.
+#+TEXINFO: @majorheading Regexp Syntax Help
+The menu item {{{kbd(i)}}} will invoke the Info page for regexp syntax with respect to the current syntax type.
 
-** Quitting RE-Builder
-Select /(q) Quit/ to exit the RE-Builder tool. 
+#+TEXINFO: @majorheading Quitting RE-Builder
+Select “{{{kbd(q)}}} Quit” to exit the RE-Builder tool. 
 
-** Unicode Symbol Support
-By enabling “Use Unicode Symbols” from the Settings menu, Casual RE-Builder will use Unicode symbols as appropriate in its menus. The following mapping is shown in the table below:
+#+TEXINFO: @majorheading RE-Builder Unicode Symbol Support
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual RE-Builder will use Unicode symbols as appropriate in its menus. The following mapping is shown in the table below:
 
 | Name      | Plain    | Unicode |
 |-----------+----------+---------|
 | :previous | Previous | ↑       |
 | :next     | Next     | ↓       |
 
-* Sponsorship
-If you enjoy using Casual RE-Builder, consider making a modest financial contribution to help support its development and maintenance.
-
-[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
-
-* See Also
-[[file:agenda.org][Agenda]], [[file:bookmarks.org][Bookmarks]], [[file:calc.org][Calc]], [[file:calendar.org][Calendar]], [[file:dired.org][Dired]], [[file:editkit.org][EditKit (numerous editing commands)]], [[file:help.org][Help]], [[file:ibuffer.org][IBuffer]], [[file:image.org][Image]], [[file:info.org][Info]], [[file:isearch.org][I-Search]], [[file:make-mode.org][Make]], [[file:man.org][Man]], [[file:re-builder.org][RE-Builder]], [[file:timezone.org][Timezone]]

@@ -1,17 +1,21 @@
-[[../README.org][❮ Back to Casual]]
-
-* Casual Man
+* Man
+#+CINDEX: Man
+#+VINDEX: casual-man-tmenu
 
 Casual Man is a user interface for ~Man-mode~, a Man page reader.
 
 [[file:images/casual-man-screenshot.png]]
 
-* Install
+** Man Install
+:PROPERTIES:
+:CUSTOM_ID: man-install
+:END:
+
+#+CINDEX: Man Install
 
 In your initialization file, bind the Transient ~casual-man-tmenu~ to your key binding of preference.
 
 #+begin_src elisp :lexical no
-  (require 'casual-man) ; optional
   (keymap-set Man-mode-map "C-o" #'casual-man-tmenu)
 #+end_src
 
@@ -40,11 +44,12 @@ The following keybindings are recommended to support consistent behavior between
   (keymap-set Man-mode-map "o" #'casual-man-occur-options)
 #+end_src
 
-* Usage
+** Man Usage
+#+CINDEX: Man Usage
 
-** Basic Usage
+[[file:images/casual-man-screenshot.png]]
 
-The Man page reader can be invoked via ~M-x man~, where the user is prompted for a search key. This search key is typically the name of a command that has an associated Man page. In the Man page window, pressing ~C-o~ (or your binding of preference) will raise the menu ~casual-man-tmenu~.
+The Man page reader can be invoked via ~M-x man~, where the user is prompted for a search key. This search key is typically the name of a command that has an associated Man page. In the Man page window, pressing {{{kbd(C-o)}}} (or your binding of preference) will raise the menu ~casual-man-tmenu~.
 
 The following sections are offered in the menu:
 
@@ -54,13 +59,13 @@ The following sections are offered in the menu:
 - Link :: Jump to other Man pages referenced in the current Man page.
 - Page :: If the Man page reader is configured to display all manual pages for a given search key, navigation commands for multiple pages is provided.
 
-*** Options Navigation
+#+TEXINFO: @majorheading Options Navigation
 
-~casual-man-tmenu~ provides the menu item ‘o’ which runs the command ~casual-man-occur-options~. This will invoke ~occur~ with a regexp that searches for command line options (for example, "--foo", "-a") that can be navigated via the ~occur~ interface.
+~casual-man-tmenu~ provides the menu item {{{kbd(o)}}} which runs the command ~casual-man-occur-options~. This will invoke ~occur~ with a regexp that searches for command line options (for example, "--foo", "-a") that can be navigated via the ~occur~ interface.
 
-*** Settings
+#+TEXINFO: @majorheading Man Settings
 
-By default, the Man page reader will /not/ display all manual pages for given search key. This can be changed in the Settings menu ~casual-man-settings-tmenu~ that can be invoked by pressing ‘,’ in ~casual-man-tmenu~. 
+By default, the Man page reader will /not/ display all manual pages for given search key. This can be changed in the Settings menu ~casual-man-settings-tmenu~ that can be invoked by pressing {{{kbd(\,)}}} in ~casual-man-tmenu~. 
 
 Press ‘s’ and configure ~Man-switches~ to have the value "-a" to get all manual pages.
 
@@ -68,13 +73,5 @@ Press ‘s’ and configure ~Man-switches~ to have the value "-a" to get all man
 [[file:images/casual-man-settings.png]]
 
 
-*** Unicode Symbol Support
-By enabling “Use Unicode Symbols” from the Settings menu, Casual Man will use Unicode symbols as appropriate in its menus.
-
-* Sponsorship
-If you enjoy using Casual Man, consider making a modest financial contribution to help support its development and maintenance.
-
-[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
-
-* See Also
-[[file:agenda.org][Agenda]], [[file:bookmarks.org][Bookmarks]], [[file:calc.org][Calc]], [[file:calendar.org][Calendar]], [[file:dired.org][Dired]], [[file:editkit.org][EditKit (numerous editing commands)]], [[file:help.org][Help]], [[file:ibuffer.org][IBuffer]], [[file:image.org][Image]], [[file:info.org][Info]], [[file:isearch.org][I-Search]], [[file:make-mode.org][Make]], [[file:man.org][Man]], [[file:re-builder.org][RE-Builder]], [[file:timezone.org][Timezone]]
+#+TEXINFO: @majorheading Man Unicode Symbol Support
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Man will use Unicode symbols as appropriate in its menus.

@@ -1,27 +1,35 @@
 [[../README.org][❮ Back to Casual]]
 
-* Casual IBuffer
-An interface for [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Buffer-Menus.html][IBuffer]], a tool for managing buffers in Emacs. If one was to fancifully consider Emacs as an OS, consider this to be its task manager.
+* IBuffer
+#+CINDEX: IBuffer
+#+VINDEX: casual-ibuffer-tmenu
+Casual IBuffer provides a user interface to Emacs IBuffer ([[info:emacs#Buffer Menus][emacs#Buffer Menus]]), a mode designed for managing buffers. Its top-level library is ~casual-ibuffer~.
+
+IBuffer is a powerful tool for managing Emacs workflows. As Emacs is often compared to an operating system, through that lens one could compare IBuffer to being a task manager interface, managing instantiated buffers as opposed to processes.
 
 [[file:images/casual-ibuffer-screenshot.png]]
 
 
-* Install
-If installed via MELPA then add these lines to your Emacs initialization file with your binding of preference. 
+** IBuffer Install
+:PROPERTIES:
+:CUSTOM_ID: ibuffer-install
+:END:
+
+#+CINDEX: IBuffer Install
+
+In your initialization file, bind the Transinent ~casual-ibuffer-tmenu~ to your key binding of preference. 
+
 #+begin_src elisp :lexical no
-  (require 'casual-ibuffer) ; optional if using autoloaded menu
   (keymap-set ibuffer-mode-map "C-o" #'casual-ibuffer-tmenu)
+#+end_src
+
+Like with Casual Dired, it is convenient to have the menus for filtering and sorting bound as well. Listed below shows an example of binding ~casual-ibuffer-filter-tmenu~ and ~casual-ibuffer-sortby-tmenu~ to ~F~ and ~s~ respectively.
+
+#+begin_src elisp :lexical no
   (keymap-set ibuffer-mode-map "F" #'casual-ibuffer-filter-tmenu)
   (keymap-set ibuffer-mode-map "s" #'casual-ibuffer-sortby-tmenu)
 #+end_src
 
-
-** A Note on Package Dependencies
-Casual IBuffer requires a recent installation of Transient 0.6.0+ from either [[https://elpa.gnu.org/packages/transient.html][ELPA]] or [[https://melpa.org/#/transient][MELPA]]. If your version of Emacs is ≤ 30 but also includes Transient as a built-in package, you will need to set the customizable variable ~package-install-upgrade-built-in~ to ~t~ to enable updating it via ~package.el~.  Set this variable and proceed with installing Casual.  Alternately invoking ~package-install~ with a prefix (~C-u~) will temporarily coerce the update of dependent built-in packages (example: ~C-u M-x package-install~ ~casual~).
-
-As Transient is closely tied to Magit, installing the latest version of Magit (via [[https://elpa.nongnu.org/nongnu/magit.html][non-GNU ELPA]] or [[https://melpa.org/#/magit][MELPA]]) before installing Casual IBuffer can also pick up the latest version of Transient.
-
-** Configuration
 Use these keybindings to configure IBuffer to be consistent with keybindings used by Casual IBuffer.
 
 #+begin_src elisp :lexical no
@@ -33,6 +41,7 @@ Use these keybindings to configure IBuffer to be consistent with keybindings use
 #+end_src
 
 While not necessary for Casual IBuffer, enabling ~hl-line-mode~ and binding mouse clicks in IBuffer adds to a more comfortable IBuffer experience. Also, adding ~ibuffer-auto-mode~ to ~ibuffer-mode-hook~ will enable auto-updating. 
+
 #+begin_src elisp :lexical no
   (require 'hl-line)
   (require 'mouse)
@@ -42,30 +51,49 @@ While not necessary for Casual IBuffer, enabling ~hl-line-mode~ and binding mous
   (keymap-set ibuffer-mode-map "M-<double-mouse-1>" #'ibuffer-visit-buffer-other-window)
 #+end_src
 
-* Usage
-Casual IBuffer organizes commands into three menus:
-1. The main menu (~casual-ibuffer-tmenu~) holding commands for marking and operating on buffers. Display, find/replace, and navigation commands are also included in this menu.
-2. The filter menu (~casual-ibuffer-filter-tmenu~) holding commands for defining filters, filter groups, and collections of filter groups.
-3. The sort menu (~casual-ibuffer-sortby-tmenu~) holding commands for sorting buffers.
+** IBuffer Usage
+#+CINDEX: IBuffer Usage
 
-** Marking and Operating
+[[file:images/casual-ibuffer-screenshot.png]]
+
+
+The main menu of Casual IBuffer (~casual-ibuffer-tmenu~) is organized into the following sections:
+
+- Operations :: Commands to operate either on the buffer at point or on marked buffers.
+
+- Mark :: Commands to support the marking of buffers.
+
+- Display :: Commands to control the display of buffers. Buffers can be sorted by different criteria.
+
+- Navigation :: Commands to navigate the buffer list.
+
+- Filter :: Commands related to filtering/organizing buffers. Support for defining /Filter Groups/ is provided here.
+
+- Find/Replace in Marked :: Commands to search & replace text in marked buffers are provided here. Note that commands in this section that modify buffers do /not/ save said buffers.
+
+- Quick :: Command to jump to a bookmark.
+
+
+*** IBuffer Marking and Operating
 [[file:images/casual-ibuffer-main-screenshot.png]]
 
 Buffers can be marked using different criteria. Marked buffers can be operated on. Common operations include saving and deleting buffers. Note that deleting a buffer populated with a visited file is /not the same/ as deleting the visited file.
 
 From the main menu shown above, control of the display and find/replace operations are offered.
 
-Note that the menu item /Visit/Toggle/ has "do what I mean"  (DWIM) behavior. If the point is currently on a filter group (described below) then pressing the ~return~ key will toggle the visibility of items matching that filter group. Otherwise, it will visit (open) the buffer.
+Note that the menu item “{{{kbd(RET)}}} Visit/Toggle” has "do what I mean"  (DWIM) behavior. If the point is currently on a filter group (described below) then pressing the {{{kbd(RET)}}} key will toggle the visibility of items matching that filter group. Otherwise, it will visit (open) the buffer.
 
 As with other Casual user interfaces, the ability to jump to a bookmark is available.
 
-** Filtering
+*** IBuffer Filtering
+#+VINDEX: casual-ibuffer-filter-tmenu
+
 [[file:images/casual-ibuffer-filter-screenshot.png]]
 
 
 IBuffer is embarrasingly rich in the ways it can filter buffers. Once mastered, IBuffer filtering offers a way to create different views on your buffer list, enabling you to tailor bespoke views for different workflows. Such capability comes with a price though: you'll need to understand how IBuffer wants to organize filters.
 
-Key is the concept of a /Filter Group/ which is IBuffer's analog to a Dired [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Subdirectories-in-Dired.html][subdirectory]] (subdir). But whereas a subdir only maps to a file system directory, a filter group can be constructed from a diverse set of rules to categorize a buffer.
+Key is the concept of a /Filter Group/ which is IBuffer's analog to a Dired subdirectory ([[info:emacs#Subdirectories in Dired]]). But whereas a subdirectory only maps to a file system directory, a filter group can be constructed from a diverse set of rules to categorize a buffer.
 
 IBuffer organizes filtering with the following taxonomy:
 
@@ -117,7 +145,7 @@ IBuffer organizes filtering with the following taxonomy:
 
    A /collection/ is a set of filter groups that can be named with a user-defined identifier. Only one collection can be applied to a buffer list at a time. However, many different collections can be defined, allowing for different views of the same buffer list.
    
-*** Creating Filters
+*Creating Filters*
 
 The basic procedure for making a filter that applies to the entire buffer list is as follows:
 
@@ -125,7 +153,8 @@ The basic procedure for making a filter that applies to the entire buffer list i
 2. Save the filter via /(s) Save.../. You will be prompted to provide a name for the filter. This filter will be saved in the variable =ibuffer-saved-filters=.
 3. To recall this filter at a subsequent time, use /(r) Switch to.../ in the *Add* section of the *Filter* menu.
 
-*** Creating a Collection of Filter Groups
+*Creating a Collection of Filter Groups*
+
 Here is where the taxonomy becomes significant as the IBuffer command set unfortunately does not provide much observability on edit operations to filters.
 
 1. Create a filter as described above.
@@ -136,15 +165,17 @@ Here is where the taxonomy becomes significant as the IBuffer command set unfort
 Out of the box, it is best to think of the IBuffer commands for editing buffer filters as a kit of parts and an arguably incomplete one at that. The Casual IBuffer filter menu (=casual-ibuffer-filter-tmenu=) is my attempt to build a comprehensible filter editor UI from this kit. Whether it succeeds in being comprehensible is left to user feedback.
 
 
-** Sorting
+*** IBuffer Sorting
+#+VINDEX: casual-ibuffer-sortby-tmenu
+
 [[file:images/casual-ibuffer-sortby-screenshot.png]]
 
 The buffer list can be sorted using different criteria as shown in the screenshot above.
 
 Sort ordering can be reversed via the /Invert/ command.
 
-** Unicode Symbol Support
-By enabling “Use Unicode Symbols” from the Settings menu, Casual IBuffer will use Unicode symbols as appropriate in its menus. The following mapping is shown in the table below:
+*** IBuffer Unicode Symbol Support
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual IBuffer will use Unicode symbols as appropriate in its menus. The following mapping is shown in the table below:
 
 | Name      | Plain    | Unicode |
 |-----------+----------+---------|
@@ -154,10 +185,3 @@ By enabling “Use Unicode Symbols” from the Settings menu, Casual IBuffer wil
 | :group    | Group    | []      |
 | :jump     | Jump     | 🚀     |
 
-* Sponsorship
-If you enjoy using Casual IBuffer, consider making a modest financial contribution to help support its development and maintenance.
-
-[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
-
-* See Also
-[[file:agenda.org][Agenda]], [[file:bookmarks.org][Bookmarks]], [[file:calc.org][Calc]], [[file:calendar.org][Calendar]], [[file:dired.org][Dired]], [[file:editkit.org][EditKit (numerous editing commands)]], [[file:help.org][Help]], [[file:ibuffer.org][IBuffer]], [[file:image.org][Image]], [[file:info.org][Info]], [[file:isearch.org][I-Search]], [[file:make-mode.org][Make]], [[file:man.org][Man]], [[file:re-builder.org][RE-Builder]], [[file:timezone.org][Timezone]]
