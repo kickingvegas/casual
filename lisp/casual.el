@@ -59,6 +59,11 @@
 ;;   commands.
 ;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/editkit.org'
 
+;; - Eshell (Elisp library: `casual-eshell')
+;;   A user interface for Eshell, a shell-like command interpreter implemented
+;;   in Emacs Lisp.
+;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/eshell.org'
+
 ;; - Image (Elisp library: `casual-image')
 ;;   An interface for viewing an image file with `image-mode'.
 ;;   Resizing an image is supported if ImageMagick 6 or 7 is installed. This
