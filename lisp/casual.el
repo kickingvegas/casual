@@ -5,7 +5,7 @@
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual
 ;; Keywords: tools, wp
-;; Version: 2.7.0
+;; Version: 2.7.1-rc.1
 ;; Package-Requires: ((emacs "29.1") (transient "0.9.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -58,6 +58,11 @@
 ;;   Included are interfaces for rectangle, register, macro, and project
 ;;   commands.
 ;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/editkit.org'
+
+;; - Eshell (Elisp library: `casual-eshell')
+;;   A user interface for Eshell, a shell-like command interpreter implemented
+;;   in Emacs Lisp.
+;;   URL `https://github.com/kickingvegas/casual/blob/main/docs/eshell.org'
 
 ;; - Image (Elisp library: `casual-image')
 ;;   An interface for viewing an image file with `image-mode'.

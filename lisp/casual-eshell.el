@@ -34,8 +34,6 @@
 
 (require 'casual-eshell-settings)
 (require 'casual-eshell-utils)
-(require 'casual-editkit)
-(require 'magit-status)
 (require 'esh-mode)
 (require 'esh-arg)
 (require 'em-hist)
@@ -56,13 +54,6 @@
     ("B" "#<buffer >…" eshell-insert-buffer-name)
     ("k" "Clear" eshell-kill-input
     :description (lambda () (casual-eshell-unicode-get :clear)))
-    ;; ("C-p" "Previous" eshell-previous-matching-input-from-input
-    ;;  :description (lambda () (casual-eshell-unicode-get :previous))
-    ;;  :transient t)
-
-    ;; ("C-n" "Next" eshell-next-matching-input-from-input
-    ;;  :description (lambda () (casual-eshell-unicode-get :next)
-    ;;  :transient t)
     ("h" "History" eshell-list-history)]
 
    ["Argument"
@@ -106,8 +97,7 @@
    ["Misc"
     ("d" "Dired" dired-jump-other-window)
     ("a" "Edit Aliases" casual-eshell-edit-aliases)
-    ("J" "Jump to Bookmark…" bookmark-jump)
-    ("g" "Magit" magit-status :if casual-editkit-version-controlled-p)]]
+    ("J" "Jump to Bookmark…" bookmark-jump)]]
 
   ["Process"
    :if (lambda () (car eshell-process-list))
