@@ -4,7 +4,7 @@ name: Deploy Casual User Guide to GitHub Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["development"]
+    branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -29,18 +29,19 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v4
-      # - name: Setup Pages
-      #   uses: actions/configure-pages@v5
-      - name: Hello world
-        run: echo Hello world!
-          
-      # - name: Upload artifact
-      #   uses: actions/upload-pages-artifact@v3
-      #   with:
-      #     # Upload entire repository
-      #     path: './docs/html'
-      # - name: Deploy to GitHub Pages
-      #   id: deployment
-      #   uses: actions/deploy-pages@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Generate Casual User Guide
+        run: |
+          echo Generating Casual User Guide
+          make -C docs gen-html
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload docs/html directory
+          path: './docs/html'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
