@@ -1,18 +1,23 @@
-[[../README.org][❮ Back to Casual]]
+* Info
+#+CINDEX: Info
+#+VINDEX: casual-info-tmenu
 
-* Casual Info
-An opinionated [[https://github.com/magit/transient][Transient]]-based user interface for the Emacs [[https://www.gnu.org/software/emacs/manual/html_node/info/][Info]] reader.
+Casual Info is a user interface for the Emacs Info Reader. Its top level library is ~casual-info~.
 
 [[file:images/casual-info-screenshot.png]]
 
-* Install
-If installed via MELPA then add these lines to your Emacs initialization file with your binding of preference. 
+** Info Install
+:PROPERTIES:
+:CUSTOM_ID: info-install
+:END:
+
+#+CINDEX: Info Install
+The main menu for Casual Info is ~casual-info-tmenu~. Bind this menu in the keymap ~Info-mode-map~ as follows in your initialization file.
+
 #+begin_src elisp :lexical no
-  (require 'casual-info) ; optional if using autoloaded menu
   (keymap-set Info-mode-map "C-o" #'casual-info-tmenu)
 #+end_src
 
-** Customization
 While not required, adding this configuration to your Emacs initialization file will synchronize keybindings between Casual Info and the Info reader. A nice visual improvement is to use ~hl-line-mode~ to highlight the line where the cursor is at. Enabling ~scroll-lock-mode~ will enable scrolling the buffer for content that is larger than its window size with the navigation keys.
 
 #+begin_src elisp :lexical no
@@ -39,17 +44,29 @@ While not required, adding this configuration to your Emacs initialization file 
 #+end_src
 
 
-* Usage
-1. Invoke ~M-x info~ to launch the Info reader.
-2. When the point is in the Info window, invoke ~C-o~ (or a binding of your choosing) to launch the Casual Info menu.
+** Info Usage
+#+CINDEX: Info Usage
 
-** Unicode Symbol Support
-By enabling “Use Unicode Symbols” from the Settings menu, Casual Info will use Unicode symbols as appropriate in its menus. 
+[[file:images/casual-info-screenshot.png]]
 
-* Sponsorship
-If you enjoy using Casual Info, consider making a modest financial contribution to help support its development and maintenance.
+Invoke ~M-x info~ to launch the Info reader. Move the point inside the Info window and invoke {{{kbd(C-o)}}} (or a binding of your choosing) to launch the Casual Info menu.
 
-[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
+The main menu for Casual Info is organized into the following sections:
 
-* See Also
-[[file:agenda.org][Agenda]], [[file:bookmarks.org][Bookmarks]], [[file:calc.org][Calc]], [[file:calendar.org][Calendar]], [[file:dired.org][Dired]], [[file:editkit.org][EditKit (numerous editing commands)]], [[file:help.org][Help]], [[file:ibuffer.org][IBuffer]], [[file:image.org][Image]], [[file:info.org][Info]], [[file:isearch.org][I-Search]], [[file:make-mode.org][Make]], [[file:man.org][Man]], [[file:re-builder.org][RE-Builder]], [[file:timezone.org][Timezone]]
+- Overview :: Commands that navigate you to a starting point in the info documentation.
+
+- Goto :: Commands that have you specify where to goto in the structure of an Info document.
+
+- Search :: Commands for searching Info.
+
+- History :: Commands related to the history of pages (nodes) navigated to in Info. Note that these commands should not be confused with structural navigation.
+
+- Scroll :: Commands to scroll down or up the current Info page.
+
+- Navigation :: Command related to structurally navigating an Info document. Note that these commands should not be confused with historical navigation.
+
+- Quick :: Miscellaneous commands for working with an Info document. Included are commands for bookmarks, copying the current node name, and cloning the buffer.
+
+#+TEXINFO: @majorheading Info Unicode Symbol Support
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Info will use Unicode symbols as appropriate in its menus. 
+

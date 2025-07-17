@@ -1,17 +1,21 @@
-[[../README.org][❮ Back to Casual]]
-
-* Casual Help
+* Help
+#+CINDEX: Help
+#+VINDEX: casual-help-tmenu
 
 Casual Help is a user interface for ~help-mode~, a major mode for viewing help text and navigating references in it.
 
 [[file:images/casual-help-screenshot.png]]
 
-* Install
+** Help Install
+:PROPERTIES:
+:CUSTOM_ID: help-install
+:END:
+
+#+CINDEX: Help Install
 
 In your initialization file, bind the Transient ~casual-help-tmenu~ to your key binding of preference.
 
 #+begin_src elisp :lexical no
-  (require 'casual-help) ; optional
   (keymap-set help-mode-map "C-o" #'casual-help-tmenu)
 #+end_src
 
@@ -39,9 +43,8 @@ The following keybindings are recommended to support consistent behavior between
   (keymap-set help-mode-map "k" #'backward-button)
 #+end_src
 
-* Usage
-
-** Basic Usage
+** Help Usage
+#+CINDEX: Help Usage
 
 After invoking help via a ~describe-~ command, invoke ~casual-help-tmenu~ using the binding ~C-o~ (or your binding of preference).
 
@@ -54,13 +57,7 @@ The following sections are offered in the menu:
 - Info :: If available, then open this help topic in [[file:info.org][Info]].
 - Source :: Show the Elisp source. If the help displayed is for a customizable variable, then show a customize menu item.
   
-*** Unicode Symbol Support
-By enabling “Use Unicode Symbols” from the Settings menu, Casual Man will use Unicode symbols as appropriate in its menus.
+#+TEXINFO: @majorheading Help Mode Unicode Symbol Support
 
-* Sponsorship
-If you enjoy using Casual Man, consider making a modest financial contribution to help support its development and maintenance.
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Man will use Unicode symbols as appropriate in its menus.
 
-[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
-
-* See Also
-[[file:agenda.org][Agenda]], [[file:bookmarks.org][Bookmarks]], [[file:calc.org][Calc]], [[file:calendar.org][Calendar]], [[file:dired.org][Dired]], [[file:editkit.org][EditKit (numerous editing commands)]], [[file:help.org][Help]], [[file:ibuffer.org][IBuffer]], [[file:image.org][Image]], [[file:info.org][Info]], [[file:isearch.org][I-Search]], [[file:make-mode.org][Make]], [[file:man.org][Man]], [[file:re-builder.org][RE-Builder]], [[file:timezone.org][Timezone]]
