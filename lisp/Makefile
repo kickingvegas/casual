@@ -23,6 +23,7 @@ agenda-tests					\
 bookmarks-tests					\
 calc-tests					\
 calendar-tests					\
+compile-tests					\
 dired-tests					\
 editkit-tests					\
 eshell-tests					\
@@ -54,6 +55,10 @@ calc-tests:
 .PHONY: calendar-tests
 calendar-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-calendar.make tests
+
+.PHONY: compile-tests
+compile-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-compile.make tests
 
 .PHONY: dired-tests
 dired-tests:

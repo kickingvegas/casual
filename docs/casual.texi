@@ -87,6 +87,7 @@ Casual Modes
 * Bookmarks::
 * Calc::
 * Calendar::
+* Compile::
 * Dired::
 * EditKit::
 * Eshell::
@@ -126,6 +127,11 @@ Calendar Usage
 * Calendar System Date Conversion::
 * Calendar Settings Menu::
 * Calendar Unicode Symbol Support::
+
+Compile
+
+* Compile Install::
+* Compile Usage::
 
 Dired
 
@@ -389,6 +395,8 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 @item
 @ref{Calendar Install, , Calendar}
 @item
+@ref{Compile Install, , Compile}
+@item
 @ref{Dired Install, , Dired}
 @item
 @ref{EditKit Install, , EditKit}
@@ -531,6 +539,7 @@ The following modes are supported by Casual:
 * Bookmarks::
 * Calc::
 * Calendar::
+* Compile::
 * Dired::
 * EditKit::
 * Eshell::
@@ -1000,6 +1009,111 @@ From the main menu, choosing “@kbd{,} Settings›” will provide a menu of fr
 @subsubsection Calendar Unicode Symbol Support
 
 By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Calendar will use Unicode symbols as appropriate in its menus.
+
+@node Compile
+@section Compile
+
+@cindex Compile
+@vindex casual-compile-tmenu
+
+Casual Compile is a user interface for the output of the @code{compile} command (@ref{Compilation,,,emacs,}). This output buffer uses the major mode @code{compilation-mode}, whose commands are surfaced by Casual Compile.
+
+The output of Emacs-wrapped Grep commands such as @code{rgrep}, @code{grep}, and @code{lgrep} uses @code{grep-mode} which is derived from @code{compilation-mode}. As such the main menu @code{casual-compile-tmenu} can be used for both @code{compile} and Grep commands.
+
+The screenshot below shows the menu for compilation results.
+
+@image{images/casual-compile-screenshot,,,,png}
+
+The screenshot below shows the menu for Grep results. Note the menu label changes based on the output mode (in this case @code{grep-mode}).
+
+@image{images/casual-compile-grep-screenshot,,,,png}
+
+@menu
+* Compile Install::
+* Compile Usage::
+@end menu
+
+@node Compile Install
+@subsection Compile Install
+
+@cindex Compile Install
+
+In your initialization file, bind the Transient @code{casual-compile-tmenu} to your key binding of preference.
+
+@lisp
+(keymap-set compilation-mode-map "C-o" #'casual-compile-tmenu)
+@end lisp
+
+@code{casual-compile-tmenu} deviates from the default bindings of @code{compilation-mode-map} as shown in the table below to support using a single key on an @samp{en.US} keyboard.
+
+@multitable {aaaaaaaaaaaaaaa} {aaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaa}
+@headitem Default Binding
+@tab Casual Binding
+@tab Command
+@tab Notes
+@item M-p
+@tab k
+@tab compilation-previous-error
+@tab vi-style navigation
+@item M-n
+@tab j
+@tab compilation-next-error
+@tab vi-style navigation
+@item M-@{
+@tab [
+@tab compilation-previous-file
+@tab 
+@item M-@}
+@tab ]
+@tab compilation-next-file
+@tab 
+@item C-o
+@tab o
+@tab compilation-display-error
+@tab 
+@end multitable
+
+The following keybindings are recommended to support consistent behavior between @code{compilation-mode-map} and @code{casual-compile-tmenu}.
+
+@lisp
+(keymap-set compilation-mode-map "k" #'compilation-previous-error)
+(keymap-set compilation-mode-map "j" #'compilation-next-error)
+(keymap-set compilation-mode-map "o" #'compilation-display-error)
+(keymap-set compilation-mode-map "[" #'compilation-previous-file)
+(keymap-set compilation-mode-map "]" #'compilation-next-file)
+@end lisp
+
+@node Compile Usage
+@subsection Compile Usage
+
+@cindex Compile Usage
+
+@image{images/casual-compile-screenshot,,,,png}
+
+After running @code{compile}, invoke @code{casual-compile-tmenu} in the buffer named @samp{✳︎compilation✳︎} using the binding @code{C-o} (or your binding of preference).
+
+The following sections are offered in the menu:
+
+@table @asis
+@item Follow
+Navigate the point while opening the location of the error in the source file in another window.
+@item Error
+Error operations.
+@item File
+If there are errors in multiple files, navigate to the file.
+@item Compile
+Get compile for different Elisp types. Note that the “@kbd{k} Kill” item is displayed when there is a running job.
+@end table
+
+
+If the output window is from a Grep command, @code{casual-compile-tmenu} will adjust its label accordingly as shown below.
+
+@image{images/casual-compile-grep-screenshot,,,,png}
+
+
+@majorheading Compile Mode Unicode Symbol Support
+
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Compile will use Unicode symbols as appropriate in its menus.
 
 @node Dired
 @section Dired
