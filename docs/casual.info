@@ -77,6 +77,7 @@ Casual Modes
 * Bookmarks::
 * Calc::
 * Calendar::
+* Compile::
 * Dired::
 * EditKit::
 * Eshell::
@@ -116,6 +117,11 @@ Calendar Usage
 * Calendar System Date Conversion::
 * Calendar Settings Menu::
 * Calendar Unicode Symbol Support::
+
+Compile
+
+* Compile Install::
+* Compile Usage::
 
 Dired
 
@@ -375,6 +381,7 @@ guidance on its configuration.
    • *note Bookmarks: Bookmarks Install.
    • *note Calc: Calc Install.
    • *note Calendar: Calendar Install.
+   • *note Compile: Compile Install.
    • *note Dired: Dired Install.
    • *note EditKit: EditKit Install.
    • *note Eshell: Eshell Install.
@@ -572,6 +579,7 @@ The following modes are supported by Casual:
 * Bookmarks::
 * Calc::
 * Calendar::
+* Compile::
 * Dired::
 * EditKit::
 * Eshell::
@@ -887,7 +895,7 @@ It helps to know some basics about Calc.
    • Entering a single quote (') will prompt you for an algebraic entry.
 
 
-File: casual.info,  Node: Calendar,  Next: Dired,  Prev: Calc,  Up: Casual Modes
+File: casual.info,  Node: Calendar,  Next: Compile,  Prev: Calc,  Up: Casual Modes
 
 5.4 Calendar
 ============
@@ -1046,9 +1054,106 @@ By enabling “‘u’ Use Unicode Symbols” from the Settings menu, Casual
 Calendar will use Unicode symbols as appropriate in its menus.
 
 
-File: casual.info,  Node: Dired,  Next: EditKit,  Prev: Calendar,  Up: Casual Modes
+File: casual.info,  Node: Compile,  Next: Dired,  Prev: Calendar,  Up: Casual Modes
 
-5.5 Dired
+5.5 Compile
+===========
+
+Casual Compile is a user interface for the output of the ‘compile’
+command (*note (emacs)Compilation::).  This output buffer uses the major
+mode ‘compilation-mode’, whose commands are surfaced by Casual Compile.
+
+The output of Emacs-wrapped Grep commands such as ‘rgrep’, ‘grep’, and
+‘lgrep’ uses ‘grep-mode’ which is derived from ‘compilation-mode’.  As
+such the main menu ‘casual-compile-tmenu’ can be used for both ‘compile’
+and Grep commands.
+
+The screenshot below shows the menu for compilation results.
+
+ [image src="images/casual-compile-screenshot.png" ]
+
+The screenshot below shows the menu for Grep results.  Note the menu
+label changes based on the output mode (in this case ‘grep-mode’).
+
+ [image src="images/casual-compile-grep-screenshot.png" ]
+
+* Menu:
+
+* Compile Install::
+* Compile Usage::
+
+
+File: casual.info,  Node: Compile Install,  Next: Compile Usage,  Up: Compile
+
+5.5.1 Compile Install
+---------------------
+
+In your initialization file, bind the Transient ‘casual-compile-tmenu’
+to your key binding of preference.
+
+     (keymap-set compilation-mode-map "C-o" #'casual-compile-tmenu)
+
+‘casual-compile-tmenu’ deviates from the default bindings of
+‘compilation-mode-map’ as shown in the table below to support using a
+single key on an ‘en.US’ keyboard.
+
+Default Binding   Casual Binding   Command                      Notes
+--------------------------------------------------------------------------------------
+M-p               k                compilation-previous-error   vi-style navigation
+M-n               j                compilation-next-error       vi-style navigation
+M-{               [                compilation-previous-file
+M-}               ]                compilation-next-file
+C-o               o                compilation-display-error
+
+The following keybindings are recommended to support consistent behavior
+between ‘compilation-mode-map’ and ‘casual-compile-tmenu’.
+
+     (keymap-set compilation-mode-map "k" #'compilation-previous-error)
+     (keymap-set compilation-mode-map "j" #'compilation-next-error)
+     (keymap-set compilation-mode-map "o" #'compilation-display-error)
+     (keymap-set compilation-mode-map "[" #'compilation-previous-file)
+     (keymap-set compilation-mode-map "]" #'compilation-next-file)
+
+
+File: casual.info,  Node: Compile Usage,  Prev: Compile Install,  Up: Compile
+
+5.5.2 Compile Usage
+-------------------
+
+ [image src="images/casual-compile-screenshot.png" ]
+
+After running ‘compile’, invoke ‘casual-compile-tmenu’ in the buffer
+named ‘✳︎compilation✳︎’ using the binding ‘C-o’ (or your binding of
+preference).
+
+The following sections are offered in the menu:
+
+Follow
+     Navigate the point while opening the location of the error in the
+     source file in another window.
+Error
+     Error operations.
+File
+     If there are errors in multiple files, navigate to the file.
+Compile
+     Get compile for different Elisp types.  Note that the “‘k’ Kill”
+     item is displayed when there is a running job.
+
+If the output window is from a Grep command, ‘casual-compile-tmenu’ will
+adjust its label accordingly as shown below.
+
+ [image src="images/casual-compile-grep-screenshot.png" ]
+
+Compile Mode Unicode Symbol Support
+***********************************
+
+By enabling “‘u’ Use Unicode Symbols” from the Settings menu, Casual
+Compile will use Unicode symbols as appropriate in its menus.
+
+
+File: casual.info,  Node: Dired,  Next: EditKit,  Prev: Compile,  Up: Casual Modes
+
+5.6 Dired
 =========
 
 Casual Dired provides a user interface for Dired (*note (emacs)Dired::),
@@ -1065,7 +1170,7 @@ the Emacs file manager.  Its top-level library is ‘casual-dired’.
 
 File: casual.info,  Node: Dired Requirements,  Next: Dired Install,  Up: Dired
 
-5.5.1 Dired Requirements
+5.6.1 Dired Requirements
 ------------------------
 
 Casual Dired requires that the ‘ls’ utility from GNU coreutils ≥ 8.32 be
@@ -1082,7 +1187,7 @@ different platforms.
 
 File: casual.info,  Node: macOS,  Next: Windows,  Up: Dired Requirements
 
-5.5.1.1 macOS
+5.6.1.1 macOS
 .............
 
 Note that the default packaged ‘ls’ on macOS is BSD-flavored which is
@@ -1096,7 +1201,7 @@ to point to its version of ‘ls’ accordingly.
 
 File: casual.info,  Node: Windows,  Prev: macOS,  Up: Dired Requirements
 
-5.5.1.2 Windows
+5.6.1.2 Windows
 ...............
 
 For users running on Microsoft Windows, use this guidance
@@ -1110,7 +1215,7 @@ to configure Emacs to use an external install of ‘ls’.
 
 File: casual.info,  Node: Dired Install,  Next: Dired Usage,  Prev: Dired Requirements,  Up: Dired
 
-5.5.2 Dired Install
+5.6.2 Dired Install
 -------------------
 
 The main menu for Dired is ‘casual-dired-tmenu’.  Bind this menu in the
@@ -1199,7 +1304,7 @@ the variable ‘dired-use-ls-dired’ to ‘t’ (“‘l’ Use GNU ‘ls’ wi
 
 File: casual.info,  Node: Dired Usage,  Prev: Dired Install,  Up: Dired
 
-5.5.3 Dired Usage
+5.6.3 Dired Usage
 -----------------
 
  [image src="images/casual-dired-screenshot.png" ]
@@ -1254,7 +1359,7 @@ New
 
 File: casual.info,  Node: Dired Enhanced Sorting,  Next: Dired Search & Replace,  Up: Dired Usage
 
-5.5.3.1 Dired Enhanced Sorting
+5.6.3.1 Dired Enhanced Sorting
 ..............................
 
 Casual Dired offers enhanced sorting capabilities through GNU ‘ls’.  Use
@@ -1270,7 +1375,7 @@ global setting and will apply to all future calls to the *Sort By* menu.
 
 File: casual.info,  Node: Dired Search & Replace,  Next: Bulk Dired Operations,  Prev: Dired Enhanced Sorting,  Up: Dired Usage
 
-5.5.3.2 Dired Search & Replace
+5.6.3.2 Dired Search & Replace
 ..............................
 
 Search and replace in multiple marked files using the “‘/’ Search &
@@ -1292,7 +1397,7 @@ is installed and used by Emacs.
 
 File: casual.info,  Node: Bulk Dired Operations,  Next: Dired Link,  Prev: Dired Search & Replace,  Up: Dired Usage
 
-5.5.3.3 Bulk Dired Operations
+5.6.3.3 Bulk Dired Operations
 .............................
 
 Casual Dired organizes a number of Dired commands that work on a set of
@@ -1304,7 +1409,7 @@ marked files.  These commands are presented in the “‘#’ Utils›” menu i
 
 File: casual.info,  Node: Dired Link,  Next: Dired Unicode Symbol Support,  Prev: Bulk Dired Operations,  Up: Dired Usage
 
-5.5.3.4 Dired Link
+5.6.3.4 Dired Link
 ..................
 
 Create symbolic and hard links via the “‘l’ Link›” menu in
@@ -1316,7 +1421,7 @@ Create symbolic and hard links via the “‘l’ Link›” menu in
 
 File: casual.info,  Node: Dired Unicode Symbol Support,  Prev: Dired Link,  Up: Dired Usage
 
-5.5.3.5 Dired Unicode Symbol Support
+5.6.3.5 Dired Unicode Symbol Support
 ....................................
 
 By enabling “‘u’ Use Unicode Symbols” from the Settings menu, Casual
@@ -1331,7 +1436,7 @@ fixed-width or monospace and *must* support the Unicode symbols used.
 
 File: casual.info,  Node: EditKit,  Next: Eshell,  Prev: Dired,  Up: Casual Modes
 
-5.6 EditKit
+5.7 EditKit
 ===========
 
 Casual EditKit provides a user interface for the numerous editing
@@ -1356,7 +1461,7 @@ taste.
 
 File: casual.info,  Node: EditKit Install,  Next: EditKit Usage,  Up: EditKit
 
-5.6.1 EditKit Install
+5.7.1 EditKit Install
 ---------------------
 
 A reference menu (‘casual-editkit-main-tmenu’) illustrating nearly all
@@ -1378,7 +1483,7 @@ workflows.
 
 File: casual.info,  Node: EditKit Usage,  Prev: EditKit Install,  Up: EditKit
 
-5.6.2 EditKit Usage
+5.7.2 EditKit Usage
 -------------------
 
  [image src="images/casual-editkit-main-screenshot.png" ]
@@ -1427,7 +1532,7 @@ commands.
 
 File: casual.info,  Node: Register commands,  Next: Edit commands,  Up: EditKit Usage
 
-5.6.2.1 Register commands
+5.7.2.1 Register commands
 .........................
 
 Support for register commands (*note (emacs)Registers::) is provided by
@@ -1443,7 +1548,7 @@ configuration, and keyboard macros are provided by this menu.
 
 File: casual.info,  Node: Edit commands,  Next: Window management,  Prev: Register commands,  Up: EditKit Usage
 
-5.6.2.2 Edit commands
+5.7.2.2 Edit commands
 .....................
 
 This menu contains commands and sub-menus related to editing text.
@@ -1543,7 +1648,7 @@ sub-menu of ‘casual-editkit-edit-tmenu’.
 
 File: casual.info,  Node: Window management,  Next: Search & Replace commands,  Prev: Edit commands,  Up: EditKit Usage
 
-5.6.2.3 Window management
+5.7.2.3 Window management
 .........................
 
 This menu provides support for different Emacs window management
@@ -1568,7 +1673,7 @@ This menu provides support for deleting windows.
 
 File: casual.info,  Node: Search & Replace commands,  Next: Open commands,  Prev: Window management,  Up: EditKit Usage
 
-5.6.2.4 Search & Replace commands
+5.7.2.4 Search & Replace commands
 .................................
 
 Operations related to search and replace are captured by this menu.
@@ -1583,7 +1688,7 @@ direction will by default operate forward of the current point if
 
 File: casual.info,  Node: Open commands,  Next: Project commands,  Prev: Search & Replace commands,  Up: EditKit Usage
 
-5.6.2.5 Open commands
+5.7.2.5 Open commands
 .....................
 
 Commands related to opening a file (either for writing or read-only) are
@@ -1595,7 +1700,7 @@ or buffer.  The *Project* sub-menu is also offered here.
 
 File: casual.info,  Node: Project commands,  Next: Bookmark commands,  Prev: Open commands,  Up: EditKit Usage
 
-5.6.2.6 Project commands
+5.7.2.6 Project commands
 ........................
 
 Project-related commands are listed in this menu.
@@ -1605,7 +1710,7 @@ Project-related commands are listed in this menu.
 
 File: casual.info,  Node: Bookmark commands,  Next: Emoji & Symbol Insertion,  Prev: Project commands,  Up: EditKit Usage
 
-5.6.2.7 Bookmark commands
+5.7.2.7 Bookmark commands
 .........................
 
 Commands edit, add, or jump to a bookmark are captured in this menu.
@@ -1615,7 +1720,7 @@ Commands edit, add, or jump to a bookmark are captured in this menu.
 
 File: casual.info,  Node: Emoji & Symbol Insertion,  Next: Tool commands,  Prev: Bookmark commands,  Up: EditKit Usage
 
-5.6.2.8 Emoji & Symbol Insertion
+5.7.2.8 Emoji & Symbol Insertion
 ................................
 
 Insert emoji and symbol characters with this menu.  Smart quotes are
@@ -1628,7 +1733,7 @@ menu also offers the command ‘electric-quote-mode’ which is bound to
 
 File: casual.info,  Node: Tool commands,  Next: Narrow/Widen Commands,  Prev: Emoji & Symbol Insertion,  Up: EditKit Usage
 
-5.6.2.9 Tool commands
+5.7.2.9 Tool commands
 .....................
 
 This menu holds an assorted collection of different tools/utilities
@@ -1640,7 +1745,7 @@ starting point to create a menu customized to their needs.
 
 File: casual.info,  Node: Narrow/Widen Commands,  Next: Macro,  Prev: Tool commands,  Up: EditKit Usage
 
-5.6.2.10 Narrow/Widen Commands
+5.7.2.10 Narrow/Widen Commands
 ..............................
 
 Support for narrowing and widening (*note (emacs)Narrowing::) a buffer
@@ -1666,7 +1771,7 @@ initialization code can be used.
 
 File: casual.info,  Node: Macro,  Next: EditKit Settings,  Prev: Narrow/Widen Commands,  Up: EditKit Usage
 
-5.6.2.11 Macro
+5.7.2.11 Macro
 ..............
 
 Commands for managing macros are provided for by this menu.  Note that
@@ -1678,7 +1783,7 @@ keybindings.
 
 File: casual.info,  Node: EditKit Settings,  Prev: Macro,  Up: EditKit Usage
 
-5.6.2.12 EditKit Settings
+5.7.2.12 EditKit Settings
 .........................
 
 Configuration of common editing-related settings are provided here.
@@ -1698,7 +1803,7 @@ command.
 
 File: casual.info,  Node: Eshell,  Next: Help,  Prev: EditKit,  Up: Casual Modes
 
-5.7 Eshell
+5.8 Eshell
 ==========
 
 Casual Eshell is a user interface for ‘Eshell’, a shell-like command
@@ -1714,7 +1819,7 @@ interpreter implemented in Emacs Lisp.
 
 File: casual.info,  Node: Eshell Install,  Next: Eshell Usage,  Up: Eshell
 
-5.7.1 Eshell Install
+5.8.1 Eshell Install
 --------------------
 
 In your initialization file, bind the Transient ‘casual-eshell-tmenu’ to
@@ -1725,7 +1830,7 @@ your key binding of preference.
 
 File: casual.info,  Node: Eshell Usage,  Prev: Eshell Install,  Up: Eshell
 
-5.7.2 Eshell Usage
+5.8.2 Eshell Usage
 ------------------
 
 Eshell can be invoked via ‘M-x eshell’.  In the Eshell window, press
@@ -1760,7 +1865,7 @@ Eshell will use Unicode symbols as appropriate in its menus.
 
 File: casual.info,  Node: Help,  Next: IBuffer,  Prev: Eshell,  Up: Casual Modes
 
-5.8 Help
+5.9 Help
 ========
 
 Casual Help is a user interface for ‘help-mode’, a major mode for
@@ -1776,7 +1881,7 @@ viewing help text and navigating references in it.
 
 File: casual.info,  Node: Help Install,  Next: Help Usage,  Up: Help
 
-5.8.1 Help Install
+5.9.1 Help Install
 ------------------
 
 In your initialization file, bind the Transient ‘casual-help-tmenu’ to
@@ -1811,7 +1916,7 @@ between ‘help-mode’ and ‘casual-help-tmenu’.
 
 File: casual.info,  Node: Help Usage,  Prev: Help Install,  Up: Help
 
-5.8.2 Help Usage
+5.9.2 Help Usage
 ----------------
 
 After invoking help via a ‘describe-’ command, invoke
@@ -1844,8 +1949,8 @@ will use Unicode symbols as appropriate in its menus.  ❮ Back to Casual
 
 File: casual.info,  Node: IBuffer,  Next: Image,  Prev: Help,  Up: Casual Modes
 
-5.9 IBuffer
-===========
+5.10 IBuffer
+============
 
 Casual IBuffer provides a user interface to Emacs IBuffer (*note
 emacs#Buffer Menus: (emacs)Buffer Menus.), a mode designed for managing
@@ -1866,8 +1971,8 @@ buffers as opposed to processes.
 
 File: casual.info,  Node: IBuffer Install,  Next: IBuffer Usage,  Up: IBuffer
 
-5.9.1 IBuffer Install
----------------------
+5.10.1 IBuffer Install
+----------------------
 
 In your initialization file, bind the Transinent ‘casual-ibuffer-tmenu’
 to your key binding of preference.
@@ -1906,8 +2011,8 @@ will enable auto-updating.
 
 File: casual.info,  Node: IBuffer Usage,  Prev: IBuffer Install,  Up: IBuffer
 
-5.9.2 IBuffer Usage
--------------------
+5.10.2 IBuffer Usage
+--------------------
 
  [image src="images/casual-ibuffer-screenshot.png" ]
 
@@ -1950,8 +2055,8 @@ Quick
 
 File: casual.info,  Node: IBuffer Marking and Operating,  Next: IBuffer Filtering,  Up: IBuffer Usage
 
-5.9.2.1 IBuffer Marking and Operating
-.....................................
+5.10.2.1 IBuffer Marking and Operating
+......................................
 
  [image src="images/casual-ibuffer-main-screenshot.png" ]
 
@@ -1974,8 +2079,8 @@ is available.
 
 File: casual.info,  Node: IBuffer Filtering,  Next: IBuffer Sorting,  Prev: IBuffer Marking and Operating,  Up: IBuffer Usage
 
-5.9.2.2 IBuffer Filtering
-.........................
+5.10.2.2 IBuffer Filtering
+..........................
 
  [image src="images/casual-ibuffer-filter-screenshot.png" ]
 
@@ -2105,8 +2210,8 @@ Whether it succeeds in being comprehensible is left to user feedback.
 
 File: casual.info,  Node: IBuffer Sorting,  Next: IBuffer Unicode Symbol Support,  Prev: IBuffer Filtering,  Up: IBuffer Usage
 
-5.9.2.3 IBuffer Sorting
-.......................
+5.10.2.3 IBuffer Sorting
+........................
 
  [image src="images/casual-ibuffer-sortby-screenshot.png" ]
 
@@ -2118,8 +2223,8 @@ Sort ordering can be reversed via the _Invert_ command.
 
 File: casual.info,  Node: IBuffer Unicode Symbol Support,  Prev: IBuffer Sorting,  Up: IBuffer Usage
 
-5.9.2.4 IBuffer Unicode Symbol Support
-......................................
+5.10.2.4 IBuffer Unicode Symbol Support
+.......................................
 
 By enabling “‘u’ Use Unicode Symbols” from the Settings menu, Casual
 IBuffer will use Unicode symbols as appropriate in its menus.  The
@@ -2136,7 +2241,7 @@ Name        Plain      Unicode
 
 File: casual.info,  Node: Image,  Next: Info,  Prev: IBuffer,  Up: Casual Modes
 
-5.10 Image
+5.11 Image
 ==========
 
 Casual Image is a user interface for Image Mode (*note (emacs)Image
@@ -2157,7 +2262,7 @@ tools.
 
 File: casual.info,  Node: Image Install,  Next: Image Usage,  Up: Image
 
-5.10.1 Image Install
+5.11.1 Image Install
 --------------------
 
 The main menu for Casual Image is ‘casual-image-tmenu’.  Bind this menu
@@ -2168,7 +2273,7 @@ in the keymap ‘image-mode-map’ as follows in your initialization file.
 
 File: casual.info,  Node: Image Usage,  Prev: Image Install,  Up: Image
 
-5.10.2 Image Usage
+5.11.2 Image Usage
 ------------------
 
  [image src="images/casual-image-main-screenshot.png" ]
@@ -2210,7 +2315,7 @@ Misc
 
 File: casual.info,  Node: Image Resize,  Next: Image Unicode Symbol Support,  Up: Image Usage
 
-5.10.2.1 Image Resize
+5.11.2.1 Image Resize
 .....................
 
 If ImageMagick (version 6 or 7) is installed, Casual Image can resize an
@@ -2237,7 +2342,7 @@ Image Resize Options
 
 File: casual.info,  Node: Image Unicode Symbol Support,  Next: Image Mode Command Naming,  Prev: Image Resize,  Up: Image Usage
 
-5.10.2.2 Image Unicode Symbol Support
+5.11.2.2 Image Unicode Symbol Support
 .....................................
 
 By enabling “‘u’ Use Unicode Symbols” from the Settings menu, Casual
@@ -2246,7 +2351,7 @@ Image will use Unicode symbols as appropriate in its menus.
 
 File: casual.info,  Node: Image Mode Command Naming,  Prev: Image Unicode Symbol Support,  Up: Image Usage
 
-5.10.2.3 Image Mode Command Naming
+5.11.2.3 Image Mode Command Naming
 ..................................
 
 Casual Image makes a number of opinionated changes to the naming of
@@ -2288,7 +2393,7 @@ Copy filename           ‘image-mode-copy-file-name-as-kill’   Push the curre
 
 File: casual.info,  Node: Info,  Next: I-Search,  Prev: Image,  Up: Casual Modes
 
-5.11 Info
+5.12 Info
 =========
 
 Casual Info is a user interface for the Emacs Info Reader.  Its top
@@ -2304,7 +2409,7 @@ level library is ‘casual-info’.
 
 File: casual.info,  Node: Info Install,  Next: Info Usage,  Up: Info
 
-5.11.1 Info Install
+5.12.1 Info Install
 -------------------
 
 The main menu for Casual Info is ‘casual-info-tmenu’.  Bind this menu in
@@ -2343,7 +2448,7 @@ window size with the navigation keys.
 
 File: casual.info,  Node: Info Usage,  Prev: Info Install,  Up: Info
 
-5.11.2 Info Usage
+5.12.2 Info Usage
 -----------------
 
  [image src="images/casual-info-screenshot.png" ]
@@ -2392,7 +2497,7 @@ Info will use Unicode symbols as appropriate in its menus.
 
 File: casual.info,  Node: I-Search,  Next: Make,  Prev: Info,  Up: Casual Modes
 
-5.12 I-Search
+5.13 I-Search
 =============
 
 Casual I-Search is a user interface for Emacs Incremental Search (*note
@@ -2409,7 +2514,7 @@ library is ‘casual-isearch’.
 
 File: casual.info,  Node: I-Search Install,  Next: I-Search Usage,  Up: I-Search
 
-5.12.1 I-Search Install
+5.13.1 I-Search Install
 -----------------------
 
 The main menu for Casual I-Search is ‘casual-isearch-tmenu’.  Bind this
@@ -2424,7 +2529,7 @@ preference.
 
 File: casual.info,  Node: I-Search Usage,  Prev: I-Search Install,  Up: I-Search
 
-5.12.2 I-Search Usage
+5.13.2 I-Search Usage
 ---------------------
 
  [image src="images/casual-isearch-tmenu.png" ]
@@ -2466,7 +2571,7 @@ Use ‘C-g’ to dismiss this Transient menu.
 
 File: casual.info,  Node: Make,  Next: Man,  Prev: I-Search,  Up: Casual Modes
 
-5.13 Make
+5.14 Make
 =========
 
 Casual Make is a user interface for ‘make-mode’, a mode tailored for
@@ -2482,7 +2587,7 @@ editing a Makefile.
 
 File: casual.info,  Node: Make Install,  Next: Make Usage,  Up: Make
 
-5.13.1 Make Install
+5.14.1 Make Install
 -------------------
 
 In your initialization file, bind the Transient ‘casual-make-tmenu’ to
@@ -2494,7 +2599,7 @@ your key binding of preference.  Two suggested bindings are ‘M-m’ or
 
 File: casual.info,  Node: Make Usage,  Prev: Make Install,  Up: Make
 
-5.13.2 Make Usage
+5.14.2 Make Usage
 -----------------
 
  [image src="images/casual-make-screenshot.png" ]
@@ -2537,7 +2642,7 @@ shown in the mini-buffer.
 
 File: casual.info,  Node: Makefile Type Selection,  Next: Automatic Variables,  Up: Make Usage
 
-5.13.2.1 Makefile Type Selection
+5.14.2.1 Makefile Type Selection
 ................................
 
 As there are different variants of *make* and makefile formats, you can
@@ -2549,7 +2654,7 @@ done by selecting “‘t’ Makefile Type›” in ‘casual-make-tmenu’.
 
 File: casual.info,  Node: Automatic Variables,  Next: Make Unicode Symbol Support,  Prev: Makefile Type Selection,  Up: Make Usage
 
-5.13.2.2 Automatic Variables
+5.14.2.2 Automatic Variables
 ............................
 
 Casual Make provides a menu to enter GNU Make-style *note automatic
@@ -2563,7 +2668,7 @@ from the menu item “‘a’ Automatic Variables›” in ‘casual-make-tmenu�
 
 File: casual.info,  Node: Make Unicode Symbol Support,  Prev: Automatic Variables,  Up: Make Usage
 
-5.13.2.3 Make Unicode Symbol Support
+5.14.2.3 Make Unicode Symbol Support
 ....................................
 
 By enabling “‘u’ Use Unicode Symbols” from the Settings menu, Casual
@@ -2572,7 +2677,7 @@ Make will use Unicode symbols as appropriate in its menus.
 
 File: casual.info,  Node: Man,  Next: RE-Builder,  Prev: Make,  Up: Casual Modes
 
-5.14 Man
+5.15 Man
 ========
 
 Casual Man is a user interface for ‘Man-mode’, a Man page reader.
@@ -2587,7 +2692,7 @@ Casual Man is a user interface for ‘Man-mode’, a Man page reader.
 
 File: casual.info,  Node: Man Install,  Next: Man Usage,  Up: Man
 
-5.14.1 Man Install
+5.15.1 Man Install
 ------------------
 
 In your initialization file, bind the Transient ‘casual-man-tmenu’ to
@@ -2623,7 +2728,7 @@ between ‘Man-mode’ and ‘casual-man-tmenu’.
 
 File: casual.info,  Node: Man Usage,  Prev: Man Install,  Up: Man
 
-5.14.2 Man Usage
+5.15.2 Man Usage
 ----------------
 
  [image src="images/casual-man-screenshot.png" ]
@@ -2679,7 +2784,7 @@ will use Unicode symbols as appropriate in its menus.
 
 File: casual.info,  Node: RE-Builder,  Next: Timezone,  Prev: Man,  Up: Casual Modes
 
-5.15 RE-Builder
+5.16 RE-Builder
 ===============
 
 Casual RE-Builder is a user interface for RE-Builder.  Its top level
@@ -2695,7 +2800,7 @@ library is ‘casual-re-builder’.
 
 File: casual.info,  Node: RE-Builder Install,  Next: RE-Builder Usage,  Up: RE-Builder
 
-5.15.1 RE-Builder Install
+5.16.1 RE-Builder Install
 -------------------------
 
 The main menu for Casual RE-Builder is ‘casual-re-builder-tmenu’.  Bind
@@ -2708,7 +2813,7 @@ this menu to your preference in the keymaps ‘reb-mode-map’ and
 
 File: casual.info,  Node: RE-Builder Usage,  Prev: RE-Builder Install,  Up: RE-Builder
 
-5.15.2 RE-Builder Usage
+5.16.2 RE-Builder Usage
 -----------------------
 
  [image src="images/casual-re-builder-screenshot.png" ]
@@ -2790,7 +2895,7 @@ Name        Plain      Unicode
 
 File: casual.info,  Node: Timezone,  Prev: RE-Builder,  Up: Casual Modes
 
-5.16 Timezone
+5.17 Timezone
 =============
 
 Casual Timezone is a library of commands to work with different time
@@ -2813,7 +2918,7 @@ Casual Timezone only supports systems that have a tz database
 
 File: casual.info,  Node: Timezone Install,  Next: Timezone Usage,  Up: Timezone
 
-5.16.1 Timezone Install
+5.17.1 Timezone Install
 -----------------------
 
 Casual Timezone is configured as part of Casual EditKit in the Tools
@@ -2826,7 +2931,7 @@ who wish to access it directly.
 
 File: casual.info,  Node: Timezone Usage,  Prev: Timezone Install,  Up: Timezone
 
-5.16.2 Timezone Usage
+5.17.2 Timezone Usage
 ---------------------
 
  [image src="images/casual-timezone-planner-screenshot.png" ]
@@ -2858,7 +2963,7 @@ below.
 
 File: casual.info,  Node: Timezone Formatting,  Next: Planner Configuration,  Up: Timezone Usage
 
-5.16.2.1 Timezone Formatting
+5.17.2.1 Timezone Formatting
 ............................
 
 The formatted representation of time in Casual Timezone is set by the
@@ -2885,7 +2990,7 @@ These variables can be customized via the Transient menu
 
 File: casual.info,  Node: Planner Configuration,  Next: Zoneinfo Database,  Prev: Timezone Formatting,  Up: Timezone Usage
 
-5.16.2.2 Planner Configuration
+5.17.2.2 Planner Configuration
 ..............................
 
 The following variables can control how working hours are displayed in
@@ -2905,7 +3010,7 @@ These variables can be customized via the Transient menu
 
 File: casual.info,  Node: Zoneinfo Database,  Next: Timezone Unicode Symbol Support,  Prev: Planner Configuration,  Up: Timezone Usage
 
-5.16.2.3 Zoneinfo Database
+5.17.2.3 Zoneinfo Database
 ..........................
 
 The variable ‘casual-timezone-zone-info-database’ is default set to the
@@ -2915,7 +3020,7 @@ zoneinfo database is located at a different path.
 
 File: casual.info,  Node: Timezone Unicode Symbol Support,  Prev: Zoneinfo Database,  Up: Timezone Usage
 
-5.16.2.4 Timezone Unicode Symbol Support
+5.17.2.4 Timezone Unicode Symbol Support
 ........................................
 
 By enabling “‘u’ Use Unicode Symbols” from the Settings menu, Casual
@@ -3011,6 +3116,9 @@ Index for this user guide.
 * Calendar Install:                      Calendar Install.     (line  6)
 * Calendar Usage:                        Calendar Usage.       (line  6)
 * Casual Modes:                          Casual Modes.         (line  6)
+* Compile:                               Compile.              (line  6)
+* Compile Install:                       Compile Install.      (line  6)
+* Compile Usage:                         Compile Usage.        (line  6)
 * Copy commands:                         Edit commands.        (line 27)
 * Customization:                         Customization.        (line  6)
 * Cut commands:                          Edit commands.        (line 34)
@@ -3112,6 +3220,7 @@ Variables, functions, commands, and menus referenced by this user guide.
 * casual-calc-tmenu:                     Calc.                 (line  6)
 * casual-calendar:                       Calendar.             (line  6)
 * casual-calendar-tmenu:                 Calendar.             (line  6)
+* casual-compile-tmenu:                  Compile.              (line  6)
 * casual-dired-search-replace-tmenu:     Dired Search & Replace.
                                                                (line  6)
 * casual-dired-sort-by-tmenu:            Dired Enhanced Sorting.
@@ -3165,110 +3274,113 @@ Variables, functions, commands, and menus referenced by this user guide.
 
 Tag Table:
 Node: Top268
-Node: Introduction4118
-Node: Motivations4286
-Node: Transient Conventions5793
-Node: Requirements7455
-Node: Install7743
-Node: Upgrading to Casual 2x8795
-Node: If you do not use use-package to configure Casual9178
-Node: If you have used use-package to configure Casual10151
-Node: A Note on Package Dependencies11098
-Node: UX Conventions12175
-Node: Casual Modes14925
-Node: Agenda15950
-Node: Agenda Install16343
-Node: Agenda Usage16939
-Node: Bookmarks18841
-Node: Bookmarks Install19211
-Node: Bookmarks Usage20731
-Node: Calc22186
-Node: Calc Install22452
-Node: Calc Usage22795
-Node: Calendar25362
-Node: Calendar Install25817
-Node: Calendar Usage26220
-Node: Diary & Goto Menu27405
-Node: Calendar System Date Conversion27792
-Node: Calendar Settings Menu29582
-Node: Calendar Unicode Symbol Support29997
-Node: Dired30332
-Node: Dired Requirements30705
-Node: macOS31052
-Node: Windows31554
-Node: Dired Install31988
-Node: Dired Usage35481
-Node: Dired Enhanced Sorting37224
-Node: Dired Search & Replace37876
-Node: Bulk Dired Operations38756
-Node: Dired Link39177
-Node: Dired Unicode Symbol Support39554
-Node: EditKit40092
-Node: EditKit Install40901
-Node: EditKit Usage41853
-Node: Register commands43104
-Node: Edit commands43692
-Node: Window management46519
-Node: Search & Replace commands47310
-Node: Open commands47950
-Node: Project commands48381
-Node: Bookmark commands48661
-Node: Emoji & Symbol Insertion48975
-Node: Tool commands49457
-Node: Narrow/Widen Commands49887
-Node: Macro50924
-Node: EditKit Settings51285
-Node: Eshell51968
-Node: Eshell Install52289
-Node: Eshell Usage52583
-Node: Help53649
-Node: Help Install53969
-Node: Help Usage55846
-Node: IBuffer56803
-Node: IBuffer Install57454
-Node: IBuffer Usage59166
-Node: IBuffer Marking and Operating60243
-Node: IBuffer Filtering61217
-Node: IBuffer Sorting66843
-Node: IBuffer Unicode Symbol Support67232
-Node: Image67808
-Node: Image Install68360
-Node: Image Usage68691
-Node: Image Resize69602
-Node: Image Unicode Symbol Support70655
-Node: Image Mode Command Naming71001
-Node: Info74632
-Node: Info Install74937
-Node: Info Usage76617
-Node: I-Search78031
-Node: I-Search Install78419
-Node: I-Search Usage78857
-Node: Make80192
-Node: Make Install80484
-Node: Make Usage80822
-Node: Makefile Type Selection82193
-Node: Automatic Variables82644
-Node: Make Unicode Symbol Support83276
-Node: Man83590
-Node: Man Install83856
-Node: Man Usage85723
-Node: RE-Builder87523
-Node: RE-Builder Install87863
-Node: RE-Builder Usage88346
-Node: Timezone91726
-Node: Timezone Install92463
-Node: Timezone Usage92900
-Node: Timezone Formatting93865
-Node: Planner Configuration94938
-Node: Zoneinfo Database95719
-Node: Timezone Unicode Symbol Support96109
-Node: Customization96441
-Node: Feedback & Discussion96755
-Node: Sponsorship97173
-Node: About Casual97549
-Node: Acknowledgments97847
-Node: Main Index98241
-Node: Variable Index105720
+Node: Introduction4178
+Node: Motivations4346
+Node: Transient Conventions5853
+Node: Requirements7515
+Node: Install7803
+Node: Upgrading to Casual 2x8894
+Node: If you do not use use-package to configure Casual9277
+Node: If you have used use-package to configure Casual10250
+Node: A Note on Package Dependencies11197
+Node: UX Conventions12274
+Node: Casual Modes15024
+Node: Agenda16061
+Node: Agenda Install16454
+Node: Agenda Usage17050
+Node: Bookmarks18952
+Node: Bookmarks Install19322
+Node: Bookmarks Usage20842
+Node: Calc22297
+Node: Calc Install22563
+Node: Calc Usage22906
+Node: Calendar25473
+Node: Calendar Install25930
+Node: Calendar Usage26333
+Node: Diary & Goto Menu27518
+Node: Calendar System Date Conversion27905
+Node: Calendar Settings Menu29695
+Node: Calendar Unicode Symbol Support30110
+Node: Compile30445
+Node: Compile Install31409
+Node: Compile Usage32890
+Node: Dired34042
+Node: Dired Requirements34414
+Node: macOS34761
+Node: Windows35263
+Node: Dired Install35697
+Node: Dired Usage39190
+Node: Dired Enhanced Sorting40933
+Node: Dired Search & Replace41585
+Node: Bulk Dired Operations42465
+Node: Dired Link42886
+Node: Dired Unicode Symbol Support43263
+Node: EditKit43801
+Node: EditKit Install44610
+Node: EditKit Usage45562
+Node: Register commands46813
+Node: Edit commands47401
+Node: Window management50228
+Node: Search & Replace commands51019
+Node: Open commands51659
+Node: Project commands52090
+Node: Bookmark commands52370
+Node: Emoji & Symbol Insertion52684
+Node: Tool commands53166
+Node: Narrow/Widen Commands53596
+Node: Macro54633
+Node: EditKit Settings54994
+Node: Eshell55677
+Node: Eshell Install55998
+Node: Eshell Usage56292
+Node: Help57358
+Node: Help Install57678
+Node: Help Usage59555
+Node: IBuffer60512
+Node: IBuffer Install61165
+Node: IBuffer Usage62879
+Node: IBuffer Marking and Operating63958
+Node: IBuffer Filtering64934
+Node: IBuffer Sorting70562
+Node: IBuffer Unicode Symbol Support70953
+Node: Image71531
+Node: Image Install72083
+Node: Image Usage72414
+Node: Image Resize73325
+Node: Image Unicode Symbol Support74378
+Node: Image Mode Command Naming74724
+Node: Info78355
+Node: Info Install78660
+Node: Info Usage80340
+Node: I-Search81754
+Node: I-Search Install82142
+Node: I-Search Usage82580
+Node: Make83915
+Node: Make Install84207
+Node: Make Usage84545
+Node: Makefile Type Selection85916
+Node: Automatic Variables86367
+Node: Make Unicode Symbol Support86999
+Node: Man87313
+Node: Man Install87579
+Node: Man Usage89446
+Node: RE-Builder91246
+Node: RE-Builder Install91586
+Node: RE-Builder Usage92069
+Node: Timezone95449
+Node: Timezone Install96186
+Node: Timezone Usage96623
+Node: Timezone Formatting97588
+Node: Planner Configuration98661
+Node: Zoneinfo Database99442
+Node: Timezone Unicode Symbol Support99832
+Node: Customization100164
+Node: Feedback & Discussion100478
+Node: Sponsorship100896
+Node: About Casual101272
+Node: Acknowledgments101570
+Node: Main Index101964
+Node: Variable Index109662
 
 End Tag Table
 
