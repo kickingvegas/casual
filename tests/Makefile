@@ -25,6 +25,7 @@ calendar-tests					\
 compile-tests					\
 dired-tests					\
 editkit-tests					\
+elisp-tests					\
 eshell-tests					\
 help-tests					\
 ibuffer-tests					\
@@ -45,6 +46,7 @@ calendar-tests					\
 compile-tests					\
 dired-tests					\
 editkit-tests					\
+elisp-tests					\
 eshell-tests					\
 help-tests					\
 ibuffer-tests					\
@@ -77,6 +79,9 @@ dired-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 editkit-tests:
+	$(MAKE) -C $(SRC_DIR) $@
+
+elisp-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 eshell-tests:

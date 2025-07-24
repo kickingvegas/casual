@@ -12,7 +12,7 @@ Casual has no aims to be a mutually exclusive user interface. All existing user 
 
 To learn more about the motivations and design considerations for Casual as well as seeing it at work, please watch the presentation [[https://emacsconf.org/2024/talks/casual/][“Re-imagining the Emacs User Experience with Casual Suite”]] from EmacsConf 2024.
 
-Please refer to the Casual User Guide (TBD) for detailed information about it. This user guide is available both in Emacs Info and HTML formats.
+Please refer to the [[https://kickingvegas.github.io/casual][Casual User Guide]] for detailed information about it. This user guide is available both in Emacs Info and HTML formats.
 
 
 * Asks

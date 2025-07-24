@@ -1,0 +1,55 @@
+* Elisp
+#+CINDEX: Elisp
+#+VINDEX: casual-elisp-tmenu
+
+Casual Elisp is a user interface for ~emacs-lisp-mode~. It provides a menu for commands useful for Elisp development.
+
+[[file:images/casual-elisp-screenshot.png]]
+
+** Elisp Install
+:PROPERTIES:
+:CUSTOM_ID: elisp-install
+:END:
+
+#+CINDEX: Elisp Install
+
+In your initialization file, bind the Transient ~casual-elisp-tmenu~ to your key binding of preference. Suggested bindings include {{{kbd(M-m)}}} and {{{kbd(C-c m)}}}. This menu is intended to be auxiliary to [[#editkit][Casual EditKit]].
+
+#+begin_src elisp :lexical no
+  (keymap-set emacs-lisp-mode-map "M-m" #'casual-elisp-tmenu)
+#+end_src
+
+
+** Elisp Usage
+#+CINDEX: Elisp Usage
+
+[[file:images/casual-elisp-screenshot.png]]
+
+Invoke the Casual Elisp main menu ~casual-elisp-tmenu~ via the binding {{{kbd(M-m)}}} (or your binding of preference) in an Elisp window. Typically this is whenever an =.el= file is opened.
+
+The following sections are offered in the menu:
+
+- Evaluate :: Commands to evaluate or execute an Elisp expression ([[info:elisp#Eval]]).
+
+- Xref :: Cross-referencing commands ([[info:emacs#Xref]]).
+
+- Checkdoc :: Checks docstrings in the file.
+
+- Byte-Compile :: Commands for byte-compilation ([[info:elisp#Byte Compilation]]).
+
+- Find :: Find commands.
+
+- Navigate :: Commands for Sexp (balanced expression) navigation.
+
+
+#+TEXINFO: @majorheading Edebug Support
+#+CINDEX: Edebug
+
+Using the prefix {{{kbd(C-u)}}} when ~casual-elisp-tmenu~ is raised will change the “{{{kbd(d)}}} Defunⁿ” menu item to “{{{kbd(d)}}} Edebugⁿ” to support instrumenting a function for Edebug ([[info:elisp#Edebug]]).
+
+[[file:images/casual-elisp-edebug-screenshot.png]]
+
+#+TEXINFO: @majorheading Elisp Unicode Symbol Support
+
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Elisp will use Unicode symbols as appropriate in its menus.
+

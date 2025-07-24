@@ -1,4 +1,7 @@
 * EditKit
+:PROPERTIES:
+:CUSTOM_ID: editkit
+:END:
 #+CINDEX: EditKit
 #+VINDEX: casual-editkit-main-tmenu
 
