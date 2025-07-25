@@ -33,9 +33,7 @@ Copyright © 2024-2025 Charles Y@. Choi
 @node Top
 @top Casual User Guide
 
-Pre-release Version: 2.8.0
-
-NOTE: THIS USER GUIDE IS A WORK IN PROGRESS@.
+Version: 2.8.0
 
 Casual is a project to re-imagine the primary user interface for Emacs using keyboard-driven menus.
 
@@ -46,6 +44,12 @@ Casual organizes itself primarily around the different built-in modes Emacs prov
 Casual has no aims to be a mutually exclusive user interface. All existing user interfaces to commands (keybinding, mini-buffer prompt, mouse menus) are still available to the user.
 
 To learn more about the motivations and design considerations for Casual and to see it at work, please watch the presentation @uref{https://emacsconf.org/2024/talks/casual/, “Re-imagining the Emacs User Experience with Casual Suite”} from EmacsConf 2024.
+
+If you enjoy using Casual, consider making a modest financial contribution to help support its development and maintenance.
+
+@image{images/default-yellow,,,,png}
+
+@uref{https://www.buymeacoffee.com/kickingvegas}
 
 @end ifnottex
 
@@ -73,10 +77,10 @@ Introduction
 
 Install
 
-* Upgrading to Casual 2.x: Upgrading to Casual 2x. 
 * A Note on Package Dependencies::
+* Upgrading to Casual 1.x to 2.x: Upgrading to Casual 1x to 2x. 
 
-Upgrading to Casual 2.x
+Upgrading to Casual 1.x to 2.x
 
 * If you do not use @code{use-package} to configure Casual::
 * If you have used @code{use-package} to configure Casual::
@@ -90,6 +94,7 @@ Casual Modes
 * Compile::
 * Dired::
 * EditKit::
+* Elisp::
 * Eshell::
 * Help::
 * IBuffer::
@@ -171,6 +176,11 @@ EditKit Usage
 * Narrow/Widen Commands::
 * Macro::
 * EditKit Settings::
+
+Elisp
+
+* Elisp Install::
+* Elisp Usage::
 
 Eshell
 
@@ -395,11 +405,13 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 @item
 @ref{Calendar Install, , Calendar}
 @item
-@ref{Compile Install, , Compile}
+@ref{Compile Install, , Compile (Grep)}
 @item
 @ref{Dired Install, , Dired}
 @item
 @ref{EditKit Install, , EditKit}
+@item
+@ref{Elisp Install, , Elisp}
 @item
 @ref{Eshell Install, , Eshell}
 @item
@@ -423,12 +435,19 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 @end itemize
 
 @menu
-* Upgrading to Casual 2.x: Upgrading to Casual 2x. 
 * A Note on Package Dependencies::
+* Upgrading to Casual 1.x to 2.x: Upgrading to Casual 1x to 2x. 
 @end menu
 
-@node Upgrading to Casual 2x
-@section Upgrading to Casual 2.x
+@node A Note on Package Dependencies
+@section A Note on Package Dependencies
+
+Casual requires a recent installation of Transient 0.9.0+ from either @uref{https://elpa.gnu.org/packages/transient.html, ELPA} or @uref{https://melpa.org/#/transient, MELPA}. If your version of Emacs is ≤ 30 but also includes Transient as a built-in package, you will need to set the customizable variable @code{package-install-upgrade-built-in} to @code{t} to enable updating it via @code{package.el}.  Set this variable and proceed with installing Casual.  Alternately invoking @code{package-install} with a prefix (@code{C-u}) will temporarily coerce the update of dependent built-in packages (example: @code{C-u M-x package-install} @code{casual}).
+
+If you already have the latest version of Magit installed (via @uref{https://elpa.nongnu.org/nongnu/magit.html, non-GNU ELPA} or @uref{https://melpa.org/#/magit, MELPA}), you can bypass the above instruction as Magit already includes the Transient package as a dependency.
+
+@node Upgrading to Casual 1x to 2x
+@section Upgrading to Casual 1.x to 2.x
 
 If you have been using an earlier version 1.x of Casual, thank you. Please use the following guidance:
 
@@ -460,13 +479,6 @@ For version 2.x going forward, I (Charles Choi) have decided to not offer any do
 
 That said, if you have used @code{:ensure t} to install a superseded package, you @emph{must} remove that configuration. After doing so, please follow the above instructions for installing @code{casual}.
 
-@node A Note on Package Dependencies
-@section A Note on Package Dependencies
-
-Casual requires a recent installation of Transient 0.9.0+ from either @uref{https://elpa.gnu.org/packages/transient.html, ELPA} or @uref{https://melpa.org/#/transient, MELPA}. If your version of Emacs is ≤ 30 but also includes Transient as a built-in package, you will need to set the customizable variable @code{package-install-upgrade-built-in} to @code{t} to enable updating it via @code{package.el}.  Set this variable and proceed with installing Casual.  Alternately invoking @code{package-install} with a prefix (@code{C-u}) will temporarily coerce the update of dependent built-in packages (example: @code{C-u M-x package-install} @code{casual}).
-
-If you already have the latest version of Magit installed (via @uref{https://elpa.nongnu.org/nongnu/magit.html, non-GNU ELPA} or @uref{https://melpa.org/#/magit, MELPA}), you can bypass the above instruction as Magit already includes the Transient package as a dependency.
-
 @node UX Conventions
 @chapter UX Conventions
 
@@ -494,7 +506,7 @@ If @code{casual-lib-use-unicode} is set to @code{t}, it is also recommended that
 
 @majorheading Common Key Bindings
 
-Listed below are keybindings which are  common among Casual menus.
+Listed below are keybindings which are common among Casual menus. 
 
 @itemize
 @item
@@ -510,7 +522,7 @@ Many modes have settings specific to them. The binding @kbd{,} is used in many m
 @item
 @kbd{j} Goto… (mode specific)
 
-Many modes provide a list of items. The binding @kbd{j} is used to map to the command to move the point to an item that the user explicitly specifies.
+Many modes provide a list of items. If a command exists that allows the user to jump to a specified item, the binding @kbd{j} is mapped to it.
 
 @item
 @kbd{n} Next, @kbd{p} Previous
@@ -522,6 +534,20 @@ For modes that provide a list of items, navigation to a next or previous item is
 
 For modes that organize items into sections, navigation to a next or previous section is bound to @kbd{[} and @kbd{]} respectively.
 @end itemize
+
+
+@majorheading Label Conventions
+
+Casual annotates menu labels with the following conventions:
+
+@table @asis
+@item ‘…’
+If the label ends with an ellipsis, then the command will prompt the user for input.
+@item ‘›’
+If the label ends with a right-pointing arrow, then the item will raise a sub-menu.
+@item ‘ⁿ’
+If the label ends with the superscript ‘ⁿ’, then the command supports a prefix @kbd{C-u}. 
+@end table
 
 @node Casual Modes
 @chapter Casual Modes
@@ -542,6 +568,7 @@ The following modes are supported by Casual:
 * Compile::
 * Dired::
 * EditKit::
+* Elisp::
 * Eshell::
 * Help::
 * IBuffer::
@@ -1014,11 +1041,13 @@ By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Cal
 @section Compile
 
 @cindex Compile
+@cindex compilation-mode
+@cindex grep-mode
 @vindex casual-compile-tmenu
 
-Casual Compile is a user interface for the output of the @code{compile} command (@ref{Compilation,,,emacs,}). This output buffer uses the major mode @code{compilation-mode}, whose commands are surfaced by Casual Compile.
+Casual Compile is a user interface for the output of the @code{compile} command (@ref{Compilation,,,emacs,}). The output buffer's major mode is @code{compilation-mode} whose commands are surfaced by Casual Compile.
 
-The output of Emacs-wrapped Grep commands such as @code{rgrep}, @code{grep}, and @code{lgrep} uses @code{grep-mode} which is derived from @code{compilation-mode}. As such the main menu @code{casual-compile-tmenu} can be used for both @code{compile} and Grep commands.
+In similar fashion, output of Emacs-wrapped Grep commands (@ref{Grep Searching,,,emacs,}) is also supported by Casual Compile. This is because the output of Grep commands use the major mode @code{grep-mode} which is derived from @code{compilation-mode}. 
 
 The screenshot below shows the menu for compilation results.
 
@@ -1038,39 +1067,34 @@ The screenshot below shows the menu for Grep results. Note the menu label change
 
 @cindex Compile Install
 
-In your initialization file, bind the Transient @code{casual-compile-tmenu} to your key binding of preference.
+In your initialization file, bind the Transient @code{casual-compile-tmenu} to your key binding of preference. It should be bound in two maps: @code{compilation-mode-map} and @code{grep-mode-map}.
 
 @lisp
 (keymap-set compilation-mode-map "C-o" #'casual-compile-tmenu)
+(keymap-set grep-mode-map "C-o" #'casual-compile-tmenu)
 @end lisp
 
-@code{casual-compile-tmenu} deviates from the default bindings of @code{compilation-mode-map} as shown in the table below to support using a single key on an @samp{en.US} keyboard.
+@code{casual-compile-tmenu} deviates from the default bindings of @code{compilation-mode-map} as shown in the table below to support using a single key on an @samp{en.US} keyboard. 
 
-@multitable {aaaaaaaaaaaaaaa} {aaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaa}
+@multitable {aaaaaaaaaaaaaaa} {aaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaa}
 @headitem Default Binding
 @tab Casual Binding
 @tab Command
-@tab Notes
 @item M-p
 @tab k
 @tab compilation-previous-error
-@tab vi-style navigation
 @item M-n
 @tab j
 @tab compilation-next-error
-@tab vi-style navigation
 @item M-@{
 @tab [
 @tab compilation-previous-file
-@tab 
 @item M-@}
 @tab ]
 @tab compilation-next-file
-@tab 
 @item C-o
 @tab o
 @tab compilation-display-error
-@tab 
 @end multitable
 
 The following keybindings are recommended to support consistent behavior between @code{compilation-mode-map} and @code{casual-compile-tmenu}.
@@ -1081,6 +1105,16 @@ The following keybindings are recommended to support consistent behavior between
 (keymap-set compilation-mode-map "o" #'compilation-display-error)
 (keymap-set compilation-mode-map "[" #'compilation-previous-file)
 (keymap-set compilation-mode-map "]" #'compilation-next-file)
+@end lisp
+
+Similar treatment for @code{grep-mode-map} can be done. 
+
+@lisp
+(keymap-set grep-mode-map "k" #'compilation-previous-error)
+(keymap-set grep-mode-map "j" #'compilation-next-error)
+(keymap-set grep-mode-map "o" #'compilation-display-error)
+(keymap-set grep-mode-map "[" #'compilation-previous-file)
+(keymap-set grep-mode-map "]" #'compilation-next-file)
 @end lisp
 
 @node Compile Usage
@@ -1098,15 +1132,14 @@ The following sections are offered in the menu:
 @item Follow
 Navigate the point while opening the location of the error in the source file in another window.
 @item Error
-Error operations.
+Error commands for navigation and viewing.
 @item File
 If there are errors in multiple files, navigate to the file.
 @item Compile
 Get compile for different Elisp types. Note that the “@kbd{k} Kill” item is displayed when there is a running job.
 @end table
 
-
-If the output window is from a Grep command, @code{casual-compile-tmenu} will adjust its label accordingly as shown below.
+If the output window is from a Grep command, @code{casual-compile-tmenu} will adjust its labels accordingly as shown below.
 
 @image{images/casual-compile-grep-screenshot,,,,png}
 
@@ -1644,6 +1677,75 @@ Configuration of common editing-related settings are provided here. Most all set
 Those commands will instead apply to the current buffer. The variables listed above can be more permanently set via the @code{customize-variable} command.
 
 @image{images/casual-editkit-settings-screenshot,,,,png}
+
+@node Elisp
+@section Elisp
+
+@cindex Elisp
+@vindex casual-elisp-tmenu
+
+Casual Elisp is a user interface for @code{emacs-lisp-mode}. It provides a menu for commands useful for Elisp development.
+
+@image{images/casual-elisp-screenshot,,,,png}
+
+@menu
+* Elisp Install::
+* Elisp Usage::
+@end menu
+
+@node Elisp Install
+@subsection Elisp Install
+
+@cindex Elisp Install
+
+In your initialization file, bind the Transient @code{casual-elisp-tmenu} to your key binding of preference. Suggested bindings include @kbd{M-m} and @kbd{C-c m}. This menu is intended to be auxiliary to @ref{EditKit, , Casual EditKit}.
+
+@lisp
+(keymap-set emacs-lisp-mode-map "M-m" #'casual-elisp-tmenu)
+@end lisp
+
+@node Elisp Usage
+@subsection Elisp Usage
+
+@cindex Elisp Usage
+
+@image{images/casual-elisp-screenshot,,,,png}
+
+Invoke the Casual Elisp main menu @code{casual-elisp-tmenu} via the binding @kbd{M-m} (or your binding of preference) in an Elisp window. Typically this is whenever an @samp{.el} file is opened.
+
+The following sections are offered in the menu:
+
+@table @asis
+@item Evaluate
+Commands to evaluate or execute an Elisp expression (@ref{Eval,,,elisp,}).
+
+@item Xref
+Cross-referencing commands (@ref{Xref,,,emacs,}).
+
+@item Checkdoc
+Checks docstrings in the file.
+
+@item Byte-Compile
+Commands for byte-compilation (@ref{Byte Compilation,,,elisp,}).
+
+@item Find
+Find commands.
+
+@item Navigate
+Commands for Sexp (balanced expression) navigation.
+@end table
+
+
+@majorheading Edebug Support
+@cindex Edebug
+
+Using the prefix @kbd{C-u} when @code{casual-elisp-tmenu} is raised will change the “@kbd{d} Defunⁿ” menu item to “@kbd{d} Edebugⁿ” to support instrumenting a function for Edebug (@ref{Edebug,,,elisp,}).
+
+@image{images/casual-elisp-edebug-screenshot,,,,png}
+
+@majorheading Elisp Unicode Symbol Support
+
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Elisp will use Unicode symbols as appropriate in its menus.
 
 @node Eshell
 @section Eshell

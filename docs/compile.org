@@ -1,10 +1,12 @@
 * Compile
 #+CINDEX: Compile
+#+CINDEX: compilation-mode
+#+CINDEX: grep-mode
 #+VINDEX: casual-compile-tmenu
 
-Casual Compile is a user interface for the output of the ~compile~ command ([[info:emacs#Compilation]]). This output buffer uses the major mode ~compilation-mode~, whose commands are surfaced by Casual Compile.
+Casual Compile is a user interface for the output of the ~compile~ command ([[info:emacs#Compilation]]). The output buffer's major mode is ~compilation-mode~ whose commands are surfaced by Casual Compile.
 
-The output of Emacs-wrapped Grep commands such as ~rgrep~, ~grep~, and ~lgrep~ uses ~grep-mode~ which is derived from ~compilation-mode~. As such the main menu ~casual-compile-tmenu~ can be used for both ~compile~ and Grep commands.
+In similar fashion, output of Emacs-wrapped Grep commands ([[info:emacs#Grep Searching]]) is also supported by Casual Compile. This is because the output of Grep commands use the major mode ~grep-mode~ which is derived from ~compilation-mode~. 
 
 The screenshot below shows the menu for compilation results.
 
@@ -13,7 +15,6 @@ The screenshot below shows the menu for compilation results.
 The screenshot below shows the menu for Grep results. Note the menu label changes based on the output mode (in this case ~grep-mode~).
 
 [[file:images/casual-compile-grep-screenshot.png]]
-
 ** Compile Install
 :PROPERTIES:
 :CUSTOM_ID: compile-install
@@ -21,21 +22,22 @@ The screenshot below shows the menu for Grep results. Note the menu label change
 
 #+CINDEX: Compile Install
 
-In your initialization file, bind the Transient ~casual-compile-tmenu~ to your key binding of preference.
+In your initialization file, bind the Transient ~casual-compile-tmenu~ to your key binding of preference. It should be bound in two maps: ~compilation-mode-map~ and ~grep-mode-map~.
 
 #+begin_src elisp :lexical no
   (keymap-set compilation-mode-map "C-o" #'casual-compile-tmenu)
+  (keymap-set grep-mode-map "C-o" #'casual-compile-tmenu)
 #+end_src
 
-~casual-compile-tmenu~ deviates from the default bindings of ~compilation-mode-map~ as shown in the table below to support using a single key on an =en.US= keyboard.
+~casual-compile-tmenu~ deviates from the default bindings of ~compilation-mode-map~ as shown in the table below to support using a single key on an =en.US= keyboard. 
 
-| Default Binding | Casual Binding | Command                    | Notes               |
-|-----------------+----------------+----------------------------+---------------------|
-| M-p             | k              | compilation-previous-error | vi-style navigation |
-| M-n             | j              | compilation-next-error     | vi-style navigation |
-| M-{             | [              | compilation-previous-file  |                     |
-| M-}             | ]              | compilation-next-file      |                     |
-| C-o             | o              | compilation-display-error  |                     |
+| Default Binding | Casual Binding | Command                    |
+|-----------------+----------------+----------------------------|
+| M-p             | k              | compilation-previous-error |
+| M-n             | j              | compilation-next-error     |
+| M-{             | [              | compilation-previous-file  |
+| M-}             | ]              | compilation-next-file      |
+| C-o             | o              | compilation-display-error  |
 
 The following keybindings are recommended to support consistent behavior between ~compilation-mode-map~ and ~casual-compile-tmenu~.
 
@@ -47,6 +49,17 @@ The following keybindings are recommended to support consistent behavior between
   (keymap-set compilation-mode-map "]" #'compilation-next-file)
 #+end_src
 
+Similar treatment for ~grep-mode-map~ can be done. 
+
+#+BEGIN_SRC elisp :lexical no
+  (keymap-set grep-mode-map "k" #'compilation-previous-error)
+  (keymap-set grep-mode-map "j" #'compilation-next-error)
+  (keymap-set grep-mode-map "o" #'compilation-display-error)
+  (keymap-set grep-mode-map "[" #'compilation-previous-file)
+  (keymap-set grep-mode-map "]" #'compilation-next-file)
+#+END_SRC
+
+
 ** Compile Usage
 #+CINDEX: Compile Usage
 
@@ -57,12 +70,11 @@ After running ~compile~, invoke ~casual-compile-tmenu~ in the buffer named =✳�
 The following sections are offered in the menu:
 
 - Follow :: Navigate the point while opening the location of the error in the source file in another window.
-- Error :: Error operations.
+- Error :: Error commands for navigation and viewing.
 - File :: If there are errors in multiple files, navigate to the file.
 - Compile :: Get compile for different Elisp types. Note that the “{{{kbd(k)}}} Kill” item is displayed when there is a running job.
 
-
-If the output window is from a Grep command, ~casual-compile-tmenu~ will adjust its label accordingly as shown below.
+If the output window is from a Grep command, ~casual-compile-tmenu~ will adjust its labels accordingly as shown below.
 
 [[file:images/casual-compile-grep-screenshot.png]]
 

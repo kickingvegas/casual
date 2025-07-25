@@ -20,15 +20,30 @@
 
 ;;; Commentary:
 
+
+;; Casual Compile is a user interface for the output of the `compile' command.
+;; The output buffer's major mode is `compilation-mode' whose commands are
+;; surfaced by Casual Compile.
+
+;; In similar fashion, output of Emacs-wrapped Grep commands is also supported
+;; by Casual Compile. This is because the output of Grep commands use the major
+;; mode `grep-mode' which is derived from `compilation-mode'.
+
 ;; This library provides a Transient-based user interface for
 ;; `compilation-mode'.
 
 ;; INSTALL
 
 ;; In your initialization file, bind the Transient `casual-compile-tmenu' to
-;; your key binding of preference.
+;; your key binding of preference. It should be bound in two maps:
+;; `compilation-mode-map' and `grep-mode-map'.
 
 ;; (keymap-set compilation-mode-map "C-o" #'casual-compile-tmenu)
+;; (keymap-set grep-mode-map "C-o" #'casual-compile-tmenu)
+
+;; `casual-compile-tmenu' deviates from the default bindings of
+;; `compilation-mode-map' as shown in the table below to support using a single
+;; key on an en.US keyboard.
 
 ;; The following keybindings are recommended to support consistent behavior
 ;; between `compilation-mode-map' and `casual-compile-tmenu'.
@@ -39,10 +54,19 @@
 ;; (keymap-set compilation-mode-map "[" #'compilation-previous-file)
 ;; (keymap-set compilation-mode-map "]" #'compilation-next-file)
 
+;; Similar treatment for `grep-mode-map' can be done.
+
+;; (keymap-set grep-mode-map "k" #'compilation-previous-error)
+;; (keymap-set grep-mode-map "j" #'compilation-next-error)
+;; (keymap-set grep-mode-map "o" #'compilation-display-error)
+;; (keymap-set grep-mode-map "[" #'compilation-previous-file)
+;; (keymap-set grep-mode-map "]" #'compilation-next-file)
+
 ;;; Code:
 (require 'casual-compile-settings)
 (require 'casual-compile-utils)
 
+;;;###autoload (autoload 'casual-compile-tmenu "casual-compile" nil t)
 (transient-define-prefix casual-compile-tmenu ()
   "Casual main menu for `compilation-mode'."
   :refresh-suffixes t
