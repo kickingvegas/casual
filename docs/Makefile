@@ -27,8 +27,6 @@ gen-html: html html/images html/main.css sync-images
 	--output=html				\
 	${PKG_NAME}.texi
 
-# --init-file=texinfo.cfg
-
 html/images:
 	mkdir -p $@
 

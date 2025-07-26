@@ -37,6 +37,8 @@ These commands are offered in the menu ~casual-timezone-tmenu~ shown below.
 
 
 *** Timezone Formatting
+#+VINDEX: casual-timezone-datestamp-format
+#+VINDEX: casual-timezone-convert-datestamp-format
 
 The formatted representation of time in Casual Timezone is set by the following customizable variables:
 
@@ -56,6 +58,9 @@ The following table shows which format variable applies to which command.
 These variables can be customized via the Transient menu ~casual-timezone-settings-tmenu~.
 
 *** Planner Configuration
+#+VINDEX: casual-timezone-working-hours-range
+#+VINDEX: casual-timezone-working-hour-glyph
+#+VINDEX: casual-timezone-planner-working-highlight
 
 The following variables can control how working hours are displayed in the timezone planner.
 
@@ -66,9 +71,9 @@ The following variables can control how working hours are displayed in the timez
 These variables can be customized via the Transient menu ~casual-timezone-settings-tmenu~.
 
 *** Zoneinfo Database
+#+VINDEX: casual-timezone-zone-info-database
 
 The variable ~casual-timezone-zone-info-database~ is default set to the path "/usr/share/zoneinfo/tzdata.zi". Customize this variable if the zoneinfo database is located at a different path.
-
 
 *** Timezone Unicode Symbol Support
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Timezone will use Unicode symbols as appropriate in its menus.
