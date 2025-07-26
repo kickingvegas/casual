@@ -16,7 +16,6 @@
 #+TEXINFO_DIR_NAME: Casual
 #+TEXINFO_DIR_DESC: Transient user interfaces for different Emacs modes.
 #+TEXINFO_PRINTED_TITLE: Casual User Guide
-#+TEXINFO_FOOTER: https://buymeacoffee.com/kickingvegas
 
 Version: {{{version}}}
 
@@ -29,6 +28,18 @@ Casual organizes itself primarily around the different built-in modes Emacs prov
 Casual has no aims to be a mutually exclusive user interface. All existing user interfaces to commands (keybinding, mini-buffer prompt, mouse menus) are still available to the user.
 
 To learn more about the motivations and design considerations for Casual and to see it at work, please watch the presentation [[https://emacsconf.org/2024/talks/casual/][“Re-imagining the Emacs User Experience with Casual Suite”]] from EmacsConf 2024.
+
+/Example Casual menu - Dired/
+
+[[file:images/casual-dired-screenshot.png]]
+
+/Example Casual menu - EditKit/
+
+[[file:images/casual-editkit-main-screenshot.png]]
+
+/Example Casual menu - Calc/
+
+[[file:images/casual-calc-tmenu.png]]
 
 #+INCLUDE: "./sponsorship.org"
 
@@ -126,7 +137,7 @@ Certain menus require more installed software:
 * Install
 #+CINDEX: Install
 
-Standard installation of the ~casual~ package is via MELPA distribution. 
+Standard installation of the ~casual~ package is via [[https://melpa.org/#/casual][MELPA distribution]]. 
 
 Configuration of a particular Casual user interface is performed per mode. Go to the *Install* section for a mode of interest below for guidance on its configuration.
 
