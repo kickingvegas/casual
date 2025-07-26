@@ -23,8 +23,10 @@ agenda-tests					\
 bookmarks-tests					\
 calc-tests					\
 calendar-tests					\
+compile-tests					\
 dired-tests					\
 editkit-tests					\
+elisp-tests					\
 eshell-tests					\
 help-tests					\
 ibuffer-tests					\
@@ -55,6 +57,10 @@ calc-tests:
 calendar-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-calendar.make tests
 
+.PHONY: compile-tests
+compile-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-compile.make tests
+
 .PHONY: dired-tests
 dired-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-dired.make tests
@@ -62,6 +68,10 @@ dired-tests:
 .PHONY: editkit-tests
 editkit-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-editkit.make tests
+
+.PHONY: elisp-tests
+elisp-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-elisp.make tests
 
 .PHONY: eshell-tests
 eshell-tests:

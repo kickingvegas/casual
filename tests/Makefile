@@ -22,8 +22,10 @@ agenda-tests					\
 bookmarks-tests					\
 calc-tests					\
 calendar-tests					\
+compile-tests					\
 dired-tests					\
 editkit-tests					\
+elisp-tests					\
 eshell-tests					\
 help-tests					\
 ibuffer-tests					\
@@ -41,8 +43,10 @@ agenda-tests					\
 bookmarks-tests					\
 calc-tests					\
 calendar-tests					\
+compile-tests					\
 dired-tests					\
 editkit-tests					\
+elisp-tests					\
 eshell-tests					\
 help-tests					\
 ibuffer-tests					\
@@ -68,10 +72,16 @@ calc-tests:
 calendar-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
+compile-tests:
+	$(MAKE) -C $(SRC_DIR) $@
+
 dired-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 editkit-tests:
+	$(MAKE) -C $(SRC_DIR) $@
+
+elisp-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 eshell-tests:

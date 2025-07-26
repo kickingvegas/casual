@@ -1,37 +1,54 @@
-[[../README.org][❮ Back to Casual]]
+* Calendar
+#+CINDEX: Calendar
+#+VINDEX: casual-calendar
+#+VINDEX: casual-calendar-tmenu
+Casual Calendar is a user interface for Emacs Calendar/Diary. Its top-level library is ~casual-calendar~. Access to numerous calendar and diary commands are made available, most notably support for non-Gregorian calendar systems.
 
-* Casual Calendar
-An opinionated [[https://github.com/magit/transient][Transient]]-based user interface for [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Calendar_002fDiary.html][Calendar]]. 
 
 [[file:images/casual-calendar-screenshot.png]]
 
-* Install
-If installed via [[https://melpa.org/#/casual][MELPA]] then add these lines to your Emacs initialization file with your binding of preference. 
+** Calendar Install
+:PROPERTIES:
+:CUSTOM_ID: calendar-install
+:END:
+#+CINDEX: Calendar Install
+
+The main menu for Casual Calendar (~casual-calendar-tmenu)~ is invoked by the command ~casual-calendar~.  Bind this command in the keymap ~calendar-mode-map~ as follows in your initialization file.
+
 #+begin_src elisp :lexical no
-  (require 'casual-calendar) ; optional if using autoloaded menu
   (keymap-set calendar-mode-map "C-o" #'casual-calendar)
 #+end_src
 
-* Usage
-** Basic Usage
+** Calendar Usage
+#+CINDEX: Calendar Usage
 
-Whenever the ~calendar~ window (showing three months) is raised, the Casual user interface for it can be invoked via the command ~casual-calendar~. This command is typically bound to a keybinding (e.g. ~C-o~). The menu displayed will offer the following activities:
+[[file:images/casual-calendar-screenshot.png]]
 
-- Navigation commands organized by time (day, week, month, year).
-- Conversion commands to different calendar systems.
-- Holiday-related commands.
-- Diary-related commands.
-- Almanac commands.
+Whenever the ~calendar~ window (showing three months) is raised, the Casual user interface is invoked via the command ~casual-calendar~. This command is typically bound to a keybinding (e.g. {{{kbd(C-o)}}}). 
 
+Casual Calendar organizes its main menu into the following sections:
+
+- Navigation :: Commands to move the point to a desired date, adjusting the view as necessary.
+
+- Conversions :: Commands to convert a date across different calendar systems.
+
+- Holidays :: Holiday related commands.
+
+- Misc :: Commands related to the Diary and Org Agenda are placed here.
+
+- Almanac :: Almanac-related commands such the lunar phase, sunrise/sunset times are found here.
+
+- Region :: Support for counting days defined in a region is offered here.
+  
 Also made available is access to a Settings menu (more below) and to the Info documentation for ~calendar~.
 
-** Diary & Goto Menu
+*** Diary & Goto Menu
 
 From the main menu, choosing “(D) Diary & Goto›” will present choices for diary event insertion and to “goto” a particular date via different specifications.
 
 [[file:images/casual-calendar-diary-menu.png]]  
 
-** Calendar System Date Conversion
+*** Calendar System Date Conversion
 Calendar supports conversion of dates from Gregorian (default) to a number of different calendar systems. Choose "(c) Conversions›" from the main menu to select from a list of such calendars.
 
 [[file:images/casual-calendar-calendars-menu.png]]
@@ -65,22 +82,15 @@ To convert a Lunar (Chinese) date to Gregorian:
 
 Certain non-Gregorian calendar systems are supported by the diary (Bahá’í, Hebrew, Islamic, Lunar (Chinese)). For such systems, their menus will offer choices to insert diary events.
 
-Note that inserting non-Gregorian diary events require configuration of the variables ~diary-nongregorian-listing-hook~ and ~diary-nongregorian-marking-hook~ as detailed in [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Non_002dGregorian-Diary.html][(emacs) Non-Gregorian Diary]]. 
+Note that inserting non-Gregorian diary events require configuration of the variables ~diary-nongregorian-listing-hook~ and ~diary-nongregorian-marking-hook~ as detailed in Diary Entries using non-Gregorian Calendars ([[info:emacs#Non-Gregorian Diary]]).
 
 Both of these variables can be configured from the Calendar Settings menu.
 
-** Settings Menu
-From the main menu, choosing “(,) Settings” will provide a menu of frequently configured calendar and diary-related variables.
+*** Calendar Settings Menu
+From the main menu, choosing “{{{kbd(\,)}}} Settings›” will provide a menu of frequently configured calendar and diary-related variables.
 
 [[file:images/casual-calendar-settings-menu.png]]  
 
-** Unicode Symbol Support
-By enabling “Use Unicode Symbols” from the Settings menu, Casual Calendar will use Unicode symbols as appropriate in its menus. 
+*** Calendar Unicode Symbol Support
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Calendar will use Unicode symbols as appropriate in its menus. 
 
-* Sponsorship
-If you enjoy using Casual Calendar, consider making a modest financial contribution to help support its development and maintenance.
-
-[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
-
-* See Also
-[[file:agenda.org][Agenda]], [[file:bookmarks.org][Bookmarks]], [[file:calc.org][Calc]], [[file:calendar.org][Calendar]], [[file:dired.org][Dired]], [[file:editkit.org][EditKit (numerous editing commands)]], [[file:help.org][Help]], [[file:ibuffer.org][IBuffer]], [[file:image.org][Image]], [[file:info.org][Info]], [[file:isearch.org][I-Search]], [[file:make-mode.org][Make]], [[file:man.org][Man]], [[file:re-builder.org][RE-Builder]], [[file:timezone.org][Timezone]]

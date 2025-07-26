@@ -1,0 +1,194 @@
+/**
+ * Copyright 2025 Charles Y. Choi
+ */
+
+@media (prefers-color-scheme: dark) {
+    .body.adaptive {
+        background-color: #1C1C1C;
+        color: #f0f0f0;
+    }
+
+    .lisp-preformatted {
+        background-color: #2F2F2F;
+        color: #F0F0F0;
+        font-family: Menlo, Consolas, "Noto Mono", monospace, Monaco, "Courier New", Courier;
+        font-size: 85%;
+        padding: 8pt;
+    }
+
+    a:link, a:visited {
+        color: #3287a8;
+        text-decoration: none;
+    }
+
+    a:hover, a:active {
+        color: #32a885;
+        text-decoration: underline;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .body.adaptive {
+        background-color: #f9f9f9;
+        color: black;
+    }
+
+    .lisp-preformatted {
+        font-family: Menlo, Consolas, "Noto Mono", monospace, Monaco, "Courier New", Courier;
+        font-size: 85%;
+        padding: 8pt;
+    }
+
+    a:link, a:visited {
+        color: blue;
+        text-decoration: none;
+    }
+
+    a:hover, a:active {
+        color: #1593F5;
+        text-decoration: underline;
+    }
+}
+
+@media only screen and (max-device-width: 500px) {
+    body {
+        margin: 0pt;
+        padding-top: 0.05in;
+        padding-left: 0.15in;
+        padding-right: 0.15in;
+        padding-bottom: 0.05in;
+        font-family: Optima, Constantia, 'Linux Biolinum O', "Linux Libertine Display O", 'Times New Roman', Arial;
+        font-size: 14pt;
+    }
+}
+
+@media only screen and (width > 500px) {
+    body {
+        margin: 0pt;
+        padding-top: 0.25in;
+        padding-left: 0.5in;
+        padding-right: 0.5in;
+        padding-bottom: 0.25in;
+        font-family: Optima, Constantia, 'Linux Biolinum O', "Linux Libertine Display O", 'Times New Roman', Arial;
+        font-size: 14pt;
+    }
+}
+
+p {
+    margin-top: 2pt;
+    margin-bottom: 10pt;
+    line-height: 1.4;
+}
+
+ul {
+    line-height: 1.4;
+    margin-top: 1pt;
+    margin-bottom: 10pt;
+    padding-left: 0.25in;
+}
+
+ol {
+    line-height: 1.4;
+    margin-top: 1pt;
+    margin-bottom: 10pt;
+    padding-left: 0.25in;
+}
+
+h1 {
+    font-size: 130%;
+    margin-top: 30pt;
+    margin-bottom: 10pt;
+    line-height: 1.1;
+}
+
+h2 {
+    font-size: 110%;
+    margin-top: 20pt;
+    margin-bottom: 10pt;
+    line-height: 1.1;
+}
+
+h3 {
+    font-size: 110%;
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+    line-height: 1.1;
+}
+
+h4 {
+    font-size: 110%;
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+    line-height: 1.1;
+}
+
+h5 {
+    font-style: oblique;
+    margin-top: 0pt;
+    margin-bottom: 5pt;
+    line-height: 1.1;
+}
+
+h6 {
+    font-style: oblique;
+    margin-top: 1pt;
+    margin-bottom: 5pt;
+    line-height: 1.1;
+}
+
+
+table {
+   border-style: solid;
+   border-width: 1px;
+   border-color: grey;
+   width: 95%;
+   page-break-inside: auto;
+}
+
+tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+}
+
+td {
+   border-bottom: 1px solid grey;
+   border-right: 1px solid grey;
+   font-size: 10pt;
+}
+
+th {
+   border-bottom: 3px solid black;
+   border-right: 1px solid grey;
+   font-size: 10pt;
+}
+
+thead {
+    display: table-header-group;
+}
+
+tfoot {
+    display: table-footer-group;
+}
+
+
+pre {
+    font-family: Menlo, Consolas, "Noto Mono", monospace, Monaco, "Courier New", Courier;
+    background-color: #ECECEC
+}
+
+code {
+    font-family: Menlo, Consolas, "Noto Mono", monospace, Monaco, "Courier New", Courier;
+}
+
+.break {
+     page-break-before: always;
+}
+
+.seqdia {
+    width: 5in;
+    height: 5in;
+}
+
+@view-transition {
+  navigation: auto;
+}

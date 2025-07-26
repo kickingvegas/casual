@@ -125,3 +125,7 @@ create-gh-release: create-release-tag
 
 status:
 	git status
+
+.PHONY: user-guide
+user-guide:
+	$(MAKE) -C docs gen-html

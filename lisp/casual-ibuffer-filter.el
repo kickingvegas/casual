@@ -151,7 +151,7 @@ The value from `ibuffer-saved-filter-groups' is used."
                                 " (%s)"
                                 casual-ibuffer--current-collection-name)
                              "")))
-    ("R" "Switch to…" casual-ibuffer-switch-to-saved-filter-groups :transient t)
+    ("R" "Switch to…" casual-ibuffer-switch-to-saved-filter-groups)
     ("S" "Save…" ibuffer-save-filter-groups
      :inapt-if (lambda () (not ibuffer-filter-groups))
      :transient t)

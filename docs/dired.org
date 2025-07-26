@@ -1,37 +1,45 @@
-[[../README.org][❮ Back to Casual]]
-
-* Casual Dired
-An opinionated [[https://github.com/magit/transient][Transient]]-based user interface for the Emacs file manager [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html][Dired]].
+* Dired
+#+CINDEX: Dired
+#+VINDEX: casual-dired-tmenu
+Casual Dired provides a user interface for Dired ([[info:emacs#Dired]]), the Emacs file manager. Its top-level library is ~casual-dired~.
 
 [[file:images/casual-dired-screenshot.png]]
 
-* Requirements
+** Dired Requirements
 Casual Dired requires that the ~ls~ utility from GNU coreutils ≥ 8.32 be installed.
 
 The following links provide guidance for installing GNU coreutils on different platforms.
 
-** macOS
+*** macOS
 Note that the default packaged ~ls~ on macOS is BSD-flavored which is not supported by Casual Dired. Users wishing to use Casual Dired on macOS are recommended to install GNU coreutils and configure their Emacs to point to its version of ~ls~ accordingly.
 
 - [[https://ports.macports.org/port/coreutils/][MacPorts]]
 - [[https://formulae.brew.sh/formula/coreutils#default][Homebrew]]
 
-** Windows
+*** Windows
 For users running on Microsoft Windows, use [[https://www.gnu.org/software/emacs/manual/html_node/efaq-w32/Dired-ls.html][this guidance]] to configure Emacs to use an external install of ~ls~.
 
 - [[https://gitforwindows.org/][Git for Windows]] (includes ~ls~ in Git BASH)
 - [[https://www.cygwin.com/][Cygwin]]
 
-* Install
-If installed via MELPA then add these lines to your Emacs initialization file with your binding of preference. 
+** Dired Install
+:PROPERTIES:
+:CUSTOM_ID: dired-install
+:END:
+#+CINDEX: Dired Install
+
+The main menu for Dired is ~casual-dired-tmenu~. Bind this menu in the keymap ~dired-mode-map~ as follows in your initialization file.
+
 #+begin_src elisp :lexical no
-  (require 'casual-dired) ; optional if using autoloaded menu
   (keymap-set dired-mode-map "C-o" #'casual-dired-tmenu)
-  (keymap-set dired-mode-map "s" #'casual-dired-sort-by-tmenu) ; optional
-  (keymap-set dired-mode-map "/" #'casual-dired-search-replace-tmenu) ; optional
 #+end_src
 
-In addition to binding the main menu ~casual-dired-tmenu~, the user can also bind the sort-by menu ~casual-dired-sort-by-tmenu~ and the search & replace menu ~casual-dired-search-replace-tmenu~. 
+In addition, it is convenient to have both the sort-by (~casual-dired-sort-by-tmenu~) and search & replace (~casual-dired-search-replace-tmenu~) menus bound. Listed below is an example of binding the sort-by and search & replace menus to ~s~ and ~/~ respectively.
+
+#+begin_src elisp :lexical no
+  (keymap-set dired-mode-map "s" #'casual-dired-sort-by-tmenu)
+  (keymap-set dired-mode-map "/" #'casual-dired-search-replace-tmenu)
+#+end_src
 
 Included is a standard keymap for Dired sorting commands (~casual-dired-sort-menu~) which can be included in a context menu for a mouse-driven workflow. An example of this is shown below:
 
@@ -48,11 +56,9 @@ Included is a standard keymap for Dired sorting commands (~casual-dired-sort-men
 #+end_src
 
 
-** Configuration
+#+TEXINFO: @majorheading Configuration
 
 As Dired has been around for a long time, the different ways of configuring it are myriad. Described below is a configuration used by the author that is consistent with the bindings used in Casual Dired.
-
-*** Initialization
 
 #+begin_src elisp :lexical no
   (require 'dired)
@@ -92,60 +98,80 @@ As Dired has been around for a long time, the different ways of configuring it a
   (keymap-set image-dired-thumbnail-mode-map "p" #'image-dired-display-previous)
 #+end_src
 
-*** Variables
+#+TEXINFO: @majorheading Dired Variables
 
-Casual Dired offers a settings menu to customize a set of commonly used Dired variables. Use this to customize your Dired behavior to taste.
+The Casual Dired main menu offers “{{{kbd(\,)}}} Settings›” to customize a set of commonly used Dired variables. 
 
 [[file:images/casual-dired-settings-screenshot.png]]
 
-If you have GNU ~ls~ installed and configured, use the ~l~ key to set the variable ~dired-use-ls-dired~ to ~t~ ("Use GNU ‘ls’ with --dired"). Otherwise this should be disabled.
+If you have GNU ~ls~ installed and configured, use the {{{kbd(l)}}} key to set the variable ~dired-use-ls-dired~ to ~t~ (“{{{kbd(l)}}} Use GNU ‘ls’ with --dired”). Otherwise this should be disabled.
 
-*** Unicode Symbol Support
+** Dired Usage
+#+CINDEX: Dired Usage
 
-By enabling “Use Unicode Symbols” from the Settings menu, Casual Dired will use Unicode symbols as appropriate in its menus. An example is shown below.
+[[file:images/casual-dired-screenshot.png]]
+
+Invoke ~M-x dired~ to launch Dired. When the point is in the Dired window, invoke {{{kbd(C-o)}}} (or a binding of your choosing) to launch the Casual Dired menu (~casual-dired-tmenu~).
+
+Casual Dired organizes its main menu into the following sections:
+
+- File :: File-related commands are placed here. Most of the commands will also operate on marked files (see *Mark* item below).
+
+- Directory :: Directory-related commands. Subdir view commands are also made available in this section. To remove a subdir view, use the prefix {{{kbd(C-u)}}} before pressing the binding {{{kbd(k)}}} to kill a subdir view.
+
+- Mark :: Marking operations are available here. Commands in the “{{{kbd(#)}}} Utils›” sub-menu can be used to operate on marked items. In addition, many commands from the *File* section can be operate on marked items.
+
+  The “{{{kbd(r)}}} Regexp›” sub-menu provides commands to mark via [[info:elisp#Regular Expressions][regular expression]].
+
+- Navigation :: Navigation commands to move the point in Dired are offered here.
+
+- Quick :: Convenience commands for bookmarks and listing buffers are made available in this section.
+
+- Search :: Commands to find a filename via I-Search or to recursively search for pattern inside files contained in a directory tree (~rgrep~) are made available here.
+
+- New :: Create a new file or directory with the commands in this section.
+
+
+*** Dired Enhanced Sorting
+#+CINDEX: Dired Enhanced Sorting
+#+VINDEX: casual-dired-sort-by-tmenu
+
+Casual Dired offers enhanced sorting capabilities through GNU ~ls~. Use this to sort your Dired buffer to preference. Filter dot files (.*) by disabling the ~--all~ option is available here.
+
+[[file:images/casual-dired-sort-by-screenshot.png]]
+
+With the *Sort By* menu raised, one can save the switch settings for future use via the binding {{{kbd(C-x C-s)}}} (~transient-save~). Note this is a global setting and will apply to all future calls to the *Sort By* menu.
+
+*** Dired Search & Replace
+#+CINDEX: Dired Search & Replace
+#+VINDEX: casual-dired-search-replace-tmenu
+
+Search and replace in multiple marked files using the “{{{kbd(/)}}} Search & Replace›” menu item in ~casual-dired-tmenu~. This will raise a menu of Dired commands that will work on marked files. 
+
+[[file:images/casual-dired-search-replace.png]]
+
+While most Dired commands use Emacs-style regular expression syntax ([[info:elisp#Regular Expressions]]), there are two commands that instead take instead *grep*-style syntax:
+
+- {{{kbd(g)}}} Find regex… (~dired-do-find-regexp~)
+- {{{kbd(G)}}} Find regex and replace… (~dired-do-find-regexp-and-replace~)
+
+The *grep*-style syntax is dependent on the ~grep~ implementation that is installed and used by Emacs.
+
+*** Bulk Dired Operations
+Casual Dired organizes a number of Dired commands that work on a set of marked files. These commands are presented in the “{{{kbd(#)}}} Utils›” menu in ~casual-dired-tmenu~.
+
+[[file:images/casual-dired-utils-screenshot.png]]
+
+*** Dired Link
+Create symbolic and hard links via the “{{{kbd(l)}}} Link›” menu in ~casual-dired-tmenu~. Both absolute and relative symbolic links (symlinks) are supported.
+
+[[file:images/casual-dired-link.png]]
+
+*** Dired Unicode Symbol Support
+
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Dired will use Unicode symbols as appropriate in its menus. An example is shown below.
 
 [[file:images/casual-dired-screenshot-unicode.png]]
 
 To ensure proper layout and spacing, your default typeface should be fixed-width or monospace and *must* support the Unicode symbols used.
 
-* Usage
-1. Invoke ~M-x dired~ to launch Dired.
-2. When the point is in the Dired window, invoke ~C-o~ (or a binding of your choosing) to launch the Casual Dired menu.
-
-** Enhanced Sorting
-Casual Dired offers enhanced sorting capabilities through GNU ~ls~. Use this to sort your Dired buffer to preference. Filter dot files (.*) by disabling the ~--all~ option is available here.
-
-[[file:images/casual-dired-sort-by-screenshot.png]]
-
-With the *Sort By* menu raised, one can save the switch settings for future use via the binding ~C-x C-s~ (~transient-save~). Note this is a global setting and will apply to all future calls to the *Sort By* menu.
-
-** Search & Replace
-Search and replace in multiple marked files using the ~/~ /Search & Replace/ menu item. This will raise a menu of Dired commands that will work on marked files. 
-
-[[file:images/casual-dired-search-replace.png]]
-
-While most Dired commands use Emacs-style [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Regular-Expressions.html][regular expression syntax]], there are two commands that instead take instead *grep*-style syntax:
-
-- (~g~) Find regex… (~dired-do-find-regexp~)
-- (~G~) Find regex and replace… (~dired-do-find-regexp-and-replace~)
-
-The *grep*-style syntax is dependent on the ~grep~ implementation that is installed and used by Emacs.
-
-** Bulk Dired Operations
-Casual Dired organizes a number of Dired commands that work on a set of marked files. These commands are presented in the *Utils* menu.
-
-[[file:images/casual-dired-utils-screenshot.png]]
-
-** Link
-Create symbolic and hard links via the *Link* menu. Both absolute and relative symbolic links (symlinks) are supported.
-
-[[file:images/casual-dired-link.png]]
-
-
-* Sponsorship
-If you enjoy using Casual Dired, consider making a modest financial contribution to help support its development and maintenance.
-
-[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
-
-* See Also
-[[file:agenda.org][Agenda]], [[file:bookmarks.org][Bookmarks]], [[file:calc.org][Calc]], [[file:calendar.org][Calendar]], [[file:dired.org][Dired]], [[file:editkit.org][EditKit (numerous editing commands)]], [[file:help.org][Help]], [[file:ibuffer.org][IBuffer]], [[file:image.org][Image]], [[file:info.org][Info]], [[file:isearch.org][I-Search]], [[file:make-mode.org][Make]], [[file:man.org][Man]], [[file:re-builder.org][RE-Builder]], [[file:timezone.org][Timezone]]

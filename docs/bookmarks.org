@@ -1,19 +1,25 @@
-[[../README.org][❮ Back to Casual]]
+* Bookmarks
+#+CINDEX: Bookmarks
+#+VINDEX: casual-bookmarks-tmenu
 
-* Casual Bookmarks
-An opinionated [[https://github.com/magit/transient][Transient]]-based user interface for the Emacs [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Bookmarks.html][Bookmark]] list.
+Casual Bookmarks is a user interface for the Emacs Bookmarks list ([[info:emacs#Bookmarks]]). Its top-level library is ~casual-bookmarks~.
 
 [[file:images/casual-bookmarks-screenshot.png]]
 
-* Install
-If installed via MELPA then add these lines to your Emacs initialization file with your binding of preference. 
+** Bookmarks Install
+:PROPERTIES:
+:CUSTOM_ID: bookmarks-install
+:END:
+
+#+CINDEX: Bookmarks Install
+
+To install Casual Bookmarks, add the following line to your Emacs initialization file with your binding of preference.
+
 #+begin_src elisp :lexical no
-  (require 'casual-bookmarks) ; optional if using autoloaded menu
   (keymap-set bookmark-bmenu-mode-map "C-o" #'casual-bookmarks-tmenu)
 #+end_src
 
-** Configuration
-Use these keybindings to configure bookmark list to be consistent with keybindings used by Casual Bookmarks.
+Use these keybindings to configure the bookmark list to be consistent with keybindings used by Casual Bookmarks.
 
 #+begin_src elisp :lexical no
   (keymap-set bookmark-bmenu-mode-map "J" #'bookmark-jump)
@@ -43,12 +49,32 @@ Finally, customize the variable ~bookmark-save-flag~ to the value ~1~ to ensure 
 
 The above guidance largely extends the work done in the blog post [[http://yummymelon.com/devnull/using-bookmarks-in-emacs-like-you-do-in-web-browsers.html][Using Bookmarks in Emacs like you do in Web Browsers]]. 
 
-* Usage
+** Bookmarks Usage
+#+CINDEX: Bookmarks Usage
 
-** Unicode Symbol Support
+[[file:images/casual-bookmarks-screenshot.png]]
+
+
+Casual Bookmarks organizes its main menu into the following sections:
+
+- Operations :: Commands that can operate on a bookmark such as editing or opening them.
+
+- Mark :: Commands that allow for bulk operation on multiple bookmarks.
+
+- Display :: Control how bookmarks are displayed and filtered.
+
+- Annotation :: Commands for annotating a bookmark.
+
+- Navigation :: Commands for navigating to a bookmark.
+
+- Column :: Commands to navigate and control the display of the table layout for bookmarks.
+
+
+#+TEXINFO: @majorheading Unicode Symbol Support
+
 [[file:images/casual-bookmarks-unicode-screenshot.png]]
 
-By enabling “Use Unicode Symbols” from the Settings menu, Casual Bookmarks will use Unicode symbols as appropriate in its menus. The following mapping is shown in the table below:
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Bookmarks will use Unicode symbols as appropriate in its menus. The following mapping is shown in the table below:
 
 | Name                 | Plain     | Unicode |
 |----------------------+-----------+---------|
@@ -62,10 +88,3 @@ By enabling “Use Unicode Symbols” from the Settings menu, Casual Bookmarks w
 | :narrow              | Narrow    | →←      |
 | :widen               | Widen     | ←→      |
 
-* Sponsorship
-If you enjoy using Casual Bookmarks, consider making a modest financial contribution to help support its development and maintenance.
-
-[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
-
-* See Also
-[[file:agenda.org][Agenda]], [[file:bookmarks.org][Bookmarks]], [[file:calc.org][Calc]], [[file:calendar.org][Calendar]], [[file:dired.org][Dired]], [[file:editkit.org][EditKit (numerous editing commands)]], [[file:help.org][Help]], [[file:ibuffer.org][IBuffer]], [[file:image.org][Image]], [[file:info.org][Info]], [[file:isearch.org][I-Search]], [[file:make-mode.org][Make]], [[file:man.org][Man]], [[file:re-builder.org][RE-Builder]], [[file:timezone.org][Timezone]]

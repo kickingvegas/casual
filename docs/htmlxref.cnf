@@ -1,0 +1,4 @@
+calc		mono	https://www.gnu.org/software/emacs/manual/html_mono/calc.html
+calc		node	https://www.gnu.org/software/emacs/manual/html_node/calc/
+transient       node    https://www.gnu.org/software/emacs/manual/html_node/transient/
+use-package     node    https://www.gnu.org/software/emacs/manual/html_node/use-package/

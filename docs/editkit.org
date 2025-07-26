@@ -1,178 +1,216 @@
-[[../README.org][❮ Back to Casual]]
+* EditKit
+:PROPERTIES:
+:CUSTOM_ID: editkit
+:END:
+#+CINDEX: EditKit
+#+VINDEX: casual-editkit-main-tmenu
 
-* Casual EditKit
-An opinionated [[https://github.com/magit/transient][Transient]]-based user interface library for Emacs editing commands. 
+Casual EditKit provides a user interface for the numerous editing commands offered by Emacs. Its top-level library is ~casual-editkit~. As text editing is a core feature of Emacs, the menus provided here are intended to be made available in a global fashion for buffers that are intended to be edited.
 
 [[file:images/casual-editkit-main-screenshot.png]]
 
 Casual EditKit endeavors to surface the many different editing commands offered by Emacs via Transient menus. The main menu (~casual-editkit-main-tmenu~) both demonstrates and provides a reference to all EditKit menus. Motivated users can customize this menu to their taste.
 
-* Table of Contents                                                   :TOC_3:
-- [[#casual-editkit][Casual EditKit]]
-- [[#motivation][Motivation]]
-  - [[#goals][Goals]]
-  - [[#non-goals][Non-Goals]]
-- [[#install][Install]]
-- [[#library-overview][Library Overview]]
-  - [[#register-commands-casual-editkit-registers-tmenu][Register commands (~casual-editkit-registers-tmenu~)]]
-  - [[#rectangle-commands-casual-editkit-rectangle-tmenu][Rectangle commands (~casual-editkit-rectangle-tmenu~)]]
-  - [[#edit-commands-casual-editkit-edit-tmenu][Edit commands (~casual-editkit-edit-tmenu~)]]
-    - [[#mark-casual-editkit-mark-tmenu][Mark (~casual-editkit-mark-tmenu~)]]
-    - [[#copy-casual-editkit-copy-tmenu][Copy (~casual-editkit-copy-tmenu~)]]
-    - [[#kill-cut-casual-editkit-kill-tmenu][Kill (Cut) (~casual-editkit-kill-tmenu~)]]
-    - [[#move-casual-editkit-move-tmenu][Move (~casual-editkit-move-tmenu~)]]
-    - [[#transpose-casual-editkit-transpose-tmenu][Transpose (~casual-editkit-transpose-tmenu~)]]
-    - [[#transform-casual-editkit-transform-tmenu][Transform (~casual-editkit-transform-tmenu~)]]
-    - [[#delete-casual-editkit-delete-tmenu][Delete (~casual-editkit-delete-tmenu~)]]
-    - [[#sort-casual-editkit-sort-tmenu][Sort (~casual-editkit-sort-tmenu~)]]
-    - [[#reformat-casual-editkit-reformat-tmenu][Reformat (~casual-editkit-reformat-tmenu~)]]
-  - [[#window-management-casual-editkit-window-tmenu][Window management (~casual-editkit-window-tmenu~)]]
-    - [[#deletion-casual-editkit-window-delete-tmenu][Deletion (~casual-editkit-window-delete-tmenu~)]]
-  - [[#search--replace-commands-casual-editkit-search-tmenu][Search & Replace commands (~casual-editkit-search-tmenu~)]]
-  - [[#open-commands-casual-editkit-open-tmenu][Open commands (~casual-editkit-open-tmenu~)]]
-  - [[#project-commands-casual-editkit-project-tmenu][Project commands (~casual-editkit-project-tmenu~)]]
-  - [[#bookmark-commands-casual-editkit-bookmarks-tmenu][Bookmark commands (~casual-editkit-bookmarks-tmenu~)]]
-  - [[#emoji--symbol-insertion-casual-editkit-emoji-symbol-tmenu][Emoji & Symbol Insertion (~casual-editkit-emoji-symbol-tmenu~)]]
-  - [[#tool-commands-casual-editkit-tools-tmenu][Tool commands (~casual-editkit-tools-tmenu~)]]
-  - [[#narrowwiden-commands-casual-editkit-narrow-tmenu][Narrow/Widen Commands (~casual-editkit-narrow-tmenu~)]]
-  - [[#macro-casual-editkit-macro-tmenu][Macro (~casual-editkit-macro-tmenu~)]]
-  - [[#settings-casual-editkit-settings-tmenu][Settings (~casual-editkit-settings-tmenu~)]]
-- [[#sponsorship][Sponsorship]]
-- [[#see-also][See Also]]
+** EditKit Install
+:PROPERTIES:
+:CUSTOM_ID: editkit-install
+:END:
+#+CINDEX: EditKit Install
 
-* Motivation
-Emacs has many commands that are easy to forget if not used frequently. Menus are a user interface (UI) affordance that offers discoverability and recognition that can lower its learning curve. While menus are commonly associated with mouse-driven UI, the inclusion of Transient in Emacs core allows for building a keyboard-driven menu UI. Casual EditKit endeavors to offer this as many Emacs users prefer keyboard-driven workflows.
-
-** Goals
-- To provide a keyboard-driven menu UI toolkit for common Emacs editing commands.
-- To provide casual access to the above commands.
-
-** Non-Goals
-- Full coverage of all Emacs editing commands. Casual EditKit is not intended to be a power user tool nor is it intended to be a replacement for mouse-driven menus.
-- Strict adherence to Emacs editing command naming. While Casual EditKit is *mostly* in alignment with Emacs command naming, there are cases where it will make an opinionated change if the name is deemed too vague or idiomatic.
-- UX Stability (for now). Given that Casual EditKit is early in its life-cycle, expect changes to its user experience in terms of menu hierarchy and keybinding choices in future releases.
-
-* Install
-Typical installation of Casual EditKit is via MELPA. A reference menu (~casual-editkit-main-tmenu~) illustrating nearly all the different menus offered by Casual EditKit is provided. This menu can be used “as-is” with your binding of preference. For consistency with other Casual Packages, the binding ~C-o~ is used in the example below. Other candidate bindings include ~M-o~ and ~F10~. To facilitate default access to this menu, the configuration below sets this binding to be global which can be overridden per mode. This is /not/ mandatory and users are free to integrate Casual EditKit into their Emacs configuration however they see fit. 
+A reference menu (~casual-editkit-main-tmenu~) illustrating nearly all the different menus offered by Casual EditKit is provided. This menu can be used “as-is” with your binding of preference. For consistency with other Casual Packages, the binding {{{kbd(C-o)}}} is used in the example below. Other candidate bindings include {{{kbd(M-o)}}} and {{{kbd(F10)}}}. To facilitate default access to this menu, the configuration below sets this binding to be global which can be overridden per mode. This is /not/ mandatory and users are free to integrate Casual EditKit into their Emacs configuration however they see fit. 
 
 #+begin_src elisp :lexical no
-  (require 'casual-editkit) ; optional if using autoloaded menu
   (keymap-global-set "C-o" #'casual-editkit-main-tmenu)
 #+end_src
 
 For motivated users desiring a bespoke solution, it is recommended that they use Casual EditKit as a library of menus to build their own workflows.
 
-* Library Overview
 
-** Register commands (~casual-editkit-registers-tmenu~)
-Register commands for saving and recalling text, point, window configuration, and keyboard macros are supported here.
+** EditKit Usage
+#+CINDEX: EditKit Usage
+
+[[file:images/casual-editkit-main-screenshot.png]]
+
+The main menu of Casual EditKit (~casual-editkit-main-tmenu~) is organized into the following sections:
+
+- File :: Commands related to opening files or buffers are provided here.
+
+- Edit :: Text editing commands are provided here.
+
+  From this section, rectangle commands are made available via the “{{{kbd(e)}}} Edit›” → “{{{kbd(R)}}} Rectangle›” binding combination.
+
+- Sexp :: Text editing commands specific for a balanced expression (Sexp) are provided here.
+
+- Tools :: Commands for invoking different tools are provided here.
+
+- Miscellaneous (unlabeled) :: Commands related to bookmarks, window management, project (Emacs file organization), search & replace, and macros are found here.
+
+Casual EditKit has numerous menus to cover a variety of edit related commands.
+
+*** Register commands
+#+CINDEX: Registers
+#+VINDEX: casual-editkit-registers-tmenu
+
+Support for register commands ([[info:emacs#Registers]]) is provided by the menu ~casual-editkit-registers-tmenu~. It is available via the menu item “{{{kbd(r)}}} Registers›” in the navigation row at the bottom of ~casual-editkit-main-tmenu~.
+
+Register commands for saving and recalling text, point, window configuration, and keyboard macros are provided by this menu.
 
 [[file:images/casual-editkit-registers-screenshot.png]]
 
-** Rectangle commands (~casual-editkit-rectangle-tmenu~)
-This menu offers all the rectangle commands. It is packaged as a sub-menu of ~casual-editkit-edit-tmenu~. 
 
-[[file:images/casual-editkit-rectangle-screenshot.png]]
+*** Edit commands
+#+CINDEX: Edit Commands
+#+VINDEX: casual-editkit-edit-tmenu
 
-** Edit commands (~casual-editkit-edit-tmenu~)
 This menu contains commands and sub-menus related to editing text. 
 
 [[file:images/casual-editkit-edit-screenshot.png]]
 
 Depending on the buffer mode, text can be operated on with different granularity as words, sentences, paragraphs, balanced expressions, functions (defuns). The following sub-menus illustrate what operations can be done on the different text granularity.
 
-*** Mark (~casual-editkit-mark-tmenu~)
+#+TEXINFO: @majorheading Mark›
+#+CINDEX: Mark commands
+#+VINDEX: casual-editkit-mark-tmenu
 Text can be marked with different granularity with this menu. Note that marking functions (Defun) is only supported for modes derived from ~prog-mode~. 
 
 [[file:images/casual-editkit-mark-screenshot.png]]
 
-*** Copy (~casual-editkit-copy-tmenu~)
-Text can be copied with different granularity with this menu. 
+#+TEXINFO: @majorheading Copy›
+#+CINDEX: Copy commands
+#+VINDEX: casual-editkit-copy-tmenu
+Text can be copied with different granularity with this menu.
+
 [[file:images/casual-editkit-copy-screenshot.png]]
 
-*** Kill (Cut) (~casual-editkit-kill-tmenu~)
-Text can be cut (killed) with different granularity with this menu. 
+#+TEXINFO: @majorheading Kill (Cut)›
+#+CINDEX: Kill commands
+#+CINDEX: Cut commands
+#+VINDEX: casual-editkit-kill-tmenu
+Text can be cut (killed) with different granularity with this menu.
+
 [[file:images/casual-editkit-kill-screenshot.png]]
 
-*** Move (~casual-editkit-move-tmenu~)
+#+TEXINFO: @majorheading Move›
+#+CINDEX: Move commands
+#+VINDEX: casual-editkit-move-tmenu
 Text can be moved forwards or backwards with different granularity with this menu. Note that selecting a granularity will raise another menu to allow selection of direction (forward, backward) the text is to be moved. To enable repeat operation, that menu is persisted and must be dismissed either with either ~C-q~ (dismiss all) or  ~C-g~ (dismiss to previous menu).
+
 [[file:images/casual-editkit-move-screenshot.png]]
 
-*** Transpose (~casual-editkit-transpose-tmenu~)
+#+TEXINFO: @majorheading Transpose›
+#+CINDEX: Transpose commands
+#+VINDEX: casual-editkit-transpose-tmenu
 Text can be transposed with different granularity with this menu. 
 
 [[file:images/casual-editkit-transpose-screenshot.png]]
 
-*** Transform (~casual-editkit-transform-tmenu~)
+#+TEXINFO: @majorheading Transform›
+#+CINDEX: Transform commands
+#+VINDEX: casual-editkit-transform-tmenu
 Text can be transformed with different granularity with this menu. Supported transformations are capitalization, lower and upper casing of text.
 
 [[file:images/casual-editkit-transform-screenshot.png]]
 
-*** Delete (~casual-editkit-delete-tmenu~)
+#+TEXINFO: @majorheading Delete›
+#+CINDEX: Delete commands
+#+VINDEX: casual-editkit-delete-tmenu
 Operations involving text deletion are included in this menu, including joining lines and zapping to a character.
 
 [[file:images/casual-editkit-delete-screenshot.png]]
 
-*** Sort (~casual-editkit-sort-tmenu~)
+#+TEXINFO: @majorheading Sort›
+#+CINDEX: Sort commands
+#+VINDEX: casual-editkit-sort-tmenu
 Sorting operations on different sections of text are supported, as well as support for sorting off a field. Press ~?~ or ~C-h~ to get help for a specific command.
 
 [[file:images/casual-editkit-sort-screenshot.png]]
 
-*** Reformat (~casual-editkit-reformat-tmenu~)
+#+TEXINFO: @majorheading Reformat›
+#+CINDEX: Reformat commands
+#+VINDEX: casual-editkit-reformat-tmenu
 Commands to reformat text such as filling, centering, and repunctuating sentences are provided here. Press ~?~ or ~C-h~ to get help for a specific command.
 
 [[file:images/casual-editkit-reformat-screenshot.png]]
 
 
-** Window management (~casual-editkit-window-tmenu~)
-This menu provides support for different Emacs window management commands. Note that in Emacs, /window/ is defined [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Basic-Windows.html#:~:text=A%20window%20is%20an%20area,view%20several%20buffers%20at%20once.][differently]] than its usage in contemporary graphical user interfaces. 
+#+TEXINFO: @majorheading Rectangle›
+#+CINDEX: Rectangle commands
+#+VINDEX: casual-editkit-rectangle-tmenu
+
+This menu offers all the rectangle commands. It is packaged as a sub-menu of ~casual-editkit-edit-tmenu~. 
+
+[[file:images/casual-editkit-rectangle-screenshot.png]]
+
+
+*** Window management
+#+CINDEX: Window management
+#+VINDEX: casual-editkit-window-tmenu
+This menu provides support for different Emacs window management commands. Note that in Emacs, a window ([[info:elisp#Basic Windows]]) is defined differently than its usage in contemporary graphical user interfaces.
+
 [[file:images/casual-editkit-window-screenshot.png]]
 
 If the variable ~casual-lib-use-unicode~ is set to ~t~, then Unicode symbols are used in the labels.
 
 [[file:images/casual-editkit-window-unicode-screenshot.png]]
 
-*** Deletion (~casual-editkit-window-delete-tmenu~)
+#+TEXINFO: @majorheading Window Deletion
+#+CINDEX: Window deletion
+#+VINDEX: casual-editkit-window-delete-tmenu
 This menu provides support for deleting windows.
+
 [[file:images/casual-editkit-window-delete-screenshot.png]]
 
-** Search & Replace commands (~casual-editkit-search-tmenu~)
+*** Search & Replace commands
+#+CINDEX: Search & Replace commands
+#+VINDEX: casual-editkit-search-tmenu
 Operations related to search and replace are captured by this menu. Note that this menu uses Transient prefix arguments (~--backward~ and ~--regexp~). This is because some commands have variants involving direction and whether to search using a regexp. Commands that support direction will by default operate forward of the current point if ~--backward~ is not enabled.
 
 [[file:images/casual-editkit-search-screenshot.png]]
 
-** Open commands (~casual-editkit-open-tmenu~)
+*** Open commands
+#+CINDEX: Open commands
+#+VINDEX: casual-editkit-open-tmenu
 Commands related to opening a file (either for writing or read-only) are supported here. Included are commands for visiting and renaming a file or buffer. The *Project* sub-menu is also offered here.
 
 [[file:images/casual-editkit-open-screenshot.png]]
 
-** Project commands (~casual-editkit-project-tmenu~)
+*** Project commands
+#+CINDEX: Project commands
+#+VINDEX: casual-editkit-project-tmenu
 Project-related commands are listed in this menu.
 
 [[file:images/casual-editkit-project-screenshot.png]]
 
-** Bookmark commands (~casual-editkit-bookmarks-tmenu~)
+*** Bookmark commands
+#+CINDEX: Bookmark commands
+#+VINDEX: casual-editkit-bookmarks-tmenu
 Commands edit, add, or jump to a bookmark are captured in this menu.
 
 [[file:images/casual-editkit-bookmarks-screenshot.png]]
 
-** Emoji & Symbol Insertion (~casual-editkit-emoji-symbol-tmenu~)
+*** Emoji & Symbol Insertion
+#+CINDEX: Emoji & Symbols
+#+VINDEX: casual-editkit-emoji-symbol-tmenu
 
-Insert emoji and symbol characters with this menu. Smart quotes are also supported by this menu and can be applied to a text region. This menu also offers the command ~electric-quote-mode~ which is bound to ~Q~.w
+Insert emoji and symbol characters with this menu. Smart quotes are also supported by this menu and can be applied to a text region. This menu also offers the command ~electric-quote-mode~ which is bound to {{{kbd(Q)}}}.
 
 [[file:images/casual-editkit-emoji-symbols-screenshot.png]]
 
-** Tool commands (~casual-editkit-tools-tmenu~)
+*** Tool commands
+#+CINDEX: Tool commands
+#+VINDEX: casual-editkit-tools-tmenu
 This menu holds an assorted collection of different tools/utilities provided by Emacs. Motivated users can use this Transient prefix as starting point to create a menu customized to their needs.
 
 [[file:images/casual-editkit-tools-screenshot.png]]
 
-** Narrow/Widen Commands (~casual-editkit-narrow-tmenu~)
-Support for [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html][narrowing and widening]] a buffer is supported. Mode specific narrowing behavior is supported for Org and ~prog-mode~ derived buffers.
+*** Narrow/Widen Commands
+#+CINDEX: Narrow/Widen Commands
+#+VINDEX: casual-editkit-narrow-tmenu
+Support for narrowing and widening ([[info:emacs#Narrowing]]) a buffer is supported. Mode specific narrowing behavior is supported for Org and ~prog-mode~ derived buffers.
 
 [[file:images/casual-editkit-narrow-screenshot.png]]
 
-This menu can be [[https://www.gnu.org/software/emacs/manual/html_mono/transient.html#Modifying-Existing-Transients][modified]] to support narrowing in other modes, particularly those that are packaged with Emacs. For example, if one wanted narrowing support for Markdown ([[https://jblevins.org/projects/markdown-mode/][markdown-mode]]), the following initialization code can be used.
+This menu can be modified ([[info:transient#Modifying Existing Transients]]) to support narrowing in other modes, particularly those that are packaged with Emacs. For example, if one wanted narrowing support for Markdown ([[https://jblevins.org/projects/markdown-mode/][markdown-mode]]), the following initialization code can be used.
 
 #+begin_src elisp :lexical no
   (transient-append-suffix 'casual-editkit-narrow-tmenu '(0 0)
@@ -183,27 +221,24 @@ This menu can be [[https://www.gnu.org/software/emacs/manual/html_mono/transient
       ("p" "Page" markdown-narrow-to-page)])
 #+end_src
 
-** Macro (~casual-editkit-macro-tmenu~)
+*** Macro
+#+CINDEX: Macro commands
+#+VINDEX: casual-editkit-macro-tmenu
 Commands for managing macros are provided for by this menu. Note that macro creation commands are /not/ supported as they are tightly-bound to keybindings. 
 
 [[file:images/casual-editkit-macro-screenshot.png]]
 
-** Settings (~casual-editkit-settings-tmenu~)
+*** EditKit Settings
+#+CINDEX: EditKit Settings
+#+VINDEX: casual-editkit-settings-tmenu
 Configuration of common editing-related settings are provided here. Most all settings are set via the ~customize-variable~ interface with the following exceptions for:
 
 - “Auto-fill Mode (~auto-fill-mode~)”
 - “Indent Tabs Mode (~indent-tabs-mode~)”
 - “Fill Column (~set-fill-column~)”
 
-Those commands will instead apply to the current buffer. The variables listed above can be more permanently set via ~M-x customize-variable~.
+Those commands will instead apply to the current buffer. The variables listed above can be more permanently set via the ~customize-variable~ command.
 
 [[file:images/casual-editkit-settings-screenshot.png]]
 
 
-* Sponsorship
-If you enjoy using Casual EditKit, consider making a modest financial contribution to help support its development and maintenance.
-
-[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
-
-* See Also
-[[file:agenda.org][Agenda]], [[file:bookmarks.org][Bookmarks]], [[file:calc.org][Calc]], [[file:calendar.org][Calendar]], [[file:dired.org][Dired]], [[file:editkit.org][EditKit (numerous editing commands)]], [[file:help.org][Help]], [[file:ibuffer.org][IBuffer]], [[file:image.org][Image]], [[file:info.org][Info]], [[file:isearch.org][I-Search]], [[file:make-mode.org][Make]], [[file:man.org][Man]], [[file:re-builder.org][RE-Builder]], [[file:timezone.org][Timezone]]

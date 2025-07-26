@@ -1,32 +1,46 @@
-[[../README.org][❮ Back to Casual]]
-
-* Casual Calc
-An opinionated [[https://github.com/magit/transient][Transient]]-based user interface to support the casual usage of Emacs [[https://www.gnu.org/software/emacs/manual/html_mono/calc.html][Calc]].
+* Calc
+#+CINDEX: Calc
+#+VINDEX: casual-calc-tmenu
+Casual Calc is a user interface for Emacs Calc ([[info:calc#Top]]).
 
 [[file:images/casual-calc-tmenu.png]]
 
-* Install
-Casual Calc is available on [[https://melpa.org/#/casual][MELPA]].
+** Calc Install
+:PROPERTIES:
+:CUSTOM_ID: calc-install
+:END:
 
-If installed via ~list-packages~ then add this line to your Emacs initialization file.
+#+CINDEX: Calc Install
+
+To install Casual Calc, add the following lines to your Emacs initialization file with your binding of preference.
+
 #+begin_src elisp :lexical no
-  (require 'casual-calc) ; optional if using autoloaded menu
   (keymap-set calc-mode-map "C-o" #'casual-calc-tmenu)
   (keymap-set calc-alg-map "C-o" #'casual-calc-tmenu)
 #+end_src
 
 
-* Usage
-1. Invoke ~M-x calc~ to launch Calc.
-2. When the point is in the Calc window, invoke ~C-o~ (or a binding of your choosing) to launch the Casual Calc interface.
+** Calc Usage
+#+CINDEX: Calc Usage
 
-Once raised, the Casual Calc interface can be dismissed via:
-- ~C-g~ to dismiss the current menu.
-- ~C-q~ to dismiss the interface completely.
+[[file:images/casual-calc-tmenu.png]]
 
-For nearly all menus, algebraic entry via the ' binding is available, as well as basic calculator operations (addition, subtraction, multiplication, division) and stack operations (pop, enter).
+To launch Calc, invoke  ~M-x calc~. When the point is in the Calc window, invoke {{{kbd(C-o)}}} (or a binding of your choosing) to launch the Casual Calc interface.
 
-* Calc Basics
+For nearly all menus, algebraic entry via the {{{kbd(')}}} binding is available, as well as basic calculator operations (addition, subtraction, multiplication, division) and stack operations (pop, enter).
+
+Casual Calc organizes its main menu into the following sections:
+
+- Calc :: Commands for common calculator functions.
+- Constants ::  Common math constants.
+- Operators :: Common math operators.
+- Stack :: Commands for stack operations.
+- Arithmetic :: Entry point for sub-menus of commands classified as arithmetic operations.
+- Functions :: Entry point for sub-menus of commands organized into different classes of functionality.
+- Settings :: Entry point for sub-menus of commands to configure Calc settings.
+
+#+TEXINFO: @majorheading Calc Basics
+
 It helps to know some basics about Calc.
 
 - Calc is a stack-based calculator that supports both RPN and algebraic style entry.
@@ -46,13 +60,4 @@ It helps to know some basics about Calc.
 - Org-mode active timestamps can be entered into Calc.
 - The top of the stack (1:) can be edited by pressing the ~`~ key.
 - Entering a single quote (') will prompt you for an algebraic entry.
-
-* Sponsorship
-If you enjoy using Casual Calc, consider making a modest financial contribution to help support its development and maintenance.
-
-[[https://www.buymeacoffee.com/kickingvegas][file:images/default-yellow.png]]
-
-
-* See Also
-[[file:agenda.org][Agenda]], [[file:bookmarks.org][Bookmarks]], [[file:calc.org][Calc]], [[file:calendar.org][Calendar]], [[file:dired.org][Dired]], [[file:editkit.org][EditKit (numerous editing commands)]], [[file:help.org][Help]], [[file:ibuffer.org][IBuffer]], [[file:image.org][Image]], [[file:info.org][Info]], [[file:isearch.org][I-Search]], [[file:make-mode.org][Make]], [[file:man.org][Man]], [[file:re-builder.org][RE-Builder]], [[file:timezone.org][Timezone]]
 
