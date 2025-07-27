@@ -22,6 +22,7 @@ html:
 .PHONY: gen-html
 gen-html: html html/images html/main.css sync-images
 	makeinfo				\
+	--init=texi2any-config.pm		\
 	--html					\
 	--css-ref=main.css			\
 	--output=html				\
