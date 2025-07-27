@@ -2,8 +2,33 @@
  * Copyright 2025 Charles Y. Choi
  */
 
+@media only screen and (max-device-width: 500px) {
+    body {
+        margin: 0pt;
+        padding-top: 0.05in;
+        padding-left: 0.15in;
+        padding-right: 0.15in;
+        padding-bottom: 0.05in;
+        font-family: Optima, Constantia, 'Linux Biolinum O', "Linux Libertine Display O", 'Times New Roman', Arial;
+        font-size: 14pt;
+    }
+}
+
+@media only screen and (width > 500px) {
+    body {
+        margin: 0pt;
+        padding-top: 0.25in;
+        padding-left: 0.5in;
+        padding-right: 0.5in;
+        padding-bottom: 0.25in;
+        font-family: Optima, Constantia, 'Linux Biolinum O', "Linux Libertine Display O", 'Times New Roman', Arial;
+        font-size: 14pt;
+    }
+}
+
+
 @media (prefers-color-scheme: dark) {
-    .body.adaptive {
+    body {
         background-color: #1C1C1C;
         color: #f0f0f0;
     }
@@ -28,7 +53,7 @@
 }
 
 @media (prefers-color-scheme: light) {
-    .body.adaptive {
+    body {
         background-color: #f9f9f9;
         color: black;
     }
@@ -50,29 +75,6 @@
     }
 }
 
-@media only screen and (max-device-width: 500px) {
-    body {
-        margin: 0pt;
-        padding-top: 0.05in;
-        padding-left: 0.15in;
-        padding-right: 0.15in;
-        padding-bottom: 0.05in;
-        font-family: Optima, Constantia, 'Linux Biolinum O', "Linux Libertine Display O", 'Times New Roman', Arial;
-        font-size: 14pt;
-    }
-}
-
-@media only screen and (width > 500px) {
-    body {
-        margin: 0pt;
-        padding-top: 0.25in;
-        padding-left: 0.5in;
-        padding-right: 0.5in;
-        padding-bottom: 0.25in;
-        font-family: Optima, Constantia, 'Linux Biolinum O', "Linux Libertine Display O", 'Times New Roman', Arial;
-        font-size: 14pt;
-    }
-}
 
 p {
     margin-top: 2pt;
