@@ -121,7 +121,7 @@
      :transient t)
     ("c" "Compile" compile
      :if-not (lambda () (derived-mode-p 'grep-mode)))
-    ("k" "Kill" kill-compilation
+    ("K" "Kill" kill-compilation
      :description (lambda () (casual-compile-unicode-get :kill))
      :transient t
      :if casual-compile--compilation-running-p)
