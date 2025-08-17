@@ -62,7 +62,7 @@ plain ASCII-range string."
   (backward-paragraph 2)
   (forward-line))
 
-(make-obsolete #'casual-info-browse-backward-paragraph
+(make-obsolete 'casual-info-browse-backward-paragraph
                #'casual-lib-browse-backward-paragraph
                "2.6.0")
 
@@ -73,7 +73,7 @@ plain ASCII-range string."
   (forward-paragraph)
   (forward-line))
 
-(make-obsolete #'casual-info-browse-forward-paragraph
+(make-obsolete 'casual-info-browse-forward-paragraph
                #'casual-lib-browse-forward-paragraph
                "2.6.0")
 

@@ -26,7 +26,6 @@
 (require 'dired)
 (require 'dired-x)
 (require 'checkdoc)
-(require 'elint)
 (require 'casual-lib)
 (require 'casual-dired-variables)
 
@@ -99,7 +98,6 @@ ASCII-range string."
     ("L" "Load" dired-do-load :transient nil)]
 
    ["Verification"
-    ("e" "Lint Directory…" elint-directory :transient nil)
     ("c" "Check documentation strings" checkdoc-dired :transient nil)]]
 
   [:class transient-row

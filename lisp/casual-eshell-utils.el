@@ -24,6 +24,7 @@
 ;;; Code:
 
 (require 'eshell)
+(require 'em-alias)
 (require 'tramp)
 (require 'casual-lib)
 
