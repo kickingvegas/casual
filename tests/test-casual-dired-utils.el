@@ -79,7 +79,6 @@
     (push (casualt-suffix-test-vector "L" #'dired-do-load) test-vectors)
     (push (casualt-suffix-test-vector "D" #'byte-recompile-directory) test-vectors)
     (push (casualt-suffix-test-vector "c" #'checkdoc-dired) test-vectors)
-    (push (casualt-suffix-test-vector "e" #'elint-directory) test-vectors)
     (casualt-suffix-testbench-runner test-vectors
                                      #'casual-dired-elisp-tmenu
                                      '(lambda () (random 5000))))
