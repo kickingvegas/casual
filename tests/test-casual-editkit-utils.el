@@ -676,10 +676,13 @@
   ;; TODO: need to test for region.
   (let ((tmpfile "casual-editkit-narrow-tmenu.el"))
     (casualt-editkit-setup tmpfile)
-    (cl-letf ((casualt-mock #'narrow-to-defun))
+    (cl-letf ((casualt-mock #'narrow-to-defun)
+              (casualt-mock #'narrow-to-page))
       (let ((test-vectors
-             '((:binding "d" :command narrow-to-defun))))
-
+             '((:binding "d" :command narrow-to-defun)
+               (:binding "p" :command narrow-to-page))))
+        (put 'narrow-to-page 'disabled nil)
+        (put 'narrow-to-region 'disabled nil)
         (emacs-lisp-mode)
         (insert "(defun foo() (message \"hi.\"))")
         (goto-char (point-min))

@@ -796,9 +796,12 @@ accessed here."
   "Menu for narrow commands."
 
   ["Narrow"
+   ["Page"
+    ("p" "Page" narrow-to-page)]
+
    ["Programming"
-    ("d" "Defun" narrow-to-defun
-     :if (lambda () (derived-mode-p 'prog-mode)))]
+    :if (lambda () (derived-mode-p 'prog-mode))
+    ("d" "Defun" narrow-to-defun)]
 
    ["Org"
     :if (lambda () (derived-mode-p 'org-mode))
