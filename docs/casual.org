@@ -5,7 +5,7 @@
 #+EMAIL: kickingvegas@gmail.com
 #+OPTIONS: ':t toc:t author:t email:t H:4 f:t
 #+LANGUAGE: en
-#+MACRO: version 2.8.4
+#+MACRO: version 2.9.0
 #+MACRO: kbd (eval (org-texinfo-kbd-macro $1))
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_CLASS: casual
@@ -142,6 +142,7 @@ Standard installation of the ~casual~ package is via [[https://melpa.org/#/casua
 Configuration of a particular Casual user interface is performed per mode. Go to the *Install* section for a mode of interest below for guidance on its configuration.
 
 - [[#agenda-install][Agenda]]
+- [[#bibtex-install][BibTeX]]
 - [[#bookmarks-install][Bookmarks]]
 - [[#calc-install][Calc]]
 - [[#calendar-install][Calendar]]
@@ -253,6 +254,7 @@ Casual is organized into different libraries typically using the naming conventi
 The following modes are supported by Casual:
 
 #+INCLUDE: "./agenda.org" :minlevel 2
+#+INCLUDE: "./bibtex.org" :minlevel 2
 #+INCLUDE: "./bookmarks.org" :minlevel 2
 #+INCLUDE: "./calc.org" :minlevel 2
 #+INCLUDE: "./calendar.org" :minlevel 2

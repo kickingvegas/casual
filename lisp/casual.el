@@ -33,6 +33,9 @@
 ;; - Agenda (Elisp library: `casual-agenda.el')
 ;;   An interface for Org Agenda to help you plan your day.
 
+;; - BibTeX (Elisp library: `casual-bibtex.el')
+;;   An interface for editing your BibTeX file.
+
 ;; - Bookmarks (Elisp library: `casual-bookmarks.el')
 ;;   An interface for editing your bookmark collection.
 
