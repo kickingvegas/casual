@@ -5,7 +5,7 @@
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual
 ;; Keywords: tools, wp
-;; Version: 2.8.4
+;; Version: 2.8.5-rc.1
 ;; Package-Requires: ((emacs "29.1") (transient "0.9.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -32,6 +32,9 @@
 
 ;; - Agenda (Elisp library: `casual-agenda.el')
 ;;   An interface for Org Agenda to help you plan your day.
+
+;; - BibTeX (Elisp library: `casual-bibtex.el')
+;;   An interface for editing your BibTeX file.
 
 ;; - Bookmarks (Elisp library: `casual-bookmarks.el')
 ;;   An interface for editing your bookmark collection.

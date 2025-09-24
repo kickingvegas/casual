@@ -20,6 +20,7 @@ SRC_DIR=.
 .PHONY: tests
 tests: lib-tests				\
 agenda-tests					\
+bibtex-tests					\
 bookmarks-tests					\
 calc-tests					\
 calendar-tests					\
@@ -44,6 +45,10 @@ lib-tests:
 .PHONY: agenda-tests
 agenda-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-agenda.make tests
+
+.PHONY: bibtex-tests
+bibtex-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-bibtex.make tests
 
 .PHONY: bookmarks-tests
 bookmarks-tests:
