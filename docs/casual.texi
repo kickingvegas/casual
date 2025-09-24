@@ -20,7 +20,7 @@ Copyright © 2024-2025 Charles Y@. Choi
 @finalout
 @titlepage
 @title Casual User Guide
-@subtitle for version 2.8.4
+@subtitle for version 2.9.0
 @author Charles Y@. Choi (@email{kickingvegas@@gmail.com})
 @page
 @vskip 0pt plus 1filll
@@ -33,7 +33,7 @@ Copyright © 2024-2025 Charles Y@. Choi
 @node Top
 @top Casual User Guide
 
-Version: 2.8.4
+Version: 2.9.0
 
 Casual is a project to re-imagine the primary user interface for Emacs using keyboard-driven menus.
 
@@ -100,6 +100,7 @@ Upgrading to Casual 1.x to 2.x
 Casual Modes
 
 * Agenda::
+* Bib@TeX{}::
 * Bookmarks::
 * Calc::
 * Calendar::
@@ -122,6 +123,17 @@ Agenda
 
 * Agenda Install::
 * Agenda Usage::
+
+Bib@TeX{}
+
+* Bib@TeX{} Install::
+* Bib@TeX{} Usage::
+
+Bib@TeX{} Usage
+
+* Bib@TeX{} Navigation::
+* Creating, Updating, and Deleting Bib@TeX{} Structures: Creating Updating and Deleting Bib@TeX{} Structures. 
+* Bib@TeX{} Settings::
 
 Bookmarks
 
@@ -411,6 +423,8 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 @item
 @ref{Agenda Install, , Agenda}
 @item
+@ref{Bib@TeX{} Install, , Bib@TeX{}}
+@item
 @ref{Bookmarks Install, , Bookmarks}
 @item
 @ref{Calc Install, , Calc}
@@ -574,6 +588,7 @@ The following modes are supported by Casual:
 
 @menu
 * Agenda::
+* Bib@TeX{}::
 * Bookmarks::
 * Calc::
 * Calendar::
@@ -676,6 +691,233 @@ Agenda views have different display modes and behavior that can be modified from
 By enabling “@kbd{u} Use Unicode Settings” from the Settings menu, Casual Agenda will use Unicode symbols as appropriate in its menus.
 
 @image{images/casual-agenda-unicode-screenshot,,,,png}
+
+@node Bib@TeX{}
+@section Bib@TeX{}
+
+@cindex BibTeX
+@cindex bibtex
+@vindex casual-bibtex-tmenu
+
+Casual Bib@TeX{} is an opinionated user interface for Bib@TeX{} mode (@ref{TeX Mode,info ``(emacs) @TeX{} Mode'',,emacs,}), a major mode for working with Bib@TeX{} files (@uref{https://bibtex.eu, Bib@TeX{} Guide}).
+
+A Bib@TeX{} file is typically named using the suffix @code{.bib} to identify its file type.
+
+To appreciate the benefits of Casual Bib@TeX{}, it helps to understand what BibTex is and what Bib@TeX{} mode offers.
+
+Bib@TeX{} is a database schema for bibliography data. This data is best understood as a collection of records (or entries) that is stored in a plain-text file. Multiple text files can be supported. While most tooling for Bib@TeX{} is tuned for @LaTeX{} documentation workflows, Bib@TeX{} can be used as generalized storage for bibliography data. Org provides extensive support for citing using Bib@TeX{} (@ref{Citation handling,info ``(org) Citation handling'',,org,}).
+
+As a Bib@TeX{} file is plain-text based, any plain-text editor can be used to edit it. This flexibility is problematic as plain-text editors will not enforce the schema of Bib@TeX{} by default.
+
+Emacs distinguishes itself from other editors in that support for working with Bib@TeX{} files is built-in with the package @code{bibtex}.
+
+The @code{bibtex} package provides commands for both navigating and editing Bib@TeX{} data structures (entries and the fields within an entry) in a quasi-``form-based'' way.
+
+Casual Bib@TeX{} organizes and augments Bib@TeX{} mode commands into a keyboard-driven menu.
+
+The screenshot below shows the menu for Casual Bib@TeX{}.
+
+@image{images/casual-bibtex-screenshot,,,,png}
+
+@menu
+* Bib@TeX{} Install::
+* Bib@TeX{} Usage::
+@end menu
+
+@node Bib@TeX{} Install
+@subsection Bib@TeX{} Install
+
+@cindex BibTeX Install
+
+In your initialization file, bind the Transient @code{casual-bibtex-tmenu} to your key binding of preference in @code{bibtex-mode-map}. The binding @kbd{M-m} is suggested so as to not conflict with @kbd{C-o} that is bound to @code{casual-editkit-main-tmenu}. (@ref{EditKit Install})
+
+@lisp
+(keymap-set bibtex-mode-map "M-m" #'casual-bibtex-tmenu)
+@end lisp
+
+@code{casual-bibtex-tmenu} is opinionated in making editing and navigation commands emulate a form-based interface (@uref{https://simple.wikipedia.org/wiki/Form-based_interface#:~:text=A%20form%2Dbased%20interface%20is,the%20fields%20that%20accept%20it., form-based interface}) in a @code{bibtex-mode} window. The following keybindings are recommended to support consistent behavior between @code{bibtex-mode-map} and @code{casual-bibtex-tmenu}.
+
+@lisp
+(add-hook 'bibtex-mode-hook 'hl-line-mode)
+
+(keymap-set bibtex-mode-map "<TAB>" #'bibtex-next-field)
+(keymap-set bibtex-mode-map "<backtab>" #'previous-line)
+
+(keymap-set bibtex-mode-map "C-n" #'bibtex-next-field)
+(keymap-set bibtex-mode-map "M-n" #'bibtex-next-entry)
+(keymap-set bibtex-mode-map "M-p" #'bibtex-previous-entry)
+
+(keymap-set bibtex-mode-map "<prior>" #'bibtex-previous-entry)
+(keymap-set bibtex-mode-map "<next>" #'bibtex-next-entry)
+
+(keymap-set bibtex-mode-map "C-c C-o" #'bibtex-url)
+(keymap-set bibtex-mode-map "C-c C-c" #'casual-bibtex-fill-and-clean)
+
+(keymap-set bibtex-mode-map "<clear>" #'bibtex-empty-field)
+(keymap-set bibtex-mode-map "M-<clear>" #'bibtex-kill-field)
+(keymap-set bibtex-mode-map "M-DEL" #'bibtex-kill-field)
+
+@end lisp
+
+@node Bib@TeX{} Usage
+@subsection Bib@TeX{} Usage
+
+@cindex BibTeX Usage
+
+@image{images/casual-bibtex-screenshot,,,,png}
+
+The main menu for Casual Bib@TeX{} is organized into the following sections:
+
+@table @asis
+@item Field
+Commands to edit or navigate fields within an entry.
+@item Entry
+Commands to edit or navigate entries within a Bib@TeX{} file.
+@item Misc
+Miscellaneous Bib@TeX{} commands.
+@end table
+
+@menu
+* Bib@TeX{} Navigation::
+* Creating, Updating, and Deleting Bib@TeX{} Structures: Creating Updating and Deleting Bib@TeX{} Structures. 
+* Bib@TeX{} Settings::
+@end menu
+
+@node Bib@TeX{} Navigation
+@subsubsection Bib@TeX{} Navigation
+
+@cindex BibTeX Navigation
+
+@image{images/casual-bibtex-screenshot,,,,png}
+
+Casual Bib@TeX{} re-purposes conventional Emacs navigation bindings so that instead of navigating a text edit buffer, it instead navigates Bib@TeX{} structures (entry, field).
+
+The following table shows the bindings for Bib@TeX{} navigation.
+
+@multitable {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
+@headitem Binding
+@tab Command
+@item @kbd{C-n}
+@tab bibtex-next-field (bound to @kbd{n} in menu)
+@item @kbd{C-p}
+@tab previous-line (bound to @kbd{p} in menu)
+@item @kbd{C-a}
+@tab casual-bibtex-beginning-of-field
+@item @kbd{C-e}
+@tab casual-bibtex-end-of-field
+@item @kbd{M-p}
+@tab bibtex-previous-entry
+@item @kbd{M-n}
+@tab bibtex-next-entry
+@item @kbd{<}
+@tab bibtex-beginning-of-entry
+@item @kbd{>}
+@tab bibtex-end-of-entry
+@end multitable
+
+@node Creating Updating and Deleting Bib@TeX{} Structures
+@subsubsection Creating, Updating, and Deleting Bib@TeX{} Structures
+
+@cindex BibTeX CRUD
+
+@image{images/casual-bibtex-screenshot,,,,png}
+
+In Casual Bib@TeX{}, CRUD (CReate, Update, Delete) operations for entry and field structures are intended to be achieved through their respective commands. This contrasts with manual editing of a buffer to achieve the same end, which is prone to errors.
+
+@subheading Creating an Entry
+
+To create a new entry, use the “@kbd{A} Add…” command. You will be prompted in the mini-buffer with completion support for the entry type. This new entry will be inserted relative to existing entry where the point is with all fields supported by the entry type enumerated.  Fields with the temporary prefix of ``ALT'' or ``OPT'' denote a field that is alternate or optional. Use the command “@kbd{o} Remove OPT/ALT” to remove this prefix. 
+
+When all desired information for a Bib@TeX{} entry has been entered, it can be ``cleaned'' using the command “@kbd{C-c} Clean”. Cleaning an entry will:
+
+@enumerate
+@item
+Generate a unique citation key, if needed.
+@item
+Remove all unused fields.
+@end enumerate
+
+By default, cleaning an entry will not format (or ``fill'') the entry. This can be changed by setting the customizable variable @code{bibtex-clean-entry-hook} to include the command @code{bibtex-fill-entry}. This can be done from ``Hooks'' section in the Settings menu (@ref{Bib@TeX{} Settings, , Settings)}. 
+
+@subheading Creating a Field
+
+To create a new field, use the “@kbd{a} Add…” command. You will be prompted in the mini-buffer with completion support for the field type. This new field will be inserted relative to existing field where the point is.
+
+There are two components to a field:
+
+@table @asis
+@item key
+the field name, referred to in the menu as 'k'.
+@item value
+the value of the field, referred to in the menu as 'v'.
+@end table
+
+A ``brute-force'' command to enumerate all fields for an entry is provided by the “@kbd{u} Update…” command. Clean the entry to remove all unpopulated fields after using it.
+
+@subheading BibTeX mode has its own kill-ring
+
+Bib@TeX{} has its own kill-ring variable @code{bibtex-entry-kill-ring} which the following menu commands use:
+
+@table @asis
+@item @kbd{c} Copy∙ k,v
+Copy the whole field, both key and value.
+@item @kbd{C} Copy∙
+Copy the entry.
+@item @kbd{k} Kill∙
+Kill the entry.
+@item @kbd{y} Yank∙
+Yank the entry or field.
+@item @kbd{M-y} Yank-Pop∙
+Yank-pop the entry or field.
+@end table
+
+The ``∙'' annotation in a menu label denotes commands that do @emph{not} use the @code{kill-ring}, but @code{bibtex-entry-kill-ring} instead.
+
+@subheading Search and Jump
+
+The ability to search and jump to a position in a Bib@TeX{} database are offered by the following menu commands:
+
+@table @asis
+@item @kbd{/} Search…
+Search the Bib@TeX{} database.
+@item @kbd{j} Jump…
+Move point to a citation key.
+@end table
+
+@node Bib@TeX{} Settings
+@subsubsection Bib@TeX{} Settings
+
+@cindex BibTeX Settings
+
+@image{images/casual-bibtex-settings-screenshot,,,,png}
+
+
+This menu offers access to commonly configured Bib@TeX{} mode settings.
+
+Settings are organized into the following sections:
+
+@table @asis
+@item Settings
+Miscellaneous Bib@TeX{} settings.
+@item Files
+File and path related settings.
+@item Search
+Search settings.
+@item Hooks
+Hook settings for cleaning and adding.
+@end table
+
+@subsubheading BibTeX Clean Hook
+
+By default Bib@TeX{} mode does not format (or ``fill'') an entry upon cleaning. To support filling an entry upon clean, add the command @code{bibtex-fill-entry} to @code{bibtex-clean-entry-hook} using the “@kbd{C} Clean” command as shown below:
+
+@image{images/casual-bibtex-clean-entry-hook,,,,png}
+
+@subsubheading BibTeX Mode Unicode Symbol Support
+
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Bib@TeX{} will use Unicode symbols as appropriate in its menus.
+
+@image{images/casual-bibtex-unicode-screenshot,,,,png}
 
 @node Bookmarks
 @section Bookmarks

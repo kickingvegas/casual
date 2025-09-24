@@ -19,6 +19,7 @@ TIMESTAMP := $(shell /bin/date "+%Y%m%d_%H%M%S")
 .PHONY: tests					\
 lib-tests					\
 agenda-tests					\
+bibtex-tests					\
 bookmarks-tests					\
 calc-tests					\
 calendar-tests					\
@@ -40,6 +41,7 @@ SRC_DIR=../lisp
 
 tests: lib-tests				\
 agenda-tests					\
+bibtex-tests					\
 bookmarks-tests					\
 calc-tests					\
 calendar-tests					\
@@ -61,6 +63,9 @@ lib-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 agenda-tests:
+	$(MAKE) -C $(SRC_DIR) $@
+
+bibtex-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 bookmarks-tests:
