@@ -69,7 +69,7 @@ The specification of this variable conforms to the format string used by
   "Datestamp format used by `casual-timezone-planner'.
 
 This customizable variable determines the reporting format used
-by the command `casual-timezone-planner'. The specification of this
+by the command `casual-timezone-planner'.  The specification of this
 variable conforms to the format string used by
 `format-time-string' as described in Info node `(elisp) Time
 Parsing'.
@@ -267,10 +267,17 @@ The format of the timestamp is defined in the variable
   "Major mode for Timezone Planner."
   (hl-line-mode t))
 
-(defun casual-timezone-planner ()
+(defun casual-timezone-planner (remote-timezones datestamp)
   "Generate table comparing hours between local and a remote timezone.
 
-This command will prompt the user twice:
+REMOTE-TIMEZONES is a list of timezones to compare local time with
+\(ex: '(\"Europe/Berlin\" \"Asia/Tokyo\")).  It can also be a single
+comma- or space-separated timezone string (ex:
+\"Europe/Berlin,Asia/Tokyo\").
+
+DATESTAMP is a string in YYYY-MM-DD format.
+
+When called interactively, this command will prompt the user twice:
  1. to specify a remote timezone
  2. to specify a calendar day
 
@@ -280,18 +287,19 @@ updated) comparing the hours between the two timezones.
 The report datestamp format can be customized via the variable
 `casual-timezone-datestamp-format'.
 
-Working hours are annotated with a ☼. The range of working hours can be
+Working hours are annotated with a ☼.  The range of working hours can be
 customized via the variable `casual-timezone-working-hours-range'."
-  (interactive)
+  (interactive (list
+                (completing-read-multiple "Remote Timezone(s): " (casual-timezone-zone-info))
+                (org-read-date)))
+  (when (stringp remote-timezones) (setq remote-timezones (split-string remote-timezones "[, ]+")))
   (unless (not (eq system-type 'windows-nt))
     (error "Not available on Windows"))
 
-  (let* ((remote-tz (completing-read-default "Remote Timezone: " (casual-timezone-zone-info)))
-         ;; (tzcode (casual-timezone-offset-8601 (nth 0 (current-time-zone nil remote-tz))))
-         (datestamp (org-read-date))
+  (let* (;; (tzcode (casual-timezone-offset-8601 (nth 0 (current-time-zone nil remote-tz))))
          (local-tz (nth 1 (current-time-zone)))
          (start-time (date-to-time (concat datestamp " " "05:00")))
-         (increments (seq-map (lambda (x) (seconds-to-time (* x 3600)))(number-sequence 0 25)))
+         (increments (seq-map (lambda (x) (seconds-to-time (* x 3600))) (number-sequence 0 25)))
          (tztimes (seq-map (lambda (x) (time-add start-time x)) increments))
          (local-times
           (seq-map
@@ -299,13 +307,16 @@ customized via the variable `casual-timezone-working-hours-range'."
            tztimes))
          (remote-times
           (seq-map
-           (lambda (x) (time-to-seconds (date-to-time (format-time-string
-                                      "%Y-%m-%dT%H:%M:%S"
-                                      (date-to-time (format-time-string (concat x " " local-tz)))
-                                      remote-tz))))
-           local-times))
-         (tz-data (seq-mapn #'list tztimes remote-times))
-         (tz-buffer-name (format "*%s - %s*" local-tz remote-tz)))
+           (lambda (remote-tz)
+             (seq-map
+              (lambda (x) (time-to-seconds (date-to-time (format-time-string
+                                                          "%Y-%m-%dT%H:%M:%S"
+                                                          (date-to-time (format-time-string (concat x " " local-tz)))
+                                                          remote-tz))))
+              local-times))
+           remote-timezones))
+         (tz-data (apply #'seq-mapn #'list tztimes remote-times))
+         (tz-buffer-name (format "*%s - %s*" local-tz (string-join remote-timezones " - "))))
 
     (get-buffer-create tz-buffer-name)
     (switch-to-buffer (set-buffer tz-buffer-name))
@@ -314,15 +325,16 @@ customized via the variable `casual-timezone-working-hours-range'."
     (let ((inhibit-read-only t))
         (erase-buffer)
         (make-vtable
-         :columns `((:name ,local-tz :width 30 :align left) ;; !!! For some reason I can't pass in local-tz
-                    (:name ,remote-tz :width 30 :align left))
+         :columns (append
+                   `((:name ,local-tz :width 30 :align left)) ;; !!! For some reason I can't pass in local-tz
+                   (seq-map (lambda (remote-tz)
+                              `(:name ,remote-tz :width 30 :align left))
+                            remote-timezones))
 
          :objects tz-data
 
          :getter `(lambda (issue column table)
-                   (pcase (vtable-column table column)
-                     (,local-tz (nth 0 issue))
-                     (,remote-tz (nth 1 issue))))
+                    (nth column issue))
 
          :formatter `(lambda (value column table)
                        (casual-timezone--date-formatter value))
@@ -342,13 +354,26 @@ The format of the timestamp is defined in the variable
     (kill-new result)
     (message result)))
 
-(defun casual-timezone-planner-current-remote ()
-  "Copy remote time on current line to `kill-ring'.
+(defun casual-timezone-planner-current-remote (&optional only-at-point)
+  "Copy all remote times on current line to `kill-ring'.
+
+If called interactively with \\[universal-argument\] or if ONLY-AT-POINT
+is non-nil, copy only the remote time under point.  If the point is in
+the local time column, copy the first remote time.
 
 The format of the timestamp is defined in the variable
 `casual-timezone-datestamp-format'."
-  (interactive)
-  (let ((result (casual-timezone-planner--format-current-index 1)))
+  (interactive (list current-prefix-arg))
+  (let ((result
+         (if only-at-point
+             (casual-timezone-planner--format-current-index
+              (min (vtable-current-column) 1))
+           (string-join
+            (seq-map-indexed
+             (lambda (col index)
+               (casual-timezone-planner--format-current-index index))
+             (cdr (vtable-current-object)))
+            "; "))))
     (kill-new result)
     (message result)))
 
@@ -358,9 +383,13 @@ The format of the timestamp is defined in the variable
 The format of the timestamp is defined in the variable
 `casual-timezone-datestamp-format'."
   (interactive)
-  (let* ((local (casual-timezone-planner--format-current-index 0))
-         (remote (casual-timezone-planner--format-current-index 1))
-         (result (format "%s, %s" local remote)))
+  (let* ((result
+          (string-join
+           (seq-map-indexed
+            (lambda (val i)
+              (casual-timezone-planner--format-current-index i))
+            (vtable-current-object))
+           "; ")))
     (kill-new result)
     (message result)))
 
