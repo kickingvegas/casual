@@ -33,6 +33,8 @@
     (:next . '("↓" "Next"))
     (:forward . '("→" "Forward"))
     (:backward . '("←" "Backward"))
+    (:right . '("→" "Right"))
+    (:left . '("←" "Left"))
     (:current . '("⨀" "Current Hour")))
 
   "Unicode symbol DB to use for Timezone Transient menus.")
@@ -260,6 +262,7 @@ The format of the timestamp is defined in the variable
   "k" #'previous-line
   "w" #'world-clock
   "z" #'casual-timezone-planner
+  "T" #'casual-timezone-planner-current-point
   "c" #'calendar)
 
 (define-derived-mode casual-timezone-planner-mode
@@ -268,12 +271,11 @@ The format of the timestamp is defined in the variable
   (hl-line-mode t))
 
 (defun casual-timezone-planner (remote-timezones datestamp)
-  "Generate table comparing hours between local and a remote timezone.
+  "Generate hours table between local and REMOTE-TIMEZONES on DATESTAMP.
 
-REMOTE-TIMEZONES is a list of timezones to compare local time with
-\(ex: '(\"Europe/Berlin\" \"Asia/Tokyo\")).  It can also be a single
-comma- or space-separated timezone string (ex:
-\"Europe/Berlin,Asia/Tokyo\").
+REMOTE-TIMEZONES is a list of timezones to compare local time with. It
+can be either be a `list' of strings or a comma or space separated
+`string' type.
 
 DATESTAMP is a string in YYYY-MM-DD format.
 
@@ -354,26 +356,14 @@ The format of the timestamp is defined in the variable
     (kill-new result)
     (message result)))
 
-(defun casual-timezone-planner-current-remote (&optional only-at-point)
-  "Copy all remote times on current line to `kill-ring'.
-
-If called interactively with \\[universal-argument\] or if ONLY-AT-POINT
-is non-nil, copy only the remote time under point.  If the point is in
-the local time column, copy the first remote time.
+(defun casual-timezone-planner-current-point ()
+  "Copy time at current point to `kill-ring'.
 
 The format of the timestamp is defined in the variable
 `casual-timezone-datestamp-format'."
-  (interactive (list current-prefix-arg))
-  (let ((result
-         (if only-at-point
-             (casual-timezone-planner--format-current-index
-              (min (vtable-current-column) 1))
-           (string-join
-            (seq-map-indexed
-             (lambda (col index)
-               (casual-timezone-planner--format-current-index index))
-             (cdr (vtable-current-object)))
-            "; "))))
+  (interactive)
+  (let ((result (casual-timezone-planner--format-current-index
+                 (vtable-current-column))))
     (kill-new result)
     (message result)))
 
@@ -386,7 +376,7 @@ The format of the timestamp is defined in the variable
   (let* ((result
           (string-join
            (seq-map-indexed
-            (lambda (val i)
+            (lambda (_ i)
               (casual-timezone-planner--format-current-index i))
             (vtable-current-object))
            "; ")))
@@ -500,6 +490,7 @@ window width has changed."
 
   ["Casual Timezone"
    ["Navigation"
+    :pad-keys t
     ("." "Current Hour" casual-timezone-jump-to-relative-now
      :description (lambda () (casual-timezone-unicode-get :current))
      :transient t)
@@ -508,6 +499,12 @@ window width has changed."
      :transient t)
     ("n" "Next" next-line
      :description (lambda () (casual-timezone-unicode-get :next))
+     :transient t)
+    ("TAB" "Right" vtable-next-column
+     :description (lambda () (casual-timezone-unicode-get :right))
+     :transient t)
+    ("S-TAB" "Left" vtable-previous-column
+     :description (lambda () (casual-timezone-unicode-get :left))
      :transient t)]
 
    ["Day"
@@ -521,11 +518,13 @@ window width has changed."
    ["Copy Time"
     ("t" "Times" casual-timezone-planner-current-time)
     ("l" "Local" casual-timezone-planner-current-local)
-    ("r" "Remote" casual-timezone-planner-current-remote)]
+    ;; ("r" "Remote" casual-timezone-planner-current-remote)
+    ("T" "Point" casual-timezone-planner-current-point)]
 
    ["Misc"
     ("z" "Planner…" casual-timezone-planner)
-    ("w" "World Clock" world-clock)]]
+    ("w" "World Clock" world-clock)
+    ("c" "Calendar" calendar)]]
 
   [:class transient-row
    (casual-lib-quit-one)

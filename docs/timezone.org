@@ -6,6 +6,8 @@ Casual Timezone is a library of commands to work with different time zones. Answ
 
 Casual Timezone only supports systems that have a [[https://en.wikipedia.org/wiki/Tz_database][tz database]].
 
+Casual Timezone supports viewing multiple time zones in a tabular view with the command ~casual-timezone-planner~ as shown below:
+
 [[file:images/casual-timezone-planner-screenshot.png]]
 
 ** Timezone Install
@@ -16,24 +18,31 @@ Casual Timezone only supports systems that have a [[https://en.wikipedia.org/wik
 
 Casual Timezone is configured as part of Casual EditKit in the Tools menu (~casual-editkit-tools-tmenu~). Refer to the [[#editkit-install][EditKit Install]] section for instructions on how to install it.
 
-The main menu for Casual Timezone is ~casual-timezone-tmenu~ for users who wish to access it directly.
+The main menu for Casual Timezone can be invoked directly using ~M-x~ ~casual-timezone-tmenu~.
 
 ** Timezone Usage
 #+CINDEX: Timezone Usage
 
-[[file:images/casual-timezone-planner-screenshot.png]]
+[[file:images/casual-timezone-tmenu-screenshot.png]]
 
-Casual Timezone offers the following commands:
+The main menu for Casual Timezone (~casual-timezone-tmenu~) offers the following commands:
 
 - ~casual-timezone-local-time-to-remote~ (menu binding: ~l~) will convert a local date to its equivalent in remote time zone.
 
 - ~casual-timezone-remote-time-to-local~ (menu binding: ~r~) will convert a date in a remote time zone to its local equivalent.
 
-- ~casual-timezone-planner~ (menu binding: ~z~) will generate a table comparing hours between the local and a remote timezone on a certain date.
+- ~casual-timezone-planner~ (menu binding: ~z~) will generate a table comparing hours between the local and a remote time zone on a certain date. Multiple remote time zones can be specified.
 
-These commands are offered in the menu ~casual-timezone-tmenu~ shown below.
 
-[[file:images/casual-timezone-tmenu-screenshot.png]]
+#+TEXINFO: @subheading Timezone Planner
+
+[[file:images/casual-timezone-planner-screenshot.png]]
+
+The command ~casual-timezone-planner~ will prompt the user for one or more time zones and a date to compare in tabular form the local time with the zones selected. Multiple time zones are comma-separated.
+
+In this table, the point can be navigated using the {{{kbd(p)}}}, {{{kbd(n)}}}, {{{kbd(TAB)}}}, and {{{kbd(S-TAB)}}} bindings.
+
+Use the {{{kbd(T)}}} binding to copy the timestamp under the current point to the ~kill-ring~. The {{{kbd(t)}}} binding will copy all timestamps on the current line to the ~kill-ring~.
 
 
 *** Timezone Formatting
