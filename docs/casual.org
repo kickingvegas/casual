@@ -5,7 +5,7 @@
 #+EMAIL: kickingvegas@gmail.com
 #+OPTIONS: ':t toc:t author:t email:t H:4 f:t
 #+LANGUAGE: en
-#+MACRO: version 2.9.0
+#+MACRO: version 2.9.1
 #+MACRO: kbd (eval (org-texinfo-kbd-macro $1))
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_CLASS: casual
@@ -55,7 +55,7 @@ Copyright © 2024-2025 Charles Y. Choi
 ** Motivations
 #+CINDEX: Motivations
 
-#+TEXINFO: @majorheading Goals
+#+TEXINFO: @subheading Goals
 
 - To provide a keyboard-driven menu UI toolkit for common Emacs commands.
 
@@ -64,7 +64,7 @@ Copyright © 2024-2025 Charles Y. Choi
 - To be a frequently used interface for modes supported by Casual.
 
 
-#+TEXINFO: @majorheading Non-Goals
+#+TEXINFO: @subheading Non-Goals
 
 - Full coverage of all Emacs commands.
 

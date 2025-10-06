@@ -20,7 +20,7 @@ Copyright © 2024-2025 Charles Y@. Choi
 @finalout
 @titlepage
 @title Casual User Guide
-@subtitle for version 2.9.0
+@subtitle for version 2.9.1
 @author Charles Y@. Choi (@email{kickingvegas@@gmail.com})
 @page
 @vskip 0pt plus 1filll
@@ -33,7 +33,7 @@ Copyright © 2024-2025 Charles Y@. Choi
 @node Top
 @top Casual User Guide
 
-Version: 2.9.0
+Version: 2.9.1
 
 Casual is a project to re-imagine the primary user interface for Emacs using keyboard-driven menus.
 
@@ -300,7 +300,7 @@ Timezone Usage
 
 @cindex Motivations
 
-@majorheading Goals
+@subheading Goals
 
 @itemize
 @item
@@ -314,7 +314,7 @@ To be a frequently used interface for modes supported by Casual.
 @end itemize
 
 
-@majorheading Non-Goals
+@subheading Non-Goals
 
 @itemize
 @item
@@ -3076,6 +3076,8 @@ Casual Timezone is a library of commands to work with different time zones. Answ
 
 Casual Timezone only supports systems that have a @uref{https://en.wikipedia.org/wiki/Tz_database, tz database}.
 
+Casual Timezone supports viewing multiple time zones in a tabular view with the command @code{casual-timezone-planner} as shown below:
+
 @image{images/casual-timezone-planner-screenshot,,,,png}
 
 @menu
@@ -3090,16 +3092,16 @@ Casual Timezone only supports systems that have a @uref{https://en.wikipedia.org
 
 Casual Timezone is configured as part of Casual EditKit in the Tools menu (@code{casual-editkit-tools-tmenu}). Refer to the @ref{EditKit Install} section for instructions on how to install it.
 
-The main menu for Casual Timezone is @code{casual-timezone-tmenu} for users who wish to access it directly.
+The main menu for Casual Timezone can be invoked directly using @code{M-x} @code{casual-timezone-tmenu}.
 
 @node Timezone Usage
 @subsection Timezone Usage
 
 @cindex Timezone Usage
 
-@image{images/casual-timezone-planner-screenshot,,,,png}
+@image{images/casual-timezone-tmenu-screenshot,,,,png}
 
-Casual Timezone offers the following commands:
+The main menu for Casual Timezone (@code{casual-timezone-tmenu}) offers the following commands:
 
 @itemize
 @item
@@ -3109,12 +3111,19 @@ Casual Timezone offers the following commands:
 @code{casual-timezone-remote-time-to-local} (menu binding: @code{r}) will convert a date in a remote time zone to its local equivalent.
 
 @item
-@code{casual-timezone-planner} (menu binding: @code{z}) will generate a table comparing hours between the local and a remote timezone on a certain date.
+@code{casual-timezone-planner} (menu binding: @code{z}) will generate a table comparing hours between the local and a remote time zone on a certain date. Multiple remote time zones can be specified.
 @end itemize
 
-These commands are offered in the menu @code{casual-timezone-tmenu} shown below.
 
-@image{images/casual-timezone-tmenu-screenshot,,,,png}
+@subheading Timezone Planner
+
+@image{images/casual-timezone-planner-screenshot,,,,png}
+
+The command @code{casual-timezone-planner} will prompt the user for one or more time zones and a date to compare in tabular form the local time with the zones selected. Multiple time zones are comma-separated.
+
+In this table, the point can be navigated using the @kbd{p}, @kbd{n}, @kbd{@key{TAB}}, and @kbd{S-@key{TAB}} bindings.
+
+Use the @kbd{T} binding to copy the timestamp under the current point to the @code{kill-ring}. The @kbd{t} binding will copy all timestamps on the current line to the @code{kill-ring}.
 
 @menu
 * Timezone Formatting::
