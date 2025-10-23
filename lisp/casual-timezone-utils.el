@@ -252,7 +252,6 @@ The format of the timestamp is defined in the variable
   "." #'casual-timezone-jump-to-relative-now
   "t" #'casual-timezone-planner-current-time
   "l" #'casual-timezone-planner-current-local
-  "r" #'casual-timezone-planner-current-remote
   "f" #'casual-timezone-planner-forward-day
   "b" #'casual-timezone-planner-backward-day
   "p" #'previous-line
@@ -518,7 +517,6 @@ window width has changed."
    ["Copy Time"
     ("t" "Times" casual-timezone-planner-current-time)
     ("l" "Local" casual-timezone-planner-current-local)
-    ;; ("r" "Remote" casual-timezone-planner-current-remote)
     ("T" "Point" casual-timezone-planner-current-point)]
 
    ["Misc"
