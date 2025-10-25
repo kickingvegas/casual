@@ -26,6 +26,7 @@ calc-tests					\
 calendar-tests					\
 compile-tests					\
 dired-tests					\
+ediff-tests					\
 editkit-tests					\
 elisp-tests					\
 eshell-tests					\
@@ -69,6 +70,10 @@ compile-tests:
 .PHONY: dired-tests
 dired-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-dired.make tests
+
+.PHONY: ediff-tests
+ediff-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-ediff.make tests
 
 .PHONY: editkit-tests
 editkit-tests:

@@ -146,8 +146,15 @@
 
     (should (string-equal control result))))
 
+(defun in-daylight-saving-time-p ()
+  "Return t if the current local time is in Daylight Saving Time (DST), nil otherwise."
+  (let ((dst (nth 8 (decode-time (current-time)))))
+    (and dst (not (eq dst 0)))))
+
 (ert-deftest test-casual-timezone-remote-time-to-local ()
-  (let* ((read-date "2025-05-23 12:00")
+  (let* ((read-date (if (in-daylight-saving-time-p)
+                        "2025-05-23 11:00"
+                      "2025-05-23 12:00"))
          (remote-tz "Europe/Berlin")
          (control "2025-05-23 03:00:00 PDT")
          (result (casual-timezone-remote-time-to-local read-date remote-tz)))

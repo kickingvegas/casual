@@ -46,9 +46,5 @@
     (should (string-equal (casual-eshell-unicode-get :clear) "⌫"))
     ))
 
-
-
-
-
 (provide 'test-casual-eshell-utils)
 ;;; test-casual-eshell-utils.el ends here
