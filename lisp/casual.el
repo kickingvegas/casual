@@ -51,6 +51,9 @@
 ;; - Dired (Elisp library: `casual-dired.el')
 ;;   An interface for the venerable file manager Dired.
 
+;; - Ediff (Elisp library: `casual-ediff.el')
+;;   An interface for Ediff, a visual interface for Unix diff.
+
 ;; - EditKit (Elisp library: `casual-editkit.el')
 ;;   A cornucopia of interfaces for the different editing features (e.g.
 ;;   marking, copying, killing, duplicating, transforming, deleting) of Emacs.

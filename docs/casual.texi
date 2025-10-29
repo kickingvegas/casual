@@ -20,7 +20,7 @@ Copyright © 2024-2025 Charles Y@. Choi
 @finalout
 @titlepage
 @title Casual User Guide
-@subtitle for version 2.10.0
+@subtitle for version 2.10.1
 @author Charles Y@. Choi (@email{kickingvegas@@gmail.com})
 @page
 @vskip 0pt plus 1filll
@@ -33,7 +33,7 @@ Copyright © 2024-2025 Charles Y@. Choi
 @node Top
 @top Casual User Guide
 
-Version: 2.10.0
+Version: 2.10.1
 
 Casual is a project to re-imagine the primary user interface for Emacs using keyboard-driven menus.
 
@@ -57,7 +57,7 @@ To learn more about the motivations and design considerations for Casual and to 
 
 @image{images/casual-calc-tmenu,,,,png}
 
-If you enjoy using Casual, consider making a modest financial contribution to help support its development and maintenance.
+It costs money to make, enhance, and maintain Casual as ideologically free software. If you enjoy using Casual, please buy me a coffee to help support its development and maintenance.
 
 @image{images/default-yellow,,,,png}
 
@@ -3388,7 +3388,7 @@ To participate in general discussion about using Casual, please join the @uref{h
 
 @cindex Sponsorship
 
-If you enjoy using Casual, consider making a modest financial contribution to help support its development and maintenance.
+It costs money to make, enhance, and maintain Casual as ideologically free software. If you enjoy using Casual, please buy me a coffee to help support its development and maintenance.
 
 @image{images/default-yellow,,,,png}
 
