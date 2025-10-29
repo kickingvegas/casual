@@ -5,7 +5,7 @@
 #+EMAIL: kickingvegas@gmail.com
 #+OPTIONS: ':t toc:t author:t email:t H:4 f:t
 #+LANGUAGE: en
-#+MACRO: version 2.10.0
+#+MACRO: version 2.10.1
 #+MACRO: kbd (eval (org-texinfo-kbd-macro $1))
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_CLASS: casual
@@ -292,7 +292,7 @@ To participate in general discussion about using Casual, please join the [[https
 * Sponsorship
 #+CINDEX: Sponsorship
 
-If you enjoy using Casual, consider making a modest financial contribution to help support its development and maintenance.
+It costs money to make, enhance, and maintain Casual as ideologically free software. If you enjoy using Casual, please buy me a coffee to help support its development and maintenance.
 
 [[file:images/default-yellow.png]]
 

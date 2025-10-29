@@ -22,7 +22,7 @@ As Casual is new, we are looking for early adopters! Your [[https://github.com/k
 For users who wish to help contribute to Casual or personally customize it for their own usage, please read the [[docs/developer.org][developer documentation]].
 
 * Sponsorship
-If you enjoy using Casual, consider making a modest financial contribution to help support its development and maintenance.
+It costs money to make, enhance, and maintain Casual as ideologically free software. If you enjoy using Casual, please buy me a coffee to help support its development and maintenance.
 
 [[https://www.buymeacoffee.com/kickingvegas][file:docs/images/default-yellow.png]]
 
