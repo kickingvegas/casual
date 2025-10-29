@@ -39,7 +39,7 @@ Casual Calc organizes its main menu into the following sections:
 - Functions :: Entry point for sub-menus of commands organized into different classes of functionality.
 - Settings :: Entry point for sub-menus of commands to configure Calc settings.
 
-#+TEXINFO: @majorheading Calc Basics
+#+TEXINFO: @subheading Calc Basics
 
 It helps to know some basics about Calc.
 
