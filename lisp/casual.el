@@ -5,7 +5,7 @@
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual
 ;; Keywords: tools, wp
-;; Version: 2.10.0
+;; Version: 2.10.1-rc.1
 ;; Package-Requires: ((emacs "29.1") (transient "0.9.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -50,6 +50,9 @@
 
 ;; - Dired (Elisp library: `casual-dired.el')
 ;;   An interface for the venerable file manager Dired.
+
+;; - Ediff (Elisp library: `casual-ediff.el')
+;;   An interface for Ediff, a visual interface for Unix diff.
 
 ;; - EditKit (Elisp library: `casual-editkit.el')
 ;;   A cornucopia of interfaces for the different editing features (e.g.
