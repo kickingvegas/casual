@@ -40,29 +40,29 @@ The main menu for Casual Agenda is ~casual-agenda-tmenu~. It is divided into fiv
 - Utils :: Set a timer, get almanac info.
 
 
-#+TEXINFO: @majorheading Operating on Headlines
+#+TEXINFO: @subheading Operating on Headlines
 Use “{{{kbd(o)}}} Operations›” from ~casual-agenda-tmenu~ to change a headline's attributes such as TODO state, scheduling, tags, and priority. The following menu will be displayed.
 
 [[file:images/casual-agenda-operations-screenshot.png]]
 
 
-#+TEXINFO: @majorheading Marking Headlines
+#+TEXINFO: @subheading Marking Headlines
 
 Use “{{{kbd(M)}}} Mark›” menu from ~casual-agenda-tmenu~ to mark different headlines and perform a bulk action on them. 
 
 [[file:images/casual-agenda-mark-screenshot.png]]
 
-#+TEXINFO: @majorheading Almanac
+#+TEXINFO: @subheading Almanac
 Get sunrise/sunset times, lunar cycle dates, and holidays with respect to a date via the “{{{kbd(l)}}} Almanac›” menu from ~casual-agenda-tmenu~.
 
 [[file:images/casual-agenda-almanac-screenshot.png]]
 
-#+TEXINFO: @majorheading Changing Modes and Settings
+#+TEXINFO: @subheading Changing Modes and Settings
 Agenda views have different display modes and behavior that can be modified from the “{{{kbd(\,)}}} Settings›” menu from ~casual-agenda-tmenu~.
 
 [[file:images/casual-agenda-settings-screenshot.png]]
 
-#+TEXINFO: @majorheading Agenda Unicode Symbol Support
+#+TEXINFO: @subheading Agenda Unicode Symbol Support
 By enabling “{{{kbd(u)}}} Use Unicode Settings” from the Settings menu, Casual Agenda will use Unicode symbols as appropriate in its menus.
 
 [[file:images/casual-agenda-unicode-screenshot.png]]

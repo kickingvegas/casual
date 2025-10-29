@@ -42,14 +42,14 @@ The following sections are offered in the menu:
 - Navigate :: Commands for Sexp (balanced expression) navigation.
 
 
-#+TEXINFO: @majorheading Edebug Support
+#+TEXINFO: @subheading Edebug Support
 #+CINDEX: Edebug
 
 Using the prefix {{{kbd(C-u)}}} when ~casual-elisp-tmenu~ is raised will change the “{{{kbd(d)}}} Defunⁿ” menu item to “{{{kbd(d)}}} Edebugⁿ” to support instrumenting a function for Edebug ([[info:elisp#Edebug]]).
 
 [[file:images/casual-elisp-edebug-screenshot.png]]
 
-#+TEXINFO: @majorheading Elisp Unicode Symbol Support
+#+TEXINFO: @subheading Elisp Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Elisp will use Unicode symbols as appropriate in its menus.
 

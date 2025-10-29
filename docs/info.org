@@ -67,6 +67,6 @@ The main menu for Casual Info is organized into the following sections:
 
 - Quick :: Miscellaneous commands for working with an Info document. Included are commands for bookmarks, copying the current node name, and cloning the buffer.
 
-#+TEXINFO: @majorheading Info Unicode Symbol Support
+#+TEXINFO: @subheading Info Unicode Symbol Support
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Info will use Unicode symbols as appropriate in its menus. 
 

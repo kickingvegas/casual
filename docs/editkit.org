@@ -68,21 +68,21 @@ This menu contains commands and sub-menus related to editing text.
 
 Depending on the buffer mode, text can be operated on with different granularity as words, sentences, paragraphs, balanced expressions, functions (defuns). The following sub-menus illustrate what operations can be done on the different text granularity.
 
-#+TEXINFO: @majorheading Mark›
+#+TEXINFO: @subheading Mark›
 #+CINDEX: Mark commands
 #+VINDEX: casual-editkit-mark-tmenu
 Text can be marked with different granularity with this menu. Note that marking functions (Defun) is only supported for modes derived from ~prog-mode~. 
 
 [[file:images/casual-editkit-mark-screenshot.png]]
 
-#+TEXINFO: @majorheading Copy›
+#+TEXINFO: @subheading Copy›
 #+CINDEX: Copy commands
 #+VINDEX: casual-editkit-copy-tmenu
 Text can be copied with different granularity with this menu.
 
 [[file:images/casual-editkit-copy-screenshot.png]]
 
-#+TEXINFO: @majorheading Kill (Cut)›
+#+TEXINFO: @subheading Kill (Cut)›
 #+CINDEX: Kill commands
 #+CINDEX: Cut commands
 #+VINDEX: casual-editkit-kill-tmenu
@@ -90,42 +90,42 @@ Text can be cut (killed) with different granularity with this menu.
 
 [[file:images/casual-editkit-kill-screenshot.png]]
 
-#+TEXINFO: @majorheading Move›
+#+TEXINFO: @subheading Move›
 #+CINDEX: Move commands
 #+VINDEX: casual-editkit-move-tmenu
 Text can be moved forwards or backwards with different granularity with this menu. Note that selecting a granularity will raise another menu to allow selection of direction (forward, backward) the text is to be moved. To enable repeat operation, that menu is persisted and must be dismissed either with either ~C-q~ (dismiss all) or  ~C-g~ (dismiss to previous menu).
 
 [[file:images/casual-editkit-move-screenshot.png]]
 
-#+TEXINFO: @majorheading Transpose›
+#+TEXINFO: @subheading Transpose›
 #+CINDEX: Transpose commands
 #+VINDEX: casual-editkit-transpose-tmenu
 Text can be transposed with different granularity with this menu. 
 
 [[file:images/casual-editkit-transpose-screenshot.png]]
 
-#+TEXINFO: @majorheading Transform›
+#+TEXINFO: @subheading Transform›
 #+CINDEX: Transform commands
 #+VINDEX: casual-editkit-transform-tmenu
 Text can be transformed with different granularity with this menu. Supported transformations are capitalization, lower and upper casing of text.
 
 [[file:images/casual-editkit-transform-screenshot.png]]
 
-#+TEXINFO: @majorheading Delete›
+#+TEXINFO: @subheading Delete›
 #+CINDEX: Delete commands
 #+VINDEX: casual-editkit-delete-tmenu
 Operations involving text deletion are included in this menu, including joining lines and zapping to a character.
 
 [[file:images/casual-editkit-delete-screenshot.png]]
 
-#+TEXINFO: @majorheading Sort›
+#+TEXINFO: @subheading Sort›
 #+CINDEX: Sort commands
 #+VINDEX: casual-editkit-sort-tmenu
 Sorting operations on different sections of text are supported, as well as support for sorting off a field. Press ~?~ or ~C-h~ to get help for a specific command.
 
 [[file:images/casual-editkit-sort-screenshot.png]]
 
-#+TEXINFO: @majorheading Reformat›
+#+TEXINFO: @subheading Reformat›
 #+CINDEX: Reformat commands
 #+VINDEX: casual-editkit-reformat-tmenu
 Commands to reformat text such as filling, centering, and repunctuating sentences are provided here. Press ~?~ or ~C-h~ to get help for a specific command.
@@ -133,7 +133,7 @@ Commands to reformat text such as filling, centering, and repunctuating sentence
 [[file:images/casual-editkit-reformat-screenshot.png]]
 
 
-#+TEXINFO: @majorheading Rectangle›
+#+TEXINFO: @subheading Rectangle›
 #+CINDEX: Rectangle commands
 #+VINDEX: casual-editkit-rectangle-tmenu
 
@@ -153,7 +153,7 @@ If the variable ~casual-lib-use-unicode~ is set to ~t~, then Unicode symbols are
 
 [[file:images/casual-editkit-window-unicode-screenshot.png]]
 
-#+TEXINFO: @majorheading Window Deletion
+#+TEXINFO: @subheading Window Deletion
 #+CINDEX: Window deletion
 #+VINDEX: casual-editkit-window-delete-tmenu
 This menu provides support for deleting windows.

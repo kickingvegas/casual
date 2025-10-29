@@ -56,7 +56,7 @@ Included is a standard keymap for Dired sorting commands (~casual-dired-sort-men
 #+end_src
 
 
-#+TEXINFO: @majorheading Configuration
+#+TEXINFO: @subheading Configuration
 
 As Dired has been around for a long time, the different ways of configuring it are myriad. Described below is a configuration used by the author that is consistent with the bindings used in Casual Dired.
 
@@ -98,7 +98,7 @@ As Dired has been around for a long time, the different ways of configuring it a
   (keymap-set image-dired-thumbnail-mode-map "p" #'image-dired-display-previous)
 #+end_src
 
-#+TEXINFO: @majorheading Dired Variables
+#+TEXINFO: @subheading Dired Variables
 
 The Casual Dired main menu offers “{{{kbd(\,)}}} Settings›” to customize a set of commonly used Dired variables. 
 

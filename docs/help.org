@@ -57,7 +57,7 @@ The following sections are offered in the menu:
 - Info :: If available, then open this help topic in [[file:info.org][Info]].
 - Source :: Show the Elisp source. If the help displayed is for a customizable variable, then show a customize menu item.
   
-#+TEXINFO: @majorheading Help Mode Unicode Symbol Support
+#+TEXINFO: @subheading Help Mode Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Man will use Unicode symbols as appropriate in its menus.
 

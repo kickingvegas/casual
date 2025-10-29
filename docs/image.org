@@ -52,7 +52,7 @@ Note that if the image file has been modified, the resize interface will be disa
 
 [[file:images/casual-image-resize-screenshot.png]]
 
-#+TEXINFO: @majorheading Image Resize Options
+#+TEXINFO: @subheading Image Resize Options
 - (g) Geometry - [[https://imagemagick.org/script/command-line-processing.php#geometry][ImageMagick specifier]] for the resize geometry.
 - (o) Output to another file - If enabled, then the user will be prompted for a different output file, else it will /irreversibly/ update the current image file.
 - (t) Type - Specify if /adaptive/ or /interpolative/ resizing should be used. If nothing is specified then /standard/ resizing is used.

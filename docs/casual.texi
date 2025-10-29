@@ -20,7 +20,7 @@ Copyright © 2024-2025 Charles Y@. Choi
 @finalout
 @titlepage
 @title Casual User Guide
-@subtitle for version 2.9.1
+@subtitle for version 2.10.0
 @author Charles Y@. Choi (@email{kickingvegas@@gmail.com})
 @page
 @vskip 0pt plus 1filll
@@ -33,7 +33,7 @@ Copyright © 2024-2025 Charles Y@. Choi
 @node Top
 @top Casual User Guide
 
-Version: 2.9.1
+Version: 2.10.0
 
 Casual is a project to re-imagine the primary user interface for Emacs using keyboard-driven menus.
 
@@ -106,6 +106,7 @@ Casual Modes
 * Calendar::
 * Compile::
 * Dired::
+* Ediff::
 * EditKit::
 * Elisp::
 * Eshell::
@@ -180,6 +181,18 @@ Dired Usage
 * Bulk Dired Operations::
 * Dired Link::
 * Dired Unicode Symbol Support::
+
+Ediff
+
+* Ediff Install::
+* Ediff Usage::
+
+Ediff Usage
+
+* Ediff Basic Operation::
+* Comparing a Version-Controlled File::
+* Resolving a Merge Conflict::
+* Ediff Unicode Symbol Support::
 
 EditKit
 
@@ -384,7 +397,7 @@ Saves the value of the active transient persistently across Emacs sessions.
 Clears the set and saved values of the active transient.
 @end itemize
 
-@majorheading References
+@subheading References
 
 @itemize
 @item
@@ -434,6 +447,8 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 @ref{Compile Install, , Compile (Grep)}
 @item
 @ref{Dired Install, , Dired}
+@item
+@ref{Ediff Install, , Ediff}
 @item
 @ref{EditKit Install, , EditKit}
 @item
@@ -512,25 +527,25 @@ That said, if you have used @code{:ensure t} to install a superseded package, yo
 
 The Casual menus share common user experience (UX) conventions to facilitate usability. This section details this.
 
-@majorheading Common Menu Navigation
+@subheading Common Menu Navigation
 
 Casual organizes a mode's command set into a menu hierarchy. As the user descends down different menu levels, the user is given the option to dismiss the current menu or to dismiss completely all menu levels descended. Transient provides a standard convention for menu dismissal via the @kbd{C-g} (@code{transient-quit-one}) and @kbd{C-q} (@code{transient-quit-all}) commands. By default Transient does not display these commands in the menu though, rather they make the assumption that the user already knows these bindings.
 
 @vindex casual-lib-hide-navigation
 In contrast, Casual makes these bindings explicitly known to user by displaying them at the bottom of the menu. Users who wish to have them hidden can set the customizable variable @code{casual-lib-hide-navigation} to a non-nil value. This can be changed from a Casual mode-specific settings menu.
 
-@majorheading Settings Menu
+@subheading Settings Menu
 
 Most all Casual main menus support invoking a mode-specific settings menu via the binding @kbd{,}.
 
-@majorheading Unicode Symbol Support
+@subheading Unicode Symbol Support
 @vindex casual-lib-use-unicode
 
 The customizable variable named @code{casual-lib-use-unicode} which when non-nil will inform Casual menus to use Unicode symbol labels whenever supported. This can be changed from Casual mode-specific settings menu.
 
 If @code{casual-lib-use-unicode} is set to @code{t}, it is also recommended that the variable @code{transient-align-variable-pitch} also be set to @code{t}.
 
-@majorheading Common Key Bindings
+@subheading Common Key Bindings
 
 Listed below are keybindings which are common among Casual menus. 
 
@@ -562,7 +577,7 @@ For modes that organize items into sections, navigation to a next or previous se
 @end itemize
 
 
-@majorheading Label Conventions
+@subheading Label Conventions
 
 Casual annotates menu labels with the following conventions:
 
@@ -594,6 +609,7 @@ The following modes are supported by Casual:
 * Calendar::
 * Compile::
 * Dired::
+* Ediff::
 * EditKit::
 * Elisp::
 * Eshell::
@@ -665,29 +681,29 @@ Set a timer, get almanac info.
 @end table
 
 
-@majorheading Operating on Headlines
+@subheading Operating on Headlines
 Use “@kbd{o} Operations›” from @code{casual-agenda-tmenu} to change a headline's attributes such as TODO state, scheduling, tags, and priority. The following menu will be displayed.
 
 @image{images/casual-agenda-operations-screenshot,,,,png}
 
 
-@majorheading Marking Headlines
+@subheading Marking Headlines
 
 Use “@kbd{M} Mark›” menu from @code{casual-agenda-tmenu} to mark different headlines and perform a bulk action on them. 
 
 @image{images/casual-agenda-mark-screenshot,,,,png}
 
-@majorheading Almanac
+@subheading Almanac
 Get sunrise/sunset times, lunar cycle dates, and holidays with respect to a date via the “@kbd{l} Almanac›” menu from @code{casual-agenda-tmenu}.
 
 @image{images/casual-agenda-almanac-screenshot,,,,png}
 
-@majorheading Changing Modes and Settings
+@subheading Changing Modes and Settings
 Agenda views have different display modes and behavior that can be modified from the “@kbd{,} Settings›” menu from @code{casual-agenda-tmenu}.
 
 @image{images/casual-agenda-settings-screenshot,,,,png}
 
-@majorheading Agenda Unicode Symbol Support
+@subheading Agenda Unicode Symbol Support
 By enabling “@kbd{u} Use Unicode Settings” from the Settings menu, Casual Agenda will use Unicode symbols as appropriate in its menus.
 
 @image{images/casual-agenda-unicode-screenshot,,,,png}
@@ -1006,7 +1022,7 @@ Commands to navigate and control the display of the table layout for bookmarks.
 @end table
 
 
-@majorheading Unicode Symbol Support
+@subheading Unicode Symbol Support
 
 @image{images/casual-bookmarks-unicode-screenshot,,,,png}
 
@@ -1101,7 +1117,7 @@ Entry point for sub-menus of commands organized into different classes of functi
 Entry point for sub-menus of commands to configure Calc settings.
 @end table
 
-@majorheading Calc Basics
+@subheading Calc Basics
 
 It helps to know some basics about Calc.
 
@@ -1398,7 +1414,7 @@ If the output window is from a Grep command, @code{casual-compile-tmenu} will ad
 @image{images/casual-compile-grep-screenshot,,,,png}
 
 
-@majorheading Compile Mode Unicode Symbol Support
+@subheading Compile Mode Unicode Symbol Support
 
 By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Compile will use Unicode symbols as appropriate in its menus.
 
@@ -1486,7 +1502,7 @@ Included is a standard keymap for Dired sorting commands (@code{casual-dired-sor
 @end lisp
 
 
-@majorheading Configuration
+@subheading Configuration
 
 As Dired has been around for a long time, the different ways of configuring it are myriad. Described below is a configuration used by the author that is consistent with the bindings used in Casual Dired.
 
@@ -1528,7 +1544,7 @@ As Dired has been around for a long time, the different ways of configuring it a
 (keymap-set image-dired-thumbnail-mode-map "p" #'image-dired-display-previous)
 @end lisp
 
-@majorheading Dired Variables
+@subheading Dired Variables
 
 The Casual Dired main menu offers “@kbd{,} Settings›” to customize a set of commonly used Dired variables. 
 
@@ -1636,6 +1652,156 @@ By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Dir
 
 To ensure proper layout and spacing, your default typeface should be fixed-width or monospace and @strong{must} support the Unicode symbols used.
 
+@node Ediff
+@section Ediff
+
+@cindex Ediff
+@vindex casual-ediff-tmenu
+
+Casual Ediff is a user interface for Ediff (@ref{Top,Ediff,,ediff,}), a visual interface for the Unix diff and patch utilities. Casual Ediff strives to improve the usability of Ediff by simplifying the following workflows:
+
+@itemize
+@item
+Comparing a modified and uncommitted version-controlled file with its most recent commit.
+@item
+Resolving a merge conflicted file.
+@end itemize
+
+Notable features of Casual Ediff include:
+
+@itemize
+@item
+Context aware menu items.
+@item
+Menu design tuned for side-by-side comparison.
+@item
+For a merge conflict, the ability to resolve using both the conflicting diff versions.
+@end itemize
+
+Shown below is screenshot of the Casual Ediff in action for a version-controlled file.
+
+@image{images/casual-ediff-screenshot,,,,png}
+
+@menu
+* Ediff Install::
+* Ediff Usage::
+@end menu
+
+@node Ediff Install
+@subsection Ediff Install
+
+@cindex Ediff Install
+
+In your initialization file, bind the Transient @code{casual-ediff-tmenu} to your key binding of preference.
+
+@lisp
+(casual-ediff-install) ; run this to enable Casual Ediff
+(add-hook 'ediff-keymap-setup-hook
+          (lambda ()
+            (keymap-set ediff-mode-map "C-o" #'casual-ediff-tmenu)))
+@end lisp
+
+If the current buffer is loaded with a version-controlled file, then the difference between that buffer's content with its most recent commit can be seen with the command @code{casual-ediff-revision}. It is often convenient to bind this command. Shown below is an example of such a binding.
+
+@lisp
+(keymap-global-set "<f15>" #'casual-ediff-revision)
+@end lisp
+
+Users who wish to call @code{casual-ediff-revision} via mouse can use the command @code{casual-ediff-revision-from-menu}. An example of its use is shown in the source example below (note this is a code fragment). 
+
+@lisp
+(easy-menu-add-item
+     menu nil
+     ["Ediff revision…"
+      casual-ediff-revision-from-menu
+      :visible (and (bound-and-true-p buffer-file-name)
+                    (vc-registered (buffer-file-name)))
+      :help "Ediff this file with revision"])
+@end lisp
+
+
+@subsubheading Ediff Variables
+
+Casual Ediff recommends the following variables be set as follows:
+
+@multitable {aaaaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaa}
+@headitem Variable
+@tab Value
+@item ediff-keep-variants
+@tab nil
+@item ediff-window-setup-function
+@tab ediff-setup-windows-plain
+@item ediff-split-window-function
+@tab split-window-horizontally
+@end multitable
+
+@node Ediff Usage
+@subsection Ediff Usage
+
+@cindex Ediff Usage
+
+@image{images/casual-ediff-basic-screenshot,,,,png}
+
+Casual Ediff (@code{casual-ediff-tmenu}) is invoked from the Ediff control window, typically using the binding @kbd{C-o} (or your binding of preference).
+
+The menu comprises of sections laid out horizontally that correspond to source of the diffs. The number of sections and their contents are context-dependent on the type of content to be compared.
+
+The following sections are offered in the menu:
+
+@table @asis
+@item A
+Context-dependent commands for Ediff buffer A@.
+@item B
+Context-dependent commands for Ediff buffer B@.
+@item C
+Context-dependent commands for Ediff buffer C, if available.
+@item Diff
+Ediff commands not related to a specific buffer.
+@end table
+
+Navigation between diffs are bound to the @kbd{p} and @kbd{n} keys for previous and next diff respectively. 
+
+@menu
+* Ediff Basic Operation::
+* Comparing a Version-Controlled File::
+* Resolving a Merge Conflict::
+* Ediff Unicode Symbol Support::
+@end menu
+
+@node Ediff Basic Operation
+@subsubsection Ediff Basic Operation
+
+@image{images/casual-ediff-basic-screenshot,,,,png}
+
+If two writeable files are compared, Casual Ediff provides the ability to write diffs from either side A or B to each other. Unwanted changes to a side can be restored.
+
+@node Comparing a Version-Controlled File
+@subsubsection Comparing a Version-Controlled File
+
+@image{images/casual-ediff-screenshot,,,,png}
+
+Casual Ediff provides a dedicated command to compare a version-controlled file with its latest commit: @code{casual-ediff-revision}. This command short-circuits the prompts asked for by the command  @code{ediff-revision} which asks for the source file and the revision to compare it to. Call @code{casual-ediff-revision} from the window of a version-controlled file, typically by key binding of preference.
+
+The A side will hold the last committed revision of a file. The B side will hold current source file.
+
+Users desiring a mouse-driven approach to calling @code{casual-ediff-revision} should use the command @code{casual-ediff-revision-from-menu} invoked from either the top-level or context menu.
+
+Note that both @code{casual-ediff-revision} and @code{casual-ediff-revision-from-menu} will checkpoint the window configuration before invoking the Ediff session and restore it after the session is complete.
+
+@node Resolving a Merge Conflict
+@subsubsection Resolving a Merge Conflict
+
+@image{images/casual-ediff-merge-conflict,,,,png}
+
+Magit offers a means of invoking Ediff to resolve a merge conflict via the @kbd{e} binding from the @code{magit-status} (@ref{Status Buffer,(magit) Status Buffer,,magit,}) window.
+
+Calling @code{casual-ediff-tmenu} will show the menu shown above. Note that in the C section, there are commands to merge both the variant A and variant B diffs using the bindings @kbd{mab} or @kbd{mba}, depending on the desired order the diffs are to be merged.
+
+@node Ediff Unicode Symbol Support
+@subsubsection Ediff Unicode Symbol Support
+
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Ediff will use Unicode symbols as appropriate in its menus.
+
 @node EditKit
 @section EditKit
 
@@ -1735,21 +1901,21 @@ This menu contains commands and sub-menus related to editing text.
 
 Depending on the buffer mode, text can be operated on with different granularity as words, sentences, paragraphs, balanced expressions, functions (defuns). The following sub-menus illustrate what operations can be done on the different text granularity.
 
-@majorheading Mark›
+@subheading Mark›
 @cindex Mark commands
 @vindex casual-editkit-mark-tmenu
 Text can be marked with different granularity with this menu. Note that marking functions (Defun) is only supported for modes derived from @code{prog-mode}. 
 
 @image{images/casual-editkit-mark-screenshot,,,,png}
 
-@majorheading Copy›
+@subheading Copy›
 @cindex Copy commands
 @vindex casual-editkit-copy-tmenu
 Text can be copied with different granularity with this menu.
 
 @image{images/casual-editkit-copy-screenshot,,,,png}
 
-@majorheading Kill (Cut)›
+@subheading Kill (Cut)›
 @cindex Kill commands
 @cindex Cut commands
 @vindex casual-editkit-kill-tmenu
@@ -1757,42 +1923,42 @@ Text can be cut (killed) with different granularity with this menu.
 
 @image{images/casual-editkit-kill-screenshot,,,,png}
 
-@majorheading Move›
+@subheading Move›
 @cindex Move commands
 @vindex casual-editkit-move-tmenu
 Text can be moved forwards or backwards with different granularity with this menu. Note that selecting a granularity will raise another menu to allow selection of direction (forward, backward) the text is to be moved. To enable repeat operation, that menu is persisted and must be dismissed either with either @code{C-q} (dismiss all) or  @code{C-g} (dismiss to previous menu).
 
 @image{images/casual-editkit-move-screenshot,,,,png}
 
-@majorheading Transpose›
+@subheading Transpose›
 @cindex Transpose commands
 @vindex casual-editkit-transpose-tmenu
 Text can be transposed with different granularity with this menu. 
 
 @image{images/casual-editkit-transpose-screenshot,,,,png}
 
-@majorheading Transform›
+@subheading Transform›
 @cindex Transform commands
 @vindex casual-editkit-transform-tmenu
 Text can be transformed with different granularity with this menu. Supported transformations are capitalization, lower and upper casing of text.
 
 @image{images/casual-editkit-transform-screenshot,,,,png}
 
-@majorheading Delete›
+@subheading Delete›
 @cindex Delete commands
 @vindex casual-editkit-delete-tmenu
 Operations involving text deletion are included in this menu, including joining lines and zapping to a character.
 
 @image{images/casual-editkit-delete-screenshot,,,,png}
 
-@majorheading Sort›
+@subheading Sort›
 @cindex Sort commands
 @vindex casual-editkit-sort-tmenu
 Sorting operations on different sections of text are supported, as well as support for sorting off a field. Press @code{?} or @code{C-h} to get help for a specific command.
 
 @image{images/casual-editkit-sort-screenshot,,,,png}
 
-@majorheading Reformat›
+@subheading Reformat›
 @cindex Reformat commands
 @vindex casual-editkit-reformat-tmenu
 Commands to reformat text such as filling, centering, and repunctuating sentences are provided here. Press @code{?} or @code{C-h} to get help for a specific command.
@@ -1800,7 +1966,7 @@ Commands to reformat text such as filling, centering, and repunctuating sentence
 @image{images/casual-editkit-reformat-screenshot,,,,png}
 
 
-@majorheading Rectangle›
+@subheading Rectangle›
 @cindex Rectangle commands
 @vindex casual-editkit-rectangle-tmenu
 
@@ -1821,7 +1987,7 @@ If the variable @code{casual-lib-use-unicode} is set to @code{t}, then Unicode s
 
 @image{images/casual-editkit-window-unicode-screenshot,,,,png}
 
-@majorheading Window Deletion
+@subheading Window Deletion
 @cindex Window deletion
 @vindex casual-editkit-window-delete-tmenu
 This menu provides support for deleting windows.
@@ -1990,14 +2156,14 @@ Commands for Sexp (balanced expression) navigation.
 @end table
 
 
-@majorheading Edebug Support
+@subheading Edebug Support
 @cindex Edebug
 
 Using the prefix @kbd{C-u} when @code{casual-elisp-tmenu} is raised will change the “@kbd{d} Defunⁿ” menu item to “@kbd{d} Edebugⁿ” to support instrumenting a function for Edebug (@ref{Edebug,,,elisp,}).
 
 @image{images/casual-elisp-edebug-screenshot,,,,png}
 
-@majorheading Elisp Unicode Symbol Support
+@subheading Elisp Unicode Symbol Support
 
 By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Elisp will use Unicode symbols as appropriate in its menus.
 
@@ -2055,7 +2221,7 @@ Signal commands to send to the process. This section is only visible when a proc
 @image{images/casual-eshell-process-screenshot,,,,png}
 
 
-@majorheading Eshell Unicode Symbol Support
+@subheading Eshell Unicode Symbol Support
 
 By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Eshell will use Unicode symbols as appropriate in its menus.
 
@@ -2155,7 +2321,7 @@ If available, then open this help topic in @uref{info.org, Info}.
 Show the Elisp source. If the help displayed is for a customizable variable, then show a customize menu item.
 @end table
 
-@majorheading Help Mode Unicode Symbol Support
+@subheading Help Mode Unicode Symbol Support
 
 By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Man will use Unicode symbols as appropriate in its menus.
 @uref{../README.org, ❮ Back to Casual}
@@ -2518,7 +2684,7 @@ Note that if the image file has been modified, the resize interface will be disa
 
 @image{images/casual-image-resize-screenshot,,,,png}
 
-@majorheading Image Resize Options
+@subheading Image Resize Options
 @itemize
 @item
 (g) Geometry - @uref{https://imagemagick.org/script/command-line-processing.php#geometry, ImageMagick specifier} for the resize geometry.
@@ -2708,7 +2874,7 @@ Command related to structurally navigating an Info document. Note that these com
 Miscellaneous commands for working with an Info document. Included are commands for bookmarks, copying the current node name, and cloning the buffer.
 @end table
 
-@majorheading Info Unicode Symbol Support
+@subheading Info Unicode Symbol Support
 By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Info will use Unicode symbols as appropriate in its menus.
 
 @node I-Search
@@ -2956,11 +3122,11 @@ Jump to other Man pages referenced in the current Man page.
 If the Man page reader is configured to display all manual pages for a given search key, navigation commands for multiple pages is provided.
 @end table
 
-@majorheading Options Navigation
+@subheading Options Navigation
 
 @code{casual-man-tmenu} provides the menu item @kbd{o} which runs the command @code{casual-man-occur-options}. This will invoke @code{occur} with a regexp that searches for command line options (for example, ``--foo'', ``-a'') that can be navigated via the @code{occur} interface.
 
-@majorheading Man Settings
+@subheading Man Settings
 
 By default, the Man page reader will @emph{not} display all manual pages for given search key. This can be changed in the Settings menu @code{casual-man-settings-tmenu} that can be invoked by pressing @kbd{,} in @code{casual-man-tmenu}. 
 
@@ -2970,7 +3136,7 @@ Press ‘s’ and configure @code{Man-switches} to have the value ``-a'' to get 
 @image{images/casual-man-settings,,,,png}
 
 
-@majorheading Man Unicode Symbol Support
+@subheading Man Unicode Symbol Support
 By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Man will use Unicode symbols as appropriate in its menus.
 
 @node RE-Builder
@@ -3017,7 +3183,7 @@ If multiple sub-expressions are in the regexp pattern, then they can be observed
 
 If the regexp pattern entered in ``✳︎RE-Builder✳︎'' finds multiple matches, a match can be navigated to via the  “@kbd{p} Previous” and “@kbd{n} Next” menu items.
 
-@majorheading Exporting the Regexp Pattern
+@subheading Exporting the Regexp Pattern
 Once a desired regexp pattern is defined, there are two menu items that can be used to export (copy) it to the kill-ring for further use.
 
 @itemize
@@ -3045,13 +3211,13 @@ This can only be used when the regexp syntax is set to @code{string}.
 @end itemize
 @end itemize
 
-@majorheading Regexp Syntax Help
+@subheading Regexp Syntax Help
 The menu item @kbd{i} will invoke the Info page for regexp syntax with respect to the current syntax type.
 
-@majorheading Quitting RE-Builder
+@subheading Quitting RE-Builder
 Select “@kbd{q} Quit” to exit the RE-Builder tool. 
 
-@majorheading RE-Builder Unicode Symbol Support
+@subheading RE-Builder Unicode Symbol Support
 By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual RE-Builder will use Unicode symbols as appropriate in its menus. The following mapping is shown in the table below:
 
 @multitable {aaaaaaaaa} {aaaaaaaa} {aaaaaaa}
