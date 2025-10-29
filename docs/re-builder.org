@@ -35,7 +35,7 @@ If multiple sub-expressions are in the regexp pattern, then they can be observed
 
 If the regexp pattern entered in "✳︎RE-Builder✳︎" finds multiple matches, a match can be navigated to via the  “{{{kbd(p)}}} Previous” and “{{{kbd(n)}}} Next” menu items.
 
-#+TEXINFO: @majorheading Exporting the Regexp Pattern
+#+TEXINFO: @subheading Exporting the Regexp Pattern
 Once a desired regexp pattern is defined, there are two menu items that can be used to export (copy) it to the kill-ring for further use.
 
 - “{{{kbd(w)}}} Interactive” will copy the regexp to the kill-ring so that it can be yanked in an interactive command that requires a regexp (e.g. ~query-replace-regexp~).
@@ -48,13 +48,13 @@ Once a desired regexp pattern is defined, there are two menu items that can be u
   - ❗️At current this is an experimental feature. The regexp exported from RE-Builder may not work. If so please report an [[https://github.com/kickingvegas/casual-re-builder/issues][issue]] describing the desired regexp and the target text.
   - This can only be used when the regexp syntax is set to ~string~.    
 
-#+TEXINFO: @majorheading Regexp Syntax Help
+#+TEXINFO: @subheading Regexp Syntax Help
 The menu item {{{kbd(i)}}} will invoke the Info page for regexp syntax with respect to the current syntax type.
 
-#+TEXINFO: @majorheading Quitting RE-Builder
+#+TEXINFO: @subheading Quitting RE-Builder
 Select “{{{kbd(q)}}} Quit” to exit the RE-Builder tool. 
 
-#+TEXINFO: @majorheading RE-Builder Unicode Symbol Support
+#+TEXINFO: @subheading RE-Builder Unicode Symbol Support
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual RE-Builder will use Unicode symbols as appropriate in its menus. The following mapping is shown in the table below:
 
 | Name      | Plain    | Unicode |

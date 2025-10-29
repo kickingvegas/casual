@@ -5,7 +5,7 @@
 #+EMAIL: kickingvegas@gmail.com
 #+OPTIONS: ':t toc:t author:t email:t H:4 f:t
 #+LANGUAGE: en
-#+MACRO: version 2.9.1
+#+MACRO: version 2.10.0
 #+MACRO: kbd (eval (org-texinfo-kbd-macro $1))
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_CLASS: casual
@@ -117,7 +117,7 @@ For Transient menus that offer setting different values, the following bindings 
 
   Clears the set and saved values of the active transient.
 
-#+TEXINFO: @majorheading References
+#+TEXINFO: @subheading References
 
 - [[info:transient#Aborting and Resuming Transients]]
   
@@ -148,6 +148,7 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[#calendar-install][Calendar]]
 - [[#compile-install][Compile (Grep)]]
 - [[#dired-install][Dired]]
+- [[#ediff-install][Ediff]]
 - [[#editkit-install][EditKit]]
 - [[#elisp-install][Elisp]]
 - [[#eshell-install][Eshell]]
@@ -193,25 +194,25 @@ That said, if you have used ~:ensure t~ to install a superseded package, you /mu
 
 The Casual menus share common user experience (UX) conventions to facilitate usability. This section details this.
 
-#+TEXINFO: @majorheading Common Menu Navigation
+#+TEXINFO: @subheading Common Menu Navigation
 
 Casual organizes a mode's command set into a menu hierarchy. As the user descends down different menu levels, the user is given the option to dismiss the current menu or to dismiss completely all menu levels descended. Transient provides a standard convention for menu dismissal via the {{{kbd(C-g)}}} (~transient-quit-one~) and {{{kbd(C-q)}}} (~transient-quit-all~) commands. By default Transient does not display these commands in the menu though, rather they make the assumption that the user already knows these bindings.
 
 #+VINDEX: casual-lib-hide-navigation
 In contrast, Casual makes these bindings explicitly known to user by displaying them at the bottom of the menu. Users who wish to have them hidden can set the customizable variable ~casual-lib-hide-navigation~ to a non-nil value. This can be changed from a Casual mode-specific settings menu.
 
-#+TEXINFO: @majorheading Settings Menu
+#+TEXINFO: @subheading Settings Menu
 
 Most all Casual main menus support invoking a mode-specific settings menu via the binding {{{kbd(\,)}}}.
 
-#+TEXINFO: @majorheading Unicode Symbol Support
+#+TEXINFO: @subheading Unicode Symbol Support
 #+VINDEX: casual-lib-use-unicode
 
 The customizable variable named ~casual-lib-use-unicode~ which when non-nil will inform Casual menus to use Unicode symbol labels whenever supported. This can be changed from Casual mode-specific settings menu.
 
 If ~casual-lib-use-unicode~ is set to ~t~, it is also recommended that the variable ~transient-align-variable-pitch~ also be set to ~t~.
 
-#+TEXINFO: @majorheading Common Key Bindings
+#+TEXINFO: @subheading Common Key Bindings
 
 Listed below are keybindings which are common among Casual menus. 
 
@@ -236,7 +237,7 @@ Listed below are keybindings which are common among Casual menus.
   For modes that organize items into sections, navigation to a next or previous section is bound to {{{kbd([)}}} and {{{kbd(])}}} respectively.
 
 
-#+TEXINFO: @majorheading Label Conventions
+#+TEXINFO: @subheading Label Conventions
 
 Casual annotates menu labels with the following conventions:
 
@@ -260,6 +261,7 @@ The following modes are supported by Casual:
 #+INCLUDE: "./calendar.org" :minlevel 2
 #+INCLUDE: "./compile.org" :minlevel 2
 #+INCLUDE: "./dired.org" :minlevel 2
+#+INCLUDE: "./ediff.org" :minlevel 2
 #+INCLUDE: "./editkit.org" :minlevel 2
 #+INCLUDE: "./elisp.org" :minlevel 2
 #+INCLUDE: "./eshell.org" :minlevel 2

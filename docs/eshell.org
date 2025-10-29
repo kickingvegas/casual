@@ -38,7 +38,7 @@ The following sections are offered in the menu:
   [[file:images/casual-eshell-process-screenshot.png]]
 
   
-#+TEXINFO: @majorheading Eshell Unicode Symbol Support
+#+TEXINFO: @subheading Eshell Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Eshell will use Unicode symbols as appropriate in its menus.
 

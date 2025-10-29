@@ -1,0 +1,113 @@
+* Ediff
+#+CINDEX: Ediff
+#+VINDEX: casual-ediff-tmenu
+
+Casual Ediff is a user interface for Ediff ([[info:ediff#Top][Ediff]]), a visual interface for the Unix diff and patch utilities. Casual Ediff strives to improve the usability of Ediff by simplifying the following workflows:
+
+- Comparing a modified and uncommitted version-controlled file with its most recent commit.
+- Resolving a merge conflicted file.
+
+Notable features of Casual Ediff include:
+
+- Context aware menu items.
+- Menu design tuned for side-by-side comparison.
+- For a merge conflict, the ability to resolve using both the conflicting diff versions.
+
+Shown below is screenshot of the Casual Ediff in action for a version-controlled file.
+
+[[file:images/casual-ediff-screenshot.png]]
+
+
+** Ediff Install
+:PROPERTIES:
+:CUSTOM_ID: ediff-install
+:END:
+
+#+CINDEX: Ediff Install
+
+In your initialization file, bind the Transient ~casual-ediff-tmenu~ to your key binding of preference.
+
+#+begin_src elisp :lexical no
+  (casual-ediff-install) ; run this to enable Casual Ediff
+  (add-hook 'ediff-keymap-setup-hook
+            (lambda ()
+              (keymap-set ediff-mode-map "C-o" #'casual-ediff-tmenu)))
+#+end_src
+
+If the current buffer is loaded with a version-controlled file, then the difference between that buffer's content with its most recent commit can be seen with the command ~casual-ediff-revision~. It is often convenient to bind this command. Shown below is an example of such a binding.
+
+#+begin_src elisp :lexical no
+  (keymap-global-set "<f15>" #'casual-ediff-revision)
+#+end_src
+
+Users who wish to call ~casual-ediff-revision~ via mouse can use the command ~casual-ediff-revision-from-menu~. An example of its use is shown in the source example below (note this is a code fragment). 
+
+#+begin_src elisp :lexical no
+  (easy-menu-add-item
+       menu nil
+       ["Ediff revision…"
+        casual-ediff-revision-from-menu
+        :visible (and (bound-and-true-p buffer-file-name)
+                      (vc-registered (buffer-file-name)))
+        :help "Ediff this file with revision"])
+#+end_src
+
+
+#+TEXINFO: @subsubheading Ediff Variables
+
+Casual Ediff recommends the following variables be set as follows:
+
+| Variable                    | Value                     |
+|-----------------------------+---------------------------|
+| ediff-keep-variants         | nil                       |
+| ediff-window-setup-function | ediff-setup-windows-plain |
+| ediff-split-window-function | split-window-horizontally |
+
+** Ediff Usage
+#+CINDEX: Ediff Usage
+
+[[file:images/casual-ediff-basic-screenshot.png]]
+
+Casual Ediff (~casual-ediff-tmenu~) is invoked from the Ediff control window, typically using the binding {{{kbd(C-o)}}} (or your binding of preference).
+
+The menu comprises of sections laid out horizontally that correspond to source of the diffs. The number of sections and their contents are context-dependent on the type of content to be compared.
+
+The following sections are offered in the menu:
+
+- A :: Context-dependent commands for Ediff buffer A.
+- B :: Context-dependent commands for Ediff buffer B.
+- C :: Context-dependent commands for Ediff buffer C, if available.
+- Diff :: Ediff commands not related to a specific buffer.
+  
+Navigation between diffs are bound to the {{{kbd(p)}}} and {{{kbd(n)}}} keys for previous and next diff respectively. 
+
+*** Ediff Basic Operation
+
+[[file:images/casual-ediff-basic-screenshot.png]]
+
+If two writeable files are compared, Casual Ediff provides the ability to write diffs from either side A or B to each other. Unwanted changes to a side can be restored. 
+
+*** Comparing a Version-Controlled File
+
+[[file:images/casual-ediff-screenshot.png]]
+
+Casual Ediff provides a dedicated command to compare a version-controlled file with its latest commit: ~casual-ediff-revision~. This command short-circuits the prompts asked for by the command  ~ediff-revision~ which asks for the source file and the revision to compare it to. Call ~casual-ediff-revision~ from the window of a version-controlled file, typically by key binding of preference.
+
+The A side will hold the last committed revision of a file. The B side will hold current source file.
+
+Users desiring a mouse-driven approach to calling ~casual-ediff-revision~ should use the command ~casual-ediff-revision-from-menu~ invoked from either the top-level or context menu.
+
+Note that both ~casual-ediff-revision~ and ~casual-ediff-revision-from-menu~ will checkpoint the window configuration before invoking the Ediff session and restore it after the session is complete.
+
+*** Resolving a Merge Conflict
+
+[[file:images/casual-ediff-merge-conflict.png]]
+
+Magit offers a means of invoking Ediff to resolve a merge conflict via the {{{kbd(e)}}} binding from the ~magit-status~ ([[info:magit#Status Buffer][(magit) Status Buffer]]) window.
+
+Calling ~casual-ediff-tmenu~ will show the menu shown above. Note that in the C section, there are commands to merge both the variant A and variant B diffs using the bindings {{{kbd(mab)}}} or {{{kbd(mba)}}}, depending on the desired order the diffs are to be merged.
+
+
+*** Ediff Unicode Symbol Support
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Ediff will use Unicode symbols as appropriate in its menus.
+

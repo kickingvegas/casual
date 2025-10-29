@@ -79,7 +79,7 @@ If the output window is from a Grep command, ~casual-compile-tmenu~ will adjust 
 [[file:images/casual-compile-grep-screenshot.png]]
 
   
-#+TEXINFO: @majorheading Compile Mode Unicode Symbol Support
+#+TEXINFO: @subheading Compile Mode Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Compile will use Unicode symbols as appropriate in its menus.
 

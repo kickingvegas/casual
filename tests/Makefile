@@ -25,6 +25,7 @@ calc-tests					\
 calendar-tests					\
 compile-tests					\
 dired-tests					\
+ediff-tests					\
 editkit-tests					\
 elisp-tests					\
 eshell-tests					\
@@ -47,6 +48,7 @@ calc-tests					\
 calendar-tests					\
 compile-tests					\
 dired-tests					\
+ediff-tests					\
 editkit-tests					\
 elisp-tests					\
 eshell-tests					\
@@ -81,6 +83,9 @@ compile-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 dired-tests:
+	$(MAKE) -C $(SRC_DIR) $@
+
+ediff-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 editkit-tests:

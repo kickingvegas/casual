@@ -53,6 +53,7 @@ PACKAGE_PATHS=					\
 -L $(EMACS_ELPA_DIR)/seq-current		\
 -L $(EMACS_ELPA_DIR)/transpose-frame-current	\
 -L $(EMACS_ELPA_DIR)/transient-current		\
+-L $(EMACS_ELPA_DIR)/cond-let-current		\
 -L $(EMACS_ELPA_DIR)/magit-current		\
 -L $(EMACS_ELPA_DIR)/magit-section-current	\
 -L $(EMACS_ELPA_DIR)/dash-current		\

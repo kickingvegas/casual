@@ -70,7 +70,7 @@ Casual Bookmarks organizes its main menu into the following sections:
 - Column :: Commands to navigate and control the display of the table layout for bookmarks.
 
 
-#+TEXINFO: @majorheading Unicode Symbol Support
+#+TEXINFO: @subheading Unicode Symbol Support
 
 [[file:images/casual-bookmarks-unicode-screenshot.png]]
 
