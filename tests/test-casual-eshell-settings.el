@@ -26,6 +26,7 @@
 
 (require 'ert)
 (require 'casual-eshell-test-utils)
+(require 'casual-lib-test-utils)
 (require 'casual-eshell-settings)
 
 (ert-deftest test-casual-eshell-settings-tmenu ()
