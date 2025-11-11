@@ -279,19 +279,39 @@ inserting common miscellaneous symbols."
     (lambda () (casual-lib-checkbox-label
                 electric-quote-mode "Electric Quote")))]
 
+  ["Dash (—)"
+   :class transient-row
+   ("En" "(–)" (lambda () "Insert En dash."
+                 (interactive) (insert "–")))
+   ("Em" "(—)" (lambda () "Insert Em dash."
+                 (interactive) (insert "—")))
+   ("Eb" "Non-breaking (‑)" (lambda () "Insert non-breaking hyphen."
+                              (interactive) (insert "‑")))
+   ("Es" "Soft (­)" (lambda () "Insert soft hyphen."
+                      (interactive) (insert "­")))]
+
   ["Misc"
    :class transient-row
-   ("." "…" (lambda () (interactive) (insert "…")))
-   ("b" "•" (lambda () (interactive) (insert "•")))
-   ("m" "—" (lambda () (interactive) (insert "—")))
-   ("o" "°" (lambda () (interactive) (insert "°")))
-   ("/" "¿" (lambda () (interactive) (insert "¿")))
-   ("!" "¡" (lambda () (interactive) (insert "¡")))
-   ("p" "¶" (lambda () (interactive) (insert "¶")))
-   ("s" "§" (lambda () (interactive) (insert "§")))
-   ("C" "©" (lambda () (interactive) (insert "©")))
-   ("r" "®" (lambda () (interactive) (insert "®")))
-   ("t" "™" (lambda () (interactive) (insert "™")))]
+   ("." "…" (lambda () "Insert ellipsis."
+              (interactive) (insert "…")))
+   ("b" "•" (lambda () "Insert bullet."
+              (interactive) (insert "•")))
+   ("o" "°" (lambda () "Insert degree."
+              (interactive) (insert "°")))
+   ("/" "¿" (lambda () "Insert inverted question mark."
+              (interactive) (insert "¿")))
+   ("!" "¡" (lambda () "Insert inverted exclamation mark."
+              (interactive) (insert "¡")))
+   ("p" "¶" (lambda () "Insert pilcrow (paragraph) sign."
+              (interactive) (insert "¶")))
+   ("s" "§" (lambda () "Insert section sign."
+              (interactive) (insert "§")))
+   ("C" "©" (lambda () "Insert copyright sign."
+              (interactive) (insert "©")))
+   ("r" "®" (lambda () "Insert registered sign."
+              (interactive) (insert "®")))
+   ("t" "™" (lambda () "Insert trademark sign."
+              (interactive) (insert "™")))]
 
   [:class transient-row
    (casual-lib-quit-one)
