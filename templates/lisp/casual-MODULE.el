@@ -43,7 +43,7 @@
    (casual-lib-quit-one)
    ("," "Settings" casual-$MODULE-settings-tmenu)
    ;; ("I" "ⓘ" casual-$MODULE-info)
-   ;; ("q" "Quit" quit-window)
+   ("q" "Quit" quit-window)
    (casual-lib-quit-all)])
 
 (provide 'casual-$MODULE)

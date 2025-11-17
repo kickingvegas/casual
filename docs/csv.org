@@ -1,0 +1,80 @@
+* CSV
+#+CINDEX: CSV
+#+VINDEX: casual-csv-tmenu
+
+Casual CSV is a user interface for ~csv-mode~, a mode for working with CSV files.
+
+[[file:images/casual-csv-edit-screenshot.png]]
+
+** CSV Install
+:PROPERTIES:
+:CUSTOM_ID: csv-install
+:END:
+
+#+CINDEX: CSV Install
+
+In your initialization file, bind the Transient ~casual-csv-tmenu~ to your key binding of preference.
+
+#+begin_src elisp :lexical no
+  (keymap-set csv-mode-map "M-m" #'casual-csv-tmenu)
+#+end_src
+
+While not required, the following configuration is recommended for working with CSV files.
+
+#+BEGIN_SRC elisp :lexical no
+  ;; disable line wrap
+  (add-hook 'csv-mode-hook
+            (lambda ()
+              (visual-line-mode -1)
+              (toggle-truncate-lines 1)))
+
+  ;; auto detect separator
+  (add-hook 'csv-mode-hook #'csv-guess-set-separator)
+  ;; turn on field alignment
+  (add-hook 'csv-mode-hook #'csv-align-mode)
+#+END_SRC
+
+** CSV Usage
+#+CINDEX: CSV Usage
+
+[[file:images/casual-csv-edit-screenshot.png]]
+
+The following sections are offered in the menu:
+
+- Navigation, Line, Buffer :: Commands for moving the point, mostly with respect to a field.
+- Page :: Move up or down a page.
+- Buffer/File :: Commands associated the current buffer or file, such changing the buffer state from viewable (read-only) to editable (writeable), display alignment, or duplicating the file for subsequent editing.
+- Field :: Commands to mark or copy a field.
+- Sort :: Sorting commands. This section is displayed only if the buffer is editable.
+- Fields :: Kill and yank commands dedicated for CSV mode. Note that these commands do /not/ use the default ~kill-ring~ and are marked with a bullet (•). This section is displayed only if the buffer is editable.
+- Misc :: Miscellaneous commands. Note if a region is selected containing multiple complete rows, the “{{{kbd(C)}}} Copy as Table” command will reformat the selected rows as an Org table and copy them in the ~kill-ring~ for subsequent pasting.
+  
+#+TEXINFO: @subheading CVS View/Edit, Duplicate
+
+If the buffer is in view (read-only) mode, then only relevant commands are displayed.
+
+[[file:images/casual-csv-view-screenshot.png]]
+
+If the buffer is editable, a common to desire to instead work on a copy of the CSV file to avoid making unwanted changes. This can be done using the “{{{kbd(d)}}} Duplicate” command.
+
+#+TEXINFO: @subheading CSV Align
+#+VINDEX: casual-csv-align-tmenu
+
+The display of the CSV buffer can be controlled with this menu.
+
+[[file:images/casual-csv-align-screenshot.png]]
+
+
+#+TEXINFO: @subheading CSV Settings
+#+VINDEX: casual-csv-settings-tmenu
+
+[[file:images/casual-csv-settings-screenshot.png]]
+
+
+#+TEXINFO: @subheading CSV Unicode Symbol Support
+
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual CSV will use Unicode symbols as appropriate in its menus.
+
+[[file:images/casual-csv-view-unicode-screenshot.png]]
+
+
