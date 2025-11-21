@@ -144,6 +144,32 @@ V is either nil or non-nil."
   (forward-paragraph)
   (forward-line))
 
+(defun casual-lib-duplicate-file (&optional arg)
+  "Duplicate the current file with prefix option ARG.
+
+This command will duplicate and open the current file in the buffer to a
+filename of the form “<filename> copy.<extension>”. If the current
+buffer is modified, a prompt will be raised to save it before making the
+duplicate copy.
+
+By default this command will immediate open the duplicate file into a
+new buffer. This can be avoided if a prefix ARG is provided."
+  (interactive "P")
+  (if (and (buffer-modified-p) (y-or-n-p "Save buffer? "))
+      (save-buffer))
+
+  (let ((filename (buffer-file-name)))
+    (unless filename
+      (error "This command only works on a file."))
+
+    (let* ((extension (file-name-extension filename t))
+           (target (format "%s copy%s"
+                           (file-name-sans-extension filename)
+                           extension)))
+      (copy-file filename target)
+      (if (not arg)
+          (find-file target)))))
+
 ;; Transients
 (transient-define-suffix casual-lib-quit-all ()
   "Casual suffix to call `transient-quit-all'."

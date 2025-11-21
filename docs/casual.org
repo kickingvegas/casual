@@ -5,7 +5,7 @@
 #+EMAIL: kickingvegas@gmail.com
 #+OPTIONS: ':t toc:t author:t email:t H:4 f:t
 #+LANGUAGE: en
-#+MACRO: version 2.10.2
+#+MACRO: version 2.11.0
 #+MACRO: kbd (eval (org-texinfo-kbd-macro $1))
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_CLASS: casual
@@ -147,6 +147,7 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[#calc-install][Calc]]
 - [[#calendar-install][Calendar]]
 - [[#compile-install][Compile (Grep)]]
+- [[#csv-install][CSV]]
 - [[#dired-install][Dired]]
 - [[#ediff-install][Ediff]]
 - [[#editkit-install][EditKit]]
@@ -260,6 +261,7 @@ The following modes are supported by Casual:
 #+INCLUDE: "./calc.org" :minlevel 2
 #+INCLUDE: "./calendar.org" :minlevel 2
 #+INCLUDE: "./compile.org" :minlevel 2
+#+INCLUDE: "./csv.org" :minlevel 2
 #+INCLUDE: "./dired.org" :minlevel 2
 #+INCLUDE: "./ediff.org" :minlevel 2
 #+INCLUDE: "./editkit.org" :minlevel 2

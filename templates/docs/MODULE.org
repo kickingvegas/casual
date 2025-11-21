@@ -1,0 +1,38 @@
+* $MODULE
+#+CINDEX: $MODULE
+#+VINDEX: casual-$MODULE-tmenu
+
+Casual $MODULE is a user interface for ~$MODULE-mode~, 
+
+[[file:images/casual-$MODULE-screenshot.png]]
+
+** $MODULE Install
+:PROPERTIES:
+:CUSTOM_ID: $MODULE-install
+:END:
+
+#+CINDEX: $MODULE Install
+
+In your initialization file, bind the Transient ~casual-$MODULE-tmenu~ to your key binding of preference.
+
+#+begin_src elisp :lexical no
+  (keymap-set $MODULE-mode-map "C-o" #'casual-$MODULE-tmenu)
+#+end_src
+
+** $MODULE Usage
+#+CINDEX: $MODULE Usage
+
+[[file:images/casual-$MODULE-screenshot.png]]
+
+
+The following sections are offered in the menu:
+
+- Section1 :: description
+
+#+TEXINFO: @subheading $MODULE Settings
+
+[[file:images/casual-$MODULE-settings.png]]
+
+
+#+TEXINFO: @subheading $MODULE Unicode Symbol Support
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual $MODULE will use Unicode symbols as appropriate in its menus.
