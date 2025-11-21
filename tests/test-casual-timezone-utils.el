@@ -102,7 +102,7 @@
 (ert-deftest test-casual-timezone-map-local-to-timezone ()
   (let* ((ts "2025-05-23")
          (remote-tz "Europe/Berlin")
-         (control "2025-05-23 09:00:00 CEST")
+         (control "2025-05-23 10:00:00 CEST")
          (result (casual-timezone-map-local-to-timezone ts remote-tz)))
     (should (string-equal control result))))
 
@@ -133,7 +133,7 @@
 (ert-deftest test-casual-timezone-local-time-to-remote ()
   (let* ((read-date "2025-05-23 12:00")
          (remote-tz "Europe/Berlin")
-         (control "Europe/Berlin 2025-05-23 21:00:00 CEST")
+         (control "Europe/Berlin 2025-05-23 22:00:00 CEST")
          (result (casual-timezone-local-time-to-remote read-date remote-tz)))
 
     (should (string-equal control result))))
@@ -141,7 +141,7 @@
 (ert-deftest test-casual-timezone-local-time-to-remote-victoria ()
   (let* ((read-date "2025-05-23 12:00")
          (remote-tz "Australia/Victoria")
-         (control "Australia/Victoria 2025-05-24 05:00:00 AEST")
+         (control "Australia/Victoria 2025-05-24 06:00:00 AEST")
          (result (casual-timezone-local-time-to-remote read-date remote-tz)))
 
     (should (string-equal control result))))

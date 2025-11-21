@@ -25,6 +25,7 @@ bookmarks-tests					\
 calc-tests					\
 calendar-tests					\
 compile-tests					\
+csv-tests					\
 dired-tests					\
 ediff-tests					\
 editkit-tests					\
@@ -66,6 +67,10 @@ calendar-tests:
 .PHONY: compile-tests
 compile-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-compile.make tests
+
+.PHONY: csv-tests
+csv-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-csv.make tests
 
 .PHONY: dired-tests
 dired-tests:

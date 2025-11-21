@@ -34,10 +34,10 @@
               (casualt-mock #'casual-$MODULE-about))
 
       (let ((test-vectors
-             '((:binding "G" :com$MODULEd casual-$MODULE--customize-group)
-               (:binding "u" :com$MODULEd casual-lib-customize-casual-lib-use-unicode)
-               (:binding "n" :com$MODULEd casual-lib-customize-casual-lib-hide-navigation)
-               (:binding "a" :com$MODULEd casual-$MODULE-about))))
+             '((:binding "G" :command casual-$MODULE--customize-group)
+               (:binding "u" :command casual-lib-customize-casual-lib-use-unicode)
+               (:binding "n" :command casual-lib-customize-casual-lib-hide-navigation)
+               (:binding "a" :command casual-$MODULE-about))))
 
         (casualt-suffix-testcase-runner test-vectors
                                         #'casual-$MODULE-settings-tmenu

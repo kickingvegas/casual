@@ -20,7 +20,7 @@ Copyright © 2024-2025 Charles Y@. Choi
 @finalout
 @titlepage
 @title Casual User Guide
-@subtitle for version 2.10.2
+@subtitle for version 2.11.0
 @author Charles Y@. Choi (@email{kickingvegas@@gmail.com})
 @page
 @vskip 0pt plus 1filll
@@ -33,7 +33,7 @@ Copyright © 2024-2025 Charles Y@. Choi
 @node Top
 @top Casual User Guide
 
-Version: 2.10.2
+Version: 2.11.0
 
 Casual is a project to re-imagine the primary user interface for Emacs using keyboard-driven menus.
 
@@ -105,6 +105,7 @@ Casual Modes
 * Calc::
 * Calendar::
 * Compile::
+* CSV::
 * Dired::
 * Ediff::
 * EditKit::
@@ -162,6 +163,11 @@ Compile
 
 * Compile Install::
 * Compile Usage::
+
+CSV
+
+* CSV Install::
+* CSV Usage::
 
 Dired
 
@@ -446,6 +452,8 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 @item
 @ref{Compile Install, , Compile (Grep)}
 @item
+@ref{CSV Install, , CSV}
+@item
 @ref{Dired Install, , Dired}
 @item
 @ref{Ediff Install, , Ediff}
@@ -608,6 +616,7 @@ The following modes are supported by Casual:
 * Calc::
 * Calendar::
 * Compile::
+* CSV::
 * Dired::
 * Ediff::
 * EditKit::
@@ -1417,6 +1426,101 @@ If the output window is from a Grep command, @code{casual-compile-tmenu} will ad
 @subheading Compile Mode Unicode Symbol Support
 
 By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Compile will use Unicode symbols as appropriate in its menus.
+
+@node CSV
+@section CSV
+
+@cindex CSV
+@vindex casual-csv-tmenu
+
+Casual CSV is a user interface for @code{csv-mode}, a mode for working with CSV files.
+
+@image{images/casual-csv-edit-screenshot,,,,png}
+
+@menu
+* CSV Install::
+* CSV Usage::
+@end menu
+
+@node CSV Install
+@subsection CSV Install
+
+@cindex CSV Install
+
+In your initialization file, bind the Transient @code{casual-csv-tmenu} to your key binding of preference.
+
+@lisp
+(keymap-set csv-mode-map "M-m" #'casual-csv-tmenu)
+@end lisp
+
+While not required, the following configuration is recommended for working with CSV files.
+
+@lisp
+;; disable line wrap
+(add-hook 'csv-mode-hook
+          (lambda ()
+            (visual-line-mode -1)
+            (toggle-truncate-lines 1)))
+
+;; auto detect separator
+(add-hook 'csv-mode-hook #'csv-guess-set-separator)
+;; turn on field alignment
+(add-hook 'csv-mode-hook #'csv-align-mode)
+@end lisp
+
+@node CSV Usage
+@subsection CSV Usage
+
+@cindex CSV Usage
+
+@image{images/casual-csv-edit-screenshot,,,,png}
+
+The following sections are offered in the menu:
+
+@table @asis
+@item Navigation, Line, Buffer
+Commands for moving the point, mostly with respect to a field.
+@item Page
+Move up or down a page.
+@item Buffer/File
+Commands associated the current buffer or file, such changing the buffer state from viewable (read-only) to editable (writeable), display alignment, or duplicating the file for subsequent editing.
+@item Field
+Commands to mark or copy a field.
+@item Sort
+Sorting commands. This section is displayed only if the buffer is editable.
+@item Fields
+Kill and yank commands dedicated for CSV mode. Note that these commands do @emph{not} use the default @code{kill-ring} and are marked with a bullet (•). This section is displayed only if the buffer is editable.
+@item Misc
+Miscellaneous commands. Note if a region is selected containing multiple complete rows, the “@kbd{C} Copy as Table” command will reformat the selected rows as an Org table and copy them in the @code{kill-ring} for subsequent pasting.
+@end table
+
+@subheading CVS View/Edit, Duplicate
+
+If the buffer is in view (read-only) mode, then only relevant commands are displayed.
+
+@image{images/casual-csv-view-screenshot,,,,png}
+
+If the buffer is editable, a common to desire to instead work on a copy of the CSV file to avoid making unwanted changes. This can be done using the “@kbd{d} Duplicate” command.
+
+@subheading CSV Align
+@vindex casual-csv-align-tmenu
+
+The display of the CSV buffer can be controlled with this menu.
+
+@image{images/casual-csv-align-screenshot,,,,png}
+
+
+@subheading CSV Settings
+@vindex casual-csv-settings-tmenu
+
+@image{images/casual-csv-settings-screenshot,,,,png}
+
+
+@subheading CSV Unicode Symbol Support
+
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual CSV will use Unicode symbols as appropriate in its menus.
+
+@image{images/casual-csv-view-unicode-screenshot,,,,png}
 
 @node Dired
 @section Dired

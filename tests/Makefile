@@ -24,6 +24,7 @@ bookmarks-tests					\
 calc-tests					\
 calendar-tests					\
 compile-tests					\
+csv-tests					\
 dired-tests					\
 ediff-tests					\
 editkit-tests					\
@@ -47,6 +48,7 @@ bookmarks-tests					\
 calc-tests					\
 calendar-tests					\
 compile-tests					\
+csv-tests					\
 dired-tests					\
 ediff-tests					\
 editkit-tests					\
@@ -80,6 +82,9 @@ calendar-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 compile-tests:
+	$(MAKE) -C $(SRC_DIR) $@
+
+csv-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 dired-tests:
