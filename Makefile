@@ -55,6 +55,7 @@ VERSION_LAST_TAG := $(shell git tag --sort=-creatordate | head -n 1)
 .PHONY: tests					\
 create-pr					\
 bump-casual					\
+bump-casual-info				\
 bump						\
 checkout-development				\
 checkout-main					\
@@ -75,8 +76,11 @@ tests:
 bump-casual:
 	sed -i 's/;; Version: $(VERSION)/;; Version: $(VERSION_BUMP)/' $(MAIN_EL)
 
-bump: bump-casual
-	git commit -m 'Bump version to $(VERSION_BUMP)' $(MAIN_EL)
+bump-casual-info:
+	sed -i 's/+MACRO: version $(VERSION)/+MACRO: version $(VERSION_BUMP)/' docs/casual.org
+
+bump: bump-casual bump-casual-info
+	git commit -m 'Bump version to $(VERSION_BUMP)' $(MAIN_EL) docs/casual.org
 	git push
 
 checkout-development:
