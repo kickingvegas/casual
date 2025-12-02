@@ -35,38 +35,15 @@
 ;; (require 'casual-isearch) ; optional if using autoloaded menu
 ;; (keymap-set isearch-mode-map "C-o" #'casual-isearch-tmenu)
 
-;; If you are using Emacs ≤ 30.0, you will need to update the built-in package
-;; `transient'. By default, `package.el' will not upgrade a built-in package.
-;; Set the customizable variable `package-install-upgrade-built-in' to `t' to
-;; override this. For more details, please refer to the "Install" section on
-;; this project's repository web page.
-
 ;;; Code:
 (require 'casual-lib)
 (require 'casual-isearch-utils)
 (require 'casual-isearch-settings)
 
-(defun casual-isearch--toggle-regex-and-edit ()
-  "Invoke `isearch-toggle-regexp' then `isearch-edit-string'."
-  (interactive)
-  (isearch-toggle-regexp)
-  (isearch-edit-string))
-
-(defun casual-isearch--toggle-symbol-and-edit ()
-  "Invoke `isearch-toggle-symbol' then `isearch-edit-string'."
-  (interactive)
-  (isearch-toggle-symbol)
-  (isearch-edit-string))
-
-(defun casual-isearch--toggle-word-and-edit ()
-  "Invoke `isearch-toggle-word' then `isearch-edit-string'."
-  (interactive)
-  (isearch-toggle-symbol)
-  (isearch-edit-string))
-
 ;;;###autoload (autoload 'casual-isearch-tmenu "casual-isearch" nil t)
 (transient-define-prefix casual-isearch-tmenu ()
   "Transient menu for I-Search."
+  :refresh-suffixes t
   [["Edit Search String"
     ("e" "Edit the search string (recursive)" isearch-edit-string
      :transient t)
@@ -79,27 +56,40 @@
     ("t" "Pull thing from buffer" isearch-forward-thing-at-point)]
 
    ["Replace"
-    ("r" "Start ‘query-replace’" isearch-query-replace
-     :if-nil buffer-read-only)
-    ("x" "Start ‘query-replace-regexp’" isearch-query-replace-regexp
-     :if-nil buffer-read-only)]]
+    :if-nil buffer-read-only
+    ("r" "Start ‘query-replace’" isearch-query-replace)
+    ("x" "Start ‘query-replace-regexp’" isearch-query-replace-regexp)]]
 
   [["Toggle"
     ("X" "Regexp searching (edit)"
-     casual-isearch--toggle-regex-and-edit
-     :transient t)
+     isearch-toggle-regexp
+     :description (lambda () (casual-lib-checkbox-label isearch-regexp
+                                                   "Regexp search")))
+
     ("S" "Symbol searching (edit)"
-     casual-isearch--toggle-symbol-and-edit
-     :transient t)
+     isearch-toggle-symbol
+     :description (lambda () (casual-lib-checkbox-label
+                         (eq isearch-regexp-function #'isearch-symbol-regexp)
+                         "Symbol search")))
+
     ("W" "Word searching (edit)"
-     casual-isearch--toggle-word-and-edit
-     :transient t)
+     isearch-toggle-word
+     :description (lambda () (casual-lib-checkbox-label
+                         (eq isearch-regexp-function #'word-search-regexp)
+                         "Word search")))
+
     ("F" "Case fold"
      isearch-toggle-case-fold
-     :transient t)
+     :description (lambda () (casual-lib-checkbox-label
+                         isearch-case-fold-search
+                         "Case insensitive")))
     ("L" "Lax whitespace"
      isearch-toggle-lax-whitespace
-     :transient t)]
+     :description (lambda () (casual-lib-checkbox-label
+                         (if isearch-regexp
+                             isearch-regexp-lax-whitespace
+                           isearch-lax-whitespace)
+                         "Lax whitespace")))]
 
    ["Misc"
     ("o" "Occur" isearch-occur)
