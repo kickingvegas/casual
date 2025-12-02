@@ -20,7 +20,7 @@ Copyright © 2024-2025 Charles Y@. Choi
 @finalout
 @titlepage
 @title Casual User Guide
-@subtitle for version 2.11.0
+@subtitle for version 2.11.2
 @author Charles Y@. Choi (@email{kickingvegas@@gmail.com})
 @page
 @vskip 0pt plus 1filll
@@ -33,7 +33,7 @@ Copyright © 2024-2025 Charles Y@. Choi
 @node Top
 @top Casual User Guide
 
-Version: 2.11.0
+Version: 2.11.2
 
 Casual is a project to re-imagine the primary user interface for Emacs using keyboard-driven menus.
 
@@ -2984,7 +2984,7 @@ By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Inf
 @node I-Search
 @section I-Search
 
-@cindex ISearch
+@cindex isearch
 @cindex I-Search
 @vindex casual-isearch-tmenu
 
@@ -3002,13 +3002,11 @@ Casual I-Search is a user interface for Emacs Incremental Search (@ref{Increment
 
 @cindex I-Search Install
 
-The main menu for Casual I-Search is @code{casual-isearch-tmenu}. Bind this menu in the keymap @code{isearch-mode-map} as follows in your initialization file.
+The main menu for Casual I-Search is @code{casual-isearch-tmenu}. Bind this menu to @kbd{C-o} (or your binding of preference) in the keymap @code{isearch-mode-map} as follows in your initialization file.
 
 @lisp
 (keymap-set isearch-mode-map "C-o" #'casual-isearch-tmenu)
 @end lisp
-
-The keybinding to @code{casual-isearch-tmenu} can be changed to user preference.
 
 @node I-Search Usage
 @subsection I-Search Usage
@@ -3027,7 +3025,7 @@ Commands to edit the search string. The type/extent of the string (word, symbol,
 Invoke @code{query-replace} or @code{query-replace-regexp} on matched strings.
 
 @item Toggle
-Commands to configure the type of search.
+Commands to configure the type of search. Toggling any menu item in this section will dismiss the Transient menu and return you back to the I-Search minibuffer prompt.
 
 @item Misc
 Miscellaneous commands. From here the search string can be fed into @code{occur} or be highlighted.
@@ -3036,9 +3034,7 @@ Miscellaneous commands. From here the search string can be fed into @code{occur}
 Navigation commands for matched strings.
 @end table
 
-When in search mode (typically via the keybinding @kbd{C-s} or @kbd{C-r}), pressing the keybinding @kbd{C-o} (or binding of your preference) will raise the Transient menu @code{casual-isearch-tmenu}. Once raised, only the @emph{I-Search} commands in the @strong{Replace} and @strong{Misc} sections will automatically dismiss the menu when selected. All other @emph{I-Search} commands will @emph{not} dismiss the menu.
-
-Note that editing the search text via @code{isearch-edit-string} will enter a recursive editing mode that is normally exited when pressing the return (@code{RET}) key.
+When in search mode (typically via the keybinding @kbd{C-s} or @kbd{C-r}), pressing the keybinding @kbd{C-o} (or binding of your preference) will raise the Transient menu @code{casual-isearch-tmenu}. Once raised, only the @emph{I-Search} commands in the @strong{Toggle}, @strong{Replace}, and @strong{Misc} sections will automatically dismiss the menu when selected. All other @emph{I-Search} commands will @emph{not} dismiss the menu.
 
 Use @kbd{C-g} to dismiss this Transient menu.
 

@@ -1,5 +1,5 @@
 * I-Search
-#+CINDEX: ISearch
+#+CINDEX: isearch
 #+CINDEX: I-Search
 #+VINDEX: casual-isearch-tmenu
 
@@ -13,13 +13,12 @@ Casual I-Search is a user interface for Emacs Incremental Search ([[info:emacs#I
 :END:
 #+CINDEX: I-Search Install
 
-The main menu for Casual I-Search is ~casual-isearch-tmenu~. Bind this menu in the keymap ~isearch-mode-map~ as follows in your initialization file.
+The main menu for Casual I-Search is ~casual-isearch-tmenu~. Bind this menu to {{{kbd(C-o)}}} (or your binding of preference) in the keymap ~isearch-mode-map~ as follows in your initialization file.
 
 #+begin_src elisp :lexical yes
   (keymap-set isearch-mode-map "C-o" #'casual-isearch-tmenu)
 #+end_src
 
-The keybinding to ~casual-isearch-tmenu~ can be changed to user preference.
 
 ** I-Search Usage
 #+CINDEX: I-Search Usage
@@ -32,14 +31,12 @@ The main menu for Casual I-Search is organized into the following sections:
 
 - Replace :: Invoke ~query-replace~ or ~query-replace-regexp~ on matched strings.
 
-- Toggle :: Commands to configure the type of search.
+- Toggle :: Commands to configure the type of search. Toggling any menu item in this section will dismiss the Transient menu and return you back to the I-Search minibuffer prompt.
 
 - Misc :: Miscellaneous commands. From here the search string can be fed into ~occur~ or be highlighted.
 
 - Navigation :: Navigation commands for matched strings.
 
-When in search mode (typically via the keybinding {{{kbd(C-s)}}} or {{{kbd(C-r)}}}), pressing the keybinding {{{kbd(C-o)}}} (or binding of your preference) will raise the Transient menu ~casual-isearch-tmenu~. Once raised, only the /I-Search/ commands in the *Replace* and *Misc* sections will automatically dismiss the menu when selected. All other /I-Search/ commands will /not/ dismiss the menu.
-
-Note that editing the search text via ~isearch-edit-string~ will enter a recursive editing mode that is normally exited when pressing the return (~RET~) key.
+When in search mode (typically via the keybinding {{{kbd(C-s)}}} or {{{kbd(C-r)}}}), pressing the keybinding {{{kbd(C-o)}}} (or binding of your preference) will raise the Transient menu ~casual-isearch-tmenu~. Once raised, only the /I-Search/ commands in the *Toggle*, *Replace*, and *Misc* sections will automatically dismiss the menu when selected. All other /I-Search/ commands will /not/ dismiss the menu.
 
 Use {{{kbd(C-g)}}} to dismiss this Transient menu.
