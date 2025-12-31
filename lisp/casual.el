@@ -48,6 +48,9 @@
 ;; - Compile (Elisp library: `casual-compile.el')
 ;;   An interface for the output of the `compile' and Grep commands.
 
+;; - CSS (Elisp library: `casual-css.el')
+;;   An interface for CSS mode.
+
 ;; - CSV (Elisp library: `casual-csv.el')
 ;;   An interface for CSV mode.
 
@@ -74,6 +77,9 @@
 ;; - Help (Elisp library: `casual-help.el')
 ;;   An interface for `help-mode', a major mode for viewing help text and
 ;;   navigating references in it.
+
+;; - HTML (Elisp library: `casual-html.el')
+;;   An interface for HTML mode.
 
 ;; - IBuffer (Elisp library: `casual-ibuffer.el')
 ;;   An interface to Emacs IBuffer, a mode designed for managing buffers.
@@ -111,7 +117,7 @@
 ;; For details, refer to the Info node `(casual) Install'.
 
 ;; Casual relies on the latest stable release of `transient' which may differ
-;; from the version that is preinstalled as a built-in. By b default, `package.el'
+;; from the version that is preinstalled as a built-in. By default, `package.el'
 ;; will not upgrade a built-in package. Set the customizable variable
 ;; `package-install-upgrade-built-in' to `t' to override this. For more details,
 ;; please refer to the "Install" section on this project's repository web page.

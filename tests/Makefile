@@ -24,6 +24,7 @@ bookmarks-tests					\
 calc-tests					\
 calendar-tests					\
 compile-tests					\
+css-tests					\
 csv-tests					\
 dired-tests					\
 ediff-tests					\
@@ -31,6 +32,7 @@ editkit-tests					\
 elisp-tests					\
 eshell-tests					\
 help-tests					\
+html-tests					\
 ibuffer-tests					\
 info-tests					\
 isearch-tests					\
@@ -48,6 +50,7 @@ bookmarks-tests					\
 calc-tests					\
 calendar-tests					\
 compile-tests					\
+css-tests					\
 csv-tests					\
 dired-tests					\
 ediff-tests					\
@@ -55,6 +58,7 @@ editkit-tests					\
 elisp-tests					\
 eshell-tests					\
 help-tests					\
+html-tests					\
 ibuffer-tests					\
 info-tests					\
 isearch-tests					\
@@ -84,6 +88,9 @@ calendar-tests:
 compile-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
+css-tests:
+	$(MAKE) -C $(SRC_DIR) $@
+
 csv-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
@@ -103,6 +110,9 @@ eshell-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 help-tests:
+	$(MAKE) -C $(SRC_DIR) $@
+
+html-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 ibuffer-tests:

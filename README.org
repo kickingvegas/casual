@@ -39,4 +39,4 @@ Users interested in getting all current and future Casual interfaces for both bu
 * Acknowledgments
 A heartfelt thanks to all the contributors to [[https://github.com/magit/transient][Transient]], [[https://magit.vc][Magit]], [[https://orgmode.org][Org Mode]], and [[https://www.gnu.org/software/emacs/][Emacs]]. This package would not be possible without your efforts.
 
-#+HTML: <p align='center'>© 2024-2025 Charles Y. Choi</p>
+#+HTML: <p align='center'>© 2024-2026 Charles Y. Choi</p>

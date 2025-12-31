@@ -19,6 +19,8 @@
 
 Version: {{{version}}}
 
+#+TEXINFO: Copyright © 2024-2026 @w{Charles Y. Choi}
+
 Casual is a project to re-imagine the primary user interface for Emacs using keyboard-driven menus.
 
 Emacs has many commands that are easy to forget if not used frequently. Menus are a user interface (UI) affordance that offers discoverability and recognition. While menus are commonly associated with mouse-driven UI, the inclusion of Transient ([[info:transient]]) in Emacs core allows for building menus that are keyboard-driven instead. This appeals to users that prefer keyboard-driven workflows.
@@ -133,7 +135,6 @@ Certain menus require more installed software:
 - Casual Dired: GNU Coreutils
 - Casual Image: ImageMagick 6+
 
-
 * Install
 #+CINDEX: Install
 
@@ -147,6 +148,7 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[#calc-install][Calc]]
 - [[#calendar-install][Calendar]]
 - [[#compile-install][Compile (Grep)]]
+- [[#css-install][CSS]]
 - [[#csv-install][CSV]]
 - [[#dired-install][Dired]]
 - [[#ediff-install][Ediff]]
@@ -154,6 +156,7 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[#elisp-install][Elisp]]
 - [[#eshell-install][Eshell]]
 - [[#help-install][Help]]
+- [[#html-install][HTML]]
 - [[#ibuffer-install][IBuffer]]
 - [[#image-install][Image]]
 - [[#info-install][Info]]
@@ -261,6 +264,7 @@ The following modes are supported by Casual:
 #+INCLUDE: "./calc.org" :minlevel 2
 #+INCLUDE: "./calendar.org" :minlevel 2
 #+INCLUDE: "./compile.org" :minlevel 2
+#+INCLUDE: "./css.org" :minlevel 2
 #+INCLUDE: "./csv.org" :minlevel 2
 #+INCLUDE: "./dired.org" :minlevel 2
 #+INCLUDE: "./ediff.org" :minlevel 2
@@ -268,6 +272,7 @@ The following modes are supported by Casual:
 #+INCLUDE: "./elisp.org" :minlevel 2
 #+INCLUDE: "./eshell.org" :minlevel 2
 #+INCLUDE: "./help.org" :minlevel 2
+#+INCLUDE: "./html.org" :minlevel 2
 #+INCLUDE: "./ibuffer.org" :minlevel 2
 #+INCLUDE: "./image.org" :minlevel 2
 #+INCLUDE: "./info.org" :minlevel 2
