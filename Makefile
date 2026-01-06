@@ -76,12 +76,12 @@ tests:
 bump-casual:
 	sed -i 's/;; Version: $(VERSION)/;; Version: $(VERSION_BUMP)/' $(MAIN_EL)
 
-bump-casual-info: VERSION_BUMP:=$(shell python -m semver nextver $(VERSION) $(BUMP_LEVEL))
+# bump-casual-info: VERSION_BUMP:=$(shell python -m semver nextver $(VERSION) $(BUMP_LEVEL))
 bump-casual-info:
 	sed -i 's/+MACRO: version $(VERSION)/+MACRO: version $(VERSION_BUMP)/' docs/casual.org
 
-bump: bump-casual
-	git commit -m 'Bump version to $(VERSION_BUMP)' $(MAIN_EL)
+bump: bump-casual bump-casual-info
+	git commit -m 'Bump version to $(VERSION_BUMP)' $(MAIN_EL) docs/casual.org
 	git push
 
 checkout-development:
