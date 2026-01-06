@@ -35,6 +35,8 @@ Copyright © 2024-2025 Charles Y@. Choi
 
 Version: 2.11.2
 
+Copyright © 2024-2026 @w{Charles Y. Choi}
+
 Casual is a project to re-imagine the primary user interface for Emacs using keyboard-driven menus.
 
 Emacs has many commands that are easy to forget if not used frequently. Menus are a user interface (UI) affordance that offers discoverability and recognition. While menus are commonly associated with mouse-driven UI, the inclusion of Transient (@ref{Top,,,transient,}) in Emacs core allows for building menus that are keyboard-driven instead. This appeals to users that prefer keyboard-driven workflows.
@@ -105,6 +107,7 @@ Casual Modes
 * Calc::
 * Calendar::
 * Compile::
+* CSS::
 * CSV::
 * Dired::
 * Ediff::
@@ -112,6 +115,7 @@ Casual Modes
 * Elisp::
 * Eshell::
 * Help::
+* HTML::
 * IBuffer::
 * Image::
 * Info::
@@ -163,6 +167,11 @@ Compile
 
 * Compile Install::
 * Compile Usage::
+
+CSS
+
+* CSS Install::
+* CSS Usage::
 
 CSV
 
@@ -234,6 +243,11 @@ Help
 
 * Help Install::
 * Help Usage::
+
+HTML
+
+* HTML Install::
+* HTML Usage::
 
 IBuffer
 
@@ -452,6 +466,8 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 @item
 @ref{Compile Install, , Compile (Grep)}
 @item
+@ref{CSS Install, , CSS}
+@item
 @ref{CSV Install, , CSV}
 @item
 @ref{Dired Install, , Dired}
@@ -465,6 +481,8 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 @ref{Eshell Install, , Eshell}
 @item
 @ref{Help Install, , Help}
+@item
+@ref{HTML Install, , HTML}
 @item
 @ref{IBuffer Install, , IBuffer}
 @item
@@ -616,6 +634,7 @@ The following modes are supported by Casual:
 * Calc::
 * Calendar::
 * Compile::
+* CSS::
 * CSV::
 * Dired::
 * Ediff::
@@ -623,6 +642,7 @@ The following modes are supported by Casual:
 * Elisp::
 * Eshell::
 * Help::
+* HTML::
 * IBuffer::
 * Image::
 * Info::
@@ -1426,6 +1446,82 @@ If the output window is from a Grep command, @code{casual-compile-tmenu} will ad
 @subheading Compile Mode Unicode Symbol Support
 
 By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Compile will use Unicode symbols as appropriate in its menus.
+
+@node CSS
+@section CSS
+
+@cindex CSS
+@vindex casual-css-tmenu
+
+Casual CSS is a user interface for @code{css-mode}. 
+
+@image{images/casual-css-screenshot,,,,png}
+Casual also has support for HTML editing (@ref{HTML}).
+
+@menu
+* CSS Install::
+* CSS Usage::
+@end menu
+
+@node CSS Install
+@subsection CSS Install
+
+@cindex CSS Install
+
+In your initialization file, bind the Transient @code{casual-css-tmenu} to your key binding of preference.
+
+@lisp
+(keymap-set css-mode-map "M-m" #'casual-css-tmenu)
+@end lisp
+
+A different binding (@kbd{M-m}) is used as @code{casual-css-tmenu} is intended to work alongside with @ref{EditKit Install, , Casual EditKit}.
+
+@node CSS Usage
+@subsection CSS Usage
+
+@cindex CSS Usage
+
+@image{images/casual-css-screenshot,,,,png}
+
+
+The following sections are offered in the menu:
+
+@table @asis
+@item CSS
+CSS specific commands.
+@itemize
+@item
+“@kbd{l} Lookup Symbol” will reference the symbol's documentation from the Mozilla Developer Network (MDN) website.
+@item
+“@kbd{c} Cycle Color” should be selected when the point is on a color specification.
+@end itemize
+@item Edit
+Editing commands.
+@itemize
+@item
+“@kbd{f} Indent CSS Rule” is a call to @code{fill-paragraph} whose behavior is adjusted for @code{css-mode}.
+@end itemize
+@item Misc
+Miscellaneous commands.
+@itemize
+@item
+“@kbd{h} Highlight Line” toggles @code{hl-line-mode} to avoid interfering the display of color specifications.
+@end itemize
+@end table
+
+
+@subheading CSS Settings
+@vindex casual-css-settings-tmenu
+
+Settings menu for Casual CSS@.
+
+
+@image{images/casual-css-settings-screenshot,,,,png}
+
+
+@subheading CSS Unicode Symbol Support
+
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual CSS will use Unicode symbols as appropriate in its menus.
 
 @node CSV
 @section CSV
@@ -2428,7 +2524,84 @@ Show the Elisp source. If the help displayed is for a customizable variable, the
 @subheading Help Mode Unicode Symbol Support
 
 By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Man will use Unicode symbols as appropriate in its menus.
-@uref{../README.org, ❮ Back to Casual}
+
+@node HTML
+@section HTML
+
+@cindex HTML
+@vindex casual-html-tmenu
+
+Casual HTML is a user interface for @code{html-mode} (@ref{HTML Mode,html-mode,,emacs,}). 
+
+@image{images/casual-html-screenshot,,,,png}
+Casual also has support for CSS editing (@ref{CSS}).
+
+@menu
+* HTML Install::
+* HTML Usage::
+@end menu
+
+@node HTML Install
+@subsection HTML Install
+
+@cindex HTML Install
+
+In your initialization file, bind the Transient @code{casual-html-tmenu} to your key binding of preference.
+
+@lisp
+(keymap-set html-mode-map "M-m" #'casual-html-tmenu)
+@end lisp
+
+A different binding (@kbd{M-m}) is used as @code{casual-html-tmenu} is intended to work alongside with @ref{EditKit Install, , Casual EditKit}.
+
+It is convenient to also bind @code{casual-html-tag-tmenu} as well.
+
+@lisp
+(keymap-set html-mode-map "M-m" #'casual-html-tags-tmenu)
+@end lisp
+
+If HTML Tree-sitter support is enabled, set the keymap @code{html-ts-mode-map} instead of @code{html-mode-map}.
+
+@node HTML Usage
+@subsection HTML Usage
+
+@cindex HTML Usage
+
+@image{images/casual-html-screenshot,,,,png}
+
+The following sections are offered in the menu:
+
+@table @asis
+@item </>
+SGML tag-related commands.
+@item HTML
+HTML tag-related commands.
+@item Misc
+Miscellaneous commands.
+@item Navigation
+Navigation commands.
+@end table
+
+Note that the item “@kbd{d} Delete” (bound to @code{sgml-delete-tag}) is not available when HTML Tree-sitter support is enabled.
+
+
+@subheading HTML Tags
+@vindex casual-html-tags-tmenu
+
+This menu provides support for HTML tag-related commands provided by @code{html-mode}.
+
+@image{images/casual-html-tags-screenshot,,,,png}
+
+@subheading HTML Settings
+@vindex casual-html-settings-tmenu
+
+SGML/HTML mode related settings can be customized here.
+
+@image{images/casual-html-settings-screenshot,,,,png}
+
+@subheading HTML Unicode Symbol Support
+
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual html will use Unicode symbols as appropriate in its menus.
 
 @node IBuffer
 @section IBuffer

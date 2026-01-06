@@ -1,5 +1,3 @@
-[[../README.org][❮ Back to Casual]]
-
 * IBuffer
 #+CINDEX: IBuffer
 #+VINDEX: casual-ibuffer-tmenu

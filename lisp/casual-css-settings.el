@@ -1,4 +1,4 @@
-;;; casual-$MODULE-settings.el --- Casual $MODULE Settings -*- lexical-binding: t; -*-
+;;; casual-css-settings.el --- Casual CSS Settings -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2026 Charles Y. Choi
 
@@ -22,31 +22,43 @@
 ;;
 
 ;;; Code:
-(require '$MODULE)
+(require 'css-mode)
 (require 'casual-lib)
 
-(transient-define-prefix casual-$MODULE-settings-tmenu ()
-  "Casual $MODULE settings menu."
-  ["Casual $MODULE: Settings"
+(transient-define-prefix casual-css-settings-tmenu ()
+  "Casual CSS settings menu."
+  ["Casual CSS: Settings"
+   ["Customize"
+    ("o" "Indent Offset" casual-css--customize-indent-offset
+     :description (lambda () (format "Indent Offset (%d)" css-indent-offset)))]
 
-   [("G" "$MODULE Group" casual-$MODULE--customize-group)
-    (casual-lib-customize-unicode)
-    (casual-lib-customize-hide-navigation)]]
+   ["Group"
+    ("G" "CSS Group" casual-css--customize-group)]]
+
+  ["General"
+   :class transient-row
+   (casual-lib-customize-unicode)
+   (casual-lib-customize-hide-navigation)]
 
   [:class transient-row
    (casual-lib-quit-one)
-   ("a" "About" casual-$MODULE-about :transient nil)
+   ("a" "About" casual-css-about :transient nil)
    (casual-lib-quit-all)])
 
-(defun casual-$MODULE--customize-group ()
-  "Customize $MODULE group."
+(defun casual-css--customize-indent-offset ()
+  "Customize CSS `css-indent-offset'."
   (interactive)
-  (customize-group "$MODULE"))
+  (customize-variable 'css-indent-offset))
 
-(defun casual-$MODULE-about-$MODULE ()
-  "Casual $MODULE is a Transient menu for $MODULE pages.
+(defun casual-css--customize-group ()
+  "Customize CSS group."
+  (interactive)
+  (customize-group "css"))
 
-Learn more about using Casual $MODULE at our discussion group on GitHub.
+(defun casual-css-about-css ()
+  "Casual CSS is a Transient menu for CSS mode.
+
+Learn more about using Casual CSS at our discussion group on GitHub.
 Any questions or comments about it should be made there.
 URL `https://github.com/kickingvegas/casual/discussions'
 
@@ -54,22 +66,22 @@ If you find a bug or have an enhancement request, please file an issue.
 Our best effort will be made to answer it.
 URL `https://github.com/kickingvegas/casual/issues'
 
-If you enjoy using Casual $MODULE, consider making a modest financial
+If you enjoy using Casual CSS, consider making a modest financial
 contribution to help support its development and maintenance.
 URL `https://www.buymeacoffee.com/kickingvegas'
 
-Casual $MODULE was conceived and crafted by Charles Choi in San Francisco,
+Casual CSS was conceived and crafted by Charles Choi in San Francisco,
 California.
 
-Thank you for using Casual $MODULE.
+Thank you for using Casual CSS.
 
 Always choose love."
   (ignore))
 
-(defun casual-$MODULE-about ()
-  "About information for Casual $MODULE."
+(defun casual-css-about ()
+  "About information for Casual CSS."
   (interactive)
-  (describe-function #'casual-$MODULE-about-$MODULE))
+  (describe-function #'casual-css-about-css))
 
-(provide 'casual-$MODULE-settings)
-;;; casual-$MODULE-settings.el ends here
+(provide 'casual-css-settings)
+;;; casual-css-settings.el ends here

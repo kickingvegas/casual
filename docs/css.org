@@ -1,0 +1,57 @@
+* CSS
+:PROPERTIES:
+:CUSTOM_ID: css-top
+:END:
+#+CINDEX: CSS
+#+VINDEX: casual-css-tmenu
+
+Casual CSS is a user interface for ~css-mode~. 
+
+[[file:images/casual-css-screenshot.png]]
+Casual also has support for HTML editing ([[#html-top][HTML]]).
+
+
+** CSS Install
+:PROPERTIES:
+:CUSTOM_ID: css-install
+:END:
+
+#+CINDEX: CSS Install
+
+In your initialization file, bind the Transient ~casual-css-tmenu~ to your key binding of preference.
+
+#+begin_src elisp :lexical no
+  (keymap-set css-mode-map "M-m" #'casual-css-tmenu)
+#+end_src
+
+A different binding ({{{kbd(M-m)}}}) is used as ~casual-css-tmenu~ is intended to work alongside with [[#editkit-install][Casual EditKit]].
+
+** CSS Usage
+#+CINDEX: CSS Usage
+
+[[file:images/casual-css-screenshot.png]]
+
+
+The following sections are offered in the menu:
+
+- CSS :: CSS specific commands.
+  - “{{{kbd(l)}}} Lookup Symbol” will reference the symbol's documentation from the Mozilla Developer Network (MDN) website.
+  - “{{{kbd(c)}}} Cycle Color” should be selected when the point is on a color specification.
+- Edit :: Editing commands.
+  - “{{{kbd(f)}}} Indent CSS Rule” is a call to ~fill-paragraph~ whose behavior is adjusted for ~css-mode~.
+- Misc :: Miscellaneous commands.
+  - “{{{kbd(h)}}} Highlight Line” toggles ~hl-line-mode~ to avoid interfering the display of color specifications.
+  
+
+#+TEXINFO: @subheading CSS Settings
+#+VINDEX: casual-css-settings-tmenu
+
+Settings menu for Casual CSS.
+
+
+[[file:images/casual-css-settings-screenshot.png]]
+
+
+#+TEXINFO: @subheading CSS Unicode Symbol Support
+
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual CSS will use Unicode symbols as appropriate in its menus.
