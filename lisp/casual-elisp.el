@@ -1,6 +1,6 @@
 ;;; casual-elisp.el --- Transient UI for Elisp Mode -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Choi
+;; Copyright (C) 2025-2026 Charles Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -45,7 +45,7 @@
     ("L" "Buffer or Region" elisp-eval-region-or-buffer
      :description (lambda () (if (use-region-p) "Region" "Buffer")))
     ("d" "Defun" eval-defun
-     :description (lambda () (if prefix-arg "Edebugⁿ" "Defunⁿ")))]
+     :description (lambda () (if prefix-arg "Edebug" "Defun✦")))]
 
    ["Xref"
     ("." "Definition" xref-find-definitions)

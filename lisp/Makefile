@@ -25,6 +25,7 @@ bookmarks-tests					\
 calc-tests					\
 calendar-tests					\
 compile-tests					\
+css-tests					\
 csv-tests					\
 dired-tests					\
 ediff-tests					\
@@ -32,6 +33,7 @@ editkit-tests					\
 elisp-tests					\
 eshell-tests					\
 help-tests					\
+html-tests					\
 ibuffer-tests					\
 info-tests					\
 isearch-tests					\
@@ -68,6 +70,10 @@ calendar-tests:
 compile-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-compile.make tests
 
+.PHONY: css-tests
+css-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-css.make tests
+
 .PHONY: csv-tests
 csv-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-csv.make tests
@@ -95,6 +101,11 @@ eshell-tests:
 .PHONY: help-tests
 help-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-help.make tests
+
+.PHONY: html-tests
+html-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-html.make tests
+
 
 .PHONY: image-tests
 image-tests:

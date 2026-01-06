@@ -1,5 +1,5 @@
 ##
-# Copyright (C) 2026 Charles Y. Choi
+# Copyright (C) 2025 Charles Y. Choi
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,11 +16,11 @@
 
 include Makefile--defines.make
 
-PACKAGE_NAME=casual-$MODULE
-ELISP_INCLUDES=casual-$MODULE-utils.el	\
-casual-$MODULE-settings.el
+PACKAGE_NAME=casual-html
+ELISP_INCLUDES=casual-html-utils.el	\
+casual-html-settings.el
 ELISP_PACKAGES=
-ELISP_TEST_INCLUDES=casual-$MODULE-test-utils.el
+ELISP_TEST_INCLUDES=casual-html-test-utils.el
 PACKAGE_PATHS=					\
 -L $(EMACS_ELPA_DIR)/compat-current		\
 -L $(EMACS_ELPA_DIR)/seq-current		\

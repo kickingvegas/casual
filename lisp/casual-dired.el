@@ -1,6 +1,6 @@
 ;;; casual-dired.el --- Transient UI for Dired -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -50,6 +50,7 @@
 ;;;###autoload (autoload 'casual-dired-tmenu "casual-dired" nil t)
 (transient-define-prefix casual-dired-tmenu ()
   "Transient menu for Dired."
+  :refresh-suffixes t
   [["File"
     ("o" "Open Other" dired-find-file-other-window :transient nil)
     ("v" "View" dired-view-file)
@@ -87,7 +88,9 @@
     ("$" "Hide/Unhide Subdir" dired-hide-subdir
      :if-not casual-dired-lisp-dired-buffer-p
      :transient t)
-    ("k" "Kill (Hide) Line(s)" dired-do-kill-lines :transient t)
+    ("k" "Kill (Hide) Line(s)" dired-do-kill-lines
+     :description (lambda () (if prefix-arg "Kill Subdir" "Kill (Hide) Line(s)✦"))
+     :transient t)
     ("g" "Revert" revert-buffer :transient t)
     ("f" "Filter by name…" casual-dired-find-dired-regexp)
     ("E" "Edit (wdired)" wdired-change-to-wdired-mode)

@@ -1,0 +1,69 @@
+* HTML
+:PROPERTIES:
+:CUSTOM_ID: html-top
+:END:
+
+#+CINDEX: HTML
+#+VINDEX: casual-html-tmenu
+
+Casual HTML is a user interface for ~html-mode~ ([[info:emacs#HTML Mode][html-mode]]). 
+
+[[file:images/casual-html-screenshot.png]]
+Casual also has support for CSS editing ([[#css-top][CSS]]).
+
+** HTML Install
+:PROPERTIES:
+:CUSTOM_ID: html-install
+:END:
+
+#+CINDEX: HTML Install
+
+In your initialization file, bind the Transient ~casual-html-tmenu~ to your key binding of preference.
+
+#+begin_src elisp :lexical no
+  (keymap-set html-mode-map "M-m" #'casual-html-tmenu)
+#+end_src
+
+A different binding ({{{kbd(M-m)}}}) is used as ~casual-html-tmenu~ is intended to work alongside with [[#editkit-install][Casual EditKit]].
+
+It is convenient to also bind ~casual-html-tag-tmenu~ as well.
+
+#+begin_src elisp :lexical no
+  (keymap-set html-mode-map "M-m" #'casual-html-tags-tmenu)
+#+end_src
+
+If HTML Tree-sitter support is enabled, set the keymap ~html-ts-mode-map~ instead of ~html-mode-map~.
+
+** HTML Usage
+#+CINDEX: HTML Usage
+
+[[file:images/casual-html-screenshot.png]]
+
+The following sections are offered in the menu:
+
+- </> :: SGML tag-related commands.
+- HTML :: HTML tag-related commands.
+- Misc :: Miscellaneous commands.
+- Navigation :: Navigation commands.
+
+Note that the item “{{{kbd(d)}}} Delete” (bound to ~sgml-delete-tag~) is not available when HTML Tree-sitter support is enabled.
+
+
+#+TEXINFO: @subheading HTML Tags
+#+VINDEX: casual-html-tags-tmenu
+
+This menu provides support for HTML tag-related commands provided by ~html-mode~.
+
+[[file:images/casual-html-tags-screenshot.png]]
+
+#+TEXINFO: @subheading HTML Settings
+#+VINDEX: casual-html-settings-tmenu
+
+SGML/HTML mode related settings can be customized here.
+
+[[file:images/casual-html-settings-screenshot.png]]
+
+#+TEXINFO: @subheading HTML Unicode Symbol Support
+
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual html will use Unicode symbols as appropriate in its menus.
+

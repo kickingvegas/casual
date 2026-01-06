@@ -1,4 +1,4 @@
-;;; casual-$MODULE-utils.el --- Casual $MODULE Utils -*- lexical-binding: t; -*-
+;;; casual-html-utils.el --- Casual HTML Utils -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2026 Charles Y. Choi
 
@@ -22,24 +22,15 @@
 ;;
 
 ;;; Code:
-(require '$MODULE)
+(require 'sgml-mode)
 (require 'casual-lib)
 
-(defconst casual-$MODULE-unicode-db
+(defconst casual-html-unicode-db
   '((:previous . '("↑" "Previous"))
-    (:next . '("↓" "Next"))
-    (:goto . '("→" "Goto…"))
-    (:follow . '("🔗…" "Follow…"))
-    (:beginning-of-buffer . '("⇱" "Beginning"))
-    (:end-of-buffer . '("⇲" "End"))
-    (:paragraph . '("¶" "Paragraph"))
-    (:update . '("⟳" "Update"))
-    (:kill . '("×" "Close"))
-    (:see-also . '("👀" "See Also")))
+    (:next . '("↓" "Next")))
+  "Unicode symbol DB to use for HTML Transient menus.")
 
-  "Unicode symbol DB to use for $MODULE Transient menus.")
-
-(defun casual-$MODULE-unicode-get (key)
+(defun casual-html-unicode-get (key)
   "Lookup Unicode symbol for KEY in DB.
 
 - KEY symbol used to lookup Unicode symbol in DB.
@@ -47,11 +38,11 @@
 If the value of customizable variable `casual-lib-use-unicode'
 is non-nil, then the Unicode symbol is returned, otherwise a
 plain ASCII-range string."
-  (casual-lib-unicode-db-get key casual-$MODULE-unicode-db))
+  (casual-lib-unicode-db-get key casual-html-unicode-db))
 
-(defun casual-$MODULE-info ()
-  "Open Info for Emacs $Module Page."
-  (interactive) (info "(emacs) $MODULE Page"))
+(defun casual-html-info ()
+  "Open Info for Emacs HTML mode."
+  (interactive) (info "(emacs) HTML Mode"))
 
-(provide 'casual-$MODULE-utils)
-;;; casual-$MODULE-utils.el ends here
+(provide 'casual-html-utils)
+;;; casual-html-utils.el ends here

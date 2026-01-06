@@ -1,6 +1,6 @@
 ;;; casual-eshell.el --- Transient UI for Eshell -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Y. Choi
+;; Copyright (C) 2025-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -83,9 +83,9 @@
     ("s" "Show" eshell-show-output)
     ("." "Show Max" eshell-show-maximum-output)
     ("m" "Mark" eshell-mark-output
-     :description (lambda () (if prefix-arg "Narrow" "Markⁿ")))
+     :description (lambda () (if prefix-arg "Narrow" "Mark✦")))
     ("D" "Delete" eshell-delete-output
-     :description (lambda () (if prefix-arg "Kill" "Deleteⁿ")))]
+     :description (lambda () (if prefix-arg "Kill" "Delete✦")))]
 
    ["Output"
     :if buffer-narrowed-p

@@ -5,7 +5,7 @@
 #+EMAIL: kickingvegas@gmail.com
 #+OPTIONS: ':t toc:t author:t email:t H:4 f:t
 #+LANGUAGE: en
-#+MACRO: version 2.11.2
+#+MACRO: version 2.11.3-rc.1
 #+MACRO: kbd (eval (org-texinfo-kbd-macro $1))
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_CLASS: casual
@@ -18,6 +18,8 @@
 #+TEXINFO_PRINTED_TITLE: Casual User Guide
 
 Version: {{{version}}}
+
+#+TEXINFO: Copyright © 2024-2026 @w{Charles Y. Choi}
 
 Casual is a project to re-imagine the primary user interface for Emacs using keyboard-driven menus.
 
@@ -101,7 +103,7 @@ If a mouse is available, a menu item can be selected by moving the mouse cursor 
 
 Pressing the {{{kbd(?)}}} key or {{{kbd(C-h)}}} will toggle help for all the menu items. Press the key of interest to get help for it.
 
-When a Transient menu is raised, a prefix argument ({{{kbd(C-u)}}}) and an optional argument can be entered before selecting a menu item.
+When a Transient menu is raised, a command prefix argument ({{{kbd(C-u)}}}) and an optional argument can be entered before selecting a menu item. Menu items which particularly use a command prefix are annotated with the ✦ glyph. The command prefix can be cancelled with {{{kbd(C-g)}}}.
 
 For Transient menus that offer setting different values, the following bindings will allow you save them:
 
@@ -133,7 +135,6 @@ Certain menus require more installed software:
 - Casual Dired: GNU Coreutils
 - Casual Image: ImageMagick 6+
 
-
 * Install
 #+CINDEX: Install
 
@@ -147,6 +148,7 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[#calc-install][Calc]]
 - [[#calendar-install][Calendar]]
 - [[#compile-install][Compile (Grep)]]
+- [[#css-install][CSS]]
 - [[#csv-install][CSV]]
 - [[#dired-install][Dired]]
 - [[#ediff-install][Ediff]]
@@ -154,6 +156,7 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[#elisp-install][Elisp]]
 - [[#eshell-install][Eshell]]
 - [[#help-install][Help]]
+- [[#html-install][HTML]]
 - [[#ibuffer-install][IBuffer]]
 - [[#image-install][Image]]
 - [[#info-install][Info]]
@@ -244,7 +247,7 @@ Casual annotates menu labels with the following conventions:
 
 - ‘…’ :: If the label ends with an ellipsis, then the command will prompt the user for input.
 - ‘›’ :: If the label ends with a right-pointing arrow, then the item will raise a sub-menu.
-- ‘ⁿ’ :: If the label ends with the superscript ‘ⁿ’, then the command supports a prefix {{{kbd(C-u)}}}. 
+- ‘✦’ :: If the label ends with the glyph ✦ (BLACK FOUR POINTED STAR), then the command supports a prefix {{{kbd(C-u)}}}. 
 
 * Casual Modes
 #+CINDEX: Casual Modes
@@ -261,6 +264,7 @@ The following modes are supported by Casual:
 #+INCLUDE: "./calc.org" :minlevel 2
 #+INCLUDE: "./calendar.org" :minlevel 2
 #+INCLUDE: "./compile.org" :minlevel 2
+#+INCLUDE: "./css.org" :minlevel 2
 #+INCLUDE: "./csv.org" :minlevel 2
 #+INCLUDE: "./dired.org" :minlevel 2
 #+INCLUDE: "./ediff.org" :minlevel 2
@@ -268,6 +272,7 @@ The following modes are supported by Casual:
 #+INCLUDE: "./elisp.org" :minlevel 2
 #+INCLUDE: "./eshell.org" :minlevel 2
 #+INCLUDE: "./help.org" :minlevel 2
+#+INCLUDE: "./html.org" :minlevel 2
 #+INCLUDE: "./ibuffer.org" :minlevel 2
 #+INCLUDE: "./image.org" :minlevel 2
 #+INCLUDE: "./info.org" :minlevel 2
