@@ -14,6 +14,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+ifdef EMACS_APP_EXEC
+  EXEC_NAME=$(EMACS_APP_EXEC)
+else
+  EXEC_NAME=emacs
+endif
+
 TIMESTAMP := $(shell /bin/date "+%Y%m%d_%H%M%S")
 PKG_NAME=casual
 
@@ -24,14 +30,21 @@ $(PKG_NAME).info: $(PKG_NAME).texi
 run: $(PKG_NAME).info
 
 .PHONY: clean
-clean:
-	- rm $(PKG_NAME).texi
+clean: clean-html
+	- rm $(PKG_NAME).texi $(PKG_NAME).info
+
+.PHONY: gen-info
+gen-info:
+	$(EXEC_NAME) -Q --batch									\
+-l casualdocs.el										\
+casual.org											\
+--eval "(with-current-buffer (find-file-noselect \"casual.org\") (org-texinfo-export-to-info))"
 
 html:
 	mkdir html
 
 .PHONY: gen-html
-gen-html: html html/images html/main.css sync-images
+gen-html: gen-info html html/images html/main.css sync-images
 	makeinfo				\
 	--html					\
 	--css-ref=main.css			\
@@ -54,7 +67,7 @@ html/main.css: main.css
 
 .PHONY: clean-html
 clean-html:
-	rm -rf html
+	- rm -rf html
 
 .PHONY: open-html
 open-html:

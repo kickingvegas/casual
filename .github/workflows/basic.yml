@@ -25,6 +25,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
+      - name: Install Emacs
+        run: |
+          sudo apt-get update
+          sudo apt-get install emacs        
+
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
@@ -33,5 +38,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Generating Casual User Guide
-          make -C docs gen-html
+          make -C docs gen-info gen-html
           
