@@ -30,7 +30,7 @@ The following sections are offered in the menu:
 - Input :: Commands supporting input to the current prompt. 
 - Argument :: Commands supporting arguments in the current prompt.
 - Prompt :: Navigation of previous prompt commands.
-- Output :: Commands related to display of prompt. Commands marked with an ~n~ superscript support an optional prefix ({{{kbd(C-u)}}}) value.
+- Output :: Commands related to display of prompt. Commands marked with the glyph ✦ support an optional prefix ({{{kbd(C-u)}}}) value.
 - Misc :: Miscellaneous commands.
 - Process :: Signal commands to send to the process. This section is only visible when a process is running.
   
@@ -41,4 +41,8 @@ The following sections are offered in the menu:
 #+TEXINFO: @subheading Eshell Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Eshell will use Unicode symbols as appropriate in its menus.
+
+
+[[file:images/casual-eshell-unicode-screenshot.png]]
+
 

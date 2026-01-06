@@ -45,7 +45,7 @@ The following sections are offered in the menu:
 #+TEXINFO: @subheading Edebug Support
 #+CINDEX: Edebug
 
-Using the prefix {{{kbd(C-u)}}} when ~casual-elisp-tmenu~ is raised will change the “{{{kbd(d)}}} Defunⁿ” menu item to “{{{kbd(d)}}} Edebugⁿ” to support instrumenting a function for Edebug ([[info:elisp#Edebug]]).
+Using the command prefix {{{kbd(C-u)}}} when ~casual-elisp-tmenu~ is raised will change the “{{{kbd(d)}}} Defun✦” menu item to “{{{kbd(d)}}} Edebug” to support instrumenting a function for Edebug ([[info:elisp#Edebug]]).
 
 [[file:images/casual-elisp-edebug-screenshot.png]]
 
@@ -53,3 +53,4 @@ Using the prefix {{{kbd(C-u)}}} when ~casual-elisp-tmenu~ is raised will change 
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Elisp will use Unicode symbols as appropriate in its menus.
 
+[[file:images/casual-elisp-unicode-screenshot.png]]

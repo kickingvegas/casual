@@ -396,7 +396,7 @@ If a mouse is available, a menu item can be selected by moving the mouse cursor 
 
 Pressing the @kbd{?} key or @kbd{C-h} will toggle help for all the menu items. Press the key of interest to get help for it.
 
-When a Transient menu is raised, a prefix argument (@kbd{C-u}) and an optional argument can be entered before selecting a menu item.
+When a Transient menu is raised, a command prefix argument (@kbd{C-u}) and an optional argument can be entered before selecting a menu item. Menu items which particularly use a command prefix are annotated with the ✦ glyph. The command prefix can be cancelled with @kbd{C-g}.
 
 For Transient menus that offer setting different values, the following bindings will allow you save them:
 
@@ -612,8 +612,8 @@ Casual annotates menu labels with the following conventions:
 If the label ends with an ellipsis, then the command will prompt the user for input.
 @item ‘›’
 If the label ends with a right-pointing arrow, then the item will raise a sub-menu.
-@item ‘ⁿ’
-If the label ends with the superscript ‘ⁿ’, then the command supports a prefix @kbd{C-u}. 
+@item ‘✦’
+If the label ends with the glyph ✦ (BLACK FOUR POINTED STAR), then the command supports a prefix @kbd{C-u}. 
 @end table
 
 @node Casual Modes
@@ -1768,7 +1768,7 @@ Casual Dired organizes its main menu into the following sections:
 File-related commands are placed here. Most of the commands will also operate on marked files (see @strong{Mark} item below).
 
 @item Directory
-Directory-related commands. Subdir view commands are also made available in this section. To remove a subdir view, use the prefix @kbd{C-u} before pressing the binding @kbd{k} to kill a subdir view.
+Directory-related commands. Subdir view commands are also made available in this section. To remove a subdir view, use the command prefix @kbd{C-u} before pressing the binding @kbd{k} to kill a subdir view.
 
 @item Mark
 Marking operations are available here. Commands in the “@kbd{#} Utils›” sub-menu can be used to operate on marked items. In addition, many commands from the @strong{File} section can be operate on marked items.
@@ -2359,13 +2359,15 @@ Commands for Sexp (balanced expression) navigation.
 @subheading Edebug Support
 @cindex Edebug
 
-Using the prefix @kbd{C-u} when @code{casual-elisp-tmenu} is raised will change the “@kbd{d} Defunⁿ” menu item to “@kbd{d} Edebugⁿ” to support instrumenting a function for Edebug (@ref{Edebug,,,elisp,}).
+Using the command prefix @kbd{C-u} when @code{casual-elisp-tmenu} is raised will change the “@kbd{d} Defun✦” menu item to “@kbd{d} Edebug” to support instrumenting a function for Edebug (@ref{Edebug,,,elisp,}).
 
 @image{images/casual-elisp-edebug-screenshot,,,,png}
 
 @subheading Elisp Unicode Symbol Support
 
 By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Elisp will use Unicode symbols as appropriate in its menus.
+
+@image{images/casual-elisp-unicode-screenshot,,,,png}
 
 @node Eshell
 @section Eshell
@@ -2410,7 +2412,7 @@ Commands supporting arguments in the current prompt.
 @item Prompt
 Navigation of previous prompt commands.
 @item Output
-Commands related to display of prompt. Commands marked with an @code{n} superscript support an optional prefix (@kbd{C-u}) value.
+Commands related to display of prompt. Commands marked with the glyph ✦ support an optional prefix (@kbd{C-u}) value.
 @item Misc
 Miscellaneous commands.
 @item Process
@@ -2424,6 +2426,9 @@ Signal commands to send to the process. This section is only visible when a proc
 @subheading Eshell Unicode Symbol Support
 
 By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Eshell will use Unicode symbols as appropriate in its menus.
+
+
+@image{images/casual-eshell-unicode-screenshot,,,,png}
 
 @node Help
 @section Help

@@ -117,7 +117,7 @@ Casual Dired organizes its main menu into the following sections:
 
 - File :: File-related commands are placed here. Most of the commands will also operate on marked files (see *Mark* item below).
 
-- Directory :: Directory-related commands. Subdir view commands are also made available in this section. To remove a subdir view, use the prefix {{{kbd(C-u)}}} before pressing the binding {{{kbd(k)}}} to kill a subdir view.
+- Directory :: Directory-related commands. Subdir view commands are also made available in this section. To remove a subdir view, use the command prefix {{{kbd(C-u)}}} before pressing the binding {{{kbd(k)}}} to kill a subdir view.
 
 - Mark :: Marking operations are available here. Commands in the “{{{kbd(#)}}} Utils›” sub-menu can be used to operate on marked items. In addition, many commands from the *File* section can be operate on marked items.
 

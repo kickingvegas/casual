@@ -103,7 +103,7 @@ If a mouse is available, a menu item can be selected by moving the mouse cursor 
 
 Pressing the {{{kbd(?)}}} key or {{{kbd(C-h)}}} will toggle help for all the menu items. Press the key of interest to get help for it.
 
-When a Transient menu is raised, a prefix argument ({{{kbd(C-u)}}}) and an optional argument can be entered before selecting a menu item.
+When a Transient menu is raised, a command prefix argument ({{{kbd(C-u)}}}) and an optional argument can be entered before selecting a menu item. Menu items which particularly use a command prefix are annotated with the ✦ glyph. The command prefix can be cancelled with {{{kbd(C-g)}}}.
 
 For Transient menus that offer setting different values, the following bindings will allow you save them:
 
@@ -247,7 +247,7 @@ Casual annotates menu labels with the following conventions:
 
 - ‘…’ :: If the label ends with an ellipsis, then the command will prompt the user for input.
 - ‘›’ :: If the label ends with a right-pointing arrow, then the item will raise a sub-menu.
-- ‘ⁿ’ :: If the label ends with the superscript ‘ⁿ’, then the command supports a prefix {{{kbd(C-u)}}}. 
+- ‘✦’ :: If the label ends with the glyph ✦ (BLACK FOUR POINTED STAR), then the command supports a prefix {{{kbd(C-u)}}}. 
 
 * Casual Modes
 #+CINDEX: Casual Modes
