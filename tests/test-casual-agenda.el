@@ -205,10 +205,12 @@
             (casualt-mock #'org-agenda-redo-all)
             (casualt-mock #'org-agenda-goto-date)
             (casualt-mock #'org-agenda-clock-goto)
-            (casualt-mock #'org-agenda-set-property))
+            (casualt-mock #'org-agenda-set-property)
+            (casualt-mock #'org-agenda-bulk-action))
 
     (let ((test-vectors
            '((:binding "t" :command org-agenda-todo)
+             (:binding "B" :command org-agenda-bulk-action)
              (:binding "s" :command org-agenda-schedule)
              (:binding "d" :command org-agenda-deadline)
              (:binding ":" :command org-agenda-set-tags)

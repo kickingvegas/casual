@@ -137,7 +137,8 @@
    :pad-keys t
    :inapt-if-not (lambda () (casual-agenda-headlinep))
    [("t" "Todo…" org-agenda-todo :transient t)
-    (":" "Tags…" org-agenda-set-tags :transient t)]
+    (":" "Tags…" org-agenda-set-tags :transient t)
+    ("B" "Bulk Action…" org-agenda-bulk-action :transient t)]
    [("s" "Schedule…" org-agenda-schedule :transient t)
     ("d" "Deadline…" org-agenda-deadline :transient t)]
    [("+" "↑ Priority" org-agenda-priority-up
