@@ -29,10 +29,10 @@ A different binding ({{{kbd(M-m)}}}) is used as ~casual-html-tmenu~ is intended 
 It is convenient to also bind ~casual-html-tag-tmenu~ as well.
 
 #+begin_src elisp :lexical no
-  (keymap-set html-mode-map "M-m" #'casual-html-tags-tmenu)
+  (keymap-set html-mode-map "C-c m" #'casual-html-tags-tmenu)
 #+end_src
 
-If HTML Tree-sitter support is enabled, set the keymap ~html-ts-mode-map~ instead of ~html-mode-map~.
+If HTML Tree-sitter support is enabled, use the keymap ~html-ts-mode-map~ in place of ~html-mode-map~.
 
 ** HTML Usage
 #+CINDEX: HTML Usage
