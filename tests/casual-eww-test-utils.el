@@ -1,6 +1,6 @@
-;;; test-casual-$MODULE.el --- Casual Make Tests -*- lexical-binding: t; -*-
+;;; casual-eww-test-utils.el --- Casual Test Utils       -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2026 Charles Y. Choi
+;; Copyright (C) 2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -23,26 +23,17 @@
 ;;
 
 ;;; Code:
-
 (require 'ert)
-(require 'casual-$MODULE-test-utils)
-(require 'casual-lib-test-utils)
-(require 'casual-$MODULE)
+(require 'casual-lib)
+(require 'kmacro)
 
-(ert-deftest test-casual-$MODULE-tmenu ()
-  (let ()
-    (casualt-$MODULE-setup)
+(defun casualt-eww-setup ()
+  "Casual eww setup."
+  )
 
-    (cl-letf ((casualt-mock #'quit-window))
+(defun casualt-eww-breakdown ()
+  "Casual eww breakdown."
+  )
 
-      (let ((test-vectors
-             '((:binding "q" :command quit-window)
-               )))
-
-        (casualt-suffix-testcase-runner test-vectors
-                                        #'casual-$MODULE-tmenu
-                                        '(lambda () (random 5000)))))
-    (casualt-$MODULE-breakdown)))
-
-(provide 'test-casual-$MODULE)
-;;; test-casual-$MODULE.el ends here
+(provide 'casual-eww-test-utils)
+;;; casual-eww-test-utils.el ends here
