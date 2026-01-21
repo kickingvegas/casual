@@ -1,5 +1,5 @@
 ##
-# Copyright (C) 2024-2025 Charles Y. Choi
+# Copyright (C) 2024-2026 Charles Y. Choi
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@ ediff-tests					\
 editkit-tests					\
 elisp-tests					\
 eshell-tests					\
+eww-tests					\
 help-tests					\
 html-tests					\
 ibuffer-tests					\
@@ -97,6 +98,10 @@ elisp-tests:
 .PHONY: eshell-tests
 eshell-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-eshell.make tests
+
+.PHONY: eww-tests
+eww-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-eww.make tests
 
 .PHONY: help-tests
 help-tests:

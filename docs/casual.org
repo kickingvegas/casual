@@ -5,7 +5,7 @@
 #+EMAIL: kickingvegas@gmail.com
 #+OPTIONS: ':t toc:t author:t email:t H:4 f:t
 #+LANGUAGE: en
-#+MACRO: version 2.12.1
+#+MACRO: version 2.12.2-rc.1
 #+MACRO: kbd (eval (org-texinfo-kbd-macro $1))
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_CLASS: casual
@@ -155,6 +155,7 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[#editkit-install][EditKit]]
 - [[#elisp-install][Elisp]]
 - [[#eshell-install][Eshell]]
+- [[#eww-install][EWW]]
 - [[#help-install][Help]]
 - [[#html-install][HTML]]
 - [[#ibuffer-install][IBuffer]]
@@ -271,6 +272,7 @@ The following modes are supported by Casual:
 #+INCLUDE: "./editkit.org" :minlevel 2
 #+INCLUDE: "./elisp.org" :minlevel 2
 #+INCLUDE: "./eshell.org" :minlevel 2
+#+INCLUDE: "./eww.org" :minlevel 2
 #+INCLUDE: "./help.org" :minlevel 2
 #+INCLUDE: "./html.org" :minlevel 2
 #+INCLUDE: "./ibuffer.org" :minlevel 2

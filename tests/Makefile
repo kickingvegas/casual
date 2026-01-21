@@ -31,6 +31,7 @@ ediff-tests					\
 editkit-tests					\
 elisp-tests					\
 eshell-tests					\
+eww-tests					\
 help-tests					\
 html-tests					\
 ibuffer-tests					\
@@ -57,6 +58,7 @@ ediff-tests					\
 editkit-tests					\
 elisp-tests					\
 eshell-tests					\
+eww-tests					\
 help-tests					\
 html-tests					\
 ibuffer-tests					\
@@ -107,6 +109,9 @@ elisp-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 eshell-tests:
+	$(MAKE) -C $(SRC_DIR) $@
+
+eww-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 help-tests:

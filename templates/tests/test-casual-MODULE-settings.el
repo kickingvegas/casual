@@ -1,6 +1,6 @@
 ;;; test-casual-$MODULE-settings.el --- Casual Make Settings Tests  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Y. Choi
+;; Copyright (C) 2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools

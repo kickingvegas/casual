@@ -1,11 +1,11 @@
 ;;; casual.el --- Transient user interfaces for various modes -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025 Charles Y. Choi
+;; Copyright (C) 2024-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual
 ;; Keywords: tools, wp
-;; Version: 2.12.1
+;; Version: 2.12.2-rc.1
 ;; Package-Requires: ((emacs "29.1") (transient "0.9.0") (csv-mode "1.27"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -73,6 +73,9 @@
 ;; - Eshell (Elisp library: `casual-eshell.el')
 ;;   An interface for Eshell, a shell-like command interpreter implemented in
 ;;   Emacs Lisp.
+
+;; - EWW (Elisp library: `casual-eww.el')
+;;   An interface for EWW (Emacs Web Wowser), a web browser for GNU Emacs.
 
 ;; - Help (Elisp library: `casual-help.el')
 ;;   An interface for `help-mode', a major mode for viewing help text and
