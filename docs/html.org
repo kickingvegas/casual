@@ -26,7 +26,7 @@ In your initialization file, bind the Transient ~casual-html-tmenu~ to your key 
 
 A different binding ({{{kbd(M-m)}}}) is used as ~casual-html-tmenu~ is intended to work alongside with [[#editkit-install][Casual EditKit]].
 
-It is convenient to also bind ~casual-html-tag-tmenu~ as well.
+It is convenient to also bind ~casual-html-tags-tmenu~ as well.
 
 #+begin_src elisp :lexical no
   (keymap-set html-mode-map "C-c m" #'casual-html-tags-tmenu)

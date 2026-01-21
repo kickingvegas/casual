@@ -1,6 +1,6 @@
 ;;; casual-$MODULE-test-utils.el --- Casual Test Utils       -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Y. Choi
+;; Copyright (C) 2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
