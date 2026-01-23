@@ -35,6 +35,7 @@
     (:forward . '("→" "Forward"))
     (:back . '("←" "Back"))
     (:link . '("🔗" "Link"))
+    (:up . '("↑" "Up"))
     (:top . '("⤒" "Top"))
     (:history . '("≣" "History"))
     (:page . '("📄" "Page"))
