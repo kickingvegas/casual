@@ -91,7 +91,7 @@ See Info node `(eww)Top' for more information on it."
       :description (lambda () (casual-eww-unicode-get :forward))
       :transient t)
      ("^" "↑" eww-up-url
-      :description (lambda () (casual-eww-unicode-get :previous))
+      :description (lambda () (casual-eww-unicode-get :up))
       :transient t)
      ("t" "⤒" eww-top-url
       :description (lambda () (casual-eww-unicode-get :top))
