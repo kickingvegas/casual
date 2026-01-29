@@ -33,14 +33,20 @@
     (:point-down . '("↓" "Down"))
     (:point-left . '("←" "Left"))
     (:point-right . '("→" "Right"))
+
+    (:window-above . '("↑" "Above"))
+    (:window-below . '("↓" "Below"))
+    (:window-left . '("←" "To Left"))
+    (:window-right . '("→" "To Right"))
+
     (:other-window . '("»" "Other"))
     (:delete-other-windows . '("❏" "Delete other"))
-    (:split-window-below . '("⇩" "Window below"))
-    (:split-window-horizontally . '("⇨" "Window right"))
+    (:split-window-below . '("━" "Below"))
+    (:split-window-horizontally . '("┃" "Right"))
     (:enlarge . '("+" "Enlarge"))
     (:shrink . '("−" "Shrink"))
-    (:horizontal . '("⦵" "Horizontal"))
-    (:vertical . '("⏀" "Vertical"))
+    (:horizontal . '("↔︎" "Horizontal"))
+    (:vertical . '("↕︎" "Vertical"))
     (:first . '("⤒" "first"))
     (:last . '("⤓" "last"))
     (:swap . '("⇄" "Swap"))
@@ -62,6 +68,13 @@ plain ASCII-range string."
   [:class transient-row
    (casual-lib-quit-one)
    ("U" "Undo" undo :transient t)
+   (casual-lib-quit-all)])
+
+(transient-define-group casual-editkit-navigation-group-with-return
+  [:class transient-row
+   (casual-lib-quit-one)
+   ("U" "Undo" undo :transient t)
+   ("RET" "Dismiss" transient-quit-all)
    (casual-lib-quit-all)])
 
 ;; Transient cursor navigation group for Casual EditKit menus.
