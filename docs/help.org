@@ -56,8 +56,16 @@ The following sections are offered in the menu:
 - Describe :: Get help for different Elisp types.
 - Info :: If available, then open this help topic in [[file:info.org][Info]].
 - Source :: Show the Elisp source. If the help displayed is for a customizable variable, then show a customize menu item.
+
+#+TEXINFO: @subheading Help Mode Settings
+#+VINDEX: casual-help-settings-tmenu
+
+The menu ~casual-help-settings-tmenu~ provides access to different ~help-mode~ settings.
+
+# TODO: Insert screenshot
   
 #+TEXINFO: @subheading Help Mode Unicode Symbol Support
 
-By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Man will use Unicode symbols as appropriate in its menus.
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Help will use Unicode symbols as appropriate in its menus.
 
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].

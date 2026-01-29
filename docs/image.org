@@ -45,6 +45,7 @@ The main menu for Casual Image (~casual-image-tmenu~) is organized into the foll
 
 *** Image Resize
 #+CINDEX: Image Resize
+#+VINDEX: casual-image-resize-tmenu
 
 If ImageMagick (version 6 or 7) is installed, Casual Image can resize an image using it. The Transient ~casual-image-resize-tmenu~ is a streamlined interface to the ImageMagick ~-resize~ function.
 
@@ -57,9 +58,18 @@ Note that if the image file has been modified, the resize interface will be disa
 - (o) Output to another file - If enabled, then the user will be prompted for a different output file, else it will /irreversibly/ update the current image file.
 - (t) Type - Specify if /adaptive/ or /interpolative/ resizing should be used. If nothing is specified then /standard/ resizing is used.
 
+*** Image Settings
+#+VINDEX: casual-image-settings-tmenu
+
+The menu ~casual-image-settings-tmenu~ provides access to different ~image-mode~ settings.
+
+# TODO: Insert screenshot
+
 *** Image Unicode Symbol Support
 
-By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Image will use Unicode symbols as appropriate in its menus. 
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Image will use Unicode symbols as appropriate in its menus.
+
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
 
 *** Image Mode Command Naming
 

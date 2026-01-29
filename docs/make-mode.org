@@ -45,6 +45,7 @@ As there are different variants of *make* and makefile formats, you can configur
 
 [[file:images/casual-make-mode-select-screenshot.png]]
 
+The symbol for this menu is ~casual-make-mode-select-tmenu~.
 
 *** Automatic Variables
 #+CINDEX: Automatic Variables
@@ -54,7 +55,10 @@ Casual Make provides a menu to enter GNU Make-style [[info:make#Automatic Variab
 
 [[file:images/casual-make-automatic-variables-screenshot.png]]
 
+The symbol for this menu is ~casual-make-automatic-variables-tmenu~.
 
 *** Make Unicode Symbol Support
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Make will use Unicode symbols as appropriate in its menus.
+
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
 

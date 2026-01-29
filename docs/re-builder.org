@@ -52,13 +52,16 @@ Once a desired regexp pattern is defined, there are two menu items that can be u
 The menu item {{{kbd(i)}}} will invoke the Info page for regexp syntax with respect to the current syntax type.
 
 #+TEXINFO: @subheading Quitting RE-Builder
-Select “{{{kbd(q)}}} Quit” to exit the RE-Builder tool. 
+Select “{{{kbd(q)}}} Quit” to exit the RE-Builder tool.
+
+#+TEXINFO: @subheading RE-Builder Settings
+#+VINDEX: casual-re-builder-settings-tmenu
+
+The menu ~casual-re-builder-settings-tmenu~ provides access to different RE-Builder settings.
+
+# TODO: Insert screenshot
 
 #+TEXINFO: @subheading RE-Builder Unicode Symbol Support
-By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual RE-Builder will use Unicode symbols as appropriate in its menus. The following mapping is shown in the table below:
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual RE-Builder will use Unicode symbols as appropriate in its menus.
 
-| Name      | Plain    | Unicode |
-|-----------+----------+---------|
-| :previous | Previous | ↑       |
-| :next     | Next     | ↓       |
-
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].

@@ -35,6 +35,7 @@ The main menu for Casual Timezone (~casual-timezone-tmenu~) offers the following
 
 
 #+TEXINFO: @subheading Timezone Planner
+#+VINDEX: casual-timezone-planner
 
 [[file:images/casual-timezone-planner-screenshot.png]]
 
@@ -43,7 +44,6 @@ The command ~casual-timezone-planner~ will prompt the user for one or more time 
 In this table, the point can be navigated using the {{{kbd(p)}}}, {{{kbd(n)}}}, {{{kbd(TAB)}}}, and {{{kbd(S-TAB)}}} bindings.
 
 Use the {{{kbd(T)}}} binding to copy the timestamp under the current point to the ~kill-ring~. The {{{kbd(t)}}} binding will copy all timestamps on the current line to the ~kill-ring~.
-
 
 *** Timezone Formatting
 #+VINDEX: casual-timezone-datestamp-format
@@ -84,5 +84,15 @@ These variables can be customized via the Transient menu ~casual-timezone-settin
 
 The variable ~casual-timezone-zone-info-database~ is default set to the path "/usr/share/zoneinfo/tzdata.zi". Customize this variable if the zoneinfo database is located at a different path.
 
+*** Timezone Settings
+#+VINDEX: casual-timezone-settings-tmenu
+
+The menu ~casual-timezone-settings-tmenu~ provides access to different Casual Timezone settings.
+
+# TODO: Insert screenshot
+
 *** Timezone Unicode Symbol Support
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Timezone will use Unicode symbols as appropriate in its menus.
+
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
+

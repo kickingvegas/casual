@@ -47,7 +47,7 @@ While not necessary, having the current bookmark highlighted is convenient. Enab
 
 Finally, customize the variable ~bookmark-save-flag~ to the value ~1~ to ensure that your bookmark changes are always saved.
 
-The above guidance largely extends the work done in the blog post [[http://yummymelon.com/devnull/using-bookmarks-in-emacs-like-you-do-in-web-browsers.html][Using Bookmarks in Emacs like you do in Web Browsers]]. 
+The above guidance largely extends the work done in the blog post [[http://yummymelon.com/devnull/using-bookmarks-in-emacs-like-you-do-in-web-browsers.html][Using Bookmarks in Emacs like you do in Web Browsers]].
 
 ** Bookmarks Usage
 #+CINDEX: Bookmarks Usage
@@ -70,21 +70,15 @@ Casual Bookmarks organizes its main menu into the following sections:
 - Column :: Commands to navigate and control the display of the table layout for bookmarks.
 
 
+#+TEXINFO: @subheading Sorting
+#+VINDEX: casual-bookmarks-sortby-tmenu
+
+Support for sorting the bookmarks list is provided by the menu ~casual-bookmarks-sortby-tmenu~.
+
 #+TEXINFO: @subheading Unicode Symbol Support
 
 [[file:images/casual-bookmarks-unicode-screenshot.png]]
 
-By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Bookmarks will use Unicode symbols as appropriate in its menus. The following mapping is shown in the table below:
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Bookmarks will use Unicode symbols as appropriate in its menus.
 
-| Name                 | Plain     | Unicode |
-|----------------------+-----------+---------|
-| :previous            | Previous  | ↑       |
-| :next                | Next      | ↓       |
-| :jump                | Jump      | 🚀     |
-| :beginning-of-buffer | Beginning | ⤒      |
-| :end-of-buffer       | End       | ⤓      |
-| :backward            | Backward  | ←       |
-| :forward             | Forward   | →       |
-| :narrow              | Narrow    | →←      |
-| :widen               | Widen     | ←→      |
-
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
