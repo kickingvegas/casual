@@ -23,8 +23,14 @@ A reference menu (~casual-editkit-main-tmenu~) illustrating nearly all the diffe
   (keymap-global-set "C-o" #'casual-editkit-main-tmenu)
 #+end_src
 
-For motivated users desiring a bespoke solution, it is recommended that they use Casual EditKit as a library of menus to build their own workflows.
+Also suggested is to globally bind the window and rectangle menus as shown below.
 
+#+begin_src elisp :lexical no
+  (keymap-global-set "C-c w" #'casual-editkit-windows-tmenu)
+  (keymap-global-set "C-c r" #'casual-editkit-rectangle-tmenu)
+#+end_src
+
+For motivated users desiring a bespoke solution, it is recommended that they use Casual EditKit as a library of menus to build their own workflows.
 
 ** EditKit Usage
 #+CINDEX: EditKit Usage
@@ -71,6 +77,7 @@ Depending on the buffer mode, text can be operated on with different granularity
 #+TEXINFO: @subheading Mark›
 #+CINDEX: Mark commands
 #+VINDEX: casual-editkit-mark-tmenu
+
 Text can be marked with different granularity with this menu. Note that marking functions (Defun) is only supported for modes derived from ~prog-mode~. 
 
 [[file:images/casual-editkit-mark-screenshot.png]]
@@ -141,6 +148,8 @@ This menu offers all the rectangle commands. It is packaged as a sub-menu of ~ca
 
 [[file:images/casual-editkit-rectangle-screenshot.png]]
 
+Users wishing more direct access to this menu can bind ~casual-editkit-rectangle-tmenu~ as shown in the [[#editkit-install][install section]].
+
 
 *** Window management
 #+CINDEX: Window management
@@ -149,6 +158,8 @@ This menu provides support for different Emacs window management commands. Note 
 
 [[file:images/casual-editkit-window-screenshot.png]]
 
+Note that the section “Transpose” is only available if the package [[https://melpa.org/#/transpose-frame][transpose-frame]] is installed.
+
 If the variable ~casual-lib-use-unicode~ is set to ~t~, then Unicode symbols are used in the labels.
 
 [[file:images/casual-editkit-window-unicode-screenshot.png]]
@@ -156,7 +167,8 @@ If the variable ~casual-lib-use-unicode~ is set to ~t~, then Unicode symbols are
 #+TEXINFO: @subheading Window Deletion
 #+CINDEX: Window deletion
 #+VINDEX: casual-editkit-window-delete-tmenu
-This menu provides support for deleting windows.
+
+This menu provides support for deleting windows. Note the commands apply to other windows, not the current one in focus.
 
 [[file:images/casual-editkit-window-delete-screenshot.png]]
 

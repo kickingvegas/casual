@@ -479,87 +479,108 @@ can be accessed here."
   "Menu for ‘Window’ commands.
 
 Commands pertaining to window management operations can be accessed here."
-  ["Window"
-   ["Navigate"
-    :pad-keys t
+
+  ["Casual Window"
+   :description (lambda () (format "Casual Window: %s" (buffer-name)))
+   :pad-keys t
+   ["Focus"
     ("o" "»" other-window
      :description (lambda () (casual-editkit-unicode-get :other-window))
-     :transient t)
+     :transient t)]
+   [""
     ("p" "↑" windmove-up
      :description (lambda () (casual-editkit-unicode-get :point-up))
-     :transient t)
+     :transient nil)
     ("n" "↓" windmove-down
      :description (lambda () (casual-editkit-unicode-get :point-down))
-     :transient t)
+     :transient nil)]
+   [""
     ("b" "←" windmove-left
      :description (lambda () (casual-editkit-unicode-get :point-left))
-     :transient t)
+     :transient nil)
     ("f" "→" windmove-right
      :description (lambda () (casual-editkit-unicode-get :point-right))
-     :transient t)]
+     :transient nil)]
 
    ["Swap"
-    :pad-keys t
     ("s" "⇄"
      window-swap-states
-     :description (lambda () (casual-editkit-unicode-get :swap)))
+     :transient t
+     :description (lambda () (casual-editkit-unicode-get :swap)))]
+   [""
     ("M-p" "↑" windmove-swap-states-up
-     :description (lambda () (casual-editkit-unicode-get :point-up)))
+     :description (lambda () (casual-editkit-unicode-get :point-up))
+     :transient nil)
     ("M-n" "↓" windmove-swap-states-down
-     :description (lambda () (casual-editkit-unicode-get :point-down)))
+     :description (lambda () (casual-editkit-unicode-get :point-down))
+     :transient nil)]
+   [""
     ("M-b" "←" windmove-swap-states-left
-     :description (lambda () (casual-editkit-unicode-get :point-left)))
+     :description (lambda () (casual-editkit-unicode-get :point-left))
+     :transient nil)
     ("M-f" "→" windmove-swap-states-right
-     :description (lambda () (casual-editkit-unicode-get :point-right)))]
+     :description (lambda () (casual-editkit-unicode-get :point-right))
+     :transient nil)]
 
-   ["New"
-    ("1" "❏" delete-other-windows
-     :description (lambda () (casual-editkit-unicode-get :delete-other-windows)))
+   ["Split"
     ("2" "⇩" split-window-below
-     :description (lambda () (casual-editkit-unicode-get :split-window-below)))
+     :description (lambda ()
+                    (casual-editkit-unicode-get :split-window-below)))
+
     ("3" "⇨" split-window-horizontally
-     :description (lambda () (casual-editkit-unicode-get :split-window-horizontally)))]
+     :description (lambda ()
+                    (casual-editkit-unicode-get :split-window-horizontally)))]]
 
-   ["Misc"
-    ("t" "Transpose" casual-editkit-transpose-frame
-     :if casual-editkit-package-transpose-frame-installed-p)
-    ;; ("T" "Toggle Tab Bar" mac-toggle-tab-bar
-    ;;  :if casual-editkit-window-system-mac-p)
-    ;;("J" "Jump to Window…" ace-select-window)
-    ("d" "Delete›" casual-editkit-windows-delete-tmenu)]]
+  [["Delete"
+    :pad-keys t
+    ("1" "Other" delete-other-windows)
+    ("DEL" "Delete›" casual-editkit-windows-delete-tmenu)]
 
-  ["Resize"
-   ["↕︎"
+   ["Resize ↕︎"
     :description (lambda () (casual-editkit-unicode-get :vertical))
     ("+" "Enlarge" enlarge-window
      :description (lambda () (casual-editkit-unicode-get :enlarge))
      :transient t)
     ("-" "Shrink" shrink-window
      :description (lambda () (casual-editkit-unicode-get :shrink))
-     :transient t)]
-   ["↔︎"
+     :transient t)
+    ]
+
+   ["Resize ↔︎"
     :description (lambda () (casual-editkit-unicode-get :horizontal))
-    (">" "Enlarge" enlarge-window-horizontally
+    ("[" "Enlarge" enlarge-window-horizontally
      :description (lambda () (casual-editkit-unicode-get :enlarge))
      :transient t)
-    ("<" "Shrink" shrink-window-horizontally
+    ("]" "Shrink" shrink-window-horizontally
      :description (lambda () (casual-editkit-unicode-get :shrink))
-     :transient t)]]
+     :transient t)]
 
-  casual-editkit-navigation-group)
+   ["Transpose"
+    :if casual-editkit-package-transpose-frame-installed-p
+    ("t" "Transpose" casual-editkit-transpose-frame)]]
+
+  casual-editkit-navigation-group-with-return)
 
 ;;;###autoload (autoload 'casual-editkit-windows-delete-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-windows-delete-tmenu ()
-    "Menu for ‘Window Delete’ commands.
+  "Menu for ‘Window Delete’ commands.
 
 Commands pertaining to window deletion operations can be
 accessed here."
   ["Delete Window"
-   ("p" "Above" windmove-delete-up)
-   ("n" "Below" windmove-delete-down)
-   ("b" "On Left" windmove-delete-left)
-   ("f" "On Right" windmove-delete-right)]
-  [(casual-lib-quit-all)])
+   :pad-keys t
+   [("b" "To Left" windmove-delete-left
+     :description (lambda () (casual-editkit-unicode-get :window-left)))]
+
+   [("p" "Above" windmove-delete-up
+     :description (lambda () (casual-editkit-unicode-get :window-above)))
+    ("n" "Below" windmove-delete-down
+     :description (lambda () (casual-editkit-unicode-get :window-below)))]
+
+   [("f" "To Right" windmove-delete-right
+     :description (lambda () (casual-editkit-unicode-get :window-right)))]]
+
+   casual-editkit-navigation-group-with-return)
 
 ;;;###autoload (autoload 'casual-editkit-bookmarks-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-bookmarks-tmenu ()
@@ -722,10 +743,9 @@ Commands pertaining to rectangle operations can be accessed here."
     ("D" "Delete Leading Spaces" delete-whitespace-rectangle
      :if-not casual-editkit-buffer-read-only-p
      :inapt-if-not use-region-p
-     :transient t)
-    ("RET" "Done" transient-quit-all)]]
+     :transient t)]]
   casual-editkit-cursor-navigation-group
-  casual-editkit-navigation-group)
+  casual-editkit-navigation-group-with-return)
 
 ;;;###autoload (autoload 'casual-editkit-transform-text-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-transform-text-tmenu ()
