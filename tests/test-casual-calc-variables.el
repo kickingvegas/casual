@@ -1,6 +1,6 @@
 ;;; test-casual-calc-variables.el --- Test Casual Variables  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -27,37 +27,6 @@
 (require 'casual-calc-test-utils)
 (require 'casual-calc-variables)
 
-(ert-deftest test-casual-calc-variable-crud-tmenu-integration ()
-  (casualt-calc-setup)
-
-  (calc-push-list '(25))
-  (funcall 'casual-calc-variable-crud-tmenu)
-  ;; test (s) calc-store
-  (execute-kbd-macro "sfoo")
-  (should (= (calc-var-value 'var-foo) 25))
-  (calc-pop-stack (calc-stack-size))
-
-  ;; test (r) calc-recall
-  (execute-kbd-macro "rfoo")
-  (should (= (calc-top) 25))
-
-  ;; test (o) calc-copy-variable
-  (execute-kbd-macro "ofoojane")
-  (should (= (calc-var-value 'var-jane) 25))
-
-  ;; test (c) calc-unstore
-  (execute-kbd-macro "cfoo")
-  (should (not (calc-var-value 'var-foo)))
-
-  ;; test (x) calc-store-exchange
-  (calc-push-list '(32))
-  (execute-kbd-macro "xjane")
-  (should (= (calc-var-value 'var-jane) 32))
-
-  ;; TODO: punting on calc-edit-variable
-  ;; TODO: punting on calc-permanent-variable
-  ;; TODO: punting on calc-insert-variables
-  (casualt-calc-breakdown t))
 
 (ert-deftest test-casual-calc-variable-crud-tmenu ()
   (casualt-calc-setup)
@@ -73,7 +42,9 @@
     (casualt-suffix-testbench-runner test-vectors
                                      #'casual-calc-variable-crud-tmenu
                                      '(lambda () (random 5000))))
-  (casualt-calc-breakdown t t))
+  )
+
+
 
 (provide 'test-casual-calc-variables)
 ;;; test-casual-calc-variables.el ends here

@@ -1,6 +1,6 @@
 ;;; casual-csv-utils.el --- Casual CSV Utils -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025 Charles Y. Choi
+;; Copyright (C) 2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -98,7 +98,7 @@ plain ASCII-range string."
 
   [:class transient-row
           (casual-lib-quit-one)
-          ("RET" "Dismiss" casual-lib-quit-all)
+          ("RET" "Done" casual-lib-quit-all)
           (casual-lib-quit-all)])
 
 (provide 'casual-csv-utils)

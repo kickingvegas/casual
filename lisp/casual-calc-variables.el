@@ -1,6 +1,6 @@
 ;;; casual-calc-variables.el --- Casual Variable Menu     -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -35,22 +35,23 @@
 Operations to store, recall, clear, and edit variables are provided by this
 menu."
   ["Variable Operations"
-   ("s" "Store (𝟣:)…" casual-calc--store :transient t)
-   ("r" "Recall…" casual-calc--recall :transient t)
-   ("c" "Clear…" casual-calc--unstore :transient t)
-   ("e" "Edit…" casual-calc--edit-variable :transient nil)
-   ("o" "Copy to other variable…" casual-calc--copy-variable :transient t)
-   ("x" "Exchange (𝟣:) to variable…" casual-calc--store-exchange :transient t)
-   ("p" "Persist…" casual-calc--permanent-variable :transient t)
-   ("O" "Open Calc Settings File" casual-calc-open-settings-file :transient nil)
-   ("i" "Insert variables into buffer…" casual-calc--insert-variables :transient t)]
+   [("s" "Store (𝟣:)…" casual-calc--store :transient nil)
+    ("r" "Recall…" casual-calc--recall :transient nil)
+    ("c" "Clear…" casual-calc--unstore :transient nil)]
+   [("e" "Edit…" casual-calc--edit-variable :transient nil)
+    ("o" "Copy to other variable…" casual-calc--copy-variable :transient t)
+    ("x" "Exchange (𝟣:) to variable…" casual-calc--store-exchange :transient t)]
+
+   [("p" "Persist…" casual-calc--permanent-variable :transient t)
+    ("O" "Open Calc Settings File" casual-calc-open-settings-file :transient nil)
+    ("i" "Insert variables into buffer…" casual-calc--insert-variables :transient nil)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          (casual-calc-algebraic-entry)
-          (casual-calc-pop)
-          (casual-calc-undo-suffix)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   (casual-calc-algebraic-entry)
+   (casual-calc-pop)
+   (casual-calc-undo-suffix)
+   (casual-lib-quit-all)])
 
 (provide 'casual-calc-variables)
 ;;; casual-calc-variables.el ends here
