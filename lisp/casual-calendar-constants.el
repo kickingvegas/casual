@@ -1,6 +1,6 @@
 ;;; casual-calendar-constants.el --- Casual Calendar Constants -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: calendar
@@ -143,7 +143,7 @@ plain ASCII-range string."
 (transient-define-group casual-calendar--menu-navigation-group
   [:class transient-row
    (casual-lib-quit-one)
-   ("RET" "Dismiss" transient-quit-all)
+   ("RET" "Done" transient-quit-all)
    (casual-lib-quit-all)])
 
 (provide 'casual-calendar-constants)

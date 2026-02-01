@@ -66,7 +66,7 @@ Transient menu to commands provided by `css-mode'."
   [:class transient-row
    (casual-lib-quit-one)
    ("," "Settings" casual-css-settings-tmenu)
-   ("RET" "Dismiss" transient-quit-all)
+   ("RET" "Done" transient-quit-all)
    (casual-lib-quit-all)])
 
 (provide 'casual-css)

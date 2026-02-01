@@ -1,6 +1,6 @@
 ;;; casual-calendar-utils.el --- Casual Calendar Utils -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025 Charles Y. Choi
+;; Copyright (C) 2024-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -85,7 +85,7 @@ specific supported non-Gregorian calendar system behavior."
 
   [:class transient-row
    (casual-lib-quit-one)
-   ("RET" "Dismiss" transient-quit-all)
+   ("RET" "Done" transient-quit-all)
    ("I" "ⓘ Info" (lambda ()
                    (interactive)
                    (calendar-exit)

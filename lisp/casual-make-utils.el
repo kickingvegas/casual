@@ -232,7 +232,7 @@ For more info, refer to info node `(make) Automatic Variables'."
   [:class transient-row
    (casual-lib-quit-one)
    (casual-lib-quit-all)
-   ("RET" "Dismiss" casual-lib-quit-all)
+   ("RET" "Done" casual-lib-quit-all)
    ("i" "Info" (lambda () (interactive) (info "(make) Automatic Variables")))])
 
 (provide 'casual-make-utils)

@@ -1,6 +1,6 @@
 ;;; casual-editkit-utils.el --- Casual Bookmarks Utils -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025 Charles Y. Choi
+;; Copyright (C) 2024-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools, wp
@@ -235,12 +235,7 @@ Commands pertaining to editing operations can be accessed here."
     ("r" "Reformat›" casual-editkit-reformat-tmenu
      :if-not (lambda () buffer-read-only))]]
 
-
-  [:class transient-row
-   (casual-lib-quit-one)
-   ("RET" "Done" transient-quit-all)
-   ("U" "Undo" undo :transient t)
-   (casual-lib-quit-all)])
+  casual-editkit-navigation-group)
 
 ;;;###autoload (autoload 'casual-editkit-emoji-symbols-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-emoji-symbols-tmenu ()
@@ -313,11 +308,7 @@ inserting common miscellaneous symbols."
    ("t" "™" (lambda () "Insert trademark sign."
               (interactive) (insert "™")))]
 
-  [:class transient-row
-   (casual-lib-quit-one)
-   ("RET" "Done" transient-quit-all)
-   ("U" "Undo" undo :transient t)
-   (casual-lib-quit-all)])
+  casual-editkit-navigation-group)
 
 ;;;###autoload (autoload 'casual-editkit-mark-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-mark-tmenu ()
@@ -444,8 +435,7 @@ Commands pertaining to move word operations can be accessed here."
   ["Move Word"
    :class transient-row
    ("b" "Backward"  casual-editkit-move-word-backward :transient t)
-   ("f" "Forward"  casual-editkit-move-word-forward :transient t)
-   ("RET" "Done" transient-quit-all)]
+   ("f" "Forward"  casual-editkit-move-word-forward :transient t)]
   casual-editkit-cursor-navigation-group
   casual-editkit-navigation-group)
 
@@ -456,8 +446,7 @@ Commands pertaining to move sentence operations can be accessed here."
   ["Move Sentence"
    :class transient-row
    ("b" "Backward"  casual-editkit-move-sentence-backward :transient t)
-   ("f" "Forward"  casual-editkit-move-sentence-forward :transient t)
-   ("RET" "Done" transient-quit-all)]
+   ("f" "Forward"  casual-editkit-move-sentence-forward :transient t)]
   casual-editkit-cursor-navigation-group
   casual-editkit-navigation-group)
 
@@ -469,8 +458,7 @@ can be accessed here."
   ["Move Sexp"
    :class transient-row
    ("b" "Backward"  casual-editkit-move-sexp-backward :transient t)
-   ("f" "Forward"  casual-editkit-move-sexp-forward :transient t)
-   ("RET" "Done" transient-quit-all)]
+   ("f" "Forward"  casual-editkit-move-sexp-forward :transient t)]
   casual-editkit-cursor-navigation-group
   casual-editkit-navigation-group)
 
@@ -559,12 +547,11 @@ Commands pertaining to window management operations can be accessed here."
     :if casual-editkit-package-transpose-frame-installed-p
     ("t" "Transpose" casual-editkit-transpose-frame)]]
 
-  casual-editkit-navigation-group-with-return)
+  casual-editkit-navigation-group)
 
 ;;;###autoload (autoload 'casual-editkit-windows-delete-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-windows-delete-tmenu ()
   "Menu for ‘Window Delete’ commands.
-
 Commands pertaining to window deletion operations can be
 accessed here."
   ["Delete Window"
@@ -580,7 +567,7 @@ accessed here."
    [("f" "To Right" windmove-delete-right
      :description (lambda () (casual-editkit-unicode-get :window-right)))]]
 
-   casual-editkit-navigation-group-with-return)
+   casual-editkit-navigation-group)
 
 ;;;###autoload (autoload 'casual-editkit-bookmarks-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-bookmarks-tmenu ()
@@ -745,7 +732,7 @@ Commands pertaining to rectangle operations can be accessed here."
      :inapt-if-not use-region-p
      :transient t)]]
   casual-editkit-cursor-navigation-group
-  casual-editkit-navigation-group-with-return)
+  casual-editkit-navigation-group)
 
 ;;;###autoload (autoload 'casual-editkit-transform-text-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-transform-text-tmenu ()
@@ -759,9 +746,7 @@ Commands pertaining to transformation operations can be accessed here."
      :inapt-if-not use-region-p)]
 
    [("l" "Make Lower Case" downcase-dwim :transient t)
-    ("u" "Make Upper Case" upcase-dwim :transient t)]
-
-   [("RET" "Done" transient-quit-all)]]
+    ("u" "Make Upper Case" upcase-dwim :transient t)]]
   casual-editkit-cursor-navigation-group
   casual-editkit-navigation-group)
 

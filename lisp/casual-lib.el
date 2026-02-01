@@ -160,7 +160,7 @@ new buffer. This can be avoided if a prefix ARG is provided."
 
   (let ((filename (buffer-file-name)))
     (unless filename
-      (error "This command only works on a file."))
+      (error "This command only works on a file"))
 
     (let* ((extension (file-name-extension filename t))
            (target (format "%s copy%s"

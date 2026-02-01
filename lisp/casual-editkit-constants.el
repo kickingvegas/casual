@@ -1,6 +1,6 @@
 ;;; casual-editkit-constants.el --- Constants file for Casual EditKit  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools, wp
@@ -68,13 +68,7 @@ plain ASCII-range string."
   [:class transient-row
    (casual-lib-quit-one)
    ("U" "Undo" undo :transient t)
-   (casual-lib-quit-all)])
-
-(transient-define-group casual-editkit-navigation-group-with-return
-  [:class transient-row
-   (casual-lib-quit-one)
-   ("U" "Undo" undo :transient t)
-   ("RET" "Dismiss" transient-quit-all)
+   ("RET" "Done" transient-quit-all)
    (casual-lib-quit-all)])
 
 ;; Transient cursor navigation group for Casual EditKit menus.

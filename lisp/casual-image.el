@@ -1,6 +1,6 @@
 ;;; casual-image.el --- Casual Image                 -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Choi
+;; Copyright (C) 2025-2026 Charles Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -112,6 +112,7 @@
    (casual-lib-quit-one)
    ("I" "Identify" casual-image--indentify-verbose)
    ("," "Settings›" casual-image-settings-tmenu)
+   ("RET" "Done" transient-quit-all)
    (casual-lib-quit-all)
    ("q" "Quit View" quit-window)])
 
