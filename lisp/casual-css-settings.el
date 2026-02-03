@@ -42,7 +42,7 @@
 
   [:class transient-row
    (casual-lib-quit-one)
-   ("a" "About" casual-css-about :transient nil)
+   ("a" "About" casual-css-about)
    (casual-lib-quit-all)])
 
 (defun casual-css--customize-indent-offset ()

@@ -69,6 +69,8 @@ The menu ~casual-image-settings-tmenu~ provides access to different ~image-mode~
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Image will use Unicode symbols as appropriate in its menus.
 
+[[file:images/casual-image-main-unicode-screenshot.png]]
+
 For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
 
 *** Image Mode Command Naming

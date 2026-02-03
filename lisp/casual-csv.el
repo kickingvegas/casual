@@ -1,6 +1,6 @@
 ;;; casual-csv.el --- Transient UI for CSV mode -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Y. Choi
+;; Copyright (C) 2025-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -128,8 +128,9 @@
   [:class transient-row
    (casual-lib-quit-one)
    ("," "Settings" casual-csv-settings-tmenu)
-   ("q" "Quit" quit-window)
-   (casual-lib-quit-all)])
+   ("RET" "Done" transient-quit-all)
+   (casual-lib-quit-all)
+   ("q" "Quit" quit-window)])
 
 (provide 'casual-csv)
 ;;; casual-csv.el ends here

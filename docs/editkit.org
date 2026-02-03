@@ -78,7 +78,7 @@ Depending on the buffer mode, text can be operated on with different granularity
 #+CINDEX: Mark commands
 #+VINDEX: casual-editkit-mark-tmenu
 
-Text can be marked with different granularity with this menu. Note that marking functions (Defun) is only supported for modes derived from ~prog-mode~. 
+Text can be marked with different granularity with this menu. Note that the menu item “{{{kbd(d)}}} Defun” is only supported for modes derived from ~prog-mode~. 
 
 [[file:images/casual-editkit-mark-screenshot.png]]
 
@@ -100,9 +100,19 @@ Text can be cut (killed) with different granularity with this menu.
 #+TEXINFO: @subheading Move› (casual-editkit-move-tmenu)
 #+CINDEX: Move commands
 #+VINDEX: casual-editkit-move-tmenu
+#+VINDEX: casual-editkit-move-word-tmenu
+#+VINDEX: casual-editkit-move-sentence-tmenu
+#+VINDEX: casual-editkit-move-sexp-tmenu
+
 Text can be moved forwards or backwards with different granularity with this menu. Note that selecting a granularity will raise another menu to allow selection of direction (forward, backward) the text is to be moved. To enable repeat operation, that menu is persisted and must be dismissed either with either ~C-q~ (dismiss all) or  ~C-g~ (dismiss to previous menu).
 
 [[file:images/casual-editkit-move-screenshot.png]]
+
+If “{{{kbd(w)}}} Word›” is selected, then the following menu ~casual-editkit-move-word-tmenu~ is displayed.
+
+[[file:images/casual-editkit-move-word-screenshot.png]]
+
+Similar menus for moving a sentence (~casual-editkit-move-sentence-tmenu~) and balanced expression (~casual-editkit-move-sexp-tmenu~) are available.
 
 #+TEXINFO: @subheading Transpose› (casual-editkit-transpose-tmenu)
 #+CINDEX: Transpose commands
@@ -163,12 +173,6 @@ Note that the section “Transpose” is only available if the package [[https:/
 Users wishing more direct access to this menu can bind ~casual-editkit-windows-tmenu~ as shown in the [[#editkit-install][install section]].
 
 
-If the variable ~casual-lib-use-unicode~ is set to ~t~, then Unicode symbols are used in the labels.
-
-[[file:images/casual-editkit-window-unicode-screenshot.png]]
-
-For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
-
 #+TEXINFO: @subheading Window Deletion
 #+CINDEX: Window deletion
 #+VINDEX: casual-editkit-window-delete-tmenu
@@ -176,6 +180,14 @@ For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Co
 This menu provides support for deleting windows. Note the commands apply to other windows, not the current one in focus.
 
 [[file:images/casual-editkit-window-delete-screenshot.png]]
+
+#+TEXINFO: @subheading Window Menu Unicode Symbol Support
+
+If the variable ~casual-lib-use-unicode~ is set to ~t~, then Unicode symbols are used in the labels.
+
+[[file:images/casual-editkit-window-unicode-screenshot.png]]
+
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
 
 *** Search & Replace commands
 #+CINDEX: Search & Replace commands

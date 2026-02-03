@@ -1,6 +1,6 @@
 ;;; casual-make-utils.el --- Casual Make Utils -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025 Charles Y. Choi
+;; Copyright (C) 2025-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -73,6 +73,7 @@ plain ASCII-range string."
 
   [:class transient-row
    (casual-lib-quit-one)
+   ("RET" "Done" casual-lib-quit-all)
    (casual-lib-quit-all)])
 
 (defconst casual-make--autovar-description-map
@@ -231,9 +232,10 @@ For more info, refer to info node `(make) Automatic Variables'."
 
   [:class transient-row
    (casual-lib-quit-one)
-   (casual-lib-quit-all)
+   ("I" "ⓘ Automatic Variables"
+    (lambda () (interactive) (info "(make) Automatic Variables")))
    ("RET" "Done" casual-lib-quit-all)
-   ("i" "Info" (lambda () (interactive) (info "(make) Automatic Variables")))])
+   (casual-lib-quit-all)])
 
 (provide 'casual-make-utils)
 ;;; casual-make-utils.el ends here

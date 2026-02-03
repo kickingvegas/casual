@@ -45,7 +45,7 @@ Also made available is access to a Settings menu (more below) and to the Info do
 *** Diary & Goto Menu
 #+VINDEX: casual-calendar-diary-and-goto-tmenu
 
-From the main menu, choosing “(D) Diary & Goto›” will present choices for diary event insertion and to “goto” a particular date via different specifications.
+From the main menu, choosing “{{{kbd(D)}}} Diary & Goto›” will present choices for diary event insertion and to “goto” a particular date via different specifications.
 
 [[file:images/casual-calendar-diary-menu.png]]
 
@@ -91,7 +91,6 @@ To convert a Lunar (Chinese) date to Gregorian:
 
 1. Choose “(G) Goto…” and follow the prompts.
 
-
 [[file:images/casual-calendar-lunar-menu.png]]
 
 Certain non-Gregorian calendar systems are supported by the diary (Bahá’í, Hebrew, Islamic, Lunar (Chinese)). For such systems, their menus will offer choices to insert diary events.
@@ -109,5 +108,7 @@ From the main menu, choosing “{{{kbd(\,)}}} Settings›” will provide a menu
 
 *** Calendar Unicode Symbol Support
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Calendar will use Unicode symbols as appropriate in its menus.
+
+[[file:images/casual-calendar-main-unicode.png]]
 
 For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].

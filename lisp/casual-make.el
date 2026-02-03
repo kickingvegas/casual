@@ -1,6 +1,6 @@
 ;;; casual-make.el --- Transient UI for Make -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Y. Choi
+;; Copyright (C) 2025-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -78,8 +78,8 @@ This menu provides a user interface for the commands in `make-mode'."
    (casual-lib-quit-one)
    ("," "Settings" casual-make-settings-tmenu)
    ("I" "ⓘ Make" (lambda () (interactive) (info "(make) Top")))
-   (casual-lib-quit-all)
-   ("RET" "Exit Menu" transient-quit-all)])
+   ("RET" "Done" transient-quit-all)
+   (casual-lib-quit-all)])
 
 (provide 'casual-make)
 ;;; casual-make.el ends here
