@@ -60,10 +60,12 @@ The following sections are offered in the menu:
 - Page :: If the Man page reader is configured to display all manual pages for a given search key, navigation commands for multiple pages is provided.
 
 #+TEXINFO: @subheading Options Navigation
+#+VINDEX: casual-man-occur-options
 
 ~casual-man-tmenu~ provides the menu item {{{kbd(o)}}} which runs the command ~casual-man-occur-options~. This will invoke ~occur~ with a regexp that searches for command line options (for example, "--foo", "-a") that can be navigated via the ~occur~ interface.
 
 #+TEXINFO: @subheading Man Settings
+#+VINDEX: casual-man-settings-tmenu
 
 By default, the Man page reader will /not/ display all manual pages for given search key. This can be changed in the Settings menu ~casual-man-settings-tmenu~ that can be invoked by pressing {{{kbd(\,)}}} in ~casual-man-tmenu~. 
 
@@ -75,3 +77,5 @@ Press ‘s’ and configure ~Man-switches~ to have the value "-a" to get all man
 
 #+TEXINFO: @subheading Man Unicode Symbol Support
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Man will use Unicode symbols as appropriate in its menus.
+
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].

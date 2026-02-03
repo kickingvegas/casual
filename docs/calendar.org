@@ -24,7 +24,7 @@ The main menu for Casual Calendar (~casual-calendar-tmenu)~ is invoked by the co
 
 [[file:images/casual-calendar-screenshot.png]]
 
-Whenever the ~calendar~ window (showing three months) is raised, the Casual user interface is invoked via the command ~casual-calendar~. This command is typically bound to a keybinding (e.g. {{{kbd(C-o)}}}). 
+Whenever the ~calendar~ window (showing three months) is raised, the Casual user interface is invoked via the command ~casual-calendar~. This command is typically bound to a keybinding (e.g. {{{kbd(C-o)}}}).
 
 Casual Calendar organizes its main menu into the following sections:
 
@@ -39,34 +39,48 @@ Casual Calendar organizes its main menu into the following sections:
 - Almanac :: Almanac-related commands such the lunar phase, sunrise/sunset times are found here.
 
 - Region :: Support for counting days defined in a region is offered here.
-  
+
 Also made available is access to a Settings menu (more below) and to the Info documentation for ~calendar~.
 
 *** Diary & Goto Menu
+#+VINDEX: casual-calendar-diary-and-goto-tmenu
 
 From the main menu, choosing “(D) Diary & Goto›” will present choices for diary event insertion and to “goto” a particular date via different specifications.
 
-[[file:images/casual-calendar-diary-menu.png]]  
+[[file:images/casual-calendar-diary-menu.png]]
 
 *** Calendar System Date Conversion
+#+VINDEX: casual-calendar-conversions-tmenu
+#+VINDEX: casual-calendar-lunar-tmenu
+#+VINDEX: casual-calendar-astro-tmenu
+#+VINDEX: casual-calendar-islamic-tmenu
+#+VINDEX: casual-calendar-hebrew-tmenu
+#+VINDEX: casual-calendar-bahai-tmenu
+#+VINDEX: casual-calendar-ethiopic-tmenu
+#+VINDEX: casual-calendar-french-tmenu
+#+VINDEX: casual-calendar-julian-tmenu
+#+VINDEX: casual-calendar-coptic-tmenu
+#+VINDEX: casual-calendar-persian-tmenu
+#+VINDEX: casual-calendar-mayan-tmenu
+
 Calendar supports conversion of dates from Gregorian (default) to a number of different calendar systems. Choose "(c) Conversions›" from the main menu to select from a list of such calendars.
 
 [[file:images/casual-calendar-calendars-menu.png]]
 
  Supported calendar systems:
 
-- Astronomical
-- Bahá’í
-- Ethiopic
-- French Revolutionary
-- Hebrew
-- Islamic
-- Julian
-- Lunar (Chinese)
-- Mayan
-- Persian
+- Astronomical (~casual-calendar-astro-tmenu~)
+- Bahá’í (~casual-calendar-bahai-tmenu~)
+- Ethiopic (~casual-calendar-ethiopic-tmenu~)
+- French Revolutionary (~casual-calendar-french-tmenu~)
+- Hebrew (~casual-calendar-hebrew-tmenu~)
+- Islamic (~casual-calendar-islamic-tmenu~)
+- Julian (~casual-calendar-julian-tmenu~)
+- Lunar (Chinese) (~casual-calendar-lunar-tmenu~)
+- Mayan (~casual-calendar-mayan-tmenu~)
+- Persian (~casual-calendar-persian-tmenu~)
 
-Selecting a calendar system will raise a menu that offers date conversion commands between it and the Gregorian system. In the screenshot below, the Lunar (Chinese) calendar system menu is shown. 
+Selecting a calendar system will raise a menu that offers date conversion commands between it and the Gregorian system. In the screenshot below, the Lunar (Chinese) calendar system menu is shown.
 
 To convert a Gregorian date to Lunar (Chinese):
 
@@ -78,7 +92,7 @@ To convert a Lunar (Chinese) date to Gregorian:
 1. Choose “(G) Goto…” and follow the prompts.
 
 
-[[file:images/casual-calendar-lunar-menu.png]]  
+[[file:images/casual-calendar-lunar-menu.png]]
 
 Certain non-Gregorian calendar systems are supported by the diary (Bahá’í, Hebrew, Islamic, Lunar (Chinese)). For such systems, their menus will offer choices to insert diary events.
 
@@ -87,10 +101,13 @@ Note that inserting non-Gregorian diary events require configuration of the vari
 Both of these variables can be configured from the Calendar Settings menu.
 
 *** Calendar Settings Menu
-From the main menu, choosing “{{{kbd(\,)}}} Settings›” will provide a menu of frequently configured calendar and diary-related variables.
+#+VINDEX: casual-calendar-settings-tmenu
 
-[[file:images/casual-calendar-settings-menu.png]]  
+From the main menu, choosing “{{{kbd(\,)}}} Settings›” will provide a menu (~casual-calendar-settings-tmenu~) of frequently configured calendar and diary-related variables.
+
+[[file:images/casual-calendar-settings-menu.png]]
 
 *** Calendar Unicode Symbol Support
-By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Calendar will use Unicode symbols as appropriate in its menus. 
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Calendar will use Unicode symbols as appropriate in its menus.
 
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].

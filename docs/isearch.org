@@ -40,3 +40,20 @@ The main menu for Casual I-Search is organized into the following sections:
 When in search mode (typically via the keybinding {{{kbd(C-s)}}} or {{{kbd(C-r)}}}), pressing the keybinding {{{kbd(C-o)}}} (or binding of your preference) will raise the Transient menu ~casual-isearch-tmenu~. Once raised, only the /I-Search/ commands in the *Toggle*, *Replace*, and *Misc* sections will automatically dismiss the menu when selected. All other /I-Search/ commands will /not/ dismiss the menu.
 
 Use {{{kbd(C-g)}}} to dismiss this Transient menu.
+
+
+#+TEXINFO: @subheading I-Search Settings
+#+VINDEX: casual-isearch-settings-tmenu
+
+The menu ~casual-isearch-settings-tmenu~ provides access to different I-Search settings.
+
+# TODO: Insert screenshot
+
+#+TEXINFO: @subheading I-Search Unicode Symbol Support
+
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual I-Search will use Unicode symbols as appropriate in its menus.
+
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
+
+
+

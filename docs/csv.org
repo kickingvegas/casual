@@ -60,13 +60,15 @@ If the buffer is editable, a common to desire to instead work on a copy of the C
 #+TEXINFO: @subheading CSV Align
 #+VINDEX: casual-csv-align-tmenu
 
-The display of the CSV buffer can be controlled with this menu.
+The display of the CSV buffer can be controlled with the menu ~casual-csv-align-tmenu~.
 
 [[file:images/casual-csv-align-screenshot.png]]
 
 
 #+TEXINFO: @subheading CSV Settings
 #+VINDEX: casual-csv-settings-tmenu
+
+The menu ~casual-csv-settings-tmenu~ provides access to different ~csv-mode~ settings.
 
 [[file:images/casual-csv-settings-screenshot.png]]
 
@@ -77,4 +79,4 @@ By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casua
 
 [[file:images/casual-csv-view-unicode-screenshot.png]]
 
-
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].

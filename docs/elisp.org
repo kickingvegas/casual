@@ -49,8 +49,18 @@ Using the command prefix {{{kbd(C-u)}}} when ~casual-elisp-tmenu~ is raised will
 
 [[file:images/casual-elisp-edebug-screenshot.png]]
 
+
+#+TEXINFO: @subheading Elisp Settings
+#+VINDEX: casual-elisp-settings-tmenu
+
+The menu ~casual-elisp-settings-tmenu~ provides access to different ~emacs-lisp-mode~ settings.
+
+# TODO: Insert screenshot
+
 #+TEXINFO: @subheading Elisp Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Elisp will use Unicode symbols as appropriate in its menus.
 
 [[file:images/casual-elisp-unicode-screenshot.png]]
+
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].

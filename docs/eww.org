@@ -83,7 +83,7 @@ Customize common EWW settings from this menu. These settings can be persisted to
 #+TEXINFO: @subheading EWW Display
 #+VINDEX: casual-eww-display-tmenu
 
-This menu (~casual-eww-display-tmenu~) provides commands to toggle different display attributes of a web page.
+The menu ~casual-eww-display-tmenu~ provides commands to toggle different display attributes of a web page.
 
 [[file:images/casual-eww-display-screenshot.png]]
 
@@ -91,7 +91,7 @@ This menu (~casual-eww-display-tmenu~) provides commands to toggle different dis
 #+TEXINFO: @subheading EWW Bookmarks
 #+VINDEX: casual-eww-bookmarks-tmenu
 
-This menu (~casual-eww-bookmarks-tmenu~) provides commands for managing the EWW bookmark list.
+The menu ~casual-eww-bookmarks-tmenu~ provides commands for managing the EWW bookmark list.
 
 [[file:images/casual-eww-bookmarks-screenshot.png]]
 
@@ -102,3 +102,5 @@ Note that the EWW bookmarks list has a very limited feature set.
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual EWW will use Unicode symbols as appropriate in its menus.
 
 [[file:images/casual-eww-unicode-screenshot.png]]
+
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].

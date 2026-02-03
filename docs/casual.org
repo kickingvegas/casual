@@ -195,16 +195,20 @@ For version 2.x going forward, I (Charles Choi) have decided to not offer any do
 That said, if you have used ~:ensure t~ to install a superseded package, you /must/ remove that configuration. After doing so, please follow the above instructions for installing ~casual~.
 
 * UX Conventions
+:PROPERTIES:
+:CUSTOM_ID: ux-conventions
+:END:
 #+CINDEX: UX Conventions
 
 The Casual menus share common user experience (UX) conventions to facilitate usability. This section details this.
 
 #+TEXINFO: @subheading Common Menu Navigation
 
-Casual organizes a mode's command set into a menu hierarchy. As the user descends down different menu levels, the user is given the option to dismiss the current menu or to dismiss completely all menu levels descended. Transient provides a standard convention for menu dismissal via the {{{kbd(C-g)}}} (~transient-quit-one~) and {{{kbd(C-q)}}} (~transient-quit-all~) commands. By default Transient does not display these commands in the menu though, rather they make the assumption that the user already knows these bindings.
+Casual organizes a mode's command set into a menu hierarchy. As the user descends down different menu levels, the user is given the option to dismiss the current menu or to dismiss completely all menu levels descended. Transient provides a standard convention for menu dismissal via the {{{kbd(C-g)}}} (~transient-quit-one~) and {{{kbd(C-q)}}} (~transient-quit-all~) commands.
 
+Casual makes explicit the display of {{{kbd(C-g)}}} and {{{kbd(C-q)}}} at the bottom of its menus, which differs from the default behavior of Transient.
 #+VINDEX: casual-lib-hide-navigation
-In contrast, Casual makes these bindings explicitly known to user by displaying them at the bottom of the menu. Users who wish to have them hidden can set the customizable variable ~casual-lib-hide-navigation~ to a non-nil value. This can be changed from a Casual mode-specific settings menu.
+Users who wish to have them hidden can set the customizable variable ~casual-lib-hide-navigation~ to a non-nil value. This can be changed from a Casual mode-specific settings menu.
 
 #+TEXINFO: @subheading Settings Menu
 
@@ -248,7 +252,13 @@ Casual annotates menu labels with the following conventions:
 
 - ‘…’ :: If the label ends with an ellipsis, then the command will prompt the user for input.
 - ‘›’ :: If the label ends with a right-pointing arrow, then the item will raise a sub-menu.
-- ‘✦’ :: If the label ends with the glyph ✦ (BLACK FOUR POINTED STAR), then the command supports a prefix {{{kbd(C-u)}}}. 
+- ‘✦’ :: If the label ends with the glyph ✦ (BLACK FOUR POINTED STAR), then the command supports a prefix {{{kbd(C-u)}}}.
+- ‘ⓘ’ :: If the label starts with the glyph ⓘ (CIRCLED LATIN SMALL LETTER I), then the command will invoke the Info reader.
+
+
+#+TEXINFO: @subheading Menu Naming Conventions
+
+To distinguish Transient menu (prefix) definitions from existing Emacs menu definitions using keymaps ([[info:elisp#Menu Keymaps][elisp#Menu Keymaps]]), Casual uses the naming suffix  ~-tmenu~. 
 
 * Casual Modes
 #+CINDEX: Casual Modes

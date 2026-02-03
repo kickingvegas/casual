@@ -37,6 +37,21 @@ The following sections are offered in the menu:
 
   [[file:images/casual-eshell-process-screenshot.png]]
 
+
+#+TEXINFO: @subheading Eshell Settings
+#+VINDEX: casual-eshell-settings-tmenu
+
+The menu ~casual-eshell-settings-tmenu~ provides access to different ~eshell-mode~ settings.
+
+# TODO: Insert screenshot
+
+#+TEXINFO: @subheading Eshell Info
+#+VINDEX: casual-eshell-info-tmenu
+
+The menu ~casual-eshell-info-tmenu~ provides access to different ~eshell-mode~ documentation in its Info manual.
+
+# TODO: Insert screenshot
+
   
 #+TEXINFO: @subheading Eshell Unicode Symbol Support
 
@@ -46,3 +61,4 @@ By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casua
 [[file:images/casual-eshell-unicode-screenshot.png]]
 
 
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].

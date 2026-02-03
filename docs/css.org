@@ -46,8 +46,7 @@ The following sections are offered in the menu:
 #+TEXINFO: @subheading CSS Settings
 #+VINDEX: casual-css-settings-tmenu
 
-Settings menu for Casual CSS.
-
+The menu ~casual-css-settings-tmenu~ provides access to different ~css-mode~ settings.
 
 [[file:images/casual-css-settings-screenshot.png]]
 
@@ -55,3 +54,5 @@ Settings menu for Casual CSS.
 #+TEXINFO: @subheading CSS Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual CSS will use Unicode symbols as appropriate in its menus.
+
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].

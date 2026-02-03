@@ -70,3 +70,4 @@ The main menu for Casual Info is organized into the following sections:
 #+TEXINFO: @subheading Info Unicode Symbol Support
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Info will use Unicode symbols as appropriate in its menus. 
 
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].

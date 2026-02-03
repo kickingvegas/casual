@@ -83,6 +83,8 @@ Note that the menu item “{{{kbd(RET)}}} Visit/Toggle” has "do what I mean"  
 
 As with other Casual user interfaces, the ability to jump to a bookmark is available.
 
+# TODO: Need to add operations, mark, mark-regexp tmenus
+
 *** IBuffer Filtering
 #+VINDEX: casual-ibuffer-filter-tmenu
 
@@ -168,18 +170,11 @@ Out of the box, it is best to think of the IBuffer commands for editing buffer f
 
 [[file:images/casual-ibuffer-sortby-screenshot.png]]
 
-The buffer list can be sorted using different criteria as shown in the screenshot above.
+The buffer list can be sorted using different criteria using the menu ~casual-ibuffer-sortby-tmenu~.
 
 Sort ordering can be reversed via the /Invert/ command.
 
 *** IBuffer Unicode Symbol Support
-By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual IBuffer will use Unicode symbols as appropriate in its menus. The following mapping is shown in the table below:
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual IBuffer will use Unicode symbols as appropriate in its menus.
 
-| Name      | Plain    | Unicode |
-|-----------+----------+---------|
-| :previous | Previous | ↑       |
-| :next     | Next     | ↓       |
-| :marked   | Marked   | ❯       |
-| :group    | Group    | []      |
-| :jump     | Jump     | 🚀     |
-
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
