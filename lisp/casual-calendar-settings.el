@@ -1,6 +1,6 @@
 ;;; casual-calendar-settings.el --- Casual Calendar Settings -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025 Charles Y. Choi
+;; Copyright (C) 2024-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -77,10 +77,10 @@ Customize settings for Calendar and Diary modes."
    (casual-lib-customize-hide-navigation)]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-calendar-about :transient nil)
-
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("a" "About" casual-calendar-about :transient nil)
+   ("RET" "Done" transient-quit-all)
+   (casual-lib-quit-all)])
 
 (defun casual-calendar--customize-calendar-group ()
   "Customize calendar group."

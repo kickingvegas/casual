@@ -59,11 +59,15 @@ This menu provides support for HTML tag-related commands provided by ~html-mode~
 #+TEXINFO: @subheading HTML Settings
 #+VINDEX: casual-html-settings-tmenu
 
-SGML/HTML mode related settings can be customized here.
+SGML/HTML mode related settings can be customized using the menu ~casual-html-settings-tmenu~.
 
 [[file:images/casual-html-settings-screenshot.png]]
 
 #+TEXINFO: @subheading HTML Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual html will use Unicode symbols as appropriate in its menus.
+
+[[file:images/casual-html-unicode-screenshot.png]]
+
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
 

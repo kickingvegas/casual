@@ -146,7 +146,7 @@ With the *Sort By* menu raised, one can save the switch settings for future use 
 #+CINDEX: Dired Search & Replace
 #+VINDEX: casual-dired-search-replace-tmenu
 
-Search and replace in multiple marked files using the “{{{kbd(/)}}} Search & Replace›” menu item in ~casual-dired-tmenu~. This will raise a menu of Dired commands that will work on marked files. 
+Search and replace in multiple marked files using the “{{{kbd(/)}}} Search & Replace›” menu  (~casual-dired-search-replace-tmenu~) in ~casual-dired-tmenu~. This will raise a menu of Dired commands that will work on marked files.
 
 [[file:images/casual-dired-search-replace.png]]
 
@@ -158,14 +158,27 @@ While most Dired commands use Emacs-style regular expression syntax ([[info:elis
 The *grep*-style syntax is dependent on the ~grep~ implementation that is installed and used by Emacs.
 
 *** Bulk Dired Operations
-Casual Dired organizes a number of Dired commands that work on a set of marked files. These commands are presented in the “{{{kbd(#)}}} Utils›” menu in ~casual-dired-tmenu~.
+#+VINDEX: casual-dired-utils-tmenu
+
+Casual Dired organizes a number of Dired commands that work on a set of marked files. These commands are presented in the “{{{kbd(#)}}} Utils›” menu (~casual-dired-utils-tmenu~) in ~casual-dired-tmenu~.
 
 [[file:images/casual-dired-utils-screenshot.png]]
 
 *** Dired Link
-Create symbolic and hard links via the “{{{kbd(l)}}} Link›” menu in ~casual-dired-tmenu~. Both absolute and relative symbolic links (symlinks) are supported.
+#+VINDEX: casual-dired-link-tmenu
+
+Create symbolic and hard links via the “{{{kbd(l)}}} Link›” menu (~casual-dired-link-tmenu~) in ~casual-dired-tmenu~. Both absolute and relative symbolic links (symlinks) are supported.
 
 [[file:images/casual-dired-link.png]]
+
+
+*** Dired Elisp
+#+VINDEX: casual-dired-elisp-tmenu
+
+Support for running bulk commands for Elisp development are provided by the menu ~casual-dired-elisp-tmenu~.
+
+# TODO: Insert screenshot
+
 
 *** Dired Unicode Symbol Support
 
@@ -174,4 +187,6 @@ By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casua
 [[file:images/casual-dired-screenshot-unicode.png]]
 
 To ensure proper layout and spacing, your default typeface should be fixed-width or monospace and *must* support the Unicode symbols used.
+
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
 

@@ -102,9 +102,9 @@
 
   [:class transient-row
    (casual-lib-quit-one)
-   (casual-lib-quit-all)
    ("," "Settings›" casual-elisp-settings-tmenu)
-   ("RET" "Dismiss" transient-quit-all)])
+   ("RET" "Done" transient-quit-all)
+   (casual-lib-quit-all)])
 
 (provide 'casual-elisp)
 ;;; casual-elisp.el ends here

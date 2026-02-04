@@ -104,7 +104,7 @@ For more documentation, refer to the following links:
    (casual-lib-quit-one)
    ("," "Settings" casual-html-settings-tmenu)
    ("I" "ⓘ" casual-html-info)
-   ("RET" "Dismiss" transient-quit-all)
+   ("RET" "Done" transient-quit-all)
    (casual-lib-quit-all)])
 
 
@@ -166,7 +166,7 @@ This menu provides an interface to HTML-specific commands provided by
 
   [:class transient-row
    (casual-lib-quit-one)
-   ("RET" "Dismiss" transient-quit-all)
+   ("RET" "Done" transient-quit-all)
    (casual-lib-quit-all)])
 
 (provide 'casual-html)

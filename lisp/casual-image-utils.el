@@ -1,6 +1,6 @@
 ;;; casual-image-utils.el --- Casual Image Utils     -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Choi
+;; Copyright (C) 2025-2026 Charles Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -214,6 +214,7 @@ Menu resizing an image."
 
   [:class transient-row
    (casual-lib-quit-one)
+   ("RET" "Done" transient-quit-all)
    (casual-lib-quit-all)])
 
 (provide 'casual-image-utils)

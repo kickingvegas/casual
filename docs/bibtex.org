@@ -65,7 +65,7 @@ In your initialization file, bind the Transient ~casual-bibtex-tmenu~ to your ke
 
 [[file:images/casual-bibtex-screenshot.png]]
 
-The main menu for Casual BibTeX is organized into the following sections:
+The main menu for Casual BibTeX (~casual-bibtex-tmenu~) is organized into the following sections:
 
 - Field :: Commands to edit or navigate fields within an entry.
 - Entry :: Commands to edit or navigate entries within a BibTeX file.
@@ -144,11 +144,12 @@ The ability to search and jump to a position in a BibTeX database are offered by
 :CUSTOM_ID: bibtex-settings
 :END:
 #+CINDEX: BibTeX Settings
+#+VINDEX: casual-bibtex-settings-tmenu
 
 [[file:images/casual-bibtex-settings-screenshot.png]]
 
 
-This menu offers access to commonly configured BibTeX mode settings.
+The menu ~casual-bibtex-settings-tmenu~ offers access to commonly configured BibTeX mode settings.
 
 Settings are organized into the following sections:
 
@@ -162,9 +163,11 @@ Settings are organized into the following sections:
 By default BibTeX mode does not format (or "fill") an entry upon cleaning. To support filling an entry upon clean, add the command ~bibtex-fill-entry~ to ~bibtex-clean-entry-hook~ using the “{{{kbd(C)}}} Clean” command as shown below:
 
 [[file:images/casual-bibtex-clean-entry-hook.png]]
-
-#+TEXINFO: @subsubheading BibTeX Mode Unicode Symbol Support
+*** BibTeX Mode Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual BibTeX will use Unicode symbols as appropriate in its menus.
 
 [[file:images/casual-bibtex-unicode-screenshot.png]]
+
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
+

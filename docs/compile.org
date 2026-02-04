@@ -77,9 +77,13 @@ The following sections are offered in the menu:
 If the output window is from a Grep command, ~casual-compile-tmenu~ will adjust its labels accordingly as shown below.
 
 [[file:images/casual-compile-grep-screenshot.png]]
+#+TEXINFO: @subheading Compile Settings
+#+VINDEX: casual-compile-settings-tmenu
 
+The menu ~casual-compile-settings-tmenu~ provides access to different ~compilation-mode~ settings.
   
 #+TEXINFO: @subheading Compile Mode Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Compile will use Unicode symbols as appropriate in its menus.
 
+For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].

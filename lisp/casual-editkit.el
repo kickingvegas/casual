@@ -1,6 +1,6 @@
 ;;; casual-editkit.el --- Transient user interface library for editing commands -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools, wp
@@ -124,8 +124,8 @@ user-customized menu."
    ("r" "Registers›" casual-editkit-registers-tmenu)
    ("U" "Undo" undo :transient t)
    ("," "Settings›" casual-editkit-settings-tmenu)
+   ("RET" "Done" transient-quit-all)
    (casual-lib-quit-all)
-
    ("x" "Exit Emacs" save-buffers-kill-emacs)])
 
 (provide 'casual-editkit)

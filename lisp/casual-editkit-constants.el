@@ -1,6 +1,6 @@
 ;;; casual-editkit-constants.el --- Constants file for Casual EditKit  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools, wp
@@ -33,14 +33,20 @@
     (:point-down . '("↓" "Down"))
     (:point-left . '("←" "Left"))
     (:point-right . '("→" "Right"))
+
+    (:window-above . '("↑" "Above"))
+    (:window-below . '("↓" "Below"))
+    (:window-left . '("←" "To Left"))
+    (:window-right . '("→" "To Right"))
+
     (:other-window . '("»" "Other"))
     (:delete-other-windows . '("❏" "Delete other"))
-    (:split-window-below . '("⇩" "Window below"))
-    (:split-window-horizontally . '("⇨" "Window right"))
+    (:split-window-below . '("━" "Below"))
+    (:split-window-horizontally . '("┃" "Right"))
     (:enlarge . '("+" "Enlarge"))
     (:shrink . '("−" "Shrink"))
-    (:horizontal . '("⦵" "Horizontal"))
-    (:vertical . '("⏀" "Vertical"))
+    (:horizontal . '("↔︎" "Horizontal"))
+    (:vertical . '("↕︎" "Vertical"))
     (:first . '("⤒" "first"))
     (:last . '("⤓" "last"))
     (:swap . '("⇄" "Swap"))
@@ -62,6 +68,7 @@ plain ASCII-range string."
   [:class transient-row
    (casual-lib-quit-one)
    ("U" "Undo" undo :transient t)
+   ("RET" "Done" transient-quit-all)
    (casual-lib-quit-all)])
 
 ;; Transient cursor navigation group for Casual EditKit menus.

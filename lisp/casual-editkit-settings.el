@@ -1,6 +1,6 @@
 ;;; casual-editkit-settings.el --- Casual Bookmarks Settings -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025 Charles Y. Choi
+;; Copyright (C) 2024-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools, wp
@@ -107,9 +107,10 @@
     (casual-lib-customize-hide-navigation)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-editkit-about :transient nil)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("a" "About" casual-editkit-about :transient nil)
+   ("RET" "Done" transient-quit-all)
+   (casual-lib-quit-all)])
 
 (defun casual-editkit-about-editkit ()
   "Casual EditKit is a user interface library for Emacs editing commands.
