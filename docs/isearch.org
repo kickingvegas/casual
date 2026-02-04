@@ -47,11 +47,14 @@ Use {{{kbd(C-g)}}} to dismiss this Transient menu.
 
 The menu ~casual-isearch-settings-tmenu~ provides access to different I-Search settings.
 
-# TODO: Insert screenshot
+[[file:images/casual-isearch-settings-tmenu.png]]
+
 
 #+TEXINFO: @subheading I-Search Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual I-Search will use Unicode symbols as appropriate in its menus.
+
+[[file:images/casual-isearch-unicode.png]]
 
 For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
 

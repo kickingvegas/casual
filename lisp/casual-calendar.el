@@ -93,12 +93,12 @@ Main menu for `calendar' commands.
 
   [:class transient-row
    (casual-lib-quit-one)
-   ("RET" "Done" transient-quit-all)
-   ("I" "ⓘ Info" (lambda ()
-                   (interactive)
-                   (calendar-exit)
-                   (calendar-goto-info-node)))
    ("," "Settings›" casual-calendar-settings-tmenu)
+   ("I" "ⓘ" (lambda ()
+              (interactive)
+              (calendar-exit)
+              (calendar-goto-info-node)))
+   ("RET" "Done" transient-quit-all)
    ("q" "Quit" calendar-exit)])
 
 (provide 'casual-calendar)

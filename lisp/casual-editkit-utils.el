@@ -567,7 +567,7 @@ accessed here."
    [("f" "To Right" windmove-delete-right
      :description (lambda () (casual-editkit-unicode-get :window-right)))]]
 
-   casual-editkit-navigation-group)
+  casual-editkit-navigation-group)
 
 ;;;###autoload (autoload 'casual-editkit-bookmarks-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-bookmarks-tmenu ()

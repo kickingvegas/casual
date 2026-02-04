@@ -85,11 +85,11 @@ specific supported non-Gregorian calendar system behavior."
 
   [:class transient-row
    (casual-lib-quit-one)
-   ("RET" "Done" transient-quit-all)
-   ("I" "ⓘ Info" (lambda ()
+   ("I" "ⓘ Other Calendars" (lambda ()
                    (interactive)
                    (calendar-exit)
                    (info "(emacs) Other Calendars")))
+   ("RET" "Done" transient-quit-all)
    (casual-lib-quit-all)])
 
 (transient-define-prefix casual-calendar-lunar-tmenu ()

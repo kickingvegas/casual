@@ -67,5 +67,7 @@ SGML/HTML mode related settings can be customized using the menu ~casual-html-se
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual html will use Unicode symbols as appropriate in its menus.
 
+[[file:images/casual-html-unicode-screenshot.png]]
+
 For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
 

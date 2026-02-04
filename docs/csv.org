@@ -77,6 +77,6 @@ The menu ~casual-csv-settings-tmenu~ provides access to different ~csv-mode~ set
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual CSV will use Unicode symbols as appropriate in its menus.
 
-[[file:images/casual-csv-view-unicode-screenshot.png]]
+[[file:images/casual-csv-edit-unicode-screenshot.png]]
 
 For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
