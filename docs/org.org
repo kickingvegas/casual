@@ -1,0 +1,183 @@
+* Org
+#+CINDEX: Org
+#+VINDEX: casual-org-tmenu
+
+Casual Org is a keyboard-driven user interface for Org mode ([[info:org#Top][org#Top]]). It endeavors to provide /context-sensitive/ assistance by providing structure-related commands based on where the point (cursor) is in an Org document.
+
+The Casual Org main menu (~casual-org-tmenu~) supports basic Emacs-style point navigation ([[info:emacs#Moving Point][emacs#Moving Point]]) in the buffer while the menu is still raised. As the point is moved, the menu will adjust to provide structure-related commands.
+
+For example, if the point is in an Org headline, the following menu is shown with headline-related commands at the top of the menu.
+
+[[file:images/casual-org-headline-screenshot.png]]
+
+If the point is moved to a table section, the upper part of the menu adjusts to provide table-related commands.
+
+[[file:images/casual-org-table-screenshot.png]]
+
+Casual Org has no intent to [[#motivations][exhaustively support all Org commands]]. Rather, Casual Org is an opinionated UX design exercise in providing a curated set of context-sensitive commands to a user.
+
+# TODO: Add Design Assumptions
+
+** Org Install
+:PROPERTIES:
+:CUSTOM_ID: org-install
+:END:
+
+#+CINDEX: Org Install
+
+In your initialization file, bind the Transient menus ~casual-org-tmenu~ and ~casual-org-table-fedit-tmenu~ to your key binding of preference.
+
+#+begin_src elisp :lexical no
+  (keymap-set org-mode-map "M-m" #'casual-org-tmenu)
+  (keymap-set org-table-fedit-map "M-m" #'casual-org-table-fedit-tmenu)
+#+end_src
+
+The binding {{{kbd(M-m)}}} is intended to complement the binding {{{kbd(C-o)}}} used by [[#editkit-install][EditKit]].
+
+** Org Usage
+#+CINDEX: Org Usage
+
+The primary Org menu ~casual-org-tmenu~ dynamically configures itself with respect to the type of Org structure ([[info:org#Document Structure][org#Document Structure]]) the point is in. More detail on what menu variants are available for each structure are described in the links below.
+
+Most of the menu variants have a common set of sections as shown below. These sections are:
+
+- Link :: Commands related to Org links and citation.
+- Timestamp :: Timestamp-related commands.
+- Clock :: Clock-related commands.
+- Display :: Display-related commands.
+- Navigation :: Navigation-related commands using basic Emacs-style key bindings.
+- Mark :: Structural-marking commands.
+- Org :: Miscellaneous Org commands.
+
+Depending on the Org structure the point is in, some subset of the above sections are made available.
+
+[[file:images/casual-org-body-screenshot.png]]
+
+*** Org Headline
+:PROPERTIES:
+:CUSTOM_ID: org-usage-headline
+:END:
+
+[[file:images/casual-org-headline-screenshot.png]]
+
+When the point is in a headline ([[info:org#Headlines][org#Headlines]]) the following sections are displayed in ~casual-org-tmenu~:
+
+- Headline :: Commands that operate on a headline.
+- Add :: Commands that add a headline.
+- Annotate :: Commands that add annotations (metadata) to a headline.
+- Date :: Date-related commands.
+- Priority :: Prioritization-related commands.
+- Misc :: Miscellaneous commands.
+  
+  
+*** Org Body
+:PROPERTIES:
+:CUSTOM_ID: org-usage-body
+:END:
+
+When the point is not in any Org structure it is considered "body" text and the following variant of ~casual-org-tmenu~ is shown.
+
+[[file:images/casual-org-body-screenshot.png]]
+
+*** Org List
+:PROPERTIES:
+:CUSTOM_ID: org-usage-list
+:END:
+
+When the point is in a list item ([[info:org#Plain Lists][org#Plain Lists]]) the following sections are displayed in ~casual-org-tmenu~:
+
+- Item :: List item related commands.
+- Checkbox :: Checkbox related commands.
+  
+[[file:images/casual-org-item-screenshot.png]]
+
+
+#+TEXINFO: @subheading Checkbox
+
+A list item can be converted to and from a checkbox using the “{{{kbd(b)}}} Toggle Checkbox” command. Note that the *Checkbox* section in the menu is enabled when the point is on a checkbox item.
+
+[[file:images/casual-org-checkbox-screenshot.png]]
+
+
+*** Org Table
+:PROPERTIES:
+:CUSTOM_ID: org-usage-table
+:END:
+
+When the point is in a table ([[info:org#Tables][org#Tables]]) the following sections are displayed in ~casual-org-tmenu~:
+
+- Table :: Miscellaneous table-related commands.
+- Edit :: Table-specific editing commands.
+- Region :: Region-specific editing commands.
+- Compute :: Table-specific compute commands.
+- Display :: Table-specific display commands.
+  
+  
+[[file:images/casual-org-table-screenshot.png]]
+
+#+TEXINFO: @subheading Table Formulas (TBLFM)
+
+If the point is on a ~TBLFM~ keyword ([[info:org#Field and range formulas][org#Field and range formulas]]), then the following menu variant of ~casual-org-tmenu~ is displayed.
+
+[[file:images/casual-org-tblfm-screenshot.png]]
+
+#+TEXINFO: @subheading Org Table Layout
+#+VINDEX: casual-org-table-structure-tmenu
+
+From the *Table* section in ~casual-org-tmenu~, selecting “{{{kbd(l)}}} Layout” will raise the table layout menu (~casual-org-table-structure-tmenu~). Use this menu to make structural edits to the table.
+
+
+[[file:images/casual-org-table-layout-screenshot.png]]
+
+
+#+TEXINFO: @subheading Org Table Formula Edit
+#+VINDEX: casual-org-table-fedit-tmenu
+
+When editing formulas for a table, the menu ~casual-org-table-fedit-tmenu~ can be raised to provide assistance with table references.
+
+[[file:images/casual-org-table-fedit-screenshot.png]]
+
+
+*** Org Block
+:PROPERTIES:
+:CUSTOM_ID: org-usage-block
+:END:
+
+When the point is in a block ([[info:org#Blocks][org#Blocks]]) the following variant is displayed in ~casual-org-tmenu~:
+
+[[file:images/casual-org-block-src-screenshot.png]]
+
+Numerous different block types are recognized by ~casual-org-tmenu~. They are:
+
+- Source (~#+BEGIN_SRC~)
+- Example (~#+BEGIN_EXAMPLE~)
+- Quote (~#+BEGIN_QUOTE~)
+- Export (~#+BEGIN_EXPORT~)
+- Center (~#+BEGIN_CENTER~)
+- Verse (~#+BEGIN_VERSE~)
+
+*** Org Keyword
+:PROPERTIES:
+:CUSTOM_ID: org-usage-keyword
+:END:
+
+When the point is in an Org keyword the following variant is displayed in ~casual-org-tmenu~:
+[[file:images/casual-org-keyword-screenshot.png]]
+
+
+*** Org Settings
+:PROPERTIES:
+:CUSTOM_ID: org-usage-settings
+:END:
+
+Use the Casual Org Settings menu to gain access to commonly customized Org settings.
+
+[[file:images/casual-org-settings-screenshot.png]]
+
+*** Org Unicode Symbol Support
+:PROPERTIES:
+:CUSTOM_ID: org-unicode-symbol-support
+:END:
+
+By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual org will use Unicode symbols as appropriate in its menus.
+
