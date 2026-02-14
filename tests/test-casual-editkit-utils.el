@@ -31,8 +31,7 @@
   (let ((tmpfile "casual-editkit-open-tmenu.txt"))
     (casualt-editkit-setup tmpfile)
 
-    (cl-letf (;; ((symbol-function #'buffer-file-name) (lambda () t))
-              (casualt-mock #'find-file)
+    (cl-letf ((casualt-mock #'find-file)
               (casualt-mock #'rename-visited-file)
               (casualt-mock #'find-file-other-window)
               (casualt-mock #'find-file-other-frame)
@@ -290,6 +289,7 @@
 (ert-deftest test-casual-editkit-delete-tmenu ()
   (let ((tmpfile "casual-editkit-delete-tmenu.txt"))
     (casualt-editkit-setup tmpfile)
+
     (cl-letf ((casualt-mock #'just-one-space)
               (casualt-mock #'join-line)
               (casualt-mock #'delete-horizontal-space)
@@ -310,6 +310,24 @@
                (:binding "d" :command delete-trailing-whitespace)
                (:binding "z" :command zap-up-to-char)
                (:binding "Z" :command zap-to-char))))
+
+        (casualt-suffix-testcase-runner test-vectors
+                                        #'casual-editkit-delete-tmenu
+                                        '(lambda () (random 5000)))))
+    (casualt-editkit-breakdown tmpfile)))
+
+(ert-deftest test-casual-editkit-delete-tmenu-region ()
+  (let ((tmpfile "casual-editkit-delete-tmenu.txt"))
+    (casualt-editkit-setup tmpfile)
+    (goto-char (point-max))
+    (insert "\nHello there\nHi There\nYet another.")
+    (set-mark (point-min))
+    (forward-line 2)
+
+    (cl-letf ((casualt-mock #'delete-duplicate-lines))
+
+      (let ((test-vectors
+             '((:binding "D" :command delete-duplicate-lines))))
 
         (casualt-suffix-testcase-runner test-vectors
                                         #'casual-editkit-delete-tmenu
