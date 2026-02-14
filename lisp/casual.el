@@ -105,6 +105,9 @@
 ;; - Man (Elisp library: `casual-man.el')
 ;;   An interface to `Man-mode', the Emacs Man page reader.
 
+;; - Org (Elisp library: `casual-org.el')
+;;   An interface to `org-mode', an authoring tool for Org documents.
+
 ;; - Re-Builder (Elisp library: `casual-re-builder.el')
 ;;   An interface for the Emacs regular expression tool.
 
