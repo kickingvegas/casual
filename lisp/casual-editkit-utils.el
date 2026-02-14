@@ -408,6 +408,8 @@ Commands pertaining to delete can be accessed here."
     ("p" "Pair" delete-pair)]
 
    [("b" "Blank Lines" delete-blank-lines)
+    ("D" "Duplicate Lines" delete-duplicate-lines
+     :inapt-if-not use-region-p)
     ("w" "Whitespace Cleanup" whitespace-cleanup)
     ("d" "Delete Trailing Whitespace" delete-trailing-whitespace)]
 
