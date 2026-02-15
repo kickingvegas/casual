@@ -1,8 +1,8 @@
 * Image
 #+CINDEX: Image
-#+VINDEX: casual-image-tmenu
+#+VINDEX: casual-image
 
-Casual Image is a user interface for Image Mode ([[info:emacs#Image Mode]]). Its top level library is ~casual-image~.
+Casual Image (library: ~casual-image~) is a user interface for Image Mode ([[info:emacs#Image Mode]]).
 
 Resizing an image is supported if ImageMagick 6 or 7 is installed. This interface deviates significantly with naming conventions used by ~image-mode~ to be more in alignment with conventional image editing tools.
 
@@ -24,6 +24,7 @@ The main menu for Casual Image is ~casual-image-tmenu~. Bind this menu in the ke
 
 ** Image Usage
 #+CINDEX: Image Usage
+#+VINDEX: casual-image-tmenu
 
 [[file:images/casual-image-main-screenshot.png]]
 
@@ -53,7 +54,7 @@ Note that if the image file has been modified, the resize interface will be disa
 
 [[file:images/casual-image-resize-screenshot.png]]
 
-#+TEXINFO: @subheading Image Resize Options
+#+TEXINFO: @subsubheading Image Resize Options
 - (g) Geometry - [[https://imagemagick.org/script/command-line-processing.php#geometry][ImageMagick specifier]] for the resize geometry.
 - (o) Output to another file - If enabled, then the user will be prompted for a different output file, else it will /irreversibly/ update the current image file.
 - (t) Type - Specify if /adaptive/ or /interpolative/ resizing should be used. If nothing is specified then /standard/ resizing is used.

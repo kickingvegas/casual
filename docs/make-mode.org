@@ -1,10 +1,11 @@
 * Make
 #+CINDEX: Make
-#+VINDEX: casual-make-tmenu 
+#+VINDEX: casual-make
 
-Casual Make is a user interface for ~make-mode~, a mode tailored for editing a Makefile.
+Casual Make (library: ~casual-make~) is a user interface for ~make-mode~, a mode for editing a Makefile.
 
 [[file:images/casual-make-screenshot.png]]
+
 
 ** Make Install
 :PROPERTIES:
@@ -18,8 +19,11 @@ In your initialization file, bind the Transient ~casual-make-tmenu~ to your key 
   (keymap-set makefile-mode-map "M-m" #'casual-make-tmenu)
 #+end_src
 
+The binding {{{kbd(M-m)}}} is intended to complement the binding {{{kbd(C-o)}}} used by [[#editkit-install][EditKit]].
+
 ** Make Usage
 #+CINDEX: Make Usage
+#+VINDEX: casual-make-tmenu
 
 [[file:images/casual-make-screenshot.png]]
 

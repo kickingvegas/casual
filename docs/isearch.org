@@ -1,9 +1,9 @@
 * I-Search
 #+CINDEX: isearch
 #+CINDEX: I-Search
-#+VINDEX: casual-isearch-tmenu
+#+VINDEX: casual-isearch
 
-Casual I-Search is a user interface for Emacs Incremental Search ([[info:emacs#Incremental Search][emacs#Incremental Search)]]. Its top level library is ~casual-isearch~.
+Casual I-Search (library: ~casual-isearch~) is a user interface for Emacs Incremental Search ([[info:emacs#Incremental Search][emacs#Incremental Search)]].
 
 [[file:images/casual-isearch-tmenu.png]]
 
@@ -22,6 +22,7 @@ The main menu for Casual I-Search is ~casual-isearch-tmenu~. Bind this menu to {
 
 ** I-Search Usage
 #+CINDEX: I-Search Usage
+#+VINDEX: casual-isearch-tmenu
 
 [[file:images/casual-isearch-tmenu.png]]
 
@@ -42,7 +43,7 @@ When in search mode (typically via the keybinding {{{kbd(C-s)}}} or {{{kbd(C-r)}
 Use {{{kbd(C-g)}}} to dismiss this Transient menu.
 
 
-#+TEXINFO: @subheading I-Search Settings
+#+TEXINFO: @subsubheading I-Search Settings
 #+VINDEX: casual-isearch-settings-tmenu
 
 The menu ~casual-isearch-settings-tmenu~ provides access to different I-Search settings.
@@ -50,7 +51,7 @@ The menu ~casual-isearch-settings-tmenu~ provides access to different I-Search s
 [[file:images/casual-isearch-settings-tmenu.png]]
 
 
-#+TEXINFO: @subheading I-Search Unicode Symbol Support
+#+TEXINFO: @subsubheading I-Search Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual I-Search will use Unicode symbols as appropriate in its menus.
 

@@ -1,8 +1,8 @@
 * Agenda
 #+CINDEX: Agenda 
 #+CINDEX: Org Agenda
-#+VINDEX: casual-agenda-tmenu
-Casual Agenda is a user interface for Org Agenda ([[info:org#Agenda Views]]), a feature of Emacs Org Mode ([[info:org#Top]]) to help plan your day. Its top-level library is ~casual-agenda~.
+#+VINDEX: casual-agenda
+Casual Agenda (library: ~casual-agenda~) is a user interface for Org Agenda ([[info:org#Agenda Views]]), a feature of Emacs Org Mode ([[info:org#Top]]) to help plan your day. Its top-level library is ~casual-agenda~.
 
 [[file:images/casual-agenda-screenshot.png]]
 
@@ -27,6 +27,7 @@ Use these bindings to configure Org Agenda to be consistent with bindings used b
 
 ** Agenda Usage
 #+CINDEX: Agenda Usage
+#+VINDEX: casual-agenda-tmenu
 
 
 [[file:images/casual-agenda-screenshot.png]]
@@ -40,33 +41,33 @@ The main menu for Casual Agenda is ~casual-agenda-tmenu~. It is divided into fiv
 - Utils :: Set a timer, get almanac info.
 
 
-#+TEXINFO: @subheading Operating on Headlines (casual-agenda-operations-tmenu)
+#+TEXINFO: @subsubheading Operating on Headlines (casual-agenda-operations-tmenu)
 #+VINDEX: casual-agenda-operations-tmenu
 Use “{{{kbd(o)}}} Operations›” from ~casual-agenda-tmenu~ to change a headline's attributes such as TODO state, scheduling, tags, and priority. The following menu will be displayed.
 
 [[file:images/casual-agenda-operations-screenshot.png]]
 
 
-#+TEXINFO: @subheading Marking Headlines (casual-agenda-mark-tmenu)
+#+TEXINFO: @subsubheading Marking Headlines (casual-agenda-mark-tmenu)
 #+VINDEX: casual-agenda-mark-tmenu
 
 Use “{{{kbd(M)}}} Mark›” menu from ~casual-agenda-tmenu~ to mark different headlines and perform a bulk action on them. 
 
 [[file:images/casual-agenda-mark-screenshot.png]]
 
-#+TEXINFO: @subheading Almanac (casual-agenda-almanac-tmenu)
+#+TEXINFO: @subsubheading Almanac (casual-agenda-almanac-tmenu)
 #+VINDEX: casual-agenda-almanac-tmenu
 Get sunrise/sunset times, lunar cycle dates, and holidays with respect to a date via the “{{{kbd(l)}}} Almanac›” menu from ~casual-agenda-tmenu~.
 
 [[file:images/casual-agenda-almanac-screenshot.png]]
 
-#+TEXINFO: @subheading Changing Modes and Settings
+#+TEXINFO: @subsubheading Changing Modes and Settings
 #+VINDEX: casual-agenda-settings-tmenu
 Agenda views have different display modes and behavior that can be modified from the “{{{kbd(\,)}}} Settings›” menu from ~casual-agenda-tmenu~.
 
 [[file:images/casual-agenda-settings-screenshot.png]]
 
-#+TEXINFO: @subheading Agenda Unicode Symbol Support
+#+TEXINFO: @subsubheading Agenda Unicode Symbol Support
 By enabling “{{{kbd(u)}}} Use Unicode Settings” from the Settings menu, Casual Agenda will use Unicode symbols as appropriate in its menus.
 
 [[file:images/casual-agenda-unicode-screenshot.png]]

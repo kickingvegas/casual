@@ -2,11 +2,10 @@
 :PROPERTIES:
 :CUSTOM_ID: html-top
 :END:
-
 #+CINDEX: HTML
-#+VINDEX: casual-html-tmenu
+#+VINDEX: casual-html
 
-Casual HTML is a user interface for ~html-mode~ ([[info:emacs#HTML Mode][html-mode]]). 
+Casual HTML (library: ~casual-html~) is a user interface for ~html-mode~ ([[info:emacs#HTML Mode][html-mode]]). 
 
 [[file:images/casual-html-screenshot.png]]
 Casual also has support for CSS editing ([[#css-top][CSS]]).
@@ -24,19 +23,19 @@ In your initialization file, bind the Transient ~casual-html-tmenu~ to your key 
   (keymap-set html-mode-map "M-m" #'casual-html-tmenu)
 #+end_src
 
-A different binding ({{{kbd(M-m)}}}) is used as ~casual-html-tmenu~ is intended to work alongside with [[#editkit-install][Casual EditKit]].
-
 It is convenient to also bind ~casual-html-tags-tmenu~ as well.
 
 #+begin_src elisp :lexical no
   (keymap-set html-mode-map "C-c m" #'casual-html-tags-tmenu)
 #+end_src
 
+The binding {{{kbd(M-m)}}} is intended to complement the binding {{{kbd(C-o)}}} used by [[#editkit-install][EditKit]].
+
 If HTML Tree-sitter support is enabled, use the keymap ~html-ts-mode-map~ in place of ~html-mode-map~.
 
 ** HTML Usage
 #+CINDEX: HTML Usage
-
+#+VINDEX: casual-html-tmenu
 [[file:images/casual-html-screenshot.png]]
 
 The following sections are offered in the menu:
@@ -49,21 +48,21 @@ The following sections are offered in the menu:
 Note that the item “{{{kbd(d)}}} Delete” (bound to ~sgml-delete-tag~) is not available when HTML Tree-sitter support is enabled.
 
 
-#+TEXINFO: @subheading HTML Tags
+#+TEXINFO: @subsubheading HTML Tags
 #+VINDEX: casual-html-tags-tmenu
 
 This menu provides support for HTML tag-related commands provided by ~html-mode~.
 
 [[file:images/casual-html-tags-screenshot.png]]
 
-#+TEXINFO: @subheading HTML Settings
+#+TEXINFO: @subsubheading HTML Settings
 #+VINDEX: casual-html-settings-tmenu
 
 SGML/HTML mode related settings can be customized using the menu ~casual-html-settings-tmenu~.
 
 [[file:images/casual-html-settings-screenshot.png]]
 
-#+TEXINFO: @subheading HTML Unicode Symbol Support
+#+TEXINFO: @subsubheading HTML Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual html will use Unicode symbols as appropriate in its menus.
 

@@ -1,8 +1,8 @@
 * Help
 #+CINDEX: Help
-#+VINDEX: casual-help-tmenu
+#+VINDEX: casual-help
 
-Casual Help is a user interface for ~help-mode~, a major mode for viewing help text and navigating references in it.
+Casual Help (library: ~casual-help~) is a user interface for ~help-mode~, a major mode for viewing help text and navigating references in it.
 
 [[file:images/casual-help-screenshot.png]]
 
@@ -45,6 +45,7 @@ The following keybindings are recommended to support consistent behavior between
 
 ** Help Usage
 #+CINDEX: Help Usage
+#+VINDEX: casual-help-tmenu
 
 After invoking help via a ~describe-~ command, invoke ~casual-help-tmenu~ using the binding ~C-o~ (or your binding of preference).
 
@@ -57,14 +58,14 @@ The following sections are offered in the menu:
 - Info :: If available, then open this help topic in [[file:info.org][Info]].
 - Source :: Show the Elisp source. If the help displayed is for a customizable variable, then show a customize menu item.
 
-#+TEXINFO: @subheading Help Mode Settings
+#+TEXINFO: @subsubheading Help Mode Settings
 #+VINDEX: casual-help-settings-tmenu
 
 The menu ~casual-help-settings-tmenu~ provides access to different ~help-mode~ settings.
 
 # TODO: Insert screenshot
   
-#+TEXINFO: @subheading Help Mode Unicode Symbol Support
+#+TEXINFO: @subsubheading Help Mode Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Help will use Unicode symbols as appropriate in its menus.
 

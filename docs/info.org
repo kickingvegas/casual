@@ -1,8 +1,8 @@
 * Info
 #+CINDEX: Info
-#+VINDEX: casual-info-tmenu
+#+VINDEX: casual-info
 
-Casual Info is a user interface for the Emacs Info Reader. Its top level library is ~casual-info~.
+Casual Info (library: ~casual-info~) is a user interface for the Emacs Info Reader.
 
 [[file:images/casual-info-screenshot.png]]
 
@@ -46,6 +46,7 @@ While not required, adding this configuration to your Emacs initialization file 
 
 ** Info Usage
 #+CINDEX: Info Usage
+#+VINDEX: casual-info-tmenu
 
 [[file:images/casual-info-screenshot.png]]
 
@@ -67,7 +68,7 @@ The main menu for Casual Info is organized into the following sections:
 
 - Quick :: Miscellaneous commands for working with an Info document. Included are commands for bookmarks, copying the current node name, and cloning the buffer.
 
-#+TEXINFO: @subheading Info Unicode Symbol Support
+#+TEXINFO: @subsubheading Info Unicode Symbol Support
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Info will use Unicode symbols as appropriate in its menus. 
 
 For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].

@@ -83,46 +83,44 @@
   (cl-letf ((casualt-mock #'org-insert-item)
             (casualt-mock #'org-cycle-list-bullet)
             (casualt-mock #'casual-org-toggle-list-to-checkbox)
-
-
             (casualt-mock #'casual-org-settings-tmenu)
             (casualt-mock #'casual-org-info)
             (casualt-mock #'transient-quit-all))
 
     (let ((test-vectors
-           '(
-             (:binding "a" :command org-insert-item)
-             (:binding "c" :command org-cycle-list-bullet)
+           '((:binding "a" :command org-insert-item)
              (:binding "b" :command casual-org-toggle-list-to-checkbox)
-
-
+             (:binding "c" :command org-cycle-list-bullet)
              (:binding "," :command casual-org-settings-tmenu)
              (:binding "I" :command casual-org-info)
-             (:binding "RET" :command transient-quit-all)
-             )))
+             (:binding "RET" :command transient-quit-all))))
 
       (casualt-suffix-testcase-runner test-vectors
                                       #'casual-org-tmenu
                                       '(lambda () (random 5000)))))
   (casualt-org-breakdown))
-
 
 (ert-deftest test-casual-org-tmenu-item-checkbox ()
   (casualt-org-setup)
   (search-forward "- [ ] task 1" nil t)
 
   (cl-letf ((casualt-mock #'org-ctrl-c-ctrl-c)
-            (casualt-mock #'casual-org-checkbox-in-progress))
+            (casualt-mock #'casual-org-checkbox-in-progress)
+            (casualt-mock #'casual-org-insert-checkbox)
+            (casualt-mock #'org-cycle-list-bullet)
+            (casualt-mock #'casual-org-toggle-list-to-checkbox))
 
     (let ((test-vectors
-           '((:binding "C-c" :command org-ctrl-c-ctrl-c)
+           '((:binding "a" :command casual-org-insert-checkbox)
+             (:binding "b" :command casual-org-toggle-list-to-checkbox)
+             (:binding "c" :command org-cycle-list-bullet)
+             (:binding "C-c" :command org-ctrl-c-ctrl-c)
              (:binding "-" :command casual-org-checkbox-in-progress))))
 
       (casualt-suffix-testcase-runner test-vectors
                                       #'casual-org-tmenu
                                       '(lambda () (random 5000)))))
   (casualt-org-breakdown))
-
 
 (ert-deftest test-casual-org-tmenu-TBLFM ()
   (casualt-org-setup)
@@ -147,13 +145,16 @@
   (cl-letf ((casualt-mock #'org-ctrl-c-star)
             (casualt-mock #'org-ctrl-c-minus)
             (casualt-mock #'org-insert-structure-template)
-            (casualt-mock #'org-insert-drawer))
+            (casualt-mock #'org-insert-drawer)
+            (casualt-mock #'casual-org-insert-keyword)
+            )
 
     (let ((test-vectors
            '((:binding "*" :command org-ctrl-c-star)
              (:binding "-" :command org-ctrl-c-minus)
              (:binding "bc" :command org-insert-structure-template)
-             (:binding "d" :command org-insert-drawer))))
+             (:binding "d" :command org-insert-drawer)
+             (:binding "k" :command casual-org-insert-keyword))))
 
       (casualt-suffix-testcase-runner test-vectors
                                       #'casual-org-tmenu
@@ -450,7 +451,11 @@
             (casualt-mock #'org-table-move-row-up)
             (casualt-mock #'org-table-move-row-down)
             (casualt-mock #'org-table-move-column-left)
-            (casualt-mock #'org-table-move-column-right))
+            (casualt-mock #'org-table-move-column-right)
+            (casualt-mock #'casual-org-table-insert-align-left)
+            (casualt-mock #'casual-org-table-insert-align-center)
+            (casualt-mock #'casual-org-table-insert-align-right)
+            (casualt-mock #'casual-org-table-info-width-alignment))
 
     (let ((test-vectors
            '((:binding "M-a" :command org-table-beginning-of-field)
@@ -463,7 +468,11 @@
              (:binding "M-p" :command org-table-move-row-up)
              (:binding "M-n" :command org-table-move-row-down)
              (:binding "M-b" :command org-table-move-column-left)
-             (:binding "M-f" :command org-table-move-column-right))))
+             (:binding "M-f" :command org-table-move-column-right)
+             (:binding "al" :command casual-org-table-insert-align-left)
+             (:binding "ac" :command casual-org-table-insert-align-center)
+             (:binding "ar" :command casual-org-table-insert-align-right)
+             (:binding "I" :command casual-org-table-info-width-alignment))))
 
       (casualt-suffix-testcase-runner test-vectors
                                       #'casual-org-table-structure-tmenu
@@ -481,6 +490,12 @@
             (casualt-mock #'casual-org-table-fedit-second-hline-reference)
             (casualt-mock #'casual-org-table-fedit-hline-range-reference)
             (casualt-mock #'casual-org-table-info-references)
+            (casualt-mock #'casual-org-table-info-formula-syntax)
+            (casualt-mock #'casual-org-table-info-calc-functions)
+            (casualt-mock #'casual-org-table-insert-calc-sum)
+            (casualt-mock #'casual-org-table-insert-calc-mean)
+            (casualt-mock #'casual-org-table-insert-calc-max)
+            (casualt-mock #'casual-org-table-insert-calc-min)
             (casualt-mock #'undo)
             (casualt-mock #'transient-quit-all))
 
@@ -492,7 +507,13 @@
              (:binding "1" :command casual-org-table-fedit-first-hline-reference)
              (:binding "2" :command casual-org-table-fedit-second-hline-reference)
              (:binding "r" :command casual-org-table-fedit-hline-range-reference)
-             (:binding "I" :command casual-org-table-info-references)
+             (:binding "f" :command casual-org-table-info-calc-functions)
+             (:binding "s" :command casual-org-table-insert-calc-sum)
+             (:binding "m" :command casual-org-table-insert-calc-mean)
+             (:binding "a" :command casual-org-table-insert-calc-max)
+             (:binding "z" :command casual-org-table-insert-calc-min)
+             (:binding "R" :command casual-org-table-info-references)
+             (:binding "F" :command casual-org-table-info-formula-syntax)
              (:binding "U" :command undo :transient t)
              (:binding "RET" :command transient-quit-all))))
 

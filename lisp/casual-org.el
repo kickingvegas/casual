@@ -93,24 +93,33 @@ This menu provides commands for inserting formula references."
   ["Org Table Formula Edit"
    :pad-keys t
    ["Row"
-    ("@<" "First Row" casual-org-table-fedit-first-row-reference)
-    ("@>" "Last Row" casual-org-table-fedit-last-row-reference)]
+    ("@<" "⤒ First" casual-org-table-fedit-first-row-reference
+     :description (lambda () (casual-org-unicode-get :first-row)))
+    ("@>" "⤓ Last" casual-org-table-fedit-last-row-reference
+     :description (lambda () (casual-org-unicode-get :last-row)))]
 
    ["Column"
-    ("$<" "First" casual-org-table-fedit-first-column-reference)
-    ("$>" "Last" casual-org-table-fedit-last-column-reference)]
+    ("$<" "⇤ First" casual-org-table-fedit-first-column-reference
+     :description (lambda () (casual-org-unicode-get :first-column)))
+    ("$>" "⇥ Last" casual-org-table-fedit-last-column-reference
+     :description (lambda () (casual-org-unicode-get :last-column)))]
 
-   ["---"
+   ["H Line (-)"
     ("1" "First (@I)" casual-org-table-fedit-first-hline-reference)
     ("2" "Second (@II)" casual-org-table-fedit-second-hline-reference)
     ("r" "Range (@I..@II)" casual-org-table-fedit-hline-range-reference)]
 
-   ;; TODO: support format specifiers (org) Formula syntax for Calc
+   ["Vector"
+    ("s" "sum" casual-org-table-insert-calc-sum)
+    ("m" "mean" casual-org-table-insert-calc-mean)
+    ("a" "max" casual-org-table-insert-calc-max)
+    ("z" "min" casual-org-table-insert-calc-min)]
 
-   [""
-    ("I" "ⓘ References" casual-org-table-info-references
-     :description (lambda () (format "%s References"
-                                (casual-org-unicode-get :info))))]]
+   ["Info"
+    :description (lambda () (casual-org-unicode-get :info))
+    ("F" "Formula Syntax" casual-org-table-info-formula-syntax)
+    ("R" "References" casual-org-table-info-references)
+    ("f" "𝑓(𝑥)" casual-org-table-info-calc-functions)]]
 
   casual-lib-navigation-group-with-undo-and-return)
 

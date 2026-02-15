@@ -1,8 +1,8 @@
 * CSV
 #+CINDEX: CSV
-#+VINDEX: casual-csv-tmenu
+#+VINDEX: casual-csv
 
-Casual CSV is a user interface for ~csv-mode~, a mode for working with CSV files.
+Casual CSV (library: ~casual-csv~) is a user interface for ~csv-mode~, a mode for working with CSV files.
 
 [[file:images/casual-csv-edit-screenshot.png]]
 
@@ -18,6 +18,8 @@ In your initialization file, bind the Transient ~casual-csv-tmenu~ to your key b
 #+begin_src elisp :lexical no
   (keymap-set csv-mode-map "M-m" #'casual-csv-tmenu)
 #+end_src
+
+The binding {{{kbd(M-m)}}} is intended to complement the binding {{{kbd(C-o)}}} used by [[#editkit-install][EditKit]].
 
 While not required, the following configuration is recommended for working with CSV files.
 
@@ -36,7 +38,7 @@ While not required, the following configuration is recommended for working with 
 
 ** CSV Usage
 #+CINDEX: CSV Usage
-
+#+VINDEX: casual-csv-tmenu
 [[file:images/casual-csv-edit-screenshot.png]]
 
 The following sections are offered in the menu:
@@ -49,7 +51,7 @@ The following sections are offered in the menu:
 - Fields :: Kill and yank commands dedicated for CSV mode. Note that these commands do /not/ use the default ~kill-ring~ and are marked with a bullet (•). This section is displayed only if the buffer is editable.
 - Misc :: Miscellaneous commands. Note if a region is selected containing multiple complete rows, the “{{{kbd(C)}}} Copy as Table” command will reformat the selected rows as an Org table and copy them in the ~kill-ring~ for subsequent pasting.
   
-#+TEXINFO: @subheading CVS View/Edit, Duplicate
+#+TEXINFO: @subsubheading CVS View/Edit, Duplicate
 
 If the buffer is in view (read-only) mode, then only relevant commands are displayed.
 
@@ -57,7 +59,7 @@ If the buffer is in view (read-only) mode, then only relevant commands are displ
 
 If the buffer is editable, a common to desire to instead work on a copy of the CSV file to avoid making unwanted changes. This can be done using the “{{{kbd(d)}}} Duplicate” command.
 
-#+TEXINFO: @subheading CSV Align
+#+TEXINFO: @subsubheading CSV Align
 #+VINDEX: casual-csv-align-tmenu
 
 The display of the CSV buffer can be controlled with the menu ~casual-csv-align-tmenu~.
@@ -65,7 +67,7 @@ The display of the CSV buffer can be controlled with the menu ~casual-csv-align-
 [[file:images/casual-csv-align-screenshot.png]]
 
 
-#+TEXINFO: @subheading CSV Settings
+#+TEXINFO: @subsubheading CSV Settings
 #+VINDEX: casual-csv-settings-tmenu
 
 The menu ~casual-csv-settings-tmenu~ provides access to different ~csv-mode~ settings.
@@ -73,7 +75,7 @@ The menu ~casual-csv-settings-tmenu~ provides access to different ~csv-mode~ set
 [[file:images/casual-csv-settings-screenshot.png]]
 
 
-#+TEXINFO: @subheading CSV Unicode Symbol Support
+#+TEXINFO: @subsubheading CSV Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual CSV will use Unicode symbols as appropriate in its menus.
 

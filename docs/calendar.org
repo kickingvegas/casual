@@ -1,8 +1,7 @@
 * Calendar
 #+CINDEX: Calendar
 #+VINDEX: casual-calendar
-#+VINDEX: casual-calendar-tmenu
-Casual Calendar is a user interface for Emacs Calendar/Diary. Its top-level library is ~casual-calendar~. Access to numerous calendar and diary commands are made available, most notably support for non-Gregorian calendar systems.
+Casual Calendar (library: ~casual-calendar~) is a user interface for Emacs Calendar/Diary. Its top-level library is ~casual-calendar~. Access to numerous calendar and diary commands are made available, most notably support for non-Gregorian calendar systems.
 
 
 [[file:images/casual-calendar-screenshot.png]]
@@ -21,6 +20,7 @@ The main menu for Casual Calendar (~casual-calendar-tmenu)~ is invoked by the co
 
 ** Calendar Usage
 #+CINDEX: Calendar Usage
+#+VINDEX: casual-calendar-tmenu
 
 [[file:images/casual-calendar-screenshot.png]]
 
