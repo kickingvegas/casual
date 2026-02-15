@@ -78,4 +78,16 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas rhoncus felis 
 Nullam ut enim vitae leo molestie viverra non ac lectus. Phasellus volutpat, velit sit amet tempor suscipit, diam lectus vulputate sem, et pretium quam ligula vel augue. Mauris vitae ligula neque. Maecenas ac lorem augue.
 
 *** Heading 3
+
  Donec feugiat ornare ornare. Aliquam hendrerit, elit id tempus iaculis, eros nisl scelerisque quam, ac posuere turpis felis vitae odio. Phasellus volutpat, velit sit amet tempor suscipit, diam lectus vulputate sem, et pretium quam ligula vel augue.
+
+
+* WAITING Task
+:PROPERTIES:
+:CREATED: 2026-02-15 18:55:48
+:END:
+
+:LOGBOOK:
+CLOCK: [2026-02-16 Mon 18:19]--[2026-02-16 Mon 18:35] =>  0:16
+:END:
+

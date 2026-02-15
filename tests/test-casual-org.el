@@ -80,7 +80,7 @@
   (casualt-org-setup)
   (search-forward "- a" nil t)
 
-  (cl-letf ((casualt-mock #'org-insert-todo-heading)
+  (cl-letf ((casualt-mock #'org-insert-item)
             (casualt-mock #'org-cycle-list-bullet)
             (casualt-mock #'casual-org-toggle-list-to-checkbox)
 
@@ -91,7 +91,7 @@
 
     (let ((test-vectors
            '(
-             (:binding "a" :command org-insert-todo-heading)
+             (:binding "a" :command org-insert-item)
              (:binding "c" :command org-cycle-list-bullet)
              (:binding "b" :command casual-org-toggle-list-to-checkbox)
 
@@ -146,12 +146,14 @@
 
   (cl-letf ((casualt-mock #'org-ctrl-c-star)
             (casualt-mock #'org-ctrl-c-minus)
-            (casualt-mock #'org-insert-structure-template))
+            (casualt-mock #'org-insert-structure-template)
+            (casualt-mock #'org-insert-drawer))
 
     (let ((test-vectors
            '((:binding "*" :command org-ctrl-c-star)
              (:binding "-" :command org-ctrl-c-minus)
-             (:binding "bc" :command org-insert-structure-template))))
+             (:binding "bc" :command org-insert-structure-template)
+             (:binding "d" :command org-insert-drawer))))
 
       (casualt-suffix-testcase-runner test-vectors
                                       #'casual-org-tmenu
@@ -172,6 +174,79 @@
                                       '(lambda () (random 5000)))))
   (casualt-org-breakdown))
 
+(ert-deftest test-casual-org-tmenu-body-in-src-block ()
+  (casualt-org-setup)
+  (search-forward "(message" nil t)
+
+  (cl-letf ((casualt-mock #'org-ctrl-c-ctrl-c))
+    (let ((test-vectors
+           '((:binding "C-c" :command org-ctrl-c-ctrl-c))))
+
+      (casualt-suffix-testcase-runner test-vectors
+                                      #'casual-org-tmenu
+                                      '(lambda () (random 5000)))))
+  (casualt-org-breakdown))
+
+
+(ert-deftest test-casual-org-tmenu-body-at-property-drawer ()
+  (casualt-org-setup)
+  (search-forward ":PROPERTIES:" nil t)
+
+  (cl-letf ((casualt-mock #'org-set-property))
+    (let ((test-vectors
+           '((:binding "p" :command org-set-property))))
+
+      (casualt-suffix-testcase-runner test-vectors
+                                      #'casual-org-tmenu
+                                      '(lambda () (random 5000)))))
+  (casualt-org-breakdown))
+
+
+(ert-deftest test-casual-org-tmenu-body-at-property ()
+  (casualt-org-setup)
+  (search-forward ":CREATED:" nil t)
+
+  (cl-letf ((casualt-mock #'org-set-property)
+            (casualt-mock #'org-property-action))
+    (let ((test-vectors
+           '((:binding "p" :command org-set-property)
+             (:binding "a" :command org-property-action))))
+
+      (casualt-suffix-testcase-runner test-vectors
+                                      #'casual-org-tmenu
+                                      '(lambda () (random 5000)))))
+  (casualt-org-breakdown))
+
+
+(ert-deftest test-casual-org-tmenu-body-at-drawer ()
+  (casualt-org-setup)
+  (search-forward ":LOGBOOK:" nil t)
+
+  (cl-letf ((casualt-mock #'org-cycle))
+    (let ((test-vectors
+           '((:binding "TAB" :command org-cycle))))
+
+      (casualt-suffix-testcase-runner test-vectors
+                                      #'casual-org-tmenu
+                                      '(lambda () (random 5000)))))
+  (casualt-org-breakdown))
+
+(ert-deftest test-casual-org-tmenu-body-at-clock-log ()
+  (casualt-org-setup)
+  (search-forward "CLOCK:" nil t)
+
+  (cl-letf ((casualt-mock #'org-clock-in)
+            (casualt-mock #'org-clock-timestamps-up)
+            (casualt-mock #'org-clock-timestamps-down))
+    (let ((test-vectors
+           '((:binding "M-c" :command org-clock-in)
+             (:binding "u" :command org-clock-timestamps-up)
+             (:binding "d" :command org-clock-timestamps-down))))
+
+      (casualt-suffix-testcase-runner test-vectors
+                                      #'casual-org-tmenu
+                                      '(lambda () (random 5000)))))
+  (casualt-org-breakdown))
 (ert-deftest test-casual-org-tmenu-block ()
   (casualt-org-setup)
   (search-forward "#+BEGIN_SRC" nil t)

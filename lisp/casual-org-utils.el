@@ -172,10 +172,35 @@ which is done with `org-ctrl-c-ctrl-c'."
 
 (defun casual-org--body-description ()
   "Description string for Org body."
-  (let ((heading (org-get-heading t nil t t)))
-    (if heading
-        (format "Org Body: %s" (substring-no-properties heading))
-      (format "Org Body: %s" (buffer-name)))))
+    (cond
+     ((org-at-property-drawer-p)
+      "Org Property Drawer")
+
+     ((org-at-drawer-p)
+      (let ((key (org-element-property :drawer-name (org-element-context)))
+            (structure-type "Drawer"))
+        (if key
+            (format "Org %s: %s" structure-type key)
+          (format "Org %s" structure-type))))
+
+     ((org-at-property-p)
+      (let ((key (org-element-property :key (org-element-context)))
+            (structure-type "Property"))
+        (if key
+            (format "Org %s: %s" structure-type key)
+          (format "Org %s" structure-type))))
+
+     ((org-at-clock-log-p)
+      "Org Clock Log")
+
+     ((org-in-src-block-p)
+      "Org Source Body")
+
+     (t
+      (let ((heading (org-get-heading t nil t t)))
+        (if heading
+            (format "Org Body: %s" (substring-no-properties heading))
+          (format "Org Body: %s" (buffer-name)))))))
 
 (defun casual-org--keyword-description ()
   "Description string for Org keyword."
@@ -588,7 +613,7 @@ See `casual-org-table--range' for more on RANGE object."
    ["Item"
     :pad-keys t
     :inapt-if casual-lib-buffer-read-only-p
-    ("a" "Add" org-insert-todo-heading :transient t)
+    ("a" "Add" org-insert-item :transient t)
     ("c" "Cycle" org-cycle-list-bullet :transient t)
     ("b" "Toggle Checkbox" casual-org-toggle-list-to-checkbox :transient t)]
 
@@ -628,10 +653,71 @@ See `casual-org-table--range' for more on RANGE object."
    :description casual-org--body-description
    :inapt-if casual-lib-buffer-read-only-p
 
-   [:if-not org-at-keyword-p
-    ("*" "To Heading" org-ctrl-c-star :transient t)
-    ("-" "To Item" org-ctrl-c-minus :transient t)]
-   [("b" "Add Block…" org-insert-structure-template)]])
+   ;; !!!: Body
+   ["To"
+    :if-not (lambda () (or (org-at-keyword-p)
+                      (org-at-drawer-p) ; covers property-drawer-p
+                      (org-at-clock-log-p)
+                      (org-in-src-block-p)
+                      (org-at-property-p)))
+    ("*" "Heading" org-ctrl-c-star :transient t)
+    ("-" "Item" org-ctrl-c-minus :transient t)]
+
+   ["Add"
+    :if-not (lambda () (or (org-at-keyword-p)
+                      (org-at-drawer-p) ; covers property-drawer-p
+                      (org-at-clock-log-p)
+                      (org-in-src-block-p)
+                      (org-at-property-p)))
+    ("b" "Block…" org-insert-structure-template)
+    ("d" "Drawer…" org-insert-drawer)]
+
+
+   ;; !!!: org-in-src-block-p
+   [:if org-in-src-block-p
+    ("'" "Edit" org-edit-src-code :transient nil)]
+
+   [:if org-in-src-block-p
+    ("C-c" "Eval" org-ctrl-c-ctrl-c
+     :if (lambda () (or (eq (org-element-type (org-element-context)) 'src-block)
+                   (eq (org-element-type (org-element-context)) 'dynamic-block)))
+     :transient t)]
+
+   ;; !!!: org-at-property-drawer-p
+   [:if org-at-property-drawer-p
+    ("p" "Add Property…" org-set-property)]
+
+   ;; !!!: org-at-property-p
+   [:if org-at-property-p
+    ("p" "Add Property…" org-set-property)]
+
+   [:if org-at-property-p
+    ("a" "Action…" org-property-action)]
+
+   ;; !!!: org-at-drawer-p
+   [:if (lambda () (and (org-at-drawer-p)
+                   (not (org-at-property-drawer-p))))
+    ("TAB" "Cycle…" org-cycle :transient t)]
+
+   ;; !!!: org-at-clock-log-p
+   ["Clock"
+    :pad-keys t
+    :if org-at-clock-log-p
+    ("M-c" "🕘 in" org-clock-in
+     :description (lambda () (casual-org-unicode-get :clock-in))
+     :if-not org-clocking-p)
+    ("M-c" "🕔 out" org-clock-out
+     :description (lambda () (casual-org-unicode-get :clock-out))
+     :if org-clocking-p)]
+
+   ["Timestamp"
+    :if org-at-clock-log-p
+    ("u" "Adjust Up" org-clock-timestamps-up
+     :description (lambda () (format "Adjust %s" (casual-org-unicode-get :up)))
+     :transient t)
+    ("d" "Adjust Down" org-clock-timestamps-down
+     :description (lambda () (format "Adjust %s" (casual-org-unicode-get :down)))
+     :transient t)]])
 
 
 (transient-define-group casual-org-keyword-group
@@ -690,6 +776,10 @@ See `casual-org-table--range' for more on RANGE object."
   [:if-not (lambda () (or (org-at-table-p)
                      (org-at-TBLFM-p)
                      (org-at-block-p)
+                     (org-at-property-p)
+                     (org-at-drawer-p)
+                     (org-at-clock-log-p)
+                     (org-in-src-block-p)
                      (org-at-keyword-p)))
 
    ["Link"
