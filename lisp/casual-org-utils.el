@@ -223,14 +223,15 @@ which is done with `org-ctrl-c-ctrl-c'."
 
 (defun casual-org--item-description ()
   "Description string for Org item."
-  ;; TODO: Figure out how to item content.
-  ;; (buffer-substring-no-properties
-  ;;  (org-element-contents-begin (org-element-context))
-  ;;  (org-element-contents-end (org-element-context)))
-  (let ((heading (org-get-heading t nil t t)))
-    (if heading
-        (format "Org List: %s" (substring-no-properties heading))
-      (format "Org List: %s" (buffer-name)))))
+  (let* ((context (org-element-context))
+         (start (org-element-contents-begin context))
+         (end (org-element-contents-end context))
+         (buf (if (and start end)
+                  (buffer-substring-no-properties start end)
+                nil)))
+    (if buf
+        (format "Org Item: %s"(nth 0 (string-split buf "\n")))
+      "Org Item")))
 
 
 ;; -------------------------------------------------------------------
