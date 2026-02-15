@@ -59,12 +59,12 @@ While this menu is raised, point navigation is supported using standard
 Emacs key bindings for movement."
 
   :refresh-suffixes t
+  :transient-non-suffix t
 
   ;; Context-Specific
   casual-org-heading-group
   casual-org-item-group
   casual-org-table-group
-  ;; casual-org-TBLFM-group
   casual-org-keyword-group
   casual-org-body-group
   casual-org-block-group
@@ -72,7 +72,6 @@ Emacs key bindings for movement."
   ;; Common
   casual-org-utility-group
   casual-org-navigation-group
-
 
   [:class transient-row
    (casual-lib-quit-one)
@@ -89,6 +88,8 @@ Emacs key bindings for movement."
   "Menu for Org table formula editing.
 
 This menu provides commands for inserting formula references."
+  :transient-non-suffix t
+
   ["Org Table Formula Edit"
    :pad-keys t
    ["Row"
@@ -104,12 +105,13 @@ This menu provides commands for inserting formula references."
     ("2" "Second (@II)" casual-org-table-fedit-second-hline-reference)
     ("r" "Range (@I..@II)" casual-org-table-fedit-hline-range-reference)]
 
+   ;; TODO: support format specifiers (org) Formula syntax for Calc
+
    [""
     ("I" "ⓘ References" casual-org-table-info-references
      :description (lambda () (format "%s References"
                                 (casual-org-unicode-get :info))))]]
 
-  casual-org-table-fedit-navigation-group
   casual-lib-navigation-group-with-undo-and-return)
 
 (provide 'casual-org)

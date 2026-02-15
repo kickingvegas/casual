@@ -511,7 +511,9 @@ See `casual-org-table--range' for more on RANGE object."
 
    ["Compute"
     :inapt-if casual-lib-buffer-read-only-p
-    ("c" "Row" org-table-recalculate :transient t)
+    ("c" "Row" org-table-recalculate
+     :description (lambda () (if prefix-arg "Table" "Row✦"))
+     :transient t)
     ("g" "All" org-table-recalculate-buffer-tables :transient t)
     ("s" "Sum" org-table-sum :transient t)
     ("S" "Sort" org-table-sort-lines :transient t)
@@ -602,22 +604,6 @@ See `casual-org-table--range' for more on RANGE object."
     :inapt-if casual-lib-buffer-read-only-p
     ("s" "Sort…" org-sort)]])
 
-
-(transient-define-group casual-org-TBLFM-group
-  ["Org Table Formula"
-   :if org-at-TBLFM-p
-   :inapt-if casual-lib-buffer-read-only-p
-   :description (lambda () (let ((heading (org-get-heading t nil t t)))
-                        (if heading
-                            (format "Org TBLFM: %s" (substring-no-properties heading))
-                          (format "Org TBLFM: %s" (buffer-name)))))
-   ["Table Formula"
-    ("F" "Edit Formulas" org-table-edit-formulas
-     :inapt-if casual-lib-buffer-read-only-p
-     :transient nil)]
-
-   [""
-    ("C-c" "Recalculate" org-table-recalculate-buffer-tables :transient t)]])
 
 
 (transient-define-group casual-org-block-group
@@ -666,81 +652,38 @@ See `casual-org-table--range' for more on RANGE object."
 
 
 (transient-define-group casual-org-navigation-group
-  [:pad-keys t
-   ["Navigation"
-    ("TAB" "⥅" org-cycle
-     :description (lambda () (casual-org-unicode-get :cycle))
-     :transient t)
-    ("S-TAB" "⥆" org-shifttab
-     :description (lambda () (casual-org-unicode-get :shift-cycle))
-     :transient t)]
-   [""
-    ("C-p" "↑" previous-line
-     :description (lambda () (casual-org-unicode-get :up))
-     :transient t)
-    ("C-n" "↓" next-line
-     :description (lambda () (casual-org-unicode-get :down))
-     :transient t)]
-   [""
-    ("C-b" "←" backward-char
-     :description (lambda () (casual-org-unicode-get :left))
-     :transient t)
-    ("C-f" "→" forward-char
-     :description (lambda () (casual-org-unicode-get :right))
-     :transient t)]
+  [
    ["Field"
     :if org-at-table-p
     ("M-a" "⇤" org-table-beginning-of-field
      :description (lambda () (casual-org-unicode-get :beginning-of-field))
-     :transient t)
+     :transient t)]
+
+   [""
+    :if org-at-table-p
     ("M-e" "⇥" org-table-end-of-field
      :description (lambda () (casual-org-unicode-get :end-of-field))
      :transient t)]
-   ["Line"
-    :description (lambda () (if (org-at-table-p) "Line" ""))
-    ("C-a" "⇤" org-beginning-of-line
-     :description (lambda () (casual-org-unicode-get :beginning-of-line-table))
-     :transient t)
-    ("C-e" "⇥" org-end-of-line
-     :description (lambda () (casual-org-unicode-get :end-of-line-table))
-     :transient t)]
+
    ["Mark"
     :if-not (lambda () (or (org-at-keyword-p)
                       (org-at-table-p)
                       (org-at-block-p)))
-    ("ms" "Subtree" org-mark-subtree)
+    ("ms" "Subtree" org-mark-subtree)]
+
+   [""
+    :if-not (lambda () (or (org-at-keyword-p)
+                      (org-at-table-p)
+                      (org-at-block-p)))
     ("me" "Element" org-mark-element)]
 
-   ["Org"
+   ["Util"
     ("v" "Copy Visible"
      org-copy-visible
-     :inapt-if-not (lambda () (use-region-p)))
+     :inapt-if-not (lambda () (use-region-p)))]
+   [""
     ("e" "Export…" org-export-dispatch)]])
 
-
-(transient-define-group casual-org-table-fedit-navigation-group
-  [:pad-keys t
-   ["Navigation"
-    ("C-p" "↑" previous-line
-     :description (lambda () (casual-org-unicode-get :up))
-     :transient t)
-    ("C-n" "↓" next-line
-     :description (lambda () (casual-org-unicode-get :down))
-     :transient t)]
-   [""
-    ("C-b" "←" backward-char
-     :description (lambda () (casual-org-unicode-get :left))
-     :transient t)
-    ("C-f" "→" forward-char
-     :description (lambda () (casual-org-unicode-get :right))
-     :transient t)]
-   [""
-    ("C-a" "⇤" org-beginning-of-line
-     :description (lambda () (casual-org-unicode-get :beginning-of-line))
-     :transient t)
-    ("C-e" "⇥" org-end-of-line
-     :description (lambda () (casual-org-unicode-get :end-of-line))
-     :transient t)]])
 
 
 (transient-define-group casual-org-utility-group
@@ -782,8 +725,8 @@ See `casual-org-table--range' for more on RANGE object."
     ("P" "Toggle Prettify" prettify-symbols-mode
      :description (lambda () (casual-lib-checkbox-label prettify-symbols-mode
                                                    "Prettify"))
-     :transient nil)
-    ]
+     :transient nil)]
+
    [""
     ("V" "Line Wrap" visual-line-mode
      :description (lambda () (casual-lib-checkbox-label visual-line-mode
@@ -799,6 +742,7 @@ See `casual-org-table--range' for more on RANGE object."
 (transient-define-prefix casual-org-table-structure-tmenu ()
   "Menu for Org Table structure (layout) commands."
   :refresh-suffixes t
+  :transient-non-suffix t
 
   ["Org Table Layout"
    :pad-keys t
@@ -824,21 +768,11 @@ See `casual-org-table--range' for more on RANGE object."
     ("M-b" "Column ←" org-table-move-column-left :transient t)
     ("M-f" "Column →" org-table-move-column-right :transient t)]]
 
-  ["Navigation"
-   :pad-keys t
-   [("TAB" "⥅" org-cycle :transient t)
-    ("S-TAB" "⥆" org-shifttab :transient t)]
-   [("C-p" "↑" previous-line :transient t)
-    ("C-n" "↓" next-line :transient t)]
-   [("C-b" "←" backward-char :transient t)
-    ("C-f" "→" forward-char :transient t)]
+  ;; TODO: Support <r> <c> <l> (org) Column Width and Alignment
 
-   [:if org-at-table-p
-    ("M-a" "⇤" org-table-beginning-of-field :transient t)
-    ("M-e" "⇥" org-table-end-of-field :transient t)]
-
-   [("C-a" "⇤" org-beginning-of-line :transient t)
-    ("C-e" "⇥" org-end-of-line :transient t)]]
+  ["Field"
+   [("M-a" "⇤" org-table-beginning-of-field :transient t)]
+   [("M-e" "⇥" org-table-end-of-field :transient t)]]
 
   casual-lib-navigation-group-with-undo-and-return)
 
