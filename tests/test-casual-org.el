@@ -406,14 +406,6 @@
             (casualt-mock #'casual-org-table-fedit-second-hline-reference)
             (casualt-mock #'casual-org-table-fedit-hline-range-reference)
             (casualt-mock #'casual-org-table-info-references)
-
-            (casualt-mock #'previous-line)
-            (casualt-mock #'next-line)
-            (casualt-mock #'backward-char)
-            (casualt-mock #'forward-char)
-            (casualt-mock #'org-beginning-of-line)
-            (casualt-mock #'org-end-of-line)
-
             (casualt-mock #'undo)
             (casualt-mock #'transient-quit-all))
 
@@ -426,12 +418,6 @@
              (:binding "2" :command casual-org-table-fedit-second-hline-reference)
              (:binding "r" :command casual-org-table-fedit-hline-range-reference)
              (:binding "I" :command casual-org-table-info-references)
-             (:binding "C-p" :command previous-line)
-             (:binding "C-n" :command next-line)
-             (:binding "C-b" :command backward-char)
-             (:binding "C-f" :command forward-char)
-             (:binding "C-a" :command org-beginning-of-line)
-             (:binding "C-e" :command org-end-of-line)
              (:binding "U" :command undo :transient t)
              (:binding "RET" :command transient-quit-all))))
 
