@@ -135,6 +135,10 @@ level of the Org manual is opened."
   (interactive)
   (deactivate-mark))
 
+(defun casual-org-mode-p ()
+  "Predicate to check if the current mode is `org-mode'."
+  (derived-mode-p 'org-mode))
+
 
 ;; -------------------------------------------------------------------
 ;; Org List Functions
@@ -238,6 +242,9 @@ This command should only be invoked in an empty table cell."
 
 (defun casual-org--block-description ()
   "Description string for an Org block."
+  (unless (casual-org-mode-p)
+    (throw 'casual-org--description-exception "Org Block"))
+
   (let* ((context (org-element-context))
          (context-type (org-element-type context)))
     (cond
@@ -272,39 +279,44 @@ This command should only be invoked in an empty table cell."
 
 (defun casual-org--body-description ()
   "Description string for Org body."
-    (cond
-     ((org-at-property-drawer-p)
-      "Org Property Drawer")
+  (unless (casual-org-mode-p)
+    (throw 'casual-org--description-exception "-Org Body-"))
 
-     ((org-at-drawer-p)
-      (let ((key (org-element-property :drawer-name (org-element-context)))
-            (structure-type "Drawer"))
-        (if key
-            (format "Org %s: %s" structure-type key)
-          (format "Org %s" structure-type))))
+  (cond
+   ((org-at-property-drawer-p)
+    "Org Property Drawer")
 
-     ((org-at-property-p)
-      (let ((key (org-element-property :key (org-element-context)))
-            (structure-type "Property"))
-        (if key
-            (format "Org %s: %s" structure-type key)
-          (format "Org %s" structure-type))))
+   ((org-at-drawer-p)
+    (let ((key (org-element-property :drawer-name (org-element-context)))
+          (structure-type "Drawer"))
+      (if key
+          (format "Org %s: %s" structure-type key)
+        (format "Org %s" structure-type))))
 
-     ((org-at-clock-log-p)
-      "Org Clock Log")
+   ((org-at-property-p)
+    (let ((key (org-element-property :key (org-element-context)))
+          (structure-type "Property"))
+      (if key
+          (format "Org %s: %s" structure-type key)
+        (format "Org %s" structure-type))))
 
-     ((org-in-src-block-p)
-      "Org Source Body")
+   ((org-at-clock-log-p)
+    "Org Clock Log")
 
-     (t
-      (let ((heading (org-get-heading t nil t t)))
-        (if heading
-            (format "Org Body: %s" (substring-no-properties heading))
-          (format "Org Body: %s" (buffer-name)))))))
+   ((org-in-src-block-p)
+    "Org Source Body")
+
+   (t
+    (let ((heading (org-get-heading t nil t t)))
+      (if heading
+          (format "Org Body: %s" (substring-no-properties heading))
+        (format "Org Body: %s" (buffer-name)))))))
 
 (defun casual-org--keyword-description ()
   "Description string for Org keyword."
   ;; TODO: deal with affiliate keywords like PLOT.
+  (unless (casual-org-mode-p)
+    (throw 'casual-org--description-exception "-Org Keyword-"))
 
   (cond
    ((org-at-TBLFM-p) "Org Table Formula (TBLFM)")
@@ -316,6 +328,9 @@ This command should only be invoked in an empty table cell."
 
 (defun casual-org--heading-description ()
   "Description string for Org heading."
+  (unless (casual-org-mode-p)
+    (throw 'casual-org--description-exception "-Org Headline-"))
+
   (let ((heading (org-get-heading t nil t t)))
     (if heading
         (format "Org Headline: %s" (substring-no-properties heading))
@@ -323,6 +338,9 @@ This command should only be invoked in an empty table cell."
 
 (defun casual-org--item-description ()
   "Description string for Org item."
+  (unless (casual-org-mode-p)
+    (throw 'casual-org--description-exception "-Org Item-"))
+
   (let* ((context (org-element-context))
          (start (org-element-contents-begin context))
          (end (org-element-contents-end context))
@@ -573,7 +591,7 @@ See `casual-org-table--range' for more on RANGE object."
 ;; Transient Groups
 (transient-define-group casual-org-table-group
   ["Org Table"
-   :if org-at-table-p
+   :if (lambda () (and (casual-org-mode-p) (org-at-table-p)))
    :description (lambda () (format "Org Table: %s" (casual-org-table--reference-dwim)))
    ["Table"
     :inapt-if casual-lib-buffer-read-only-p
@@ -661,10 +679,10 @@ See `casual-org-table--range' for more on RANGE object."
 ;; TODO: ("c" "Capture…" org-capture)
 (transient-define-group casual-org-heading-group
   ["Org Heading"
-   :if org-at-heading-p
+   :if (lambda () (and (casual-org-mode-p) (org-at-heading-p)))
    :inapt-if casual-lib-buffer-read-only-p
-   :description casual-org--heading-description
-
+   :description (lambda () (catch 'casual-org--description-exception
+                        (casual-org--heading-description)))
    ["Headline"
     :pad-keys t
     ("t" "TODO State…" org-todo)
@@ -699,8 +717,9 @@ See `casual-org-table--range' for more on RANGE object."
 
 (transient-define-group casual-org-item-group
   ["Org Item"
-   :if org-at-item-p
-   :description casual-org--item-description
+   :if (lambda () (and (casual-org-mode-p) (org-at-item-p)))
+   :description (lambda () (catch 'casual-org--description-exception
+                        (casual-org--item-description)))
 
    ["Item"
     :description (lambda () (if (org-at-item-checkbox-p)
@@ -737,9 +756,10 @@ See `casual-org-table--range' for more on RANGE object."
 
 (transient-define-group casual-org-block-group
   ["Org Block"
-   :if org-at-block-p
+   :if (lambda () (and (casual-org-mode-p) (org-at-block-p)))
    :inapt-if casual-lib-buffer-read-only-p
-   :description casual-org--block-description
+   :description (lambda () (catch 'casual-org--description-exception
+                        (casual-org--block-description)))
    [("'" "Edit" org-edit-src-code :transient nil)]
    [("n" "Assign Name…" casual-org-assign-name)]
    [("C-c" "Eval" org-ctrl-c-ctrl-c
@@ -750,11 +770,14 @@ See `casual-org-table--range' for more on RANGE object."
 
 (transient-define-group casual-org-body-group
   ["Org Body"
-   :if-not (lambda () (or (org-at-heading-or-item-p)
-                     (org-at-table-p)
-                     (org-at-block-p)
-                     (org-at-keyword-p)))
-   :description casual-org--body-description
+   :if-not (lambda () (if (casual-org-mode-p)
+                      (or (org-at-heading-or-item-p)
+                          (org-at-table-p)
+                          (org-at-block-p)
+                          (org-at-keyword-p))
+                   t))
+   :description (lambda () (catch 'casual-org--description-exception
+                        (casual-org--body-description)))
    :inapt-if casual-lib-buffer-read-only-p
 
    ;; !!!: Body
@@ -778,35 +801,36 @@ See `casual-org-table--range' for more on RANGE object."
     ("k" "Keyword…" casual-org-insert-keyword)]
 
    ;; !!!: org-in-src-block-p
-   [:if org-in-src-block-p
+   [:if (lambda () (and (casual-org-mode-p) (org-in-src-block-p)))
     ("'" "Edit" org-edit-src-code :transient nil)]
 
-   [:if org-in-src-block-p
+   [:if (lambda () (and (casual-org-mode-p) (org-in-src-block-p)))
     ("C-c" "Eval" org-ctrl-c-ctrl-c
      :if (lambda () (or (eq (org-element-type (org-element-context)) 'src-block)
                    (eq (org-element-type (org-element-context)) 'dynamic-block)))
      :transient t)]
 
    ;; !!!: org-at-property-drawer-p
-   [:if org-at-property-drawer-p
+   [:if (lambda () (and (casual-org-mode-p) (org-at-property-drawer-p)))
     ("p" "Add Property…" org-set-property)]
 
    ;; !!!: org-at-property-p
-   [:if org-at-property-p
+   [:if (lambda () (and (casual-org-mode-p) (org-at-property-p)))
     ("p" "Add Property…" org-set-property)]
 
-   [:if org-at-property-p
+   [:if (lambda () (and (casual-org-mode-p) (org-at-property-p)))
     ("a" "Action…" org-property-action)]
 
    ;; !!!: org-at-drawer-p
-   [:if (lambda () (and (org-at-drawer-p)
+   [:if (lambda () (and (casual-org-mode-p)
+                   (org-at-drawer-p)
                    (not (org-at-property-drawer-p))))
     ("TAB" "Cycle…" org-cycle :transient t)]
 
    ;; !!!: org-at-clock-log-p
    ["Clock"
     :pad-keys t
-    :if org-at-clock-log-p
+    :if (lambda () (and (casual-org-mode-p) (org-at-clock-log-p)))
     ("M-c" "🕘 in" org-clock-in
      :description (lambda () (casual-org-unicode-get :clock-in))
      :if-not org-clocking-p)
@@ -815,7 +839,7 @@ See `casual-org-table--range' for more on RANGE object."
      :if org-clocking-p)]
 
    ["Timestamp"
-    :if org-at-clock-log-p
+    :if (lambda () (and (casual-org-mode-p) (org-at-clock-log-p)))
     ("u" "Adjust Up" org-clock-timestamps-up
      :description (lambda () (format "Adjust %s" (casual-org-unicode-get :up)))
      :transient t)
@@ -826,8 +850,9 @@ See `casual-org-table--range' for more on RANGE object."
 
 (transient-define-group casual-org-keyword-group
   ["Org Keyword"
-   :if org-at-keyword-p
-   :description casual-org--keyword-description
+   :if (lambda () (and (casual-org-mode-p) (org-at-keyword-p)))
+   :description (lambda () (catch 'casual-org--description-exception
+                        (casual-org--keyword-description)))
    :inapt-if casual-lib-buffer-read-only-p
    [:if org-at-TBLFM-p
     ("F" "Edit Formulas" org-table-edit-formulas :transient nil)]
@@ -842,7 +867,7 @@ See `casual-org-table--range' for more on RANGE object."
 
 
 (transient-define-group casual-org-navigation-group
-  [
+  [:if casual-org-mode-p
    ["Field"
     :if org-at-table-p
     ("M-a" "⇤" org-table-beginning-of-field
@@ -877,14 +902,17 @@ See `casual-org-table--range' for more on RANGE object."
 
 
 (transient-define-group casual-org-utility-group
-  [:if-not (lambda () (or (org-at-table-p)
-                     (org-at-TBLFM-p)
-                     (org-at-block-p)
-                     (org-at-property-p)
-                     (org-at-drawer-p)
-                     (org-at-clock-log-p)
-                     (org-in-src-block-p)
-                     (org-at-keyword-p)))
+  [
+   :if-not (lambda () (if (casual-org-mode-p)
+                     (or (org-at-table-p)
+                         (org-at-TBLFM-p)
+                         (org-at-block-p)
+                         (org-at-property-p)
+                         (org-at-drawer-p)
+                         (org-at-clock-log-p)
+                         (org-in-src-block-p)
+                         (org-at-keyword-p))
+                   t))
 
    ["Link"
     :inapt-if casual-lib-buffer-read-only-p
@@ -911,6 +939,7 @@ See `casual-org-table--range' for more on RANGE object."
      :if (lambda () (not (org-at-heading-or-item-p))))]
 
    ["Display"
+    :if casual-org-mode-p
     ("M-i" "Toggle Images" org-toggle-inline-images
      :transient nil)
     ("M" "Show Markup" visible-mode
@@ -922,6 +951,7 @@ See `casual-org-table--range' for more on RANGE object."
      :transient nil)]
 
    [""
+    :if casual-org-mode-p
     ("V" "Line Wrap" visual-line-mode
      :description (lambda () (casual-lib-checkbox-label visual-line-mode
                                                    "Line Wrap"))
