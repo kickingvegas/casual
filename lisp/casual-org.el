@@ -74,6 +74,7 @@ Emacs key bindings for movement."
   casual-org-navigation-group
 
   [:class transient-row
+   :if casual-org-mode-p
    (casual-lib-quit-one)
    ("," "Settings" casual-org-settings-tmenu)
    ("I" "ⓘ" casual-org-info
