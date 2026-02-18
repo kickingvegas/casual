@@ -1,8 +1,8 @@
 * EWW
 #+CINDEX: EWW
-#+VINDEX: casual-eww-tmenu
+#+VINDEX: casual-eww
 
-Casual EWW is a user interface for Emacs Web Wowser ([[info:eww#Top]]), a web browser that runs inside Emacs.
+Casual EWW (library: ~casual-eww~) is a user interface for Emacs Web Wowser ([[info:eww#Top]]), a web browser that runs inside Emacs.
 
 [[file:images/casual-eww-screenshot.png]]
 
@@ -50,6 +50,7 @@ While not mandatory, the following bindings can make the EWW keymaps consistent 
 
 ** EWW Usage
 #+CINDEX: EWW Usage
+#+VINDEX: casual-eww-tmenu
 
 In an EWW window, invoke ~casual-eww-tmenu~ as shown below.
 
@@ -72,7 +73,7 @@ The following sections are offered in the menu:
   
 - EWW Bookmarks :: Commands associated with EWW bookmarks.
 
-#+TEXINFO: @subheading EWW Settings
+#+TEXINFO: @subsubheading EWW Settings
 #+VINDEX: casual-eww-settings-tmenu
 
 Customize common EWW settings from this menu. These settings can be persisted to be used across restarts of Emacs.
@@ -80,7 +81,7 @@ Customize common EWW settings from this menu. These settings can be persisted to
 [[file:images/casual-eww-settings-screenshot.png]]
 
 
-#+TEXINFO: @subheading EWW Display
+#+TEXINFO: @subsubheading EWW Display
 #+VINDEX: casual-eww-display-tmenu
 
 The menu ~casual-eww-display-tmenu~ provides commands to toggle different display attributes of a web page.
@@ -88,7 +89,7 @@ The menu ~casual-eww-display-tmenu~ provides commands to toggle different displa
 [[file:images/casual-eww-display-screenshot.png]]
 
 
-#+TEXINFO: @subheading EWW Bookmarks
+#+TEXINFO: @subsubheading EWW Bookmarks
 #+VINDEX: casual-eww-bookmarks-tmenu
 
 The menu ~casual-eww-bookmarks-tmenu~ provides commands for managing the EWW bookmark list.
@@ -97,7 +98,7 @@ The menu ~casual-eww-bookmarks-tmenu~ provides commands for managing the EWW boo
 
 Note that the EWW bookmarks list has a very limited feature set.
 
-#+TEXINFO: @subheading EWW Unicode Symbol Support
+#+TEXINFO: @subsubheading EWW Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual EWW will use Unicode symbols as appropriate in its menus.
 

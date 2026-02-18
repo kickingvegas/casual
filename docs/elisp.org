@@ -1,8 +1,8 @@
 * Elisp
 #+CINDEX: Elisp
-#+VINDEX: casual-elisp-tmenu
+#+VINDEX: casual-elisp
 
-Casual Elisp is a user interface for ~emacs-lisp-mode~. It provides a menu for commands useful for Elisp development.
+Casual Elisp (library: ~casual-elisp~) is a user interface for ~emacs-lisp-mode~. It provides a menu for commands useful for Elisp development.
 
 [[file:images/casual-elisp-screenshot.png]]
 
@@ -20,9 +20,11 @@ In your initialization file, bind the Transient ~casual-elisp-tmenu~ to your key
 #+end_src
 
 
+The binding {{{kbd(M-m)}}} is intended to complement the binding {{{kbd(C-o)}}} used by [[#editkit-install][EditKit]].
+
 ** Elisp Usage
 #+CINDEX: Elisp Usage
-
+#+VINDEX: casual-elisp-tmenu
 [[file:images/casual-elisp-screenshot.png]]
 
 Invoke the Casual Elisp main menu ~casual-elisp-tmenu~ via the binding {{{kbd(M-m)}}} (or your binding of preference) in an Elisp window. Typically this is whenever an =.el= file is opened.
@@ -42,7 +44,7 @@ The following sections are offered in the menu:
 - Navigate :: Commands for Sexp (balanced expression) navigation.
 
 
-#+TEXINFO: @subheading Edebug Support
+#+TEXINFO: @subsubheading Edebug Support
 #+CINDEX: Edebug
 
 Using the command prefix {{{kbd(C-u)}}} when ~casual-elisp-tmenu~ is raised will change the “{{{kbd(d)}}} Defun✦” menu item to “{{{kbd(d)}}} Edebug” to support instrumenting a function for Edebug ([[info:elisp#Edebug]]).
@@ -50,14 +52,14 @@ Using the command prefix {{{kbd(C-u)}}} when ~casual-elisp-tmenu~ is raised will
 [[file:images/casual-elisp-edebug-screenshot.png]]
 
 
-#+TEXINFO: @subheading Elisp Settings
+#+TEXINFO: @subsubheading Elisp Settings
 #+VINDEX: casual-elisp-settings-tmenu
 
 The menu ~casual-elisp-settings-tmenu~ provides access to different ~emacs-lisp-mode~ settings.
 
 # TODO: Insert screenshot
 
-#+TEXINFO: @subheading Elisp Unicode Symbol Support
+#+TEXINFO: @subsubheading Elisp Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Elisp will use Unicode symbols as appropriate in its menus.
 

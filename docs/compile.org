@@ -2,9 +2,9 @@
 #+CINDEX: Compile
 #+CINDEX: compilation-mode
 #+CINDEX: grep-mode
-#+VINDEX: casual-compile-tmenu
+#+VINDEX: casual-compile
 
-Casual Compile is a user interface for the output of the ~compile~ command ([[info:emacs#Compilation]]). The output buffer's major mode is ~compilation-mode~ whose commands are surfaced by Casual Compile.
+Casual Compile (library: ~casual-compile~) is a user interface for the output of the ~compile~ command ([[info:emacs#Compilation]]). The output buffer's major mode is ~compilation-mode~ whose commands are surfaced by Casual Compile.
 
 In similar fashion, output of Emacs-wrapped Grep commands ([[info:emacs#Grep Searching]]) is also supported by Casual Compile. This is because the output of Grep commands use the major mode ~grep-mode~ which is derived from ~compilation-mode~. 
 
@@ -62,6 +62,7 @@ Similar treatment for ~grep-mode-map~ can be done.
 
 ** Compile Usage
 #+CINDEX: Compile Usage
+#+VINDEX: casual-compile-tmenu
 
 [[file:images/casual-compile-screenshot.png]]
 
@@ -77,12 +78,12 @@ The following sections are offered in the menu:
 If the output window is from a Grep command, ~casual-compile-tmenu~ will adjust its labels accordingly as shown below.
 
 [[file:images/casual-compile-grep-screenshot.png]]
-#+TEXINFO: @subheading Compile Settings
+#+TEXINFO: @subsubheading Compile Settings
 #+VINDEX: casual-compile-settings-tmenu
 
 The menu ~casual-compile-settings-tmenu~ provides access to different ~compilation-mode~ settings.
   
-#+TEXINFO: @subheading Compile Mode Unicode Symbol Support
+#+TEXINFO: @subsubheading Compile Mode Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Compile will use Unicode symbols as appropriate in its menus.
 

@@ -1,7 +1,7 @@
 * Dired
 #+CINDEX: Dired
-#+VINDEX: casual-dired-tmenu
-Casual Dired provides a user interface for Dired ([[info:emacs#Dired]]), the Emacs file manager. Its top-level library is ~casual-dired~.
+#+VINDEX: casual-dired
+Casual Dired (library: ~casual-dired~) provides a user interface for Dired ([[info:emacs#Dired]]), the Emacs file manager. Its top-level library is ~casual-dired~.
 
 [[file:images/casual-dired-screenshot.png]]
 
@@ -56,7 +56,7 @@ Included is a standard keymap for Dired sorting commands (~casual-dired-sort-men
 #+end_src
 
 
-#+TEXINFO: @subheading Configuration
+#+TEXINFO: @subsubheading Configuration
 
 As Dired has been around for a long time, the different ways of configuring it are myriad. Described below is a configuration used by the author that is consistent with the bindings used in Casual Dired.
 
@@ -98,7 +98,7 @@ As Dired has been around for a long time, the different ways of configuring it a
   (keymap-set image-dired-thumbnail-mode-map "p" #'image-dired-display-previous)
 #+end_src
 
-#+TEXINFO: @subheading Dired Variables
+#+TEXINFO: @subsubheading Dired Variables
 
 The Casual Dired main menu offers “{{{kbd(\,)}}} Settings›” to customize a set of commonly used Dired variables. 
 
@@ -108,6 +108,7 @@ If you have GNU ~ls~ installed and configured, use the {{{kbd(l)}}} key to set t
 
 ** Dired Usage
 #+CINDEX: Dired Usage
+#+VINDEX: casual-dired-tmenu
 
 [[file:images/casual-dired-screenshot.png]]
 

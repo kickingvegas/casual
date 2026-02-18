@@ -3,9 +3,9 @@
 :CUSTOM_ID: editkit
 :END:
 #+CINDEX: EditKit
-#+VINDEX: casual-editkit-main-tmenu
+#+VINDEX: casual-editkit
 
-Casual EditKit provides a user interface for the numerous editing commands offered by Emacs. Its top-level library is ~casual-editkit~. As text editing is a core feature of Emacs, the menus provided here are intended to be made available in a global fashion for buffers that are intended to be edited.
+Casual EditKit (library: ~casual-editkit~) provides a user interface for the numerous editing commands offered by Emacs. Its top-level library is ~casual-editkit~. As text editing is a core feature of Emacs, the menus provided here are intended to be made available in a global fashion for buffers that are intended to be edited.
 
 [[file:images/casual-editkit-main-screenshot.png]]
 
@@ -34,6 +34,7 @@ For motivated users desiring a bespoke solution, it is recommended that they use
 
 ** EditKit Usage
 #+CINDEX: EditKit Usage
+#+VINDEX: casual-editkit-main-tmenu
 
 [[file:images/casual-editkit-main-screenshot.png]]
 
@@ -74,7 +75,7 @@ The menu ~casual-editkit-edit-tmenu~ contains commands and sub-menus related to 
 
 Depending on the buffer mode, text can be operated on with different granularity as words, sentences, paragraphs, balanced expressions, functions (defuns). The following sub-menus illustrate what operations can be done on the different text granularity.
 
-#+TEXINFO: @subheading Mark› (casual-editkit-mark-tmenu)
+#+TEXINFO: @subsubheading Mark› (casual-editkit-mark-tmenu)
 #+CINDEX: Mark commands
 #+VINDEX: casual-editkit-mark-tmenu
 
@@ -82,14 +83,14 @@ Text can be marked with different granularity with this menu. Note that the menu
 
 [[file:images/casual-editkit-mark-screenshot.png]]
 
-#+TEXINFO: @subheading Copy› (casual-editkit-copy-tmenu)
+#+TEXINFO: @subsubheading Copy› (casual-editkit-copy-tmenu)
 #+CINDEX: Copy commands
 #+VINDEX: casual-editkit-copy-tmenu
 Text can be copied with different granularity with this menu.
 
 [[file:images/casual-editkit-copy-screenshot.png]]
 
-#+TEXINFO: @subheading Kill (Cut)› (casual-editkit-kill-tmenu)
+#+TEXINFO: @subsubheading Kill (Cut)› (casual-editkit-kill-tmenu)
 #+CINDEX: Kill commands
 #+CINDEX: Cut commands
 #+VINDEX: casual-editkit-kill-tmenu
@@ -97,7 +98,7 @@ Text can be cut (killed) with different granularity with this menu.
 
 [[file:images/casual-editkit-kill-screenshot.png]]
 
-#+TEXINFO: @subheading Move› (casual-editkit-move-tmenu)
+#+TEXINFO: @subsubheading Move› (casual-editkit-move-tmenu)
 #+CINDEX: Move commands
 #+VINDEX: casual-editkit-move-tmenu
 #+VINDEX: casual-editkit-move-word-tmenu
@@ -114,35 +115,35 @@ If “{{{kbd(w)}}} Word›” is selected, then the following menu ~casual-editk
 
 Similar menus for moving a sentence (~casual-editkit-move-sentence-tmenu~) and balanced expression (~casual-editkit-move-sexp-tmenu~) are available.
 
-#+TEXINFO: @subheading Transpose› (casual-editkit-transpose-tmenu)
+#+TEXINFO: @subsubheading Transpose› (casual-editkit-transpose-tmenu)
 #+CINDEX: Transpose commands
 #+VINDEX: casual-editkit-transpose-tmenu
 Text can be transposed with different granularity with this menu. 
 
 [[file:images/casual-editkit-transpose-screenshot.png]]
 
-#+TEXINFO: @subheading Transform› (casual-editkit-transform-tmenu)
+#+TEXINFO: @subsubheading Transform› (casual-editkit-transform-tmenu)
 #+CINDEX: Transform commands
 #+VINDEX: casual-editkit-transform-tmenu
 Text can be transformed with different granularity with this menu. Supported transformations are capitalization, lower and upper casing of text.
 
 [[file:images/casual-editkit-transform-screenshot.png]]
 
-#+TEXINFO: @subheading Delete› (casual-editkit-delete-tmenu)
+#+TEXINFO: @subsubheading Delete› (casual-editkit-delete-tmenu)
 #+CINDEX: Delete commands
 #+VINDEX: casual-editkit-delete-tmenu
 Operations involving text deletion are included in this menu, including joining lines and zapping to a character.
 
 [[file:images/casual-editkit-delete-screenshot.png]]
 
-#+TEXINFO: @subheading Sort› (casual-editkit-sort-tmenu)
+#+TEXINFO: @subsubheading Sort› (casual-editkit-sort-tmenu)
 #+CINDEX: Sort commands
 #+VINDEX: casual-editkit-sort-tmenu
 Sorting operations on different sections of text are supported, as well as support for sorting off a field. Press ~?~ or ~C-h~ to get help for a specific command.
 
 [[file:images/casual-editkit-sort-screenshot.png]]
 
-#+TEXINFO: @subheading Reformat› (casual-editkit-reformat-tmenu)
+#+TEXINFO: @subsubheading Reformat› (casual-editkit-reformat-tmenu)
 #+CINDEX: Reformat commands
 #+VINDEX: casual-editkit-reformat-tmenu
 Commands to reformat text such as filling, centering, and repunctuating sentences are provided here. Press ~?~ or ~C-h~ to get help for a specific command.
@@ -150,7 +151,7 @@ Commands to reformat text such as filling, centering, and repunctuating sentence
 [[file:images/casual-editkit-reformat-screenshot.png]]
 
 
-#+TEXINFO: @subheading Rectangle› (casual-editkit-rectangle-tmenu)
+#+TEXINFO: @subsubheading Rectangle› (casual-editkit-rectangle-tmenu)
 #+CINDEX: Rectangle commands
 #+VINDEX: casual-editkit-rectangle-tmenu
 
@@ -173,7 +174,7 @@ Note that the section “Transpose” is only available if the package [[https:/
 Users wishing more direct access to this menu can bind ~casual-editkit-windows-tmenu~ as shown in the [[#editkit-install][install section]].
 
 
-#+TEXINFO: @subheading Window Deletion
+#+TEXINFO: @subsubheading Window Deletion
 #+CINDEX: Window deletion
 #+VINDEX: casual-editkit-window-delete-tmenu
 
@@ -181,7 +182,7 @@ This menu provides support for deleting windows. Note the commands apply to othe
 
 [[file:images/casual-editkit-window-delete-screenshot.png]]
 
-#+TEXINFO: @subheading Window Menu Unicode Symbol Support
+#+TEXINFO: @subsubheading Window Menu Unicode Symbol Support
 
 If the variable ~casual-lib-use-unicode~ is set to ~t~, then Unicode symbols are used in the labels.
 

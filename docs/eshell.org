@@ -1,8 +1,8 @@
 * Eshell
 #+CINDEX: Eshell
-#+VINDEX: casual-eshell-tmenu
+#+VINDEX: casual-eshell
 
-Casual Eshell is a user interface for ~Eshell~, a shell-like command interpreter implemented in Emacs Lisp.
+Casual Eshell (library: ~casual-eshell~) is a user interface for ~Eshell~, a shell-like command interpreter implemented in Emacs Lisp.
 
 [[file:images/casual-eshell-screenshot.png]]
 
@@ -22,6 +22,7 @@ In your initialization file, bind the Transient ~casual-eshell-tmenu~ to your ke
 
 ** Eshell Usage
 #+CINDEX: Eshell Usage
+#+VINDEX: casual-eshell-tmenu
 
 Eshell can be invoked via ~M-x eshell~. In the Eshell window, press {{{kbd(C-o)}}} (or your binding of preference) to raise the menu ~casual-eshell-tmenu~.
 
@@ -38,14 +39,14 @@ The following sections are offered in the menu:
   [[file:images/casual-eshell-process-screenshot.png]]
 
 
-#+TEXINFO: @subheading Eshell Settings
+#+TEXINFO: @subsubheading Eshell Settings
 #+VINDEX: casual-eshell-settings-tmenu
 
 The menu ~casual-eshell-settings-tmenu~ provides access to different ~eshell-mode~ settings.
 
 # TODO: Insert screenshot
 
-#+TEXINFO: @subheading Eshell Info
+#+TEXINFO: @subsubheading Eshell Info
 #+VINDEX: casual-eshell-info-tmenu
 
 The menu ~casual-eshell-info-tmenu~ provides access to different ~eshell-mode~ documentation in its Info manual.
@@ -53,7 +54,7 @@ The menu ~casual-eshell-info-tmenu~ provides access to different ~eshell-mode~ d
 # TODO: Insert screenshot
 
   
-#+TEXINFO: @subheading Eshell Unicode Symbol Support
+#+TEXINFO: @subsubheading Eshell Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Eshell will use Unicode symbols as appropriate in its menus.
 

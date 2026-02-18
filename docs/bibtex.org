@@ -1,9 +1,9 @@
 * BibTeX
 #+CINDEX: BibTeX
 #+CINDEX: bibtex
-#+VINDEX: casual-bibtex-tmenu
+#+VINDEX: casual-bibtex
 
-Casual BibTeX is an opinionated user interface for BibTeX mode ([[info:emacs#TeX Mode][info "(emacs) TeX Mode"]]), a major mode for working with BibTeX files ([[https://bibtex.eu][BibTeX Guide]]).
+Casual BibTeX (library: ~casual-bibtex~) is an opinionated user interface for BibTeX mode ([[info:emacs#TeX Mode][info "(emacs) TeX Mode"]]), a major mode for working with BibTeX files ([[https://bibtex.eu][BibTeX Guide]]).
 
 A BibTeX file is typically named using the suffix ~.bib~ to identify its file type.
 
@@ -62,6 +62,7 @@ In your initialization file, bind the Transient ~casual-bibtex-tmenu~ to your ke
 
 ** BibTeX Usage
 #+CINDEX: BibTeX Usage
+#+VINDEX: casual-bibtex-tmenu
 
 [[file:images/casual-bibtex-screenshot.png]]
 
@@ -98,7 +99,7 @@ The following table shows the bindings for BibTeX navigation.
 
 In Casual BibTeX, CRUD (CReate, Update, Delete) operations for entry and field structures are intended to be achieved through their respective commands. This contrasts with manual editing of a buffer to achieve the same end, which is prone to errors.
 
-#+TEXINFO: @subheading Creating an Entry
+#+TEXINFO: @subsubheading Creating an Entry
 
 To create a new entry, use the “{{{kbd(A)}}} Add…” command. You will be prompted in the mini-buffer with completion support for the entry type. This new entry will be inserted relative to existing entry where the point is with all fields supported by the entry type enumerated.  Fields with the temporary prefix of "ALT" or "OPT" denote a field that is alternate or optional. Use the command “{{{kbd(o)}}} Remove OPT/ALT” to remove this prefix. 
 
@@ -109,7 +110,7 @@ When all desired information for a BibTeX entry has been entered, it can be "cle
 
 By default, cleaning an entry will not format (or "fill") the entry. This can be changed by setting the customizable variable ~bibtex-clean-entry-hook~ to include the command ~bibtex-fill-entry~. This can be done from "Hooks" section in the Settings menu ([[#bibtex-settings][Settings)]]. 
 
-#+TEXINFO: @subheading Creating a Field
+#+TEXINFO: @subsubheading Creating a Field
 
 To create a new field, use the “{{{kbd(a)}}} Add…” command. You will be prompted in the mini-buffer with completion support for the field type. This new field will be inserted relative to existing field where the point is.
 
@@ -120,7 +121,7 @@ There are two components to a field:
 
 A "brute-force" command to enumerate all fields for an entry is provided by the “{{{kbd(u)}}} Update…” command. Clean the entry to remove all unpopulated fields after using it.
   
-#+TEXINFO: @subheading BibTeX mode has its own kill-ring
+#+TEXINFO: @subsubheading BibTeX mode has its own kill-ring
 
 BibTeX has its own kill-ring variable ~bibtex-entry-kill-ring~ which the following menu commands use:
 
@@ -132,7 +133,7 @@ BibTeX has its own kill-ring variable ~bibtex-entry-kill-ring~ which the followi
   
 The "∙" annotation in a menu label denotes commands that do /not/ use the ~kill-ring~, but ~bibtex-entry-kill-ring~ instead.
 
-#+TEXINFO: @subheading Search and Jump
+#+TEXINFO: @subsubheading Search and Jump
 
 The ability to search and jump to a position in a BibTeX database are offered by the following menu commands:
 

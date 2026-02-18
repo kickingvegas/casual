@@ -1,7 +1,8 @@
 * IBuffer
 #+CINDEX: IBuffer
-#+VINDEX: casual-ibuffer-tmenu
-Casual IBuffer provides a user interface to Emacs IBuffer ([[info:emacs#Buffer Menus][emacs#Buffer Menus]]), a mode designed for managing buffers. Its top-level library is ~casual-ibuffer~.
+#+VINDEX: casual-ibuffer
+
+Casual IBuffer (library: ~casual-ibuffer~) provides a user interface to Emacs IBuffer ([[info:emacs#Buffer Menus][emacs#Buffer Menus]]), a mode designed for managing buffers.
 
 IBuffer is a powerful tool for managing Emacs workflows. As Emacs is often compared to an operating system, through that lens one could compare IBuffer to being a task manager interface, managing instantiated buffers as opposed to processes.
 
@@ -51,6 +52,7 @@ While not necessary for Casual IBuffer, enabling ~hl-line-mode~ and binding mous
 
 ** IBuffer Usage
 #+CINDEX: IBuffer Usage
+#+VINDEX: casual-ibuffer-tmenu
 
 [[file:images/casual-ibuffer-screenshot.png]]
 

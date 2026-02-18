@@ -41,6 +41,12 @@
     (:end-of-line-table . '("⇥" "End"))
     (:beginning-of-field . '("⇤" "Begin"))
     (:end-of-field . '("⇥" "End"))
+    (:first-row . '("⤒ First" "First"))
+    (:last-row . '("⤓ Last" "Last"))
+    (:first-column . '("⇤ First" "First"))
+    (:last-column . '("⇥ Last" "Last"))
+    (:row . '("═" "Row"))
+    (:column . '("║" "Column"))
     (:beginning-of-buffer . '("⇱" "Beginning"))
     (:end-of-buffer . '("⇲" "End"))
     (:info-functions . '("ⓘ 𝑓(𝑥)" "Info f(x)"))
@@ -64,6 +70,16 @@ If the value of customizable variable `casual-lib-use-unicode'
 is non-nil, then the Unicode symbol is returned, otherwise a
 plain ASCII-range string."
   (casual-lib-unicode-db-get key casual-org-unicode-db))
+
+;; (defalias 'cc/insert-org-keyword
+;;   (kmacro "C-a # + M-x c o m p l e t e - s y m b o l <return>"))
+
+(defun casual-org-insert-keyword ()
+  "Insert Org keyword in buffer with completion."
+  (interactive)
+  (beginning-of-line)
+  (insert "#+")
+  (call-interactively #'complete-symbol))
 
 (defun casual-org-info ()
   "Open Info for Org manual based on context.
@@ -93,7 +109,27 @@ level of the Org manual is opened."
                (t "(org) Top"))))
     (info node)))
 
-;; TODO: not clear why this is need to get the Transient invocation to work.
+(defun casual-org-table-info-references ()
+  "Info for Org table references."
+  (interactive)
+  (info "(org) References" ))
+
+(defun casual-org-table-info-formula-syntax ()
+  "Info for Org table formula syntax."
+  (interactive)
+  (info "(org) Formula syntax for Calc"))
+
+(defun casual-org-table-info-calc-functions ()
+  "Info for Calc functions."
+  (interactive)
+  (info "(calc) Function Index"))
+
+(defun casual-org-table-info-width-alignment ()
+  "Info for Org table width and alignment."
+  (interactive)
+  (info "(org) Column Width and Alignment"))
+
+;; TODO: not clear why this is needed to get the Transient invocation to work.
 (defun casual-org-deactivate-mark ()
   "Deactivate mark using function `deactivate-mark'."
   (interactive)
@@ -117,6 +153,11 @@ which is done with `org-ctrl-c-ctrl-c'."
   (interactive)
   (org-ctrl-c-ctrl-c '(4)))
 
+(defun casual-org-insert-checkbox ()
+  "Insert Org checkbox using `org-insert-item'."
+  (interactive)
+  (org-insert-item t))
+
 
 ;; -------------------------------------------------------------------
 ;; Org Block & Table Functions
@@ -131,6 +172,65 @@ which is done with `org-ctrl-c-ctrl-c'."
   (org-end-of-line)
   (insert (format "\n#+NAME: %s" name)))
 
+(defun casual-org-table--insert-calc-formula (fn)
+  "Base insert formula for inserting a Calc function FN."
+  (let ((formula (format "%s()" fn)))
+    (insert formula)
+    (backward-char 1)))
+
+;; TODO: Maybe support region input
+(defun casual-org-table-insert-calc-sum ()
+  "Insert into buffer Calc vector sum ‘vsum()’ function."
+  (interactive)
+  (let ((fn "vsum"))
+    (casual-org-table--insert-calc-formula fn)))
+
+(defun casual-org-table-insert-calc-mean ()
+  "Insert into buffer Calc vector mean ‘vmean()’ function."
+  (interactive)
+  (let ((fn "vmean"))
+    (casual-org-table--insert-calc-formula fn)))
+
+(defun casual-org-table-insert-calc-max ()
+  "Insert into buffer Calc vector max ‘vmax()’ function."
+  (interactive)
+  (let ((fn "vmax"))
+    (casual-org-table--insert-calc-formula fn)))
+
+(defun casual-org-table-insert-calc-min ()
+  "Insert into buffer Calc vector min ‘vmin()’ function."
+  (interactive)
+  (let ((fn "vmin"))
+    (casual-org-table--insert-calc-formula fn)))
+
+(defun casual-org-table--insert-column-alignment (align)
+  "Base insert Org table alignment specifier ALIGN."
+  (let ((formula (format "<%s>" align)))
+    (insert formula)))
+
+(defun casual-org-table-insert-align-left ()
+  "Insert into buffer an Org table left alignment specifier ‘<l>’.
+
+This command should only be invoked in an empty table cell."
+  (interactive)
+  (let ((fn "l"))
+    (casual-org-table--insert-column-alignment fn)))
+
+(defun casual-org-table-insert-align-center ()
+  "Insert into buffer an Org table center alignment specifier ‘<c>’.
+
+This command should only be invoked in an empty table cell."
+  (interactive)
+  (let ((fn "c"))
+    (casual-org-table--insert-column-alignment fn)))
+
+(defun casual-org-table-insert-align-right ()
+  "Insert into buffer an Org table right alignment specifier ‘<r>’.
+
+This command should only be invoked in an empty table cell."
+  (interactive)
+  (let ((fn "r"))
+    (casual-org-table--insert-column-alignment fn)))
 
 
 ;; -------------------------------------------------------------------
@@ -466,15 +566,6 @@ See `casual-org-table--range' for more on RANGE object."
   (interactive)
   (insert "@I..@II"))
 
-(defun casual-org-table-info-references ()
-  "Info for Org table references."
-  (interactive) (info "(org) References" ))
-
-(defun casual-org-table-info-calc-functions ()
-  "Info for Calc functions."
-  (interactive)
-  (info "(calc) Function Index"))
-
 
 ;; -------------------------------------------------------------------
 ;; Transients
@@ -612,16 +703,28 @@ See `casual-org-table--range' for more on RANGE object."
    :description casual-org--item-description
 
    ["Item"
+    :description (lambda () (if (org-at-item-checkbox-p)
+                           "Checkbox"
+                         "Item"))
     :pad-keys t
     :inapt-if casual-lib-buffer-read-only-p
-    ("a" "Add" org-insert-item :transient t)
-    ("c" "Cycle" org-cycle-list-bullet :transient t)
-    ("b" "Toggle Checkbox" casual-org-toggle-list-to-checkbox :transient t)]
+    ("a" "Add" org-insert-item
+     :if-not org-at-item-checkbox-p
+     :transient t)
+    ("a" "Add" casual-org-insert-checkbox
+     :if org-at-item-checkbox-p
+     :transient t)
+    ("b" "Toggle Checkbox" casual-org-toggle-list-to-checkbox
+     :description (lambda () (if (org-at-item-checkbox-p)
+                            "To Item"
+                          "To Checkbox"))
+     :transient t)
+    ("c" "Cycle" org-cycle-list-bullet :transient t)]
 
-   ["Checkbox"
+   [""
     :pad-keys t
-    :inapt-if-not (lambda () (and (org-at-item-checkbox-p)
-                             (not (casual-lib-buffer-read-only-p))))
+    :if org-at-item-checkbox-p
+    :inapt-if casual-lib-buffer-read-only-p
     ("C-c" "Toggle" org-ctrl-c-ctrl-c
      :transient nil)
     ("-" "In Progress" casual-org-checkbox-in-progress :transient nil)]
@@ -671,8 +774,8 @@ See `casual-org-table--range' for more on RANGE object."
                       (org-in-src-block-p)
                       (org-at-property-p)))
     ("b" "Block…" org-insert-structure-template)
-    ("d" "Drawer…" org-insert-drawer)]
-
+    ("d" "Drawer…" org-insert-drawer)
+    ("k" "Keyword…" casual-org-insert-keyword)]
 
    ;; !!!: org-in-src-block-p
    [:if org-in-src-block-p
@@ -840,26 +943,60 @@ See `casual-org-table--range' for more on RANGE object."
    :inapt-if-not org-at-table-p
    ["Insert"
     :inapt-if casual-lib-buffer-read-only-p
-    ("r" "Row" org-table-insert-row :transient t)
-    ("c" "Column" org-table-insert-column :transient t)
+    ("r" "Row" org-table-insert-row
+     :description (lambda () (casual-org-unicode-get :row))
+     :transient t)
+    ("c" "Column" org-table-insert-column
+     :description (lambda () (casual-org-unicode-get :column))
+     :transient t)
     ("-" "H Line" org-table-insert-hline :transient t)]
 
    ["Delete"
     :inapt-if casual-lib-buffer-read-only-p
-    ("DEL" "Row" org-table-kill-row :transient t)
-    ("M-DEL" "Column" org-table-delete-column :transient t)]
+    ("DEL" "Row" org-table-kill-row
+     :description (lambda () (casual-org-unicode-get :row))
+     :transient t)
+    ("M-DEL" "Column" org-table-delete-column
+     :description (lambda () (casual-org-unicode-get :column))
+     :transient t)]
 
    ["Move"
     :inapt-if casual-lib-buffer-read-only-p
-    ("M-p" "Row ↑" org-table-move-row-up :transient t)
-    ("M-n" "Row ↓" org-table-move-row-down :transient t)]
+    ("M-b" "Column ←" org-table-move-column-left
+     :description (lambda () (format "%s %s"
+                                (casual-org-unicode-get :column)
+                                (casual-org-unicode-get :left)))
+     :transient t)]
 
    [""
     :inapt-if casual-lib-buffer-read-only-p
-    ("M-b" "Column ←" org-table-move-column-left :transient t)
-    ("M-f" "Column →" org-table-move-column-right :transient t)]]
+    ("M-p" "Row ↑" org-table-move-row-up
+     :description (lambda () (format "%s %s"
+                                (casual-org-unicode-get :row)
+                                (casual-org-unicode-get :up)))
+     :transient t)
+    ("M-n" "Row ↓" org-table-move-row-down
+     :description (lambda () (format "%s %s"
+                                (casual-org-unicode-get :row)
+                                (casual-org-unicode-get :down)))
+     :transient t)]
 
-  ;; TODO: Support <r> <c> <l> (org) Column Width and Alignment
+   [""
+    :inapt-if casual-lib-buffer-read-only-p
+    ("M-f" "Column →" org-table-move-column-right
+     :description (lambda () (format "%s %s"
+                                (casual-org-unicode-get :column)
+                                (casual-org-unicode-get :right)))
+     :transient t)]]
+
+  ["Align"
+   :class transient-row
+   ("al" "Left" casual-org-table-insert-align-left)
+   ("ac" "Center" casual-org-table-insert-align-center)
+   ("ar" "Right" casual-org-table-insert-align-right)
+   ("I" "Width & Alignment" casual-org-table-info-width-alignment
+    :description (lambda () (format "%s Width & Align"
+                               (casual-org-unicode-get :info))))]
 
   ["Field"
    [("M-a" "⇤" org-table-beginning-of-field :transient t)]
