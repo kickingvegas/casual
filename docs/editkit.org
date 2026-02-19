@@ -23,11 +23,13 @@ A reference menu (~casual-editkit-main-tmenu~) illustrating nearly all the diffe
   (keymap-global-set "C-o" #'casual-editkit-main-tmenu)
 #+end_src
 
-Also suggested is to globally bind the window and rectangle menus as shown below.
+Also suggested is to globally bind the windows, rectangle, registers, and project menus as shown below.
 
 #+begin_src elisp :lexical no
   (keymap-global-set "C-c w" #'casual-editkit-windows-tmenu)
   (keymap-global-set "C-c r" #'casual-editkit-rectangle-tmenu)
+  (keymap-global-set "C-c g" #'casual-editkit-registers-tmenu)
+  (keymap-global-set "C-c p" #'casual-editkit-project-tmenu)
 #+end_src
 
 For motivated users desiring a bespoke solution, it is recommended that they use Casual EditKit as a library of menus to build their own workflows.

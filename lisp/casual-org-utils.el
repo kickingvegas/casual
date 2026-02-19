@@ -102,6 +102,7 @@ level of the Org manual is opened."
                ((org-at-heading-p) "(org) Headlines")
                ((org-at-item-p) "(org) Plain Lists")
                ((or (org-at-table-p) (org-at-TBLFM-p)) "(org) Tables")
+               ((org-in-src-block-p) "(org) Working with Source Code")
                ((org-at-block-p) "(org) Blocks")
                ((org-at-drawer-p) "(org) Drawers")
                ((org-at-property-p) "(org) Property Syntax")
