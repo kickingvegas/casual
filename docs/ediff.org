@@ -1,8 +1,8 @@
 * Ediff
 #+CINDEX: Ediff
-#+VINDEX: casual-ediff-tmenu
+#+VINDEX: casual-ediff
 
-Casual Ediff is a user interface for Ediff ([[info:ediff#Top][Ediff]]), a visual interface for the Unix diff and patch utilities. Casual Ediff strives to improve the usability of Ediff by simplifying the following workflows:
+Casual Ediff (library: ~casual-ediff~) is a user interface for Ediff ([[info:ediff#Top][Ediff]]), a visual interface for the Unix diff and patch utilities. Casual Ediff strives to improve the usability of Ediff by simplifying the following workflows:
 
 - Comparing a modified and uncommitted version-controlled file with its most recent commit.
 - Resolving a merge conflicted file.
@@ -65,6 +65,7 @@ Casual Ediff recommends the following variables be set as follows:
 
 ** Ediff Usage
 #+CINDEX: Ediff Usage
+#+VINDEX: casual-ediff-tmenu
 
 [[file:images/casual-ediff-basic-screenshot.png]]
 

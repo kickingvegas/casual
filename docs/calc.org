@@ -1,7 +1,8 @@
 * Calc
 #+CINDEX: Calc
-#+VINDEX: casual-calc-tmenu
-Casual Calc is a user interface for Emacs Calc ([[info:calc#Top]]).
+#+VINDEX: casual-calc
+
+Casual Calc (library: ~casual-calc~) is a user interface for Emacs Calc ([[info:calc#Top]]).
 
 [[file:images/casual-calc-tmenu.png]]
 
@@ -22,6 +23,7 @@ To install Casual Calc, add the following lines to your Emacs initialization fil
 
 ** Calc Usage
 #+CINDEX: Calc Usage
+#+VINDEX: casual-calc-tmenu
 
 [[file:images/casual-calc-tmenu.png]]
 
@@ -39,7 +41,7 @@ Casual Calc organizes its main menu into the following sections:
 - Functions :: Entry point for sub-menus of commands organized into different classes of functionality.
 - Settings :: Entry point for sub-menus of commands to configure Calc settings.
 
-#+TEXINFO: @subheading Calc Basics
+#+TEXINFO: @subsubheading Calc Basics
 
 It helps to know some basics about Calc.
 

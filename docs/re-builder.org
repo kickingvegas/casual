@@ -1,8 +1,8 @@
 * RE-Builder
 #+CINDEX: RE-Builder
-#+VINDEX: casual-re-builder-tmenu
+#+VINDEX: casual-re-builder
 
-Casual RE-Builder is a user interface for RE-Builder. Its top level library is ~casual-re-builder~.
+Casual RE-Builder (library: ~casual-re-builder~) is a user interface for RE-Builder.
 
 [[file:images/casual-re-builder-screenshot.png]]
 
@@ -22,6 +22,7 @@ The main menu for Casual RE-Builder is ~casual-re-builder-tmenu~. Bind this menu
 
 ** RE-Builder Usage
 #+CINDEX: RE-Builder Usage
+#+VINDEX: casual-re-builder-tmenu
 
 [[file:images/casual-re-builder-screenshot.png]]
 
@@ -35,7 +36,7 @@ If multiple sub-expressions are in the regexp pattern, then they can be observed
 
 If the regexp pattern entered in "✳︎RE-Builder✳︎" finds multiple matches, a match can be navigated to via the  “{{{kbd(p)}}} Previous” and “{{{kbd(n)}}} Next” menu items.
 
-#+TEXINFO: @subheading Exporting the Regexp Pattern
+#+TEXINFO: @subsubheading Exporting the Regexp Pattern
 Once a desired regexp pattern is defined, there are two menu items that can be used to export (copy) it to the kill-ring for further use.
 
 - “{{{kbd(w)}}} Interactive” will copy the regexp to the kill-ring so that it can be yanked in an interactive command that requires a regexp (e.g. ~query-replace-regexp~).
@@ -48,20 +49,20 @@ Once a desired regexp pattern is defined, there are two menu items that can be u
   - ❗️At current this is an experimental feature. The regexp exported from RE-Builder may not work. If so please report an [[https://github.com/kickingvegas/casual-re-builder/issues][issue]] describing the desired regexp and the target text.
   - This can only be used when the regexp syntax is set to ~string~.    
 
-#+TEXINFO: @subheading Regexp Syntax Help
+#+TEXINFO: @subsubheading Regexp Syntax Help
 The menu item {{{kbd(i)}}} will invoke the Info page for regexp syntax with respect to the current syntax type.
 
-#+TEXINFO: @subheading Quitting RE-Builder
+#+TEXINFO: @subsubheading Quitting RE-Builder
 Select “{{{kbd(q)}}} Quit” to exit the RE-Builder tool.
 
-#+TEXINFO: @subheading RE-Builder Settings
+#+TEXINFO: @subsubheading RE-Builder Settings
 #+VINDEX: casual-re-builder-settings-tmenu
 
 The menu ~casual-re-builder-settings-tmenu~ provides access to different RE-Builder settings.
 
 # TODO: Insert screenshot
 
-#+TEXINFO: @subheading RE-Builder Unicode Symbol Support
+#+TEXINFO: @subsubheading RE-Builder Unicode Symbol Support
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual RE-Builder will use Unicode symbols as appropriate in its menus.
 
 For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].

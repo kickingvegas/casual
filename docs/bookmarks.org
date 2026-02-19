@@ -1,8 +1,8 @@
 * Bookmarks
 #+CINDEX: Bookmarks
-#+VINDEX: casual-bookmarks-tmenu
+#+VINDEX: casual-bookmarks
 
-Casual Bookmarks is a user interface for the Emacs Bookmarks list ([[info:emacs#Bookmarks]]). Its top-level library is ~casual-bookmarks~.
+Casual Bookmarks (library: ~casual-bookmarks~) is a user interface for the Emacs Bookmarks list ([[info:emacs#Bookmarks]]). Its top-level library is ~casual-bookmarks~.
 
 [[file:images/casual-bookmarks-screenshot.png]]
 
@@ -51,6 +51,7 @@ The above guidance largely extends the work done in the blog post [[http://yummy
 
 ** Bookmarks Usage
 #+CINDEX: Bookmarks Usage
+#+VINDEX: casual-bookmarks-tmenu
 
 [[file:images/casual-bookmarks-screenshot.png]]
 
@@ -70,12 +71,12 @@ Casual Bookmarks organizes its main menu into the following sections:
 - Column :: Commands to navigate and control the display of the table layout for bookmarks.
 
 
-#+TEXINFO: @subheading Sorting
+#+TEXINFO: @subsubheading Sorting
 #+VINDEX: casual-bookmarks-sortby-tmenu
 
 Support for sorting the bookmarks list is provided by the menu ~casual-bookmarks-sortby-tmenu~.
 
-#+TEXINFO: @subheading Unicode Symbol Support
+#+TEXINFO: @subsubheading Unicode Symbol Support
 
 [[file:images/casual-bookmarks-unicode-screenshot.png]]
 

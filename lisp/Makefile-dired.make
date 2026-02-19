@@ -19,6 +19,12 @@ PACKAGE_NAME=casual-dired
 ELISP_INCLUDES=casual-dired-variables.el casual-dired-utils.el
 ELISP_PACKAGES=casual-dired-settings.el casual-dired-sort-by.el
 ELISP_TEST_INCLUDES=casual-dired-test-utils.el
-PACKAGE_PATHS=-L $(CASUAL_LIB_LISP_DIR)
+PACKAGE_PATHS=					\
+-L $(EMACS_ELPA_DIR)/compat-current		\
+-L $(EMACS_ELPA_DIR)/seq-current		\
+-L $(EMACS_ELPA_DIR)/transient-current		\
+-L $(EMACS_ELPA_DIR)/cond-let-current		\
+-L $(CASUAL_LIB_LISP_DIR)
+
 
 include Makefile--rules.make

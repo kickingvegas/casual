@@ -3,9 +3,9 @@
 :CUSTOM_ID: css-top
 :END:
 #+CINDEX: CSS
-#+VINDEX: casual-css-tmenu
+#+VINDEX: casual-css
 
-Casual CSS is a user interface for ~css-mode~. 
+Casual CSS (library: ~casual-css~) is a user interface for ~css-mode~. 
 
 [[file:images/casual-css-screenshot.png]]
 Casual also has support for HTML editing ([[#html-top][HTML]]).
@@ -28,6 +28,7 @@ A different binding ({{{kbd(M-m)}}}) is used as ~casual-css-tmenu~ is intended t
 
 ** CSS Usage
 #+CINDEX: CSS Usage
+#+VINDEX: casual-css-tmenu
 
 [[file:images/casual-css-screenshot.png]]
 
@@ -43,7 +44,7 @@ The following sections are offered in the menu:
   - “{{{kbd(h)}}} Highlight Line” toggles ~hl-line-mode~ to avoid interfering the display of color specifications.
   
 
-#+TEXINFO: @subheading CSS Settings
+#+TEXINFO: @subsubheading CSS Settings
 #+VINDEX: casual-css-settings-tmenu
 
 The menu ~casual-css-settings-tmenu~ provides access to different ~css-mode~ settings.
@@ -51,7 +52,7 @@ The menu ~casual-css-settings-tmenu~ provides access to different ~css-mode~ set
 [[file:images/casual-css-settings-screenshot.png]]
 
 
-#+TEXINFO: @subheading CSS Unicode Symbol Support
+#+TEXINFO: @subsubheading CSS Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual CSS will use Unicode symbols as appropriate in its menus.
 

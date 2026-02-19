@@ -40,6 +40,7 @@ info-tests					\
 isearch-tests					\
 make-mode-tests					\
 man-tests					\
+org-tests					\
 re-builder-tests				\
 timezone-tests
 
@@ -111,7 +112,6 @@ help-tests:
 html-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-html.make tests
 
-
 .PHONY: image-tests
 image-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-image.make tests
@@ -135,6 +135,10 @@ make-mode-tests:
 .PHONY: man-tests
 man-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-man.make tests
+
+.PHONY: org-tests
+org-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-org.make tests
 
 .PHONY: re-builder-tests
 re-builder-tests:

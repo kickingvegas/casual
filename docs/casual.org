@@ -5,7 +5,7 @@
 #+EMAIL: kickingvegas@gmail.com
 #+OPTIONS: ':t toc:t author:t email:t H:4 f:t
 #+LANGUAGE: en
-#+MACRO: version 2.13.2
+#+MACRO: version 2.13.3-rc.1
 #+MACRO: kbd (eval (org-texinfo-kbd-macro $1))
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_CLASS: casual
@@ -55,9 +55,13 @@ Copyright © 2024-2025 Charles Y. Choi
 * Introduction
 #+CINDEX: Introduction
 ** Motivations
+:PROPERTIES:
+:CUSTOM_ID: motivations
+:END:
+
 #+CINDEX: Motivations
 
-#+TEXINFO: @subheading Goals
+#+TEXINFO: @subsubheading Goals
 
 - To provide a keyboard-driven menu UI toolkit for common Emacs commands.
 
@@ -66,7 +70,7 @@ Copyright © 2024-2025 Charles Y. Choi
 - To be a frequently used interface for modes supported by Casual.
 
 
-#+TEXINFO: @subheading Non-Goals
+#+TEXINFO: @subsubheading Non-Goals
 
 - Full coverage of all Emacs commands.
 
@@ -119,7 +123,7 @@ For Transient menus that offer setting different values, the following bindings 
 
   Clears the set and saved values of the active transient.
 
-#+TEXINFO: @subheading References
+#+TEXINFO: @subsubheading References
 
 - [[info:transient#Aborting and Resuming Transients]]
   
@@ -164,6 +168,7 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[#i-search-install][I-Search]]
 - [[#make-mode-install][Make]]
 - [[#man-install][Man]]
+- [[#org-install][Org]]
 - [[#re-builder-install][Re-Builder]]
 - [[#timezone-install][Timezone]]
 
@@ -202,7 +207,7 @@ That said, if you have used ~:ensure t~ to install a superseded package, you /mu
 
 The Casual menus share common user experience (UX) conventions to facilitate usability. This section details this.
 
-#+TEXINFO: @subheading Common Menu Navigation
+#+TEXINFO: @subsubheading Common Menu Navigation
 
 Casual organizes a mode's command set into a menu hierarchy. As the user descends down different menu levels, the user is given the option to dismiss the current menu or to dismiss completely all menu levels descended. Transient provides a standard convention for menu dismissal via the {{{kbd(C-g)}}} (~transient-quit-one~) and {{{kbd(C-q)}}} (~transient-quit-all~) commands.
 
@@ -210,18 +215,18 @@ Casual makes explicit the display of {{{kbd(C-g)}}} and {{{kbd(C-q)}}} at the bo
 #+VINDEX: casual-lib-hide-navigation
 Users who wish to have them hidden can set the customizable variable ~casual-lib-hide-navigation~ to a non-nil value. This can be changed from a Casual mode-specific settings menu.
 
-#+TEXINFO: @subheading Settings Menu
+#+TEXINFO: @subsubheading Settings Menu
 
 Most all Casual main menus support invoking a mode-specific settings menu via the binding {{{kbd(\,)}}}.
 
-#+TEXINFO: @subheading Unicode Symbol Support
+#+TEXINFO: @subsubheading Unicode Symbol Support
 #+VINDEX: casual-lib-use-unicode
 
 The customizable variable named ~casual-lib-use-unicode~ which when non-nil will inform Casual menus to use Unicode symbol labels whenever supported. This can be changed from Casual mode-specific settings menu.
 
 If ~casual-lib-use-unicode~ is set to ~t~, it is also recommended that the variable ~transient-align-variable-pitch~ also be set to ~t~.
 
-#+TEXINFO: @subheading Common Key Bindings
+#+TEXINFO: @subsubheading Common Key Bindings
 
 Listed below are keybindings which are common among Casual menus. 
 
@@ -246,7 +251,7 @@ Listed below are keybindings which are common among Casual menus.
   For modes that organize items into sections, navigation to a next or previous section is bound to {{{kbd([)}}} and {{{kbd(])}}} respectively.
 
 
-#+TEXINFO: @subheading Label Conventions
+#+TEXINFO: @subsubheading Label Conventions
 
 Casual annotates menu labels with the following conventions:
 
@@ -256,7 +261,7 @@ Casual annotates menu labels with the following conventions:
 - ‘ⓘ’ :: If the label starts with the glyph ⓘ (CIRCLED LATIN SMALL LETTER I), then the command will invoke the Info reader.
 
 
-#+TEXINFO: @subheading Menu Naming Conventions
+#+TEXINFO: @subsubheading Menu Naming Conventions
 
 To distinguish Transient menu (prefix) definitions from existing Emacs menu definitions using keymaps ([[info:elisp#Menu Keymaps][elisp#Menu Keymaps]]), Casual uses the naming suffix  ~-tmenu~. 
 
@@ -291,6 +296,7 @@ The following modes are supported by Casual:
 #+INCLUDE: "./isearch.org" :minlevel 2
 #+INCLUDE: "./make-mode.org" :minlevel 2
 #+INCLUDE: "./man.org" :minlevel 2
+#+INCLUDE: "./org.org" :minlevel 2
 #+INCLUDE: "./re-builder.org" :minlevel 2
 #+INCLUDE: "./timezone.org" :minlevel 2
   

@@ -34,7 +34,7 @@ The main menu for Casual Timezone (~casual-timezone-tmenu~) offers the following
 - ~casual-timezone-planner~ (menu binding: ~z~) will generate a table comparing hours between the local and a remote time zone on a certain date. Multiple remote time zones can be specified.
 
 
-#+TEXINFO: @subheading Timezone Planner
+#+TEXINFO: @subsubheading Timezone Planner
 #+VINDEX: casual-timezone-planner
 
 [[file:images/casual-timezone-planner-screenshot.png]]

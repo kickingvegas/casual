@@ -20,7 +20,13 @@ ELISP_INCLUDES=
 ELISP_PACKAGES=
 ELISP_TEST_INCLUDES=casual-lib-test-utils.el
 PACKAGE_NAME=casual-lib
-PACKAGE_PATHS=
+PACKAGE_PATHS=					\
+-L $(EMACS_ELPA_DIR)/compat-current		\
+-L $(EMACS_ELPA_DIR)/seq-current		\
+-L $(EMACS_ELPA_DIR)/transient-current		\
+-L $(EMACS_ELPA_DIR)/cond-let-current		\
+-L $(CASUAL_LIB_LISP_DIR)
+
 
 .PHONY: tests compile regression
 

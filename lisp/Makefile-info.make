@@ -20,6 +20,12 @@ PACKAGE_NAME=casual-info
 ELISP_INCLUDES=casual-info-variables.el casual-info-utils.el
 ELISP_PACKAGES=casual-info-settings.el
 ELISP_TEST_INCLUDES=casual-info-test-utils.el
-PACKAGE_PATHS=-L $(CASUAL_LIB_LISP_DIR)
+PACKAGE_PATHS=					\
+-L $(EMACS_ELPA_DIR)/compat-current		\
+-L $(EMACS_ELPA_DIR)/seq-current		\
+-L $(EMACS_ELPA_DIR)/transient-current		\
+-L $(EMACS_ELPA_DIR)/cond-let-current		\
+-L $(CASUAL_LIB_LISP_DIR)
+
 
 include Makefile--rules.make
