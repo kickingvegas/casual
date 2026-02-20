@@ -14,6 +14,18 @@ To learn more about the motivations and design considerations for Casual as well
 
 Please refer to the [[https://kickingvegas.github.io/casual][Casual User Guide]] for detailed information about it. This user guide is available both in Emacs Info and HTML formats.
 
+* Requirements
+Casual requires Emacs 29.1+, Transient 0.9.0+, csv-mode 1.27+.
+
+Certain menus require more installed software:
+
+- Casual Dired: GNU Coreutils
+- Casual Image: ImageMagick 6+
+  
+* Install
+In Emacs, a “mode” is analogous to an “app” in that it is a grouping of related features. Installation of Casual is done on a per-mode basis.
+
+[[https://kickingvegas.github.io/casual/Install.html][Installation instructions for the different modes supported by Casual can be found in the Casual User Guide]]. 
 
 * Asks
 As Casual is new, we are looking for early adopters! Your [[https://github.com/kickingvegas/casual/discussions][feedback]] is welcome as it will likely impact Casual's evolution, particularly with regards to UI.

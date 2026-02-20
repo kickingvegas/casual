@@ -5,7 +5,7 @@
 #+EMAIL: kickingvegas@gmail.com
 #+OPTIONS: ':t toc:t author:t email:t H:4 f:t
 #+LANGUAGE: en
-#+MACRO: version 2.14.0
+#+MACRO: version 2.14.1-rc.1
 #+MACRO: kbd (eval (org-texinfo-kbd-macro $1))
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_CLASS: casual
@@ -132,7 +132,7 @@ For Transient menus that offer setting different values, the following bindings 
 * Requirements
 #+CINDEX: Requirements
 
-Casual requires Emacs 29.1+, Transient 0.9.0+.
+Casual requires Emacs 29.1+, Transient 0.9.0+, csv-mode 1.27+.
 
 Certain menus require more installed software:
 
