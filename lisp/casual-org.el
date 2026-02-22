@@ -76,7 +76,7 @@ Emacs key bindings for movement."
   [:class transient-row
    :if casual-org-mode-p
    (casual-lib-quit-one)
-   ("," "Settings" casual-org-settings-tmenu)
+   ("," "Settings›" casual-org-settings-tmenu)
    ("I" "ⓘ" casual-org-info
     :description (lambda () (casual-org-unicode-get :info)))
    ("U" "Undo" undo :transient t)
