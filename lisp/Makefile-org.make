@@ -26,6 +26,7 @@ PACKAGE_PATHS=					\
 -L $(EMACS_ELPA_DIR)/seq-current		\
 -L $(EMACS_ELPA_DIR)/transient-current		\
 -L $(EMACS_ELPA_DIR)/cond-let-current		\
+-L $(EMACS_ELPA_DIR)/org-current		\
 -L $(CASUAL_LIB_LISP_DIR)
 
 include Makefile--rules.make

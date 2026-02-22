@@ -942,6 +942,11 @@ See `casual-org-table--range' for more on RANGE object."
    ["Display"
     :if casual-org-mode-p
     ("M-i" "Toggle Images" org-toggle-inline-images
+     :if (lambda () (and (display-graphic-p)
+                    (not (fboundp 'org-link-preview))))
+     :transient nil)
+    ("M-i" "Toggle Images" org-link-preview
+     :if (lambda () (and (display-graphic-p) (fboundp 'org-link-preview)))
      :transient nil)
     ("M" "Show Markup" visible-mode
      :description (lambda () (casual-lib-checkbox-label visible-mode "Show Markup"))
