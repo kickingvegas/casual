@@ -270,7 +270,8 @@
   (casualt-org-setup)
   (search-forward "* Casual Org Test File" nil t)
 
-  (cl-letf ((casualt-mock #'org-insert-link)
+  (cl-letf (((symbol-function #'display-graphic-p) (lambda (&optional display) t))
+            (casualt-mock #'org-insert-link)
             (casualt-mock #'org-insert-last-stored-link)
             (casualt-mock #'org-cite-insert)
             (casualt-mock #'org-timestamp)
@@ -278,7 +279,8 @@
             (casualt-mock #'org-clock-in)
             (casualt-mock #'org-clock-out)
             (casualt-mock #'org-clock-report)
-            (casualt-mock #'org-toggle-inline-images)
+            (casualt-mock #'org-link-preview)
+            (casualt-mock #'casual-org-toggle-images)
             (casualt-mock #'visible-mode)
             (casualt-mock #'prettify-symbols-mode)
             (casualt-mock #'visual-line-mode)
@@ -292,7 +294,8 @@
              (:binding "M-c" :command org-clock-in)
              ;; (:binding "M-c" :command org-clock-out) ; TODO test
              ;; (:binding "R" :command org-clock-report) ; TODO test
-             (:binding "M-i" :command org-toggle-inline-images)
+             (:binding "M-i" :command casual-org-toggle-images)
+             (:binding "M-l" :command org-link-preview)
              (:binding "M" :command visible-mode)
              (:binding "P" :command prettify-symbols-mode)
              (:binding "V" :command visual-line-mode)
@@ -301,6 +304,8 @@
       (casualt-suffix-testcase-runner test-vectors
                                       #'casual-org-tmenu
                                       '(lambda () (random 5000)))))
+
+
   (casualt-org-breakdown))
 
 (ert-deftest test-casual-org-tmenu-navigation ()

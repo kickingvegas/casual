@@ -24,6 +24,9 @@
 ;;; Code:
 (require 'rect)
 (require 'org)
+(require 'org-num)
+(require 'org-element)
+(require 'org-element-ast)
 (require 'casual-lib)
 
 (defconst casual-org-unicode-db
@@ -587,6 +590,20 @@ See `casual-org-table--range' for more on RANGE object."
 
 
 ;; -------------------------------------------------------------------
+;; Image Preview
+
+(defun casual-org-toggle-images ()
+  "Toggle display of all link images in an Org buffer.
+
+This command mimicks ‘org-toggle-inline-images’ which was obsoleted in
+Org 9.8."
+  (interactive)
+  (if (org-link-preview--get-overlays)
+      (org-link-preview '(64))
+    (org-link-preview 11)))
+
+
+;; -------------------------------------------------------------------
 ;; Transients
 
 ;; Transient Groups
@@ -942,7 +959,14 @@ See `casual-org-table--range' for more on RANGE object."
    ["Display"
     :if casual-org-mode-p
     ("M-i" "Toggle Images" org-toggle-inline-images
+     :if (lambda () (and (display-graphic-p) (not (fboundp 'org-link-preview))))
      :transient nil)
+    ("M-i" "Toggle Images" casual-org-toggle-images
+     :if (lambda () (and (display-graphic-p) (fboundp 'org-link-preview)))
+     :transient nil)
+    ("M-l" "Link Preview✦" org-link-preview
+     :if (lambda () (and (display-graphic-p) (fboundp 'org-link-preview)))
+     :transient t)
     ("M" "Show Markup" visible-mode
      :description (lambda () (casual-lib-checkbox-label visible-mode "Show Markup"))
      :transient nil)
