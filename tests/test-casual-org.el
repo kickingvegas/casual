@@ -280,6 +280,7 @@
             (casualt-mock #'org-clock-out)
             (casualt-mock #'org-clock-report)
             (casualt-mock #'org-link-preview)
+            (casualt-mock #'casual-org-toggle-images)
             (casualt-mock #'visible-mode)
             (casualt-mock #'prettify-symbols-mode)
             (casualt-mock #'visual-line-mode)
@@ -293,7 +294,8 @@
              (:binding "M-c" :command org-clock-in)
              ;; (:binding "M-c" :command org-clock-out) ; TODO test
              ;; (:binding "R" :command org-clock-report) ; TODO test
-             (:binding "M-i" :command org-link-preview)
+             (:binding "M-i" :command casual-org-toggle-images)
+             (:binding "M-l" :command org-link-preview)
              (:binding "M" :command visible-mode)
              (:binding "P" :command prettify-symbols-mode)
              (:binding "V" :command visual-line-mode)
