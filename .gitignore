@@ -9,3 +9,12 @@
 
 # Undo-tree save-files
 *.~undo-tree
+
+# Generated docs.
+*.texi
+*.info
+
+# ELPA-generated files
+/casual-pkg.el
+/casual-autoloads.el
+/lisp/casual-autoloads.el

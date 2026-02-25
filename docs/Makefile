@@ -33,6 +33,12 @@ run: $(PKG_NAME).info
 clean: clean-html
 	- rm $(PKG_NAME).texi $(PKG_NAME).info
 
+# FIXME: Add all the `*.org` files as dependencies.
+${PKG_NAME}.texi:
+	$(EXEC_NAME) -Q --batch -l casualdocs.el ${PKG_NAME}.org \
+	             --eval "(org-texinfo-export-to-texinfo)"
+
+# FIXME: Use ${PKG_NAME}.texi?
 .PHONY: gen-info
 gen-info:
 	$(EXEC_NAME) -Q --batch									\
@@ -44,7 +50,7 @@ html:
 	mkdir html
 
 .PHONY: gen-html
-gen-html: gen-info html html/images html/main.css sync-images
+gen-html: ${PKG_NAME}.texi html html/images html/main.css sync-images
 	makeinfo				\
 	--html					\
 	--css-ref=main.css			\
