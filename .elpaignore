@@ -1,1 +1,8 @@
-docs/images
+.git
+.github
+Makefile
+tests
+templates
+scripts
+docs/*.org
+docs/*.texi

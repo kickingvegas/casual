@@ -22,6 +22,34 @@ endif
 
 TIMESTAMP := $(shell /bin/date "+%Y%m%d_%H%M%S")
 PKG_NAME=casual
+ORG_FILES :=					\
+agenda.org					\
+bibtex.org					\
+bookmarks.org					\
+calc.org					\
+calendar.org					\
+casual.org					\
+compile.org					\
+css.org						\
+csv.org						\
+dired.org					\
+ediff.org					\
+editkit.org					\
+elisp.org					\
+eshell.org					\
+eww.org						\
+help.org					\
+html.org					\
+ibuffer.org					\
+image.org					\
+info.org					\
+isearch.org					\
+make-mode.org					\
+man.org						\
+org.org						\
+re-builder.org					\
+sponsorship.org					\
+timezone.org
 
 $(PKG_NAME).info: $(PKG_NAME).texi
 	texi2any $<
@@ -33,18 +61,9 @@ run: $(PKG_NAME).info
 clean: clean-html
 	- rm $(PKG_NAME).texi $(PKG_NAME).info
 
-# FIXME: Add all the `*.org` files as dependencies.
-${PKG_NAME}.texi:
+${PKG_NAME}.texi: $(ORG_FILES)
 	$(EXEC_NAME) -Q --batch -l casualdocs.el ${PKG_NAME}.org \
 	             --eval "(org-texinfo-export-to-texinfo)"
-
-# FIXME: Use ${PKG_NAME}.texi?
-.PHONY: gen-info
-gen-info:
-	$(EXEC_NAME) -Q --batch									\
--l casualdocs.el										\
-casual.org											\
---eval "(with-current-buffer (find-file-noselect \"casual.org\") (org-texinfo-export-to-info))"
 
 html:
 	mkdir html
