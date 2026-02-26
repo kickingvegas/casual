@@ -98,7 +98,7 @@ plain ASCII-range string."
                (localname (tramp-file-name-localname path-obj)))
           (format "(%s) %s" host localname))
 
-      (if (string= path (getenv "HOME"))
+      (if (file-equal-p path (getenv "HOME"))
           "~"
         (replace-regexp-in-string
          (concat "^" (getenv "HOME")) "~" path)))))
