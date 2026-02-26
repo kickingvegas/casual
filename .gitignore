@@ -11,8 +11,8 @@
 *.~undo-tree
 
 # Generated docs.
-*.texi
 *.info
+docs/html
 
 # ELPA-generated files
 /casual-pkg.el
