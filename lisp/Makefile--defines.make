@@ -31,8 +31,7 @@ else
   EXEC_NAME=emacs
 endif
 
-CASUAL_BASE_DIR=$(PWD)/..
-CASUAL_LIB_DIR=$(CASUAL_BASE_DIR)/casual
-CASUAL_LIB_LISP_DIR=$(CASUAL_LIB_DIR)/lisp
-CASUAL_LIB_TEST_INCLUDES=$(CASUAL_LIB_DIR)/tests/casual-lib-test-utils.el
+CASUAL_BASE_DIR=$(abspath $(shell pwd)/..)
+CASUAL_LISP_DIR=$(CASUAL_BASE_DIR)/lisp
+CASUAL_TEST_INCLUDES=$(CASUAL_BASE_DIR)/tests/casual-lib-test-utils.el
 EMACS_ELPA_DIR=$(HOME)/.config/emacs/elpa

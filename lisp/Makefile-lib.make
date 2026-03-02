@@ -25,7 +25,7 @@ PACKAGE_PATHS=					\
 -L $(EMACS_ELPA_DIR)/seq-current		\
 -L $(EMACS_ELPA_DIR)/transient-current		\
 -L $(EMACS_ELPA_DIR)/cond-let-current		\
--L $(CASUAL_LIB_LISP_DIR)
+-L $(CASUAL_LISP_DIR)
 
 
 .PHONY: tests compile regression

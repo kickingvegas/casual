@@ -59,7 +59,7 @@ plain ASCII-range string."
 (defun casual-csv-align-auto ()
   "Auto align CSV fields."
   (interactive)
-  (setopt csv-align-style 'auto)	;why are you using `setopt' here?
+  (setopt csv-align-style 'auto)
   (call-interactively #'csv-align-fields))
 
 (defun casual-csv-align-left ()
