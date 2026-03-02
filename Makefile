@@ -72,6 +72,9 @@ status
 tests:
 	$(MAKE) -C $(LISP_DIR) tests
 
+tests/%:
+	$(MAKE) -C tests $*
+
 ## Bump Patch Version
 bump-casual:
 	sed -i 's/;; Version: $(VERSION)/;; Version: $(VERSION_BUMP)/' $(MAIN_EL)
@@ -130,6 +133,9 @@ create-gh-release: create-release-tag
 
 status:
 	git status
+
+docs/%:
+	$(MAKE) -C docs $*
 
 .PHONY: user-guide
 user-guide:

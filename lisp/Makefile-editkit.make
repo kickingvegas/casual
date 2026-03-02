@@ -32,6 +32,6 @@ PACKAGE_PATHS=					\
 -L $(EMACS_ELPA_DIR)/dash-current		\
 -L $(EMACS_ELPA_DIR)/with-editor-current	\
 -L $(EMACS_ELPA_DIR)/symbol-overlay-current	\
--L $(CASUAL_LIB_LISP_DIR)
+-L $(CASUAL_LISP_DIR)
 
 include Makefile--rules.make

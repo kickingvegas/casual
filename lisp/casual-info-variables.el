@@ -33,7 +33,7 @@
 (defcustom casual-info-use-unicode-symbols nil
   "If non-nil then use Unicode symbols whenever appropriate for labels."
   :type 'boolean
-  :group 'info)
+  :group 'casual)				;here again, please use your own group!
 
 (provide 'casual-info-variables)
 ;;; casual-info-variables.el ends here

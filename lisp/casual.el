@@ -5,7 +5,7 @@
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual
 ;; Keywords: tools, wp
-;; Version: 2.14.2
+;; Version: 2.14.3-rc.1
 ;; Package-Requires: ((emacs "29.1") (transient "0.9.0") (csv-mode "1.27"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -147,7 +147,7 @@ casual-re-builder, casual-lib.
 Note that the package casual-lib will not be deleted if any of the packages
 casual-suite, casual-avy, or casual-symbol-overlay is installed."
   (interactive
-   (list (y-or-n-p "Upgrade Casual to version 2?")))
+   (list (yes-or-no-p "Upgrade Casual to version 2?")))
 
   (when enable
     (let ((pkglist (list
@@ -172,7 +172,7 @@ casual-suite, casual-avy, or casual-symbol-overlay is installed."
                 (package-refresh-contents)))
             pkglist))))
 
-(defun casual-get-package-version (pkg)
+(defun casual-get-package-version (pkg)	;this is an unused, non-interactive function?
   "Get package version of symbol PKG."
   (let* ((pkg-name (symbol-name pkg))
          (pkg-buf (find-library pkg-name))

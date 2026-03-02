@@ -63,7 +63,7 @@
 
 (defun casual-editkit-package-symbol-overlay-installed-p ()
   "Predicate to test if package `symbol-overlay' is installed."
-  (package-installed-p 'symbol-overlay))
+  (package-installed-p 'symbol-overlay)) ;note that this might be an issue for people using third-party package managers
 
 (defun casual-editkit-package-magit-installed-p ()
   "Predicate to test if package `magit' is installed."
@@ -892,7 +892,7 @@ accessed here."
 (defun casual-editkit-copy-defun ()
   "Copy defun point is in."
   (interactive)
-  (save-excursion
+  (save-excursion			;maybe `save-mark-and-excursion'?
     (mark-defun)
     (kill-ring-save (region-beginning) (region-end))))
 
@@ -1076,7 +1076,7 @@ with no space between."
   "Current project label."
   (let* ((project (project-current)))
     (if project
-        (format "Project: %s" (nth 2 project))
+        (format "Project: %s" (project-name project)) ; you are assuming that project is always a VC project, but the project.el interface doesn't promise this
       "Project")))
 
 (provide 'casual-editkit-utils)

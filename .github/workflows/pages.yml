@@ -31,21 +31,32 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Install texi2any
+        run: sudo apt-get update && sudo apt-get install -y texinfo
+
+      - name: Verify installation
+        run: texi2any --version
+
       - name: Install Emacs
         run: |
           sudo apt-get update
-          sudo apt-get install emacs        
+          sudo apt-get install emacs
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Generate Casual User Guide
         run: |
           echo Generating Casual User Guide
           make -C docs gen-html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload docs/html directory
           path: './docs/html'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
