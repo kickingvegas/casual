@@ -27,7 +27,7 @@
 $(PACKAGE_PATHS)					\
 $(patsubst %, -l %, $(ELISP_INCLUDES))			\
 -l $<							\
--l $(CASUAL_LIB_TEST_INCLUDES)				\
+-l $(CASUAL_TEST_INCLUDES)				\
 -l $(patsubst %, ../tests/%, $(ELISP_TEST_INCLUDES))	\
 -l $(patsubst %, ../tests/test-%, $<)			\
 -f ert-run-tests-batch-and-exit
@@ -48,7 +48,7 @@ $(PACKAGE_PATHS)				\
 $(patsubst %, -l %, $(ELISP_INCLUDES))		\
 $(patsubst %, -l %, $(ELISP_PACKAGES))		\
 -l $<						\
--l $(CASUAL_LIB_TEST_INCLUDES)			\
+-l $(CASUAL_TEST_INCLUDES)			\
 -l ../tests/$(ELISP_TEST_INCLUDES)		\
 -l $(patsubst %, ../tests/test-%, $<)		\
 -f ert-run-tests-batch-and-exit

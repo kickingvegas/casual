@@ -26,7 +26,7 @@ PACKAGE_PATHS=					\
 -L $(EMACS_ELPA_DIR)/seq-current		\
 -L $(EMACS_ELPA_DIR)/transient-current		\
 -L $(EMACS_ELPA_DIR)/cond-let-current		\
--L $(CASUAL_LIB_LISP_DIR)
+-L $(CASUAL_LISP_DIR)
 
 .PHONY: tests compile regression
 
@@ -41,7 +41,7 @@ PACKAGE_PATHS=					\
 $(PACKAGE_PATHS)					\
 $(patsubst %, -l %, $(ELISP_INCLUDES))			\
 -l $<							\
--l $(CASUAL_LIB_TEST_INCLUDES)				\
+-l $(CASUAL_TEST_INCLUDES)				\
 -l $(patsubst %, ../tests/%, $(ELISP_TEST_INCLUDES))	\
 -l $(patsubst %, ../tests/test-%, $<)			\
 -f ert-run-tests-batch-and-exit
@@ -62,7 +62,7 @@ $(PACKAGE_PATHS)				\
 $(patsubst %, -l %, $(ELISP_INCLUDES))		\
 $(patsubst %, -l %, $(ELISP_PACKAGES))		\
 -l $<						\
--l $(CASUAL_LIB_TEST_INCLUDES)			\
+-l $(CASUAL_TEST_INCLUDES)			\
 -l ../tests/$(ELISP_TEST_INCLUDES)		\
 -l $(patsubst %, ../tests/test-%, $<)		\
 -f ert-run-tests-batch-and-exit

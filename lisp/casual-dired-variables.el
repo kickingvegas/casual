@@ -56,7 +56,7 @@ This variable requires GNU ‘ls’ from coreutils installed.
 
 See the man page `ls(1)' for details."
   :type '(repeat string)
-  :group 'dired)
+  :group 'dired)			;Please do not add your options to existing groups!
 
 (define-obsolete-variable-alias 'casual-dired-use-unicode-symbols
   'casual-lib-use-unicode
