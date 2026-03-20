@@ -43,7 +43,8 @@
 #   $ make new-sprint
 
 LISP_DIR=./lisp
-MAIN_EL=$(realpath $(LISP_DIR)/casual.el)
+PACKAGE_NAME=casual
+MAIN_EL=$(realpath $(LISP_DIR)/$(PACKAGE_NAME).el)
 
 TIMESTAMP := $(shell /bin/date "+%Y%m%d_%H%M%S")
 VERSION := $(shell ./scripts/read-version.sh $(MAIN_EL))
@@ -81,10 +82,14 @@ bump-casual:
 
 # bump-casual-info: VERSION_BUMP:=$(shell python -m semver nextver $(VERSION) $(BUMP_LEVEL))
 bump-casual-info:
-	sed -i 's/+MACRO: version $(VERSION)/+MACRO: version $(VERSION_BUMP)/' docs/casual.org
+	sed -i 's/+MACRO: version $(VERSION)/+MACRO: version $(VERSION_BUMP)/' docs/$(PACKAGE_NAME).org
+	make docs/$(PACKAGE_NAME).texi
 
 bump: bump-casual bump-casual-info
-	git commit -m 'Bump version to $(VERSION_BUMP)' $(MAIN_EL) docs/casual.org
+	git commit -m 'Bump version to $(VERSION_BUMP)' \
+$(MAIN_EL) \
+docs/$(PACKAGE_NAME).org \
+docs/$(PACKAGE_NAME).texi
 	git push
 
 checkout-development:
