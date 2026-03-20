@@ -318,43 +318,43 @@ done by `casual-dired-sort-by'.
      ["Name"
       (lambda () (interactive) (casual-dired--sort-by
                                 :name
-                                (append '("--reverse") cc-dired-listing-switches)))
+                                (append '("--reverse") casual-dired-listing-switches)))
 
       :help "Reverse sort by name"]
      ["Kind"
       (lambda () (interactive) (casual-dired--sort-by
                                 :kind
-                                (append '("--reverse") cc-dired-listing-switches)))
+                                (append '("--reverse") casual-dired-listing-switches)))
       :help "Reverse sort by kind"]
      ["Date Last Opened"
       (lambda () (interactive) (casual-dired--sort-by
                                 :date-last-opened
-                                (append '("--reverse") cc-dired-listing-switches)))
+                                (append '("--reverse") casual-dired-listing-switches)))
       :help "Reverse sort by date last opened"]
      ["Date Added"
       (lambda () (interactive) (casual-dired--sort-by
                                 :date-added
-                                (append '("--reverse") cc-dired-listing-switches)))
+                                (append '("--reverse") casual-dired-listing-switches)))
       :help "Reverse sort by date added"]
      ["Date Modified"
       (lambda () (interactive) (casual-dired--sort-by
                                 :date-modified
-                                (append '("--reverse") cc-dired-listing-switches)))
+                                (append '("--reverse") casual-dired-listing-switches)))
       :help "Reverse sort by date modified"]
      ["Date Metadata Changed"
       (lambda () (interactive) (casual-dired--sort-by
                                 :date-metadata-changed
-                                (append '("--reverse") cc-dired-listing-switches)))
+                                (append '("--reverse") casual-dired-listing-switches)))
       :help "Reverse sort by date metadata changed"]
      ["Version"
       (lambda () (interactive) (casual-dired--sort-by
                                 :version
-                                (append '("--reverse") cc-dired-listing-switches)))
+                                (append '("--reverse") casual-dired-listing-switches)))
       :help "Reverse sort by version"]
      ["Size"
       (lambda () (interactive) (casual-dired--sort-by
                                 :size
-                                (append '("--reverse") cc-dired-listing-switches)))
+                                (append '("--reverse") casual-dired-listing-switches)))
       :help "Reverse sort by size"])))
 
 (provide 'casual-dired-sort-by)
