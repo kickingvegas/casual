@@ -20,7 +20,7 @@ Copyright © 2024-2025 Charles Y@. Choi
 @finalout
 @titlepage
 @title Casual User Guide
-@subtitle for version 2.14.3-rc.1
+@subtitle for version 2.14.5-rc.1
 @author Charles Y@. Choi (@email{kickingvegas@@gmail.com})
 @page
 @vskip 0pt plus 1filll
@@ -33,7 +33,7 @@ Copyright © 2024-2025 Charles Y@. Choi
 @node Top
 @top Casual User Guide
 
-Version: 2.14.3-rc.1
+Version: 2.14.5-rc.1
 
 Copyright © 2024-2026 @w{Charles Y. Choi}
 
@@ -479,7 +479,14 @@ Casual Image: ImageMagick 6+
 
 @cindex Install
 
-Standard installation of the @code{casual} package is via @uref{https://melpa.org/#/casual, MELPA distribution}. 
+Standard installation of the @code{casual} package can be done from the following distribution sites:
+
+@itemize
+@item
+@uref{https://melpa.org/#/casual, MELPA}
+@item
+@uref{https://elpa.nongnu.org/nongnu/casual.html, NonGNU ELPA}
+@end itemize
 
 Configuration of a particular Casual user interface is performed per mode. Go to the @strong{Install} section for a mode of interest below for guidance on its configuration.
 
