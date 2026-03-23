@@ -135,21 +135,25 @@
     ("/" "Clear" ibuffer-filter-disable)
     ("F" "Filter›" casual-ibuffer-filter-tmenu :transient t)]
 
-   ["Find/Replace in Marked"
+   ["I-Search/Occur Marked"
     :pad-keys t
-    ("O" "Occur…" ibuffer-do-occur)
-    ;;("C-s" "I-Search…" ibuffer-do-isearch)
-    ;;("C-M-s" "I-Search regexp…" ibuffer-do-isearch-regexp)
-    ("M-r" "Query Replace…" ibuffer-do-query-replace)
-    ("C-M-r" "Query Replace Regexp…" ibuffer-do-query-replace-regexp)]
+    ("C-s" "I-Search…" ibuffer-do-isearch)
+    ("C-M-s" "I-Search Regexp…" ibuffer-do-isearch-regexp)
+    ("O" "Occur…" ibuffer-do-occur)]
 
-   ["Quick"
-    ("J" "Jump to Bookmark…" bookmark-jump :transient nil)]]
+   ["Query Replace Marked"
+    :pad-keys t
+    ("M-r" "Query Replace…" ibuffer-do-query-replace)
+    ("C-M-r" "Query Replace Regexp…" ibuffer-do-query-replace-regexp)]]
 
   [:class transient-row
           (casual-lib-quit-one)
-          ("RET" "Visit/Toggle" casual-ibuffer-return-dwim)
+          ("RET" "Visit/Toggle" casual-ibuffer-return-dwim
+           :description (lambda () (if (casual-ibuffer-filter-group-p)
+                               "Toggle"
+                             "Visit")))
           ("," "Settings›" casual-ibuffer-settings-tmenu)
+          ("J" "Jump to Bookmark…" bookmark-jump :transient nil)
           (casual-lib-quit-all)
           ("q" "Quit IBuffer" quit-window)])
 
@@ -160,7 +164,8 @@
     ("!" "Shell…" ibuffer-do-shell-command-file)
     ("|" "Pipe to Shell…" ibuffer-do-shell-command-pipe)]
 
-   [("E" "Eval" ibuffer-do-eval)
+   [("E" "Eval…" ibuffer-do-eval)
+    ("V" "View and Eval…" ibuffer-do-view-and-eval)
     ("B" "Copy Buffer Name" ibuffer-copy-buffername-as-kill)]
 
    [("T" "Toggle Read-only" ibuffer-do-toggle-read-only)
@@ -188,7 +193,7 @@
           (casual-lib-quit-all)])
 
 (transient-define-prefix casual-ibuffer-mark-tmenu ()
-  ["Mark By"
+  ["IBuffer: Mark"
    [("m" "Mode" ibuffer-mark-by-mode)
     ("d" "Dired" ibuffer-mark-dired-buffers)
     ("h" "Help" ibuffer-mark-help-buffers)]

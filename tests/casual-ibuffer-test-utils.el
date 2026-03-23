@@ -33,7 +33,7 @@
 
 (defun casualt-ibuffer-breakdown (&optional clear)
   "Casual menu test breakdown function, if CLEAR is non-nil then clear state."
-  )
+  (kill-buffer))
 
 (provide 'casual-ibuffer-test-utils)
 ;;; casual-ibuffer-test-utils.el ends here
