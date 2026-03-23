@@ -142,7 +142,10 @@ Certain menus require more installed software:
 * Install
 #+CINDEX: Install
 
-Standard installation of the ~casual~ package is via [[https://melpa.org/#/casual][MELPA distribution]]. 
+Standard installation of the ~casual~ package can be done from the following distribution sites:
+
+- [[https://melpa.org/#/casual][MELPA]] / [[https://stable.melpa.org/#/casual][MELPA Stable]]
+- [[https://elpa.nongnu.org/nongnu/casual.html][NonGNU ELPA]]
 
 Configuration of a particular Casual user interface is performed per mode. Go to the *Install* section for a mode of interest below for guidance on its configuration.
 

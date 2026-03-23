@@ -1,4 +1,4 @@
-[[https://melpa.org/#/casual][file:https://melpa.org/packages/casual-badge.svg]] [[https://stable.melpa.org/#/casual][file:https://stable.melpa.org/packages/casual-badge.svg]]
+[[https://melpa.org/#/casual][file:https://melpa.org/packages/casual-badge.svg]] [[https://stable.melpa.org/#/casual][file:https://stable.melpa.org/packages/casual-badge.svg]]  [[https://elpa.nongnu.org/nongnu/casual.html][file:https://elpa.nongnu.org/nongnu/casual.svg]]
 
 * Casual
 
