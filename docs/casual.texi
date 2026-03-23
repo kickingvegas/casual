@@ -483,7 +483,7 @@ Standard installation of the @code{casual} package can be done from the followin
 
 @itemize
 @item
-@uref{https://melpa.org/#/casual, MELPA}
+@uref{https://melpa.org/#/casual, MELPA} / @uref{https://stable.melpa.org/#/casual, MELPA Stable}
 @item
 @uref{https://elpa.nongnu.org/nongnu/casual.html, NonGNU ELPA}
 @end itemize
@@ -2927,7 +2927,7 @@ IBuffer is a powerful tool for managing Emacs workflows. As Emacs is often compa
 
 @cindex IBuffer Install
 
-In your initialization file, bind the Transinent @code{casual-ibuffer-tmenu} to your key binding of preference. 
+In your initialization file, bind the Transinent @code{casual-ibuffer-tmenu} to your key binding of preference.
 
 @lisp
 (keymap-set ibuffer-mode-map "C-o" #'casual-ibuffer-tmenu)
@@ -2947,10 +2947,10 @@ Use these keybindings to configure IBuffer to be consistent with keybindings use
 (keymap-set ibuffer-mode-map "@}" #'ibuffer-forward-next-marked)
 (keymap-set ibuffer-mode-map "[" #'ibuffer-backward-filter-group)
 (keymap-set ibuffer-mode-map "]" #'ibuffer-forward-filter-group)
-(keymap-set ibuffer-mode-map "$" #'ibuffer-toggle-filter-group)  
+(keymap-set ibuffer-mode-map "$" #'ibuffer-toggle-filter-group)
 @end lisp
 
-While not necessary for Casual IBuffer, enabling @code{hl-line-mode} and binding mouse clicks in IBuffer adds to a more comfortable IBuffer experience. Also, adding @code{ibuffer-auto-mode} to @code{ibuffer-mode-hook} will enable auto-updating. 
+While not necessary for Casual IBuffer, enabling @code{hl-line-mode} and binding mouse clicks in IBuffer adds to a more comfortable IBuffer experience. Also, adding @code{ibuffer-auto-mode} to @code{ibuffer-mode-hook} will enable auto-updating.
 
 @lisp
 (require 'hl-line)
@@ -2988,12 +2988,18 @@ Commands to navigate the buffer list.
 @item Filter
 Commands related to filtering/organizing buffers. Support for defining @emph{Filter Groups} is provided here.
 
-@item Find/Replace in Marked
-Commands to search & replace text in marked buffers are provided here. Note that commands in this section that modify buffers do @emph{not} save said buffers.
+@item I-Search/Occur Marked
+I-Search and Occur commands for marked buffers are here. Note that while you are in an I-Search session, the @ref{I-Search, , Transient menu for I-Search} is available to you.
 
-@item Quick
-Command to jump to a bookmark.
+@item Query Replace Marked
+Commands to search & replace text in marked buffers are provided here. Note that commands in this section that modify buffers do @emph{not} save said buffers.
 @end table
+
+Note that the menu item “@kbd{@key{RET}}” has ``do what I mean''  (DWIM) behavior. If the point is currently on a filter group (described below) then pressing the @kbd{@key{RET}} key will toggle the visibility of items matching that filter group. Otherwise, it will visit (open) the buffer.
+
+As with other Casual user interfaces, the ability to jump to a bookmark is available.
+
+The sections below detail further the features of IBuffer.
 
 @menu
 * IBuffer Marking and Operating::
@@ -3007,13 +3013,31 @@ Command to jump to a bookmark.
 
 @image{images/casual-ibuffer-main-screenshot,,,,png}
 
-Buffers can be marked using different criteria. Marked buffers can be operated on. Common operations include saving and deleting buffers. Note that deleting a buffer populated with a visited file is @emph{not the same} as deleting the visited file.
 
-From the main menu shown above, control of the display and find/replace operations are offered.
+Buffers can be @emph{marked} using different criteria to be operated on. Common operations include saving and deleting buffers. Note that deleting a buffer populated with a visited file is @emph{not} deleting the visited file. If no buffer is marked, then the buffer under the current point is operated on.
 
-Note that the menu item “@kbd{@key{RET}} Visit/Toggle” has ``do what I mean''  (DWIM) behavior. If the point is currently on a filter group (described below) then pressing the @kbd{@key{RET}} key will toggle the visibility of items matching that filter group. Otherwise, it will visit (open) the buffer.
+@subheading Operations
+@vindex casual-ibuffer-operations-tmenu
 
-As with other Casual user interfaces, the ability to jump to a bookmark is available.
+Pressing “@kbd{M} More›” from the Operations section in the main menu will raise a menu (@code{casual-ibuffer-operations-tmenu}) providing additional commands to operate on a buffer.
+
+@image{images/casual-ibuffer-operations,,,,png}
+
+
+@subheading Mark
+@vindex casual-ibuffer-mark-tmenu
+
+Pressing “@kbd{t} Type›” from the Operations section in the main menu will raise a menu (@code{casual-ibuffer-mark-tmenu}) to mark buffers by type. 
+
+
+@image{images/casual-ibuffer-mark,,,,png}
+
+@subheading Mark Regexp
+@vindex casual-ibuffer-mark-regexp-tmenu
+
+Pressing “@kbd{r} Regexp›” from the Operations section in the main menu will raise a menu (@code{casual-ibuffer-mark-regexp-tmenu}) to mark buffers by regexp. 
+
+@image{images/casual-ibuffer-mark-regexp,,,,png}
 
 @node IBuffer Filtering
 @subsubsection IBuffer Filtering
@@ -3164,6 +3188,8 @@ Sort ordering can be reversed via the @emph{Invert} command.
 
 @node IBuffer Unicode Symbol Support
 @subsubsection IBuffer Unicode Symbol Support
+
+@image{images/casual-ibuffer-main-unicode,,,,png}
 
 By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual IBuffer will use Unicode symbols as appropriate in its menus.
 
