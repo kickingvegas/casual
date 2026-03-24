@@ -1,5 +1,5 @@
 ##
-# Copyright (C) 2024-2025 Charles Y. Choi
+# Copyright (C) 2024-2026 Charles Y. Choi
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -145,3 +145,9 @@ re-builder-tests:
 
 timezone-tests:
 	$(MAKE) -C $(SRC_DIR) $@
+
+# hi
+
+.PHONY:
+hi:
+	echo "Hello"

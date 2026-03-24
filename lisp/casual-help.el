@@ -128,6 +128,7 @@
   [:class transient-row
    (casual-lib-quit-one)
    ("," "Settings" casual-help-settings-tmenu)
+   ("J" "Jump to Bookmark…" bookmark-jump)
    ("q" "Quit" quit-window)
    (casual-lib-quit-all)])
 

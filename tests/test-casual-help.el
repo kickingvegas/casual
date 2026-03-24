@@ -1,6 +1,6 @@
 ;;; test-casual-help.el --- Casual Make Tests -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Y. Choi
+;; Copyright (C) 2025, 2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -57,7 +57,7 @@
               (casualt-mock #'help-view-source)
               (casualt-mock #'help-customize)
               (casualt-mock #'casual-help-settings-tmenu)
-
+              (casualt-mock #'bookmark-jump)
               (casualt-mock #'quit-window))
 
       (let ((test-vectors
@@ -88,6 +88,8 @@
                ;;(:binding "c" :command help-customize)
 
                (:binding "," :command casual-help-settings-tmenu)
+               (:binding "J" :command bookmark-jump)
+
                (:binding "q" :command quit-window)
                )))
 
