@@ -1,6 +1,6 @@
 ;;; casual-compile.el --- Transient UI for Compilation Mode -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Choi
+;; Copyright (C) 2025, 2026  Charles Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -63,6 +63,7 @@
 ;; (keymap-set grep-mode-map "]" #'compilation-next-file)
 
 ;;; Code:
+(require 'bookmark)
 (require 'casual-compile-settings)
 (require 'casual-compile-utils)
 
@@ -131,6 +132,7 @@
    (casual-lib-quit-one)
    (casual-lib-quit-all)
    ("," "Settings›" casual-compile-settings-tmenu)
+   ("J" "Jump to Bookmark…" bookmark-jump)
    ("q" "Quit" quit-window)])
 
 (provide 'casual-compile)

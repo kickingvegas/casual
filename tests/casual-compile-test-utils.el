@@ -1,6 +1,6 @@
 ;;; casual-compile-test-utils.el --- Casual Test Utils       -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -28,31 +28,15 @@
 (require 'kmacro)
 (require 'compile)
 
-(defun casualt-compile-setup (&optional filename)
+(defun casualt-compile-setup ()
   "Casual menu test setup function."
-  (when filename
-    (let ((temp-filename (concat "/tmp/" filename)))
-      (with-temp-file temp-filename
-        (insert "# Hello
-Hello 1
-Hello 2
-Hello 3")
-        (goto-char (point-min)))
-      (find-file temp-filename)
-      (compilation-mode t)
-      (rgrep "Hello" "foo" "/tmp/")
-      (switch-to-buffer "*grep*")
-      )))
+  (compile "make -k hi")
+  (switch-to-buffer "*compilation*"))
 
-(defun casualt-compile-breakdown (&optional filename)
+(defun casualt-compile-breakdown ()
   "Casual menu test breakdown function, if CLEAR is non-nil then clear state."
-  (when filename
-    (let ((temp-filename (concat "/tmp/" filename)))
-      (switch-to-buffer "*grep*")
-      (kill-buffer)
-      (switch-to-buffer filename)
-      (kill-buffer)
-      (delete-file temp-filename))))
+  ;; (kill-buffer)
+  )
 
 (provide 'casual-compile-test-utils)
 ;;; casual-compile-test-utils.el ends here

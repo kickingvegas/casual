@@ -47,6 +47,10 @@ The following keybindings are recommended to support consistent behavior between
 #+CINDEX: Help Usage
 #+VINDEX: casual-help-tmenu
 
+
+[[file:images/casual-help-screenshot.png]]
+
+
 After invoking help via a ~describe-~ command, invoke ~casual-help-tmenu~ using the binding ~C-o~ (or your binding of preference).
 
 The following sections are offered in the menu:
