@@ -38,6 +38,7 @@ html-tests					\
 ibuffer-tests					\
 info-tests					\
 isearch-tests					\
+ispell-tests					\
 make-mode-tests					\
 man-tests					\
 org-tests					\
@@ -127,6 +128,10 @@ info-tests:
 .PHONY: isearch-tests
 isearch-tests:
 	$(MAKE) -C $(SRC_DIR) -f Makefile-isearch.make tests
+
+.PHONY: ispell-tests
+ispell-tests:
+	$(MAKE) -C $(SRC_DIR) -f Makefile-ispell.make tests
 
 .PHONY: make-mode-tests
 make-mode-tests:
