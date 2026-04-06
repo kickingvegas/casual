@@ -17,138 +17,60 @@
 TIMESTAMP := $(shell /bin/date "+%Y%m%d_%H%M%S")
 SRC_DIR=.
 
-.PHONY: tests
-tests: lib-tests				\
-agenda-tests					\
-bibtex-tests					\
-bookmarks-tests					\
-calc-tests					\
-calendar-tests					\
-compile-tests					\
-css-tests					\
-csv-tests					\
-dired-tests					\
-ediff-tests					\
-editkit-tests					\
-elisp-tests					\
-eshell-tests					\
-eww-tests					\
-help-tests					\
-html-tests					\
-ibuffer-tests					\
-info-tests					\
-isearch-tests					\
-ispell-tests					\
-make-mode-tests					\
-man-tests					\
-org-tests					\
-re-builder-tests				\
-timezone-tests
+MODULES=					\
+lib						\
+agenda						\
+bibtex						\
+bookmarks					\
+calc						\
+calendar					\
+compile						\
+css						\
+csv						\
+dired						\
+ediff						\
+editkit						\
+elisp						\
+eshell						\
+eww						\
+help						\
+html						\
+ibuffer						\
+info						\
+isearch						\
+ispell						\
+make-mode					\
+man						\
+org						\
+re-builder					\
+timezone
 
-.PHONY: lib-tests
-lib-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-lib.make tests
+TEST_MODULES := $(MODULES:%=%-tests)
+PKGLINT_MODULES := $(MODULES:%=%-pkglint)
+COMPILE_MODULES := $(MODULES:%=%-compile)
 
-.PHONY: agenda-tests
-agenda-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-agenda.make tests
+.PHONY: tests $(TEST_MODULES)
+tests: $(TEST_MODULES)
 
-.PHONY: bibtex-tests
-bibtex-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-bibtex.make tests
+.PHONY: package-lint $(PKGLINT_MODULES) pkglint
+package-lint: $(PKGLINT_MODULES)
+pkglint: package-lint
 
-.PHONY: bookmarks-tests
-bookmarks-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-bookmarks.make tests
+.PHONY: compile $(COMPILE_MODULES)
+compile: $(COMPILE_MODULES)
 
-.PHONY: calc-tests
-calc-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-calc.make tests
+.PHONY: clean
+clean:
+	rm -f *.elc
 
-.PHONY: calendar-tests
-calendar-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-calendar.make tests
+.PHONY: regression
+regression: clean tests compile package-lint
 
-.PHONY: compile-tests
-compile-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-compile.make tests
+$(TEST_MODULES):
+	$(MAKE) -C $(SRC_DIR) -f Makefile-$(@:%-tests=%).make tests
 
-.PHONY: css-tests
-css-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-css.make tests
+$(PKGLINT_MODULES):
+	$(MAKE) -C $(SRC_DIR) -f Makefile-$(@:%-pkglint=%).make package-lint
 
-.PHONY: csv-tests
-csv-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-csv.make tests
-
-.PHONY: dired-tests
-dired-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-dired.make tests
-
-.PHONY: ediff-tests
-ediff-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-ediff.make tests
-
-.PHONY: editkit-tests
-editkit-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-editkit.make tests
-
-.PHONY: elisp-tests
-elisp-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-elisp.make tests
-
-.PHONY: eshell-tests
-eshell-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-eshell.make tests
-
-.PHONY: eww-tests
-eww-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-eww.make tests
-
-.PHONY: help-tests
-help-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-help.make tests
-
-.PHONY: html-tests
-html-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-html.make tests
-
-.PHONY: image-tests
-image-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-image.make tests
-
-.PHONY: ibuffer-tests
-ibuffer-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-ibuffer.make tests
-
-.PHONY: info-tests
-info-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-info.make tests
-
-.PHONY: isearch-tests
-isearch-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-isearch.make tests
-
-.PHONY: ispell-tests
-ispell-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-ispell.make tests
-
-.PHONY: make-mode-tests
-make-mode-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-make-mode.make tests
-
-.PHONY: man-tests
-man-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-man.make tests
-
-.PHONY: org-tests
-org-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-org.make tests
-
-.PHONY: re-builder-tests
-re-builder-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-re-builder.make tests
-
-.PHONY: timezone-tests
-timezone-tests:
-	$(MAKE) -C $(SRC_DIR) -f Makefile-timezone.make tests
+$(COMPILE_MODULES):
+	$(MAKE) -C $(SRC_DIR) -f Makefile-$(@:%-compile=%).make compile

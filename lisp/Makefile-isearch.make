@@ -1,5 +1,5 @@
 ##
-# Copyright (C) 2024-2025 Charles Y. Choi
+# Copyright (C) 2024-2026 Charles Y. Choi
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,46 +28,4 @@ PACKAGE_PATHS=					\
 -L $(EMACS_ELPA_DIR)/cond-let-current		\
 -L $(CASUAL_LISP_DIR)
 
-.PHONY: tests compile regression
-
-.SUFFIXES: .el .elc .elt
-
-.el.elc :
-	$(EXEC_NAME) -Q --batch $(patsubst %, -l %, $(ELISP_INCLUDES)) \
--f batch-byte-compile $<
-
-.el.elt :
-	$(EXEC_NAME) -Q --batch				\
-$(PACKAGE_PATHS)					\
-$(patsubst %, -l %, $(ELISP_INCLUDES))			\
--l $<							\
--l $(CASUAL_TEST_INCLUDES)				\
--l $(patsubst %, ../tests/%, $(ELISP_TEST_INCLUDES))	\
--l $(patsubst %, ../tests/test-%, $<)			\
--f ert-run-tests-batch-and-exit
-
-tests: $(ELISP_PACKAGES:.el=.elt) $(ELISP_INCLUDES:.el=.elt) $(PACKAGE_NAME).elt
-
-compile: $(ELISP_PACKAGES:.el=.elc) $(ELISP_INCLUDES:.el=.elc) $(PACKAGE_NAME).elc
-
-$(PACKAGE_NAME).elc: $(PACKAGE_NAME).el
-	$(EXEC_NAME) -Q --batch $(patsubst %, -l %, $(ELISP_INCLUDES))	\
-$(patsubst %, -l %, $(ELISP_PACKAGES))					\
-$(PACKAGE_PATHS)							\
--f batch-byte-compile $<
-
-$(PACKAGE_NAME).elt: $(PACKAGE_NAME).el
-	$(EXEC_NAME) -Q --batch			\
-$(PACKAGE_PATHS)				\
-$(patsubst %, -l %, $(ELISP_INCLUDES))		\
-$(patsubst %, -l %, $(ELISP_PACKAGES))		\
--l $<						\
--l $(CASUAL_TEST_INCLUDES)			\
--l ../tests/$(ELISP_TEST_INCLUDES)		\
--l $(patsubst %, ../tests/test-%, $<)		\
--f ert-run-tests-batch-and-exit
-
-regression: clean compile tests
-
-clean:
-	rm -f *.elc
+include Makefile--rules.make

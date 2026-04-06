@@ -30,6 +30,7 @@
 (require 'text-mode)
 (require 'tabify)
 (require 'electric)
+(require 'project)
 (require 'casual-editkit-constants)
 (require 'casual-editkit-settings)
 (require 'casual-timezone)

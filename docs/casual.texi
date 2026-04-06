@@ -39,13 +39,13 @@ Copyright © 2024-2026 @w{Charles Y. Choi}
 
 Casual is a project to re-imagine the primary user interface for Emacs using keyboard-driven menus.
 
-Emacs has many commands that are easy to forget if not used frequently. Menus are a user interface (UI) affordance that offers discoverability and recognition. While menus are commonly associated with mouse-driven UI@comma{} the inclusion of Transient (@ref{Top,,,transient,}) in Emacs core allows for building menus that are keyboard-driven instead. This appeals to users that prefer keyboard-driven workflows.
+Emacs has many commands that are easy to forget if not used frequently. Menus are a user interface (UI) affordance that offers discoverability and recognition. While menus are commonly associated with mouse-driven UI, the inclusion of Transient (@ref{Top,,,transient,}) in Emacs core allows for building menus that are keyboard-driven instead. This appeals to users that prefer keyboard-driven workflows.
 
-Casual organizes itself primarily around the different built-in modes Emacs provides. For each mode Casual supports@comma{} there is a bespoke designed library of Transient menus for that mode's command set.
+Casual organizes itself primarily around the different built-in modes Emacs provides. For each mode Casual supports, there is a bespoke designed library of Transient menus for that mode's command set.
 
-Casual has no aims to be a mutually exclusive user interface. All existing user interfaces to commands (keybinding@comma{} mini-buffer prompt@comma{} mouse menus) are still available to the user.
+Casual has no aims to be a mutually exclusive user interface. All existing user interfaces to commands (keybinding, mini-buffer prompt, mouse menus) are still available to the user.
 
-To learn more about the motivations and design considerations for Casual and to see it at work@comma{} please watch the presentation @uref{https://emacsconf.org/2024/talks/casual/, “Re-imagining the Emacs User Experience with Casual Suite”} from EmacsConf 2024.
+To learn more about the motivations and design considerations for Casual and to see it at work, please watch the presentation @uref{https://emacsconf.org/2024/talks/casual/, “Re-imagining the Emacs User Experience with Casual Suite”} from EmacsConf 2024.
 
 @emph{Example Casual menu - Dired}
 
@@ -59,7 +59,7 @@ To learn more about the motivations and design considerations for Casual and to 
 
 @image{images/casual-calc-tmenu,,,,png}
 
-It costs money to make@comma{} enhance@comma{} and maintain Casual as ideologically free software. If you enjoy using Casual@comma{} please buy me a coffee to help support its development and maintenance.
+It costs money to make, enhance, and maintain Casual as ideologically free software. If you enjoy using Casual, please buy me a coffee to help support its development and maintenance.
 
 @image{images/default-yellow,,,,png}
 
@@ -396,20 +396,20 @@ Casual is not intended to be a power user tool nor is it intended to be a replac
 @item
 Strict adherence to Emacs command naming.
 
-While Casual is @strong{mostly} in alignment with Emacs command naming@comma{} there are cases where it will make an opinionated change if the name is deemed too vague or idiomatic.
+While Casual is @strong{mostly} in alignment with Emacs command naming, there are cases where it will make an opinionated change if the name is deemed too vague or idiomatic.
 
 @item
-No intention is made by Casual to help on-board users to the existing default bindings of a mode@comma{} nor  cater to users who already know them.
+No intention is made by Casual to help on-board users to the existing default bindings of a mode, nor  cater to users who already know them.
 
-That said@comma{} many existing default Emacs bindings are replicated in Casual. Such correspondence should be considered incidental.
+That said, many existing default Emacs bindings are replicated in Casual. Such correspondence should be considered incidental.
 
 @item
 UX Stability (for now).
 
-Given that Casual is early in its life-cycle@comma{} expect changes to its user experience in terms of menu hierarchy and keybinding choices in future releases.
+Given that Casual is early in its life-cycle, expect changes to its user experience in terms of menu hierarchy and keybinding choices in future releases.
 @end itemize
 
-Editorially@comma{} all design decisions for Casual are ultimately the opinion of Charles Y@. Choi.
+Editorially, all design decisions for Casual are ultimately the opinion of Charles Y@. Choi.
 
 @node Transient Conventions
 @section Transient Conventions
@@ -430,13 +430,13 @@ Transient supports nested menus. Exiting a menu can be done in two ways:
 @kbd{C-q} (@code{transient-quit-all}) will exit you completely from a Transient menu stack.
 @end itemize
 
-If a mouse is available@comma{} a menu item can be selected by moving the mouse cursor over its label and pressing down button 1.
+If a mouse is available, a menu item can be selected by moving the mouse cursor over its label and pressing down button 1.
 
 Pressing the @kbd{?} key or @kbd{C-h} will toggle help for all the menu items. Press the key of interest to get help for it.
 
-When a Transient menu is raised@comma{} a command prefix argument (@kbd{C-u}) and an optional argument can be entered before selecting a menu item. Menu items which particularly use a command prefix are annotated with the ✦ glyph. The command prefix can be cancelled with @kbd{C-g}.
+When a Transient menu is raised, a command prefix argument (@kbd{C-u}) and an optional argument can be entered before selecting a menu item. Menu items which particularly use a command prefix are annotated with the ✦ glyph. The command prefix can be cancelled with @kbd{C-g}.
 
-For Transient menus that offer setting different values@comma{} the following bindings will allow you save them:
+For Transient menus that offer setting different values, the following bindings will allow you save them:
 
 @itemize
 @item
@@ -470,7 +470,7 @@ Clears the set and saved values of the active transient.
 
 @cindex Requirements
 
-Casual requires Emacs 29.1+@comma{} Transient 0.9.0+@comma{} csv-mode 1.27+.
+Casual requires Emacs 30.1+, Transient 0.9.0+, csv-mode 1.27+.
 
 Certain menus require more installed software:
 
@@ -560,14 +560,14 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 @node A Note on Package Dependencies
 @section A Note on Package Dependencies
 
-Casual requires a recent installation of Transient 0.9.0+ from either @uref{https://elpa.gnu.org/packages/transient.html, ELPA} or @uref{https://melpa.org/#/transient, MELPA}. If your version of Emacs is ≤ 30 but also includes Transient as a built-in package@comma{} you will need to set the customizable variable @code{package-install-upgrade-built-in} to @code{t} to enable updating it via @code{package.el}.  Set this variable and proceed with installing Casual.  Alternately invoking @code{package-install} with a prefix (@code{C-u}) will temporarily coerce the update of dependent built-in packages (example: @code{C-u M-x package-install} @code{casual}).
+Casual requires a recent installation of Transient 0.9.0+ from either @uref{https://elpa.gnu.org/packages/transient.html, ELPA} or @uref{https://melpa.org/#/transient, MELPA}. If your version of Emacs is ≤ 30 but also includes Transient as a built-in package, you will need to set the customizable variable @code{package-install-upgrade-built-in} to @code{t} to enable updating it via @code{package.el}.  Set this variable and proceed with installing Casual.  Alternately invoking @code{package-install} with a prefix (@code{C-u}) will temporarily coerce the update of dependent built-in packages (example: @code{C-u M-x package-install} @code{casual}).
 
-If you already have the latest version of Magit installed (via @uref{https://elpa.nongnu.org/nongnu/magit.html, non-GNU ELPA} or @uref{https://melpa.org/#/magit, MELPA})@comma{} you can bypass the above instruction as Magit already includes the Transient package as a dependency.
+If you already have the latest version of Magit installed (via @uref{https://elpa.nongnu.org/nongnu/magit.html, non-GNU ELPA} or @uref{https://melpa.org/#/magit, MELPA}), you can bypass the above instruction as Magit already includes the Transient package as a dependency.
 
 @node Upgrading to Casual 1x to 2x
 @section Upgrading to Casual 1.x to 2.x
 
-If you have been using an earlier version 1.x of Casual@comma{} thank you. Please use the following guidance:
+If you have been using an earlier version 1.x of Casual, thank you. Please use the following guidance:
 
 @menu
 * If you do not use @code{use-package} to configure Casual::
@@ -577,7 +577,7 @@ If you have been using an earlier version 1.x of Casual@comma{} thank you. Pleas
 @node If you do not use @code{use-package} to configure Casual
 @subsection If you do not use @code{use-package} to configure Casual
 
-Before installing Casual@comma{} you should update all of your existing Casual packages. This is most easily done via the package menu buffer (@ref{Package Menu,,,emacs,}) . After updating your packages@comma{} install the @code{casual} package.
+Before installing Casual, you should update all of your existing Casual packages. This is most easily done via the package menu buffer (@ref{Package Menu,,,emacs,}) . After updating your packages, install the @code{casual} package.
 
 Migrate your existing Casual packages from 1.x to 2.x by running the following commands:
 
@@ -588,14 +588,14 @@ M-x casual-upgrade-base-to-version-2
 
 Any Casual v1.x packages that have been superseded by this package will be uninstalled.
 
-While not necessary@comma{} it is recommended to run @code{M-x package-autoremove} to purge any dangling dependent packages. Cautious readers can choose to audit any packages that are targeted to be removed.
+While not necessary, it is recommended to run @code{M-x package-autoremove} to purge any dangling dependent packages. Cautious readers can choose to audit any packages that are targeted to be removed.
 
 @node If you have used @code{use-package} to configure Casual
 @subsection If you have used @code{use-package} to configure Casual
 
-For version 2.x going forward@comma{} I (Charles Choi) have decided to not offer any documented guidance on using @code{use-package} to configure Casual due my lack of expertise in using it. I leave it to more skilled readers to determine how to best use @code{use-package} (@ref{Top,,,use-package,}) for their configuration. Please also note that this is not a prohibition on using @code{use-package} with Casual. I am simply admitting that I don't know how to use it. 
+For version 2.x going forward, I (Charles Choi) have decided to not offer any documented guidance on using @code{use-package} to configure Casual due my lack of expertise in using it. I leave it to more skilled readers to determine how to best use @code{use-package} (@ref{Top,,,use-package,}) for their configuration. Please also note that this is not a prohibition on using @code{use-package} with Casual. I am simply admitting that I don't know how to use it. 
 
-That said@comma{} if you have used @code{:ensure t} to install a superseded package@comma{} you @emph{must} remove that configuration. After doing so@comma{} please follow the above instructions for installing @code{casual}.
+That said, if you have used @code{:ensure t} to install a superseded package, you @emph{must} remove that configuration. After doing so, please follow the above instructions for installing @code{casual}.
 
 @node UX Conventions
 @chapter UX Conventions
@@ -606,22 +606,22 @@ The Casual menus share common user experience (UX) conventions to facilitate usa
 
 @subsubheading Common Menu Navigation
 
-Casual organizes a mode's command set into a menu hierarchy. As the user descends down different menu levels@comma{} the user is given the option to dismiss the current menu or to dismiss completely all menu levels descended. Transient provides a standard convention for menu dismissal via the @kbd{C-g} (@code{transient-quit-one}) and @kbd{C-q} (@code{transient-quit-all}) commands.
+Casual organizes a mode's command set into a menu hierarchy. As the user descends down different menu levels, the user is given the option to dismiss the current menu or to dismiss completely all menu levels descended. Transient provides a standard convention for menu dismissal via the @kbd{C-g} (@code{transient-quit-one}) and @kbd{C-q} (@code{transient-quit-all}) commands.
 
-Casual makes explicit the display of @kbd{C-g} and @kbd{C-q} at the bottom of its menus@comma{} which differs from the default behavior of Transient.
+Casual makes explicit the display of @kbd{C-g} and @kbd{C-q} at the bottom of its menus, which differs from the default behavior of Transient.
 @vindex casual-lib-hide-navigation
 Users who wish to have them hidden can set the customizable variable @code{casual-lib-hide-navigation} to a non-nil value. This can be changed from a Casual mode-specific settings menu.
 
 @subsubheading Settings Menu
 
-Most all Casual main menus support invoking a mode-specific settings menu via the binding @kbd{@comma{}}.
+Most all Casual main menus support invoking a mode-specific settings menu via the binding @kbd{,}.
 
 @subsubheading Unicode Symbol Support
 @vindex casual-lib-use-unicode
 
 The customizable variable named @code{casual-lib-use-unicode} which when non-nil will inform Casual menus to use Unicode symbol labels whenever supported. This can be changed from Casual mode-specific settings menu.
 
-If @code{casual-lib-use-unicode} is set to @code{t}@comma{} it is also recommended that the variable @code{transient-align-variable-pitch} also be set to @code{t}.
+If @code{casual-lib-use-unicode} is set to @code{t}, it is also recommended that the variable @code{transient-align-variable-pitch} also be set to @code{t}.
 
 @subsubheading Common Key Bindings
 
@@ -634,24 +634,24 @@ Listed below are keybindings which are common among Casual menus.
 Casual places great emphasis on using Emacs Bookmarks to track different places of note. The binding @kbd{J} is used in many main menus to support this.
 
 @item
-@kbd{@comma{}} Settings›
+@kbd{,} Settings›
 
-Many modes have settings specific to them. The binding @kbd{@comma{}} is used in many main menus to support the configuration of mode-specific settings.
+Many modes have settings specific to them. The binding @kbd{,} is used in many main menus to support the configuration of mode-specific settings.
 
 @item
 @kbd{j} Goto… (mode specific)
 
-Many modes provide a list of items. If a command exists that allows the user to jump to a specified item@comma{} the binding @kbd{j} is mapped to it.
+Many modes provide a list of items. If a command exists that allows the user to jump to a specified item, the binding @kbd{j} is mapped to it.
 
 @item
-@kbd{n} Next@comma{} @kbd{p} Previous
+@kbd{n} Next, @kbd{p} Previous
 
-For modes that provide a list of items@comma{} navigation to a next or previous item is bound to @kbd{n} and @kbd{p} respectively.
+For modes that provide a list of items, navigation to a next or previous item is bound to @kbd{n} and @kbd{p} respectively.
 
 @item
-@kbd{[} Next Section@comma{} @kbd{]} Previous Section
+@kbd{[} Next Section, @kbd{]} Previous Section
 
-For modes that organize items into sections@comma{} navigation to a next or previous section is bound to @kbd{[} and @kbd{]} respectively.
+For modes that organize items into sections, navigation to a next or previous section is bound to @kbd{[} and @kbd{]} respectively.
 @end itemize
 
 
@@ -661,19 +661,19 @@ Casual annotates menu labels with the following conventions:
 
 @table @asis
 @item ‘…’
-If the label ends with an ellipsis@comma{} then the command will prompt the user for input.
+If the label ends with an ellipsis, then the command will prompt the user for input.
 @item ‘›’
-If the label ends with a right-pointing arrow@comma{} then the item will raise a sub-menu.
+If the label ends with a right-pointing arrow, then the item will raise a sub-menu.
 @item ‘✦’
-If the label ends with the glyph ✦ (BLACK FOUR POINTED STAR)@comma{} then the command supports a prefix @kbd{C-u}.
+If the label ends with the glyph ✦ (BLACK FOUR POINTED STAR), then the command supports a prefix @kbd{C-u}.
 @item ‘ⓘ’
-If the label starts with the glyph ⓘ (CIRCLED LATIN SMALL LETTER I)@comma{} then the command will invoke the Info reader.
+If the label starts with the glyph ⓘ (CIRCLED LATIN SMALL LETTER I), then the command will invoke the Info reader.
 @end table
 
 
 @subsubheading Menu Naming Conventions
 
-To distinguish Transient menu (prefix) definitions from existing Emacs menu definitions using keymaps (@ref{Menu Keymaps,elisp#Menu Keymaps,,elisp,})@comma{} Casual uses the naming suffix  @code{-tmenu}.
+To distinguish Transient menu (prefix) definitions from existing Emacs menu definitions using keymaps (@ref{Menu Keymaps,elisp#Menu Keymaps,,elisp,}), Casual uses the naming suffix  @code{-tmenu}.
 
 @node Casual Modes
 @chapter Casual Modes
@@ -682,7 +682,7 @@ To distinguish Transient menu (prefix) definitions from existing Emacs menu defi
 
 Casual employs the convention of using the same keybinding to invoke a mode-specific main menu. This keybinding is re-used for each mode-specific keymap. The document recommends the default keybinding @code{C-o} for this purpose. Users who prefer a different binding are always free to use another.
 
-Casual is organized into different libraries typically using the naming convention of @code{casual-<mode name>}. Each library has within it a ``main menu'' which serves as the top level interface to access functions related to that mode. All main menus are auto-loaded@comma{} which means that it is not necessary to include a @code{require} call to load that library.
+Casual is organized into different libraries typically using the naming convention of @code{casual-<mode name>}. Each library has within it a ``main menu'' which serves as the top level interface to access functions related to that mode. All main menus are auto-loaded, which means that it is not necessary to include a @code{require} call to load that library.
 
 The following modes are supported by Casual:
 
@@ -721,7 +721,7 @@ The following modes are supported by Casual:
 @cindex Agenda
 @cindex Org Agenda
 @vindex casual-agenda
-Casual Agenda (library: @code{casual-agenda}) is a user interface for Org Agenda (@ref{Agenda Views,,,org,})@comma{} a feature of Emacs Org Mode (@ref{Top,,,org,}) to help plan your day. Its top-level library is @code{casual-agenda}.
+Casual Agenda (library: @code{casual-agenda}) is a user interface for Org Agenda (@ref{Agenda Views,,,org,}), a feature of Emacs Org Mode (@ref{Top,,,org,}) to help plan your day. Its top-level library is @code{casual-agenda}.
 
 @image{images/casual-agenda-screenshot,,,,png}
 
@@ -761,21 +761,21 @@ The main menu for Casual Agenda is @code{casual-agenda-tmenu}. It is divided int
 
 @table @asis
 @item Agenda
-Modify the view duration (day@comma{} week@comma{} year)
+Modify the view duration (day, week, year)
 @item Filter
 Filter displayed headlines with different criteria
 @item Actions
-Perform an activity on a headline@comma{} create/capture a headline or even generate a different agenda view.
+Perform an activity on a headline, create/capture a headline or even generate a different agenda view.
 @item Navigation
 move the point to where you want it to be.
 @item Utils
-Set a timer@comma{} get almanac info.
+Set a timer, get almanac info.
 @end table
 
 
 @subsubheading Operating on Headlines (casual-agenda-operations-tmenu)
 @vindex casual-agenda-operations-tmenu
-Use “@kbd{o} Operations›” from @code{casual-agenda-tmenu} to change a headline's attributes such as TODO state@comma{} scheduling@comma{} tags@comma{} and priority. The following menu will be displayed.
+Use “@kbd{o} Operations›” from @code{casual-agenda-tmenu} to change a headline's attributes such as TODO state, scheduling, tags, and priority. The following menu will be displayed.
 
 @image{images/casual-agenda-operations-screenshot,,,,png}
 
@@ -789,22 +789,22 @@ Use “@kbd{M} Mark›” menu from @code{casual-agenda-tmenu} to mark different
 
 @subsubheading Almanac (casual-agenda-almanac-tmenu)
 @vindex casual-agenda-almanac-tmenu
-Get sunrise/sunset times@comma{} lunar cycle dates@comma{} and holidays with respect to a date via the “@kbd{l} Almanac›” menu from @code{casual-agenda-tmenu}.
+Get sunrise/sunset times, lunar cycle dates, and holidays with respect to a date via the “@kbd{l} Almanac›” menu from @code{casual-agenda-tmenu}.
 
 @image{images/casual-agenda-almanac-screenshot,,,,png}
 
 @subsubheading Changing Modes and Settings
 @vindex casual-agenda-settings-tmenu
-Agenda views have different display modes and behavior that can be modified from the “@kbd{@comma{}} Settings›” menu from @code{casual-agenda-tmenu}.
+Agenda views have different display modes and behavior that can be modified from the “@kbd{,} Settings›” menu from @code{casual-agenda-tmenu}.
 
 @image{images/casual-agenda-settings-screenshot,,,,png}
 
 @subsubheading Agenda Unicode Symbol Support
-By enabling “@kbd{u} Use Unicode Settings” from the Settings menu@comma{} Casual Agenda will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Settings” from the Settings menu, Casual Agenda will use Unicode symbols as appropriate in its menus.
 
 @image{images/casual-agenda-unicode-screenshot,,,,png}
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node Bib@TeX{}
 @section Bib@TeX{}
@@ -813,15 +813,15 @@ For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventio
 @cindex bibtex
 @vindex casual-bibtex
 
-Casual Bib@TeX{} (library: @code{casual-bibtex}) is an opinionated user interface for Bib@TeX{} mode (@ref{TeX Mode,info ``(emacs) @TeX{} Mode'',,emacs,})@comma{} a major mode for working with Bib@TeX{} files (@uref{https://bibtex.eu, Bib@TeX{} Guide}).
+Casual Bib@TeX{} (library: @code{casual-bibtex}) is an opinionated user interface for Bib@TeX{} mode (@ref{TeX Mode,info ``(emacs) @TeX{} Mode'',,emacs,}), a major mode for working with Bib@TeX{} files (@uref{https://bibtex.eu, Bib@TeX{} Guide}).
 
 A Bib@TeX{} file is typically named using the suffix @code{.bib} to identify its file type.
 
-To appreciate the benefits of Casual Bib@TeX{}@comma{} it helps to understand what BibTex is and what Bib@TeX{} mode offers.
+To appreciate the benefits of Casual Bib@TeX{}, it helps to understand what BibTex is and what Bib@TeX{} mode offers.
 
-Bib@TeX{} is a database schema for bibliography data. This data is best understood as a collection of records (or entries) that is stored in a plain-text file. Multiple text files can be supported. While most tooling for Bib@TeX{} is tuned for @LaTeX{} documentation workflows@comma{} Bib@TeX{} can be used as generalized storage for bibliography data. Org provides extensive support for citing using Bib@TeX{} (@ref{Citation handling,info ``(org) Citation handling'',,org,}).
+Bib@TeX{} is a database schema for bibliography data. This data is best understood as a collection of records (or entries) that is stored in a plain-text file. Multiple text files can be supported. While most tooling for Bib@TeX{} is tuned for @LaTeX{} documentation workflows, Bib@TeX{} can be used as generalized storage for bibliography data. Org provides extensive support for citing using Bib@TeX{} (@ref{Citation handling,info ``(org) Citation handling'',,org,}).
 
-As a Bib@TeX{} file is plain-text based@comma{} any plain-text editor can be used to edit it. This flexibility is problematic as plain-text editors will not enforce the schema of Bib@TeX{} by default.
+As a Bib@TeX{} file is plain-text based, any plain-text editor can be used to edit it. This flexibility is problematic as plain-text editors will not enforce the schema of Bib@TeX{} by default.
 
 Emacs distinguishes itself from other editors in that support for working with Bib@TeX{} files is built-in with the package @code{bibtex}.
 
@@ -843,13 +843,13 @@ The screenshot below shows the menu for Casual Bib@TeX{}.
 
 @cindex BibTeX Install
 
-In your initialization file@comma{} bind the Transient @code{casual-bibtex-tmenu} to your key binding of preference in @code{bibtex-mode-map}. The binding @kbd{M-m} is suggested so as to not conflict with @kbd{C-o} that is bound to @code{casual-editkit-main-tmenu}. (@ref{EditKit Install, , EditKit Install})
+In your initialization file, bind the Transient @code{casual-bibtex-tmenu} to your key binding of preference in @code{bibtex-mode-map}. The binding @kbd{M-m} is suggested so as to not conflict with @kbd{C-o} that is bound to @code{casual-editkit-main-tmenu}. (@ref{EditKit Install})
 
 @lisp
 (keymap-set bibtex-mode-map "M-m" #'casual-bibtex-tmenu)
 @end lisp
 
-@code{casual-bibtex-tmenu} is opinionated in making editing and navigation commands emulate a form-based interface (@uref{https://simple.wikipedia.org/wiki/Form-based_interface#:~:text=A%20form%2Dbased%20interface%20is@comma{}the%20fields%20that%20accept%20it., form-based interface}) in a @code{bibtex-mode} window. The following keybindings are recommended to support consistent behavior between @code{bibtex-mode-map} and @code{casual-bibtex-tmenu}.
+@code{casual-bibtex-tmenu} is opinionated in making editing and navigation commands emulate a form-based interface (@uref{https://simple.wikipedia.org/wiki/Form-based_interface#:~:text=A%20form%2Dbased%20interface%20is,the%20fields%20that%20accept%20it., form-based interface}) in a @code{bibtex-mode} window. The following keybindings are recommended to support consistent behavior between @code{bibtex-mode-map} and @code{casual-bibtex-tmenu}.
 
 @lisp
 (add-hook 'bibtex-mode-hook 'hl-line-mode)
@@ -906,7 +906,7 @@ Miscellaneous Bib@TeX{} commands.
 
 @image{images/casual-bibtex-screenshot,,,,png}
 
-Casual Bib@TeX{} re-purposes conventional Emacs navigation bindings so that instead of navigating a text edit buffer@comma{} it instead navigates Bib@TeX{} structures (entry@comma{} field).
+Casual Bib@TeX{} re-purposes conventional Emacs navigation bindings so that instead of navigating a text edit buffer, it instead navigates Bib@TeX{} structures (entry, field).
 
 The following table shows the bindings for Bib@TeX{} navigation.
 
@@ -938,34 +938,34 @@ The following table shows the bindings for Bib@TeX{} navigation.
 
 @image{images/casual-bibtex-screenshot,,,,png}
 
-In Casual Bib@TeX{}@comma{} CRUD (CReate@comma{} Update@comma{} Delete) operations for entry and field structures are intended to be achieved through their respective commands. This contrasts with manual editing of a buffer to achieve the same end@comma{} which is prone to errors.
+In Casual Bib@TeX{}, CRUD (CReate, Update, Delete) operations for entry and field structures are intended to be achieved through their respective commands. This contrasts with manual editing of a buffer to achieve the same end, which is prone to errors.
 
 @subsubheading Creating an Entry
 
-To create a new entry@comma{} use the “@kbd{A} Add…” command. You will be prompted in the mini-buffer with completion support for the entry type. This new entry will be inserted relative to existing entry where the point is with all fields supported by the entry type enumerated.  Fields with the temporary prefix of ``ALT'' or ``OPT'' denote a field that is alternate or optional. Use the command “@kbd{o} Remove OPT/ALT” to remove this prefix. 
+To create a new entry, use the “@kbd{A} Add…” command. You will be prompted in the mini-buffer with completion support for the entry type. This new entry will be inserted relative to existing entry where the point is with all fields supported by the entry type enumerated.  Fields with the temporary prefix of ``ALT'' or ``OPT'' denote a field that is alternate or optional. Use the command “@kbd{o} Remove OPT/ALT” to remove this prefix. 
 
-When all desired information for a Bib@TeX{} entry has been entered@comma{} it can be ``cleaned'' using the command “@kbd{C-c} Clean”. Cleaning an entry will:
+When all desired information for a Bib@TeX{} entry has been entered, it can be ``cleaned'' using the command “@kbd{C-c} Clean”. Cleaning an entry will:
 
 @enumerate
 @item
-Generate a unique citation key@comma{} if needed.
+Generate a unique citation key, if needed.
 @item
 Remove all unused fields.
 @end enumerate
 
-By default@comma{} cleaning an entry will not format (or ``fill'') the entry. This can be changed by setting the customizable variable @code{bibtex-clean-entry-hook} to include the command @code{bibtex-fill-entry}. This can be done from ``Hooks'' section in the Settings menu (@ref{Bib@TeX{} Settings, , Settings)}. 
+By default, cleaning an entry will not format (or ``fill'') the entry. This can be changed by setting the customizable variable @code{bibtex-clean-entry-hook} to include the command @code{bibtex-fill-entry}. This can be done from ``Hooks'' section in the Settings menu (@ref{Bib@TeX{} Settings, , Settings)}. 
 
 @subsubheading Creating a Field
 
-To create a new field@comma{} use the “@kbd{a} Add…” command. You will be prompted in the mini-buffer with completion support for the field type. This new field will be inserted relative to existing field where the point is.
+To create a new field, use the “@kbd{a} Add…” command. You will be prompted in the mini-buffer with completion support for the field type. This new field will be inserted relative to existing field where the point is.
 
 There are two components to a field:
 
 @table @asis
 @item key
-the field name@comma{} referred to in the menu as 'k'.
+the field name, referred to in the menu as 'k'.
 @item value
-the value of the field@comma{} referred to in the menu as 'v'.
+the value of the field, referred to in the menu as 'v'.
 @end table
 
 A ``brute-force'' command to enumerate all fields for an entry is provided by the “@kbd{u} Update…” command. Clean the entry to remove all unpopulated fields after using it.
@@ -975,8 +975,8 @@ A ``brute-force'' command to enumerate all fields for an entry is provided by th
 Bib@TeX{} has its own kill-ring variable @code{bibtex-entry-kill-ring} which the following menu commands use:
 
 @table @asis
-@item @kbd{c} Copy∙ k@comma{}v
-Copy the whole field@comma{} both key and value.
+@item @kbd{c} Copy∙ k,v
+Copy the whole field, both key and value.
 @item @kbd{C} Copy∙
 Copy the entry.
 @item @kbd{k} Kill∙
@@ -987,7 +987,7 @@ Yank the entry or field.
 Yank-pop the entry or field.
 @end table
 
-The ``∙'' annotation in a menu label denotes commands that do @emph{not} use the @code{kill-ring}@comma{} but @code{bibtex-entry-kill-ring} instead.
+The ``∙'' annotation in a menu label denotes commands that do @emph{not} use the @code{kill-ring}, but @code{bibtex-entry-kill-ring} instead.
 
 @subsubheading Search and Jump
 
@@ -1026,18 +1026,18 @@ Hook settings for cleaning and adding.
 
 @subsubheading BibTeX Clean Hook
 
-By default Bib@TeX{} mode does not format (or ``fill'') an entry upon cleaning. To support filling an entry upon clean@comma{} add the command @code{bibtex-fill-entry} to @code{bibtex-clean-entry-hook} using the “@kbd{C} Clean” command as shown below:
+By default Bib@TeX{} mode does not format (or ``fill'') an entry upon cleaning. To support filling an entry upon clean, add the command @code{bibtex-fill-entry} to @code{bibtex-clean-entry-hook} using the “@kbd{C} Clean” command as shown below:
 
 @image{images/casual-bibtex-clean-entry-hook,,,,png}
 
 @node Bib@TeX{} Mode Unicode Symbol Support
 @subsubsection Bib@TeX{} Mode Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual Bib@TeX{} will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Bib@TeX{} will use Unicode symbols as appropriate in its menus.
 
 @image{images/casual-bibtex-unicode-screenshot,,,,png}
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node Bookmarks
 @section Bookmarks
@@ -1059,7 +1059,7 @@ Casual Bookmarks (library: @code{casual-bookmarks}) is a user interface for the 
 
 @cindex Bookmarks Install
 
-To install Casual Bookmarks@comma{} add the following line to your Emacs initialization file with your binding of preference.
+To install Casual Bookmarks, add the following line to your Emacs initialization file with your binding of preference.
 
 @lisp
 (keymap-set bookmark-bmenu-mode-map "C-o" #'casual-bookmarks-tmenu)
@@ -1075,7 +1075,7 @@ Casual Bookmarks also includes the keymap @code{casual-bookmarks-main-menu} whic
 
 @image{images/bookmarks-main-menu,,,,png}
 
-To enable this@comma{} add the following configuration to your initialization file.
+To enable this, add the following configuration to your initialization file.
 
 @lisp
 (require 'casual-bookmarks)
@@ -1084,14 +1084,14 @@ To enable this@comma{} add the following configuration to your initialization fi
                     "Tools")
 @end lisp
 
-While not necessary@comma{} having the current bookmark highlighted is convenient. Enable  @code{hl-line-mode} for the bookmark list as shown below.
+While not necessary, having the current bookmark highlighted is convenient. Enable  @code{hl-line-mode} for the bookmark list as shown below.
 
 @lisp
 (require 'hl-line)
 (add-hook 'bookmark-bmenu-mode-hook #'hl-line-mode)
 @end lisp
 
-Finally@comma{} customize the variable @code{bookmark-save-flag} to the value @code{1} to ensure that your bookmark changes are always saved.
+Finally, customize the variable @code{bookmark-save-flag} to the value @code{1} to ensure that your bookmark changes are always saved.
 
 The above guidance largely extends the work done in the blog post @uref{http://yummymelon.com/devnull/using-bookmarks-in-emacs-like-you-do-in-web-browsers.html, Using Bookmarks in Emacs like you do in Web Browsers}.
 
@@ -1136,9 +1136,9 @@ Support for sorting the bookmarks list is provided by the menu @code{casual-book
 
 @image{images/casual-bookmarks-unicode-screenshot,,,,png}
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual Bookmarks will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Bookmarks will use Unicode symbols as appropriate in its menus.
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node Calc
 @section Calc
@@ -1160,7 +1160,7 @@ Casual Calc (library: @code{casual-calc}) is a user interface for Emacs Calc (@r
 
 @cindex Calc Install
 
-To install Casual Calc@comma{} add the following lines to your Emacs initialization file with your binding of preference.
+To install Casual Calc, add the following lines to your Emacs initialization file with your binding of preference.
 
 @lisp
 (keymap-set calc-mode-map "C-o" #'casual-calc-tmenu)
@@ -1175,9 +1175,9 @@ To install Casual Calc@comma{} add the following lines to your Emacs initializat
 
 @image{images/casual-calc-tmenu,,,,png}
 
-To launch Calc@comma{} invoke  @code{M-x calc}. When the point is in the Calc window@comma{} invoke @kbd{C-o} (or a binding of your choosing) to launch the Casual Calc interface.
+To launch Calc, invoke  @code{M-x calc}. When the point is in the Calc window, invoke @kbd{C-o} (or a binding of your choosing) to launch the Casual Calc interface.
 
-For nearly all menus@comma{} algebraic entry via the @kbd{'} binding is available@comma{} as well as basic calculator operations (addition@comma{} subtraction@comma{} multiplication@comma{} division) and stack operations (pop@comma{} enter).
+For nearly all menus, algebraic entry via the @kbd{'} binding is available, as well as basic calculator operations (addition, subtraction, multiplication, division) and stack operations (pop, enter).
 
 Casual Calc organizes its main menu into the following sections:
 
@@ -1207,30 +1207,30 @@ It helps to know some basics about Calc.
 Calc is a stack-based calculator that supports both RPN and algebraic style entry.
 @itemize
 @item
-By default it uses RPN entry@comma{} but this can be changed to algebraic.
+By default it uses RPN entry, but this can be changed to algebraic.
 @end itemize
 @item
 Stack based operations are always RPN-style.
 @item
-Undo has the keybinding @code{U}@comma{} redo is @code{D}.
+Undo has the keybinding @code{U}, redo is @code{D}.
 @item
 The top of the stack is referred to as @code{1:}
 @item
-Calc vectors are punctuated with @code{[} and @code{]} (e.g. @code{[2 3]})  Matrix values are represented as vectors within a vector. For example@comma{} @code{[[1 0] [0 1]]} is a square diagonal matrix.
+Calc vectors are punctuated with @code{[} and @code{]} (e.g. @code{[2 3]})  Matrix values are represented as vectors within a vector. For example, @code{[[1 0] [0 1]]} is a square diagonal matrix.
 @item
 Calc vector indexes are 1-offset.
 @item
 Intervals
 @itemize
 @item
-Inclusive intervals are represented as [𝑛..𝑚]@comma{} where 𝑛 < 𝑚.
+Inclusive intervals are represented as [𝑛..𝑚], where 𝑛 < 𝑚.
 @item
-Exclusive intervals are represented as (𝑛..𝑚)@comma{} where 𝑛 < 𝑚.
+Exclusive intervals are represented as (𝑛..𝑚), where 𝑛 < 𝑚.
 @item
 Any combination of lower and upper bounds set to be inclusive or exclusive is supported.
 @end itemize
 @item
-Complex numbers are entered as (𝑟@comma{} 𝑖)@comma{} where 𝑟 is the real part and 𝑖 is the imaginary.
+Complex numbers are entered as (𝑟, 𝑖), where 𝑟 is the real part and 𝑖 is the imaginary.
 @item
 Radix numbers are entered as 𝑏#𝑛 where 𝑏 is the base value and 𝑛 is the number. For example entering @code{2#0101} will put @code{5} on the stack.
 @item
@@ -1248,7 +1248,7 @@ Entering a single quote (') will prompt you for an algebraic entry.
 
 @cindex Calendar
 @vindex casual-calendar
-Casual Calendar (library: @code{casual-calendar}) is a user interface for Emacs Calendar/Diary. Its top-level library is @code{casual-calendar}. Access to numerous calendar and diary commands are made available@comma{} most notably support for non-Gregorian calendar systems.
+Casual Calendar (library: @code{casual-calendar}) is a user interface for Emacs Calendar/Diary. Its top-level library is @code{casual-calendar}. Access to numerous calendar and diary commands are made available, most notably support for non-Gregorian calendar systems.
 
 
 @image{images/casual-calendar-screenshot,,,,png}
@@ -1277,13 +1277,13 @@ The main menu for Casual Calendar (@code{casual-calendar-tmenu)} is invoked by t
 
 @image{images/casual-calendar-screenshot,,,,png}
 
-Whenever the @code{calendar} window (showing three months) is raised@comma{} the Casual user interface is invoked via the command @code{casual-calendar}. This command is typically bound to a keybinding (e.g. @kbd{C-o}).
+Whenever the @code{calendar} window (showing three months) is raised, the Casual user interface is invoked via the command @code{casual-calendar}. This command is typically bound to a keybinding (e.g. @kbd{C-o}).
 
 Casual Calendar organizes its main menu into the following sections:
 
 @table @asis
 @item Navigation
-Commands to move the point to a desired date@comma{} adjusting the view as necessary.
+Commands to move the point to a desired date, adjusting the view as necessary.
 
 @item Conversions
 Commands to convert a date across different calendar systems.
@@ -1295,7 +1295,7 @@ Holiday related commands.
 Commands related to the Diary and Org Agenda are placed here.
 
 @item Almanac
-Almanac-related commands such the lunar phase@comma{} sunrise/sunset times are found here.
+Almanac-related commands such the lunar phase, sunrise/sunset times are found here.
 
 @item Region
 Support for counting days defined in a region is offered here.
@@ -1315,7 +1315,7 @@ Also made available is access to a Settings menu (more below) and to the Info do
 
 @vindex casual-calendar-diary-and-goto-tmenu
 
-From the main menu@comma{} choosing “@kbd{D} Diary & Goto›” will present choices for diary event insertion and to “goto” a particular date via different specifications.
+From the main menu, choosing “@kbd{D} Diary & Goto›” will present choices for diary event insertion and to “goto” a particular date via different specifications.
 
 @image{images/casual-calendar-diary-menu,,,,png}
 
@@ -1364,7 +1364,7 @@ Mayan (@code{casual-calendar-mayan-tmenu})
 Persian (@code{casual-calendar-persian-tmenu})
 @end itemize
 
-Selecting a calendar system will raise a menu that offers date conversion commands between it and the Gregorian system. In the screenshot below@comma{} the Lunar (Chinese) calendar system menu is shown.
+Selecting a calendar system will raise a menu that offers date conversion commands between it and the Gregorian system. In the screenshot below, the Lunar (Chinese) calendar system menu is shown.
 
 To convert a Gregorian date to Lunar (Chinese):
 
@@ -1384,7 +1384,7 @@ Choose “(G) Goto…” and follow the prompts.
 
 @image{images/casual-calendar-lunar-menu,,,,png}
 
-Certain non-Gregorian calendar systems are supported by the diary (Bahá’í@comma{} Hebrew@comma{} Islamic@comma{} Lunar (Chinese)). For such systems@comma{} their menus will offer choices to insert diary events.
+Certain non-Gregorian calendar systems are supported by the diary (Bahá’í, Hebrew, Islamic, Lunar (Chinese)). For such systems, their menus will offer choices to insert diary events.
 
 Note that inserting non-Gregorian diary events require configuration of the variables @code{diary-nongregorian-listing-hook} and @code{diary-nongregorian-marking-hook} as detailed in Diary Entries using non-Gregorian Calendars (@ref{Non-Gregorian Diary,,,emacs,}).
 
@@ -1395,18 +1395,18 @@ Both of these variables can be configured from the Calendar Settings menu.
 
 @vindex casual-calendar-settings-tmenu
 
-From the main menu@comma{} choosing “@kbd{@comma{}} Settings›” will provide a menu (@code{casual-calendar-settings-tmenu}) of frequently configured calendar and diary-related variables.
+From the main menu, choosing “@kbd{,} Settings›” will provide a menu (@code{casual-calendar-settings-tmenu}) of frequently configured calendar and diary-related variables.
 
 @image{images/casual-calendar-settings-menu,,,,png}
 
 @node Calendar Unicode Symbol Support
 @subsubsection Calendar Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual Calendar will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Calendar will use Unicode symbols as appropriate in its menus.
 
 @image{images/casual-calendar-main-unicode,,,,png}
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node Compile
 @section Compile
@@ -1418,7 +1418,7 @@ For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventio
 
 Casual Compile (library: @code{casual-compile}) is a user interface for the output of the @code{compile} command (@ref{Compilation,,,emacs,}). The output buffer's major mode is @code{compilation-mode} whose commands are surfaced by Casual Compile.
 
-In similar fashion@comma{} output of Emacs-wrapped Grep commands (@ref{Grep Searching,,,emacs,}) is also supported by Casual Compile. This is because the output of Grep commands use the major mode @code{grep-mode} which is derived from @code{compilation-mode}. 
+In similar fashion, output of Emacs-wrapped Grep commands (@ref{Grep Searching,,,emacs,}) is also supported by Casual Compile. This is because the output of Grep commands use the major mode @code{grep-mode} which is derived from @code{compilation-mode}. 
 
 The screenshot below shows the menu for compilation results.
 
@@ -1438,7 +1438,7 @@ The screenshot below shows the menu for Grep results. Note the menu label change
 
 @cindex Compile Install
 
-In your initialization file@comma{} bind the Transient @code{casual-compile-tmenu} to your key binding of preference. It should be bound in two maps: @code{compilation-mode-map} and @code{grep-mode-map}.
+In your initialization file, bind the Transient @code{casual-compile-tmenu} to your key binding of preference. It should be bound in two maps: @code{compilation-mode-map} and @code{grep-mode-map}.
 
 @lisp
 (keymap-set compilation-mode-map "C-o" #'casual-compile-tmenu)
@@ -1496,7 +1496,7 @@ Similar treatment for @code{grep-mode-map} can be done.
 
 @image{images/casual-compile-screenshot,,,,png}
 
-After running @code{compile}@comma{} invoke @code{casual-compile-tmenu} in the buffer named @samp{✳︎compilation✳︎} using the binding @code{C-o} (or your binding of preference).
+After running @code{compile}, invoke @code{casual-compile-tmenu} in the buffer named @samp{✳︎compilation✳︎} using the binding @code{C-o} (or your binding of preference).
 
 The following sections are offered in the menu:
 
@@ -1506,12 +1506,12 @@ Navigate the point while opening the location of the error in the source file in
 @item Error
 Error commands for navigation and viewing.
 @item File
-If there are errors in multiple files@comma{} navigate to the file.
+If there are errors in multiple files, navigate to the file.
 @item Compile
 Get compile for different Elisp types. Note that the “@kbd{k} Kill” item is displayed when there is a running job.
 @end table
 
-If the output window is from a Grep command@comma{} @code{casual-compile-tmenu} will adjust its labels accordingly as shown below.
+If the output window is from a Grep command, @code{casual-compile-tmenu} will adjust its labels accordingly as shown below.
 
 @image{images/casual-compile-grep-screenshot,,,,png}
 @subsubheading Compile Settings
@@ -1521,9 +1521,9 @@ The menu @code{casual-compile-settings-tmenu} provides access to different @code
 
 @subsubheading Compile Mode Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual Compile will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Compile will use Unicode symbols as appropriate in its menus.
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node CSS
 @section CSS
@@ -1534,7 +1534,7 @@ For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventio
 Casual CSS (library: @code{casual-css}) is a user interface for @code{css-mode}. 
 
 @image{images/casual-css-screenshot,,,,png}
-Casual also has support for HTML editing (@ref{HTML, , HTML}).
+Casual also has support for HTML editing (@ref{HTML}).
 
 @menu
 * CSS Install::
@@ -1546,7 +1546,7 @@ Casual also has support for HTML editing (@ref{HTML, , HTML}).
 
 @cindex CSS Install
 
-In your initialization file@comma{} bind the Transient @code{casual-css-tmenu} to your key binding of preference.
+In your initialization file, bind the Transient @code{casual-css-tmenu} to your key binding of preference.
 
 @lisp
 (keymap-set css-mode-map "M-m" #'casual-css-tmenu)
@@ -1599,9 +1599,9 @@ The menu @code{casual-css-settings-tmenu} provides access to different @code{css
 
 @subsubheading CSS Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual CSS will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual CSS will use Unicode symbols as appropriate in its menus.
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node CSV
 @section CSV
@@ -1609,7 +1609,7 @@ For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventio
 @cindex CSV
 @vindex casual-csv
 
-Casual CSV (library: @code{casual-csv}) is a user interface for @code{csv-mode}@comma{} a mode for working with CSV files.
+Casual CSV (library: @code{casual-csv}) is a user interface for @code{csv-mode}, a mode for working with CSV files.
 
 @image{images/casual-csv-edit-screenshot,,,,png}
 
@@ -1623,7 +1623,7 @@ Casual CSV (library: @code{casual-csv}) is a user interface for @code{csv-mode}@
 
 @cindex CSV Install
 
-In your initialization file@comma{} bind the Transient @code{casual-csv-tmenu} to your key binding of preference.
+In your initialization file, bind the Transient @code{casual-csv-tmenu} to your key binding of preference.
 
 @lisp
 (keymap-set csv-mode-map "M-m" #'casual-csv-tmenu)
@@ -1631,7 +1631,7 @@ In your initialization file@comma{} bind the Transient @code{casual-csv-tmenu} t
 
 The binding @kbd{M-m} is intended to complement the binding @kbd{C-o} used by @ref{EditKit Install, , EditKit}.
 
-While not required@comma{} the following configuration is recommended for working with CSV files.
+While not required, the following configuration is recommended for working with CSV files.
 
 @lisp
 ;; disable line wrap
@@ -1656,12 +1656,12 @@ While not required@comma{} the following configuration is recommended for workin
 The following sections are offered in the menu:
 
 @table @asis
-@item Navigation@comma{} Line@comma{} Buffer
-Commands for moving the point@comma{} mostly with respect to a field.
+@item Navigation, Line, Buffer
+Commands for moving the point, mostly with respect to a field.
 @item Page
 Move up or down a page.
 @item Buffer/File
-Commands associated the current buffer or file@comma{} such changing the buffer state from viewable (read-only) to editable (writeable)@comma{} display alignment@comma{} or duplicating the file for subsequent editing.
+Commands associated the current buffer or file, such changing the buffer state from viewable (read-only) to editable (writeable), display alignment, or duplicating the file for subsequent editing.
 @item Field
 Commands to mark or copy a field.
 @item Sort
@@ -1669,16 +1669,16 @@ Sorting commands. This section is displayed only if the buffer is editable.
 @item Fields
 Kill and yank commands dedicated for CSV mode. Note that these commands do @emph{not} use the default @code{kill-ring} and are marked with a bullet (•). This section is displayed only if the buffer is editable.
 @item Misc
-Miscellaneous commands. Note if a region is selected containing multiple complete rows@comma{} the “@kbd{C} Copy as Table” command will reformat the selected rows as an Org table and copy them in the @code{kill-ring} for subsequent pasting.
+Miscellaneous commands. Note if a region is selected containing multiple complete rows, the “@kbd{C} Copy as Table” command will reformat the selected rows as an Org table and copy them in the @code{kill-ring} for subsequent pasting.
 @end table
 
 @subsubheading CVS View/Edit, Duplicate
 
-If the buffer is in view (read-only) mode@comma{} then only relevant commands are displayed.
+If the buffer is in view (read-only) mode, then only relevant commands are displayed.
 
 @image{images/casual-csv-view-screenshot,,,,png}
 
-If the buffer is editable@comma{} a common to desire to instead work on a copy of the CSV file to avoid making unwanted changes. This can be done using the “@kbd{d} Duplicate” command.
+If the buffer is editable, a common to desire to instead work on a copy of the CSV file to avoid making unwanted changes. This can be done using the “@kbd{d} Duplicate” command.
 
 @subsubheading CSV Align
 @vindex casual-csv-align-tmenu
@@ -1698,18 +1698,18 @@ The menu @code{casual-csv-settings-tmenu} provides access to different @code{csv
 
 @subsubheading CSV Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual CSV will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual CSV will use Unicode symbols as appropriate in its menus.
 
 @image{images/casual-csv-edit-unicode-screenshot,,,,png}
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node Dired
 @section Dired
 
 @cindex Dired
 @vindex casual-dired
-Casual Dired (library: @code{casual-dired}) provides a user interface for Dired (@ref{Dired,,,emacs,})@comma{} the Emacs file manager. Its top-level library is @code{casual-dired}.
+Casual Dired (library: @code{casual-dired}) provides a user interface for Dired (@ref{Dired,,,emacs,}), the Emacs file manager. Its top-level library is @code{casual-dired}.
 
 @image{images/casual-dired-screenshot,,,,png}
 
@@ -1746,7 +1746,7 @@ Note that the default packaged @code{ls} on macOS is BSD-flavored which is not s
 @node Windows
 @subsubsection Windows
 
-For users running on Microsoft Windows@comma{} use @uref{https://www.gnu.org/software/emacs/manual/html_node/efaq-w32/Dired-ls.html, this guidance} to configure Emacs to use an external install of @code{ls}.
+For users running on Microsoft Windows, use @uref{https://www.gnu.org/software/emacs/manual/html_node/efaq-w32/Dired-ls.html, this guidance} to configure Emacs to use an external install of @code{ls}.
 
 @itemize
 @item
@@ -1766,7 +1766,7 @@ The main menu for Dired is @code{casual-dired-tmenu}. Bind this menu in the keym
 (keymap-set dired-mode-map "C-o" #'casual-dired-tmenu)
 @end lisp
 
-In addition@comma{} it is convenient to have both the sort-by (@code{casual-dired-sort-by-tmenu}) and search & replace (@code{casual-dired-search-replace-tmenu}) menus bound. Listed below is an example of binding the sort-by and search & replace menus to @code{s} and @code{/} respectively.
+In addition, it is convenient to have both the sort-by (@code{casual-dired-sort-by-tmenu}) and search & replace (@code{casual-dired-search-replace-tmenu}) menus bound. Listed below is an example of binding the sort-by and search & replace menus to @code{s} and @code{/} respectively.
 
 @lisp
 (keymap-set dired-mode-map "s" #'casual-dired-sort-by-tmenu)
@@ -1790,7 +1790,7 @@ Included is a standard keymap for Dired sorting commands (@code{casual-dired-sor
 
 @subsubheading Configuration
 
-As Dired has been around for a long time@comma{} the different ways of configuring it are myriad. Described below is a configuration used by the author that is consistent with the bindings used in Casual Dired.
+As Dired has been around for a long time, the different ways of configuring it are myriad. Described below is a configuration used by the author that is consistent with the bindings used in Casual Dired.
 
 @lisp
 (require 'dired)
@@ -1832,11 +1832,11 @@ As Dired has been around for a long time@comma{} the different ways of configuri
 
 @subsubheading Dired Variables
 
-The Casual Dired main menu offers “@kbd{@comma{}} Settings›” to customize a set of commonly used Dired variables. 
+The Casual Dired main menu offers “@kbd{,} Settings›” to customize a set of commonly used Dired variables. 
 
 @image{images/casual-dired-settings-screenshot,,,,png}
 
-If you have GNU @code{ls} installed and configured@comma{} use the @kbd{l} key to set the variable @code{dired-use-ls-dired} to @code{t} (“@kbd{l} Use GNU ‘ls’ with --dired”). Otherwise this should be disabled.
+If you have GNU @code{ls} installed and configured, use the @kbd{l} key to set the variable @code{dired-use-ls-dired} to @code{t} (“@kbd{l} Use GNU ‘ls’ with --dired”). Otherwise this should be disabled.
 
 @node Dired Usage
 @subsection Dired Usage
@@ -1846,7 +1846,7 @@ If you have GNU @code{ls} installed and configured@comma{} use the @kbd{l} key t
 
 @image{images/casual-dired-screenshot,,,,png}
 
-Invoke @code{M-x dired} to launch Dired. When the point is in the Dired window@comma{} invoke @kbd{C-o} (or a binding of your choosing) to launch the Casual Dired menu (@code{casual-dired-tmenu}).
+Invoke @code{M-x dired} to launch Dired. When the point is in the Dired window, invoke @kbd{C-o} (or a binding of your choosing) to launch the Casual Dired menu (@code{casual-dired-tmenu}).
 
 Casual Dired organizes its main menu into the following sections:
 
@@ -1855,10 +1855,10 @@ Casual Dired organizes its main menu into the following sections:
 File-related commands are placed here. Most of the commands will also operate on marked files (see @strong{Mark} item below).
 
 @item Directory
-Directory-related commands. Subdir view commands are also made available in this section. To remove a subdir view@comma{} use the command prefix @kbd{C-u} before pressing the binding @kbd{k} to kill a subdir view.
+Directory-related commands. Subdir view commands are also made available in this section. To remove a subdir view, use the command prefix @kbd{C-u} before pressing the binding @kbd{k} to kill a subdir view.
 
 @item Mark
-Marking operations are available here. Commands in the “@kbd{#} Utils›” sub-menu can be used to operate on marked items. In addition@comma{} many commands from the @strong{File} section can be operate on marked items.
+Marking operations are available here. Commands in the “@kbd{#} Utils›” sub-menu can be used to operate on marked items. In addition, many commands from the @strong{File} section can be operate on marked items.
 
 The “@kbd{r} Regexp›” sub-menu provides commands to mark via @ref{Regular Expressions,regular expression,,elisp,}.
 
@@ -1894,7 +1894,7 @@ Casual Dired offers enhanced sorting capabilities through GNU @code{ls}. Use thi
 
 @image{images/casual-dired-sort-by-screenshot,,,,png}
 
-With the @strong{Sort By} menu raised@comma{} one can save the switch settings for future use via the binding @kbd{C-x C-s} (@code{transient-save}). Note this is a global setting and will apply to all future calls to the @strong{Sort By} menu.
+With the @strong{Sort By} menu raised, one can save the switch settings for future use via the binding @kbd{C-x C-s} (@code{transient-save}). Note this is a global setting and will apply to all future calls to the @strong{Sort By} menu.
 
 @node Dired Search & Replace
 @subsubsection Dired Search & Replace
@@ -1906,7 +1906,7 @@ Search and replace in multiple marked files using the “@kbd{/} Search & Replac
 
 @image{images/casual-dired-search-replace,,,,png}
 
-While most Dired commands use Emacs-style regular expression syntax (@ref{Regular Expressions,,,elisp,})@comma{} there are two commands that instead take instead @strong{grep}-style syntax:
+While most Dired commands use Emacs-style regular expression syntax (@ref{Regular Expressions,,,elisp,}), there are two commands that instead take instead @strong{grep}-style syntax:
 
 @itemize
 @item
@@ -1945,13 +1945,13 @@ Support for running bulk commands for Elisp development are provided by the menu
 @node Dired Unicode Symbol Support
 @subsubsection Dired Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual Dired will use Unicode symbols as appropriate in its menus. An example is shown below.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Dired will use Unicode symbols as appropriate in its menus. An example is shown below.
 
 @image{images/casual-dired-screenshot-unicode,,,,png}
 
-To ensure proper layout and spacing@comma{} your default typeface should be fixed-width or monospace and @strong{must} support the Unicode symbols used.
+To ensure proper layout and spacing, your default typeface should be fixed-width or monospace and @strong{must} support the Unicode symbols used.
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node Ediff
 @section Ediff
@@ -1959,7 +1959,7 @@ For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventio
 @cindex Ediff
 @vindex casual-ediff
 
-Casual Ediff (library: @code{casual-ediff}) is a user interface for Ediff (@ref{Top,Ediff,,ediff,})@comma{} a visual interface for the Unix diff and patch utilities. Casual Ediff strives to improve the usability of Ediff by simplifying the following workflows:
+Casual Ediff (library: @code{casual-ediff}) is a user interface for Ediff (@ref{Top,Ediff,,ediff,}), a visual interface for the Unix diff and patch utilities. Casual Ediff strives to improve the usability of Ediff by simplifying the following workflows:
 
 @itemize
 @item
@@ -1976,7 +1976,7 @@ Context aware menu items.
 @item
 Menu design tuned for side-by-side comparison.
 @item
-For a merge conflict@comma{} the ability to resolve using both the conflicting diff versions.
+For a merge conflict, the ability to resolve using both the conflicting diff versions.
 @end itemize
 
 Shown below is screenshot of the Casual Ediff in action for a version-controlled file.
@@ -1993,7 +1993,7 @@ Shown below is screenshot of the Casual Ediff in action for a version-controlled
 
 @cindex Ediff Install
 
-In your initialization file@comma{} bind the Transient @code{casual-ediff-tmenu} to your key binding of preference.
+In your initialization file, bind the Transient @code{casual-ediff-tmenu} to your key binding of preference.
 
 @lisp
 (casual-ediff-install) ; run this to enable Casual Ediff
@@ -2002,7 +2002,7 @@ In your initialization file@comma{} bind the Transient @code{casual-ediff-tmenu}
             (keymap-set ediff-mode-map "C-o" #'casual-ediff-tmenu)))
 @end lisp
 
-If the current buffer is loaded with a version-controlled file@comma{} then the difference between that buffer's content with its most recent commit can be seen with the command @code{casual-ediff-revision}. It is often convenient to bind this command. Shown below is an example of such a binding.
+If the current buffer is loaded with a version-controlled file, then the difference between that buffer's content with its most recent commit can be seen with the command @code{casual-ediff-revision}. It is often convenient to bind this command. Shown below is an example of such a binding.
 
 @lisp
 (keymap-global-set "<f15>" #'casual-ediff-revision)
@@ -2044,7 +2044,7 @@ Casual Ediff recommends the following variables be set as follows:
 
 @image{images/casual-ediff-basic-screenshot,,,,png}
 
-Casual Ediff (@code{casual-ediff-tmenu}) is invoked from the Ediff control window@comma{} typically using the binding @kbd{C-o} (or your binding of preference).
+Casual Ediff (@code{casual-ediff-tmenu}) is invoked from the Ediff control window, typically using the binding @kbd{C-o} (or your binding of preference).
 
 The menu comprises of sections laid out horizontally that correspond to source of the diffs. The number of sections and their contents are context-dependent on the type of content to be compared.
 
@@ -2056,7 +2056,7 @@ Context-dependent commands for Ediff buffer A@.
 @item B
 Context-dependent commands for Ediff buffer B@.
 @item C
-Context-dependent commands for Ediff buffer C@comma{} if available.
+Context-dependent commands for Ediff buffer C, if available.
 @item Diff
 Ediff commands not related to a specific buffer.
 @end table
@@ -2076,14 +2076,14 @@ Navigation between diffs are bound to the @kbd{p} and @kbd{n} keys for previous 
 
 @image{images/casual-ediff-basic-screenshot,,,,png}
 
-If two writeable files are compared@comma{} Casual Ediff provides the ability to write diffs from either side A or B to each other. Unwanted changes to a side can be restored.
+If two writeable files are compared, Casual Ediff provides the ability to write diffs from either side A or B to each other. Unwanted changes to a side can be restored.
 
 @node Comparing a Version-Controlled File
 @subsubsection Comparing a Version-Controlled File
 
 @image{images/casual-ediff-screenshot,,,,png}
 
-Casual Ediff provides a dedicated command to compare a version-controlled file with its latest commit: @code{casual-ediff-revision}. This command short-circuits the prompts asked for by the command  @code{ediff-revision} which asks for the source file and the revision to compare it to. Call @code{casual-ediff-revision} from the window of a version-controlled file@comma{} typically by key binding of preference.
+Casual Ediff provides a dedicated command to compare a version-controlled file with its latest commit: @code{casual-ediff-revision}. This command short-circuits the prompts asked for by the command  @code{ediff-revision} which asks for the source file and the revision to compare it to. Call @code{casual-ediff-revision} from the window of a version-controlled file, typically by key binding of preference.
 
 The A side will hold the last committed revision of a file. The B side will hold current source file.
 
@@ -2098,7 +2098,7 @@ Note that both @code{casual-ediff-revision} and @code{casual-ediff-revision-from
 
 Magit offers a means of invoking Ediff to resolve a merge conflict via the @kbd{e} binding from the @code{magit-status} (@ref{Status Buffer,(magit) Status Buffer,,magit,}) window.
 
-Calling @code{casual-ediff-tmenu} will show the menu shown above. Note that in the C section@comma{} there are commands to merge both the variant A and variant B diffs using the bindings @kbd{mab} or @kbd{mba}@comma{} depending on the desired order the diffs are to be merged.
+Calling @code{casual-ediff-tmenu} will show the menu shown above. Note that in the C section, there are commands to merge both the variant A and variant B diffs using the bindings @kbd{mab} or @kbd{mba}, depending on the desired order the diffs are to be merged.
 
 @node Ediff Settings
 @subsubsection Ediff Settings
@@ -2110,9 +2110,9 @@ The menu @code{casual-ediff-settings-tmenu} provides access to different @code{e
 @node Ediff Unicode Symbol Support
 @subsubsection Ediff Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual Ediff will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Ediff will use Unicode symbols as appropriate in its menus.
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node EditKit
 @section EditKit
@@ -2120,7 +2120,7 @@ For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventio
 @cindex EditKit
 @vindex casual-editkit
 
-Casual EditKit (library: @code{casual-editkit}) provides a user interface for the numerous editing commands offered by Emacs. Its top-level library is @code{casual-editkit}. As text editing is a core feature of Emacs@comma{} the menus provided here are intended to be made available in a global fashion for buffers that are intended to be edited.
+Casual EditKit (library: @code{casual-editkit}) provides a user interface for the numerous editing commands offered by Emacs. Its top-level library is @code{casual-editkit}. As text editing is a core feature of Emacs, the menus provided here are intended to be made available in a global fashion for buffers that are intended to be edited.
 
 @image{images/casual-editkit-main-screenshot,,,,png}
 
@@ -2136,13 +2136,13 @@ Casual EditKit endeavors to surface the many different editing commands offered 
 
 @cindex EditKit Install
 
-A reference menu (@code{casual-editkit-main-tmenu}) illustrating nearly all the different menus offered by Casual EditKit is provided. This menu can be used “as-is” with your binding of preference. For consistency with other Casual Packages@comma{} the binding @kbd{C-o} is used in the example below. Other candidate bindings include @kbd{M-o} and @kbd{F10}. To facilitate default access to this menu@comma{} the configuration below sets this binding to be global which can be overridden per mode. This is @emph{not} mandatory and users are free to integrate Casual EditKit into their Emacs configuration however they see fit. 
+A reference menu (@code{casual-editkit-main-tmenu}) illustrating nearly all the different menus offered by Casual EditKit is provided. This menu can be used “as-is” with your binding of preference. For consistency with other Casual Packages, the binding @kbd{C-o} is used in the example below. Other candidate bindings include @kbd{M-o} and @kbd{F10}. To facilitate default access to this menu, the configuration below sets this binding to be global which can be overridden per mode. This is @emph{not} mandatory and users are free to integrate Casual EditKit into their Emacs configuration however they see fit. 
 
 @lisp
 (keymap-global-set "C-o" #'casual-editkit-main-tmenu)
 @end lisp
 
-Also suggested is to globally bind the windows@comma{} rectangle@comma{} registers@comma{} and project menus as shown below.
+Also suggested is to globally bind the windows, rectangle, registers, and project menus as shown below.
 
 @lisp
 (keymap-global-set "C-c w" #'casual-editkit-windows-tmenu)
@@ -2151,7 +2151,7 @@ Also suggested is to globally bind the windows@comma{} rectangle@comma{} registe
 (keymap-global-set "C-c p" #'casual-editkit-project-tmenu)
 @end lisp
 
-For motivated users desiring a bespoke solution@comma{} it is recommended that they use Casual EditKit as a library of menus to build their own workflows.
+For motivated users desiring a bespoke solution, it is recommended that they use Casual EditKit as a library of menus to build their own workflows.
 
 @node EditKit Usage
 @subsection EditKit Usage
@@ -2170,7 +2170,7 @@ Commands related to opening files or buffers are provided here.
 @item Edit
 Text editing commands are provided here.
 
-From this section@comma{} rectangle commands are made available via the “@kbd{e} Edit›” → “@kbd{R} Rectangle›” binding combination.
+From this section, rectangle commands are made available via the “@kbd{e} Edit›” → “@kbd{R} Rectangle›” binding combination.
 
 @item Sexp
 Text editing commands specific for a balanced expression (Sexp) are provided here.
@@ -2179,7 +2179,7 @@ Text editing commands specific for a balanced expression (Sexp) are provided her
 Commands for invoking different tools are provided here.
 
 @item Miscellaneous (unlabeled)
-Commands related to bookmarks@comma{} window management@comma{} project (Emacs file organization)@comma{} search & replace@comma{} and macros are found here.
+Commands related to bookmarks, window management, project (Emacs file organization), search & replace, and macros are found here.
 @end table
 
 Casual EditKit has numerous menus to cover a variety of edit related commands.
@@ -2208,7 +2208,7 @@ Casual EditKit has numerous menus to cover a variety of edit related commands.
 
 Support for register commands (@ref{Registers,,,emacs,}) is provided by the menu @code{casual-editkit-registers-tmenu}. It is available via the menu item “@kbd{r} Registers›” in the navigation row at the bottom of @code{casual-editkit-main-tmenu}.
 
-Register commands for saving and recalling text@comma{} point@comma{} window configuration@comma{} and keyboard macros are provided by this menu.
+Register commands for saving and recalling text, point, window configuration, and keyboard macros are provided by this menu.
 
 @image{images/casual-editkit-registers-screenshot,,,,png}
 
@@ -2222,7 +2222,7 @@ The menu @code{casual-editkit-edit-tmenu} contains commands and sub-menus relate
 
 @image{images/casual-editkit-edit-screenshot,,,,png}
 
-Depending on the buffer mode@comma{} text can be operated on with different granularity as words@comma{} sentences@comma{} paragraphs@comma{} balanced expressions@comma{} functions (defuns). The following sub-menus illustrate what operations can be done on the different text granularity.
+Depending on the buffer mode, text can be operated on with different granularity as words, sentences, paragraphs, balanced expressions, functions (defuns). The following sub-menus illustrate what operations can be done on the different text granularity.
 
 @subsubheading Mark› (casual-editkit-mark-tmenu)
 @cindex Mark commands
@@ -2254,11 +2254,11 @@ Text can be cut (killed) with different granularity with this menu.
 @vindex casual-editkit-move-sentence-tmenu
 @vindex casual-editkit-move-sexp-tmenu
 
-Text can be moved forwards or backwards with different granularity with this menu. Note that selecting a granularity will raise another menu to allow selection of direction (forward@comma{} backward) the text is to be moved. To enable repeat operation@comma{} that menu is persisted and must be dismissed either with either @code{C-q} (dismiss all) or  @code{C-g} (dismiss to previous menu).
+Text can be moved forwards or backwards with different granularity with this menu. Note that selecting a granularity will raise another menu to allow selection of direction (forward, backward) the text is to be moved. To enable repeat operation, that menu is persisted and must be dismissed either with either @code{C-q} (dismiss all) or  @code{C-g} (dismiss to previous menu).
 
 @image{images/casual-editkit-move-screenshot,,,,png}
 
-If “@kbd{w} Word›” is selected@comma{} then the following menu @code{casual-editkit-move-word-tmenu} is displayed.
+If “@kbd{w} Word›” is selected, then the following menu @code{casual-editkit-move-word-tmenu} is displayed.
 
 @image{images/casual-editkit-move-word-screenshot,,,,png}
 
@@ -2274,28 +2274,28 @@ Text can be transposed with different granularity with this menu.
 @subsubheading Transform› (casual-editkit-transform-tmenu)
 @cindex Transform commands
 @vindex casual-editkit-transform-tmenu
-Text can be transformed with different granularity with this menu. Supported transformations are capitalization@comma{} lower and upper casing of text.
+Text can be transformed with different granularity with this menu. Supported transformations are capitalization, lower and upper casing of text.
 
 @image{images/casual-editkit-transform-screenshot,,,,png}
 
 @subsubheading Delete› (casual-editkit-delete-tmenu)
 @cindex Delete commands
 @vindex casual-editkit-delete-tmenu
-Operations involving text deletion are included in this menu@comma{} including joining lines and zapping to a character.
+Operations involving text deletion are included in this menu, including joining lines and zapping to a character.
 
 @image{images/casual-editkit-delete-screenshot,,,,png}
 
 @subsubheading Sort› (casual-editkit-sort-tmenu)
 @cindex Sort commands
 @vindex casual-editkit-sort-tmenu
-Sorting operations on different sections of text are supported@comma{} as well as support for sorting off a field. Press @code{?} or @code{C-h} to get help for a specific command.
+Sorting operations on different sections of text are supported, as well as support for sorting off a field. Press @code{?} or @code{C-h} to get help for a specific command.
 
 @image{images/casual-editkit-sort-screenshot,,,,png}
 
 @subsubheading Reformat› (casual-editkit-reformat-tmenu)
 @cindex Reformat commands
 @vindex casual-editkit-reformat-tmenu
-Commands to reformat text such as filling@comma{} centering@comma{} and repunctuating sentences are provided here. Press @code{?} or @code{C-h} to get help for a specific command.
+Commands to reformat text such as filling, centering, and repunctuating sentences are provided here. Press @code{?} or @code{C-h} to get help for a specific command.
 
 @image{images/casual-editkit-reformat-screenshot,,,,png}
 
@@ -2315,7 +2315,7 @@ Users wishing more direct access to this menu can bind @code{casual-editkit-rect
 
 @cindex Window management
 @vindex casual-editkit-windows-tmenu
-The menu @code{casual-editkit-windows-tmenu} provides support for different Emacs window management commands. Note that in Emacs@comma{} a window (@ref{Basic Windows,,,elisp,}) is defined differently than its usage in contemporary graphical user interfaces.
+The menu @code{casual-editkit-windows-tmenu} provides support for different Emacs window management commands. Note that in Emacs, a window (@ref{Basic Windows,,,elisp,}) is defined differently than its usage in contemporary graphical user interfaces.
 
 @image{images/casual-editkit-window-screenshot,,,,png}
 
@@ -2328,17 +2328,17 @@ Users wishing more direct access to this menu can bind @code{casual-editkit-wind
 @cindex Window deletion
 @vindex casual-editkit-window-delete-tmenu
 
-This menu provides support for deleting windows. Note the commands apply to other windows@comma{} not the current one in focus.
+This menu provides support for deleting windows. Note the commands apply to other windows, not the current one in focus.
 
 @image{images/casual-editkit-window-delete-screenshot,,,,png}
 
 @subsubheading Window Menu Unicode Symbol Support
 
-If the variable @code{casual-lib-use-unicode} is set to @code{t}@comma{} then Unicode symbols are used in the labels.
+If the variable @code{casual-lib-use-unicode} is set to @code{t}, then Unicode symbols are used in the labels.
 
 @image{images/casual-editkit-window-unicode-screenshot,,,,png}
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node Search & Replace commands
 @subsubsection Search & Replace commands
@@ -2384,7 +2384,7 @@ Project-related commands are listed in the menu @code{casual-editkit-project-tme
 
 @cindex Bookmark commands
 @vindex casual-editkit-bookmarks-tmenu
-Commands edit@comma{} add@comma{} or jump to a bookmark are captured in the menu @code{casual-editkit-bookmarks-tmenu}.
+Commands edit, add, or jump to a bookmark are captured in the menu @code{casual-editkit-bookmarks-tmenu}.
 
 @image{images/casual-editkit-bookmarks-screenshot,,,,png}
 
@@ -2416,7 +2416,7 @@ Support for narrowing and widening (@ref{Narrowing,,,emacs,}) a buffer is suppor
 
 @image{images/casual-editkit-narrow-screenshot,,,,png}
 
-This menu can be modified (@ref{Modifying Existing Transients,,,transient,}) to support narrowing in other modes@comma{} particularly those that are packaged with Emacs. For example@comma{} if one wanted narrowing support for Markdown (@uref{https://jblevins.org/projects/markdown-mode/, markdown-mode})@comma{} the following initialization code can be used.
+This menu can be modified (@ref{Modifying Existing Transients,,,transient,}) to support narrowing in other modes, particularly those that are packaged with Emacs. For example, if one wanted narrowing support for Markdown (@uref{https://jblevins.org/projects/markdown-mode/, markdown-mode}), the following initialization code can be used.
 
 @lisp
 (transient-append-suffix 'casual-editkit-narrow-tmenu '(0 0)
@@ -2476,7 +2476,7 @@ Casual Elisp (library: @code{casual-elisp}) is a user interface for @code{emacs-
 
 @cindex Elisp Install
 
-In your initialization file@comma{} bind the Transient @code{casual-elisp-tmenu} to your key binding of preference. Suggested bindings include @kbd{M-m} and @kbd{C-c m}. This menu is intended to be auxiliary to @ref{EditKit, , Casual EditKit}.
+In your initialization file, bind the Transient @code{casual-elisp-tmenu} to your key binding of preference. Suggested bindings include @kbd{M-m} and @kbd{C-c m}. This menu is intended to be auxiliary to @ref{EditKit, , Casual EditKit}.
 
 @lisp
 (keymap-set emacs-lisp-mode-map "M-m" #'casual-elisp-tmenu)
@@ -2532,11 +2532,11 @@ The menu @code{casual-elisp-settings-tmenu} provides access to different @code{e
 
 @subsubheading Elisp Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual Elisp will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Elisp will use Unicode symbols as appropriate in its menus.
 
 @image{images/casual-elisp-unicode-screenshot,,,,png}
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node Eshell
 @section Eshell
@@ -2544,7 +2544,7 @@ For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventio
 @cindex Eshell
 @vindex casual-eshell
 
-Casual Eshell (library: @code{casual-eshell}) is a user interface for @code{Eshell}@comma{} a shell-like command interpreter implemented in Emacs Lisp.
+Casual Eshell (library: @code{casual-eshell}) is a user interface for @code{Eshell}, a shell-like command interpreter implemented in Emacs Lisp.
 
 @image{images/casual-eshell-screenshot,,,,png}
 
@@ -2558,7 +2558,7 @@ Casual Eshell (library: @code{casual-eshell}) is a user interface for @code{Eshe
 
 @cindex Eshell Install
 
-In your initialization file@comma{} bind the Transient @code{casual-eshell-tmenu} to your key binding of preference.
+In your initialization file, bind the Transient @code{casual-eshell-tmenu} to your key binding of preference.
 
 @lisp
 (keymap-set eshell-mode-map "C-o" #'casual-eshell-tmenu)
@@ -2570,7 +2570,7 @@ In your initialization file@comma{} bind the Transient @code{casual-eshell-tmenu
 @cindex Eshell Usage
 @vindex casual-eshell-tmenu
 
-Eshell can be invoked via @code{M-x eshell}. In the Eshell window@comma{} press @kbd{C-o} (or your binding of preference) to raise the menu @code{casual-eshell-tmenu}.
+Eshell can be invoked via @code{M-x eshell}. In the Eshell window, press @kbd{C-o} (or your binding of preference) to raise the menu @code{casual-eshell-tmenu}.
 
 The following sections are offered in the menu:
 
@@ -2606,13 +2606,13 @@ The menu @code{casual-eshell-info-tmenu} provides access to different @code{eshe
 
 @subsubheading Eshell Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual Eshell will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Eshell will use Unicode symbols as appropriate in its menus.
 
 
 @image{images/casual-eshell-unicode-screenshot,,,,png}
 
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node EWW
 @section EWW
@@ -2620,7 +2620,7 @@ For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventio
 @cindex EWW
 @vindex casual-eww
 
-Casual EWW (library: @code{casual-eww}) is a user interface for Emacs Web Wowser (@ref{Top,,,eww,})@comma{} a web browser that runs inside Emacs.
+Casual EWW (library: @code{casual-eww}) is a user interface for Emacs Web Wowser (@ref{Top,,,eww,}), a web browser that runs inside Emacs.
 
 @image{images/casual-eww-screenshot,,,,png}
 
@@ -2634,7 +2634,7 @@ Casual EWW (library: @code{casual-eww}) is a user interface for Emacs Web Wowser
 
 @cindex EWW Install
 
-In your initialization file@comma{} bind the Transient @code{casual-eww-tmenu} to your key binding of preference.
+In your initialization file, bind the Transient @code{casual-eww-tmenu} to your key binding of preference.
 
 @lisp
 (keymap-set eww-mode-map "C-o" #'casual-eww-tmenu)
@@ -2646,7 +2646,7 @@ Do so similarly to access @code{casual-eww-bookmarks-tmenu} in the EWW bookmarks
 (keymap-set eww-bookmark-mode-map "C-o" #'casual-eww-bookmarks-tmenu)
 @end lisp
 
-While not mandatory@comma{} the following bindings can make the EWW keymaps consistent with those used by Casual.
+While not mandatory, the following bindings can make the EWW keymaps consistent with those used by Casual.
 
 @lisp
 (keymap-set eww-mode-map "C-o" #'casual-eww-tmenu)
@@ -2675,7 +2675,7 @@ While not mandatory@comma{} the following bindings can make the EWW keymaps cons
 @cindex EWW Usage
 @vindex casual-eww-tmenu
 
-In an EWW window@comma{} invoke @code{casual-eww-tmenu} as shown below.
+In an EWW window, invoke @code{casual-eww-tmenu} as shown below.
 
 @image{images/casual-eww-screenshot,,,,png}
 
@@ -2732,11 +2732,11 @@ Note that the EWW bookmarks list has a very limited feature set.
 
 @subsubheading EWW Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual EWW will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual EWW will use Unicode symbols as appropriate in its menus.
 
 @image{images/casual-eww-unicode-screenshot,,,,png}
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node Help
 @section Help
@@ -2744,7 +2744,7 @@ For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventio
 @cindex Help
 @vindex casual-help
 
-Casual Help (library: @code{casual-help}) is a user interface for @code{help-mode}@comma{} a major mode for viewing help text and navigating references in it.
+Casual Help (library: @code{casual-help}) is a user interface for @code{help-mode}, a major mode for viewing help text and navigating references in it.
 
 @image{images/casual-help-screenshot,,,,png}
 
@@ -2758,7 +2758,7 @@ Casual Help (library: @code{casual-help}) is a user interface for @code{help-mod
 
 @cindex Help Install
 
-In your initialization file@comma{} bind the Transient @code{casual-help-tmenu} to your key binding of preference.
+In your initialization file, bind the Transient @code{casual-help-tmenu} to your key binding of preference.
 
 @lisp
 (keymap-set help-mode-map "C-o" #'casual-help-tmenu)
@@ -2820,7 +2820,7 @@ The following keybindings are recommended to support consistent behavior between
 @image{images/casual-help-screenshot,,,,png}
 
 
-After invoking help via a @code{describe-} command@comma{} invoke @code{casual-help-tmenu} using the binding @code{C-o} (or your binding of preference).
+After invoking help via a @code{describe-} command, invoke @code{casual-help-tmenu} using the binding @code{C-o} (or your binding of preference).
 
 The following sections are offered in the menu:
 
@@ -2834,9 +2834,9 @@ Navigate to different references in the help buffer.
 @item Describe
 Get help for different Elisp types.
 @item Info
-If available@comma{} then open this help topic in @uref{info.org, Info}.
+If available, then open this help topic in @uref{info.org, Info}.
 @item Source
-Show the Elisp source. If the help displayed is for a customizable variable@comma{} then show a customize menu item.
+Show the Elisp source. If the help displayed is for a customizable variable, then show a customize menu item.
 @end table
 
 @subsubheading Help Mode Settings
@@ -2846,9 +2846,9 @@ The menu @code{casual-help-settings-tmenu} provides access to different @code{he
 
 @subsubheading Help Mode Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual Help will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Help will use Unicode symbols as appropriate in its menus.
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node HTML
 @section HTML
@@ -2859,7 +2859,7 @@ For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventio
 Casual HTML (library: @code{casual-html}) is a user interface for @code{html-mode} (@ref{HTML Mode,html-mode,,emacs,}). 
 
 @image{images/casual-html-screenshot,,,,png}
-Casual also has support for CSS editing (@ref{CSS, , CSS}).
+Casual also has support for CSS editing (@ref{CSS}).
 
 @menu
 * HTML Install::
@@ -2871,7 +2871,7 @@ Casual also has support for CSS editing (@ref{CSS, , CSS}).
 
 @cindex HTML Install
 
-In your initialization file@comma{} bind the Transient @code{casual-html-tmenu} to your key binding of preference.
+In your initialization file, bind the Transient @code{casual-html-tmenu} to your key binding of preference.
 
 @lisp
 (keymap-set html-mode-map "M-m" #'casual-html-tmenu)
@@ -2885,7 +2885,7 @@ It is convenient to also bind @code{casual-html-tags-tmenu} as well.
 
 The binding @kbd{M-m} is intended to complement the binding @kbd{C-o} used by @ref{EditKit Install, , EditKit}.
 
-If HTML Tree-sitter support is enabled@comma{} use the keymap @code{html-ts-mode-map} in place of @code{html-mode-map}.
+If HTML Tree-sitter support is enabled, use the keymap @code{html-ts-mode-map} in place of @code{html-mode-map}.
 
 @node HTML Usage
 @subsection HTML Usage
@@ -2926,11 +2926,11 @@ SGML/HTML mode related settings can be customized using the menu @code{casual-ht
 
 @subsubheading HTML Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual html will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual html will use Unicode symbols as appropriate in its menus.
 
 @image{images/casual-html-unicode-screenshot,,,,png}
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node IBuffer
 @section IBuffer
@@ -2938,9 +2938,9 @@ For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventio
 @cindex IBuffer
 @vindex casual-ibuffer
 
-Casual IBuffer (library: @code{casual-ibuffer}) provides a user interface to Emacs IBuffer (@ref{Buffer Menus,emacs#Buffer Menus,,emacs,})@comma{} a mode designed for managing buffers.
+Casual IBuffer (library: @code{casual-ibuffer}) provides a user interface to Emacs IBuffer (@ref{Buffer Menus,emacs#Buffer Menus,,emacs,}), a mode designed for managing buffers.
 
-IBuffer is a powerful tool for managing Emacs workflows. As Emacs is often compared to an operating system@comma{} through that lens one could compare IBuffer to being a task manager interface@comma{} managing instantiated buffers as opposed to processes.
+IBuffer is a powerful tool for managing Emacs workflows. As Emacs is often compared to an operating system, through that lens one could compare IBuffer to being a task manager interface, managing instantiated buffers as opposed to processes.
 
 @image{images/casual-ibuffer-screenshot,,,,png}
 
@@ -2954,13 +2954,13 @@ IBuffer is a powerful tool for managing Emacs workflows. As Emacs is often compa
 
 @cindex IBuffer Install
 
-In your initialization file@comma{} bind the Transinent @code{casual-ibuffer-tmenu} to your key binding of preference.
+In your initialization file, bind the Transinent @code{casual-ibuffer-tmenu} to your key binding of preference.
 
 @lisp
 (keymap-set ibuffer-mode-map "C-o" #'casual-ibuffer-tmenu)
 @end lisp
 
-Like with Casual Dired@comma{} it is convenient to have the menus for filtering and sorting bound as well. Listed below shows an example of binding @code{casual-ibuffer-filter-tmenu} and @code{casual-ibuffer-sortby-tmenu} to @code{F} and @code{s} respectively.
+Like with Casual Dired, it is convenient to have the menus for filtering and sorting bound as well. Listed below shows an example of binding @code{casual-ibuffer-filter-tmenu} and @code{casual-ibuffer-sortby-tmenu} to @code{F} and @code{s} respectively.
 
 @lisp
 (keymap-set ibuffer-mode-map "F" #'casual-ibuffer-filter-tmenu)
@@ -2977,7 +2977,7 @@ Use these keybindings to configure IBuffer to be consistent with keybindings use
 (keymap-set ibuffer-mode-map "$" #'ibuffer-toggle-filter-group)
 @end lisp
 
-While not necessary for Casual IBuffer@comma{} enabling @code{hl-line-mode} and binding mouse clicks in IBuffer adds to a more comfortable IBuffer experience. Also@comma{} adding @code{ibuffer-auto-mode} to @code{ibuffer-mode-hook} will enable auto-updating.
+While not necessary for Casual IBuffer, enabling @code{hl-line-mode} and binding mouse clicks in IBuffer adds to a more comfortable IBuffer experience. Also, adding @code{ibuffer-auto-mode} to @code{ibuffer-mode-hook} will enable auto-updating.
 
 @lisp
 (require 'hl-line)
@@ -3016,15 +3016,15 @@ Commands to navigate the buffer list.
 Commands related to filtering/organizing buffers. Support for defining @emph{Filter Groups} is provided here.
 
 @item I-Search/Occur Marked
-I-Search and Occur commands for marked buffers are here. Note that while you are in an I-Search session@comma{} the @ref{I-Search, , Transient menu for I-Search} is available to you.
+I-Search and Occur commands for marked buffers are here. Note that while you are in an I-Search session, the @ref{I-Search, , Transient menu for I-Search} is available to you.
 
 @item Query Replace Marked
 Commands to search & replace text in marked buffers are provided here. Note that commands in this section that modify buffers do @emph{not} save said buffers.
 @end table
 
-Note that the menu item “@kbd{@key{RET}}” has ``do what I mean''  (DWIM) behavior. If the point is currently on a filter group (described below) then pressing the @kbd{@key{RET}} key will toggle the visibility of items matching that filter group. Otherwise@comma{} it will visit (open) the buffer.
+Note that the menu item “@kbd{@key{RET}}” has ``do what I mean''  (DWIM) behavior. If the point is currently on a filter group (described below) then pressing the @kbd{@key{RET}} key will toggle the visibility of items matching that filter group. Otherwise, it will visit (open) the buffer.
 
-As with other Casual user interfaces@comma{} the ability to jump to a bookmark is available.
+As with other Casual user interfaces, the ability to jump to a bookmark is available.
 
 The sections below detail further the features of IBuffer.
 
@@ -3041,7 +3041,7 @@ The sections below detail further the features of IBuffer.
 @image{images/casual-ibuffer-main-screenshot,,,,png}
 
 
-Buffers can be @emph{marked} using different criteria to be operated on. Common operations include saving and deleting buffers. Note that deleting a buffer populated with a visited file is @emph{not} deleting the visited file. If no buffer is marked@comma{} then the buffer under the current point is operated on.
+Buffers can be @emph{marked} using different criteria to be operated on. Common operations include saving and deleting buffers. Note that deleting a buffer populated with a visited file is @emph{not} deleting the visited file. If no buffer is marked, then the buffer under the current point is operated on.
 
 @subheading Operations
 @vindex casual-ibuffer-operations-tmenu
@@ -3074,9 +3074,9 @@ Pressing “@kbd{r} Regexp›” from the Operations section in the main menu wi
 @image{images/casual-ibuffer-filter-screenshot,,,,png}
 
 
-IBuffer is embarrasingly rich in the ways it can filter buffers. Once mastered@comma{} IBuffer filtering offers a way to create different views on your buffer list@comma{} enabling you to tailor bespoke views for different workflows. Such capability comes with a price though: you'll need to understand how IBuffer wants to organize filters.
+IBuffer is embarrasingly rich in the ways it can filter buffers. Once mastered, IBuffer filtering offers a way to create different views on your buffer list, enabling you to tailor bespoke views for different workflows. Such capability comes with a price though: you'll need to understand how IBuffer wants to organize filters.
 
-Key is the concept of a @emph{Filter Group} which is IBuffer's analog to a Dired subdirectory (@ref{Subdirectories in Dired,,,emacs,}). But whereas a subdirectory only maps to a file system directory@comma{} a filter group can be constructed from a diverse set of rules to categorize a buffer.
+Key is the concept of a @emph{Filter Group} which is IBuffer's analog to a Dired subdirectory (@ref{Subdirectories in Dired,,,emacs,}). But whereas a subdirectory only maps to a file system directory, a filter group can be constructed from a diverse set of rules to categorize a buffer.
 
 IBuffer organizes filtering with the following taxonomy:
 
@@ -3113,13 +3113,13 @@ filter by special buffers
 @item
 filter by buffers visiting files
 
-Casual IBuffer makes the design decision to @strong{not} enumerate the above in a menu@comma{} delegating the work of filter selection to the command  @code{ibuffer-filter-chosen-by-completion}.
+Casual IBuffer makes the design decision to @strong{not} enumerate the above in a menu, delegating the work of filter selection to the command  @code{ibuffer-filter-chosen-by-completion}.
 @end itemize
 
 @item
 @strong{Filter}
 
-A @emph{filter} is a logical combination of filter rules. Logic operators such as AND (&)@comma{} OR (|) and NOT (!) are used to compose rules into a @emph{filter}. A single filter rule can also be construed as a filter.
+A @emph{filter} is a logical combination of filter rules. Logic operators such as AND (&), OR (|) and NOT (!) are used to compose rules into a @emph{filter}. A single filter rule can also be construed as a filter.
 
 Properties of filters:
 
@@ -3138,7 +3138,7 @@ Multiple filters are applied in LIFO order. Removing a filter is a ``pop'' opera
 @item
 Rules that are combined with a logic operator are treated as a single element of the LIFO stack.
 @item
-To individually edit the combination@comma{} use the @emph{Decompose} command to remove the logic operator first.
+To individually edit the combination, use the @emph{Decompose} command to remove the logic operator first.
 @end itemize
 @end itemize
 
@@ -3169,7 +3169,7 @@ Similar LIFO and decompose behavior applicable to a filter group is supported.
 @item
 @strong{Filter Group Collection}
 
-A @emph{collection} is a set of filter groups that can be named with a user-defined identifier. Only one collection can be applied to a buffer list at a time. However@comma{} many different collections can be defined@comma{} allowing for different views of the same buffer list.
+A @emph{collection} is a set of filter groups that can be named with a user-defined identifier. Only one collection can be applied to a buffer list at a time. However, many different collections can be defined, allowing for different views of the same buffer list.
 @end enumerate
 
 @strong{Creating Filters}
@@ -3178,11 +3178,11 @@ The basic procedure for making a filter that applies to the entire buffer list i
 
 @enumerate
 @item
-From the @strong{Filter} menu@comma{} create a filter via @emph{(SPC) Rule@dots{}} and some desired combination of operators.
+From the @strong{Filter} menu, create a filter via @emph{(SPC) Rule@dots{}} and some desired combination of operators.
 @item
 Save the filter via @emph{(s) Save@dots{}}. You will be prompted to provide a name for the filter. This filter will be saved in the variable @samp{ibuffer-saved-filters}.
 @item
-To recall this filter at a subsequent time@comma{} use @emph{(r) Switch to@dots{}} in the @strong{Add} section of the @strong{Filter} menu.
+To recall this filter at a subsequent time, use @emph{(r) Switch to@dots{}} in the @strong{Add} section of the @strong{Filter} menu.
 @end enumerate
 
 @strong{Creating a Collection of Filter Groups}
@@ -3193,14 +3193,14 @@ Here is where the taxonomy becomes significant as the IBuffer command set unfort
 @item
 Create a filter as described above.
 @item
-In the @strong{Add} section of the @strong{Filter} menu@comma{} select @emph{(g) Create Filter Group@dots{}} to convert the filter into a filter group. You will be prompted to name the filter group. This group name will be enclosed by square brackets [].
+In the @strong{Add} section of the @strong{Filter} menu, select @emph{(g) Create Filter Group@dots{}} to convert the filter into a filter group. You will be prompted to name the filter group. This group name will be enclosed by square brackets [].
 @item
-Multiple filter groups can be created by repeating steps 1 and 2 above. Note that when constructing a filter group@comma{} the IBuffer window will @emph{not} provide observability of existing filter groups on the buffer list.
+Multiple filter groups can be created by repeating steps 1 and 2 above. Note that when constructing a filter group, the IBuffer window will @emph{not} provide observability of existing filter groups on the buffer list.
 @item
 You can save the set of filter groups as a @emph{collection} in the @strong{Collection} section with the command @emph{(S) Save@dots{}}. You will be prompted to name the collection. Note that only one collection can be used at a time in IBuffer.
 @end enumerate
 
-Out of the box@comma{} it is best to think of the IBuffer commands for editing buffer filters as a kit of parts and an arguably incomplete one at that. The Casual IBuffer filter menu (@samp{casual-ibuffer-filter-tmenu}) is my attempt to build a comprehensible filter editor UI from this kit. Whether it succeeds in being comprehensible is left to user feedback.
+Out of the box, it is best to think of the IBuffer commands for editing buffer filters as a kit of parts and an arguably incomplete one at that. The Casual IBuffer filter menu (@samp{casual-ibuffer-filter-tmenu}) is my attempt to build a comprehensible filter editor UI from this kit. Whether it succeeds in being comprehensible is left to user feedback.
 
 @node IBuffer Sorting
 @subsubsection IBuffer Sorting
@@ -3218,9 +3218,9 @@ Sort ordering can be reversed via the @emph{Invert} command.
 
 @image{images/casual-ibuffer-main-unicode,,,,png}
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual IBuffer will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual IBuffer will use Unicode symbols as appropriate in its menus.
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node Image
 @section Image
@@ -3296,9 +3296,9 @@ Miscellaneous commands.
 @cindex Image Resize
 @vindex casual-image-resize-tmenu
 
-If ImageMagick (version 6 or 7) is installed@comma{} Casual Image can resize an image using it. The Transient @code{casual-image-resize-tmenu} is a streamlined interface to the ImageMagick @code{-resize} function.
+If ImageMagick (version 6 or 7) is installed, Casual Image can resize an image using it. The Transient @code{casual-image-resize-tmenu} is a streamlined interface to the ImageMagick @code{-resize} function.
 
-Note that if the image file has been modified@comma{} the resize interface will be disabled. Save the image file before resizing.
+Note that if the image file has been modified, the resize interface will be disabled. Save the image file before resizing.
 
 @image{images/casual-image-resize-screenshot,,,,png}
 
@@ -3307,7 +3307,7 @@ Note that if the image file has been modified@comma{} the resize interface will 
 @item
 (g) Geometry - @uref{https://imagemagick.org/script/command-line-processing.php#geometry, ImageMagick specifier} for the resize geometry.
 @item
-(o) Output to another file - If enabled@comma{} then the user will be prompted for a different output file@comma{} else it will @emph{irreversibly} update the current image file.
+(o) Output to another file - If enabled, then the user will be prompted for a different output file, else it will @emph{irreversibly} update the current image file.
 @item
 (t) Type - Specify if @emph{adaptive} or @emph{interpolative} resizing should be used. If nothing is specified then @emph{standard} resizing is used.
 @end itemize
@@ -3322,11 +3322,11 @@ The menu @code{casual-image-settings-tmenu} provides access to different @code{i
 @node Image Unicode Symbol Support
 @subsubsection Image Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual Image will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Image will use Unicode symbols as appropriate in its menus.
 
 @image{images/casual-image-main-unicode-screenshot,,,,png}
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node Image Mode Command Naming
 @subsubsection Image Mode Command Naming
@@ -3362,10 +3362,10 @@ The table below shows the mapping between names used by Casual to commands provi
 @tab Command modifies image.
 @item Fill
 @tab @code{image-cut}
-@tab Command modifies image. This command is primarily a fill operation@comma{} so is renamed appropriately.
+@tab Command modifies image. This command is primarily a fill operation, so is renamed appropriately.
 @item Set Fill Color
 @tab @code{image-cut-color}
-@tab This variable supports a fill operation@comma{} so is renamed appropriately.
+@tab This variable supports a fill operation, so is renamed appropriately.
 @item Save
 @tab @code{save-buffer}
 @tab Saves modified image file.
@@ -3444,7 +3444,7 @@ The main menu for Casual Info is @code{casual-info-tmenu}. Bind this menu in the
 (keymap-set Info-mode-map "C-o" #'casual-info-tmenu)
 @end lisp
 
-While not required@comma{} adding this configuration to your Emacs initialization file will synchronize keybindings between Casual Info and the Info reader. A nice visual improvement is to use @code{hl-line-mode} to highlight the line where the cursor is at. Enabling @code{scroll-lock-mode} will enable scrolling the buffer for content that is larger than its window size with the navigation keys.
+While not required, adding this configuration to your Emacs initialization file will synchronize keybindings between Casual Info and the Info reader. A nice visual improvement is to use @code{hl-line-mode} to highlight the line where the cursor is at. Enabling @code{scroll-lock-mode} will enable scrolling the buffer for content that is larger than its window size with the navigation keys.
 
 @lisp
 ;; # Info
@@ -3501,13 +3501,13 @@ Commands to scroll down or up the current Info page.
 Command related to structurally navigating an Info document. Note that these commands should not be confused with historical navigation.
 
 @item Quick
-Miscellaneous commands for working with an Info document. Included are commands for bookmarks@comma{} copying the current node name@comma{} and cloning the buffer.
+Miscellaneous commands for working with an Info document. Included are commands for bookmarks, copying the current node name, and cloning the buffer.
 @end table
 
 @subsubheading Info Unicode Symbol Support
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual Info will use Unicode symbols as appropriate in its menus. 
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Info will use Unicode symbols as appropriate in its menus. 
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node I-Search
 @section I-Search
@@ -3548,7 +3548,7 @@ The main menu for Casual I-Search is organized into the following sections:
 
 @table @asis
 @item Edit Search String
-Commands to edit the search string. The type/extent of the string (word@comma{} symbol@comma{} line@comma{} thing) can be specified here.
+Commands to edit the search string. The type/extent of the string (word, symbol, line, thing) can be specified here.
 
 @item Replace
 Invoke @code{query-replace} or @code{query-replace-regexp} on matched strings.
@@ -3563,7 +3563,7 @@ Miscellaneous commands. From here the search string can be fed into @code{occur}
 Navigation commands for matched strings.
 @end table
 
-When in search mode (typically via the keybinding @kbd{C-s} or @kbd{C-r})@comma{} pressing the keybinding @kbd{C-o} (or binding of your preference) will raise the Transient menu @code{casual-isearch-tmenu}. Once raised@comma{} only the @emph{I-Search} commands in the @strong{Toggle}@comma{} @strong{Replace}@comma{} and @strong{Misc} sections will automatically dismiss the menu when selected. All other @emph{I-Search} commands will @emph{not} dismiss the menu.
+When in search mode (typically via the keybinding @kbd{C-s} or @kbd{C-r}), pressing the keybinding @kbd{C-o} (or binding of your preference) will raise the Transient menu @code{casual-isearch-tmenu}. Once raised, only the @emph{I-Search} commands in the @strong{Toggle}, @strong{Replace}, and @strong{Misc} sections will automatically dismiss the menu when selected. All other @emph{I-Search} commands will @emph{not} dismiss the menu.
 
 Use @kbd{C-g} to dismiss this Transient menu.
 
@@ -3578,11 +3578,11 @@ The menu @code{casual-isearch-settings-tmenu} provides access to different I-Sea
 
 @subsubheading I-Search Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual I-Search will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual I-Search will use Unicode symbols as appropriate in its menus.
 
 @image{images/casual-isearch-unicode,,,,png}
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node Ispell
 @section Ispell
@@ -3620,13 +3620,13 @@ If you have @ref{EditKit Install, , Casual EditKit installed} then access to the
 @cindex Ispell Usage
 @vindex casual-ispell-tmenu
 
-From either the Transient @code{casual-editkit-main-tmenu} or via key binding @kbd{C-c s}@comma{} invoke the menu @code{casual-ispell-tmenu} to get menu of commands shown below:
+From either the Transient @code{casual-editkit-main-tmenu} or via key binding @kbd{C-c s}, invoke the menu @code{casual-ispell-tmenu} to get menu of commands shown below:
 
 @image{images/casual-ispell-screenshot,,,,png}
 
-If no text (region) is selected@comma{} then Ispell will behave with respect to the cursor (point) position.
+If no text (region) is selected, then Ispell will behave with respect to the cursor (point) position.
 
-For certain modes@comma{} @code{casual-ispell-tmenu} will add the following two menu items:
+For certain modes, @code{casual-ispell-tmenu} will add the following two menu items:
 
 @itemize
 @item
@@ -3654,7 +3654,7 @@ The modes are determined by the customizable variable @code{casual-ispell-commen
 @cindex Make
 @vindex casual-make
 
-Casual Make (library: @code{casual-make}) is a user interface for @code{make-mode}@comma{} a mode for editing a Makefile.
+Casual Make (library: @code{casual-make}) is a user interface for @code{make-mode}, a mode for editing a Makefile.
 
 @image{images/casual-make-screenshot,,,,png}
 
@@ -3668,7 +3668,7 @@ Casual Make (library: @code{casual-make}) is a user interface for @code{make-mod
 
 @cindex Make Install
 
-In your initialization file@comma{} bind the Transient @code{casual-make-tmenu} to your key binding of preference. Two suggested bindings are @kbd{M-m} or @kbd{C-c m}.
+In your initialization file, bind the Transient @code{casual-make-tmenu} to your key binding of preference. Two suggested bindings are @kbd{M-m} or @kbd{C-c m}.
 
 @lisp
 (keymap-set makefile-mode-map "M-m" #'casual-make-tmenu)
@@ -3686,7 +3686,7 @@ The binding @kbd{M-m} is intended to complement the binding @kbd{C-o} used by @r
 
 It is recommended that some basic knowledge of the @strong{make} command is known before using Casual Make.
 
-When in a Makefile buffer@comma{} use @kbd{M-m} (or your binding of choice) to raise the menu @code{casual-make-tmenu}. You will be presented with a menu with the following sections:
+When in a Makefile buffer, use @kbd{M-m} (or your binding of choice) to raise the menu @code{casual-make-tmenu}. You will be presented with a menu with the following sections:
 
 @table @asis
 @item Edit
@@ -3702,7 +3702,7 @@ Miscellaneous commands related to working with a makefile.
 Commands to support navigation within the makefile.
 @end table
 
-Unless you edit makefiles frequently@comma{} it is unlikely to recall what an automatic variable declaration means. Casual Make provides the command @code{casual-make-identify-autovar-region} to identify a region-selected automatic variable via the menu item “@kbd{.} Identify Auto Var” in @code{casual-make-tmenu}. A short description of the automatic variable is shown in the mini-buffer.
+Unless you edit makefiles frequently, it is unlikely to recall what an automatic variable declaration means. Casual Make provides the command @code{casual-make-identify-autovar-region} to identify a region-selected automatic variable via the menu item “@kbd{.} Identify Auto Var” in @code{casual-make-tmenu}. A short description of the automatic variable is shown in the mini-buffer.
 
 @menu
 * Makefile Type Selection::
@@ -3716,7 +3716,7 @@ Unless you edit makefiles frequently@comma{} it is unlikely to recall what an au
 @cindex Makefile Type Selection
 @vindex casual-make-mode-select-tmenu
 
-As there are different variants of @strong{make} and makefile formats@comma{} you can configure the mode for different specific makefile types. This can be done by selecting “@kbd{t} Makefile Type›” in @code{casual-make-tmenu}.
+As there are different variants of @strong{make} and makefile formats, you can configure the mode for different specific makefile types. This can be done by selecting “@kbd{t} Makefile Type›” in @code{casual-make-tmenu}.
 
 @image{images/casual-make-mode-select-screenshot,,,,png}
 
@@ -3737,9 +3737,9 @@ The symbol for this menu is @code{casual-make-automatic-variables-tmenu}.
 @node Make Unicode Symbol Support
 @subsubsection Make Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual Make will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Make will use Unicode symbols as appropriate in its menus.
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node Man
 @section Man
@@ -3747,7 +3747,7 @@ For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventio
 @cindex Man
 @vindex casual-man
 
-Casual Man (library: @code{casual-man}) is a user interface for @code{Man-mode}@comma{} a Man page reader.
+Casual Man (library: @code{casual-man}) is a user interface for @code{Man-mode}, a Man page reader.
 
 @image{images/casual-man-screenshot,,,,png}
 
@@ -3761,7 +3761,7 @@ Casual Man (library: @code{casual-man}) is a user interface for @code{Man-mode}@
 
 @cindex Man Install
 
-In your initialization file@comma{} bind the Transient @code{casual-man-tmenu} to your key binding of preference.
+In your initialization file, bind the Transient @code{casual-man-tmenu} to your key binding of preference.
 
 @lisp
 (keymap-set Man-mode-map "C-o" #'casual-man-tmenu)
@@ -3825,7 +3825,7 @@ The following keybindings are recommended to support consistent behavior between
 
 @image{images/casual-man-screenshot,,,,png}
 
-The Man page reader can be invoked via @code{M-x man}@comma{} where the user is prompted for a search key. This search key is typically the name of a command that has an associated Man page. In the Man page window@comma{} pressing @kbd{C-o} (or your binding of preference) will raise the menu @code{casual-man-tmenu}.
+The Man page reader can be invoked via @code{M-x man}, where the user is prompted for a search key. This search key is typically the name of a command that has an associated Man page. In the Man page window, pressing @kbd{C-o} (or your binding of preference) will raise the menu @code{casual-man-tmenu}.
 
 The following sections are offered in the menu:
 
@@ -3839,18 +3839,18 @@ Navigation commands by section.
 @item Link
 Jump to other Man pages referenced in the current Man page.
 @item Page
-If the Man page reader is configured to display all manual pages for a given search key@comma{} navigation commands for multiple pages is provided.
+If the Man page reader is configured to display all manual pages for a given search key, navigation commands for multiple pages is provided.
 @end table
 
 @subsubheading Options Navigation
 @vindex casual-man-occur-options
 
-@code{casual-man-tmenu} provides the menu item @kbd{o} which runs the command @code{casual-man-occur-options}. This will invoke @code{occur} with a regexp that searches for command line options (for example@comma{} ``--foo''@comma{} ``-a'') that can be navigated via the @code{occur} interface.
+@code{casual-man-tmenu} provides the menu item @kbd{o} which runs the command @code{casual-man-occur-options}. This will invoke @code{occur} with a regexp that searches for command line options (for example, ``--foo'', ``-a'') that can be navigated via the @code{occur} interface.
 
 @subsubheading Man Settings
 @vindex casual-man-settings-tmenu
 
-By default@comma{} the Man page reader will @emph{not} display all manual pages for given search key. This can be changed in the Settings menu @code{casual-man-settings-tmenu} that can be invoked by pressing @kbd{@comma{}} in @code{casual-man-tmenu}. 
+By default, the Man page reader will @emph{not} display all manual pages for given search key. This can be changed in the Settings menu @code{casual-man-settings-tmenu} that can be invoked by pressing @kbd{,} in @code{casual-man-tmenu}. 
 
 Press ‘s’ and configure @code{Man-switches} to have the value ``-a'' to get all manual pages.
 
@@ -3859,9 +3859,9 @@ Press ‘s’ and configure @code{Man-switches} to have the value ``-a'' to get 
 
 
 @subsubheading Man Unicode Symbol Support
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual Man will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Man will use Unicode symbols as appropriate in its menus.
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node Org
 @section Org
@@ -3871,17 +3871,17 @@ For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventio
 
 Casual Org (library: @code{casual-org}) is a keyboard-driven user interface for Org mode (@ref{Top,org#Top,,org,}). It endeavors to provide @emph{context-sensitive} assistance by providing structure-related commands based on where the point (cursor) is in an Org document.
 
-The Casual Org main menu (@code{casual-org-tmenu}) supports basic Emacs-style point navigation (@ref{Moving Point,emacs#Moving Point,,emacs,}) in the buffer while the menu is still raised. As the point is moved@comma{} the menu will adjust to provide structure-related commands.
+The Casual Org main menu (@code{casual-org-tmenu}) supports basic Emacs-style point navigation (@ref{Moving Point,emacs#Moving Point,,emacs,}) in the buffer while the menu is still raised. As the point is moved, the menu will adjust to provide structure-related commands.
 
-For example@comma{} if the point is in an Org headline@comma{} the following menu is shown with headline-related commands at the top of the menu.
+For example, if the point is in an Org headline, the following menu is shown with headline-related commands at the top of the menu.
 
 @image{images/casual-org-headline-screenshot,,,,png}
 
-If the point is moved to a table section@comma{} the upper part of the menu adjusts to provide table-related commands.
+If the point is moved to a table section, the upper part of the menu adjusts to provide table-related commands.
 
 @image{images/casual-org-table-screenshot,,,,png}
 
-Casual Org has no intent to @ref{Motivations, , exhaustively support all Org commands}. Rather@comma{} Casual Org is an opinionated UX design exercise in providing a curated set of context-sensitive commands to a user.
+Casual Org has no intent to @ref{Motivations, , exhaustively support all Org commands}. Rather, Casual Org is an opinionated UX design exercise in providing a curated set of context-sensitive commands to a user.
 
 @menu
 * Org Install::
@@ -3893,7 +3893,7 @@ Casual Org has no intent to @ref{Motivations, , exhaustively support all Org com
 
 @cindex Org Install
 
-In your initialization file@comma{} bind the Transient menus @code{casual-org-tmenu} and @code{casual-org-table-fedit-tmenu} to your key binding of preference.
+In your initialization file, bind the Transient menus @code{casual-org-tmenu} and @code{casual-org-table-fedit-tmenu} to your key binding of preference.
 
 @lisp
 (keymap-set org-mode-map "M-m" #'casual-org-tmenu)
@@ -3908,9 +3908,9 @@ The binding @kbd{M-m} is intended to complement the binding @kbd{C-o} used by @r
 @cindex Org Usage
 @vindex casual-org-tmenu
 
-Usage of Casual Org is primarily done through the Transient menu @code{casual-org-tmenu}. This menu dynamically adjusts with respect to where the point (cursor) is in an Org document's structure (@ref{Document Structure,org#Document Structure,,org,}). For example@comma{} if the point is in a headline the menu displayed will be different from that of a table.
+Usage of Casual Org is primarily done through the Transient menu @code{casual-org-tmenu}. This menu dynamically adjusts with respect to where the point (cursor) is in an Org document's structure (@ref{Document Structure,org#Document Structure,,org,}). For example, if the point is in a headline the menu displayed will be different from that of a table.
 
-Based on where the point is in an Org buffer@comma{} the following variants of @code{casual-org-tmenu} are supported:
+Based on where the point is in an Org buffer, the following variants of @code{casual-org-tmenu} are supported:
 
 @itemize
 @item
@@ -3958,7 +3958,7 @@ Note that not all of these command sections are offered in all menu variants. Th
 
 The menus in the Casual Org package (@code{casual-org}) are designed to allow for navigation of the current Org buffer using key bindings @emph{not} used by the Casual menu. This means that basic Emacs point (cursor) navigation not involving the arrow keys will be available (@ref{Moving Point,emacs#Moving Point,,emacs,}). It is also possible to inadvertently insert text when a Casual Org menu is raised. Accidental changes can be undone using the “@kbd{U} Undo” command.
 
-To use Casual Org effectively@comma{} it is recommended that the user is familiar with Org outline editing (@ref{Structure Editing,org#Structure Editing,,org,}).
+To use Casual Org effectively, it is recommended that the user is familiar with Org outline editing (@ref{Structure Editing,org#Structure Editing,,org,}).
 
 @menu
 * Org Headline::
@@ -4004,7 +4004,7 @@ Miscellaneous commands.
 
 @cindex Org Body
 
-If the point is in a part of an Org document that is not considered structure@comma{} this menu variant of @code{casual-org-tmenu} is displayed.
+If the point is in a part of an Org document that is not considered structure, this menu variant of @code{casual-org-tmenu} is displayed.
 
 @image{images/casual-org-body-screenshot,,,,png}
 
@@ -4014,7 +4014,7 @@ Variant-specific command sections provided are:
 @item To
 Commands to convert the Org element under point to either a heading or a list.
 @item Add
-Commands to add either a block@comma{} drawer@comma{} or keyword.
+Commands to add either a block, drawer, or keyword.
 @end table
 
 @node Org List
@@ -4022,7 +4022,7 @@ Commands to add either a block@comma{} drawer@comma{} or keyword.
 
 @cindex Org List
 
-When the point is in a list item (@ref{Plain Lists,org#Plain Lists,,org,})@comma{} the following list-related commands are displayed in @code{casual-org-tmenu}:
+When the point is in a list item (@ref{Plain Lists,org#Plain Lists,,org,}), the following list-related commands are displayed in @code{casual-org-tmenu}:
 
 @table @asis
 @item @kbd{a} Add
@@ -4035,14 +4035,14 @@ Changes the list style from a cycle of styles.
 Sorts the list given user-specified criteria.
 @end table
 
-If the point is at the very start of the list@comma{} then then certain commands like “@kbd{b} To Checkbox” will affect all items in the list.
+If the point is at the very start of the list, then then certain commands like “@kbd{b} To Checkbox” will affect all items in the list.
 
 @image{images/casual-org-item-screenshot,,,,png}
 
 
 @subsubheading Checkbox
 
-When an item is converted to a checkbox@comma{} the heading of the section changes from ``Item'' to ``Checkbox''. The following two commands are added:
+When an item is converted to a checkbox, the heading of the section changes from ``Item'' to ``Checkbox''. The following two commands are added:
 
 @table @asis
 @item @kbd{C-c} Toggle
@@ -4081,14 +4081,14 @@ Table-specific display commands.
 
 @subsubheading Table Formulas (TBLFM)
 
-If the point is on a @code{TBLFM} keyword (@ref{Field and range formulas,org#Field and range formulas,,org,})@comma{} then the following menu variant of @code{casual-org-tmenu} is shown.
+If the point is on a @code{TBLFM} keyword (@ref{Field and range formulas,org#Field and range formulas,,org,}), then the following menu variant of @code{casual-org-tmenu} is shown.
 
 @image{images/casual-org-tblfm-screenshot,,,,png}
 
 @subsubheading Org Table Layout
 @vindex casual-org-table-structure-tmenu
 
-From the @strong{Table} section in @code{casual-org-tmenu}@comma{} selecting “@kbd{l} Layout” will raise the table layout menu (@code{casual-org-table-structure-tmenu}). Use this menu to make structural edits to the table.
+From the @strong{Table} section in @code{casual-org-tmenu}, selecting “@kbd{l} Layout” will raise the table layout menu (@code{casual-org-table-structure-tmenu}). Use this menu to make structural edits to the table.
 
 
 @image{images/casual-org-table-layout-screenshot,,,,png}
@@ -4097,7 +4097,7 @@ From the @strong{Table} section in @code{casual-org-tmenu}@comma{} selecting “
 @subsubheading Org Table Formula Edit
 @vindex casual-org-table-fedit-tmenu
 
-When editing formulas for a table@comma{} the menu @code{casual-org-table-fedit-tmenu} can be raised to provide assistance with table references.
+When editing formulas for a table, the menu @code{casual-org-table-fedit-tmenu} can be raised to provide assistance with table references.
 
 @image{images/casual-org-table-fedit-screenshot,,,,png}
 
@@ -4129,7 +4129,7 @@ Verse (@code{#+BEGIN_VERSE})
 
 @subsubheading Org In Source Block
 
-If the point is within an Org source block@comma{} then the following menu variant is shown.
+If the point is within an Org source block, then the following menu variant is shown.
 
 
 @image{images/casual-org-in-block-src-screenshot,,,,png}
@@ -4150,7 +4150,7 @@ When the point is in an Org keyword the following variant is displayed in @code{
 
 This menu variant of @code{casual-org-tmenu} is shown when the point is on a property drawer (@ref{Properties and Columns,org#Properties and Columns,,org,}).
 
-With this menu@comma{} one can add a property.
+With this menu, one can add a property.
 
 @image{images/casual-org-property-drawer-screenshot,,,,png}
 
@@ -4161,7 +4161,7 @@ With this menu@comma{} one can add a property.
 
 This menu variant of @code{casual-org-tmenu} is shown when the point is on a property (@ref{Property Syntax,org#Property Syntax,,org,}).
 
-With this menu@comma{} one can either add another property or perform an action on the current property.
+With this menu, one can either add another property or perform an action on the current property.
 
 @image{images/casual-org-property-screenshot,,,,png}
 
@@ -4188,7 +4188,7 @@ Two command sections are provided:
 @item Clock
 Clock in or out of the current item.
 @item Timestamp
-If the point is on an Org timestamp@comma{} commands to adjust up or down a timestamp component (e.g. year@comma{} month@comma{} day) is provided.
+If the point is on an Org timestamp, commands to adjust up or down a timestamp component (e.g. year, month, day) is provided.
 @end table
 
 @node Org Settings
@@ -4203,7 +4203,7 @@ Use the Casual Org Settings menu to gain access to commonly customized Org setti
 
 @subsubheading Org Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual Org will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Org will use Unicode symbols as appropriate in its menus.
 
 @node RE-Builder
 @section RE-Builder
@@ -4240,18 +4240,18 @@ The main menu for Casual RE-Builder is @code{casual-re-builder-tmenu}. Bind this
 
 @image{images/casual-re-builder-screenshot,,,,png}
 
-When the command @code{re-builder} is invoked@comma{} a buffer named ``✳︎RE-Builder✳︎'' is created. Activate Casual RE-Builder with the binding @{@{@{kbd(C-o@}@}@} (or one of your preference). 
+When the command @code{re-builder} is invoked, a buffer named ``✳︎RE-Builder✳︎'' is created. Activate Casual RE-Builder with the binding @{@{@{kbd(C-o@}@}@} (or one of your preference). 
 
 At the top of the menu shows the title ``RE-Builder'' with the target buffer enclosed in parenthesis. The regexp pattern will be applied to the target buffer. The target buffer can be changed with the “@kbd{b} Target buffer” menu item.
 
-Emacs supports three different regexp syntax: 1) read@comma{} 2) string@comma{} 3) Rx.  Use the “@kbd{x} Syntax” menu item to alter it. The current syntax is shown in parenthesis.
+Emacs supports three different regexp syntax: 1) read, 2) string, 3) Rx.  Use the “@kbd{x} Syntax” menu item to alter it. The current syntax is shown in parenthesis.
 
-If multiple sub-expressions are in the regexp pattern@comma{} then they can be observed via the “@kbd{s} Subexp mode” menu item.
+If multiple sub-expressions are in the regexp pattern, then they can be observed via the “@kbd{s} Subexp mode” menu item.
 
-If the regexp pattern entered in ``✳︎RE-Builder✳︎'' finds multiple matches@comma{} a match can be navigated to via the  “@kbd{p} Previous” and “@kbd{n} Next” menu items.
+If the regexp pattern entered in ``✳︎RE-Builder✳︎'' finds multiple matches, a match can be navigated to via the  “@kbd{p} Previous” and “@kbd{n} Next” menu items.
 
 @subsubheading Exporting the Regexp Pattern
-Once a desired regexp pattern is defined@comma{} there are two menu items that can be used to export (copy) it to the kill-ring for further use.
+Once a desired regexp pattern is defined, there are two menu items that can be used to export (copy) it to the kill-ring for further use.
 
 @itemize
 @item
@@ -4260,7 +4260,7 @@ Once a desired regexp pattern is defined@comma{} there are two menu items that c
 @item
 This can only be used when the regexp syntax is set to @code{string}.
 @item
-❗️When yanking (typically @kbd{C-y}) a regexp into an interactive prompt@comma{} you @emph{must} have the point/focus in the minibuffer prompt (typically via mouse). Otherwise the desired content can be altered with extra escaping.
+❗️When yanking (typically @kbd{C-y}) a regexp into an interactive prompt, you @emph{must} have the point/focus in the minibuffer prompt (typically via mouse). Otherwise the desired content can be altered with extra escaping.
 @end itemize
 @item
 “@kbd{c} Code” will copy the regexp to the kill-ring so that it can be yanked into a Elisp code that requires a regexp argument.
@@ -4290,9 +4290,9 @@ Select “@kbd{q} Quit” to exit the RE-Builder tool.
 The menu @code{casual-re-builder-settings-tmenu} provides access to different RE-Builder settings.
 
 @subsubheading RE-Builder Unicode Symbol Support
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual RE-Builder will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual RE-Builder will use Unicode symbols as appropriate in its menus.
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node Timezone
 @section Timezone
@@ -4300,7 +4300,7 @@ For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventio
 @cindex Timezone
 @vindex casual-timezone-tmenu
 
-Casual Timezone is a library of commands to work with different time zones. Answer the questions ``what time is it over there?'' or conversely ``what is the time over there@comma{} here?'' with ease using this. Its top level library is @code{casual-timezone}. Commands from Casual Timezone are found in the menu @code{casual-timezone-tmenu}@comma{} which itself is integrated into the menu @code{casual-editkit-tools-tmenu}.
+Casual Timezone is a library of commands to work with different time zones. Answer the questions ``what time is it over there?'' or conversely ``what is the time over there, here?'' with ease using this. Its top level library is @code{casual-timezone}. Commands from Casual Timezone are found in the menu @code{casual-timezone-tmenu}, which itself is integrated into the menu @code{casual-editkit-tools-tmenu}.
 
 Casual Timezone only supports systems that have a @uref{https://en.wikipedia.org/wiki/Tz_database, tz database}.
 
@@ -4318,7 +4318,7 @@ Casual Timezone supports viewing multiple time zones in a tabular view with the 
 
 @cindex Timezone Install
 
-Casual Timezone is configured as part of Casual EditKit in the Tools menu (@code{casual-editkit-tools-tmenu}). Refer to the @ref{EditKit Install, , EditKit Install} section for instructions on how to install it.
+Casual Timezone is configured as part of Casual EditKit in the Tools menu (@code{casual-editkit-tools-tmenu}). Refer to the @ref{EditKit Install} section for instructions on how to install it.
 
 The main menu for Casual Timezone can be invoked directly using @code{M-x} @code{casual-timezone-tmenu}.
 
@@ -4350,7 +4350,7 @@ The main menu for Casual Timezone (@code{casual-timezone-tmenu}) offers the foll
 
 The command @code{casual-timezone-planner} will prompt the user for one or more time zones and a date to compare in tabular form the local time with the zones selected. Multiple time zones are comma-separated.
 
-In this table@comma{} the point can be navigated using the @kbd{p}@comma{} @kbd{n}@comma{} @kbd{@key{TAB}}@comma{} and @kbd{S-@key{TAB}} bindings.
+In this table, the point can be navigated using the @kbd{p}, @kbd{n}, @kbd{@key{TAB}}, and @kbd{S-@key{TAB}} bindings.
 
 Use the @kbd{T} binding to copy the timestamp under the current point to the @code{kill-ring}. The @kbd{t} binding will copy all timestamps on the current line to the @code{kill-ring}.
 
@@ -4405,7 +4405,7 @@ The following variables can control how working hours are displayed in the timez
 
 @itemize
 @item
-@code{casual-timezone-working-hours-range}  will set the range (start@comma{} stop) of working hours. The values are integers that map to 24-hour time (0..23).
+@code{casual-timezone-working-hours-range}  will set the range (start, stop) of working hours. The values are integers that map to 24-hour time (0..23).
 @item
 @code{casual-timezone-working-hour-glyph} will set the glyph used to denote a working hour (default is ☼).
 @item
@@ -4431,9 +4431,9 @@ The menu @code{casual-timezone-settings-tmenu} provides access to different Casu
 @node Timezone Unicode Symbol Support
 @subsubsection Timezone Unicode Symbol Support
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Casual Timezone will use Unicode symbols as appropriate in its menus.
+By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Timezone will use Unicode symbols as appropriate in its menus.
 
-For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+For more info on using Unicode symbols, please refer to @ref{UX Conventions}.
 
 @node Customization
 @chapter Customization
@@ -4454,14 +4454,14 @@ Users who wish to extend or alter existing Casual menus can do so via the mechan
 Please report any feedback about Casual to the @uref{https://github.com/kickingvegas/casual/issues, issue tracker on GitHub}.
 
 @cindex Discussion
-To participate in general discussion about using Casual@comma{} please join the @uref{https://github.com/kickingvegas/casual/discussions, discussion group}.
+To participate in general discussion about using Casual, please join the @uref{https://github.com/kickingvegas/casual/discussions, discussion group}.
 
 @node Sponsorship
 @chapter Sponsorship
 
 @cindex Sponsorship
 
-It costs money to make@comma{} enhance@comma{} and maintain Casual as ideologically free software. If you enjoy using Casual@comma{} please buy me a coffee to help support its development and maintenance.
+It costs money to make, enhance, and maintain Casual as ideologically free software. If you enjoy using Casual, please buy me a coffee to help support its development and maintenance.
 
 @image{images/default-yellow,,,,png}
 
@@ -4472,7 +4472,7 @@ It costs money to make@comma{} enhance@comma{} and maintain Casual as ideologica
 
 @cindex About Casual
 
-@uref{https://github.com/kickingvegas/casual, Casual} was conceived and crafted by Charles Choi in San Francisco@comma{} California.
+@uref{https://github.com/kickingvegas/casual, Casual} was conceived and crafted by Charles Choi in San Francisco, California.
 
 Thank you for using Casual.
 
@@ -4483,7 +4483,7 @@ Always choose love.
 
 @cindex Acknowledgments
 
-A heartfelt thanks to all the contributors to @uref{https://github.com/magit/transient, Transient}@comma{} @uref{https://magit.vc, Magit}@comma{} @uref{https://orgmode.org, Org Mode}@comma{} and @uref{https://www.gnu.org/software/emacs/, Emacs}.
+A heartfelt thanks to all the contributors to @uref{https://github.com/magit/transient, Transient}, @uref{https://magit.vc, Magit}, @uref{https://orgmode.org, Org Mode}, and @uref{https://www.gnu.org/software/emacs/, Emacs}.
 
 This package would not be possible without your efforts.
 
@@ -4497,7 +4497,7 @@ Index for this user guide.
 @node Variable Index
 @chapter Variable Index
 
-Variables@comma{} functions@comma{} commands@comma{} and menus referenced by this user guide.
+Variables, functions, commands, and menus referenced by this user guide.
 
 @printindex vr
 
