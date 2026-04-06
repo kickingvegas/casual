@@ -37,6 +37,7 @@ html-tests					\
 ibuffer-tests					\
 info-tests					\
 isearch-tests					\
+ispell-tests					\
 make-mode-tests					\
 man-tests					\
 org-tests					\
@@ -65,6 +66,7 @@ html-tests					\
 ibuffer-tests					\
 info-tests					\
 isearch-tests					\
+ispell-tests					\
 make-mode-tests					\
 man-tests					\
 org-tests					\
@@ -129,6 +131,9 @@ info-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 isearch-tests:
+	$(MAKE) -C $(SRC_DIR) $@
+
+ispell-tests:
 	$(MAKE) -C $(SRC_DIR) $@
 
 make-mode-tests:

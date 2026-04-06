@@ -92,7 +92,7 @@ The following table shows the bindings for BibTeX navigation.
 | {{{kbd(<)}}}   | bibtex-beginning-of-entry                         |
 | {{{kbd(>)}}}   | bibtex-end-of-entry                               |
 
-*** Creating, Updating, and Deleting BibTeX Structures
+*** BibTeX CRUD
 #+CINDEX: BibTeX CRUD
 
 [[file:images/casual-bibtex-screenshot.png]]

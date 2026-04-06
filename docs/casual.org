@@ -169,6 +169,7 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[#image-install][Image]]
 - [[#info-install][Info]]
 - [[#i-search-install][I-Search]]
+- [[#ispell-install][Ispell]]
 - [[#make-mode-install][Make]]
 - [[#man-install][Man]]
 - [[#org-install][Org]]
@@ -297,6 +298,7 @@ The following modes are supported by Casual:
 #+INCLUDE: "./image.org" :minlevel 2
 #+INCLUDE: "./info.org" :minlevel 2
 #+INCLUDE: "./isearch.org" :minlevel 2
+#+INCLUDE: "./ispell.org" :minlevel 2
 #+INCLUDE: "./make-mode.org" :minlevel 2
 #+INCLUDE: "./man.org" :minlevel 2
 #+INCLUDE: "./org.org" :minlevel 2

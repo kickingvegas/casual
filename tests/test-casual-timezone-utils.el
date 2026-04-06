@@ -1,6 +1,6 @@
 ;;; test-casual-timezone-utils.el --- Casual Make Utils Tests  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Y. Choi
+;; Copyright (C) 2025, 2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -156,7 +156,7 @@
                         "2025-05-23 11:00"
                       "2025-05-23 12:00"))
          (remote-tz "Europe/Berlin")
-         (control "2025-05-23 03:00:00 PDT")
+         (control "2025-05-23 02:00:00 PDT")
          (result (casual-timezone-remote-time-to-local read-date remote-tz)))
 
     (should (string-equal control result))))

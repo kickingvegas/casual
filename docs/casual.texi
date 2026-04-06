@@ -121,6 +121,7 @@ Casual Modes
 * Image::
 * Info::
 * I-Search::
+* Ispell::
 * Make::
 * Man::
 * Org::
@@ -140,7 +141,7 @@ Bib@TeX{}
 Bib@TeX{} Usage
 
 * Bib@TeX{} Navigation::
-* Creating@comma{} Updating@comma{} and Deleting Bib@TeX{} Structures::
+* Bib@TeX{} CRUD::
 * Bib@TeX{} Settings::
 * Bib@TeX{} Mode Unicode Symbol Support::
 
@@ -225,6 +226,7 @@ EditKit Usage
 * Edit commands::
 * Window management::
 * Search & Replace commands::
+* Spell Commands::
 * Open commands::
 * Project commands::
 * Bookmark commands::
@@ -292,6 +294,11 @@ I-Search
 
 * I-Search Install::
 * I-Search Usage::
+
+Ispell
+
+* Ispell Install::
+* Ispell Usage::
 
 Make
 
@@ -532,6 +539,8 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 @item
 @ref{I-Search Install, , I-Search}
 @item
+@ref{Ispell Install, , Ispell}
+@item
 @ref{Make Install, , Make}
 @item
 @ref{Man Install, , Man}
@@ -698,6 +707,7 @@ The following modes are supported by Casual:
 * Image::
 * Info::
 * I-Search::
+* Ispell::
 * Make::
 * Man::
 * Org::
@@ -884,7 +894,7 @@ Miscellaneous Bib@TeX{} commands.
 
 @menu
 * Bib@TeX{} Navigation::
-* Creating@comma{} Updating@comma{} and Deleting Bib@TeX{} Structures::
+* Bib@TeX{} CRUD::
 * Bib@TeX{} Settings::
 * Bib@TeX{} Mode Unicode Symbol Support::
 @end menu
@@ -921,8 +931,8 @@ The following table shows the bindings for Bib@TeX{} navigation.
 @tab bibtex-end-of-entry
 @end multitable
 
-@node Creating@comma{} Updating@comma{} and Deleting Bib@TeX{} Structures
-@subsubsection Creating@comma{} Updating@comma{} and Deleting Bib@TeX{} Structures
+@node Bib@TeX{} CRUD
+@subsubsection Bib@TeX{} CRUD
 
 @cindex BibTeX CRUD
 
@@ -2179,6 +2189,7 @@ Casual EditKit has numerous menus to cover a variety of edit related commands.
 * Edit commands::
 * Window management::
 * Search & Replace commands::
+* Spell Commands::
 * Open commands::
 * Project commands::
 * Bookmark commands::
@@ -2337,6 +2348,18 @@ For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventio
 Operations related to search and replace are captured by the menu @code{casual-editkit-search-tmenu}. Note that this menu uses Transient prefix arguments (@code{--backward} and @code{--regexp}). This is because some commands have variants involving direction and whether to search using a regexp. Commands that support direction will by default operate forward of the current point if @code{--backward} is not enabled.
 
 @image{images/casual-editkit-search-screenshot,,,,png}
+
+@node Spell Commands
+@subsubsection Spell Commands
+
+@cindex Spell commands
+@vindex casual-ispell-tmenu
+
+The menu item “@kbd{M-s} Spell›” will invoke the Transient menu @code{casual-ispell-tmenu}.
+
+@image{images/casual-ispell-screenshot,,,,png}
+
+More detail on this menu can be found in @ref{Ispell, , Casual Ispell}.
 
 @node Open commands
 @subsubsection Open commands
@@ -3560,6 +3583,70 @@ By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Cas
 @image{images/casual-isearch-unicode,,,,png}
 
 For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+
+@node Ispell
+@section Ispell
+
+@cindex Ispell
+
+Casual Ispell is a user interface for the Emacs spell checker Ispell (@ref{Spelling,emacs#Spelling,,emacs,}).
+
+@image{images/casual-ispell-screenshot,,,,png}
+
+@menu
+* Ispell Install::
+* Ispell Usage::
+@end menu
+
+@node Ispell Install
+@subsection Ispell Install
+
+@cindex Ispell Install
+
+If you have @ref{EditKit Install, , Casual EditKit installed} then access to the Transient @code{casual-ispell-tmenu} is available from @code{casual-editkit-main-tmenu}.
+
+@code{casual-ispell-tmenu} can also be bound to a mode of preference. Shown below is a recommended configuration to use in an initialization file.
+
+@lisp
+(keymap-set prog-mode-map "C-c s" #'casual-ispell-tmenu)
+(keymap-set text-mode-map "C-c s" #'casual-ispell-tmenu)
+(keymap-set bibtex-mode-map "C-c s" #'casual-ispell-tmenu)
+(keymap-set conf-mode-map "C-c s" #'casual-ispell-tmenu)
+@end lisp
+
+@node Ispell Usage
+@subsection Ispell Usage
+
+@cindex Ispell Usage
+@vindex casual-ispell-tmenu
+
+From either the Transient @code{casual-editkit-main-tmenu} or via key binding @kbd{C-c s}@comma{} invoke the menu @code{casual-ispell-tmenu} to get menu of commands shown below:
+
+@image{images/casual-ispell-screenshot,,,,png}
+
+If no text (region) is selected@comma{} then Ispell will behave with respect to the cursor (point) position.
+
+For certain modes@comma{} @code{casual-ispell-tmenu} will add the following two menu items:
+
+@itemize
+@item
+@kbd{s} String/Comment
+@item
+@kbd{c} Comments & Strings
+@end itemize
+
+The modes are determined by the customizable variable @code{casual-ispell-comment-or-string-predicate} which references a predicate function. By default this function is @code{casual-ispell-comment-or-string-p} which tests the major mode to be one of the following:
+
+@itemize
+@item
+@code{prog-mode}
+@item
+@code{bibtex-mode}
+@item
+@code{conf-mode}
+@end itemize
+
+@image{images/casual-ispell-prog-screenshot,,,,png}
 
 @node Make
 @section Make

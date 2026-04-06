@@ -37,6 +37,7 @@
 
 ;;; Code:
 (require 'casual-editkit-utils)
+(require 'casual-ispell)
 
 ;;;###autoload (autoload 'casual-editkit-main-tmenu "casual-editkit" nil t)
 (transient-define-prefix casual-editkit-main-tmenu ()
@@ -76,6 +77,7 @@ user-customized menu."
      :if-not casual-editkit-buffer-read-only-p)
     ("N" "Narrow›" casual-editkit-narrow-tmenu :if-not buffer-narrowed-p)
     ("W" "Widen" widen :if buffer-narrowed-p)
+    ("M-s" "Spell›" casual-ispell-tmenu)
     ("E" "Emoji & Symbols›" casual-editkit-emoji-symbols-tmenu
      :if-not casual-editkit-buffer-read-only-p)]
 
