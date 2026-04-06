@@ -1,6 +1,6 @@
 ;;; test-casual-ibuffer.el --- Casual IBuffer Tests -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -29,56 +29,105 @@
 (require 'casual-lib-test-utils)
 (require 'casual-ibuffer)
 
-(ert-deftest test-casual-ibuffer-tmenu-bindings ()
-  (casualt-ibuffer-setup)
-  (let ((test-vectors (list)))
-    (push (casualt-suffix-test-vector "o" #'ibuffer-visit-buffer-other-window) test-vectors)
-    (push (casualt-suffix-test-vector "S" #'ibuffer-do-save) test-vectors)
-    (push (casualt-suffix-test-vector "D" #'ibuffer-do-delete) test-vectors)
-    (push (casualt-suffix-test-vector "=" #'ibuffer-diff-with-file) test-vectors)
-    (push (casualt-suffix-test-vector "w" #'ibuffer-copy-filename-as-kill) test-vectors)
-    (push (casualt-suffix-test-vector "M" #'casual-ibuffer-operations-tmenu) test-vectors)
+(ert-deftest test-casual-ibuffer-palette-tmenu ()
+  (let ((tmpfile "casual-ibuffer-palette-tmenu.txt"))
+    (casualt-ibuffer-setup)
+    (cl-letf ((casualt-mock #'ibuffer-visit-buffer-other-window)
+              (casualt-mock #'ibuffer-do-delete)
+              (casualt-mock #'ibuffer-do-save)
+              (casualt-mock #'ibuffer-diff-with-file)
+              (casualt-mock #'ibuffer-copy-filename-as-kill)
+              (casualt-mock #'casual-ibuffer-operations-tmenu)
+              (casualt-mock #'ibuffer-mark-forward)
+              (casualt-mock #'casual-ibuffer-mark-tmenu)
+              (casualt-mock #'casual-ibuffer-mark-regexp-tmenu)
+              (casualt-mock #'ibuffer-unmark-forward)
+              (casualt-mock #'ibuffer-mark-for-delete)
+              (casualt-mock #'ibuffer-do-kill-on-deletion-marks)
+              (casualt-mock #'ibuffer-unmark-all-marks)
 
-    (push (casualt-suffix-test-vector "m" #'ibuffer-mark-forward) test-vectors)
-    (push (casualt-suffix-test-vector "t" #'casual-ibuffer-mark-tmenu) test-vectors)
-    (push (casualt-suffix-test-vector "r" #'casual-ibuffer-mark-regexp-tmenu) test-vectors)
-    (push (casualt-suffix-test-vector "u" #'ibuffer-unmark-forward) test-vectors)
-    (push (casualt-suffix-test-vector "d" #'ibuffer-mark-for-delete) test-vectors)
-    (push (casualt-suffix-test-vector "x" #'ibuffer-do-kill-on-deletion-marks) test-vectors)
-    (push (casualt-suffix-test-vector "U" #'ibuffer-unmark-all-marks) test-vectors)
+              (casualt-mock #'casual-ibuffer-sortby-tmenu)
+              (casualt-mock #'ibuffer-switch-format)
+              (casualt-mock #'ibuffer-bury-buffer)
+              (casualt-mock #'ibuffer-update)
+              (casualt-mock #'ibuffer-toggle-filter-group)
 
-    (push (casualt-suffix-test-vector "s" #'casual-ibuffer-sortby-tmenu) test-vectors)
-    (push (casualt-suffix-test-vector "`" #'ibuffer-switch-format) test-vectors)
-    (push (casualt-suffix-test-vector "b" #'ibuffer-bury-buffer) test-vectors)
-    (push (casualt-suffix-test-vector "g" #'ibuffer-update) test-vectors)
-    ;; (push (casualt-suffix-test-vector "$" #'ibuffer-toggle-filter-group) test-vectors)
+              (casualt-mock #'ibuffer-backward-line)
+              (casualt-mock #'ibuffer-forward-line)
+              (casualt-mock #'ibuffer-backwards-next-marked)
+              (casualt-mock #'ibuffer-forward-next-marked)
+              (casualt-mock #'ibuffer-backward-filter-group)
+              (casualt-mock #'ibuffer-forward-filter-group)
+              (casualt-mock #'ibuffer-jump-to-buffer)
+              (casualt-mock #'ibuffer-jump-to-filter-group)
 
-    (push (casualt-suffix-test-vector "p" #'ibuffer-backward-line) test-vectors)
-    (push (casualt-suffix-test-vector "n" #'ibuffer-forward-line) test-vectors)
-    (push (casualt-suffix-test-vector "{" #'ibuffer-backwards-next-marked) test-vectors)
-    (push (casualt-suffix-test-vector "}" #'ibuffer-forward-next-marked) test-vectors)
-    (push (casualt-suffix-test-vector "[" #'ibuffer-backward-filter-group) test-vectors)
-    (push (casualt-suffix-test-vector "]" #'ibuffer-forward-filter-group) test-vectors)
-    (push (casualt-suffix-test-vector "j" #'ibuffer-jump-to-buffer) test-vectors)
-    ;; (push (casualt-suffix-test-vector "ê" #'ibuffer-jump-to-filter-group) test-vectors)
+              (casualt-mock #'ibuffer-filter-chosen-by-completion)
+              (casualt-mock #'ibuffer-filter-disable)
+              (casualt-mock #'casual-ibuffer-filter-tmenu)
 
-    (push (casualt-suffix-test-vector " " #'ibuffer-filter-chosen-by-completion) test-vectors)
-    (push (casualt-suffix-test-vector "/" #'ibuffer-filter-disable) test-vectors)
-    (push (casualt-suffix-test-vector "F" #'casual-ibuffer-filter-tmenu) test-vectors)
-    (push (casualt-suffix-test-vector "O" #'ibuffer-do-occur) test-vectors)
-    (push (casualt-suffix-test-vector "ò" #'ibuffer-do-query-replace) test-vectors)
-    (push (casualt-suffix-test-vector "" #'ibuffer-do-query-replace-regexp) test-vectors)
+              (casualt-mock #'ibuffer-do-isearch)
+              (casualt-mock #'ibuffer-do-isearch-regexp)
+              (casualt-mock #'ibuffer-do-occur)
+              (casualt-mock #'ibuffer-do-query-replace)
+              (casualt-mock #'ibuffer-do-query-replace-regexp)
 
-    (push (casualt-suffix-test-vector "J" #'bookmark-jump) test-vectors)
+              (casualt-mock #'casual-ibuffer-return-dwim)
+              (casualt-mock #'casual-ibuffer-settings-tmenu)
+              (casualt-mock #'bookmark-jump)
+              (casualt-mock #'quit-window))
 
-    (push (casualt-suffix-test-vector "" #'casual-ibuffer-return-dwim) test-vectors)
-    (push (casualt-suffix-test-vector "," #'casual-ibuffer-settings-tmenu) test-vectors)
-    (push (casualt-suffix-test-vector "q" #'quit-window) test-vectors)
+      (let ((test-vectors
+             '((:binding "o" :command ibuffer-visit-buffer-other-window)
+               (:binding "S" :command ibuffer-do-save)
+               (:binding "D" :command ibuffer-do-delete)
+               (:binding "=" :command ibuffer-diff-with-file)
+               (:binding "w" :command ibuffer-copy-filename-as-kill)
+               (:binding "M" :command casual-ibuffer-operations-tmenu)
 
-    (casualt-suffix-testbench-runner test-vectors
-                                     #'casual-ibuffer-tmenu
-                                     '(lambda () (random 5000))))
-  (casualt-ibuffer-breakdown t))
+               (:binding "m" :command ibuffer-mark-forward)
+               (:binding "t" :command casual-ibuffer-mark-tmenu)
+               (:binding "r" :command casual-ibuffer-mark-regexp-tmenu)
+               (:binding "u" :command ibuffer-unmark-forward)
+               (:binding "d" :command ibuffer-mark-for-delete)
+               (:binding "x" :command ibuffer-do-kill-on-deletion-marks)
+               (:binding "U" :command ibuffer-unmark-all-marks)
+
+               (:binding "s" :command casual-ibuffer-sortby-tmenu)
+               (:binding "`" :command ibuffer-switch-format)
+               (:binding "b" :command ibuffer-bury-buffer)
+               (:binding "g" :command ibuffer-update)
+               ;;(:binding "$" :command ibuffer-toggle-filter-group)
+
+               (:binding "p" :command ibuffer-backward-line)
+               (:binding "n" :command ibuffer-forward-line)
+               (:binding "{" :command ibuffer-backwards-next-marked)
+               (:binding "}" :command ibuffer-forward-next-marked)
+               (:binding "[" :command ibuffer-backward-filter-group)
+               (:binding "]" :command ibuffer-forward-filter-group)
+               (:binding "j" :command ibuffer-jump-to-buffer)
+               ;; (:binding "M-j" :command ibuffer-jump-to-filter-group)
+
+
+               (:binding "SPC" :command ibuffer-filter-chosen-by-completion)
+               (:binding "/" :command ibuffer-filter-disable)
+               (:binding "F" :command casual-ibuffer-filter-tmenu)
+
+               (:binding "C-s" :command ibuffer-do-isearch)
+               (:binding "C-M-s" :command ibuffer-do-isearch-regexp)
+               (:binding "O" :command ibuffer-do-occur)
+               (:binding "M-r" :command ibuffer-do-query-replace)
+               (:binding "C-M-r" :command ibuffer-do-query-replace-regexp)
+
+               (:binding "RET" :command casual-ibuffer-return-dwim)
+               (:binding "," :command casual-ibuffer-settings-tmenu)
+               (:binding "J" :command bookmark-jump)
+               (:binding "q" :command quit-window)
+               (:binding "^g" :command transient-quit-one))))
+
+        (casualt-suffix-testcase-runner test-vectors
+                                        #'casual-ibuffer-tmenu
+                                        '(lambda () (random 5000)))))
+    (casualt-ibuffer-breakdown)))
 
 (ert-deftest test-casual-ibuffer-operations-tmenu ()
   (casualt-ibuffer-setup)

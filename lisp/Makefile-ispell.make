@@ -1,5 +1,5 @@
 ##
-# Copyright (C) 2024-2026 Charles Y. Choi
+# Copyright (C) 2026 Charles Y. Choi
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,11 +16,11 @@
 
 include Makefile--defines.make
 
-PACKAGE_NAME=casual-isearch
-ELISP_INCLUDES=casual-isearch-utils.el		\
-casual-isearch-settings.el
+PACKAGE_NAME=casual-ispell
+ELISP_INCLUDES=casual-ispell-utils.el	\
+casual-ispell-settings.el
 ELISP_PACKAGES=
-ELISP_TEST_INCLUDES=casual-isearch-test-utils.el
+ELISP_TEST_INCLUDES=casual-ispell-test-utils.el
 PACKAGE_PATHS=					\
 -L $(EMACS_ELPA_DIR)/compat-current		\
 -L $(EMACS_ELPA_DIR)/seq-current		\

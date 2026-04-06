@@ -1,5 +1,5 @@
 ##
-# Copyright 2024-2025 Charles Y. Choi
+# Copyright 2024-2026 Charles Y. Choi
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -59,7 +59,7 @@ run: $(PKG_NAME).info
 
 .PHONY: clean
 clean: clean-html
-	- rm $(PKG_NAME).texi $(PKG_NAME).info
+	- rm $(PKG_NAME).info
 
 ${PKG_NAME}.texi: $(ORG_FILES)
 	$(EXEC_NAME) -Q --batch -l casualdocs.el ${PKG_NAME}.org \

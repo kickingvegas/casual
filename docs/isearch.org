@@ -1,4 +1,7 @@
 * I-Search
+:PROPERTIES:
+:CUSTOM_ID: isearch
+:END:
 #+CINDEX: isearch
 #+CINDEX: I-Search
 #+VINDEX: casual-isearch

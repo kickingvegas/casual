@@ -199,6 +199,16 @@ Operations related to search and replace are captured by the menu ~casual-editki
 
 [[file:images/casual-editkit-search-screenshot.png]]
 
+*** Spell Commands
+#+CINDEX: Spell commands
+#+VINDEX: casual-ispell-tmenu
+
+The menu item “{{{kbd(M-s)}}} Spell›” will invoke the Transient menu ~casual-ispell-tmenu~.
+
+[[file:images/casual-ispell-screenshot.png]]
+
+More detail on this menu can be found in [[#ispell][Casual Ispell]].
+
 *** Open commands
 #+CINDEX: Open commands
 #+VINDEX: casual-editkit-open-tmenu

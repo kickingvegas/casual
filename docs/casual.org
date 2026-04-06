@@ -5,7 +5,7 @@
 #+EMAIL: kickingvegas@gmail.com
 #+OPTIONS: ':t toc:t author:t email:t H:4 f:t
 #+LANGUAGE: en
-#+MACRO: version 2.14.4
+#+MACRO: version 2.14.5-rc.1
 #+MACRO: kbd (eval (org-texinfo-kbd-macro $1))
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_CLASS: casual
@@ -132,7 +132,7 @@ For Transient menus that offer setting different values, the following bindings 
 * Requirements
 #+CINDEX: Requirements
 
-Casual requires Emacs 29.1+, Transient 0.9.0+, csv-mode 1.27+.
+Casual requires Emacs 30.1+, Transient 0.9.0+, csv-mode 1.27+.
 
 Certain menus require more installed software:
 
@@ -142,7 +142,10 @@ Certain menus require more installed software:
 * Install
 #+CINDEX: Install
 
-Standard installation of the ~casual~ package is via [[https://melpa.org/#/casual][MELPA distribution]]. 
+Standard installation of the ~casual~ package can be done from the following distribution sites:
+
+- [[https://melpa.org/#/casual][MELPA]] / [[https://stable.melpa.org/#/casual][MELPA Stable]]
+- [[https://elpa.nongnu.org/nongnu/casual.html][NonGNU ELPA]]
 
 Configuration of a particular Casual user interface is performed per mode. Go to the *Install* section for a mode of interest below for guidance on its configuration.
 
@@ -166,6 +169,7 @@ Configuration of a particular Casual user interface is performed per mode. Go to
 - [[#image-install][Image]]
 - [[#info-install][Info]]
 - [[#i-search-install][I-Search]]
+- [[#ispell-install][Ispell]]
 - [[#make-mode-install][Make]]
 - [[#man-install][Man]]
 - [[#org-install][Org]]
@@ -294,6 +298,7 @@ The following modes are supported by Casual:
 #+INCLUDE: "./image.org" :minlevel 2
 #+INCLUDE: "./info.org" :minlevel 2
 #+INCLUDE: "./isearch.org" :minlevel 2
+#+INCLUDE: "./ispell.org" :minlevel 2
 #+INCLUDE: "./make-mode.org" :minlevel 2
 #+INCLUDE: "./man.org" :minlevel 2
 #+INCLUDE: "./org.org" :minlevel 2

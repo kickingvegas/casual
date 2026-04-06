@@ -16,7 +16,7 @@ IBuffer is a powerful tool for managing Emacs workflows. As Emacs is often compa
 
 #+CINDEX: IBuffer Install
 
-In your initialization file, bind the Transinent ~casual-ibuffer-tmenu~ to your key binding of preference. 
+In your initialization file, bind the Transinent ~casual-ibuffer-tmenu~ to your key binding of preference.
 
 #+begin_src elisp :lexical no
   (keymap-set ibuffer-mode-map "C-o" #'casual-ibuffer-tmenu)
@@ -36,10 +36,10 @@ Use these keybindings to configure IBuffer to be consistent with keybindings use
   (keymap-set ibuffer-mode-map "}" #'ibuffer-forward-next-marked)
   (keymap-set ibuffer-mode-map "[" #'ibuffer-backward-filter-group)
   (keymap-set ibuffer-mode-map "]" #'ibuffer-forward-filter-group)
-  (keymap-set ibuffer-mode-map "$" #'ibuffer-toggle-filter-group)  
+  (keymap-set ibuffer-mode-map "$" #'ibuffer-toggle-filter-group)
 #+end_src
 
-While not necessary for Casual IBuffer, enabling ~hl-line-mode~ and binding mouse clicks in IBuffer adds to a more comfortable IBuffer experience. Also, adding ~ibuffer-auto-mode~ to ~ibuffer-mode-hook~ will enable auto-updating. 
+While not necessary for Casual IBuffer, enabling ~hl-line-mode~ and binding mouse clicks in IBuffer adds to a more comfortable IBuffer experience. Also, adding ~ibuffer-auto-mode~ to ~ibuffer-mode-hook~ will enable auto-updating.
 
 #+begin_src elisp :lexical no
   (require 'hl-line)
@@ -69,23 +69,46 @@ The main menu of Casual IBuffer (~casual-ibuffer-tmenu~) is organized into the f
 
 - Filter :: Commands related to filtering/organizing buffers. Support for defining /Filter Groups/ is provided here.
 
-- Find/Replace in Marked :: Commands to search & replace text in marked buffers are provided here. Note that commands in this section that modify buffers do /not/ save said buffers.
+- I-Search/Occur Marked :: I-Search and Occur commands for marked buffers are here. Note that while you are in an I-Search session, the [[#isearch][Transient menu for I-Search]] is available to you.
 
-- Quick :: Command to jump to a bookmark.
+- Query Replace Marked :: Commands to search & replace text in marked buffers are provided here. Note that commands in this section that modify buffers do /not/ save said buffers.
 
-
-*** IBuffer Marking and Operating
-[[file:images/casual-ibuffer-main-screenshot.png]]
-
-Buffers can be marked using different criteria. Marked buffers can be operated on. Common operations include saving and deleting buffers. Note that deleting a buffer populated with a visited file is /not the same/ as deleting the visited file.
-
-From the main menu shown above, control of the display and find/replace operations are offered.
-
-Note that the menu item “{{{kbd(RET)}}} Visit/Toggle” has "do what I mean"  (DWIM) behavior. If the point is currently on a filter group (described below) then pressing the {{{kbd(RET)}}} key will toggle the visibility of items matching that filter group. Otherwise, it will visit (open) the buffer.
+Note that the menu item “{{{kbd(RET)}}}” has "do what I mean"  (DWIM) behavior. If the point is currently on a filter group (described below) then pressing the {{{kbd(RET)}}} key will toggle the visibility of items matching that filter group. Otherwise, it will visit (open) the buffer.
 
 As with other Casual user interfaces, the ability to jump to a bookmark is available.
 
-# TODO: Need to add operations, mark, mark-regexp tmenus
+The sections below detail further the features of IBuffer.
+
+*** IBuffer Marking and Operating
+
+[[file:images/casual-ibuffer-main-screenshot.png]]
+
+
+Buffers can be /marked/ using different criteria to be operated on. Common operations include saving and deleting buffers. Note that deleting a buffer populated with a visited file is /not/ deleting the visited file. If no buffer is marked, then the buffer under the current point is operated on.
+
+#+TEXINFO: @subheading Operations
+#+VINDEX: casual-ibuffer-operations-tmenu
+
+Pressing “{{{kbd(M)}}} More›” from the Operations section in the main menu will raise a menu (~casual-ibuffer-operations-tmenu~) providing additional commands to operate on a buffer.
+
+[[file:images/casual-ibuffer-operations.png]]
+
+
+#+TEXINFO: @subheading Mark
+#+VINDEX: casual-ibuffer-mark-tmenu
+
+Pressing “{{{kbd(t)}}} Type›” from the Operations section in the main menu will raise a menu (~casual-ibuffer-mark-tmenu~) to mark buffers by type. 
+
+
+[[file:images/casual-ibuffer-mark.png]]
+
+#+TEXINFO: @subheading Mark Regexp
+#+VINDEX: casual-ibuffer-mark-regexp-tmenu
+
+Pressing “{{{kbd(r)}}} Regexp›” from the Operations section in the main menu will raise a menu (~casual-ibuffer-mark-regexp-tmenu~) to mark buffers by regexp. 
+
+[[file:images/casual-ibuffer-mark-regexp.png]]
+
 
 *** IBuffer Filtering
 #+VINDEX: casual-ibuffer-filter-tmenu
@@ -100,7 +123,7 @@ Key is the concept of a /Filter Group/ which is IBuffer's analog to a Dired subd
 IBuffer organizes filtering with the following taxonomy:
 
 1. *Filter rule*
-   
+
    The smallest unit of filtering. There are many types of filter rules:
    - filter by major mode
    - filter by derived mode
@@ -117,7 +140,7 @@ IBuffer organizes filtering with the following taxonomy:
    - filter by buffers visiting files
 
     Casual IBuffer makes the design decision to *not* enumerate the above in a menu, delegating the work of filter selection to the command  ~ibuffer-filter-chosen-by-completion~.
-    
+
 2. *Filter*
 
    A /filter/ is a logical combination of filter rules. Logic operators such as AND (&), OR (|) and NOT (!) are used to compose rules into a /filter/. A single filter rule can also be construed as a filter.
@@ -146,7 +169,7 @@ IBuffer organizes filtering with the following taxonomy:
 4. *Filter Group Collection*
 
    A /collection/ is a set of filter groups that can be named with a user-defined identifier. Only one collection can be applied to a buffer list at a time. However, many different collections can be defined, allowing for different views of the same buffer list.
-   
+
 *Creating Filters*
 
 The basic procedure for making a filter that applies to the entire buffer list is as follows:
@@ -177,6 +200,9 @@ The buffer list can be sorted using different criteria using the menu ~casual-ib
 Sort ordering can be reversed via the /Invert/ command.
 
 *** IBuffer Unicode Symbol Support
+
+[[file:images/casual-ibuffer-main-unicode.png]]
+
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual IBuffer will use Unicode symbols as appropriate in its menus.
 
 For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].

@@ -1,5 +1,5 @@
 ##
-# Copyright 2024-2025 Charles Y. Choi
+# Copyright 2024-2026 Charles Y. Choi
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,6 +43,8 @@
 #   $ make new-sprint
 
 LISP_DIR=./lisp
+DOCS_DIR=./docs
+TESTS_DIR=./tests
 PACKAGE_NAME=casual
 MAIN_EL=$(realpath $(LISP_DIR)/$(PACKAGE_NAME).el)
 
@@ -67,6 +69,9 @@ create-pr					\
 create-release-pr				\
 create-release-tag				\
 create-gh-release				\
+package-lint					\
+regression					\
+clean						\
 status
 
 ## Run test regression
@@ -74,7 +79,17 @@ tests:
 	$(MAKE) -C $(LISP_DIR) tests
 
 tests/%:
-	$(MAKE) -C tests $*
+	$(MAKE) -C $(TESTS_DIR) $*
+
+package-lint:
+	$(MAKE) -C $(LISP_DIR) $@
+
+regression:
+	$(MAKE) -C $(LISP_DIR) $@
+
+clean:
+	$(MAKE) -C $(LISP_DIR) $@
+	$(MAKE) -C $(DOCS_DIR) $@
 
 ## Bump Patch Version
 bump-casual:
@@ -83,7 +98,7 @@ bump-casual:
 # bump-casual-info: VERSION_BUMP:=$(shell python -m semver nextver $(VERSION) $(BUMP_LEVEL))
 bump-casual-info:
 	sed -i 's/+MACRO: version $(VERSION)/+MACRO: version $(VERSION_BUMP)/' docs/$(PACKAGE_NAME).org
-	make docs/$(PACKAGE_NAME).texi
+	make -C docs $(PACKAGE_NAME).texi
 
 bump: bump-casual bump-casual-info
 	git commit -m 'Bump version to $(VERSION_BUMP)' \
@@ -140,8 +155,8 @@ status:
 	git status
 
 docs/%:
-	$(MAKE) -C docs $*
+	$(MAKE) -C $(DOCS_DIR) $*
 
 .PHONY: user-guide
 user-guide:
-	$(MAKE) -C docs gen-html
+	$(MAKE) -C $(DOCS_DIR) gen-html

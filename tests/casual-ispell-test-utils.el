@@ -1,6 +1,6 @@
-;;; casual-compile-test-utils.el --- Casual Test Utils       -*- lexical-binding: t; -*-
+;;; casual-ispell-test-utils.el --- Casual Ispell Test Utils       -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2026  Charles Y. Choi
+;; Copyright (C) 2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -26,17 +26,14 @@
 (require 'ert)
 (require 'casual-lib)
 (require 'kmacro)
-(require 'compile)
 
-(defun casualt-compile-setup ()
-  "Casual menu test setup function."
-  (compile "make -k hi")
-  (switch-to-buffer "*compilation*"))
-
-(defun casualt-compile-breakdown ()
-  "Casual menu test breakdown function, if CLEAR is non-nil then clear state."
-  ;; (kill-buffer)
+(defun casualt-ispell-setup ()
+  "Casual ispell setup."
   )
 
-(provide 'casual-compile-test-utils)
-;;; casual-compile-test-utils.el ends here
+(defun casualt-ispell-breakdown ()
+  "Casual ispell breakdown."
+  )
+
+(provide 'casual-ispell-test-utils)
+;;; casual-ispell-test-utils.el ends here
