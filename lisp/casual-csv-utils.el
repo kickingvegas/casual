@@ -86,9 +86,9 @@ plain ASCII-range string."
 (transient-define-prefix casual-csv-align-tmenu ()
   ["Align"
    :description (lambda () (format
-                       "Casual CSV Align: %s %s"
-                       (buffer-name)
-                       (capitalize (symbol-name csv-align-style))))
+                            "Casual CSV Align: %s %s"
+                            (buffer-name)
+                            (capitalize (symbol-name csv-align-style))))
    :class transient-row
    ("a" "Auto" casual-csv-align-auto :transient t)
    ("l" "Left" casual-csv-align-left :transient t)

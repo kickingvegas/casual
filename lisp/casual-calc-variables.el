@@ -47,11 +47,11 @@ menu."
     ("i" "Insert variables into buffer…" casual-calc--insert-variables :transient nil)]]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   (casual-calc-algebraic-entry)
-   (casual-calc-pop)
-   (casual-calc-undo-suffix)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          (casual-calc-algebraic-entry)
+          (casual-calc-pop)
+          (casual-calc-undo-suffix)
+          (casual-lib-quit-all)])
 
 (provide 'casual-calc-variables)
 ;;; casual-calc-variables.el ends here

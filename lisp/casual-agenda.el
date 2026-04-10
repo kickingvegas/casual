@@ -1,6 +1,6 @@
 ;;; casual-agenda.el --- Transient UI for Agenda -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -105,12 +105,12 @@
     :description (lambda () (format "%s…"
                                     (casual-agenda-unicode-get :jumpbookmark))))]
   [:class transient-row
-   (casual-lib-quit-one)
-   ("RET" "Open" org-agenda-switch-to)
-   ("C-/" "Undo" org-agenda-undo)
-   ("I" "ⓘ Info" org-info-find-node)
-   ("," "Settings›" casual-agenda-settings-tmenu)
-   ("q" "Quit" org-agenda-quit)])
+          (casual-lib-quit-one)
+          ("RET" "Open" org-agenda-switch-to)
+          ("C-/" "Undo" org-agenda-undo)
+          ("I" "ⓘ Info" org-info-find-node)
+          ("," "Settings›" casual-agenda-settings-tmenu)
+          ("q" "Quit" org-agenda-quit)])
 
 (transient-define-prefix casual-agenda-almanac-tmenu ()
   "Almanac menu."
@@ -172,14 +172,14 @@
 
 (transient-define-prefix casual-agenda-mark-tmenu ()
   ["Mark"
-    :pad-keys t
-    [("m" "Mark" org-agenda-bulk-mark :transient t)
-     ("x" "Mark Regexp…" org-agenda-bulk-mark-regexp :transient t)]
-    [("u" "Unmark" org-agenda-bulk-unmark :transient t)
-     ("U" "Unmark" org-agenda-bulk-unmark-all :transient t)]
-    [("t" "Toggle" org-agenda-bulk-toggle :transient t)
-     ("T" "Toggle all" org-agenda-bulk-toggle-all :transient t)]
-    [("B" "Bulk Action…" org-agenda-bulk-action :transient t)]]
+   :pad-keys t
+   [("m" "Mark" org-agenda-bulk-mark :transient t)
+    ("x" "Mark Regexp…" org-agenda-bulk-mark-regexp :transient t)]
+   [("u" "Unmark" org-agenda-bulk-unmark :transient t)
+    ("U" "Unmark" org-agenda-bulk-unmark-all :transient t)]
+   [("t" "Toggle" org-agenda-bulk-toggle :transient t)
+    ("T" "Toggle all" org-agenda-bulk-toggle-all :transient t)]
+   [("B" "Bulk Action…" org-agenda-bulk-action :transient t)]]
 
   casual-agenda-agenda-navigation-group
   casual-agenda-navigation-group)

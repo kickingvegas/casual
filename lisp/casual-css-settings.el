@@ -41,9 +41,9 @@
    (casual-lib-customize-hide-navigation)]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("a" "About" casual-css-about)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("a" "About" casual-css-about)
+          (casual-lib-quit-all)])
 
 (defun casual-css--customize-indent-offset ()
   "Customize CSS `css-indent-offset'."

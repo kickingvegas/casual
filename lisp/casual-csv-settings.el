@@ -1,6 +1,6 @@
 ;;; casual-csv-settings.el --- Casual CSV Settings -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025 Charles Y. Choi
+;; Copyright (C) 2025-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -31,11 +31,11 @@
    ["Customize"
     ("A" "Align Style" casual-csv--customize-align-style
      :description (lambda () (format "Align Style (%s)"
-                                (capitalize (symbol-name csv-align-style)))))
+                                     (capitalize (symbol-name csv-align-style)))))
     ("s" "Separators" casual-csv--customize-separators)
     ("i" "Invisibility Default" casual-csv--customize-invisibility-default
      :description (lambda () (casual-lib-checkbox-label csv-invisibility-default
-                                                   "Invisibility Default")))]
+                                                        "Invisibility Default")))]
 
    [""
     ("G" "CSV Group" casual-csv--customize-group)
@@ -43,12 +43,12 @@
      :description (lambda () (format "Header Lines (%d)" csv-header-lines)))
     ("c" "Comment Start Default" casual-csv--customize-comment-start-default
      :description (lambda () (format
-                         "Comment Start Default (%s)"
-                         csv-comment-start-default)))
+                              "Comment Start Default (%s)"
+                              csv-comment-start-default)))
     ("f" "Field Quotes" casual-csv--customize-field-quotes
      :description (lambda () (format
-                         "Field Quotes (%s)"
-                         (string-join csv-field-quotes))))]
+                              "Field Quotes (%s)"
+                              (string-join csv-field-quotes))))]
 
    ["Width"
     ("w" "Min" casual-csv--customize-align-min-width
@@ -57,13 +57,13 @@
      :description (lambda () (format "Max (%d)" csv-align-max-width)))]]
 
   [:class transient-row
-   (casual-lib-customize-unicode)
-   (casual-lib-customize-hide-navigation)]
+          (casual-lib-customize-unicode)
+          (casual-lib-customize-hide-navigation)]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("a" "About" casual-csv-about)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("a" "About" casual-csv-about)
+          (casual-lib-quit-all)])
 
 
 ;; -------------------------------------------------------------------

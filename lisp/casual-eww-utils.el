@@ -114,9 +114,7 @@ Note that only the runtime value of variables is changed. Commands in
                      (t "Undefined"))))
     :transient t)]
 
-  [:class transient-row
-   (casual-lib-quit-one)
-   (casual-lib-quit-all)])
+  casual-lib-navigation-group-plain)
 
 
 

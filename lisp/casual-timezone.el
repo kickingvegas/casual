@@ -1,6 +1,6 @@
 ;;; casual-timezone.el --- Timezone Planner  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Choi
+;; Copyright (C) 2025-2026  Charles Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -36,9 +36,9 @@
    ("z" "Planner…" casual-timezone-planner)]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("," "Settings" casual-timezone-settings-tmenu)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("," "Settings" casual-timezone-settings-tmenu)
+          (casual-lib-quit-all)])
 
 (provide 'casual-timezone)
 ;;; casual-timezone.el ends here

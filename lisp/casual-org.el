@@ -74,14 +74,14 @@ Emacs key bindings for movement."
   casual-org-navigation-group
 
   [:class transient-row
-   :if casual-org-mode-p
-   (casual-lib-quit-one)
-   ("," "Settings›" casual-org-settings-tmenu)
-   ("I" "ⓘ" casual-org-info
-    :description (lambda () (casual-org-unicode-get :info)))
-   ("U" "Undo" undo :transient t)
-   ("RET" "Done" transient-quit-all)
-   (casual-lib-quit-all)])
+          :if casual-org-mode-p
+          (casual-lib-quit-one)
+          ("," "Settings›" casual-org-settings-tmenu)
+          ("I" "ⓘ" casual-org-info
+           :description (lambda () (casual-org-unicode-get :info)))
+          ("U" "Undo" undo :transient t)
+          ("RET" "Done" transient-quit-all)
+          (casual-lib-quit-all)])
 
 
 ;;;###autoload (autoload 'casual-org-table-fedit-tmenu "casual-org" nil t)

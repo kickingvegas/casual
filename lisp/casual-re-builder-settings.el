@@ -1,6 +1,6 @@
 ;;; casual-re-builder-settings.el --- Casual Re-Builder Settings -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025 Charles Y. Choi
+;; Copyright (C) 2024-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -36,10 +36,13 @@
     (casual-lib-customize-hide-navigation)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
+          ("C-g" "Back" transient-quit-one
+           :description casual-lib--quit-one-suffix-label
+           :if-not casual-lib-hide-navigation-p)
           ("a" "About" casual-re-builder-about :transient nil)
 
-          (casual-lib-quit-all)])
+          ("C-q" "Dismiss" transient-quit-all
+           :if-not casual-lib-quit-all-hide-navigation-p)])
 
 (defun casual-re-builder--customize-group ()
   "Customize Re-Builder group."

@@ -1,6 +1,6 @@
 ;;; casual-ibuffer-filter.el --- Casual IBuffer Filter -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025 Charles Y. Choi
+;; Copyright (C) 2024-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -50,7 +50,7 @@ The value from `ibuffer-saved-filter-groups' is used."
 
   (setq casual-ibuffer--current-collection-name name)
   (setq ibuffer-filter-groups (cdr (assoc name ibuffer-saved-filter-groups))
-	ibuffer-hidden-filter-groups nil)
+        ibuffer-hidden-filter-groups nil)
   (ibuffer-update nil t))
 
 (defun casual-ibuffer--ibuffer-update (arg &optional silent)
@@ -163,14 +163,17 @@ The value from `ibuffer-saved-filter-groups' is used."
     ("\\" "Clear all" ibuffer-clear-filter-groups :transient t)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
+          ("C-g" "Back" transient-quit-one
+           :description casual-lib--quit-one-suffix-label
+           :if-not casual-lib-hide-navigation-p)
           ("," "Settings›" casual-ibuffer-settings-tmenu)
           ("RET" "Visit/Toggle" casual-ibuffer-return-dwim)
           ("$" "Toggle Group" ibuffer-toggle-filter-group
            :description (lambda () (format "Toggle %s" (casual-ibuffer-unicode-get :group)))
            :inapt-if-not (lambda () (casual-ibuffer-filter-group-p))
            :transient t)
-          (casual-lib-quit-all)])
+          ("C-q" "Dismiss" transient-quit-all
+           :if-not casual-lib-quit-all-hide-navigation-p)])
 
 (provide 'casual-ibuffer-filter)
 ;;; casual-ibuffer-filter.el ends here

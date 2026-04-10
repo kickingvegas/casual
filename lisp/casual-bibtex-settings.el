@@ -1,6 +1,6 @@
 ;;; casual-bibtex-settings.el --- Casual BibTeX Settings -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025 Charles Y. Choi
+;; Copyright (C) 2025-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -37,7 +37,7 @@
 
    ["Files"
     ("p" "Path" casual-bibtex--customize-file-path
-      :description (lambda ()
+     :description (lambda ()
                     (if bibtex-file-path
                         (format "Path (%s)" bibtex-file-path)
                       "Path")))
@@ -46,21 +46,21 @@
    ["Search"
     ("g" "Entry Globally" casual-bibtex--customize-search-entry-globally
      :description (lambda () (casual-lib-checkbox-label bibtex-search-entry-globally
-                                                   "Entry Globally")))]
+                                                        "Entry Globally")))]
 
    ["Hooks"
     ("C" "Clean" casual-bibtex--customize-clean-entry-hook)
     ("A" "Add" casual-bibtex--customize-add-entry-hook)]]
 
   ["Misc"
-    :class transient-row
-    (casual-lib-customize-unicode)
-    (casual-lib-customize-hide-navigation)]
+   :class transient-row
+   (casual-lib-customize-unicode)
+   (casual-lib-customize-hide-navigation)]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("a" "About" casual-bibtex-about :transient nil)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("a" "About" casual-bibtex-about :transient nil)
+          (casual-lib-quit-all)])
 
 (defun casual-bibtex-about-bibtex ()
   "Casual BibTeX is a Transient menu for BibTeX.

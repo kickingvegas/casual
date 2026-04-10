@@ -1,6 +1,6 @@
 ;;; casual-info.el --- Transient UI for Info -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -79,21 +79,21 @@
    ["Scroll"
     :pad-keys t
     ("S-SPC" "Scroll Down" Info-scroll-down
-           :if display-graphic-p
-           :description (lambda ()
+     :if display-graphic-p
+     :description (lambda ()
                     (casual-info-unicode-get :scroll-down))
-           :transient t)
+     :transient t)
 
     ("DEL" "Scroll Down" Info-scroll-down
-           :if-not display-graphic-p
-           :description (lambda ()
+     :if-not display-graphic-p
+     :description (lambda ()
                     (casual-info-unicode-get :scroll-down))
-           :transient t)
+     :transient t)
 
     ("SPC" "Scroll Up" Info-scroll-up
-           :description (lambda ()
+     :description (lambda ()
                     (casual-info-unicode-get :scroll-up))
-           :transient t)]]
+     :transient t)]]
 
   ["Navigation"
    ["Link"

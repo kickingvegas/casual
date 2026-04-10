@@ -395,11 +395,11 @@ region."
   (let* ((end-cell (casual-org-table--cell-at-point))
          (start (region-beginning))
          (end (region-end)))
-      (exchange-point-and-mark)
-      (let ((start-cell (casual-org-table--cell-at-point)))
-        (push-mark start nil t)
-        (goto-char end)
-        (list start-cell end-cell))))
+    (exchange-point-and-mark)
+    (let ((start-cell (casual-org-table--cell-at-point)))
+      (push-mark start nil t)
+      (goto-char end)
+      (list start-cell end-cell))))
 
 (defvar casual-org-table--last-reference nil
   "Last stored Org table reference.
@@ -538,9 +538,9 @@ See `casual-org-table--range' for more on RANGE object."
   "Fill table down with count of ROWS."
   (interactive "nRows: ")
   (while (> rows 0)
-      ;;(message "%d" rows)
-      (call-interactively #'org-table-copy-down)
-      (setq rows (1- rows))))
+    ;;(message "%d" rows)
+    (call-interactively #'org-table-copy-down)
+    (setq rows (1- rows))))
 
 (defun casual-org-table-kill-field-as-copy ()
   "Kill field as copy."
@@ -679,18 +679,18 @@ Org 9.8."
     ("Z" "Shrink Table" org-table-shrink :transient t)
     ("t" "Toggle Coordinates" org-table-toggle-coordinate-overlays
      :description (lambda () (casual-lib-checkbox-label
-                         org-table-overlay-coordinates
-                         "@𝑟$𝑐"))
+                              org-table-overlay-coordinates
+                              "@𝑟$𝑐"))
      :transient t)
     ("h" "Header Mode" org-table-header-line-mode
      :description (lambda () (casual-lib-checkbox-label
-                         org-table-header-line-mode
-                         "Header"))
+                              org-table-header-line-mode
+                              "Header"))
      :transient t)
     ("V" "Line Wrap" visual-line-mode
      :description (lambda () (casual-lib-checkbox-label
-                         visual-line-mode
-                         "Line Wrap"))
+                              visual-line-mode
+                              "Line Wrap"))
      :transient t)]])
 
 
@@ -700,7 +700,7 @@ Org 9.8."
    :if (lambda () (and (casual-org-mode-p) (org-at-heading-p)))
    :inapt-if casual-lib-buffer-read-only-p
    :description (lambda () (catch 'casual-org--description-exception
-                        (casual-org--heading-description)))
+                             (casual-org--heading-description)))
    ["Headline"
     :pad-keys t
     ("t" "TODO State…" org-todo)
@@ -737,12 +737,12 @@ Org 9.8."
   ["Org Item"
    :if (lambda () (and (casual-org-mode-p) (org-at-item-p)))
    :description (lambda () (catch 'casual-org--description-exception
-                        (casual-org--item-description)))
+                             (casual-org--item-description)))
 
    ["Item"
     :description (lambda () (if (org-at-item-checkbox-p)
-                           "Checkbox"
-                         "Item"))
+                                "Checkbox"
+                              "Item"))
     :pad-keys t
     :inapt-if casual-lib-buffer-read-only-p
     ("a" "Add" org-insert-item
@@ -753,8 +753,8 @@ Org 9.8."
      :transient t)
     ("b" "Toggle Checkbox" casual-org-toggle-list-to-checkbox
      :description (lambda () (if (org-at-item-checkbox-p)
-                            "To Item"
-                          "To Checkbox"))
+                                 "To Item"
+                               "To Checkbox"))
      :transient t)
     ("c" "Cycle" org-cycle-list-bullet :transient t)]
 
@@ -777,73 +777,73 @@ Org 9.8."
    :if (lambda () (and (casual-org-mode-p) (org-at-block-p)))
    :inapt-if casual-lib-buffer-read-only-p
    :description (lambda () (catch 'casual-org--description-exception
-                        (casual-org--block-description)))
+                             (casual-org--block-description)))
    [("'" "Edit" org-edit-src-code :transient nil)]
    [("n" "Assign Name…" casual-org-assign-name)]
    [("C-c" "Eval" org-ctrl-c-ctrl-c
      :if (lambda () (or (eq (org-element-type (org-element-context)) 'src-block)
-                   (eq (org-element-type (org-element-context)) 'dynamic-block)))
+                        (eq (org-element-type (org-element-context)) 'dynamic-block)))
      :transient t)]])
 
 
 (transient-define-group casual-org-body-group
   ["Org Body"
    :if-not (lambda () (if (casual-org-mode-p)
-                      (or (org-at-heading-or-item-p)
-                          (org-at-table-p)
-                          (org-at-block-p)
-                          (org-at-keyword-p))
-                   t))
+                          (or (org-at-heading-or-item-p)
+                              (org-at-table-p)
+                              (org-at-block-p)
+                              (org-at-keyword-p))
+                        t))
    :description (lambda () (catch 'casual-org--description-exception
-                        (casual-org--body-description)))
+                             (casual-org--body-description)))
    :inapt-if casual-lib-buffer-read-only-p
 
    ;; !!!: Body
    ["To"
     :if-not (lambda () (or (org-at-keyword-p)
-                      (org-at-drawer-p) ; covers property-drawer-p
-                      (org-at-clock-log-p)
-                      (org-in-src-block-p)
-                      (org-at-property-p)))
+                           (org-at-drawer-p) ; covers property-drawer-p
+                           (org-at-clock-log-p)
+                           (org-in-src-block-p)
+                           (org-at-property-p)))
     ("*" "Heading" org-ctrl-c-star :transient t)
     ("-" "Item" org-ctrl-c-minus :transient t)]
 
    ["Add"
     :if-not (lambda () (or (org-at-keyword-p)
-                      (org-at-drawer-p) ; covers property-drawer-p
-                      (org-at-clock-log-p)
-                      (org-in-src-block-p)
-                      (org-at-property-p)))
+                           (org-at-drawer-p) ; covers property-drawer-p
+                           (org-at-clock-log-p)
+                           (org-in-src-block-p)
+                           (org-at-property-p)))
     ("b" "Block…" org-insert-structure-template)
     ("d" "Drawer…" org-insert-drawer)
     ("k" "Keyword…" casual-org-insert-keyword)]
 
    ;; !!!: org-in-src-block-p
    [:if (lambda () (and (casual-org-mode-p) (org-in-src-block-p)))
-    ("'" "Edit" org-edit-src-code :transient nil)]
+        ("'" "Edit" org-edit-src-code :transient nil)]
 
    [:if (lambda () (and (casual-org-mode-p) (org-in-src-block-p)))
-    ("C-c" "Eval" org-ctrl-c-ctrl-c
-     :if (lambda () (or (eq (org-element-type (org-element-context)) 'src-block)
-                   (eq (org-element-type (org-element-context)) 'dynamic-block)))
-     :transient t)]
+        ("C-c" "Eval" org-ctrl-c-ctrl-c
+         :if (lambda () (or (eq (org-element-type (org-element-context)) 'src-block)
+                            (eq (org-element-type (org-element-context)) 'dynamic-block)))
+         :transient t)]
 
    ;; !!!: org-at-property-drawer-p
    [:if (lambda () (and (casual-org-mode-p) (org-at-property-drawer-p)))
-    ("p" "Add Property…" org-set-property)]
+        ("p" "Add Property…" org-set-property)]
 
    ;; !!!: org-at-property-p
    [:if (lambda () (and (casual-org-mode-p) (org-at-property-p)))
-    ("p" "Add Property…" org-set-property)]
+        ("p" "Add Property…" org-set-property)]
 
    [:if (lambda () (and (casual-org-mode-p) (org-at-property-p)))
-    ("a" "Action…" org-property-action)]
+        ("a" "Action…" org-property-action)]
 
    ;; !!!: org-at-drawer-p
    [:if (lambda () (and (casual-org-mode-p)
-                   (org-at-drawer-p)
-                   (not (org-at-property-drawer-p))))
-    ("TAB" "Cycle…" org-cycle :transient t)]
+                        (org-at-drawer-p)
+                        (not (org-at-property-drawer-p))))
+        ("TAB" "Cycle…" org-cycle :transient t)]
 
    ;; !!!: org-at-clock-log-p
    ["Clock"
@@ -870,67 +870,67 @@ Org 9.8."
   ["Org Keyword"
    :if (lambda () (and (casual-org-mode-p) (org-at-keyword-p)))
    :description (lambda () (catch 'casual-org--description-exception
-                        (casual-org--keyword-description)))
+                             (casual-org--keyword-description)))
    :inapt-if casual-lib-buffer-read-only-p
    [:if org-at-TBLFM-p
-    ("F" "Edit Formulas" org-table-edit-formulas :transient nil)]
+        ("F" "Edit Formulas" org-table-edit-formulas :transient nil)]
 
    [:if org-at-TBLFM-p
-    ("C-c" "Eval" org-table-recalculate-buffer-tables :transient nil)]
+        ("C-c" "Eval" org-table-recalculate-buffer-tables :transient nil)]
 
    ;; TODO: Does this apply to all affiliate keywords?
    [:if-not org-at-TBLFM-p
-    :inapt-if (lambda () (org-element-property :key (org-element-context)))
-    ("C-c" "Eval" org-ctrl-c-ctrl-c :transient nil)]])
+            :inapt-if (lambda () (org-element-property :key (org-element-context)))
+            ("C-c" "Eval" org-ctrl-c-ctrl-c :transient nil)]])
 
 
 (transient-define-group casual-org-navigation-group
   [:if casual-org-mode-p
-   ["Field"
-    :if org-at-table-p
-    ("M-a" "⇤" org-table-beginning-of-field
-     :description (lambda () (casual-org-unicode-get :beginning-of-field))
-     :transient t)]
+       ["Field"
+        :if org-at-table-p
+        ("M-a" "⇤" org-table-beginning-of-field
+         :description (lambda () (casual-org-unicode-get :beginning-of-field))
+         :transient t)]
 
-   [""
-    :if org-at-table-p
-    ("M-e" "⇥" org-table-end-of-field
-     :description (lambda () (casual-org-unicode-get :end-of-field))
-     :transient t)]
+       [""
+        :if org-at-table-p
+        ("M-e" "⇥" org-table-end-of-field
+         :description (lambda () (casual-org-unicode-get :end-of-field))
+         :transient t)]
 
-   ["Mark"
-    :if-not (lambda () (or (org-at-keyword-p)
-                      (org-at-table-p)
-                      (org-at-block-p)))
-    ("ms" "Subtree" org-mark-subtree)]
+       ["Mark"
+        :if-not (lambda () (or (org-at-keyword-p)
+                               (org-at-table-p)
+                               (org-at-block-p)))
+        ("ms" "Subtree" org-mark-subtree)]
 
-   [""
-    :if-not (lambda () (or (org-at-keyword-p)
-                      (org-at-table-p)
-                      (org-at-block-p)))
-    ("me" "Element" org-mark-element)]
+       [""
+        :if-not (lambda () (or (org-at-keyword-p)
+                               (org-at-table-p)
+                               (org-at-block-p)))
+        ("me" "Element" org-mark-element)]
 
-   ["Util"
-    ("v" "Copy Visible"
-     org-copy-visible
-     :inapt-if-not (lambda () (use-region-p)))]
-   [""
-    ("e" "Export…" org-export-dispatch)]])
+       ["Util"
+        ("v" "Copy Visible"
+         org-copy-visible
+         :inapt-if-not (lambda () (use-region-p)))]
+       [""
+        ("e" "Export…" org-export-dispatch)]])
 
 
 
 (transient-define-group casual-org-utility-group
   [
    :if-not (lambda () (if (casual-org-mode-p)
-                     (or (org-at-table-p)
-                         (org-at-TBLFM-p)
-                         (org-at-block-p)
-                         (org-at-property-p)
-                         (org-at-drawer-p)
-                         (org-at-clock-log-p)
-                         (org-in-src-block-p)
-                         (org-at-keyword-p))
-                   t))
+                          (or (org-at-table-p)
+                              (org-at-TBLFM-p)
+                              (org-at-block-p)
+                              (org-at-property-p)
+                              (org-at-drawer-p)
+                              (org-at-clock-log-p)
+                              (org-in-src-block-p)
+                              (org-at-keyword-p))
+                        t))
 
    ["Link"
     :inapt-if casual-lib-buffer-read-only-p
@@ -972,19 +972,19 @@ Org 9.8."
      :transient nil)
     ("P" "Toggle Prettify" prettify-symbols-mode
      :description (lambda () (casual-lib-checkbox-label prettify-symbols-mode
-                                                   "Prettify"))
+                                                        "Prettify"))
      :transient nil)]
 
    [""
     :if casual-org-mode-p
     ("V" "Line Wrap" visual-line-mode
      :description (lambda () (casual-lib-checkbox-label visual-line-mode
-                                                   "Line Wrap"))
+                                                        "Line Wrap"))
      :transient t)
     ("N" "Number" org-num-mode
      :if org-at-heading-p
      :description (lambda () (casual-lib-checkbox-label org-num-mode
-                                                   "Heading #"))
+                                                        "Heading #"))
      :transient t)]])
 
 
@@ -1019,29 +1019,29 @@ Org 9.8."
     :inapt-if casual-lib-buffer-read-only-p
     ("M-b" "Column ←" org-table-move-column-left
      :description (lambda () (format "%s %s"
-                                (casual-org-unicode-get :column)
-                                (casual-org-unicode-get :left)))
+                                     (casual-org-unicode-get :column)
+                                     (casual-org-unicode-get :left)))
      :transient t)]
 
    [""
     :inapt-if casual-lib-buffer-read-only-p
     ("M-p" "Row ↑" org-table-move-row-up
      :description (lambda () (format "%s %s"
-                                (casual-org-unicode-get :row)
-                                (casual-org-unicode-get :up)))
+                                     (casual-org-unicode-get :row)
+                                     (casual-org-unicode-get :up)))
      :transient t)
     ("M-n" "Row ↓" org-table-move-row-down
      :description (lambda () (format "%s %s"
-                                (casual-org-unicode-get :row)
-                                (casual-org-unicode-get :down)))
+                                     (casual-org-unicode-get :row)
+                                     (casual-org-unicode-get :down)))
      :transient t)]
 
    [""
     :inapt-if casual-lib-buffer-read-only-p
     ("M-f" "Column →" org-table-move-column-right
      :description (lambda () (format "%s %s"
-                                (casual-org-unicode-get :column)
-                                (casual-org-unicode-get :right)))
+                                     (casual-org-unicode-get :column)
+                                     (casual-org-unicode-get :right)))
      :transient t)]]
 
   ["Align"
@@ -1051,7 +1051,7 @@ Org 9.8."
    ("ar" "Right" casual-org-table-insert-align-right)
    ("I" "Width & Alignment" casual-org-table-info-width-alignment
     :description (lambda () (format "%s Width & Align"
-                               (casual-org-unicode-get :info))))]
+                                    (casual-org-unicode-get :info))))]
 
   ["Field"
    [("M-a" "⇤" org-table-beginning-of-field :transient t)]

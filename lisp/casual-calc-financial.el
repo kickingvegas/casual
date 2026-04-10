@@ -1,6 +1,6 @@
 ;;; casual-calc-financial.el --- Casual Financial Menu    -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -68,9 +68,9 @@
 \nProvides menu argument support for the following function:
 - `casual-calc--fin-npv'"
   [["Net Present Value with Irregular Deposits"
-   :class transient-row
-   ("r" "Interest Rate (%)" "--rate=" :prompt "Interest Rate: ")
-   ("b" "Beginning" "--beginning")]
+    :class transient-row
+    ("r" "Interest Rate (%)" "--rate=" :prompt "Interest Rate: ")
+    ("b" "Beginning" "--beginning")]
    casual-calc-basic-operators-group]
 
   [("n" "Net Present Value (1:)" casual-calc--fin-npv :transient t)]
@@ -98,8 +98,8 @@
    ("F" "Lump Sum" casual-calc--fin-fv-lump :transient t)]
 
   ["Present Value"
-    ("p" "Periodic" casual-calc--fin-pv-periodic :transient t)
-    ("P" "Lump Sum" casual-calc--fin-pv-lump :transient t)]
+   ("p" "Periodic" casual-calc--fin-pv-periodic :transient t)
+   ("P" "Lump Sum" casual-calc--fin-pv-lump :transient t)]
 
   casual-calc-navigation-group)
 
@@ -135,7 +135,7 @@
    casual-calc-basic-operators-group]
 
   ["Projected number of payments"
-    ("n" "Number of Payments" casual-calc--fin-number-of-payments :transient t)]
+   ("n" "Number of Payments" casual-calc--fin-number-of-payments :transient t)]
 
   casual-calc-navigation-group)
 

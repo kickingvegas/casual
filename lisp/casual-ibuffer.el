@@ -150,8 +150,8 @@
           (casual-lib-quit-one)
           ("RET" "Visit/Toggle" casual-ibuffer-return-dwim
            :description (lambda () (if (casual-ibuffer-filter-group-p)
-                               "Toggle"
-                             "Visit")))
+                                       "Toggle"
+                                     "Visit")))
           ("," "Settings›" casual-ibuffer-settings-tmenu)
           ("J" "Jump to Bookmark…" bookmark-jump :transient nil)
           (casual-lib-quit-all)
@@ -171,9 +171,7 @@
    [("T" "Toggle Read-only" ibuffer-do-toggle-read-only)
     ("L" "Toggle Lock" ibuffer-do-toggle-lock)]]
 
-  [:class transient-row
-          (casual-lib-quit-one)
-          (casual-lib-quit-all)])
+  casual-lib-navigation-group-plain)
 
 ;;;###autoload (autoload 'casual-ibuffer-sortby-tmenu "casual-ibuffer" nil t)
 (transient-define-prefix casual-ibuffer-sortby-tmenu ()

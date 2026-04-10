@@ -214,9 +214,7 @@
    ("d" "Files For Deletion…" dired-flag-files-regexp :transient nil)
    ("C" "Files To Copy…" dired-do-copy-regexp :transient nil)
    ("r" "Files To Rename…" dired-do-rename-regexp :transient nil)]
-  [:class transient-row
-          (casual-lib-quit-one)
-          (casual-lib-quit-all)])
+  casual-lib-navigation-group-plain)
 
 (transient-define-prefix casual-dired-change-tmenu ()
   ["Change"
@@ -224,9 +222,7 @@
     ("G" "Group…" dired-do-chgrp :transient t)
     ("O" "Owner…" dired-do-chown :transient t)]
    [("T" "Touch" dired-do-touch :transient t)]]
-  [:class transient-row
-          (casual-lib-quit-one)
-          (casual-lib-quit-all)])
+  casual-lib-navigation-group-plain)
 
 ;;; Functions
 (defun casual-dired-image-file-p ()
