@@ -51,22 +51,24 @@
 (transient-define-prefix casual-dired-tmenu ()
   "Transient menu for Dired."
   :refresh-suffixes t
-  [["File"
-    ("o" "Open Other" dired-find-file-other-window :transient nil)
+
+  [:inapt-if-not-derived 'dired-mode
+   ["File"
+    ("o" "Open Other" dired-find-file-other-window)
     ("v" "View" dired-view-file)
     ("C" "Copy to…" dired-do-copy :transient t)
     ("R" "Rename…" dired-do-rename :transient t)
     ("D" "Delete…" dired-do-delete :transient t)
-    ("l" "Link›" casual-dired-link-tmenu :transient nil)
-    ("c" "Change›" casual-dired-change-tmenu :transient nil)
+    ("l" "Link›" casual-dired-link-tmenu)
+    ("c" "Change›" casual-dired-change-tmenu)
     ("y" "Type" dired-show-file-type :transient t)
-    ("w" "Copy Name" dired-copy-filename-as-kill :transient nil)
-    ("!" "Shell…" dired-do-shell-command :transient nil)
-    ("&" "Shell &… " dired-do-async-shell-command :transient nil)
+    ("w" "Copy Name" dired-copy-filename-as-kill)
+    ("!" "Shell…" dired-do-shell-command)
+    ("&" "Shell &… " dired-do-async-shell-command)
     (";" "Thumbnail" image-dired-dired-toggle-marked-thumbs
      :if display-graphic-p
      :transient t)
-    ("W" "Browse" browse-url-of-dired-file :transient nil)]
+    ("W" "Browse" browse-url-of-dired-file)]
 
    ["Directory"
     ("s" "Sort By›" casual-dired-sort-by-tmenu
@@ -97,16 +99,22 @@
     ("T" "Thumbnails…" image-dired :if display-graphic-p)
     ("d" "Dired…" dired)]
 
-   ["Mark"
-    ("m" "Mark" dired-mark :transient t)
-    ("u" "Unmark" dired-unmark :transient t)
-    ("U" "Unmark All" dired-unmark-all-marks :transient t)
+   ["Bulk"
+    ("m" "Mark" dired-mark
+     :if-not casual-dired-marked-p
+     :transient t)
+    ("u" "Unmark" dired-unmark
+     :if casual-dired-marked-p
+     :transient t)
+    ("U" "Unmark All" dired-unmark-all-marks
+     :if casual-dired-marked-files-p
+     :transient t)
     ("t" "Toggle Marks" dired-toggle-marks :transient t)
+    ("r" "Regexp›" casual-dired-regexp-tmenu)
+    ("/" "Search & Replace›" casual-dired-search-replace-tmenu)
+    ("#" "Utils›" casual-dired-utils-tmenu)
     ("~" "Flag Backups" dired-flag-backup-files :transient t)
-    ("x" "Delete Flagged" dired-do-flagged-delete :transient t)
-    ("r" "Regexp›" casual-dired-regexp-tmenu :transient nil)
-    ("#" "Utils›" casual-dired-utils-tmenu :transient nil)
-    ("/" "Search & Replace›" casual-dired-search-replace-tmenu :transient nil)]
+    ("x" "Delete Flagged" dired-do-flagged-delete :transient t)]
 
    ["Navigation"
     :pad-keys t
@@ -130,6 +138,26 @@
                             (casual-dired-format-arrow
                              (casual-dired-unicode-get :down-arrow)
                              casual-lib-use-unicode)
+                            (casual-dired-unicode-get :file)))
+     :transient t)
+    ("M-[" " ↑ *📄" dired-prev-marked-file
+     :if casual-dired-marked-p
+     :description (lambda ()
+                    (format "%s %s%s"
+                            (casual-dired-format-arrow
+                             (casual-dired-unicode-get :up-arrow)
+                             casual-lib-use-unicode)
+                            (char-to-string dired-marker-char)
+                            (casual-dired-unicode-get :file)))
+     :transient t)
+    ("M-]" " ↓ *📄" dired-next-marked-file
+     :if casual-dired-marked-p
+     :description (lambda ()
+                    (format "%s %s%s"
+                            (casual-dired-format-arrow
+                             (casual-dired-unicode-get :down-arrow)
+                             casual-lib-use-unicode)
+                            (char-to-string dired-marker-char)
                             (casual-dired-unicode-get :file)))
      :transient t)
     ("M-p" " ↑ 📁" dired-prev-dirline
@@ -185,15 +213,16 @@
                             (casual-dired-unicode-get :subdir)))
      :transient t)]]
 
-  [["Quick"
-    ("J" "Jump to Bookmark…" bookmark-jump :transient nil)
-    ("B" "Add Bookmark…" bookmark-set-no-overwrite :transient nil)
-    ("b" "List Buffers" ibuffer :transient nil)]
+  [:inapt-if-not-derived 'dired-mode
+   ["Quick"
+    ("J" "Jump to Bookmark…" bookmark-jump)
+    ("B" "Add Bookmark…" bookmark-set-no-overwrite)
+    ("b" "List Buffers" ibuffer)]
 
    ["Search"
     :pad-keys t
-    ("C-s" "I-Search…" dired-isearch-filenames :transient nil)
-    ("M-s" "I-Search Regexp…" dired-isearch-filenames-regexp :transient nil)
+    ("C-s" "I-Search…" dired-isearch-filenames)
+    ("M-s" "I-Search Regexp…" dired-isearch-filenames-regexp)
     ("M-f" "Find in files (rgrep)…" rgrep)]
 
    ["New"
@@ -201,22 +230,33 @@
     ("F" "File" dired-create-empty-file :transient t)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("RET" "Open" dired-find-file :transient nil)
-          ("," "Settings›" casual-dired-settings-tmenu :transient nil)
-          ("q" "Quit Dired" quit-window)])
+   (casual-lib-quit-one)
+   ("RET" "Open" dired-find-file)
+   ("," "Settings›" casual-dired-settings-tmenu)
+   ("q" "Quit Dired" quit-window)])
 
 (transient-define-prefix casual-dired-regexp-tmenu ()
-  "Transient menu for Dired mark regexp functions."
-  ["Regexp Mark"
-   ("m" "Files…" dired-mark-files-regexp :transient nil)
-   ("c" "Files Containing…" dired-mark-files-containing-regexp :transient nil)
-   ("d" "Files For Deletion…" dired-flag-files-regexp :transient nil)
-   ("C" "Files To Copy…" dired-do-copy-regexp :transient nil)
-   ("r" "Files To Rename…" dired-do-rename-regexp :transient nil)]
-  [:class transient-row
-          (casual-lib-quit-one)
-          (casual-lib-quit-all)])
+  "Transient menu for Dired regexp functions."
+  :refresh-suffixes t
+  ["Regexp"
+   ["Mark"
+    ("m" "Files…" dired-mark-files-regexp :transient t)
+    ("c" "Files containing…" dired-mark-files-containing-regexp :transient t)
+    ("u" "Unmark" dired-unmark
+     :inapt-if-not casual-dired-marked-p
+     :transient t)
+    ("U" "Unmark All" dired-unmark-all-marks
+     :inapt-if-not casual-dired-marked-files-p
+     :transient t)]
+   ["Operate"
+    ("F" "Files to open…" dired-do-find-marked-files)
+    ("C" "Files to copy…" dired-do-copy-regexp)
+    ("r" "Files to rename…" dired-do-rename-regexp)
+    ("D" "Files to delete…" dired-do-delete)]
+   ["Flag"
+    ("d" "Files for deletion…" dired-flag-files-regexp)
+    ("x" "Delete flagged files" dired-do-flagged-delete)]]
+  casual-lib-navigation-group-with-return)
 
 (transient-define-prefix casual-dired-change-tmenu ()
   ["Change"
@@ -224,9 +264,7 @@
     ("G" "Group…" dired-do-chgrp :transient t)
     ("O" "Owner…" dired-do-chown :transient t)]
    [("T" "Touch" dired-do-touch :transient t)]]
-  [:class transient-row
-          (casual-lib-quit-one)
-          (casual-lib-quit-all)])
+  casual-lib-navigation-group-with-return)
 
 ;;; Functions
 (defun casual-dired-image-file-p ()
