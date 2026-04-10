@@ -101,10 +101,10 @@
      :transient t)]] ; "⤵("
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("," "Settings›" casual-elisp-settings-tmenu)
-   ("RET" "Done" transient-quit-all)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("," "Settings›" casual-elisp-settings-tmenu)
+          ("RET" "Done" transient-quit-all)
+          (casual-lib-quit-all)])
 
 (provide 'casual-elisp)
 ;;; casual-elisp.el ends here

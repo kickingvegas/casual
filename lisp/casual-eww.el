@@ -69,91 +69,94 @@
 EWW (Emacs Web Wowser) is a web browser for GNU Emacs.
 
 See Info node `(eww)Top' for more information on it."
-   :refresh-suffixes t
-   ["Casual EWW"
-    ["History"
-     :pad-keys t
-     ("M-[" "❬" eww-back-url
-      :description (lambda () (casual-eww-unicode-get :history-back))
-      :transient t)
-     ("M-]" "❭" eww-forward-url
-      :description (lambda () (casual-eww-unicode-get :history-forward))
-      :transient t)
-     ("H" "History" eww-list-histories
-      :description (lambda () (casual-eww-unicode-get :history))
-      :transient nil)]
-
-    ["Document"
-     ("[" "←" eww-previous-url
-      :description (lambda () (casual-eww-unicode-get :back))
-      :transient t)
-     ("]" "→" eww-next-url
-      :description (lambda () (casual-eww-unicode-get :forward))
-      :transient t)
-     ("^" "↑" eww-up-url
-      :description (lambda () (casual-eww-unicode-get :up))
-      :transient t)
-     ("t" "⤒" eww-top-url
-      :description (lambda () (casual-eww-unicode-get :top))
-      :transient t)]
-
-    ["Navigate"
-     :pad-keys t
-     ("p" "↑ ¶" casual-lib-browse-backward-paragraph
-      :description (lambda () (casual-eww-unicode-get :backward-paragraph))
-      :transient t)
-     ("n" "↓ ¶" casual-lib-browse-forward-paragraph
-      :description (lambda () (casual-eww-unicode-get :forward-paragraph))
-      :transient t)
-     ("SPC" "↓ 📄" scroll-up-command
-      :description (lambda () (casual-eww-unicode-get :scroll-up))
-      :transient t)
-     ("S-SPC" "↑ 📄" scroll-down-command
-      :description (lambda () (casual-eww-unicode-get :scroll-down))
-      :transient t)]
-
-    ["🔗"
-     :description (lambda () (casual-eww-unicode-get :link))
-     :pad-keys t
-     ("k" "↑" shr-previous-link
-      :description (lambda () (casual-eww-unicode-get :previous))
-      :transient t)
-     ("j" "↓" shr-next-link
-      :description (lambda () (casual-eww-unicode-get :next))
-      :transient t)
-     ("RET" "🚀" eww-follow-link
-      :description (lambda () (casual-eww-unicode-get :follow))
-      :transient t)]
-
-    ["Misc"
-     :pad-keys t
-     ("D" "Display›" casual-eww-display-tmenu)
-     ("R" "Readable" eww-readable)]]
-
-   ["URL"
+  :refresh-suffixes t
+  ["Casual EWW"
+   ["History"
     :pad-keys t
-    [("M-l" "Open…" eww)
-     ("&" "Open External…" eww-browse-with-external-browser)]
-    [("c" "Copy" eww-copy-page-url)
-     ("A" "Copy Alt" eww-copy-alternate-url)]
-    [("d" "Download" eww-download)
-     ("g" "Reload" eww-reload
-      :description (lambda () (casual-eww-unicode-get :reload)))]]
+    ("M-[" "❬" eww-back-url
+     :description (lambda () (casual-eww-unicode-get :history-back))
+     :transient t)
+    ("M-]" "❭" eww-forward-url
+     :description (lambda () (casual-eww-unicode-get :history-forward))
+     :transient t)
+    ("H" "History" eww-list-histories
+     :description (lambda () (casual-eww-unicode-get :history))
+     :transient nil)]
 
-   ["EWW Bookmarks"
-    :class transient-row
-    ("b" "Add" eww-add-bookmark)
-    ("B" "List" eww-list-bookmarks)
-    ("M-n" "Next" eww-next-bookmark :transient t)
-    ("M-p" "Previous" eww-previous-bookmark :transient t)]
+   ["Document"
+    ("[" "←" eww-previous-url
+     :description (lambda () (casual-eww-unicode-get :back))
+     :transient t)
+    ("]" "→" eww-next-url
+     :description (lambda () (casual-eww-unicode-get :forward))
+     :transient t)
+    ("^" "↑" eww-up-url
+     :description (lambda () (casual-eww-unicode-get :up))
+     :transient t)
+    ("t" "⤒" eww-top-url
+     :description (lambda () (casual-eww-unicode-get :top))
+     :transient t)]
 
-   [:class transient-row
-    (casual-lib-quit-one)
-    ("," "Settings›" casual-eww-settings-tmenu)
-    ("I" "ⓘ" casual-eww-info)
-    ("J" "Jump to Bookmark…" bookmark-jump)
-    ("q" "Quit" quit-window)
-    (casual-lib-quit-all)])
+   ["Navigate"
+    :pad-keys t
+    ("p" "↑ ¶" casual-lib-browse-backward-paragraph
+     :description (lambda () (casual-eww-unicode-get :backward-paragraph))
+     :transient t)
+    ("n" "↓ ¶" casual-lib-browse-forward-paragraph
+     :description (lambda () (casual-eww-unicode-get :forward-paragraph))
+     :transient t)
+    ("SPC" "↓ 📄" scroll-up-command
+     :description (lambda () (casual-eww-unicode-get :scroll-up))
+     :transient t)
+    ("S-SPC" "↑ 📄" scroll-down-command
+     :description (lambda () (casual-eww-unicode-get :scroll-down))
+     :transient t)]
+
+   ["🔗"
+    :description (lambda () (casual-eww-unicode-get :link))
+    :pad-keys t
+    ("k" "↑" shr-previous-link
+     :description (lambda () (casual-eww-unicode-get :previous))
+     :transient t)
+    ("j" "↓" shr-next-link
+     :description (lambda () (casual-eww-unicode-get :next))
+     :transient t)
+    ("RET" "🚀" eww-follow-link
+     :description (lambda () (casual-eww-unicode-get :follow))
+     :transient t)]
+
+   ["Misc"
+    :pad-keys t
+    ("D" "Display›" casual-eww-display-tmenu)
+    ("R" "Readable" eww-readable)]]
+
+  ["URL"
+   :pad-keys t
+   [("M-l" "Open…" eww)
+    ("&" "Open External…" eww-browse-with-external-browser)]
+   [("c" "Copy" eww-copy-page-url)
+    ("A" "Copy Alt" eww-copy-alternate-url)]
+   [("d" "Download" eww-download)
+    ("g" "Reload" eww-reload
+     :description (lambda () (casual-eww-unicode-get :reload)))]]
+
+  ["EWW Bookmarks"
+   :class transient-row
+   ("b" "Add" eww-add-bookmark)
+   ("B" "List" eww-list-bookmarks)
+   ("M-n" "Next" eww-next-bookmark :transient t)
+   ("M-p" "Previous" eww-previous-bookmark :transient t)]
+
+  [:class transient-row
+          ("C-g" "Back" transient-quit-one
+           :description casual-lib--quit-one-suffix-label
+           :if-not casual-lib-hide-navigation-p)
+          ("," "Settings›" casual-eww-settings-tmenu)
+          ("I" "ⓘ" casual-eww-info)
+          ("J" "Jump to Bookmark…" bookmark-jump)
+          ("q" "Quit" quit-window)
+          ("C-q" "Dismiss" transient-quit-all
+           :if-not casual-lib-quit-all-hide-navigation-p)])
 
 ;;;###autoload (autoload 'casual-eww-bookmarks-tmenu "casual-eww" nil t)
 (transient-define-prefix casual-eww-bookmarks-tmenu ()
@@ -172,9 +175,9 @@ See Info node `(eww)Top' for more information on it."
     ("n" "Next" next-line :transient t)]]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("q" "Quit" quit-window)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("q" "Quit" quit-window)
+          (casual-lib-quit-all)])
 
 (provide 'casual-eww)
 ;;; casual-eww.el ends here

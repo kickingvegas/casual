@@ -44,15 +44,15 @@
    ["Display"
     ("f" "Use Fonts" casual-eww--customize-shr-use-fonts
      :description (lambda () (casual-lib-checkbox-label
-                         shr-use-fonts "Use Fonts"))
+                              shr-use-fonts "Use Fonts"))
      :transient t)
     ("c" "Use Colors" casual-eww--customize-shr-use-colors
      :description (lambda () (casual-lib-checkbox-label
-                         shr-use-colors "Use Colors"))
+                              shr-use-colors "Use Colors"))
      :transient t)
     ("i" "Inhibit Images" casual-eww--customize-shr-inhibit-images
      :description (lambda () (casual-lib-checkbox-label
-                         shr-inhibit-images "Inhibit Images"))
+                              shr-inhibit-images "Inhibit Images"))
      :transient t)]]
 
   ["General"
@@ -61,10 +61,10 @@
    (casual-lib-customize-hide-navigation)]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("a" "About" casual-eww-about :transient nil)
-   ("G" "EWW Group" casual-eww--customize-group)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("a" "About" casual-eww-about :transient nil)
+          ("G" "EWW Group" casual-eww--customize-group)
+          (casual-lib-quit-all)])
 
 (defun casual-eww--customize-group ()
   "Customize EWW group."

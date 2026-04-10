@@ -87,19 +87,19 @@ Main menu for `calendar' commands.
      :transient t)]]
 
   ["Region"
-    :class transient-row
-    ("C-SPC" "Set Mark" calendar-set-mark :transient t)
-    ("=" "Count Days" calendar-count-days-region :transient t)]
+   :class transient-row
+   ("C-SPC" "Set Mark" calendar-set-mark :transient t)
+   ("=" "Count Days" calendar-count-days-region :transient t)]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("," "Settings›" casual-calendar-settings-tmenu)
-   ("I" "ⓘ" (lambda ()
-              (interactive)
-              (calendar-exit)
-              (calendar-goto-info-node)))
-   ("RET" "Done" transient-quit-all)
-   ("q" "Quit" calendar-exit)])
+          (casual-lib-quit-one)
+          ("," "Settings›" casual-calendar-settings-tmenu)
+          ("I" "ⓘ" (lambda ()
+                     (interactive)
+                     (calendar-exit)
+                     (calendar-goto-info-node)))
+          ("RET" "Done" transient-quit-all)
+          ("q" "Quit" calendar-exit)])
 
 (provide 'casual-calendar)
 ;;; casual-calendar.el ends here

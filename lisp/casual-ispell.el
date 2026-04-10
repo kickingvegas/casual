@@ -54,8 +54,8 @@
     ("b" "Buffer" ispell-buffer)]
 
    [:if (lambda () (funcall casual-ispell-comment-or-string-predicate))
-    ("s" "String/Comment" ispell-comment-or-string-at-point)
-    ("c" "Comments & Strings" ispell-comments-and-strings)]
+        ("s" "String/Comment" ispell-comment-or-string-at-point)
+        ("c" "Comments & Strings" ispell-comments-and-strings)]
 
    [("TAB" "Complete Word" ispell-complete-word)
     ("SPC" "Complete Word Fragment" ispell-complete-word-interior-frag)]
@@ -63,12 +63,12 @@
    [("x" "Kill Ispell" ispell-kill-ispell)]]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("," "Settings" casual-ispell-settings-tmenu)
-   ("I" "ⓘ" casual-ispell-info)
-   ("D" "Change Dictionary…" ispell-change-dictionary)
-   ("RET" "Done" transient-quit-all)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("," "Settings" casual-ispell-settings-tmenu)
+          ("I" "ⓘ" casual-ispell-info)
+          ("D" "Change Dictionary…" ispell-change-dictionary)
+          ("RET" "Done" transient-quit-all)
+          (casual-lib-quit-all)])
 
 (provide 'casual-ispell)
 ;;; casual-ispell.el ends here

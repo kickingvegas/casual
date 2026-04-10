@@ -1,6 +1,6 @@
 ;;; casual-ibuffer-settings.el --- Casual IBuffer Settings -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025 Charles Y. Choi
+;; Copyright (C) 2024-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -31,11 +31,11 @@
   "Casual IBuffer settings menu."
   ["IBuffer: Settings"
    ["Customize"
-   ("f" "Saved Filters" casual-ibuffer--customize-ibuffer-saved-filters)
-   ("g" "Saved Filter Groups" casual-ibuffer--customize-ibuffer-saved-filter-groups)
-   ("G" "IBuffer Group" casual-ibuffer--customize-group)
-   (casual-lib-customize-unicode)
-   (casual-lib-customize-hide-navigation)]]
+    ("f" "Saved Filters" casual-ibuffer--customize-ibuffer-saved-filters)
+    ("g" "Saved Filter Groups" casual-ibuffer--customize-ibuffer-saved-filter-groups)
+    ("G" "IBuffer Group" casual-ibuffer--customize-group)
+    (casual-lib-customize-unicode)
+    (casual-lib-customize-hide-navigation)]]
 
   [:class transient-row
           ("a" "About" casual-ibuffer-about :transient nil)

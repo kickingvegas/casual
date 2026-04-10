@@ -198,10 +198,10 @@ Menu resizing an image."
 
    ["Options"
     ("g" "Geometry" "--geometry="
-    :always-read t
-    :allow-empty nil
-    :summary "ImageMagick geometry specifier."
-    :prompt "Geometry: ")
+     :always-read t
+     :allow-empty nil
+     :summary "ImageMagick geometry specifier."
+     :prompt "Geometry: ")
     ("o" "Output to another file" "--as"
      :summary "If enabled, then specify output file.")
 
@@ -212,10 +212,7 @@ Menu resizing an image."
   ["Command"
    ("r" "Resize" casual-image--resize :transient t)]
 
-  [:class transient-row
-   (casual-lib-quit-one)
-   ("RET" "Done" transient-quit-all)
-   (casual-lib-quit-all)])
+  casual-lib-navigation-group-with-return)
 
 (provide 'casual-image-utils)
 ;;; casual-image-utils.el ends here

@@ -1,6 +1,6 @@
 ;;; casual-dired-utils.el --- Casual Dired Utils Menu  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -63,20 +63,18 @@ ASCII-range string."
     ("e" "Emacs Lisp›" casual-dired-elisp-tmenu :transient nil)
     ("l" "Link›" casual-dired-link-tmenu :transient nil)]]
 
-  [:class transient-row
-          (casual-lib-quit-one)
-          (casual-lib-quit-all)])
+  casual-lib-navigation-group-plain)
 
 ;;;###autoload (autoload 'casual-dired-search-replace-tmenu "casual-dired-utils" nil t)
 (transient-define-prefix casual-dired-search-replace-tmenu ()
   ["Search & Replace"
    ["Search in Files"
-     :pad-keys t
-     ("C-s" "I-search…" dired-do-isearch)
-     ("M-s" "I-search regexp…" dired-do-isearch-regexp)
-     ("s" "Search first regexp match…" dired-do-search)]
+    :pad-keys t
+    ("C-s" "I-search…" dired-do-isearch)
+    ("M-s" "I-search regexp…" dired-do-isearch-regexp)
+    ("s" "Search first regexp match…" dired-do-search)]
    ["Replace in Files"
-     ("r" "Query regexp and replace…" dired-do-query-replace-regexp)]]
+    ("r" "Query regexp and replace…" dired-do-query-replace-regexp)]]
 
   ["grep-style regex"
    [("g" "Find regex…" dired-do-find-regexp)
@@ -84,9 +82,7 @@ ASCII-range string."
 
    [("f" "Find in files (rgrep)…" rgrep)]]
 
-  [:class transient-row
-          (casual-lib-quit-one)
-          (casual-lib-quit-all)])
+  casual-lib-navigation-group-plain)
 
 (transient-define-prefix casual-dired-elisp-tmenu ()
   ["Emacs Lisp"

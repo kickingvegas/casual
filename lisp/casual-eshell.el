@@ -53,7 +53,7 @@
     :if-not buffer-narrowed-p
     ("B" "#<buffer >…" eshell-insert-buffer-name)
     ("k" "Clear" eshell-kill-input
-    :description (lambda () (casual-eshell-unicode-get :clear)))
+     :description (lambda () (casual-eshell-unicode-get :clear)))
     ("h" "History" eshell-list-history)]
 
    ["Argument"
@@ -107,10 +107,10 @@
    ("Pq" "Quit" eshell-quit-process)]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("i" "ⓘ›" casual-eshell-info-tmenu)
-   ("," "Settings›" casual-eshell-settings-tmenu)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("i" "ⓘ›" casual-eshell-info-tmenu)
+          ("," "Settings›" casual-eshell-settings-tmenu)
+          (casual-lib-quit-all)])
 
 (transient-define-prefix casual-eshell-info-tmenu ()
   "Menu for Eshell Info."
@@ -133,9 +133,7 @@
     ("R" "Redirection" casual-eshell-info-redirection)
     ("p" "Pipelines" casual-eshell-info-pipelines)]]
 
-  [:class transient-row
-   (casual-lib-quit-one)
-   (casual-lib-quit-all)])
+  casual-lib-navigation-group-plain)
 
 (provide 'casual-eshell)
 ;;; casual-eshell.el ends here

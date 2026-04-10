@@ -1,6 +1,6 @@
 ;;; casual-calc-utils.el --- Casual Calc Utils       -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -124,28 +124,28 @@ Invokes command `calc-roll-down'."
 
 (transient-define-group casual-calc-operators-group
   ["Operators"
-    ("+" "add" casual-calc--plus :transient t)
-    ("-" "sub" casual-calc--minus :transient t)
-    ("*" "mul" casual-calc--times :transient t)
-    ("/" "div" casual-calc--divide :transient t)
-    ("%" "mod" casual-calc--mod :transient t)])
+   ("+" "add" casual-calc--plus :transient t)
+   ("-" "sub" casual-calc--minus :transient t)
+   ("*" "mul" casual-calc--times :transient t)
+   ("/" "div" casual-calc--divide :transient t)
+   ("%" "mod" casual-calc--mod :transient t)])
 
 (transient-define-group casual-calc-operators-group-row
   ["Operators"
    :class transient-row
-    ("+" "add" casual-calc--plus :transient t)
-    ("-" "sub" casual-calc--minus :transient t)
-    ("*" "mul" casual-calc--times :transient t)
-    ("/" "div" casual-calc--divide :transient t)
-    ("%" "mod" casual-calc--mod :transient t)])
+   ("+" "add" casual-calc--plus :transient t)
+   ("-" "sub" casual-calc--minus :transient t)
+   ("*" "mul" casual-calc--times :transient t)
+   ("/" "div" casual-calc--divide :transient t)
+   ("%" "mod" casual-calc--mod :transient t)])
 
 (transient-define-group casual-calc-basic-operators-group
   ["Operators"
-    ("+" "add" casual-calc--plus :transient t)
-    ("-" "sub" casual-calc--minus :transient t)
-    ("*" "mul" casual-calc--times :transient t)
-    ("/" "div" casual-calc--divide :transient t)
-    ("M" "mod" casual-calc--mod :transient t)])
+   ("+" "add" casual-calc--plus :transient t)
+   ("-" "sub" casual-calc--minus :transient t)
+   ("*" "mul" casual-calc--times :transient t)
+   ("/" "div" casual-calc--divide :transient t)
+   ("M" "mod" casual-calc--mod :transient t)])
 
 (transient-define-group casual-calc-navigation-group
   [:class transient-row

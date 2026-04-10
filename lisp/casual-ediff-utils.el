@@ -1,6 +1,6 @@
 ;;; casual-ediff-utils.el --- Casual Eshell Utils -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025 Charles Y. Choi
+;; Copyright (C) 2025, 2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -112,9 +112,9 @@ the current buffer."
   (when (and (bound-and-true-p buffer-file-name)
              (vc-registered (buffer-file-name)))
     (if (and (buffer-modified-p)
-	     (yes-or-no-p (format "Buffer %s is modified.  Save buffer? " ; if the user prefers y-or-no-p, the should yet use-short-answers, but otherwise you shouldn't force short answers on them 
-				  (buffer-name))))
-      (save-buffer (current-buffer)))
+             (yes-or-no-p (format "Buffer %s is modified.  Save buffer? " ; if the user prefers y-or-no-p, the should yet use-short-answers, but otherwise you shouldn't force short answers on them
+                                  (buffer-name))))
+        (save-buffer (current-buffer)))
     (message buffer-file-name)
     (casual-ediff--internal-last-revision))
 

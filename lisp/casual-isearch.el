@@ -1,6 +1,6 @@
 ;;; casual-isearch.el --- Transient UI for I-Search -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2023-2024-2025  Charles Y. Choi
+;; Copyright (C) 2023-2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: wp
@@ -64,32 +64,32 @@
     ("X" "Regexp searching (edit)"
      isearch-toggle-regexp
      :description (lambda () (casual-lib-checkbox-label isearch-regexp
-                                                   "Regexp search")))
+                                                        "Regexp search")))
 
     ("S" "Symbol searching (edit)"
      isearch-toggle-symbol
      :description (lambda () (casual-lib-checkbox-label
-                         (eq isearch-regexp-function #'isearch-symbol-regexp)
-                         "Symbol search")))
+                              (eq isearch-regexp-function #'isearch-symbol-regexp)
+                              "Symbol search")))
 
     ("W" "Word searching (edit)"
      isearch-toggle-word
      :description (lambda () (casual-lib-checkbox-label
-                         (eq isearch-regexp-function #'word-search-regexp)
-                         "Word search")))
+                              (eq isearch-regexp-function #'word-search-regexp)
+                              "Word search")))
 
     ("F" "Case fold"
      isearch-toggle-case-fold
      :description (lambda () (casual-lib-checkbox-label
-                         isearch-case-fold-search
-                         "Case insensitive")))
+                              isearch-case-fold-search
+                              "Case insensitive")))
     ("L" "Lax whitespace"
      isearch-toggle-lax-whitespace
      :description (lambda () (casual-lib-checkbox-label
-                         (if isearch-regexp
-                             isearch-regexp-lax-whitespace
-                           isearch-lax-whitespace)
-                         "Lax whitespace")))]
+                              (if isearch-regexp
+                                  isearch-regexp-lax-whitespace
+                                isearch-lax-whitespace)
+                              "Lax whitespace")))]
 
    ["Misc"
     ("o" "Occur" isearch-occur)

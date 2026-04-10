@@ -66,10 +66,10 @@ plain ASCII-range string."
 ;; Transient navigation group for Casual EditKit menus.
 (transient-define-group casual-editkit-navigation-group
   [:class transient-row
-   (casual-lib-quit-one)
-   ("U" "Undo" undo :transient t)
-   ("RET" "Done" transient-quit-all)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("U" "Undo" undo :transient t)
+          ("RET" "Done" transient-quit-all)
+          (casual-lib-quit-all)])
 
 ;; Transient cursor navigation group for Casual EditKit menus.
 (transient-define-group casual-editkit-cursor-navigation-group
