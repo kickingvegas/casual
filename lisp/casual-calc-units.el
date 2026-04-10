@@ -1,6 +1,6 @@
 ;;; casual-calc-units.el --- Casual Units                 -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -31,14 +31,14 @@
 (transient-define-prefix casual-calc-units-tmenu ()
   "Casual unit conversions menu."
   [["Unit Conversions"
-   ("c" "Convert" calc-convert-units :transient t)
-   ("t" "Convert Temperature" calc-convert-temperature :transient t)
-   ("b" "Convert to Base Unit" calc-base-units :transient t)
-   ;; TODO: display current autorange state
-   ;;("a" "Autorange" calc-autorange-units :transient t)
-   ("r" "Remove Units" calc-remove-units :transient t)
-   ("x" "Extract Units" calc-extract-units :transient t)
-   ("v" "View Units" calc-view-units-table :transient t)]
+    ("c" "Convert" calc-convert-units :transient t)
+    ("t" "Convert Temperature" calc-convert-temperature :transient t)
+    ("b" "Convert to Base Unit" calc-base-units :transient t)
+    ;; TODO: display current autorange state
+    ;;("a" "Autorange" calc-autorange-units :transient t)
+    ("r" "Remove Units" calc-remove-units :transient t)
+    ("x" "Extract Units" calc-extract-units :transient t)
+    ("v" "View Units" calc-view-units-table :transient t)]
    casual-calc-operators-group]
 
   casual-calc-navigation-group)

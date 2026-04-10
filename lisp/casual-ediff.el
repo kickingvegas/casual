@@ -1,6 +1,6 @@
 ;;; casual-ediff.el --- Transient UI for Eshell -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Y. Choi
+;; Copyright (C) 2025-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -51,21 +51,21 @@
   [["A"
     :pad-keys t
     :description (lambda () (casual-ediff--buffer-description
-                        ediff-buffer-A
-                        "A"
-                        (not ediff-buffer-C)))
+                             ediff-buffer-A
+                             "A"
+                             (not ediff-buffer-C)))
     ("ab" "A→B" ediff-copy-A-to-B
      :transient t
      :if (lambda () (and
-                (not ediff-buffer-C)
-                ediff-buffer-B
-                (not (casual-ediff--buffer-read-only-p ediff-buffer-B)))))
+                     (not ediff-buffer-C)
+                     ediff-buffer-B
+                     (not (casual-ediff--buffer-read-only-p ediff-buffer-B)))))
 
     ("ac" "A→C" ediff-copy-A-to-C
      :transient t
      :if (lambda () (and
-                ediff-buffer-C
-                (not (casual-ediff--buffer-read-only-p ediff-buffer-C)))))
+                     ediff-buffer-C
+                     (not (casual-ediff--buffer-read-only-p ediff-buffer-C)))))
 
     ("ra" "Restore A"
      (lambda ()
@@ -74,8 +74,8 @@
        (casual-ediff--restore-and-save-diff ?a))
      :transient t
      :if (lambda () (and
-                (or ediff-buffer-B ediff-buffer-C)
-                (not (casual-ediff--buffer-read-only-p ediff-buffer-A)))))
+                     (or ediff-buffer-B ediff-buffer-C)
+                     (not (casual-ediff--buffer-read-only-p ediff-buffer-A)))))
 
     ("wa" "Save A"
      (lambda ()
@@ -84,8 +84,8 @@
        (casual-ediff--save-buffer ?a))
      :transient t
      :if (lambda () (and
-                (or ediff-buffer-B ediff-buffer-C)
-                (not (casual-ediff--buffer-read-only-p ediff-buffer-A))))
+                     (or ediff-buffer-B ediff-buffer-C)
+                     (not (casual-ediff--buffer-read-only-p ediff-buffer-A))))
      :inapt-if-not (lambda () (buffer-modified-p ediff-buffer-A)))]
 
    ;; !!!: A diff B
@@ -125,13 +125,13 @@
     ("ba" "A←B" ediff-copy-B-to-A
      :transient t
      :if (lambda () (and
-                (not (casual-ediff--buffer-read-only-p ediff-buffer-A)))))
+                     (not (casual-ediff--buffer-read-only-p ediff-buffer-A)))))
 
     ("bc" "B→C" ediff-copy-B-to-C
      :transient t
      :if (lambda () (and
-                ediff-buffer-C
-                (not (casual-ediff--buffer-read-only-p ediff-buffer-C)))))
+                     ediff-buffer-C
+                     (not (casual-ediff--buffer-read-only-p ediff-buffer-C)))))
 
     ("rb" "Restore B"
      (lambda ()
@@ -140,10 +140,10 @@
        (casual-ediff--restore-and-save-diff ?b))
      :transient t
      :if (lambda () (and
-                ediff-buffer-B
-                (not (casual-ediff--buffer-read-only-p ediff-buffer-B))
-                (not (string= (file-name-extension (buffer-name ediff-buffer-B))
-                              "~{index}")))))
+                     ediff-buffer-B
+                     (not (casual-ediff--buffer-read-only-p ediff-buffer-B))
+                     (not (string= (file-name-extension (buffer-name ediff-buffer-B))
+                                   "~{index}")))))
 
     ("wb" "Save B"
      (lambda ()
@@ -152,9 +152,9 @@
        (casual-ediff--save-buffer ?b))
      :transient t
      :if (lambda () (and
-                (not (casual-ediff--buffer-read-only-p ediff-buffer-B))
-                (not (string= (file-name-extension (buffer-name ediff-buffer-B))
-                              "~{index}"))))
+                     (not (casual-ediff--buffer-read-only-p ediff-buffer-B))
+                     (not (string= (file-name-extension (buffer-name ediff-buffer-B))
+                                   "~{index}"))))
      :inapt-if-not (lambda () (buffer-modified-p ediff-buffer-B)))]
 
    ;; !!!: A B diff C
@@ -194,14 +194,14 @@
     ("cb" "B←C" ediff-copy-C-to-B
      :transient t
      :if (lambda () (and
-                (not (casual-ediff--buffer-read-only-p ediff-buffer-B))
-                (not (string= (file-name-extension (buffer-name ediff-buffer-B))
-                              "~{index}")))))
+                     (not (casual-ediff--buffer-read-only-p ediff-buffer-B))
+                     (not (string= (file-name-extension (buffer-name ediff-buffer-B))
+                                   "~{index}")))))
 
     ("ca" "A←C" ediff-copy-C-to-A
      :transient t
      :if (lambda () (and
-                (not (casual-ediff--buffer-read-only-p ediff-buffer-A)))))
+                     (not (casual-ediff--buffer-read-only-p ediff-buffer-A)))))
 
     ("mab" "Merge A,B to C" casual-ediff-copy-AB-to-C
      :transient t
@@ -244,11 +244,11 @@ reply with no."
              nil)))]]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("i" "Status" ediff-status-info)
-   ("I" "ⓘ" ediff-documentation)
-   ("," "Settings" casual-ediff-settings-tmenu)
-   ("q" "Quit Ediff" ediff-quit)])
+          (casual-lib-quit-one)
+          ("i" "Status" ediff-status-info)
+          ("I" "ⓘ" ediff-documentation)
+          ("," "Settings" casual-ediff-settings-tmenu)
+          ("q" "Quit Ediff" ediff-quit)])
 
 ;;;###autoload (autoload 'casual-ediff-install "casual-ediff" nil t)
 (defun casual-ediff-install ()

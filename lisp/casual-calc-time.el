@@ -1,6 +1,6 @@
 ;;; casual-calc-time.el --- Casual Time Menu              -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -35,9 +35,9 @@
   (interactive)
   (unless (derived-mode-p 'calc-mode) (error "Not in calc mode"))
   (let* ((ts (org-read-date t nil nil nil nil
-                           (format-time-string
-                            "%H:%M"
-                            (current-time))))
+                            (format-time-string
+                             "%H:%M"
+                             (current-time))))
          (calc-ts (math-parse-date ts)))
     (calc-push calc-ts)))
 

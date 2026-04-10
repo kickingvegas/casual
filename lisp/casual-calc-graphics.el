@@ -1,6 +1,6 @@
 ;;; casual-calc-graphics.el --- Casual Graphics Functions  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -364,7 +364,7 @@ This string name is used in the canvas legend (key)."
    ["Utils"
     ("g" "Settings›" casual-calc-graph-settings-tmenu :transient nil)
     ("p" "Print" calc-graph-print
-     ;:description (lambda () (format "Print (%s)…" calc-gnuplot-print-device))
+                                        ;:description (lambda () (format "Print (%s)…" calc-gnuplot-print-device))
      :transient nil)
     ("C" "Raw Command…" calc-graph-command :transient nil)]
    casual-calc-operators-group]
@@ -447,13 +447,13 @@ This string name is used in the canvas legend (key)."
 (transient-define-prefix casual-calc-graph-settings-tmenu ()
   "Graphics settings menu."
   ["Graphics Settings"
-    ("d" "Set Device…" calc-graph-device
-     ;:description (lambda () (format "Device (%s)…" calc-gnuplot-default-device)) this variable only initializes.
-     :transient nil)
-    ("o" "Set Output File…" calc-graph-output
-     ;:description (lambda () (format "Output (%s)…" calc-gnuplot-default-output))
-     :transient nil)
-    ("Q" "Quit Gnuplot Session" calc-graph-quit :transient nil)]
+   ("d" "Set Device…" calc-graph-device
+                                        ;:description (lambda () (format "Device (%s)…" calc-gnuplot-default-device)) this variable only initializes.
+    :transient nil)
+   ("o" "Set Output File…" calc-graph-output
+                                        ;:description (lambda () (format "Output (%s)…" calc-gnuplot-default-output))
+    :transient nil)
+   ("Q" "Quit Gnuplot Session" calc-graph-quit :transient nil)]
 
   casual-calc-navigation-group)
 

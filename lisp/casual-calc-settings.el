@@ -1,6 +1,6 @@
 ;;; casual-calc-settings.el --- Casual Settings Menu      -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -44,7 +44,7 @@
     ("z" "Leading Zeroes" calc-leading-zeros
      :description (lambda ()
                     (casual-lib-checkbox-label calc-leading-zeros
-                                            "Leading Zeroes"))
+                                               "Leading Zeroes"))
      :transient t)
 
     ("F" calc-frac-mode :description casual-calc-prefer-frac-label :transient t)
@@ -63,7 +63,7 @@
     ("I" "Infinite Mode" casual-calc--infinite-mode
      :description (lambda ()
                     (casual-lib-checkbox-label calc-infinite-mode
-                                            "Infinite Mode"))
+                                               "Infinite Mode"))
      :transient t)]
 
    ["Angular Measure"
@@ -87,7 +87,7 @@
      ;; TODO calc-group-digits can actually be an int 😦
      :description (lambda ()
                     (casual-lib-checkbox-label calc-group-digits
-                                            "Show Thousands Separators"))
+                                               "Show Thousands Separators"))
      :transient t)
     ("," "Thousands Separator…" calc-group-char
      :description (lambda ()

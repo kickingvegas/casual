@@ -186,10 +186,10 @@ Commands pertaining to project operations can be accessed here."
 
   ["Project"
    :class transient-row
-    ("s" "Switch…" project-switch-project)
-    ("b" "List buffers" project-list-buffers)
-    ("k" "Kill buffers" project-kill-buffers)
-    ("F" "Forget" project-forget-project)]
+   ("s" "Switch…" project-switch-project)
+   ("b" "List buffers" project-list-buffers)
+   ("k" "Kill buffers" project-kill-buffers)
+   ("F" "Forget" project-forget-project)]
 
   casual-editkit-navigation-group)
 
@@ -204,7 +204,7 @@ Commands pertaining to editing operations can be accessed here."
     ("k" "Kill (Cut)›" casual-editkit-kill-tmenu
      :if-not casual-editkit-buffer-read-only-p)
     ("y" "Yank (Paste)" yank
-    :if-not (lambda () buffer-read-only))]
+     :if-not (lambda () buffer-read-only))]
 
    [("t" "Transpose›" casual-editkit-transpose-tmenu
      :if-not casual-editkit-buffer-read-only-p)
@@ -240,7 +240,7 @@ Commands pertaining to editing operations can be accessed here."
 
 ;;;###autoload (autoload 'casual-editkit-emoji-symbols-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-emoji-symbols-tmenu ()
-    "Menu for ‘Emoji & Symbols’ commands.
+  "Menu for ‘Emoji & Symbols’ commands.
 
 Commands pertaining to insert character operations can be
 accessed here. Included are commands for smart quotes and
@@ -574,7 +574,7 @@ accessed here."
 
 ;;;###autoload (autoload 'casual-editkit-bookmarks-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-bookmarks-tmenu ()
-    "Menu for ‘Bookmarks’ commands.
+  "Menu for ‘Bookmarks’ commands.
 
 Commands pertaining to bookmark operations can be
 accessed here."
@@ -615,7 +615,7 @@ accessed here."
 
 ;;;###autoload (autoload 'casual-editkit-tools-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-tools-tmenu ()
-    "Menu for ‘Tools’ commands.
+  "Menu for ‘Tools’ commands.
 
 Commands pertaining to invoking different tools can be accessed here."
   ["Tools"
@@ -633,8 +633,8 @@ Commands pertaining to invoking different tools can be accessed here."
     ("cc" "Calc" calc)
     ("re" "RE-Builder" re-builder)
     ("wc" "Word Count" (lambda ()
-                        (interactive)
-                        (call-interactively #'count-words)))]
+                         (interactive)
+                         (call-interactively #'count-words)))]
 
    ["Almanac"
     :pad-keys t
@@ -808,15 +808,15 @@ accessed here."
 
   ["Configure"
    ("a" "Auto-fill Mode" auto-fill-mode
-     :description (lambda ()
-                    (casual-lib-checkbox-label auto-fill-function "Auto-fill Mode")))
+    :description (lambda ()
+                   (casual-lib-checkbox-label auto-fill-function "Auto-fill Mode")))
    ("d" "Double Space" casual-editkit--customize-sentence-end-double-space
-     :description (lambda ()
-                    (casual-lib-checkbox-label sentence-end-double-space "Double Space Sentences")))
+    :description (lambda ()
+                   (casual-lib-checkbox-label sentence-end-double-space "Double Space Sentences")))
 
    ("C" "Fill Column" set-fill-column
-     :description (lambda ()
-                    (format "Fill Column (%d)" fill-column)))]
+    :description (lambda ()
+                   (format "Fill Column (%d)" fill-column)))]
   casual-editkit-navigation-group)
 
 ;;;###autoload (autoload 'casual-editkit-narrow-tmenu "casual-editkit-utils" nil t)
@@ -997,7 +997,7 @@ that supports the arguments ‘--backward’ and ‘--regexp’."
             (call-interactively #'search-backward-regexp)
           (call-interactively #'search-backward))
       (if regexp
-            (call-interactively #'search-forward-regexp)
+          (call-interactively #'search-forward-regexp)
         (call-interactively #'search-forward)))))
 
 
@@ -1032,7 +1032,7 @@ that supports the arguments ‘--backward’ and ‘--regexp’."
             (call-interactively #'isearch-backward-regexp)
           (call-interactively #'isearch-backward))
       (if regexp
-            (call-interactively #'isearch-forward-regexp)
+          (call-interactively #'isearch-forward-regexp)
         (call-interactively #'isearch-forward)))))
 
 

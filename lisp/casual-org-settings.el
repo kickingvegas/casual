@@ -172,10 +172,10 @@ Always choose love."
    (casual-lib-customize-hide-navigation)]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("a" "About" casual-org-about :transient nil)
-   ("RET" "Done" transient-quit-all)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("a" "About" casual-org-about :transient nil)
+          ("RET" "Done" transient-quit-all)
+          (casual-lib-quit-all)])
 
 (transient-define-prefix casual-org-settings-heading-tmenu ()
   "Customize Org heading settings."
@@ -211,10 +211,10 @@ Always choose love."
    ["Hide"
     ("s" "Leading Stars" casual-org--customize-hide-leading-stars
      :description (lambda () (casual-lib-checkbox-label org-hide-leading-stars
-                                                   "Hide Leading Stars")))
+                                                        "Hide Leading Stars")))
     ("e" "Emphasis Markers" casual-org--customize-hide-emphasis-markers
      :description (lambda () (casual-lib-checkbox-label org-hide-emphasis-markers
-                                                   "Hide Emphasis Markers")))]
+                                                        "Hide Emphasis Markers")))]
    ["Startup"
     ("f" "Folded" casual-org--customize-startup-folded
      :description (lambda () (format "Startup Folded (%s)" org-startup-folded)))
@@ -228,10 +228,10 @@ Always choose love."
   ["Casual Org Settings: Keyboard"
    ("s" "Support Shift Select" casual-org--customize-support-shift-select
     :description (lambda () (casual-lib-checkbox-label org-support-shift-select
-                                                  "Shift Select")))
+                                                       "Shift Select")))
    ("S" "Use Speed Commands" casual-org--customize-use-speed-commands
     :description (lambda () (casual-lib-checkbox-label org-use-speed-commands
-                                                  "Speed Commands")))]
+                                                       "Speed Commands")))]
   casual-lib-navigation-group-with-return)
 
 (transient-define-prefix casual-org-settings-clock-tmenu ()

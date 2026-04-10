@@ -139,12 +139,5 @@ plain ASCII-range string."
      :description (lambda () (casual-calendar-unicode-get :redraw))
      :transient t)]])
 
-;; Transient menu navigation group for calendar.
-(transient-define-group casual-calendar--menu-navigation-group
-  [:class transient-row
-   (casual-lib-quit-one)
-   ("RET" "Done" transient-quit-all)
-   (casual-lib-quit-all)])
-
 (provide 'casual-calendar-constants)
 ;;; casual-calendar-constants.el ends here

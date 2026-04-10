@@ -1,6 +1,6 @@
 ;;; casual-bookmarks.el --- Transient UI for Bookmarks -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -120,9 +120,7 @@
    ("n" "Name" casual-bookmarks-sortby-name :transient nil)
    ("m" "Last Modified" casual-bookmarks-sortby-modified :transient nil)
    ("c" "Creation Time" casual-bookmarks-sortby-creation :transient nil)]
-  [:class transient-row
-          (casual-lib-quit-one)
-          (casual-lib-quit-all)])
+  casual-lib-navigation-group-plain)
 
 (defun casual-bookmarks-add-bookmark-via-buffer (buffer)
   "Set a bookmark for an interactively selected BUFFER."
