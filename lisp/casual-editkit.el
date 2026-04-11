@@ -122,13 +122,13 @@ user-customized menu."
   ;; casual-editkit-cursor-navigation-group
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("r" "Registers›" casual-editkit-registers-tmenu)
-          ("U" "Undo" undo :transient t)
-          ("," "Settings›" casual-editkit-settings-tmenu)
-          ("RET" "Done" transient-quit-all)
-          (casual-lib-quit-all)
-          ("x" "Exit Emacs" save-buffers-kill-emacs)])
+   (casual-lib-quit-one)
+   ("r" "Registers›" casual-editkit-registers-tmenu)
+   ("U" "Undo" undo :transient t)
+   ("," "Settings›" casual-editkit-settings-tmenu)
+   ("RET" "Done" transient-quit-all)
+   (casual-lib-quit-all)
+   ("x" "Exit Emacs" save-buffers-kill-emacs)])
 
 (provide 'casual-editkit)
 ;;; casual-editkit.el ends here

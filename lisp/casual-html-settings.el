@@ -36,7 +36,7 @@
     ("t" "Tree-sitter Basic" casual-html--customize-html-ts-mode-indent-offset
      :if (lambda () (derived-mode-p 'html-ts-mode))
      :description (lambda () (format "Tree-sitter Basic (%d)"
-                                     html-ts-mode-indent-offset)))
+                                html-ts-mode-indent-offset)))
     ("A" "Attribute" casual-html--customize-sgml-attribute-offset
      :description (lambda () (format "Attribute (%d)" sgml-attribute-offset)))]
 
@@ -49,9 +49,9 @@
    (casual-lib-customize-hide-navigation)]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-html-about :transient nil)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("a" "About" casual-html-about :transient nil)
+   (casual-lib-quit-all)])
 
 (defun casual-html--customize-group-sgml ()
   "Customize SGML group."

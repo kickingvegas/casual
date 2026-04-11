@@ -70,15 +70,15 @@
      :transient t)]]
 
   [:class transient-row
-          ("p" "𝜋" casual-calc--pi
-           :description (lambda () (casual-calc-unicode-get :pi))
-           :transient t)
-          ("a" casual-calc-angle-measure-tmenu
-           :description (lambda ()
-                          (format "Angle Measure (now %s)›"
-                                  (casual-calc-angle-mode-label)))
-           :transient t)
-          ("h" "Hyperbolic›" casual-calc-hyperbolic-trig-tmenu)]
+   ("p" "𝜋" casual-calc--pi
+    :description (lambda () (casual-calc-unicode-get :pi))
+    :transient t)
+   ("a" casual-calc-angle-measure-tmenu
+    :description (lambda ()
+                   (format "Angle Measure (now %s)›"
+                           (casual-calc-angle-mode-label)))
+    :transient t)
+   ("h" "Hyperbolic›" casual-calc-hyperbolic-trig-tmenu)]
 
   casual-calc-operators-group-row
   casual-calc-navigation-group)

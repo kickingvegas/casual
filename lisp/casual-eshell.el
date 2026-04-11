@@ -107,10 +107,10 @@
    ("Pq" "Quit" eshell-quit-process)]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("i" "ⓘ›" casual-eshell-info-tmenu)
-          ("," "Settings›" casual-eshell-settings-tmenu)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("i" "ⓘ›" casual-eshell-info-tmenu)
+   ("," "Settings›" casual-eshell-settings-tmenu)
+   (casual-lib-quit-all)])
 
 (transient-define-prefix casual-eshell-info-tmenu ()
   "Menu for Eshell Info."

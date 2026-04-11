@@ -105,12 +105,12 @@
     :description (lambda () (format "%s…"
                                     (casual-agenda-unicode-get :jumpbookmark))))]
   [:class transient-row
-          (casual-lib-quit-one)
-          ("RET" "Open" org-agenda-switch-to)
-          ("C-/" "Undo" org-agenda-undo)
-          ("I" "ⓘ Info" org-info-find-node)
-          ("," "Settings›" casual-agenda-settings-tmenu)
-          ("q" "Quit" org-agenda-quit)])
+   (casual-lib-quit-one)
+   ("RET" "Open" org-agenda-switch-to)
+   ("C-/" "Undo" org-agenda-undo)
+   ("I" "ⓘ Info" org-info-find-node)
+   ("," "Settings›" casual-agenda-settings-tmenu)
+   ("q" "Quit" org-agenda-quit)])
 
 (transient-define-prefix casual-agenda-almanac-tmenu ()
   "Almanac menu."

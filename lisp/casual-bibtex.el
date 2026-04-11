@@ -1,6 +1,6 @@
 ;;; casual-bibtex.el --- Transient UI for BibTeX -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Y. Choi
+;; Copyright (C) 2025, 2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -135,11 +135,11 @@
     ("J" "Jump to Bookmark…" bookmark-jump)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("RET" "Edit" transient-quit-all)
-          ("U" "Undo" undo :transient t)
-          ("," "Settings›" casual-bibtex-settings-tmenu)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("RET" "Edit" transient-quit-all)
+   ("U" "Undo" undo :transient t)
+   ("," "Settings›" casual-bibtex-settings-tmenu)
+   (casual-lib-quit-all)])
 
 (provide 'casual-bibtex)
 ;;; casual-bibtex.el ends here

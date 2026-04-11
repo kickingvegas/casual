@@ -172,10 +172,10 @@ Always choose love."
    (casual-lib-customize-hide-navigation)]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-org-about :transient nil)
-          ("RET" "Done" transient-quit-all)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("a" "About" casual-org-about :transient nil)
+   ("RET" "Done" transient-quit-all)
+   (casual-lib-quit-all)])
 
 (transient-define-prefix casual-org-settings-heading-tmenu ()
   "Customize Org heading settings."

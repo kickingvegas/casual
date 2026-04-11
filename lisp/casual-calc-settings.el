@@ -114,10 +114,10 @@
     (casual-lib-customize-hide-navigation)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
+   (casual-lib-quit-one)
 
-          ("M-a" "About" casual-calc-about :transient nil)
-          (casual-lib-quit-all)])
+   ("M-a" "About" casual-calc-about :transient nil)
+   (casual-lib-quit-all)])
 
 
 (defun casual-calc--customize-group ()

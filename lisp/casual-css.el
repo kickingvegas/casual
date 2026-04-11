@@ -64,10 +64,10 @@ Transient menu to commands provided by `css-mode'."
      :transient t)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("," "Settings" casual-css-settings-tmenu)
-          ("RET" "Done" transient-quit-all)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("," "Settings" casual-css-settings-tmenu)
+   ("RET" "Done" transient-quit-all)
+   (casual-lib-quit-all)])
 
 (provide 'casual-css)
 ;;; casual-css.el ends here

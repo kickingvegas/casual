@@ -61,8 +61,8 @@ For more documentation, refer to the following links:
   :refresh-suffixes t
   ["Casual HTML"
    :description (lambda () (if (derived-mode-p 'html-ts-mode)
-                               "Casual HTML (Tree-sitter)"
-                             "Casual HTML"))
+                          "Casual HTML (Tree-sitter)"
+                        "Casual HTML"))
 
    ["</>"
     :inapt-if (lambda () (if buffer-read-only t nil))
@@ -101,11 +101,11 @@ For more documentation, refer to the following links:
     ("C-n" "↓" next-line :transient t)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("," "Settings" casual-html-settings-tmenu)
-          ("I" "ⓘ" casual-html-info)
-          ("RET" "Done" transient-quit-all)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("," "Settings" casual-html-settings-tmenu)
+   ("I" "ⓘ" casual-html-info)
+   ("RET" "Done" transient-quit-all)
+   (casual-lib-quit-all)])
 
 
 ;;;###autoload (autoload 'casual-html-tags-tmenu "casual-html" nil t)

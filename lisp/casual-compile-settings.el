@@ -52,9 +52,9 @@
     (casual-lib-customize-hide-navigation)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-compile-about :transient nil)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("a" "About" casual-compile-about :transient nil)
+   (casual-lib-quit-all)])
 
 (defun casual-compile--customize-group ()
   "Customize Compilefile group."

@@ -1,6 +1,6 @@
 ;;; casual-re-builder.el --- Transient UI for RE-Builder -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -87,14 +87,14 @@ regexp interactively.
    ("o" "Occur" casual-reb-occur)]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("i" "ⓘ Regexp Syntax" casual-re-builder-regexp-info
-           :if (lambda () (derived-mode-p 'reb-mode)))
-          ("i" "ⓘ Rx Notation" casual-re-builder-rx-info
-           :if (lambda () (derived-mode-p 'reb-lisp-mode)))
-          ("," "Settings" casual-re-builder-settings-tmenu)
-          ("q" "Quit" reb-quit)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("i" "ⓘ Regexp Syntax" casual-re-builder-regexp-info
+    :if (lambda () (derived-mode-p 'reb-mode)))
+   ("i" "ⓘ Rx Notation" casual-re-builder-rx-info
+    :if (lambda () (derived-mode-p 'reb-lisp-mode)))
+   ("," "Settings" casual-re-builder-settings-tmenu)
+   ("q" "Quit" reb-quit)
+   (casual-lib-quit-all)])
 
 (provide 'casual-re-builder)
 ;;; casual-re-builder.el ends here

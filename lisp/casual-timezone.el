@@ -36,9 +36,9 @@
    ("z" "Planner…" casual-timezone-planner)]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("," "Settings" casual-timezone-settings-tmenu)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("," "Settings" casual-timezone-settings-tmenu)
+   (casual-lib-quit-all)])
 
 (provide 'casual-timezone)
 ;;; casual-timezone.el ends here

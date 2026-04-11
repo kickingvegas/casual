@@ -44,9 +44,9 @@
     (casual-lib-customize-hide-navigation)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-ediff-about :transient nil)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("a" "About" casual-ediff-about :transient nil)
+   (casual-lib-quit-all)])
 
 (defun casual-ediff-customize-group ()
   "Customize Ediff group."

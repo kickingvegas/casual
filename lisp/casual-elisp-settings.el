@@ -32,9 +32,9 @@
    (casual-lib-customize-hide-navigation)]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-elisp-about :transient nil)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("a" "About" casual-elisp-about :transient nil)
+   (casual-lib-quit-all)])
 
 (defun casual-elisp-about-elisp ()
   "Casual Elisp is a Transient menu for `emacs-lisp-mode'.

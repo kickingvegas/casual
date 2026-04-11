@@ -109,12 +109,12 @@
     ("w" "Copy filename" image-mode-copy-file-name-as-kill :transient t)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("I" "Identify" casual-image--indentify-verbose)
-          ("," "Settings›" casual-image-settings-tmenu)
-          ("RET" "Done" transient-quit-all)
-          (casual-lib-quit-all)
-          ("q" "Quit View" quit-window)])
+   (casual-lib-quit-one)
+   ("I" "Identify" casual-image--indentify-verbose)
+   ("," "Settings›" casual-image-settings-tmenu)
+   ("RET" "Done" transient-quit-all)
+   (casual-lib-quit-all)
+   ("q" "Quit View" quit-window)])
 
 
 (provide 'casual-image)

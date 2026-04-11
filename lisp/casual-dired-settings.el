@@ -99,10 +99,10 @@
      :transient nil)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-dired-about :transient nil)
+   (casual-lib-quit-one)
+   ("a" "About" casual-dired-about :transient nil)
 
-          (casual-lib-quit-all)])
+   (casual-lib-quit-all)])
 
 ;;; Functions
 

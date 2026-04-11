@@ -820,30 +820,30 @@ Org 9.8."
 
    ;; !!!: org-in-src-block-p
    [:if (lambda () (and (casual-org-mode-p) (org-in-src-block-p)))
-        ("'" "Edit" org-edit-src-code :transient nil)]
+    ("'" "Edit" org-edit-src-code :transient nil)]
 
    [:if (lambda () (and (casual-org-mode-p) (org-in-src-block-p)))
-        ("C-c" "Eval" org-ctrl-c-ctrl-c
-         :if (lambda () (or (eq (org-element-type (org-element-context)) 'src-block)
-                            (eq (org-element-type (org-element-context)) 'dynamic-block)))
-         :transient t)]
+    ("C-c" "Eval" org-ctrl-c-ctrl-c
+     :if (lambda () (or (eq (org-element-type (org-element-context)) 'src-block)
+                        (eq (org-element-type (org-element-context)) 'dynamic-block)))
+     :transient t)]
 
    ;; !!!: org-at-property-drawer-p
    [:if (lambda () (and (casual-org-mode-p) (org-at-property-drawer-p)))
-        ("p" "Add Property…" org-set-property)]
+    ("p" "Add Property…" org-set-property)]
 
    ;; !!!: org-at-property-p
    [:if (lambda () (and (casual-org-mode-p) (org-at-property-p)))
-        ("p" "Add Property…" org-set-property)]
+    ("p" "Add Property…" org-set-property)]
 
    [:if (lambda () (and (casual-org-mode-p) (org-at-property-p)))
-        ("a" "Action…" org-property-action)]
+    ("a" "Action…" org-property-action)]
 
    ;; !!!: org-at-drawer-p
    [:if (lambda () (and (casual-org-mode-p)
                         (org-at-drawer-p)
                         (not (org-at-property-drawer-p))))
-        ("TAB" "Cycle…" org-cycle :transient t)]
+    ("TAB" "Cycle…" org-cycle :transient t)]
 
    ;; !!!: org-at-clock-log-p
    ["Clock"
@@ -873,49 +873,49 @@ Org 9.8."
                              (casual-org--keyword-description)))
    :inapt-if casual-lib-buffer-read-only-p
    [:if org-at-TBLFM-p
-        ("F" "Edit Formulas" org-table-edit-formulas :transient nil)]
+    ("F" "Edit Formulas" org-table-edit-formulas :transient nil)]
 
    [:if org-at-TBLFM-p
-        ("C-c" "Eval" org-table-recalculate-buffer-tables :transient nil)]
+    ("C-c" "Eval" org-table-recalculate-buffer-tables :transient nil)]
 
    ;; TODO: Does this apply to all affiliate keywords?
    [:if-not org-at-TBLFM-p
-            :inapt-if (lambda () (org-element-property :key (org-element-context)))
-            ("C-c" "Eval" org-ctrl-c-ctrl-c :transient nil)]])
+    :inapt-if (lambda () (org-element-property :key (org-element-context)))
+    ("C-c" "Eval" org-ctrl-c-ctrl-c :transient nil)]])
 
 
 (transient-define-group casual-org-navigation-group
   [:if casual-org-mode-p
-       ["Field"
-        :if org-at-table-p
-        ("M-a" "⇤" org-table-beginning-of-field
-         :description (lambda () (casual-org-unicode-get :beginning-of-field))
-         :transient t)]
+   ["Field"
+    :if org-at-table-p
+    ("M-a" "⇤" org-table-beginning-of-field
+     :description (lambda () (casual-org-unicode-get :beginning-of-field))
+     :transient t)]
 
-       [""
-        :if org-at-table-p
-        ("M-e" "⇥" org-table-end-of-field
-         :description (lambda () (casual-org-unicode-get :end-of-field))
-         :transient t)]
+   [""
+    :if org-at-table-p
+    ("M-e" "⇥" org-table-end-of-field
+     :description (lambda () (casual-org-unicode-get :end-of-field))
+     :transient t)]
 
-       ["Mark"
-        :if-not (lambda () (or (org-at-keyword-p)
-                               (org-at-table-p)
-                               (org-at-block-p)))
-        ("ms" "Subtree" org-mark-subtree)]
+   ["Mark"
+    :if-not (lambda () (or (org-at-keyword-p)
+                           (org-at-table-p)
+                           (org-at-block-p)))
+    ("ms" "Subtree" org-mark-subtree)]
 
-       [""
-        :if-not (lambda () (or (org-at-keyword-p)
-                               (org-at-table-p)
-                               (org-at-block-p)))
-        ("me" "Element" org-mark-element)]
+   [""
+    :if-not (lambda () (or (org-at-keyword-p)
+                           (org-at-table-p)
+                           (org-at-block-p)))
+    ("me" "Element" org-mark-element)]
 
-       ["Util"
-        ("v" "Copy Visible"
-         org-copy-visible
-         :inapt-if-not (lambda () (use-region-p)))]
-       [""
-        ("e" "Export…" org-export-dispatch)]])
+   ["Util"
+    ("v" "Copy Visible"
+     org-copy-visible
+     :inapt-if-not (lambda () (use-region-p)))]
+   [""
+    ("e" "Export…" org-export-dispatch)]])
 
 
 

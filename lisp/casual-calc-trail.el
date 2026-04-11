@@ -1,6 +1,6 @@
 ;;; casual-calc-trail.el --- Casual Trail Menu            -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -52,9 +52,9 @@
     ("k" "Kill Selected" calc-trail-kill :transient t)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("s" "Save Settings" calc-save-modes :transient t)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("s" "Save Settings" calc-save-modes :transient t)
+   (casual-lib-quit-all)])
 
 (provide 'casual-calc-trail)
 ;;; casual-calc-trail.el ends here
