@@ -51,11 +51,11 @@
   :refresh-suffixes t
   ["Casual CSV"
    :description (lambda () (format
-                            "Casual CSV: %s [%d,%d] %s"
-                            (buffer-name)
-                            (line-number-at-pos)
-                            (csv--field-index)
-                            (capitalize (symbol-name csv-align-style))))
+                       "Casual CSV: %s [%d,%d] %s"
+                       (buffer-name)
+                       (line-number-at-pos)
+                       (csv--field-index)
+                       (capitalize (symbol-name csv-align-style))))
    :pad-keys t
 
    ["Navigation"
@@ -126,11 +126,11 @@
      :inapt-if-not use-region-p)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("," "Settings" casual-csv-settings-tmenu)
-          ("RET" "Done" transient-quit-all)
-          (casual-lib-quit-all)
-          ("q" "Quit" quit-window)])
+   (casual-lib-quit-one)
+   ("," "Settings" casual-csv-settings-tmenu)
+   ("RET" "Done" transient-quit-all)
+   (casual-lib-quit-all)
+   ("q" "Quit" quit-window)])
 
 (provide 'casual-csv)
 ;;; casual-csv.el ends here

@@ -36,9 +36,9 @@
     (casual-lib-customize-hide-navigation)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-ispell-about :transient nil)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("a" "About" casual-ispell-about :transient nil)
+   (casual-lib-quit-all)])
 
 (defun casual-ispell--customize-group ()
   "Customize Ispell group."

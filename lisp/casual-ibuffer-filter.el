@@ -163,17 +163,17 @@ The value from `ibuffer-saved-filter-groups' is used."
     ("\\" "Clear all" ibuffer-clear-filter-groups :transient t)]]
 
   [:class transient-row
-          ("C-g" "Back" transient-quit-one
-           :description casual-lib--quit-one-suffix-label
-           :if-not casual-lib-hide-navigation-p)
-          ("," "Settings›" casual-ibuffer-settings-tmenu)
-          ("RET" "Visit/Toggle" casual-ibuffer-return-dwim)
-          ("$" "Toggle Group" ibuffer-toggle-filter-group
-           :description (lambda () (format "Toggle %s" (casual-ibuffer-unicode-get :group)))
-           :inapt-if-not (lambda () (casual-ibuffer-filter-group-p))
-           :transient t)
-          ("C-q" "Dismiss" transient-quit-all
-           :if-not casual-lib-quit-all-hide-navigation-p)])
+   ("C-g" "Back" transient-quit-one
+    :description casual-lib--quit-one-suffix-label
+    :if-not casual-lib-hide-navigation-p)
+   ("," "Settings›" casual-ibuffer-settings-tmenu)
+   ("RET" "Visit/Toggle" casual-ibuffer-return-dwim)
+   ("$" "Toggle Group" ibuffer-toggle-filter-group
+    :description (lambda () (format "Toggle %s" (casual-ibuffer-unicode-get :group)))
+    :inapt-if-not (lambda () (casual-ibuffer-filter-group-p))
+    :transient t)
+   ("C-q" "Dismiss" transient-quit-all
+    :if-not casual-lib-quit-all-hide-navigation-p)])
 
 (provide 'casual-ibuffer-filter)
 ;;; casual-ibuffer-filter.el ends here

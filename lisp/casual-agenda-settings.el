@@ -1,6 +1,6 @@
 ;;; casual-agenda-settings.el --- Casual Agenda Settings -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025 Charles Y. Choi
+;; Copyright (C) 2024-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -106,10 +106,10 @@ Always choose love."
     (casual-lib-customize-hide-navigation)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-agenda-about :transient nil)
+   (casual-lib-quit-one)
+   ("a" "About" casual-agenda-about :transient nil)
 
-          (casual-lib-quit-all)])
+   (casual-lib-quit-all)])
 
 
 (defun casual-agenda-customize-ampm ()

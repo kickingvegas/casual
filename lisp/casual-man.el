@@ -117,16 +117,16 @@
    ("J" "Jump…" bookmark-jump)]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("m" "Man…" man)
-          ("u" "Update" Man-update-manpage
-           :description (lambda () (casual-man-unicode-get :update)))
-          ("," "Settings" casual-man-settings-tmenu)
-          ("I" "ⓘ" casual-man-info)
-          ("K" "Close" Man-kill
-           :description (lambda () (casual-man-unicode-get :kill)))
-          ("q" "Quit" quit-window)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("m" "Man…" man)
+   ("u" "Update" Man-update-manpage
+    :description (lambda () (casual-man-unicode-get :update)))
+   ("," "Settings" casual-man-settings-tmenu)
+   ("I" "ⓘ" casual-man-info)
+   ("K" "Close" Man-kill
+    :description (lambda () (casual-man-unicode-get :kill)))
+   ("q" "Quit" quit-window)
+   (casual-lib-quit-all)])
 
 (provide 'casual-man)
 ;;; casual-man.el ends here

@@ -149,13 +149,13 @@ Invokes command `calc-roll-down'."
 
 (transient-define-group casual-calc-navigation-group
   [:class transient-row
-          (casual-lib-quit-one)
-          (casual-calc-algebraic-entry)
-          (casual-calc-enter)
-          (casual-calc-roll-down)
-          (casual-calc-pop)
-          (casual-calc-undo-suffix)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   (casual-calc-algebraic-entry)
+   (casual-calc-enter)
+   (casual-calc-roll-down)
+   (casual-calc-pop)
+   (casual-calc-undo-suffix)
+   (casual-lib-quit-all)])
 
 (defun casual-calc--percent-of ()
   "Apply percentage at top of stack (1:) to value above it (2:).

@@ -1,6 +1,6 @@
 ;;; casual-calc-radix.el --- Casual Radix Menu            -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -37,11 +37,11 @@
    ("6" "Hexadecimal" calc-hex-radix :transient nil)
    ("n" "Other base 𝑛" calc-radix :transient nil)]
   [:class transient-row
-          (casual-lib-quit-one)
-          (casual-calc-algebraic-entry)
-          (casual-calc-pop)
-          (casual-calc-undo-suffix)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   (casual-calc-algebraic-entry)
+   (casual-calc-pop)
+   (casual-calc-undo-suffix)
+   (casual-lib-quit-all)])
 
 (provide 'casual-calc-radix)
 ;;; casual-calc-radix.el ends here

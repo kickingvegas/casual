@@ -57,13 +57,13 @@
      :description (lambda () (format "Max (%d)" csv-align-max-width)))]]
 
   [:class transient-row
-          (casual-lib-customize-unicode)
-          (casual-lib-customize-hide-navigation)]
+   (casual-lib-customize-unicode)
+   (casual-lib-customize-hide-navigation)]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-csv-about)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("a" "About" casual-csv-about)
+   (casual-lib-quit-all)])
 
 
 ;; -------------------------------------------------------------------

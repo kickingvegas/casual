@@ -147,15 +147,15 @@
     ("C-M-r" "Query Replace Regexp…" ibuffer-do-query-replace-regexp)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("RET" "Visit/Toggle" casual-ibuffer-return-dwim
-           :description (lambda () (if (casual-ibuffer-filter-group-p)
-                                       "Toggle"
-                                     "Visit")))
-          ("," "Settings›" casual-ibuffer-settings-tmenu)
-          ("J" "Jump to Bookmark…" bookmark-jump :transient nil)
-          (casual-lib-quit-all)
-          ("q" "Quit IBuffer" quit-window)])
+   (casual-lib-quit-one)
+   ("RET" "Visit/Toggle" casual-ibuffer-return-dwim
+    :description (lambda () (if (casual-ibuffer-filter-group-p)
+                                "Toggle"
+                              "Visit")))
+   ("," "Settings›" casual-ibuffer-settings-tmenu)
+   ("J" "Jump to Bookmark…" bookmark-jump :transient nil)
+   (casual-lib-quit-all)
+   ("q" "Quit IBuffer" quit-window)])
 
 
 (transient-define-prefix casual-ibuffer-operations-tmenu ()
@@ -186,9 +186,9 @@
    [("i" "Invert" ibuffer-invert-sorting)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("," "Cycle Sort" ibuffer-toggle-sorting-mode)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("," "Cycle Sort" ibuffer-toggle-sorting-mode)
+   (casual-lib-quit-all)])
 
 (transient-define-prefix casual-ibuffer-mark-tmenu ()
   ["IBuffer: Mark"
@@ -205,9 +205,9 @@
     ("z" "Compressed" ibuffer-mark-compressed-file-buffers)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("U" "Unmark All" ibuffer-unmark-all-marks :transient t)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("U" "Unmark All" ibuffer-unmark-all-marks :transient t)
+   (casual-lib-quit-all)])
 
 (transient-define-prefix casual-ibuffer-mark-regexp-tmenu ()
   ["IBuffer: Mark Regexp"
@@ -216,9 +216,9 @@
    ("m" "Mode" ibuffer-mark-by-mode-regexp)
    ("c" "Content" ibuffer-mark-by-content-regexp)]
   [:class transient-row
-          (casual-lib-quit-one)
-          ("U" "Unmark All" ibuffer-unmark-all-marks :transient t)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("U" "Unmark All" ibuffer-unmark-all-marks :transient t)
+   (casual-lib-quit-all)])
 
 (provide 'casual-ibuffer)
 ;;; casual-ibuffer.el ends here

@@ -244,11 +244,11 @@ reply with no."
              nil)))]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("i" "Status" ediff-status-info)
-          ("I" "ⓘ" ediff-documentation)
-          ("," "Settings" casual-ediff-settings-tmenu)
-          ("q" "Quit Ediff" ediff-quit)])
+   (casual-lib-quit-one)
+   ("i" "Status" ediff-status-info)
+   ("I" "ⓘ" ediff-documentation)
+   ("," "Settings" casual-ediff-settings-tmenu)
+   ("q" "Quit Ediff" ediff-quit)])
 
 ;;;###autoload (autoload 'casual-ediff-install "casual-ediff" nil t)
 (defun casual-ediff-install ()
