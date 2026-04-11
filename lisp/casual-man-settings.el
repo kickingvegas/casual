@@ -1,6 +1,6 @@
 ;;; casual-man-settings.el --- Casual Man Settings -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025 Charles Y. Choi
+;; Copyright (C) 2025-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -37,9 +37,9 @@
     (casual-lib-customize-hide-navigation)]]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("a" "About" casual-man-about :transient nil)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("a" "About" casual-man-about :transient nil)
+          (casual-lib-quit-all)])
 
 (defun casual-man--customize-group ()
   "Customize Manfile group."

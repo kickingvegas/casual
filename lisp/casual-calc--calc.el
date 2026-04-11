@@ -1,6 +1,6 @@
 ;;; casual-calc--calc.el --- Casual Wrapped Calc Functions  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -32,7 +32,7 @@
 ;;(shortdoc-add-function 'casual "Constants" '(casual-calc--pi :no-manual))
 
 (defun casual-calc--round ()
-    "TODO: This function does not yet have a docstring.
+  "TODO: This function does not yet have a docstring.
 \nStack Arguments:
 1: n
 
@@ -41,11 +41,11 @@ This function is a wrapper over `calc-round'.
 * References
 - info node `(calc) Integer Truncation'
 - `calc-round'"
- (interactive)
- (call-interactively #'calc-round))
+  (interactive)
+  (call-interactively #'calc-round))
 
 (defun casual-calc--floor ()
-    "TODO: This function does not yet have a docstring.
+  "TODO: This function does not yet have a docstring.
 \nStack Arguments:
 1: n
 
@@ -54,11 +54,11 @@ This function is a wrapper over `calc-floor'.
 * References
 - info node `(calc) Integer Truncation'
 - `calc-floor'"
- (interactive)
- (call-interactively #'calc-floor))
+  (interactive)
+  (call-interactively #'calc-floor))
 
 (defun casual-calc--ceiling ()
-    "TODO: This function does not yet have a docstring.
+  "TODO: This function does not yet have a docstring.
 \nStack Arguments:
 1: n
 
@@ -67,11 +67,11 @@ This function is a wrapper over `calc-ceiling'.
 * References
 - info node `(calc) Integer Truncation'
 - `calc-ceiling'"
- (interactive)
- (call-interactively #'calc-ceiling))
+  (interactive)
+  (call-interactively #'calc-ceiling))
 
 (defun casual-calc--trunc ()
-    "TODO: This function does not yet have a docstring.
+  "TODO: This function does not yet have a docstring.
 \nStack Arguments:
 1: n
 
@@ -80,8 +80,8 @@ This function is a wrapper over `calc-trunc'.
 * References
 - info node `(calc) Integer Truncation'
 - `calc-trunc'"
- (interactive)
- (call-interactively #'calc-trunc))
+  (interactive)
+  (call-interactively #'calc-trunc))
 
 
 (defun casual-calc--plus ()
@@ -96,8 +96,8 @@ This function is a wrapper over `calc-plus'.
 * References
 - info node `(calc) Basic Arithmetic'
 - `calc-plus'"
- (interactive)
- (call-interactively #'calc-plus))
+  (interactive)
+  (call-interactively #'calc-plus))
 
 (defun casual-calc--minus ()
   "Subtract the top two numbers on the stack and leave the result at the top (a-b).
@@ -111,11 +111,11 @@ This function is a wrapper over `calc-minus'.
 * References
 - info node `(calc) Basic Arithmetic'
 - `calc-minus'"
- (interactive)
- (call-interactively #'calc-minus))
+  (interactive)
+  (call-interactively #'calc-minus))
 
 (defun casual-calc--times ()
-    "TODO: This function does not yet have a docstring.
+  "TODO: This function does not yet have a docstring.
 \nStack Arguments:
 1: n
 
@@ -124,11 +124,11 @@ This function is a wrapper over `calc-times'.
 * References
 - info node `(calc) Basic Arithmetic'
 - `calc-times'"
- (interactive)
- (call-interactively #'calc-times))
+  (interactive)
+  (call-interactively #'calc-times))
 
 (defun casual-calc--divide ()
-    "TODO: This function does not yet have a docstring.
+  "TODO: This function does not yet have a docstring.
 \nStack Arguments:
 1: n
 
@@ -137,11 +137,11 @@ This function is a wrapper over `calc-divide'.
 * References
 - info node `(calc) Basic Arithmetic'
 - `calc-divide'"
- (interactive)
- (call-interactively #'calc-divide))
+  (interactive)
+  (call-interactively #'calc-divide))
 
 (defun casual-calc--mod ()
-    "TODO: This function does not yet have a docstring.
+  "TODO: This function does not yet have a docstring.
 \nStack Arguments:
 1: n
 
@@ -150,8 +150,8 @@ This function is a wrapper over `calc-mod'.
 * References
 - info node `(calc) Basic Arithmetic'
 - `calc-mod'"
- (interactive)
- (call-interactively #'calc-mod))
+  (interactive)
+  (call-interactively #'calc-mod))
 
 (defun casual-calc--pi ()
   "Push the value of 𝜋 at the current precision onto the stack.

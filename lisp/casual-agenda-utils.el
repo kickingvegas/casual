@@ -1,6 +1,6 @@
 ;;; casual-agenda-utils.el --- Casual Agenda Utils -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025 Charles Y. Choi
+;; Copyright (C) 2024-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -58,67 +58,67 @@ plain ASCII-range string."
 ;; Casual Agenda menu navigation group.
 (transient-define-group casual-agenda-navigation-group
   [:class transient-row
-   (casual-lib-quit-one)
-   ("RET" "Open" org-agenda-switch-to)
-   ("." "Now" casual-agenda-goto-now :transient t)
-   ("C-/" "Undo" org-agenda-undo :transient t)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("RET" "Open" org-agenda-switch-to)
+          ("." "Now" casual-agenda-goto-now :transient t)
+          ("C-/" "Undo" org-agenda-undo :transient t)
+          (casual-lib-quit-all)])
 
 ;; Casual Agenda navigation group within an Agenda.
 (transient-define-group casual-agenda-agenda-navigation-group
   ["Navigation"
-    ["Line"
-     ("p" "↑" org-agenda-previous-line
-      :description (lambda () (casual-agenda-unicode-get :previous))
-      :transient t)
-     ("n" "↓" org-agenda-next-line
-      :description (lambda () (casual-agenda-unicode-get :next))
-      :transient t)]
+   ["Line"
+    ("p" "↑" org-agenda-previous-line
+     :description (lambda () (casual-agenda-unicode-get :previous))
+     :transient t)
+    ("n" "↓" org-agenda-next-line
+     :description (lambda () (casual-agenda-unicode-get :next))
+     :transient t)]
 
-    ["Heading"
-     ("P" "↑ ✲" org-agenda-previous-item
-      :description (lambda () (format "%s %s"
-                                      (casual-agenda-unicode-get :previous)
-                                      (casual-agenda-unicode-get :heading)))
-      :transient t)
-     ("N" "↓ ✲" org-agenda-next-item
-      :description (lambda () (format "%s %s"
-                                      (casual-agenda-unicode-get :next)
-                                      (casual-agenda-unicode-get :heading)))
-      :transient t)]
+   ["Heading"
+    ("P" "↑ ✲" org-agenda-previous-item
+     :description (lambda () (format "%s %s"
+                                     (casual-agenda-unicode-get :previous)
+                                     (casual-agenda-unicode-get :heading)))
+     :transient t)
+    ("N" "↓ ✲" org-agenda-next-item
+     :description (lambda () (format "%s %s"
+                                     (casual-agenda-unicode-get :next)
+                                     (casual-agenda-unicode-get :heading)))
+     :transient t)]
 
-    ["Date"
+   ["Date"
+    :inapt-if-not casual-agenda-type-agendap
+    ("M-p" "↑ 📅" org-agenda-previous-date-line
+     :description (lambda () (format "%s %s"
+                                     (casual-agenda-unicode-get :previous)
+                                     (casual-agenda-unicode-get :date)))
+     :transient t)
+    ("M-n" "↓ 📅" org-agenda-next-date-line
+     :description (lambda () (format "%s %s"
+                                     (casual-agenda-unicode-get :next)
+                                     (casual-agenda-unicode-get :date)))
+     :transient t)]
+
+   ["Calendar"
+    :inapt-if-not casual-agenda-type-agendap
+    ("b" "← earlier" org-agenda-earlier :transient t)
+    ("f" "→ later" org-agenda-later :transient t)]
+
+   ["Refresh"
+    ("r" "Redo" org-agenda-redo :transient t)
+    ("g" "Redo all" org-agenda-redo-all :transient t)]
+
+   ["Jump"
+    :pad-keys t
+    ("j" "🚀 📅" org-agenda-goto-date
      :inapt-if-not casual-agenda-type-agendap
-     ("M-p" "↑ 📅" org-agenda-previous-date-line
-      :description (lambda () (format "%s %s"
-                                      (casual-agenda-unicode-get :previous)
-                                      (casual-agenda-unicode-get :date)))
-      :transient t)
-     ("M-n" "↓ 📅" org-agenda-next-date-line
-      :description (lambda () (format "%s %s"
-                                      (casual-agenda-unicode-get :next)
-                                      (casual-agenda-unicode-get :date)))
-      :transient t)]
-
-    ["Calendar"
-     :inapt-if-not casual-agenda-type-agendap
-     ("b" "← earlier" org-agenda-earlier :transient t)
-     ("f" "→ later" org-agenda-later :transient t)]
-
-    ["Refresh"
-     ("r" "Redo" org-agenda-redo :transient t)
-     ("g" "Redo all" org-agenda-redo-all :transient t)]
-
-    ["Jump"
-     :pad-keys t
-     ("j" "🚀 📅" org-agenda-goto-date
-      :inapt-if-not casual-agenda-type-agendap
-      :description (lambda () (format "%s…"
-                                      (casual-agenda-unicode-get :jumpdate))))
-     ("M-j" "🚀 ⏰" org-agenda-clock-goto
-      :inapt-if-not org-clocking-p
-      :description (lambda () (format "%s…" (casual-agenda-unicode-get :jumpclocked)))
-      :transient t)]])
+     :description (lambda () (format "%s…"
+                                     (casual-agenda-unicode-get :jumpdate))))
+    ("M-j" "🚀 ⏰" org-agenda-clock-goto
+     :inapt-if-not org-clocking-p
+     :description (lambda () (format "%s…" (casual-agenda-unicode-get :jumpclocked)))
+     :transient t)]])
 
 (defun casual-agenda-goto-now ()
   "Redo agenda view and move point to current time \"now\"."

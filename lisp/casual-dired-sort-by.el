@@ -1,6 +1,6 @@
 ;;; cc-dired-sort-by.el --- Dired Sort By            -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: unix, tools
@@ -85,9 +85,7 @@ This function requires GNU ls from coreutils installed."
 
     ("s" "Size" casual-dired--sort-by-size :transient nil)]]
 
-  [:class transient-row
-          (casual-lib-quit-one)
-          (casual-lib-quit-all)])
+  casual-lib-navigation-group-plain)
 
 (defun casual-dired--sort-by-name ()
   "Sort directory by name.

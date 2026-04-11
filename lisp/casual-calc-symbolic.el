@@ -1,6 +1,6 @@
 ;;; casual-calc-symbolic.el --- Casual Symbolic Menu      -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -83,7 +83,7 @@
     ("A" calc-algebraic-mode
      :description (lambda ()
                     (casual-lib-checkbox-label calc-algebraic-mode
-                                            "Algebraic Mode"))
+                                               "Algebraic Mode"))
      :transient t)
     ("M" calc-symbolic-mode :description casual-calc-symbolic-mode-label :transient t)
     ("a" casual-calc-angle-measure-tmenu
@@ -140,11 +140,11 @@
   "Symbolic Manipulation Menu.
 Commands to manipulate a symbolic expression."
   [["Symbolic Manipulation"
-   ("E" "Simplify" casual-calc--alg-evaluate :transient t)
-   ("=" "Evaluate Variables" casual-calc--evaluate :transient t)
-   ("e" "Expand Formula" casual-calc--expand-formula :transient t)
-   ("m" "Map Equation" casual-calc--map-equation :transient t)
-   ("s" "Substitute" casual-calc--substitute :transient t)]
+    ("E" "Simplify" casual-calc--alg-evaluate :transient t)
+    ("=" "Evaluate Variables" casual-calc--evaluate :transient t)
+    ("e" "Expand Formula" casual-calc--expand-formula :transient t)
+    ("m" "Map Equation" casual-calc--map-equation :transient t)
+    ("s" "Substitute" casual-calc--substitute :transient t)]
    casual-calc-operators-group]
 
   casual-calc-navigation-group)
@@ -154,25 +154,25 @@ Commands to manipulate a symbolic expression."
   "Polynomial Menu.
 Commands to manipulate a polynomial expression."
   [["Polynomials"
-   ("f" "Factor" casual-calc--factor :transient t)
-   ("e" "Expand" casual-calc--expand :transient t)
-   ("c" "Collect…" casual-calc--collect :transient t)
-   ("a" "Apart" casual-calc--apart :transient t)
-   ("n" "Normalize Ratio" casual-calc--normalize-rat :transient t)
-   ("\\" "Polynomial Divide" casual-calc--poly-div :transient t)
-   ("%" "Polynomial Remainder" casual-calc--poly-rem :transient t)
-   ("/" "Polynomial Divide & Remainder" casual-calc--poly-div-rem :transient t)
-   ("g" "Polynomial GCD" casual-calc--poly-gcd :transient t)]]
+    ("f" "Factor" casual-calc--factor :transient t)
+    ("e" "Expand" casual-calc--expand :transient t)
+    ("c" "Collect…" casual-calc--collect :transient t)
+    ("a" "Apart" casual-calc--apart :transient t)
+    ("n" "Normalize Ratio" casual-calc--normalize-rat :transient t)
+    ("\\" "Polynomial Divide" casual-calc--poly-div :transient t)
+    ("%" "Polynomial Remainder" casual-calc--poly-rem :transient t)
+    ("/" "Polynomial Divide & Remainder" casual-calc--poly-div-rem :transient t)
+    ("g" "Polynomial GCD" casual-calc--poly-gcd :transient t)]]
   casual-calc-navigation-group)
 
 (transient-define-prefix casual-calc--calculus-tmenu ()
   "Calculus Menu.
 Commands to perform Calculus."
   [["Calculus"
-   ("n" "Numeric Integral…" casual-calc--num-integral :transient t)
-   ("t" "Taylor…" casual-calc--taylor :transient t)
-   ("d" "Derivative…" casual-calc--derivative :transient t)
-   ("i" "Integral…" casual-calc--integral :transient t)]
+    ("n" "Numeric Integral…" casual-calc--num-integral :transient t)
+    ("t" "Taylor…" casual-calc--taylor :transient t)
+    ("d" "Derivative…" casual-calc--derivative :transient t)
+    ("i" "Integral…" casual-calc--integral :transient t)]
    casual-calc-operators-group]
 
   casual-calc-navigation-group)
@@ -181,8 +181,8 @@ Commands to perform Calculus."
   "Symbolic Solve Menu.
 Commands to solve an algebraic expression symbolically."
   [["Symbolic Solutions"
-   ("s" "Solve for…" casual-calc--solve-for :transient t)
-   ("p" "Polynomial roots for…" casual-calc--poly-roots :transient t)]
+    ("s" "Solve for…" casual-calc--solve-for :transient t)
+    ("p" "Polynomial roots for…" casual-calc--poly-roots :transient t)]
    casual-calc-operators-group]
 
   casual-calc-navigation-group)
@@ -191,11 +191,11 @@ Commands to solve an algebraic expression symbolically."
   "Numerica Solve Menu.
 Commands to solve an algebraic expression numerically."
   [["Numerical Solutions"
-   ("r" "Find Root" casual-calc--find-root :transient t)
-   ("m" "Find Minimum…" casual-calc--find-minimum :transient t)
-   ("x" "Find Maximum…" casual-calc--find-maximum :transient t)
-   ("h" "Head" casual-calc--head :transient t)
-   ("w" "Why" casual-calc--why :transient t)]
+    ("r" "Find Root" casual-calc--find-root :transient t)
+    ("m" "Find Minimum…" casual-calc--find-minimum :transient t)
+    ("x" "Find Maximum…" casual-calc--find-maximum :transient t)
+    ("h" "Head" casual-calc--head :transient t)
+    ("w" "Why" casual-calc--why :transient t)]
    casual-calc-operators-group]
 
   casual-calc-navigation-group)
@@ -204,9 +204,9 @@ Commands to solve an algebraic expression numerically."
   "Curve Fit Menu.
 Curve fit commands."
   [["Curve Fit"
-   ("c" "Curve Fit" casual-calc--curve-fit :transient t)
-   ("p" "Polynomial Interpolation" casual-calc--poly-interp :transient t)
-   ("o" "Open Curve Fit Data…" casual-calc-read-curvefit-data :transient t)]
+    ("c" "Curve Fit" casual-calc--curve-fit :transient t)
+    ("p" "Polynomial Interpolation" casual-calc--poly-interp :transient t)
+    ("o" "Open Curve Fit Data…" casual-calc-read-curvefit-data :transient t)]
    casual-calc-operators-group]
 
   casual-calc-navigation-group)
@@ -215,10 +215,10 @@ Curve fit commands."
   "Summations Menu.
 Summation commands."
   [["Summations"
-   ("s" "𝚺" casual-calc--summation :transient t)
-   ("a" "𝚺 alternating" casual-calc--alt-summation :transient t)
-   ("p" "𝚷" casual-calc--product :transient t)
-   ("t" "Tabulate" casual-calc--tabulate :transient t)]
+    ("s" "𝚺" casual-calc--summation :transient t)
+    ("a" "𝚺 alternating" casual-calc--alt-summation :transient t)
+    ("p" "𝚷" casual-calc--product :transient t)
+    ("t" "Tabulate" casual-calc--tabulate :transient t)]
    casual-calc-operators-group]
 
   casual-calc-navigation-group)

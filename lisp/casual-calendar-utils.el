@@ -43,7 +43,7 @@ by this menu."
     ("i" "ISO Date…" calendar-iso-goto-date :transient t)
     ("d" "Day of Year…" calendar-goto-day-of-year :transient t)]]
 
-  casual-calendar--menu-navigation-group)
+  casual-lib-navigation-group-with-return)
 
 (transient-define-prefix casual-calendar-conversions-tmenu ()
   "Casual Calendar Conversions Menu.
@@ -84,13 +84,13 @@ specific supported non-Gregorian calendar system behavior."
    ("A" "Convert to all" calendar-print-other-dates :transient t)]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("I" "ⓘ Other Calendars" (lambda ()
-                   (interactive)
-                   (calendar-exit)
-                   (info "(emacs) Other Calendars")))
-   ("RET" "Done" transient-quit-all)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("I" "ⓘ Other Calendars" (lambda ()
+                                     (interactive)
+                                     (calendar-exit)
+                                     (info "(emacs) Other Calendars")))
+          ("RET" "Done" transient-quit-all)
+          (casual-lib-quit-all)])
 
 (transient-define-prefix casual-calendar-lunar-tmenu ()
   "Casual Calendar Lunar (Chinese) Calendar Menu.
@@ -134,7 +134,7 @@ menu `casual-calendar-settings-tmenu'."
     ("s" "Show all" diary-show-all-entries)]]
 
   casual-calendar--navigation-group
-  casual-calendar--menu-navigation-group)
+  casual-lib-navigation-group-with-return)
 
 (transient-define-prefix casual-calendar-astro-tmenu ()
   "Casual Calendar Astronomical calendar menu.
@@ -163,7 +163,7 @@ To convert a Astronomical date to Gregorian:
     ("s" "Show all" diary-show-all-entries)]]
 
   casual-calendar--navigation-group
-  casual-calendar--menu-navigation-group)
+  casual-lib-navigation-group-with-return)
 
 (transient-define-prefix casual-calendar-islamic-tmenu ()
   "Casual Calendar Islamic calendar menu.
@@ -205,7 +205,7 @@ menu `casual-calendar-settings-tmenu'."
     ("s" "Show all" diary-show-all-entries)]]
 
   casual-calendar--navigation-group
-  casual-calendar--menu-navigation-group)
+  casual-lib-navigation-group-with-return)
 
 (transient-define-prefix casual-calendar-hebrew-tmenu ()
   "Casual Calendar Hebrew calendar menu.
@@ -248,7 +248,7 @@ menu `casual-calendar-settings-tmenu'."
     ("s" "Show all" diary-show-all-entries)]]
 
   casual-calendar--navigation-group
-  casual-calendar--menu-navigation-group)
+  casual-lib-navigation-group-with-return)
 
 (transient-define-prefix casual-calendar-bahai-tmenu ()
   "Casual Calendar Bahá’í calendar menu.
@@ -291,7 +291,7 @@ menu `casual-calendar-settings-tmenu'."
     ("s" "Show all" diary-show-all-entries)]]
 
   casual-calendar--navigation-group
-  casual-calendar--menu-navigation-group)
+  casual-lib-navigation-group-with-return)
 
 (transient-define-prefix casual-calendar-ethiopic-tmenu ()
   "Casual Calendar Ethiopic calendar menu.
@@ -320,7 +320,7 @@ To convert an Ethiopic date to Gregorian:
     ("s" "Show all" diary-show-all-entries)]]
 
   casual-calendar--navigation-group
-  casual-calendar--menu-navigation-group)
+  casual-lib-navigation-group-with-return)
 
 (transient-define-prefix casual-calendar-french-tmenu ()
   "Casual Calendar French Revolutionary calendar menu.
@@ -349,7 +349,7 @@ To convert a French Revolutionary date to Gregorian:
     ("s" "Show all" diary-show-all-entries)]]
 
   casual-calendar--navigation-group
-  casual-calendar--menu-navigation-group)
+  casual-lib-navigation-group-with-return)
 
 (transient-define-prefix casual-calendar-julian-tmenu ()
   "Casual Calendar Julian calendar menu.
@@ -378,7 +378,7 @@ To convert a Julian date to Gregorian:
     ("s" "Show all" diary-show-all-entries)]]
 
   casual-calendar--navigation-group
-  casual-calendar--menu-navigation-group)
+  casual-lib-navigation-group-with-return)
 
 (transient-define-prefix casual-calendar-coptic-tmenu ()
   "Casual Calendar Coptic calendar menu.
@@ -407,7 +407,7 @@ To convert a Coptic date to Gregorian:
     ("s" "Show all" diary-show-all-entries)]]
 
   casual-calendar--navigation-group
-  casual-calendar--menu-navigation-group)
+  casual-lib-navigation-group-with-return)
 
 (transient-define-prefix casual-calendar-persian-tmenu ()
   "Casual Calendar Persian calendar menu.
@@ -436,7 +436,7 @@ To convert a Persian date to Gregorian:
     ("s" "Show all" diary-show-all-entries)]]
 
   casual-calendar--navigation-group
-  casual-calendar--menu-navigation-group)
+  casual-lib-navigation-group-with-return)
 
 (transient-define-prefix casual-calendar-mayan-tmenu ()
   "Casual Calendar Mayan calendar menu.
@@ -465,7 +465,7 @@ To convert a Mayan date to Gregorian:
     ("s" "Show all" diary-show-all-entries)]]
 
   casual-calendar--navigation-group
-  casual-calendar--menu-navigation-group)
+  casual-lib-navigation-group-with-return)
 
 (provide 'casual-calendar-utils)
 ;;; casual-calendar-utils.el ends here

@@ -93,12 +93,12 @@ ASCII-range string."
 (transient-define-prefix casual-dired-search-replace-tmenu ()
   ["Search & Replace"
    ["Search in Files"
-     :pad-keys t
-     ("C-s" "I-search…" dired-do-isearch)
-     ("M-s" "I-search regexp…" dired-do-isearch-regexp)
-     ("s" "Search first regexp match…" dired-do-search)]
+    :pad-keys t
+    ("C-s" "I-search…" dired-do-isearch)
+    ("M-s" "I-search regexp…" dired-do-isearch-regexp)
+    ("s" "Search first regexp match…" dired-do-search)]
    ["Replace in Files"
-     ("r" "Query regexp and replace…" dired-do-query-replace-regexp)]]
+    ("r" "Query regexp and replace…" dired-do-query-replace-regexp)]]
 
   ["grep-style regex"
    [("g" "Find regex…" dired-do-find-regexp)

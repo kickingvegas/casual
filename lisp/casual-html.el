@@ -61,8 +61,8 @@ For more documentation, refer to the following links:
   :refresh-suffixes t
   ["Casual HTML"
    :description (lambda () (if (derived-mode-p 'html-ts-mode)
-                          "Casual HTML (Tree-sitter)"
-                        "Casual HTML"))
+                               "Casual HTML (Tree-sitter)"
+                             "Casual HTML"))
 
    ["</>"
     :inapt-if (lambda () (if buffer-read-only t nil))
@@ -83,11 +83,11 @@ For more documentation, refer to the following links:
     ("v" "Validate" sgml-validate)
     ("A" "Autoview" html-autoview-mode
      :description (lambda () (casual-lib-checkbox-label html-autoview-mode
-                                                   "HTML Autoview"))
+                                                        "HTML Autoview"))
      :if (lambda () (derived-mode-p 'html-mode)))
     ("TAB" "Toggle Invisible Tags" sgml-tags-invisible
      :description (lambda () (casual-lib-checkbox-label sgml-tags-invisible
-                                             "Invisible Tags"))
+                                                        "Invisible Tags"))
      :transient t)]
 
    ["Navigation"
@@ -101,11 +101,11 @@ For more documentation, refer to the following links:
     ("C-n" "↓" next-line :transient t)]]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("," "Settings" casual-html-settings-tmenu)
-   ("I" "ⓘ" casual-html-info)
-   ("RET" "Done" transient-quit-all)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("," "Settings" casual-html-settings-tmenu)
+          ("I" "ⓘ" casual-html-info)
+          ("RET" "Done" transient-quit-all)
+          (casual-lib-quit-all)])
 
 
 ;;;###autoload (autoload 'casual-html-tags-tmenu "casual-html" nil t)
@@ -164,10 +164,7 @@ This menu provides an interface to HTML-specific commands provided by
    ("h5" "5" html-headline-5)
    ("h6" "6" html-headline-6)]
 
-  [:class transient-row
-   (casual-lib-quit-one)
-   ("RET" "Done" transient-quit-all)
-   (casual-lib-quit-all)])
+  casual-lib-navigation-group-with-return)
 
 (provide 'casual-html)
 ;;; casual-html.el ends here

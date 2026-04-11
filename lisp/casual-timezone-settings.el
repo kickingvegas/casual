@@ -1,6 +1,6 @@
 ;;; casual-timezone-settings.el --- Casual Timezone Settings -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025 Charles Y. Choi
+;; Copyright (C) 2025-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -50,28 +50,28 @@
                     (format
                      "Convert: (ex: %s)"
                      (format-time-string
-                     casual-timezone-convert-datestamp-format
-                     (current-time)))))
+                      casual-timezone-convert-datestamp-format
+                      (current-time)))))
 
     ("p" "Planner" casual-timezone--customize-datestamp-format
      :description (lambda ()
                     (format
                      "Planner: (ex: %s)"
                      (format-time-string
-                     casual-timezone-datestamp-format
-                     (current-time)))))
+                      casual-timezone-datestamp-format
+                      (current-time)))))
     ("f" "Describe Format" casual-timezone--describe-format-time-string)]]
 
   [:class transient-row
-   (casual-lib-customize-unicode)
-   (casual-lib-customize-hide-navigation)
-   ("D" "Zoneinfo DB" casual-timezone--customize-zone-info-database)]
+          (casual-lib-customize-unicode)
+          (casual-lib-customize-hide-navigation)
+          ("D" "Zoneinfo DB" casual-timezone--customize-zone-info-database)]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("a" "About" casual-timezone-about :transient nil)
+          (casual-lib-quit-one)
+          ("a" "About" casual-timezone-about :transient nil)
 
-   (casual-lib-quit-all)])
+          (casual-lib-quit-all)])
 
 (defun casual-timezone--customize-working-hour-glyph ()
   "Set working hour glyph.

@@ -1,6 +1,6 @@
 ;;; casual-make-settings.el --- Casual Make Settings -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025 Charles Y. Choi
+;; Copyright (C) 2025, 2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -34,9 +34,9 @@
     (casual-lib-customize-hide-navigation)]]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("a" "About" casual-make-about :transient nil)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("a" "About" casual-make-about :transient nil)
+          (casual-lib-quit-all)])
 
 (defun casual-make--customize-group ()
   "Customize Makefile group."

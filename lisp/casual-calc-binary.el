@@ -1,6 +1,6 @@
 ;;; casual-calc-binary.el --- Casual Binary Menu          -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -82,8 +82,8 @@ This function is a wrapper over `calc-and'.
 * References
 - info node `(calc) Binary Functions'
 - `calc-and'"
- (interactive)
- (call-interactively #'calc-and))
+  (interactive)
+  (call-interactively #'calc-and))
 
 (defun casual-calc--or ()
   "Computes the bitwise inclusive OR of two numbers.
@@ -96,8 +96,8 @@ This function is a wrapper over `calc-or'.
 * References
 - info node `(calc) Binary Functions'
 - `calc-or'"
- (interactive)
- (call-interactively #'calc-or))
+  (interactive)
+  (call-interactively #'calc-or))
 
 (defun casual-calc--xor ()
   "Computes the bitwise exclusive OR of two numbers.
@@ -110,8 +110,8 @@ This function is a wrapper over `calc-xor'.
 * References
 - info node `(calc) Binary Functions'
 - `calc-xor'"
- (interactive)
- (call-interactively #'calc-xor))
+  (interactive)
+  (call-interactively #'calc-xor))
 
 (defun casual-calc--diff ()
   "Computes the bitwise difference of two numbers.
@@ -127,8 +127,8 @@ This function is a wrapper over `calc-diff'.
 * References
 - info node `(calc) Binary Functions'
 - `calc-diff'"
- (interactive)
- (call-interactively #'calc-diff))
+  (interactive)
+  (call-interactively #'calc-diff))
 
 (defun casual-calc--not ()
   "Computes the bitwise NOT of a number.
@@ -142,8 +142,8 @@ This function is a wrapper over `calc-not'.
 * References
 - info node `(calc) Binary Functions'
 - `calc-not'"
- (interactive)
- (call-interactively #'calc-not))
+  (interactive)
+  (call-interactively #'calc-not))
 
 (defun casual-calc--lshift-binary ()
   "Shifts a number left by one bit.
@@ -155,11 +155,11 @@ This function is a wrapper over `calc-lshift-binary'.
 * References
 - info node `(calc) Binary Functions'
 - `calc-lshift-binary'"
- (interactive)
- (call-interactively #'calc-lshift-binary))
+  (interactive)
+  (call-interactively #'calc-lshift-binary))
 
 (defun casual-calc--rshift-binary ()
-    "Shifts a number right by one bit.
+  "Shifts a number right by one bit.
 \nStack Arguments:
 1: n
 
@@ -168,8 +168,8 @@ This function is a wrapper over `calc-rshift-binary'.
 * References
 - info node `(calc) Binary Functions'
 - `calc-rshift-binary'"
- (interactive)
- (call-interactively #'calc-rshift-binary))
+  (interactive)
+  (call-interactively #'calc-rshift-binary))
 
 (defun casual-calc--lshift-arith ()
   "Arithmetic shift left by one bit.
@@ -181,8 +181,8 @@ This function is a wrapper over `calc-lshift-arith'.
 * References
 - info node `(calc) Binary Functions'
 - `calc-lshift-arith'"
- (interactive)
- (call-interactively #'calc-lshift-arith))
+  (interactive)
+  (call-interactively #'calc-lshift-arith))
 
 (defun casual-calc--rshift-arith ()
   "Arithmetic shift right by one bit.
@@ -202,8 +202,8 @@ This function is a wrapper over `calc-rshift-arith'.
 * References
 - info node `(calc) Binary Functions'
 - `calc-rshift-arith'"
- (interactive)
- (call-interactively #'calc-rshift-arith))
+  (interactive)
+  (call-interactively #'calc-rshift-arith))
 
 (defun casual-calc--rotate-binary ()
   "Rotates a number one bit to the left.
@@ -218,11 +218,11 @@ This function is a wrapper over `calc-rotate-binary'.
 * References
 - info node `(calc) Binary Functions'
 - `calc-rotate-binary'"
- (interactive)
- (call-interactively #'calc-rotate-binary))
+  (interactive)
+  (call-interactively #'calc-rotate-binary))
 
 (defun casual-calc--word-size ()
-    "Set the word size from a prompt.
+  "Set the word size from a prompt.
 
 This command displays a prompt with the current word size; press
 <RET> immediately to keep this word size, or type a new word size
@@ -233,11 +233,11 @@ This function is a wrapper over function `calc-word-size'.
 * References
 - info node `(calc) Binary Functions'
 - function `calc-word-size'"
- (interactive)
- (call-interactively #'calc-word-size))
+  (interactive)
+  (call-interactively #'calc-word-size))
 
 (defun casual-calc--unpack-bits ()
-    "Unpack into set of bit indexes.
+  "Unpack into set of bit indexes.
 \nStack Arguments:
 1: n
 
@@ -246,11 +246,11 @@ This function is a wrapper over `calc-unpack-bits'.
 * References
 - info node `(calc) Binary Functions'
 - `calc-unpack-bits'"
- (interactive)
- (call-interactively #'calc-unpack-bits))
+  (interactive)
+  (call-interactively #'calc-unpack-bits))
 
 (defun casual-calc--pack-bits ()
-    "Pack set of bit indexes into a number.
+  "Pack set of bit indexes into a number.
 \nStack Arguments:
 1: n
 
@@ -259,8 +259,8 @@ This function is a wrapper over `calc-pack-bits'.
 * References
 - info node `(calc) Binary Functions'
 - `calc-pack-bits'"
- (interactive)
- (call-interactively #'calc-pack-bits))
+  (interactive)
+  (call-interactively #'calc-pack-bits))
 
 (provide 'casual-calc-binary)
 ;;; casual-calc-binary.el ends here

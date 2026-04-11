@@ -1,6 +1,6 @@
 ;;; casual-image-settings.el --- Casual Image Settings  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Choi
+;; Copyright (C) 2025-2026  Charles Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -37,10 +37,7 @@
     (casual-lib-customize-unicode)
     (casual-lib-customize-hide-navigation)]]
 
-  [:class transient-row
-   (casual-lib-quit-one)
-   ;; ("a" "About" casual-info-about :transient nil)
-   (casual-lib-quit-all)])
+  casual-lib-navigation-group-plain)
 
 (defun casual-image--customize-group ()
   "Customize Image group."

@@ -1,6 +1,6 @@
 ;;; casual-compile.el --- Transient UI for Compilation Mode -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025, 2026  Charles Choi
+;; Copyright (C) 2025-2026  Charles Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -129,11 +129,11 @@
     ]]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   (casual-lib-quit-all)
-   ("," "Settings›" casual-compile-settings-tmenu)
-   ("J" "Jump to Bookmark…" bookmark-jump)
-   ("q" "Quit" quit-window)])
+          (casual-lib-quit-one)
+          (casual-lib-quit-all)
+          ("," "Settings›" casual-compile-settings-tmenu)
+          ("J" "Jump to Bookmark…" bookmark-jump)
+          ("q" "Quit" quit-window)])
 
 (provide 'casual-compile)
 ;;; casual-compile.el ends here

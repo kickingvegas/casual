@@ -1,6 +1,6 @@
 ;;; casual-calc-vector.el --- Casual Vector Menu          -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -33,11 +33,11 @@
   "Casual vector and matrix functions top-level menu."
   ["Vector & Matrix Functions (index is 1-offset)\n"
    ["Categories"
-   ("b" "Building›" casual-calc-vector-building-tmenu)
-   ("a" "Arithmetic›" casual-calc-vector-arithmetic-tmenu)
-   ("s" "Statistics›" casual-calc-statistics-tmenu)
-   ("S" "Set Operations›" casual-calc-set-operations-tmenu)
-   ("m" "Map, Reduce, Apply›" casual-calc-map-and-reduce-tmenu)]
+    ("b" "Building›" casual-calc-vector-building-tmenu)
+    ("a" "Arithmetic›" casual-calc-vector-arithmetic-tmenu)
+    ("s" "Statistics›" casual-calc-statistics-tmenu)
+    ("S" "Set Operations›" casual-calc-set-operations-tmenu)
+    ("m" "Map, Reduce, Apply›" casual-calc-map-and-reduce-tmenu)]
 
    ["Manipulate"
     :pad-keys t
@@ -148,10 +148,10 @@
 (transient-define-prefix casual-calc-map-and-reduce-tmenu ()
   "Casual functional operations (map, reduce, apply) menu."
   [["Functional Operators"
-   ("m" "map" calc-map :transient t)
-   ("r" "reduce" calc-reduce :transient t)
-   ("a" "apply" calc-apply :transient t)
-   ("A" "accumulate" calc-accumulate :transient t)]
+    ("m" "map" calc-map :transient t)
+    ("r" "reduce" calc-reduce :transient t)
+    ("a" "apply" calc-apply :transient t)
+    ("A" "accumulate" calc-accumulate :transient t)]
    casual-calc-operators-group]
   casual-calc-navigation-group)
 

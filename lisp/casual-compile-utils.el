@@ -1,6 +1,6 @@
 ;;; casual-compile-utils.el --- Casual Compile Utils -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025 Charles Y. Choi
+;; Copyright (C) 2025, 2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -59,7 +59,7 @@ plain ASCII-range string."
   "Predicate if compilation is running."
   (let ((buffer (compilation-find-buffer)))
     (if (get-buffer-process buffer)
-	t
+        t
       nil)))
 
 (provide 'casual-compile-utils)

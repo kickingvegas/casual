@@ -1,6 +1,6 @@
 ;;; casual-dired-settings.el --- Casual Dired Settings  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -44,18 +44,18 @@
     ("T" "Use System Trash Can"
      casual-dired--customize-delete-by-moving-to-trash
      :description (lambda ()
-                   (casual-lib-checkbox-label
-                    delete-by-moving-to-trash
-                    "Use System Trash Can"))
+                    (casual-lib-checkbox-label
+                     delete-by-moving-to-trash
+                     "Use System Trash Can"))
      :transient nil)
     (casual-lib-customize-unicode)
     (casual-lib-customize-hide-navigation)
     ("R" "Rename via VC"
      casual-dired--customize-dired-vc-rename-file
      :description (lambda ()
-                   (casual-lib-checkbox-label
-                    dired-vc-rename-file
-                    "Rename via VC"))
+                    (casual-lib-checkbox-label
+                     dired-vc-rename-file
+                     "Rename via VC"))
      :transient nil)
 
     ("v" "Visit Truename"
@@ -80,17 +80,17 @@
     ("p" "Allow Changing Permissions"
      casual-dired--customize-wdired-allow-to-change-permissions
      :description (lambda ()
-                   (casual-lib-checkbox-label
-                    wdired-allow-to-change-permissions
-                    "Allow Changing Permissions"))
+                    (casual-lib-checkbox-label
+                     wdired-allow-to-change-permissions
+                     "Allow Changing Permissions"))
      :transient nil)
 
     ("L" "Allow Redirecting Links"
      casual-dired--customize-wdired-allow-to-redirect-links
      :description (lambda ()
-                   (casual-lib-checkbox-label
-                    wdired-allow-to-redirect-links
-                    "Allow Redirecting Links"))
+                    (casual-lib-checkbox-label
+                     wdired-allow-to-redirect-links
+                     "Allow Redirecting Links"))
      :transient nil)]
 
    ["Dired"
@@ -142,7 +142,7 @@ Switches passed to ‘ls’ for Dired.  MUST contain the ‘l’ option."
   (customize-variable 'dired-listing-switches))
 
 (defun casual-dired--customize-dired-vc-rename-file ()
-    "Customize `dired-vc-rename-file'.
+  "Customize `dired-vc-rename-file'.
 
 This variable configures whether Dired should register file
 renaming in underlying vc system."

@@ -1,6 +1,6 @@
 ;;; casual-lib.el --- Library routines for Casual user interfaces -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -186,7 +186,7 @@ new buffer. This can be avoided if a prefix ARG is provided."
 
 (transient-define-suffix casual-lib-quit-one ()
   "Casual suffix to call `transient-quit-one'."
-  :transient nil
+  :transient #'transient--do-quit-one
   :key "C-g"
   :if-not #'casual-lib-hide-navigation-p
   :description #'casual-lib--quit-one-suffix-label
@@ -195,21 +195,21 @@ new buffer. This can be avoided if a prefix ARG is provided."
 
 (transient-define-group casual-lib-navigation-group-plain
   [:class transient-row
-   (casual-lib-quit-one)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          (casual-lib-quit-all)])
 
 (transient-define-group casual-lib-navigation-group-with-return
   [:class transient-row
-   (casual-lib-quit-one)
-   ("RET" "Done" transient-quit-all)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("RET" "Done" transient-quit-all)
+          (casual-lib-quit-all)])
 
 (transient-define-group casual-lib-navigation-group-with-undo-and-return
   [:class transient-row
-   (casual-lib-quit-one)
-   ("U" "Undo" undo :transient t)
-   ("RET" "Done" transient-quit-all)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("U" "Undo" undo :transient t)
+          ("RET" "Done" transient-quit-all)
+          (casual-lib-quit-all)])
 
 (transient-define-suffix casual-lib-customize-unicode ()
   "Customize Casual to use Unicode symbols.

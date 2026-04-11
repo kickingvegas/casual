@@ -1,6 +1,6 @@
 ;;; casual-timezone-utils.el --- Casual Timezone Utils -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025 Charles Y. Choi
+;; Copyright (C) 2025-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -164,10 +164,10 @@ The format of the timestamp is defined in the variable
     (error "Not available on Windows"))
 
   (let* ((datestr (or datestr
-                        (org-read-date t nil nil nil nil
-                                       (format-time-string
-                                        "%H:%M"
-                                        (current-time)))))
+                      (org-read-date t nil nil nil nil
+                                     (format-time-string
+                                      "%H:%M"
+                                      (current-time)))))
          (remote-tz (or remote-tz
                         (completing-read-default
                          "Remote Timezone: "
@@ -214,10 +214,10 @@ The format of the timestamp is defined in the variable
                          "Remote Timezone: "
                          (casual-timezone-zone-info))))
          (datestr (or datestr
-                        (org-read-date t nil nil nil nil
-                                       (format-time-string
-                                        "%H:%M"
-                                        (current-time)))))
+                      (org-read-date t nil nil nil nil
+                                     (format-time-string
+                                      "%H:%M"
+                                      (current-time)))))
          (tzcode (casual-timezone-offset-8601
                   (nth 0 (current-time-zone nil remote-tz))))
          (parse-ts (string-split datestr))
@@ -329,25 +329,25 @@ customized via the variable `casual-timezone-working-hours-range'."
     (casual-timezone-planner-mode)
 
     (let ((inhibit-read-only t))
-        (erase-buffer)
-        (make-vtable
-         :columns (append
-                   `((:name ,local-tz :width 30 :align left)) ;; !!! For some reason I can't pass in local-tz
-                   (seq-map (lambda (remote-tz)
-                              `(:name ,remote-tz :width 30 :align left))
-                            remote-timezones))
+      (erase-buffer)
+      (make-vtable
+       :columns (append
+                 `((:name ,local-tz :width 30 :align left)) ;; !!! For some reason I can't pass in local-tz
+                 (seq-map (lambda (remote-tz)
+                            `(:name ,remote-tz :width 30 :align left))
+                          remote-timezones))
 
-         :objects tz-data
+       :objects tz-data
 
-         :getter `(lambda (issue column table)
-                    (nth column issue))
+       :getter `(lambda (issue column table)
+                  (nth column issue))
 
-         :formatter `(lambda (value column table)
-                       (casual-timezone--date-formatter value))
+       :formatter `(lambda (value column table)
+                     (casual-timezone--date-formatter value))
 
-         :displayer `(lambda (fvalue index max-width table)
-                       (propertize fvalue 'default 'bold)))
-        (casual-timezone-jump-to-relative-now))))
+       :displayer `(lambda (fvalue index max-width table)
+                     (propertize fvalue 'default 'bold)))
+      (casual-timezone-jump-to-relative-now))))
 
 
 (defun casual-timezone-planner-current-local ()
@@ -530,10 +530,10 @@ window width has changed."
     ("c" "Calendar" calendar)]]
 
   [:class transient-row
-   (casual-lib-quit-one)
-   ("," "Settings" casual-timezone-settings-tmenu)
-   ("q" "Quit" quit-window)
-   (casual-lib-quit-all)])
+          (casual-lib-quit-one)
+          ("," "Settings" casual-timezone-settings-tmenu)
+          ("q" "Quit" quit-window)
+          (casual-lib-quit-all)])
 
 (provide 'casual-timezone-utils)
 ;;; casual-timezone-utils.el ends here

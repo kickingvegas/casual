@@ -1,6 +1,6 @@
 ;;; casual-calc-conversion.el --- Casual Conversion Menu  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -48,33 +48,33 @@
                             (casual-calc-unicode-get :radians)))
      :transient t)]
 
-    ["HMS"
-     ("h" "To ℎ𝑚𝑠" calc-to-hms
-      :description (lambda ()
+   ["HMS"
+    ("h" "To ℎ𝑚𝑠" calc-to-hms
+     :description (lambda ()
                     (format "real %s %s"
                             (casual-calc-unicode-get :to)
                             (casual-calc-unicode-get :hms)))
-      :transient t)
-     ("H" "From ℎ𝑚𝑠" calc-from-hms
-      :description (lambda ()
-                     (format "%s %s real"
-                             (casual-calc-unicode-get :hms)
-                             (casual-calc-unicode-get :to)))
-      :transient t)]
+     :transient t)
+    ("H" "From ℎ𝑚𝑠" calc-from-hms
+     :description (lambda ()
+                    (format "%s %s real"
+                            (casual-calc-unicode-get :hms)
+                            (casual-calc-unicode-get :to)))
+     :transient t)]
 
-    ["Numeric"
-     ("f" "To Float" calc-float
-      :description (lambda ()
-                     (format "%s %s"
-                             (casual-calc-unicode-get :to)
-                             (casual-calc-unicode-get :float)))
-      :transient t)
-     ("F" "To Fraction" calc-fraction
-      :description (lambda ()
-                     (format "%s %s"
-                             (casual-calc-unicode-get :to)
-                             (casual-calc-unicode-get :fraction)))
-      :transient t)]]
+   ["Numeric"
+    ("f" "To Float" calc-float
+     :description (lambda ()
+                    (format "%s %s"
+                            (casual-calc-unicode-get :to)
+                            (casual-calc-unicode-get :float)))
+     :transient t)
+    ("F" "To Fraction" calc-fraction
+     :description (lambda ()
+                    (format "%s %s"
+                            (casual-calc-unicode-get :to)
+                            (casual-calc-unicode-get :fraction)))
+     :transient t)]]
 
   casual-calc-operators-group-row
 
