@@ -222,10 +222,8 @@ Commands pertaining to editing operations can be accessed here."
      :if-not casual-editkit-buffer-read-only-p
      :transient t)
     ("F" "Flush Lines…" flush-lines
-     :inapt-if-not use-region-p
      :if-not casual-editkit-buffer-read-only-p)
     ("K" "Keep Lines…" keep-lines
-     :inapt-if-not use-region-p
      :if-not casual-editkit-buffer-read-only-p)]
 
    [("f" "Fill Paragraph" fill-paragraph
