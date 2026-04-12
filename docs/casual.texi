@@ -195,12 +195,14 @@ Dired Requirements
 
 Dired Usage
 
-* Dired Enhanced Sorting::
-* Dired Search & Replace::
-* Bulk Dired Operations::
-* Dired Link::
+* Dired Link (Link›)::
+* Dired Change (Change›)::
+* Dired Regexp (Regexp›)::
+* Dired Sort By (Sort By›)::
+* Dired Search & Replace (Search & Replace›)::
+* Dired Utilities (Utils›)::
 * Dired Elisp::
-* Dired Unicode Symbol Support::
+* Dired Settings (Settings›)::
 
 Ediff
 
@@ -1852,52 +1854,531 @@ Casual Dired organizes its main menu into the following sections:
 
 @table @asis
 @item File
-File-related commands are placed here. Most of the commands will also operate on marked files (see @strong{Mark} item below).
+File-related commands are placed here. Many of the commands in this section will work on marked files. More commands that work on marked files are available in the @strong{Bulk} section.
 
+@multitable {aaa} {aaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaa}
+@headitem Key
+@tab Label
+@tab Command
+@tab Notes
+@item o
+@tab Open Other
+@tab dired-find-other-window
+@tab 
+@item v
+@tab View
+@tab dired-view-file
+@tab 
+@item C
+@tab Copy to…
+@tab dired-do-copy
+@tab 
+@item R
+@tab Rename…
+@tab dired-do-rename
+@tab 
+@item D
+@tab Delete…
+@tab dired-do-delete
+@tab 
+@item l
+@tab Link›
+@tab casual-dired-link-tmenu
+@tab 
+@item c
+@tab Change›
+@tab casual-dired-change-tmenu
+@tab 
+@item y
+@tab Type
+@tab dired-show-file-type
+@tab 
+@item w
+@tab Copy Name
+@tab dired-copy-filename-as-kill
+@tab 
+@item !
+@tab Shell…
+@tab dired-do-shell-command
+@tab 
+@item &
+@tab Shell &…
+@tab dired-do-async-shell-command
+@tab 
+@item ;
+@tab Thumbnail
+@tab image-dired-dired-toggle-marked-thumbs
+@tab context-sensitive
+@item W
+@tab Browse
+@tab browse-url-of-dired-file
+@tab 
+@end multitable
+@end table
+
+
+@table @asis
 @item Directory
 Directory-related commands. Subdir view commands are also made available in this section. To remove a subdir view, use the command prefix @kbd{C-u} before pressing the binding @kbd{k} to kill a subdir view.
 
-@item Mark
-Marking operations are available here. Commands in the “@kbd{#} Utils›” sub-menu can be used to operate on marked items. In addition, many commands from the @strong{File} section can be operate on marked items.
+@multitable {aaa} {aaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaa}
+@headitem Key
+@tab Label
+@tab Command
+@tab Notes
+@item s
+@tab Sort By›
+@tab casual-dired-sort-by-tmenu
+@tab 
+@item h
+@tab Hide Details
+@tab dired-hide-details-mode
+@tab 
+@item O
+@tab Omit Mode
+@tab dired-omit-mode
+@tab 
+@item i
+@tab Insert Subdir
+@tab dired-maybe-insert-subdir
+@tab context-sensitive
+@item $
+@tab Hide/Unhide Subdir
+@tab dired-hide-subdir
+@tab context-sensitive
+@item k
+@tab Kill (Hide) Line(s)
+@tab dired-do-kill-lines
+@tab context-sensitive
+@item g
+@tab Revert
+@tab revert-buffer
+@tab 
+@item f
+@tab Filter by name…
+@tab casual-dired-find-dired-regexp
+@tab 
+@item E
+@tab Edit (wdired)
+@tab wdired-change-to-wdired-mode
+@tab 
+@item T
+@tab Thumbnails…
+@tab image-dired
+@tab context-sensitive
+@item d
+@tab Dired…
+@tab dired
+@tab 
+@end multitable
+@end table
 
-The “@kbd{r} Regexp›” sub-menu provides commands to mark via @ref{Regular Expressions,regular expression,,elisp,}.
 
+@table @asis
+@item Bulk
+Bulk operations on marked or flagged files.
+
+@multitable {aaa} {aaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaa}
+@headitem Key
+@tab Label
+@tab Command
+@tab Notes
+@item m
+@tab Mark
+@tab dired-mark
+@tab context-sensitive
+@item u
+@tab Unmark
+@tab dired-unmark
+@tab context-sensitive
+@item U
+@tab Unmark All
+@tab dired-unmark-all-marks
+@tab context-sensitive
+@item t
+@tab Toggle Marks
+@tab dired-toggle-marks
+@tab 
+@item r
+@tab Regexp›
+@tab casual-dired-regexp-tmenu
+@tab 
+@item #
+@tab Utils›
+@tab casual-dired-utils-tmenu
+@tab 
+@item ~
+@tab Flag Backups
+@tab dired-flag-backup-files
+@tab 
+@item x
+@tab Delete Flagged
+@tab dired-do-flagged-delete
+@tab 
+@end multitable
+@end table
+
+
+@table @asis
 @item Navigation
 Navigation commands to move the point in Dired are offered here.
 
+@multitable {aaa} {aaaaaaaaaaaa} {aaaaaaa} {aaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaa}
+@headitem Key
+@tab Label
+@tab Unicode
+@tab Command
+@tab Notes
+@item ^
+@tab .. Dir
+@tab .. 📁
+@tab dired-up-directory
+@tab 
+@item p
+@tab Up File
+@tab ↑ 📄
+@tab dired-previous-line
+@tab 
+@item n
+@tab Down File
+@tab ↓ 📄
+@tab dired-next-line
+@tab 
+@item M-[
+@tab Up *File
+@tab ↑ *📄
+@tab dired-prev-marked-file
+@tab context-sensitive
+@item M-]
+@tab Down *File
+@tab ↓ *📄
+@tab dired-next-marked-file
+@tab context-sensitive
+@item M-p
+@tab Up Dir
+@tab ↑ 📁
+@tab dired-prev-dirline
+@tab 
+@item M-n
+@tab Down Dir
+@tab ↓ 📁
+@tab dired-next-dirline
+@tab 
+@item [
+@tab Up Subdir
+@tab ↑ 🗂️
+@tab dired-prev-subdir
+@tab 
+@item ]
+@tab Down Subdir
+@tab ↓ 🗂️
+@tab dired-next-subdir
+@tab 
+@item j
+@tab Goto File…
+@tab → 📄…
+@tab dired-goto-file
+@tab 
+@item M-j
+@tab Goto Subdir…
+@tab → 🗂️…
+@tab dired-goto-subdir
+@tab 
+@end multitable
+@end table
+
+
+@table @asis
 @item Quick
 Convenience commands for bookmarks and listing buffers are made available in this section.
 
+@multitable {aaa} {aaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaa}
+@headitem Key
+@tab Label
+@tab Command
+@item J
+@tab Jump to Bookmark…
+@tab bookmark-jump
+@item B
+@tab Add Bookmark…
+@tab bookmark-set-no-overwrite
+@item b
+@tab List Buffers
+@tab ibuffer
+@end multitable
+@end table
+
+
+@table @asis
 @item Search
 Commands to find a filename via I-Search or to recursively search for pattern inside files contained in a directory tree (@code{rgrep}) are made available here.
 
-@item New
-Create a new file or directory with the commands in this section.
+@multitable {aaa} {aaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
+@headitem Key
+@tab Label
+@tab Command
+@item C-s
+@tab Filename I-Search…
+@tab dired-isearch-filenames
+@item M-s
+@tab Filename I-Search Regexp…
+@tab dired-isearch-filenames-regexp
+@item M-f
+@tab Find in files…
+@tab rgrep
+@end multitable
 @end table
 
+
+@table @asis
+@item New
+Create a new file or directory with the commands in this section.
+
+@multitable {aaa} {aaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaa}
+@headitem Key
+@tab Label
+@tab Command
+@item +
+@tab Directory
+@tab dired-create-directory
+@item F
+@tab File
+@tab dired-create-empty-file
+@end multitable
+@end table
+
+
+Note that some commands in this menu are @emph{context-sensitive} and will only appear if the context is appropriate. Commands relating to marked files, subdirs, and image thumbnails are context-sensitive.
+
+The sections below detail the different sub-menus in @code{casual-dired-tmenu}.
+
 @menu
-* Dired Enhanced Sorting::
-* Dired Search & Replace::
-* Bulk Dired Operations::
-* Dired Link::
+* Dired Link (Link›)::
+* Dired Change (Change›)::
+* Dired Regexp (Regexp›)::
+* Dired Sort By (Sort By›)::
+* Dired Search & Replace (Search & Replace›)::
+* Dired Utilities (Utils›)::
 * Dired Elisp::
-* Dired Unicode Symbol Support::
+* Dired Settings (Settings›)::
 @end menu
 
-@node Dired Enhanced Sorting
-@subsubsection Dired Enhanced Sorting
+@node Dired Link (Link›)
+@subsubsection Dired Link (Link›)
 
-@cindex Dired Enhanced Sorting
+@cindex Dired Link
+@vindex casual-dired-link-tmenu
+
+Create symbolic and hard links ›via the “@kbd{l} Link›” menu (@code{casual-dired-link-tmenu}) in @code{casual-dired-tmenu}. Both absolute and relative symbolic links (symlinks) are supported.
+
+@image{images/casual-dired-link,,,,png}
+
+@multitable {aaa} {aaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaa}
+@headitem Key
+@tab Label
+@tab Command
+@item s
+@tab Absolute…
+@tab dired-do-symlink
+@item S
+@tab Absolute regexp…
+@tab dired-do-symlink-regexp
+@item r
+@tab Relative…
+@tab dired-do-relsymlink
+@item R
+@tab Relative regexp…
+@tab dired-do-relsymlink-regexp
+@item h
+@tab Hard…
+@tab dired-do-hardlink
+@item H
+@tab Hard regexp…
+@tab dired-do-hardlink-regexp
+@end multitable
+
+@node Dired Change (Change›)
+@subsubsection Dired Change (Change›)
+
+@cindex Dired Change
+@vindex casual-dired-change-tmenu
+
+@image{images/casual-dired-change-screenshot,,,,png}
+
+
+Commands to change file or directory metadata are provided by the Dired Change menu (@code{casual-dired-change-tmenu}.)
+
+@multitable {aaa} {aaaaaa} {aaaaaaaaaaaaaa}
+@headitem Key
+@tab Label
+@tab Command
+@item M
+@tab Mode…
+@tab dired-do-chmod
+@item G
+@tab Group…
+@tab dired-do-chgrp
+@item O
+@tab Owner…
+@tab dired-do-chown
+@item T
+@tab Touch
+@tab dired-do-touch
+@end multitable
+
+@node Dired Regexp (Regexp›)
+@subsubsection Dired Regexp (Regexp›)
+
+@cindex Dired Regexp
+@vindex casual-dired-regexp-tmenu
+
+@image{images/casual-dired-regexp-screenshot,,,,png}
+
+
+Commands to operate on files or directories based on regular expression (regexp) pattern matching are provided by the Dired Regexp menu (@code{casual-dired-regexp-tmenu}).
+
+
+
+@multitable {aaa} {aaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
+@headitem Key
+@tab Label
+@tab Command
+@item m
+@tab Files…
+@tab dired-mark-files-regexp
+@item c
+@tab Files containing…
+@tab dired-mark-files-containing-regexp
+@item u
+@tab Unmark
+@tab dired-unmark
+@item U
+@tab Unmark All
+@tab dired-unmark-all-marks
+@item F
+@tab Files to open…
+@tab dired-do-find-marked-files
+@item C
+@tab Files to copy…
+@tab dired-do-copy-regexp
+@item r
+@tab Files to rename…
+@tab dired-do-rename-regexp
+@item D
+@tab Files to delete…
+@tab dired-do-delete
+@item d
+@tab Files for deletion…
+@tab dired-flag-files-regexp
+@item x
+@tab Delete flagged files
+@tab dired-do-flagged-delete
+@end multitable
+
+@node Dired Sort By (Sort By›)
+@subsubsection Dired Sort By (Sort By›)
+
+@cindex Dired Sort By
 @vindex casual-dired-sort-by-tmenu
-
-Casual Dired offers enhanced sorting capabilities through GNU @code{ls}. Use this to sort your Dired buffer to preference. Filter dot files (.*) by disabling the @code{--all} option is available here.
 
 @image{images/casual-dired-sort-by-screenshot,,,,png}
 
+
+The Dired Sort By menu (@code{casual-dired-sort-by-tmenu}) provides an interface to configuring GNU @code{ls}.
+
+The menu is separated into two sections:
+
+@table @asis
+@item Options
+Option switches to control how output is displayed.
+
+@multitable {aaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
+@headitem Key
+@tab Label
+@tab Option
+@tab Notes
+@item .
+@tab Show all (include .*)
+@tab --all
+@tab Control display of hidden (dot) files.
+@item g
+@tab Group directories first
+@tab --group-directories-first
+@tab 
+@item r
+@tab Reverse
+@tab --reverse
+@tab 
+@item t
+@tab Set time style
+@tab --time-style=
+@tab 
+@item h
+@tab Show size like 1K 234M 2G etc.
+@tab --human-readable
+@tab 
+@item 1
+@tab Like above but in powers of 1000
+@tab --si
+@tab 
+@item O
+@tab Hide owner
+@tab -g
+@tab 
+@item G
+@tab Hide group
+@tab --no-group
+@tab 
+@item N
+@tab Use numeric UID/GID
+@tab --numeric-uid-gid
+@tab 
+@item i
+@tab Show inode
+@tab --inode
+@tab 
+@end multitable
+
+Refer to GNU @code{ls} (@ref{ls invocation,coreutils#ls invocation,,coreutils,}) for more detail on option behavior.
+@end table
+
+
+@table @asis
+@item Sort By
+Commands to sort by a specified criteria.
+
+@multitable {aaa} {aaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
+@headitem Key
+@tab Label
+@tab Command
+@item n
+@tab Name
+@tab casual-dired--sort-by-name
+@item k
+@tab Kind
+@tab casual-dired--sort-by-kind
+@item l
+@tab Date Last Opened
+@tab casual-dired--sort-by-date-last-opened
+@item a
+@tab Date Added
+@tab casual-dired--sort-by-date-added
+@item m
+@tab Date Modified
+@tab casual-dired--sort-by-date-modified
+@item M
+@tab Date Metadata Changed
+@tab casual-dired--sort-by-date-metadata-changed
+@item s
+@tab Size
+@tab casual-dired--sort-by-size
+@end multitable
+@end table
+
 With the @strong{Sort By} menu raised, one can save the switch settings for future use via the binding @kbd{C-x C-s} (@code{transient-save}). Note this is a global setting and will apply to all future calls to the @strong{Sort By} menu.
 
-@node Dired Search & Replace
-@subsubsection Dired Search & Replace
+@node Dired Search & Replace (Search & Replace›)
+@subsubsection Dired Search & Replace (Search & Replace›)
 
 @cindex Dired Search & Replace
 @vindex casual-dired-search-replace-tmenu
@@ -1906,46 +2387,122 @@ Search and replace in multiple marked files using the “@kbd{/} Search & Replac
 
 @image{images/casual-dired-search-replace,,,,png}
 
-While most Dired commands use Emacs-style regular expression syntax (@ref{Regular Expressions,,,elisp,}), there are two commands that instead take instead @strong{grep}-style syntax:
+While most Dired commands use Emacs-style regular expression syntax (@ref{Regular Expressions,,,elisp,}),  there are commands that use @strong{grep}-style regex syntax instead as it makes direct calls to @code{grep}. This syntax is dependent on the @code{grep} implementation that is installed and used by Emacs.
 
-@itemize
-@item
-@kbd{g} Find regex… (@code{dired-do-find-regexp})
-@item
-@kbd{G} Find regex and replace… (@code{dired-do-find-regexp-and-replace})
-@end itemize
+@multitable {aaa} {aaaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaa}
+@headitem Key
+@tab Label
+@tab Command
+@tab Notes
+@item C-s
+@tab I-search…
+@tab dired-do-isearch
+@tab 
+@item M-s
+@tab I-search regexp…
+@tab dired-do-isearch-regexp
+@tab 
+@item s
+@tab Search first regexp match…
+@tab dired-do-search
+@tab 
+@item r
+@tab Query regexp and replace…
+@tab dired-do-query-replace-regexp
+@tab 
+@item g
+@tab Find regex…
+@tab dired-do-find-regexp
+@tab grep regex
+@item G
+@tab Find regex and replace…
+@tab dired-do-find-regexp-and-replace
+@tab grep regex
+@item f
+@tab Find in files (rgrep)…
+@tab rgrep
+@tab grep regex
+@end multitable
 
-The @strong{grep}-style syntax is dependent on the @code{grep} implementation that is installed and used by Emacs.
+@node Dired Utilities (Utils›)
+@subsubsection Dired Utilities (Utils›)
 
-@node Bulk Dired Operations
-@subsubsection Bulk Dired Operations
-
+@cindex Dired Utilities
 @vindex casual-dired-utils-tmenu
 
 Casual Dired organizes a number of Dired commands that work on a set of marked files. These commands are presented in the “@kbd{#} Utils›” menu (@code{casual-dired-utils-tmenu}) in @code{casual-dired-tmenu}.
 
 @image{images/casual-dired-utils-screenshot,,,,png}
 
-@node Dired Link
-@subsubsection Dired Link
-
-@vindex casual-dired-link-tmenu
-
-Create symbolic and hard links via the “@kbd{l} Link›” menu (@code{casual-dired-link-tmenu}) in @code{casual-dired-tmenu}. Both absolute and relative symbolic links (symlinks) are supported.
-
-@image{images/casual-dired-link,,,,png}
+@multitable {aaa} {aaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
+@headitem Key
+@tab Label
+@tab Command
+@item F
+@tab Open
+@tab dired-do-find-marked-files
+@item Z
+@tab Compress
+@tab dired-do-compress
+@item u
+@tab Upcase…
+@tab dired-upcase
+@item d
+@tab Downcase…
+@tab dired-downcase
+@item s
+@tab Search & Replace›
+@tab casual-dired-search-replace-tmenu
+@item e
+@tab Emacs Lisp›
+@tab casual-dired-elisp-tmenu
+@item l
+@tab Link›
+@tab casual-dired-link-tmenu
+@end multitable
 
 @node Dired Elisp
 @subsubsection Dired Elisp
 
+@cindex Dired Elisp
 @vindex casual-dired-elisp-tmenu
 
-Support for running bulk commands for Elisp development are provided by the menu @code{casual-dired-elisp-tmenu}.
+Support for running bulk commands for Elisp development are provided by the menu @code{casual-dired-elisp-tmenu}. This menu is located in the Utilities menu (@ref{Dired Utilities (Utils›)}).
 
-@node Dired Unicode Symbol Support
-@subsubsection Dired Unicode Symbol Support
+@image{images/casual-dired-elisp-screenshot,,,,png}
 
-By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu, Casual Dired will use Unicode symbols as appropriate in its menus. An example is shown below.
+@multitable {aaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaa}
+@headitem Key
+@tab Label
+@tab Command
+@item B
+@tab Byte-compile…
+@tab dired-do-byte-compile
+@item D
+@tab Byte-compile directory…
+@tab byte-recompile-directory
+@item L
+@tab Load
+@tab dired-do-load
+@item c
+@tab Check documentation strings
+@tab checkdoc-dired
+@end multitable
+
+@node Dired Settings (Settings›)
+@subsubsection Dired Settings (Settings›)
+
+@cindex Dired Settings
+@vindex casual-dired-settings-tmenu
+
+@image{images/casual-dired-settings-screenshot,,,,png}
+
+Configure Dired to preference using the Settings menu (@code{casual-dired-settings-tmenu}).
+
+
+@subheading Dired Unicode Symbol Support
+
+By enabling @kbd{u} “Use Unicode Symbols” from the Settings menu, Casual Dired will use Unicode symbols as appropriate in its menus. 
 
 @image{images/casual-dired-screenshot-unicode,,,,png}
 
