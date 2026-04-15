@@ -66,7 +66,7 @@
     ("!" "Shell…" dired-do-shell-command)
     ("&" "Shell &… " dired-do-async-shell-command)
     (";" "Thumbnail" image-dired-dired-toggle-marked-thumbs
-     :if display-graphic-p
+     :if casual-dired-image-file-p
      :transient t)
     ("W" "Browse" browse-url-of-dired-file)]
 
@@ -85,13 +85,14 @@
      (lambda () (casual-lib-checkbox-label dired-omit-mode "Omit Mode"))
      :transient t)
     ("i" "Insert Subdir" dired-maybe-insert-subdir
-     :if-not casual-dired-lisp-dired-buffer-p
+     :if casual-dired-directory-p
      :transient t)
     ("$" "Hide/Unhide Subdir" dired-hide-subdir
      :if-not casual-dired-lisp-dired-buffer-p
      :transient t)
     ("k" "Kill (Hide) Line(s)" dired-do-kill-lines
      :description (lambda () (if prefix-arg "Kill Subdir" "Kill (Hide) Line(s)✦"))
+     :if casual-dired-marked-files-p
      :transient t)
     ("g" "Revert" revert-buffer :transient t)
     ("f" "Filter by name…" casual-dired-find-dired-regexp)
@@ -221,9 +222,9 @@
 
    ["Search"
     :pad-keys t
-    ("C-s" "I-Search…" dired-isearch-filenames)
-    ("M-s" "I-Search Regexp…" dired-isearch-filenames-regexp)
-    ("M-f" "Find in files (rgrep)…" rgrep)]
+    ("C-s" "Filename I-Search…" dired-isearch-filenames)
+    ("M-s" "Filename I-Search Regexp…" dired-isearch-filenames-regexp)
+    ("M-f" "Find in files…" rgrep)]
 
    ["New"
     ("+" "Directory" dired-create-directory :transient t)
@@ -267,9 +268,23 @@
   casual-lib-navigation-group-with-return)
 
 ;;; Functions
+
+(defun casual-dired-directory-p ()
+  "Predicate if Dired item is a directory."
+  (condition-case nil
+      (and (file-directory-p (thing-at-point 'filename))
+           (not (casual-dired-lisp-dired-buffer-p)))
+    (error nil)))
+
 (defun casual-dired-image-file-p ()
-  "Predicate if current file in Dired is an image file."
-  (string-match-p (image-dired--file-name-regexp) (dired-get-filename)))
+  "Predicate if Dired item is an image file."
+  (if (and (display-graphic-p) (derived-mode-p 'dired-mode))
+      (let ((fname (dired-file-name-at-point)))
+        (if fname
+            (string-match-p (image-file-name-regexp)
+                            fname)
+          nil))
+    nil))
 
 (defun casual-dired-lisp-dired-buffer-p ()
   "Predicate if buffer name is “*Find Lisp Dired*”.

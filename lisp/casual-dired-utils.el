@@ -59,6 +59,9 @@ ASCII-range string."
   "Predicate if any marked files are in place."
   (if (and (derived-mode-p 'dired-mode) (dired-file-name-at-point))
       (let* ((current (expand-file-name (dired-file-name-at-point)))
+             (current (if (directory-name-p current)
+                          (directory-file-name current)
+                        current))
              (files (dired-get-marked-files))
              (count (length files))
              (is-current-marked (casual-dired-marked-p)))

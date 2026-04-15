@@ -49,18 +49,15 @@
               (casualt-mock #'dired-copy-filename-as-kill)
               (casualt-mock #'dired-do-shell-command)
               (casualt-mock #'dired-do-async-shell-command)
-              ;; (casualt-mock #'image-dired-dired-toggle-marked-thumbs)
               (casualt-mock #'browse-url-of-dired-file)
               (casualt-mock #'casual-dired-sort-by-tmenu)
               (casualt-mock #'dired-hide-details-mode)
               (casualt-mock #'dired-omit-mode)
-              (casualt-mock #'dired-maybe-insert-subdir)
               (casualt-mock #'dired-hide-subdir)
               (casualt-mock #'dired-do-kill-lines)
               (casualt-mock #'revert-buffer)
               (casualt-mock #'casual-dired-find-dired-regexp)
               (casualt-mock #'wdired-change-to-wdired-mode)
-              ;; (casualt-mock #'image-dired)
               (casualt-mock #'dired-mark)
               (casualt-mock #'dired-unmark-all-marks)
               (casualt-mock #'dired-toggle-marks)
@@ -98,18 +95,15 @@
                (:binding "w" :command dired-copy-filename-as-kill)
                (:binding "!" :command dired-do-shell-command)
                (:binding "&" :command dired-do-async-shell-command)
-               ;; (:binding ";" :command image-dired-dired-toggle-marked-thumbs)
                (:binding "W" :command browse-url-of-dired-file)
                (:binding "s" :command casual-dired-sort-by-tmenu)
                (:binding "h" :command dired-hide-details-mode)
                (:binding "O" :command dired-omit-mode)
-               (:binding "i" :command dired-maybe-insert-subdir)
                (:binding "$" :command dired-hide-subdir)
                (:binding "k" :command dired-do-kill-lines)
                (:binding "g" :command revert-buffer)
                (:binding "f" :command casual-dired-find-dired-regexp)
                (:binding "E" :command wdired-change-to-wdired-mode)
-               ;; (:binding "T" :command image-dired)
                (:binding "m" :command dired-mark)
                (:binding "U" :command dired-unmark-all-marks)
                (:binding "t" :command dired-toggle-marks)
@@ -158,6 +152,23 @@
                                           #'casual-dired-tmenu
                                           '(lambda () (random 5000)))))
       (casualt-dired-breakdown))))
+
+
+(ert-deftest test-casual-dired-tmenu-insert-subdir ()
+  (let ((tmpdir "/usr/share"))
+    (casualt-dired-setup tmpdir)
+    (dired-goto-file "/usr/share/man")
+
+
+    (cl-letf ((casualt-mock #'dired-maybe-insert-subdir))
+
+      (let ((test-vectors
+             '((:binding "i" :command dired-maybe-insert-subdir))))
+
+        (casualt-suffix-testcase-runner test-vectors
+                                        #'casual-dired-tmenu
+                                        '(lambda () (random 5000)))))
+    (casualt-dired-breakdown)))
 
 (ert-deftest test-casual-dired-tmenu-unmark ()
   (let ((tmpdir "/usr/share"))

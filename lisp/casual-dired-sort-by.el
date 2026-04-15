@@ -85,7 +85,7 @@ This function requires GNU ls from coreutils installed."
 
     ("s" "Size" casual-dired--sort-by-size :transient nil)]]
 
-  casual-lib-navigation-group-plain)
+  casual-lib-navigation-group-with-return)
 
 (defun casual-dired--sort-by-name ()
   "Sort directory by name.
