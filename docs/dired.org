@@ -34,31 +34,32 @@ The main menu for Dired is ~casual-dired-tmenu~. Bind this menu in the keymap ~d
   (keymap-set dired-mode-map "C-o" #'casual-dired-tmenu)
 #+end_src
 
-In addition, it is convenient to have both the sort-by (~casual-dired-sort-by-tmenu~) and search & replace (~casual-dired-search-replace-tmenu~) menus bound. Listed below is an example of binding the sort-by and search & replace menus to ~s~ and ~/~ respectively.
+In addition, it is convenient to have both the sort-by (~casual-dired-sort-by-tmenu~) and search & replace (~casual-dired-search-replace-tmenu~) menus bound to ~s~ and ~/~ respectively.
 
 #+begin_src elisp :lexical no
   (keymap-set dired-mode-map "s" #'casual-dired-sort-by-tmenu)
   (keymap-set dired-mode-map "/" #'casual-dired-search-replace-tmenu)
 #+end_src
 
-Included is a standard keymap for Dired sorting commands (~casual-dired-sort-menu~) which can be included in a context menu for a mouse-driven workflow. An example of this is shown below:
+Users who frequently work with Emacs Lisp (Elisp) might consider binding a Dired-specific menu (~casual-dired-elisp-tmenu~) for it.
 
-#+begin_src elisp :lexical no
-  (require 'casual-dired)
-
-  (defun casual-dired-context-menu-addons (menu click)
-    "Customize context MENU with CLICK event."
-    (easy-menu-add-item menu nil casual-dired-sort-menu)
-    menu)
-
-  (add-hook 'context-menu-functions #'casual-dired-context-menu-addons)
-  (add-hook 'dired-mode-hook 'context-menu-mode)
-#+end_src
+#+BEGIN_SRC elisp :lexical no
+  (keymap-set dired-mode-map "C-c e" #'casual-dired-elisp-tmenu)
+#+END_SRC
 
 
-#+TEXINFO: @subsubheading Configuration
+#+TEXINFO: @subheading Dired Variables
 
-As Dired has been around for a long time, the different ways of configuring it are myriad. Described below is a configuration used by the author that is consistent with the bindings used in Casual Dired.
+To use Casual Dired, you should have GNU ~ls~ installed and configured so that the customizable variable ~dired-use-ls-dired~ uses it.
+
+The Casual Dired Settings menu gives access to this via the menu key “{{{kbd(l)}}} Use GNU ‘ls’ with --dired”.
+
+[[file:images/casual-dired-settings-screenshot.png]]
+
+
+#+TEXINFO: @subheading Configuration
+
+The Casual Dired menus have several key bindings that differ from what is default in Dired. The following configuration below can be used to align Dired keybindings with menu keys used by Casual Dired.
 
 #+begin_src elisp :lexical no
   (require 'dired)
@@ -73,6 +74,7 @@ As Dired has been around for a long time, the different ways of configuring it a
   (keymap-set dired-mode-map "C-o" #'casual-dired-tmenu)
   (keymap-set dired-mode-map "s" #'casual-dired-sort-by-tmenu)
   (keymap-set dired-mode-map "/" #'casual-dired-search-replace-tmenu)
+  (keymap-set dired-mode-map "C-c e" #'casual-dired-elisp-tmenu)
 
   (add-hook 'dired-mode-hook 'hl-line-mode)
   (add-hook 'dired-mode-hook 'context-menu-mode)
@@ -88,6 +90,8 @@ As Dired has been around for a long time, the different ways of configuring it a
   (keymap-set dired-mode-map "M-p" #'dired-prev-dirline)
   (keymap-set dired-mode-map "]" #'dired-next-subdir)
   (keymap-set dired-mode-map "[" #'dired-prev-subdir)
+  (keymap-set dired-mode-map "M-]" #'dired-next-marked-file)
+  (keymap-set dired-mode-map "M-[" #'dired-prev-marked-file)
   (keymap-set dired-mode-map "A-M-<mouse-1>" #'browse-url-of-dired-file)
   (keymap-set dired-mode-map "<backtab>" #'dired-prev-subdir)
   (keymap-set dired-mode-map "TAB" #'dired-next-subdir)
@@ -98,13 +102,25 @@ As Dired has been around for a long time, the different ways of configuring it a
   (keymap-set image-dired-thumbnail-mode-map "p" #'image-dired-display-previous)
 #+end_src
 
-#+TEXINFO: @subsubheading Dired Variables
 
-The Casual Dired main menu offers “{{{kbd(\,)}}} Settings›” to customize a set of commonly used Dired variables. 
 
-[[file:images/casual-dired-settings-screenshot.png]]
+#+TEXINFO: @subsubheading Dired Sort Context Menu
 
-If you have GNU ~ls~ installed and configured, use the {{{kbd(l)}}} key to set the variable ~dired-use-ls-dired~ to ~t~ (“{{{kbd(l)}}} Use GNU ‘ls’ with --dired”). Otherwise this should be disabled.
+Included is a standard keymap for Dired sorting commands (~casual-dired-sort-menu~) which can be included in a context menu for a mouse-driven workflow. An example of this is shown below:
+
+#+begin_src elisp :lexical no
+  (require 'casual-dired)
+
+  (defun casual-dired-context-menu-addons (menu click)
+    "Customize context MENU with CLICK event."
+    (easy-menu-add-item menu nil casual-dired-sort-menu)
+    menu)
+
+  (add-hook 'context-menu-functions #'casual-dired-context-menu-addons)
+  (add-hook 'dired-mode-hook 'context-menu-mode)
+#+end_src
+
+If you have Anju installed, you can use its support for ~casual-dired-sort-menu~ instead. More detail in [[https://kickingvegas.github.io/anju/Dired-Mode-Context-Menu.html][Anju Dired Mode Context Menu]].
 
 ** Dired Usage
 #+CINDEX: Dired Usage
