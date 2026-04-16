@@ -99,6 +99,9 @@
 ;; - I-Search (Elisp library: `casual-isearch.el')
 ;;   An interface for the many commands supported by I-Search.
 
+;; - Ispell (Elisp library: `casual-ispell.el')
+;;   An interface for the Emacs spell checker Ispell.
+
 ;; - Make (Elisp library: `casual-make.el')
 ;;   An interface to `make-mode'.
 
