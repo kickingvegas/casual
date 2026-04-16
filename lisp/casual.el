@@ -5,7 +5,7 @@
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual
 ;; Keywords: tools, wp
-;; Version: 2.15.1
+;; Version: 2.15.2-rc.1
 ;; Package-Requires: ((emacs "30.1") (transient "0.9.0") (csv-mode "1.27"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -98,6 +98,9 @@
 
 ;; - I-Search (Elisp library: `casual-isearch.el')
 ;;   An interface for the many commands supported by I-Search.
+
+;; - Ispell (Elisp library: `casual-ispell.el')
+;;   An interface for the Emacs spell checker Ispell.
 
 ;; - Make (Elisp library: `casual-make.el')
 ;;   An interface to `make-mode'.

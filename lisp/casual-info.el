@@ -157,14 +157,14 @@
     ("G" "Open node in web…" Info-goto-node-web :transient nil)]
 
    [:pad-keys t
-              ("C-M-n" "New Info in frame" casual-info-new-info-frame
-               :transient nil)
-              ("M-n" "Clone buffer" clone-buffer :transient nil)]]
+    ("C-M-n" "New Info in frame" casual-info-new-info-frame
+     :transient nil)
+    ("M-n" "Clone buffer" clone-buffer :transient nil)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("," "Settings›" casual-info-settings-tmenu)
-          ("q" "Quit Info" quit-window)])
+   (casual-lib-quit-one)
+   ("," "Settings›" casual-info-settings-tmenu)
+   ("q" "Quit Info" quit-window)])
 
 (defun casual-info-new-info-frame ()
   "Create new Info manual instance (buffer) in a new frame.

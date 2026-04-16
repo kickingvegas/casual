@@ -195,21 +195,21 @@ new buffer. This can be avoided if a prefix ARG is provided."
 
 (transient-define-group casual-lib-navigation-group-plain
   [:class transient-row
-          (casual-lib-quit-one)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   (casual-lib-quit-all)])
 
 (transient-define-group casual-lib-navigation-group-with-return
   [:class transient-row
-          (casual-lib-quit-one)
-          ("RET" "Done" transient-quit-all)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("RET" "Done" transient-quit-all)
+   (casual-lib-quit-all)])
 
 (transient-define-group casual-lib-navigation-group-with-undo-and-return
   [:class transient-row
-          (casual-lib-quit-one)
-          ("U" "Undo" undo :transient t)
-          ("RET" "Done" transient-quit-all)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("U" "Undo" undo :transient t)
+   ("RET" "Done" transient-quit-all)
+   (casual-lib-quit-all)])
 
 (transient-define-suffix casual-lib-customize-unicode ()
   "Customize Casual to use Unicode symbols.

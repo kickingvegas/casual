@@ -14,6 +14,21 @@ To learn more about the motivations and design considerations for Casual as well
 
 Please refer to the [[https://kickingvegas.github.io/casual][Casual User Guide]] for detailed information about it. This user guide is available both in Emacs Info and HTML formats.
 
+Shown below are some screenshots of menus offered by Casual. Many [[https://kickingvegas.github.io/casual/Casual-Modes.html][Emacs built-in modes]] are supported by Casual.
+
+/Screenshot of Dired main menu./
+
+[[file:docs/images/casual-dired-screenshot.png]]
+
+/Screenshot of EditKit edit menu./
+
+[[file:docs/images/casual-editkit-edit-screenshot.png]]
+
+/Screenshot of Calc main menu./
+
+[[file:docs/images/casual-calc-tmenu.png]]
+
+
 * Requirements
 Casual requires Emacs 30.1+, Transient 0.9.0+, csv-mode 1.27+.
 

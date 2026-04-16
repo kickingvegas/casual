@@ -84,13 +84,13 @@ specific supported non-Gregorian calendar system behavior."
    ("A" "Convert to all" calendar-print-other-dates :transient t)]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("I" "ⓘ Other Calendars" (lambda ()
-                                     (interactive)
-                                     (calendar-exit)
-                                     (info "(emacs) Other Calendars")))
-          ("RET" "Done" transient-quit-all)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("I" "ⓘ Other Calendars" (lambda ()
+                              (interactive)
+                              (calendar-exit)
+                              (info "(emacs) Other Calendars")))
+   ("RET" "Done" transient-quit-all)
+   (casual-lib-quit-all)])
 
 (transient-define-prefix casual-calendar-lunar-tmenu ()
   "Casual Calendar Lunar (Chinese) Calendar Menu.

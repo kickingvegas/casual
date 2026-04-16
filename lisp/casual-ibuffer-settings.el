@@ -38,10 +38,10 @@
     (casual-lib-customize-hide-navigation)]]
 
   [:class transient-row
-          ("a" "About" casual-ibuffer-about :transient nil)
+   ("a" "About" casual-ibuffer-about :transient nil)
 
-          (casual-lib-quit-one)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   (casual-lib-quit-all)])
 
 (defun casual-ibuffer--customize-ibuffer-saved-filters ()
   "Customize `ibuffer-saved-filters'."

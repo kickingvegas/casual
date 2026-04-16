@@ -34,10 +34,10 @@
     (casual-lib-customize-hide-navigation)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-bookmarks-about :transient nil)
+   (casual-lib-quit-one)
+   ("a" "About" casual-bookmarks-about :transient nil)
 
-          (casual-lib-quit-all)])
+   (casual-lib-quit-all)])
 
 (defun casual-bookmarks--customize-group ()
   "Customize Bookmarks group."

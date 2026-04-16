@@ -107,10 +107,10 @@
     (casual-lib-customize-hide-navigation)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-editkit-about :transient nil)
-          ("RET" "Done" transient-quit-all)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("a" "About" casual-editkit-about :transient nil)
+   ("RET" "Done" transient-quit-all)
+   (casual-lib-quit-all)])
 
 (defun casual-editkit-about-editkit ()
   "Casual EditKit is a user interface library for Emacs editing commands.

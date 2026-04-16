@@ -1,6 +1,6 @@
 ;;; casual-calc-angle-measure.el --- Casual Angle Measure Menu  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -43,11 +43,11 @@
     :transient nil)
    ("h" "Hours-Minutes-Seconds" calc-hms-mode :transient nil)]
   [:class transient-row
-          (casual-lib-quit-one)
-          (casual-calc-algebraic-entry)
-          (casual-calc-pop)
-          (casual-calc-undo-suffix)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   (casual-calc-algebraic-entry)
+   (casual-calc-pop)
+   (casual-calc-undo-suffix)
+   (casual-lib-quit-all)])
 
 (provide 'casual-calc-angle-measure)
 ;;; casual-calc-angle-measure.el ends here

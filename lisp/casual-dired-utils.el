@@ -48,6 +48,33 @@ non-nil, then the Unicode symbol is returned, otherwise a plain
 ASCII-range string."
   (casual-lib-unicode-db-get key casual-dired-unicode-db))
 
+
+(defun casual-dired-marked-p ()
+  "Predicate if Dired item is marked."
+  (if (derived-mode-p 'dired-mode)
+      (char-equal (char-after (line-beginning-position)) dired-marker-char)
+    nil))
+
+(defun casual-dired-marked-files-p ()
+  "Predicate if any marked files are in place."
+  (if (and (derived-mode-p 'dired-mode) (dired-file-name-at-point))
+      (let* ((current (expand-file-name (dired-file-name-at-point)))
+             (current (if (directory-name-p current)
+                          (directory-file-name current)
+                        current))
+             (files (dired-get-marked-files))
+             (count (length files))
+             (is-current-marked (casual-dired-marked-p)))
+
+        (if (and (eq count 1) (member current files))
+            is-current-marked
+          t))
+    nil))
+
+
+;; -------------------------------------------------------------------
+;; Transients
+
 (transient-define-prefix casual-dired-utils-tmenu ()
   ["Utils - Marked Files or File under Point"
    ["Files"
@@ -63,7 +90,7 @@ ASCII-range string."
     ("e" "Emacs Lisp›" casual-dired-elisp-tmenu :transient nil)
     ("l" "Link›" casual-dired-link-tmenu :transient nil)]]
 
-  casual-lib-navigation-group-plain)
+  casual-lib-navigation-group-with-return)
 
 ;;;###autoload (autoload 'casual-dired-search-replace-tmenu "casual-dired-utils" nil t)
 (transient-define-prefix casual-dired-search-replace-tmenu ()
@@ -82,7 +109,7 @@ ASCII-range string."
 
    [("f" "Find in files (rgrep)…" rgrep)]]
 
-  casual-lib-navigation-group-plain)
+  casual-lib-navigation-group-with-return)
 
 (transient-define-prefix casual-dired-elisp-tmenu ()
   ["Emacs Lisp"
@@ -96,9 +123,7 @@ ASCII-range string."
    ["Verification"
     ("c" "Check documentation strings" checkdoc-dired :transient nil)]]
 
-  [:class transient-row
-          (casual-lib-quit-one)
-          (casual-lib-quit-all)])
+  casual-lib-navigation-group-with-return)
 
 (transient-define-prefix casual-dired-link-tmenu ()
   ["Link"
@@ -114,9 +139,7 @@ ASCII-range string."
     ("h" "Hard…" dired-do-hardlink)
     ("H" "Hard regexp…" dired-do-hardlink-regexp)]]
 
-  [:class transient-row
-          (casual-lib-quit-one)
-          (casual-lib-quit-all)])
+  casual-lib-navigation-group-with-return)
 
 (provide 'casual-dired-utils)
 ;;; casual-dired-utils.el ends here

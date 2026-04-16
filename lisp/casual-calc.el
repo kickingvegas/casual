@@ -139,13 +139,13 @@
    ("M-t" "Trail›" casual-calc-trail-tmenu)]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          (casual-calc-algebraic-entry)
-          (casual-calc-enter)
-          (casual-calc-roll-down)
-          (casual-calc-pop)
-          (casual-calc-undo-suffix)
-          ("q" "Quit" calc-quit)])
+   (casual-lib-quit-one)
+   (casual-calc-algebraic-entry)
+   (casual-calc-enter)
+   (casual-calc-roll-down)
+   (casual-calc-pop)
+   (casual-calc-undo-suffix)
+   ("q" "Quit" calc-quit)])
 
 (provide 'casual-calc)
 ;;; casual-calc.el ends here

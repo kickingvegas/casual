@@ -148,15 +148,15 @@ See Info node `(eww)Top' for more information on it."
    ("M-p" "Previous" eww-previous-bookmark :transient t)]
 
   [:class transient-row
-          ("C-g" "Back" transient-quit-one
-           :description casual-lib--quit-one-suffix-label
-           :if-not casual-lib-hide-navigation-p)
-          ("," "Settings›" casual-eww-settings-tmenu)
-          ("I" "ⓘ" casual-eww-info)
-          ("J" "Jump to Bookmark…" bookmark-jump)
-          ("q" "Quit" quit-window)
-          ("C-q" "Dismiss" transient-quit-all
-           :if-not casual-lib-quit-all-hide-navigation-p)])
+   ("C-g" "Back" transient-quit-one
+    :description casual-lib--quit-one-suffix-label
+    :if-not casual-lib-hide-navigation-p)
+   ("," "Settings›" casual-eww-settings-tmenu)
+   ("I" "ⓘ" casual-eww-info)
+   ("J" "Jump to Bookmark…" bookmark-jump)
+   ("q" "Quit" quit-window)
+   ("C-q" "Dismiss" transient-quit-all
+    :if-not casual-lib-quit-all-hide-navigation-p)])
 
 ;;;###autoload (autoload 'casual-eww-bookmarks-tmenu "casual-eww" nil t)
 (transient-define-prefix casual-eww-bookmarks-tmenu ()
@@ -175,9 +175,9 @@ See Info node `(eww)Top' for more information on it."
     ("n" "Next" next-line :transient t)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("q" "Quit" quit-window)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("q" "Quit" quit-window)
+   (casual-lib-quit-all)])
 
 (provide 'casual-eww)
 ;;; casual-eww.el ends here

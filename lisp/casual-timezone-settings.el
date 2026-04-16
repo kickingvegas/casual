@@ -63,15 +63,15 @@
     ("f" "Describe Format" casual-timezone--describe-format-time-string)]]
 
   [:class transient-row
-          (casual-lib-customize-unicode)
-          (casual-lib-customize-hide-navigation)
-          ("D" "Zoneinfo DB" casual-timezone--customize-zone-info-database)]
+   (casual-lib-customize-unicode)
+   (casual-lib-customize-hide-navigation)
+   ("D" "Zoneinfo DB" casual-timezone--customize-zone-info-database)]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-timezone-about :transient nil)
+   (casual-lib-quit-one)
+   ("a" "About" casual-timezone-about :transient nil)
 
-          (casual-lib-quit-all)])
+   (casual-lib-quit-all)])
 
 (defun casual-timezone--customize-working-hour-glyph ()
   "Set working hour glyph.

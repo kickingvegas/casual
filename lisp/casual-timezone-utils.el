@@ -530,10 +530,10 @@ window width has changed."
     ("c" "Calendar" calendar)]]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("," "Settings" casual-timezone-settings-tmenu)
-          ("q" "Quit" quit-window)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("," "Settings" casual-timezone-settings-tmenu)
+   ("q" "Quit" quit-window)
+   (casual-lib-quit-all)])
 
 (provide 'casual-timezone-utils)
 ;;; casual-timezone-utils.el ends here

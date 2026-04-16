@@ -58,11 +58,11 @@ plain ASCII-range string."
 ;; Casual Agenda menu navigation group.
 (transient-define-group casual-agenda-navigation-group
   [:class transient-row
-          (casual-lib-quit-one)
-          ("RET" "Open" org-agenda-switch-to)
-          ("." "Now" casual-agenda-goto-now :transient t)
-          ("C-/" "Undo" org-agenda-undo :transient t)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("RET" "Open" org-agenda-switch-to)
+   ("." "Now" casual-agenda-goto-now :transient t)
+   ("C-/" "Undo" org-agenda-undo :transient t)
+   (casual-lib-quit-all)])
 
 ;; Casual Agenda navigation group within an Agenda.
 (transient-define-group casual-agenda-agenda-navigation-group

@@ -1,6 +1,6 @@
 ;;; casual-dired-test-utils.el --- Casual Test Utils       -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -28,9 +28,9 @@
 (require 'transient)
 (require 'kmacro)
 
-(defun casualt-dired-setup ()
-  "Casual menu test setup function."
-  (dired "/tmp"))
+(defun casualt-dired-setup (&optional tmpdir)
+  "Dired test setup function."
+  (dired tmpdir))
 
 (defun casualt-dired-breakdown (&optional clear)
   "Casual menu test breakdown function, if CLEAR is non-nil then clear state."

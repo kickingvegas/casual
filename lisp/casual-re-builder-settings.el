@@ -36,13 +36,13 @@
     (casual-lib-customize-hide-navigation)]]
 
   [:class transient-row
-          ("C-g" "Back" transient-quit-one
-           :description casual-lib--quit-one-suffix-label
-           :if-not casual-lib-hide-navigation-p)
-          ("a" "About" casual-re-builder-about :transient nil)
+   ("C-g" "Back" transient-quit-one
+    :description casual-lib--quit-one-suffix-label
+    :if-not casual-lib-hide-navigation-p)
+   ("a" "About" casual-re-builder-about :transient nil)
 
-          ("C-q" "Dismiss" transient-quit-all
-           :if-not casual-lib-quit-all-hide-navigation-p)])
+   ("C-q" "Dismiss" transient-quit-all
+    :if-not casual-lib-quit-all-hide-navigation-p)])
 
 (defun casual-re-builder--customize-group ()
   "Customize Re-Builder group."

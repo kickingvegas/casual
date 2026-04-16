@@ -46,13 +46,13 @@
     ("G" "Group" casual-isearch--customize-group)]]
 
   [:class transient-row
-          (casual-lib-customize-unicode)
-          (casual-lib-customize-hide-navigation)]
+   (casual-lib-customize-unicode)
+   (casual-lib-customize-hide-navigation)]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ("a" "About" casual-isearch-about :transient nil)
-          (casual-lib-quit-all)])
+   (casual-lib-quit-one)
+   ("a" "About" casual-isearch-about :transient nil)
+   (casual-lib-quit-all)])
 
 (defun casual-isearch--customize-group ()
   "Customize I-Search group."

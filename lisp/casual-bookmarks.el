@@ -108,12 +108,12 @@
     :transient t)]
 
   [:class transient-row
-          (casual-lib-quit-one)
-          ;;("l" "Load…" bookmark-bmenu-load :transient t)
-          ("s" "Save" bookmark-bmenu-save :transient t)
-          ("," "Settings›" casual-bookmarks-settings-tmenu)
-          (casual-lib-quit-all)
-          ("q" "Quit" quit-window)])
+   (casual-lib-quit-one)
+   ;;("l" "Load…" bookmark-bmenu-load :transient t)
+   ("s" "Save" bookmark-bmenu-save :transient t)
+   ("," "Settings›" casual-bookmarks-settings-tmenu)
+   (casual-lib-quit-all)
+   ("q" "Quit" quit-window)])
 
 (transient-define-prefix casual-bookmarks-sortby-tmenu ()
   ["Bookmarks: Sort By"
