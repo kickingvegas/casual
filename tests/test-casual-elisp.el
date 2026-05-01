@@ -1,6 +1,6 @@
 ;;; test-casual-elisp.el --- Casual Make Tests -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Y. Choi
+;; Copyright (C) 2025, 2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -36,6 +36,7 @@
               (casualt-mock #'eval-last-sexp)
               (casualt-mock #'elisp-eval-region-or-buffer)
               (casualt-mock #'eval-defun)
+              (casualt-mock #'casual-elisp-edebug-defun)
               (casualt-mock #'xref-find-definitions)
               (casualt-mock #'xref-find-references)
               (casualt-mock #'xref-find-references-and-replace)
@@ -61,6 +62,7 @@
              '((:binding "x" :command eval-last-sexp)
                (:binding "L" :command elisp-eval-region-or-buffer)
                (:binding "d" :command eval-defun)
+               (:binding "e" :command casual-elisp-edebug-defun)
 
                ;;(:binding "." :command xref-find-definitions)
                ;;(:binding "r" :command xref-find-references)

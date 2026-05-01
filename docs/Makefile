@@ -68,34 +68,36 @@ ${PKG_NAME}.texi: $(ORG_FILES)
 html:
 	mkdir html
 
-.PHONY: gen-html
-gen-html: ${PKG_NAME}.texi html html/images html/main.css sync-images
-	makeinfo				\
-	--html					\
-	--css-ref=main.css			\
-	--output=html				\
-	${PKG_NAME}.texi
-
 html/images:
 	mkdir -p $@
-
-.PHONY: sync-images
-sync-images:
 	rsync					\
-	--archive				\
-	--verbose				\
-	--delete				\
-	images/ html/images
+--archive					\
+--verbose					\
+--delete					\
+images/ $@
 
 html/main.css: main.css
 	cp main.css html
+
+html/index.html: ${PKG_NAME}.texi html/images html/main.css
+	makeinfo				\
+--html						\
+--css-ref=main.css				\
+--output=html					\
+${PKG_NAME}.texi
+
+.PHONY: gen-html
+gen-html: html/index.html
 
 .PHONY: clean-html
 clean-html:
 	- rm -rf html
 
+.PHONY: docs
+docs: $(PKG_NAME).info gen-html
+
 .PHONY: open-html
-open-html:
+open-html: gen-html
 	open html/index.html
 
 .PHONY: open-localhost

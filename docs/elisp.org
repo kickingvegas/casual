@@ -25,13 +25,14 @@ The binding {{{kbd(M-m)}}} is intended to complement the binding {{{kbd(C-o)}}} 
 ** Elisp Usage
 #+CINDEX: Elisp Usage
 #+VINDEX: casual-elisp-tmenu
+
 [[file:images/casual-elisp-screenshot.png]]
 
 Invoke the Casual Elisp main menu ~casual-elisp-tmenu~ via the binding {{{kbd(M-m)}}} (or your binding of preference) in an Elisp window. Typically this is whenever an =.el= file is opened.
 
 The following sections are offered in the menu:
 
-- Evaluate :: Commands to evaluate or execute an Elisp expression ([[info:elisp#Eval]]).
+- Evaluate :: Commands to evaluate, execute, or debug an Elisp expression ([[info:elisp#Eval]], [[info:elisp#Edebug]]).
 
 - Xref :: Cross-referencing commands ([[info:emacs#Xref]]).
 
@@ -43,19 +44,10 @@ The following sections are offered in the menu:
 
 - Navigate :: Commands for Sexp (balanced expression) navigation.
 
+# #+TEXINFO: @subsubheading Elisp Settings
+# #+VINDEX: casual-elisp-settings-tmenu
 
-#+TEXINFO: @subsubheading Edebug Support
-#+CINDEX: Edebug
-
-Using the command prefix {{{kbd(C-u)}}} when ~casual-elisp-tmenu~ is raised will change the “{{{kbd(d)}}} Defun✦” menu item to “{{{kbd(d)}}} Edebug” to support instrumenting a function for Edebug ([[info:elisp#Edebug]]).
-
-[[file:images/casual-elisp-edebug-screenshot.png]]
-
-
-#+TEXINFO: @subsubheading Elisp Settings
-#+VINDEX: casual-elisp-settings-tmenu
-
-The menu ~casual-elisp-settings-tmenu~ provides access to different ~emacs-lisp-mode~ settings.
+# The menu ~casual-elisp-settings-tmenu~ provides access to different ~emacs-lisp-mode~ settings.
 
 # TODO: Insert screenshot
 
