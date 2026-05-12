@@ -45,7 +45,8 @@
     ("L" "Buffer or Region" elisp-eval-region-or-buffer
      :description (lambda () (if (use-region-p) "Region" "Buffer")))
     ("d" "Defun" eval-defun
-     :description (lambda () (if prefix-arg "Edebug" "Defun✦")))]
+     :description (lambda () (if prefix-arg "Edebug" "Defun✦")))
+    ("e" "Edebug" casual-elisp-edebug-defun)]
 
    ["Xref"
     ("." "Definition" xref-find-definitions)
