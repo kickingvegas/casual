@@ -134,5 +134,4 @@
 
 (setopt org-latex-prefer-user-labels t)
 
-(provide 'casualdocs)
 ;;; casualdocs.el ends here

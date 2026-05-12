@@ -5,7 +5,7 @@
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual
 ;; Keywords: tools, wp
-;; Version: 2.16.0
+;; Version: 2.16.1-rc.1
 ;; Package-Requires: ((emacs "30.1") (transient "0.9.0") (csv-mode "1.27"))
 
 ;; This program is free software; you can redistribute it and/or modify

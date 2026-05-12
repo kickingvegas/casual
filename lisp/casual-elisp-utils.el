@@ -1,6 +1,6 @@
 ;;; casual-elisp-utils.el --- Casual Elisp Utils -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025 Charles Y. Choi
+;; Copyright (C) 2025, 2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -67,6 +67,11 @@ This function has no error checking."
              (error
               (message
                "Unable to move point to next balanced expression (sexp)."))))))
+
+(defun casual-elisp-edebug-defun ()
+  "Instrument defun for Edebug."
+  (interactive)
+  (eval-defun t))
 
 (provide 'casual-elisp-utils)
 ;;; casual-elisp-utils.el ends here
