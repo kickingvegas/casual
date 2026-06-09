@@ -51,7 +51,8 @@ ASCII-range string."
 
 (defun casual-dired-marked-p ()
   "Predicate if Dired item is marked."
-  (if (derived-mode-p 'dired-mode)
+  (if (and (derived-mode-p 'dired-mode)
+           (> (- (line-end-position) (line-beginning-position)) 0))
       (char-equal (char-after (line-beginning-position)) dired-marker-char)
     nil))
 
