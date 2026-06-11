@@ -131,7 +131,12 @@ References
     (push geometry cmd-list)
     (push target cmd-list)
 
-    (let ((cmd (string-join (reverse cmd-list) " ")))
+    (let* ((async-buf-name (string-replace "*" "\\*"
+                                           shell-command-buffer-name-async))
+           (display-buffer-alist
+            (append display-buffer-alist
+                    `((,async-buf-name display-buffer-no-window))))
+           (cmd (string-join (reverse cmd-list) " ")))
       (async-shell-command cmd)
       (message "%s" cmd))))
 

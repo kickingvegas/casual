@@ -36,6 +36,7 @@ eww						\
 help						\
 html						\
 ibuffer						\
+image						\
 info						\
 isearch						\
 ispell						\
