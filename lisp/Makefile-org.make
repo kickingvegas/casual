@@ -21,12 +21,7 @@ ELISP_INCLUDES=casual-org-utils.el	\
 casual-org-settings.el
 ELISP_PACKAGES=
 ELISP_TEST_INCLUDES=casual-org-test-utils.el
-PACKAGE_PATHS=					\
--L $(EMACS_ELPA_DIR)/compat-current		\
--L $(EMACS_ELPA_DIR)/seq-current		\
--L $(EMACS_ELPA_DIR)/transient-current		\
--L $(EMACS_ELPA_DIR)/cond-let-current		\
--L $(EMACS_ELPA_DIR)/org-current		\
--L $(CASUAL_LISP_DIR)
+PACKAGE_PATHS:=$(PACKAGE_PATHS)				\
+-L $(EMACS_ELPA_DIR)/org-current
 
 include Makefile--rules.make

@@ -21,11 +21,5 @@ ELISP_INCLUDES=casual-agenda-utils.el		\
 casual-agenda-settings.el
 ELISP_PACKAGES=
 ELISP_TEST_INCLUDES=casual-agenda-test-utils.el
-PACKAGE_PATHS=					\
--L $(EMACS_ELPA_DIR)/compat-current		\
--L $(EMACS_ELPA_DIR)/seq-current		\
--L $(EMACS_ELPA_DIR)/transient-current		\
--L $(EMACS_ELPA_DIR)/cond-let-current		\
--L $(CASUAL_LISP_DIR)
 
 include Makefile--rules.make

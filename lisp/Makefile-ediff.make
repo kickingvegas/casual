@@ -1,5 +1,5 @@
 ##
-# Copyright (C) 2025 Charles Y. Choi
+# Copyright (C) 2025-2026 Charles Y. Choi
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,16 +21,5 @@ ELISP_INCLUDES=casual-ediff-utils.el	\
 casual-ediff-settings.el
 ELISP_PACKAGES=
 ELISP_TEST_INCLUDES=casual-ediff-test-utils.el
-PACKAGE_PATHS=					\
--L $(EMACS_ELPA_DIR)/compat-current		\
--L $(EMACS_ELPA_DIR)/seq-current		\
--L $(EMACS_ELPA_DIR)/transient-current		\
--L $(EMACS_ELPA_DIR)/cond-let-current		\
--L $(EMACS_ELPA_DIR)/magit-current		\
--L $(EMACS_ELPA_DIR)/magit-section-current	\
--L $(EMACS_ELPA_DIR)/dash-current		\
--L $(EMACS_ELPA_DIR)/with-editor-current	\
--L $(EMACS_ELPA_DIR)/llama-current		\
--L $(CASUAL_LISP_DIR)
 
 include Makefile--rules.make
