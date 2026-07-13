@@ -183,10 +183,6 @@ When editing formulas for a table, the menu ~casual-org-table-fedit-tmenu~ can b
 :END:
 #+CINDEX: Org Block
 
-When the point is in a block ([[info:org#Blocks][org#Blocks]]) the following variant is displayed in ~casual-org-tmenu~:
-
-[[file:images/casual-org-block-src-screenshot.png]]
-
 Numerous different block types are recognized by ~casual-org-tmenu~. They are:
 
 - Source (~#+BEGIN_SRC~)
@@ -196,10 +192,14 @@ Numerous different block types are recognized by ~casual-org-tmenu~. They are:
 - Center (~#+BEGIN_CENTER~)
 - Verse (~#+BEGIN_VERSE~)
 
+The following screenshot shows the variant of ~casual-org-tmenu~ when the point is in the declaration for ~#+BEGIN_SRC~.
+
+[[file:images/casual-org-block-src-screenshot.png]]
+
+
 #+TEXINFO: @subsubheading Org In Source Block
 
 If the point is within an Org source block, then the following menu variant is shown.
-
 
 [[file:images/casual-org-in-block-src-screenshot.png]]
 

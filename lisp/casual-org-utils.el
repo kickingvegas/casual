@@ -780,9 +780,11 @@ Org 9.8."
                              (casual-org--block-description)))
    [("'" "Edit" org-edit-src-code :transient nil)]
    [("n" "Assign Name…" casual-org-assign-name)]
+   [("t" "Tangle" org-babel-tangle
+     :if (lambda () (eq (org-element-type (org-element-context)) 'src-block)))]
    [("C-c" "Eval" org-ctrl-c-ctrl-c
      :if (lambda () (or (eq (org-element-type (org-element-context)) 'src-block)
-                        (eq (org-element-type (org-element-context)) 'dynamic-block)))
+                   (eq (org-element-type (org-element-context)) 'dynamic-block)))
      :transient t)]])
 
 
