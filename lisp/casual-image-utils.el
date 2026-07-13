@@ -25,6 +25,7 @@
 ;;; Code:
 
 (require 'image)
+(require 'map)
 (require 'image-crop)
 (require 'casual-lib)
 
@@ -133,9 +134,9 @@ References
 
     (let* ((async-buf-name (string-replace "*" "\\*"
                                            shell-command-buffer-name-async))
+           (awin-config `((,async-buf-name display-buffer-no-window)))
            (display-buffer-alist
-            (append display-buffer-alist
-                    `((,async-buf-name display-buffer-no-window))))
+            (map-put! display-buffer-alist async-buf-name awin-config))
            (cmd (string-join (reverse cmd-list) " ")))
       (async-shell-command cmd)
       (message "%s" cmd))))
