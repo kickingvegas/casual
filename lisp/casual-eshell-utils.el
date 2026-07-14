@@ -1,6 +1,6 @@
 ;;; casual-eshell-utils.el --- Casual Eshell Utils -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025 Charles Y. Choi
+;; Copyright (C) 2025-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -25,6 +25,7 @@
 
 (require 'eshell)
 (require 'em-alias)
+(require 'em-prompt)
 (require 'tramp)
 (require 'casual-lib)
 
@@ -102,6 +103,18 @@ plain ASCII-range string."
           "~"
         (replace-regexp-in-string
          (concat "^" (getenv "HOME")) "~" path)))))
+
+(defun casual-eshell-copy-last-output ()
+  "Copy output from last command issued."
+  (interactive)
+  (save-excursion
+    (eshell-mark-output)
+    (let* ((start (point))
+           (end (point-max))
+           (output (substring-no-properties (buffer-substring start end)))
+           (prompt (funcall eshell-prompt-function))
+           (output (string-replace prompt "" output)))
+      (kill-new output))))
 
 (provide 'casual-eshell-utils)
 ;;; casual-eshell-utils.el ends here

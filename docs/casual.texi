@@ -3130,6 +3130,9 @@ In your initialization file@comma{} bind the Transient @code{casual-eshell-tmenu
 @cindex Eshell Usage
 @vindex casual-eshell-tmenu
 
+@image{images/casual-eshell-screenshot,,,,png}
+
+
 Eshell can be invoked via @code{M-x eshell}. In the Eshell window@comma{} press @kbd{C-o} (or your binding of preference) to raise the menu @code{casual-eshell-tmenu}.
 
 The following sections are offered in the menu:
@@ -3137,20 +3140,25 @@ The following sections are offered in the menu:
 @table @asis
 @item Input
 Commands supporting input to the current prompt. 
+
 @item Argument
 Commands supporting arguments in the current prompt.
+
 @item Prompt
 Navigation of previous prompt commands.
+
 @item Output
 Commands related to display of prompt. Commands marked with the glyph ✦ support an optional prefix (@kbd{C-u}) value.
+
 @item Misc
 Miscellaneous commands.
-@item Process
-Signal commands to send to the process. This section is only visible when a process is running.
-@end table
 
+@item Process
+Signal commands to send to the process.
+This section is only visible when a process is running.
 
 @image{images/casual-eshell-process-screenshot,,,,png}
+@end table
 
 
 @subsubheading Eshell Settings
@@ -3162,6 +3170,8 @@ The menu @code{casual-eshell-settings-tmenu} provides access to different @code{
 @vindex casual-eshell-info-tmenu
 
 The menu @code{casual-eshell-info-tmenu} provides access to different @code{eshell-mode} documentation in its Info manual.
+
+@image{images/casual-eshell-info-screenshot,,,,png}
 
 
 @subsubheading Eshell Unicode Symbol Support
