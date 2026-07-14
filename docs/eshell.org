@@ -24,19 +24,27 @@ In your initialization file, bind the Transient ~casual-eshell-tmenu~ to your ke
 #+CINDEX: Eshell Usage
 #+VINDEX: casual-eshell-tmenu
 
+[[file:images/casual-eshell-screenshot.png]]
+
+
 Eshell can be invoked via ~M-x eshell~. In the Eshell window, press {{{kbd(C-o)}}} (or your binding of preference) to raise the menu ~casual-eshell-tmenu~.
 
 The following sections are offered in the menu:
 
 - Input :: Commands supporting input to the current prompt. 
-- Argument :: Commands supporting arguments in the current prompt.
-- Prompt :: Navigation of previous prompt commands.
-- Output :: Commands related to display of prompt. Commands marked with the glyph ✦ support an optional prefix ({{{kbd(C-u)}}}) value.
-- Misc :: Miscellaneous commands.
-- Process :: Signal commands to send to the process. This section is only visible when a process is running.
-  
 
-  [[file:images/casual-eshell-process-screenshot.png]]
+- Argument :: Commands supporting arguments in the current prompt.
+
+- Prompt :: Navigation of previous prompt commands.
+
+- Output :: Commands related to display of prompt. Commands marked with the glyph ✦ support an optional prefix ({{{kbd(C-u)}}}) value.
+
+- Misc :: Miscellaneous commands.
+
+- Process :: Signal commands to send to the process.
+  This section is only visible when a process is running.
+
+    [[file:images/casual-eshell-process-screenshot.png]]
 
 
 #+TEXINFO: @subsubheading Eshell Settings
@@ -51,7 +59,7 @@ The menu ~casual-eshell-settings-tmenu~ provides access to different ~eshell-mod
 
 The menu ~casual-eshell-info-tmenu~ provides access to different ~eshell-mode~ documentation in its Info manual.
 
-# TODO: Insert screenshot
+[[file:images/casual-eshell-info-screenshot.png]]
 
   
 #+TEXINFO: @subsubheading Eshell Unicode Symbol Support

@@ -1,6 +1,6 @@
 ;;; test-casual-eshell.el --- Casual Make Tests -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Y. Choi
+;; Copyright (C) 2025-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -32,6 +32,10 @@
 (ert-deftest test-casual-eshell-tmenu ()
   (let ()
     (casualt-eshell-setup)
+    (eshell-return-to-prompt)
+    (insert "echo \"yer\"")
+    (eshell-send-input)
+    (eshell-previous-prompt)
 
     (cl-letf ((casualt-mock #'eshell-insert-buffer-name)
               (casualt-mock #'eshell-kill-input)
@@ -48,7 +52,7 @@
               (casualt-mock #'eshell-delete-output)
               ;;(casualt-mock #'dired)
               (casualt-mock #'casual-eshell-edit-aliases)
-
+              (casualt-mock #'casual-eshell-copy-last-output)
               (casualt-mock #'casual-eshell-info-tmenu)
               (casualt-mock #'casual-eshell-settings-tmenu)
               ;;(casualt-mock #'bookmark-jump)
@@ -64,11 +68,12 @@
                (:binding "y" :command eshell-repeat-argument)
                (:binding "p" :command eshell-previous-prompt)
                (:binding "n" :command eshell-next-prompt)
-               (:binding "RET" :command eshell-copy-old-input)
+               (:binding "c" :command eshell-copy-old-input)
                (:binding "s" :command eshell-show-output)
                (:binding "." :command eshell-show-maximum-output)
                (:binding "m" :command eshell-mark-output)
                (:binding "D" :command eshell-delete-output)
+               (:binding "w" :command casual-eshell-copy-last-output)
                ;; (:binding "d" :command dired)
                (:binding "a" :command casual-eshell-edit-aliases)
                (:binding "i" :command casual-eshell-info-tmenu)
