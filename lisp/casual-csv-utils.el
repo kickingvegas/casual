@@ -81,8 +81,7 @@ plain ASCII-range string."
   (call-interactively #'csv-align-fields))
 
 
-;; -------------------------------------------------------------------
-;; Transients
+;;; Transients
 (transient-define-prefix casual-csv-align-tmenu ()
   ["Align"
    :description (lambda () (format

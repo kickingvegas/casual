@@ -867,6 +867,5 @@
   ;;     (casualt-editkit-breakdown tmpfile)))
   )
 
-;; -------
 (provide 'test-casual-editkit-utils)
 ;;; test-casual-editkit-utils.el ends here

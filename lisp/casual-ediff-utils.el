@@ -59,7 +59,6 @@ plain ASCII-range string."
   (casual-lib-unicode-db-get key casual-ediff-unicode-db))
 
 
-;; -------------------------------------------------------------------
 ;;; Format
 
 (defun casual-ediff--buffer-description (ebuf slot &optional extend)
@@ -82,7 +81,6 @@ plain ASCII-range string."
       (format "%s: %s" slot filename))))
 
 
-;; -------------------------------------------------------------------
 ;;; Ediff Functions
 (defun casual-ediff-info ()
   "Open Info for Ediff."

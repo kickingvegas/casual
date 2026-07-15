@@ -74,8 +74,7 @@ ASCII-range string."
     nil))
 
 
-;; -------------------------------------------------------------------
-;; Transients
+;;; Transients
 
 (transient-define-prefix casual-dired-utils-tmenu ()
   ["Utils - Marked Files or File under Point"
