@@ -25,8 +25,7 @@
 (require 'casual-lib)
 
 
-;; -------------------------------------------------------------------
-;; Customize Functions
+;;; Customize Functions
 
 ;; Groups
 (defun casual-org--customize-group ()
@@ -150,7 +149,6 @@ Always choose love."
   (describe-function #'casual-org-about-org))
 
 
-;; -------------------------------------------------------------------
 ;; Transients
 (transient-define-prefix casual-org-settings-tmenu ()
   "Casual Org settings menu."

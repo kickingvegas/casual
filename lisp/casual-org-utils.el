@@ -144,7 +144,6 @@ level of the Org manual is opened."
   (derived-mode-p 'org-mode))
 
 
-;; -------------------------------------------------------------------
 ;; Org List Functions
 
 (defun casual-org-checkbox-in-progress ()
@@ -167,7 +166,6 @@ which is done with `org-ctrl-c-ctrl-c'."
   (org-insert-item t))
 
 
-;; -------------------------------------------------------------------
 ;; Org Block & Table Functions
 
 (defun casual-org-assign-name (name)
@@ -241,7 +239,6 @@ This command should only be invoked in an empty table cell."
     (casual-org-table--insert-column-alignment fn)))
 
 
-;; -------------------------------------------------------------------
 ;; Org Section Descriptions
 
 (defun casual-org--block-description ()
@@ -356,7 +353,6 @@ This command should only be invoked in an empty table cell."
       "Org Item")))
 
 
-;; -------------------------------------------------------------------
 ;; Org Table Functions
 
 (defun casual-org-table--cell-at-point ()
@@ -550,7 +546,6 @@ See `casual-org-table--range' for more on RANGE object."
     (kill-new value)))
 
 
-;; -------------------------------------------------------------------
 ;; fedit functions
 
 (defun casual-org-table-fedit-first-row-reference ()
@@ -589,7 +584,6 @@ See `casual-org-table--range' for more on RANGE object."
   (insert "@I..@II"))
 
 
-;; -------------------------------------------------------------------
 ;; Image Preview
 
 (defun casual-org-toggle-images ()
@@ -603,7 +597,6 @@ Org 9.8."
     (org-link-preview 11)))
 
 
-;; -------------------------------------------------------------------
 ;; Transients
 
 ;; Transient Groups
