@@ -27,6 +27,7 @@
 (require 'dired-x)
 (require 'checkdoc)
 (require 'casual-lib)
+(require 'project)
 (require 'casual-dired-variables)
 
 (defconst casual-dired-unicode-db
@@ -102,7 +103,8 @@ ASCII-range string."
     ("M-s" "I-search regexp…" dired-do-isearch-regexp)
     ("s" "Search first regexp match…" dired-do-search)]
    ["Replace in Files"
-    ("r" "Query regexp and replace…" dired-do-query-replace-regexp)]]
+    ("r" "Query regexp and replace…" dired-do-query-replace-regexp)
+    ("p" "Project query regexp and replace…" project-query-replace-regexp)]]
 
   ["grep-style regex"
    [("g" "Find regex…" dired-do-find-regexp)

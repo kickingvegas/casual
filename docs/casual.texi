@@ -2405,7 +2405,7 @@ Search and replace in multiple marked files using the “@kbd{/} Search & Replac
 
 While most Dired commands use Emacs-style regular expression syntax (@ref{Regular Expressions,,,elisp,})@comma{}  there are commands that use @strong{grep}-style regex syntax instead as it makes direct calls to @code{grep}. This syntax is dependent on the @code{grep} implementation that is installed and used by Emacs.
 
-@multitable {aaa} {aaaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaa}
+@multitable {aaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaa}
 @headitem Key
 @tab Label
 @tab Command
@@ -2425,6 +2425,10 @@ While most Dired commands use Emacs-style regular expression syntax (@ref{Regula
 @item r
 @tab Query regexp and replace…
 @tab dired-do-query-replace-regexp
+@tab 
+@item p
+@tab Project query regexp and replace…
+@tab project-query-replace-regexp
 @tab 
 @item g
 @tab Find regex…
