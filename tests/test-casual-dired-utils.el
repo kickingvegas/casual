@@ -1,6 +1,6 @@
 ;;; test-casual-dired-utils.el --- Casual Dired Utils Tests  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -53,6 +53,7 @@
             (casualt-mock #'dired-do-isearch-regexp)
             (casualt-mock #'dired-do-search)
             (casualt-mock #'dired-do-query-replace-regexp)
+            (casualt-mock #'project-query-replace-regexp)
             (casualt-mock #'dired-do-find-regexp-and-replace)
             (casualt-mock #'rgrep))
 
@@ -61,6 +62,7 @@
              (:binding "M-s" :command dired-do-isearch-regexp)
              (:binding "s" :command dired-do-search)
              (:binding "r" :command dired-do-query-replace-regexp)
+             (:binding "p" :command project-query-replace-regexp)
              (:binding "g" :command dired-do-find-regexp)
              (:binding "G" :command dired-do-find-regexp-and-replace)
              (:binding "f" :command rgrep))))
