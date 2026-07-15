@@ -76,7 +76,8 @@
     ("n" "Next" eshell-next-prompt
      :description (lambda () (casual-eshell-unicode-get :next))
      :transient t)
-    ("RET" "Clone" eshell-copy-old-input)]
+    ("c" "Clone" eshell-copy-old-input
+     :inapt-if (lambda () (= (point) (point-max))))]
 
    ["Output"
     :if-not buffer-narrowed-p
@@ -84,6 +85,7 @@
     ("." "Show Max" eshell-show-maximum-output)
     ("m" "Mark" eshell-mark-output
      :description (lambda () (if prefix-arg "Narrow" "Mark✦")))
+    ("w" "Copy Last" casual-eshell-copy-last-output)
     ("D" "Delete" eshell-delete-output
      :description (lambda () (if prefix-arg "Kill" "Delete✦")))]
 
@@ -102,9 +104,9 @@
   ["Process"
    :if (lambda () (car eshell-process-list))
    :class transient-row
-   ("Pi" "Interrupt" eshell-interrupt-process)
-   ("Pk" "Kill" eshell-kill-process)
-   ("Pq" "Quit" eshell-quit-process)]
+   ("C-c" "Interrupt" eshell-interrupt-process)
+   ("C-k" "Kill" eshell-kill-process)
+   ("C-\\" "Quit" eshell-quit-process)]
 
   [:class transient-row
    (casual-lib-quit-one)

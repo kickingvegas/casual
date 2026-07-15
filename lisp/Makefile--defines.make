@@ -1,5 +1,5 @@
 ##
-# Copyright (C) 2024-2025 Charles Y. Choi
+# Copyright (C) 2024-2026 Charles Y. Choi
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,3 +35,11 @@ CASUAL_BASE_DIR=$(abspath $(shell pwd)/..)
 CASUAL_LISP_DIR=$(CASUAL_BASE_DIR)/lisp
 CASUAL_TEST_INCLUDES=$(CASUAL_BASE_DIR)/tests/casual-lib-test-utils.el
 EMACS_ELPA_DIR=$(HOME)/.config/emacs/elpa
+
+PACKAGE_PATHS=					\
+-L $(EMACS_ELPA_DIR)/compat-current		\
+-L $(EMACS_ELPA_DIR)/seq-current		\
+-L $(EMACS_ELPA_DIR)/llama-current		\
+-L $(EMACS_ELPA_DIR)/transient-current		\
+-L $(EMACS_ELPA_DIR)/cond-let-current		\
+-L $(CASUAL_LISP_DIR)

@@ -69,11 +69,11 @@
    ["History"
     :pad-keys t
     ("L" "History" Info-history :transient nil)
-    ("M-[" "⏪️" Info-history-back
-     :description (lambda () (casual-info-unicode-get :rewind))
+    ("M-[" "←" Info-history-back
+     :description (lambda () (casual-info-unicode-get :history-back))
      :transient t)
-    ("M-]" "⏩️" Info-history-forward
-     :description (lambda () (casual-info-unicode-get :fast-forward))
+    ("M-]" "→" Info-history-forward
+     :description (lambda () (casual-info-unicode-get :history-forward))
      :transient t)]
 
    ["Scroll"
@@ -115,38 +115,37 @@
      :transient t)]
 
    ["All Nodes"
-    ("[" "⏪️⤴️" Info-backward-node
+    ("[" "Back" Info-backward-node
      :description (lambda ()
-                    (casual-info-unicode-get :rewind-or-up))
+                    (casual-info-unicode-get :backward-node))
      :transient t)
-    ("]" "⏩️⤵️" Info-forward-node
+    ("]" "Forward" Info-forward-node
      :description (lambda ()
-                    (casual-info-unicode-get :fast-forward-or-down))
+                    (casual-info-unicode-get :forward-node))
      :transient t)]
 
    ["Peer Nodes"
-    ("h" "⏪️" Info-prev
-     :description (lambda () (casual-info-unicode-get :rewind))
+    ("h" "Prev" Info-prev
+     :description (lambda () (casual-info-unicode-get :previous))
      :transient t)
-    ("l" "⏩️" Info-next
-     :description (lambda () (casual-info-unicode-get :fast-forward))
+    ("l" "Next" Info-next
+     :description (lambda () (casual-info-unicode-get :next))
      :transient t)]
 
    [""
-    ("<" "⏮️" Info-top-node
-     :description (lambda () (casual-info-unicode-get :first))
+    ("<" "Top" Info-top-node
+     :description (lambda () (casual-info-unicode-get :top-node))
      :transient nil)
-    (">" "⏭️" Info-final-node
-     :description (lambda () (casual-info-unicode-get :last))
+    (">" "Final" Info-final-node
+     :description (lambda () (casual-info-unicode-get :final-node))
      :transient nil)]
 
    [""
     :pad-keys t
-    ("^" "⏫️"  Info-up
-     :description (lambda () (casual-info-unicode-get :up))
+    ("^" "Up"  Info-up
+     :description (lambda () (casual-info-unicode-get :up-node))
      :transient t)
-    ("RET" "Open" Info-follow-nearest-node :transient t)
-    ]]
+    ("RET" "Open" Info-follow-nearest-node :transient t)]]
 
   ["Quick"
    [("J" "Jump to bookmark…" bookmark-jump :transient nil)

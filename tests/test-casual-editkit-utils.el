@@ -1,6 +1,6 @@
 ;;; test-casual-editkit-utils.el --- Casual IBuffer Utils Tests  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -82,20 +82,20 @@
       (let ((test-vectors
              '((:binding "f" :command project-find-file)
                (:binding "Bcasual" :command project-switch-to-buffer)
-               (:binding "d" :command project-dired)
-               (:binding "D" :command project-find-dir)
+               (:binding "D" :command project-dired)
+               (:binding "d" :command project-find-dir)
                (:binding "v" :command project-vc-dir)
-               (:binding "r" :command project-find-regexp)
-               (:binding "q" :command project-query-replace-regexp)
-               (:binding "S" :command project-search)
+               (:binding "g" :command project-find-regexp)
+               (:binding "r" :command project-query-replace-regexp)
+               (:binding "/" :command project-search)
                (:binding "n" :command fileloop-continue)
                (:binding "c" :command project-compile)
                (:binding "!" :command project-shell-command)
                (:binding "&" :command project-async-shell-command)
                (:binding "e" :command project-eshell)
-               (:binding "M-s" :command project-shell)
+               (:binding "s" :command project-shell)
                ;; (:binding "s" :command project-switch-project)
-               (:binding "b" :command project-list-buffers)
+               (:binding "C-b" :command project-list-buffers)
                (:binding "k" :command project-kill-buffers)
                (:binding "FC-g" :command project-forget-project))))
 
@@ -867,6 +867,5 @@
   ;;     (casualt-editkit-breakdown tmpfile)))
   )
 
-;; -------
 (provide 'test-casual-editkit-utils)
 ;;; test-casual-editkit-utils.el ends here

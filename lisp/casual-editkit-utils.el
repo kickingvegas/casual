@@ -166,28 +166,28 @@ Commands pertaining to project operations can be accessed here."
     ("B" "Switch buffer…" project-switch-to-buffer)]
 
    ["Dired"
-    ("d" "Dired…" project-dired)
-    ("D" "Dired in…" project-find-dir)
+    ("D" "Dired…" project-dired)
+    ("d" "Dired in…" project-find-dir)
     ("v" "VC Dired…" project-vc-dir)]
 
    ["Search/Replace"
-    ("r" "Search regexp…" project-find-regexp)
-    ("q" "Query replace regexp…" project-query-replace-regexp)
-    ("S" "Search regexp sequential…" project-search :transient t)
+    ("g" "Search regexp…" project-find-regexp)
+    ("r" "Query replace regexp…" project-query-replace-regexp)
+    ("/" "Search regexp sequential…" project-search :transient t)
     ("n" "Next sequential" fileloop-continue :transient t)]
 
    ["Tools"
     :pad-keys t
     ("c" "Compile…" project-compile)
     ("e" "Eshell" project-eshell)
-    ("M-s" "Shell" project-shell)
+    ("s" "Shell" project-shell)
     ("!" "Shell command…" project-shell-command)
     ("&" "Async command…" project-async-shell-command)]]
 
   ["Project"
    :class transient-row
-   ("s" "Switch…" project-switch-project)
-   ("b" "List buffers" project-list-buffers)
+   ("p" "Switch…" project-switch-project)
+   ("C-b" "List buffers" project-list-buffers)
    ("k" "Kill buffers" project-kill-buffers)
    ("F" "Forget" project-forget-project)]
 

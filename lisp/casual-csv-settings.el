@@ -66,8 +66,7 @@
    (casual-lib-quit-all)])
 
 
-;; -------------------------------------------------------------------
-;; Functions
+;;; Functions
 
 (defun casual-csv--customize-group ()
   "Customize csv group."

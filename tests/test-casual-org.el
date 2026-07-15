@@ -248,17 +248,20 @@
                                       #'casual-org-tmenu
                                       '(lambda () (random 5000)))))
   (casualt-org-breakdown))
+
 (ert-deftest test-casual-org-tmenu-block ()
   (casualt-org-setup)
   (search-forward "#+BEGIN_SRC" nil t)
 
   (cl-letf ((casualt-mock #'org-ctrl-c-ctrl-c)
             (casualt-mock #'org-edit-src-code)
-            (casualt-mock #'casual-org-assign-name))
+            (casualt-mock #'casual-org-assign-name)
+            (casualt-mock #'org-babel-tangle))
     (let ((test-vectors
            '((:binding "C-c" :command org-ctrl-c-ctrl-c)
              (:binding "'" :command org-edit-src-code)
-             (:binding "n" :command casual-org-assign-name))))
+             (:binding "n" :command casual-org-assign-name)
+             (:binding "t" :command org-babel-tangle))))
 
       (casualt-suffix-testcase-runner test-vectors
                                       #'casual-org-tmenu

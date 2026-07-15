@@ -25,6 +25,7 @@
 ;;; Code:
 
 (require 'image)
+(require 'map)
 (require 'image-crop)
 (require 'casual-lib)
 
@@ -131,8 +132,18 @@ References
     (push geometry cmd-list)
     (push target cmd-list)
 
-    (let ((cmd (string-join (reverse cmd-list) " ")))
+    (let* ((async-buf-name (string-replace "*" "\\*"
+                                           shell-command-buffer-name-async))
+           (awin-config (list #'display-buffer-no-window))
+           (old-value (map-elt display-buffer-alist async-buf-name))
+           (cmd (string-join (reverse cmd-list) " ")))
+
+      (map-put! display-buffer-alist async-buf-name awin-config)
       (async-shell-command cmd)
+      (if old-value
+          (map-put! display-buffer-alist async-buf-name old-value)
+        (setq display-buffer-alist
+              (assoc-delete-all async-buf-name display-buffer-alist)))
       (message "%s" cmd))))
 
 

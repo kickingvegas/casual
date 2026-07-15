@@ -1,6 +1,6 @@
 ;;; casual-info-utils.el --- Casual Info Utils  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -30,13 +30,15 @@
 (require 'casual-info-variables)
 
 (defconst casual-info-unicode-db
-  '((:fast-forward . '("⏩️" "Next"))
-    (:rewind . '("⏪️" "Prev"))
-    (:fast-forward-or-down . '("⏩️⤵️"  "Next/Down"))
-    (:rewind-or-up . '("⏪️⤴️" "Prev/Up"))
-    (:up . '("⏫️" "Up"))
-    (:first . '("⏮️" "First"))
-    (:last . '("⏭️" "Last"))
+  '((:history-back . '("⟨" "Prev"))
+    (:history-forward . '("⟩" "Next"))
+    (:backward-node . '("⟪" "Back"))
+    (:forward-node . '("⟫" "Forward"))
+    (:previous . '("←" "Prev"))
+    (:next . '("→" "Next"))
+    (:top-node . '("⤒" "Top"))
+    (:final-node . '("⤓" "Final"))
+    (:up-node . '("^" "Up"))
     (:up-arrow . '("↑" "Prev"))
     (:down-arrow . '("↓" "Next"))
     (:scroll-up . '("📄↓" "Up"))

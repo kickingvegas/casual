@@ -66,7 +66,6 @@ plain ASCII-range string."
   (interactive) (info "(eww) Top"))
 
 
-;; -------------------------------------------------------------------
 ;;; Commands
 (defun casual-eww-forward-paragraph-link ()
   "Move point to first link in next paragraph."
@@ -85,7 +84,6 @@ plain ASCII-range string."
     (shr-next-link)))
 
 
-;; -------------------------------------------------------------------
 ;;; Transients
 
 (transient-define-prefix casual-eww-display-tmenu ()

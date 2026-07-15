@@ -1,5 +1,5 @@
 ##
-# Copyright (C) 2024-2025 Charles Y. Choi
+# Copyright (C) 2024-2026 Charles Y. Choi
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,12 +20,6 @@ PACKAGE_NAME=casual-info
 ELISP_INCLUDES=casual-info-variables.el casual-info-utils.el
 ELISP_PACKAGES=casual-info-settings.el
 ELISP_TEST_INCLUDES=casual-info-test-utils.el
-PACKAGE_PATHS=					\
--L $(EMACS_ELPA_DIR)/compat-current		\
--L $(EMACS_ELPA_DIR)/seq-current		\
--L $(EMACS_ELPA_DIR)/transient-current		\
--L $(EMACS_ELPA_DIR)/cond-let-current		\
--L $(CASUAL_LISP_DIR)
 
 
 include Makefile--rules.make
