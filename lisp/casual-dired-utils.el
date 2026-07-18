@@ -76,6 +76,7 @@ ASCII-range string."
 
 ;;; Transients
 
+;;;###autoload (autoload 'casual-dired-utils-tmenu "casual-dired-utils" nil t)
 (transient-define-prefix casual-dired-utils-tmenu ()
   ["Utils - Marked Files or File under Point"
    ["Files"
@@ -113,6 +114,7 @@ ASCII-range string."
 
   casual-lib-navigation-group-with-return)
 
+;;;###autoload (autoload 'casual-dired-elisp-tmenu "casual-dired-utils" nil t)
 (transient-define-prefix casual-dired-elisp-tmenu ()
   ["Emacs Lisp"
    ["Byte-Compile"
@@ -127,6 +129,7 @@ ASCII-range string."
 
   casual-lib-navigation-group-with-return)
 
+;;;###autoload (autoload 'casual-dired-link-tmenu "casual-dired-utils" nil t)
 (transient-define-prefix casual-dired-link-tmenu ()
   ["Link"
    ["Symbolic"

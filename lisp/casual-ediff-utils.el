@@ -100,6 +100,7 @@ function `ediff-janitor'.")
   (ignore e)
   (casual-ediff-revision))
 
+;;;###autoload (autoload 'casual-ediff-revision "casual-ediff-utils" nil t)
 (defun casual-ediff-revision ()
   "Run Ediff comparing current file with last committed version.
 
