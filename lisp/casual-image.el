@@ -27,6 +27,7 @@
 (require 'casual-image-utils)
 (require 'casual-image-settings)
 
+;;;###autoload (autoload 'casual-image-tmenu "casual-image" nil t)
 (transient-define-prefix casual-image-tmenu ()
   "Casual Image Main Menu."
   :refresh-suffixes t
