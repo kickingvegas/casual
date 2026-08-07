@@ -13,13 +13,24 @@ Casual Make (library: ~casual-make~) is a user interface for ~make-mode~, a mode
 :END:
 #+CINDEX: Make Install
 
-In your initialization file, bind the Transient ~casual-make-tmenu~ to your key binding of preference. Two suggested bindings are {{{kbd(M-m)}}} or {{{kbd(C-c m)}}}.
+The primary interface for Casual Make is the Transient menu ~casual-make-tmenu~. It is autoloaded ([[info:elisp#Autoload]]) so if Casual is installed via ~package-install~ ([[info:emacs#Package Installation]]) then ~casual-make-tmenu~ can be invoked via ~execute-extended-command~ ({{{kbd(M-x)}}}) without need for modifying your Emacs initialization file.
+
+That said, Casual is designed with the intent of using a common (key)binding across multiple modes to lower cognitive load. This document uses the secondary binding {{{kbd(M-m)}}} for this purpose, but can be changed to user preference. Note that ~casual-make-tmenu~ is intended to be used in conjunction with ~casual-editkit-main-tmenu~. ([[#editkit-install][EditKit Install]]).
+
+There are many ways to configure this binding. Shown below is a straightforward implementation:
 
 #+begin_src elisp :lexical no
+  (require 'casual-make) ; load all dependencies including `make-mode'
   (keymap-set makefile-mode-map "M-m" #'casual-make-tmenu)
 #+end_src
 
-The binding {{{kbd(M-m)}}} is intended to complement the binding {{{kbd(C-o)}}} used by [[#editkit-install][EditKit]].
+If lazy loading of the ~make-mode~ package is desired then try using ~eval-after-load~:
+
+#+begin_src elisp :lexical no
+  (eval-after-load 'make-mode
+    (keymap-set makefile-mode-map "M-m" #'casual-make-tmenu))
+#+end_src
+
 
 ** Make Usage
 #+CINDEX: Make Usage

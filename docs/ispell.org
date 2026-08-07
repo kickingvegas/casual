@@ -15,16 +15,34 @@ Casual Ispell is a user interface for the Emacs spell checker Ispell ([[info:ema
 
 #+CINDEX: Ispell Install
 
-If you have [[#editkit-install][Casual EditKit installed]] then access to the Transient ~casual-ispell-tmenu~ is available from ~casual-editkit-main-tmenu~.
+The primary interface for Casual Ispell is the Transient menu ~casual-ispell-tmenu~. It is autoloaded ([[info:elisp#Autoload]]) so if Casual is installed via ~package-install~ ([[info:emacs#Package Installation]]) then ~casual-ispell-tmenu~ can be invoked via ~execute-extended-command~ ({{{kbd(M-x)}}}) without need for modifying your Emacs initialization file.
 
-~casual-ispell-tmenu~ can also be bound to a mode of preference. Shown below is a recommended configuration to use in an initialization file.
+If you already have [[#editkit-install][Casual EditKit installed]] then access to the Transient ~casual-ispell-tmenu~ is available from ~casual-editkit-main-tmenu~.
+
+That said, Casual is designed with the intent of using a common (key)binding across multiple modes to lower cognitive load. This document uses the binding {{{kbd(C-c s)}}} for this purpose, but can be changed to user preference.
+
+~casual-ispell-tmenu~ can also be bound to a mode of preference. Shown below is a recommended configuration to use in an initialization file to support the modes ~prog-mode~, ~text-mode~, ~bibtex~, ~conf-mode~.
 
 #+begin_src elisp :lexical no
+  (require 'prog-mode)
+  (require 'text-mode)
+  (require 'bibtex)
+  (require 'conf-mode)
+
   (keymap-set prog-mode-map "C-c s" #'casual-ispell-tmenu)
   (keymap-set text-mode-map "C-c s" #'casual-ispell-tmenu)
   (keymap-set bibtex-mode-map "C-c s" #'casual-ispell-tmenu)
   (keymap-set conf-mode-map "C-c s" #'casual-ispell-tmenu)
 #+end_src
+
+If lazy loading is desired then trying using ~eval-after-load~:
+
+#+begin_src elisp :lexical no
+  (eval-after-load 'prog-mode
+    (keymap-set prog-mode-map "C-c s" #'casual-ispell-tmenu))
+#+end_src
+
+The above configuration can be used as a template to support other modes.
 
 ** Ispell Usage
 #+CINDEX: Ispell Usage
