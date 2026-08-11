@@ -13,16 +13,29 @@ IBuffer is a powerful tool for managing Emacs workflows. As Emacs is often compa
 :PROPERTIES:
 :CUSTOM_ID: ibuffer-install
 :END:
-
 #+CINDEX: IBuffer Install
 
-In your initialization file, bind the Transinent ~casual-ibuffer-tmenu~ to your key binding of preference.
+The primary interface for Casual IBuffer is the Transient menu ~casual-ibuffer-tmenu~. It is autoloaded ([[info:elisp#Autoload]]) so if Casual is installed via ~package-install~ ([[info:emacs#Package Installation]]) then ~casual-ibuffer-tmenu~ can be invoked via ~execute-extended-command~ ({{{kbd(M-x)}}}) without need for modifying your Emacs initialization file.
+
+That said, Casual is designed with the intent of using a common (key)binding across multiple modes to lower cognitive load. This document uses the binding {{{kbd(C-o)}}} for this purpose, but can be changed to user preference.
+
+There are many ways to configure this binding. Shown below is a straightforward implementation:
 
 #+begin_src elisp :lexical no
+  (require 'casual-ibuffer) ; load all dependencies including `ibuffer'
   (keymap-set ibuffer-mode-map "C-o" #'casual-ibuffer-tmenu)
 #+end_src
 
-Like with Casual Dired, it is convenient to have the menus for filtering and sorting bound as well. Listed below shows an example of binding ~casual-ibuffer-filter-tmenu~ and ~casual-ibuffer-sortby-tmenu~ to ~F~ and ~s~ respectively.
+If lazy loading of the ~ibuffer~ package is desired then try using ~eval-after-load~:
+
+#+begin_src elisp :lexical no
+  (eval-after-load 'ibuffer
+    (keymap-set ibuffer-mode-map "C-o" #'casual-ibuffer-tmenu))
+#+end_src
+
+#+TEXINFO: @subsubheading Additional Bindings and Configuration
+
+Like Casual Dired ([[#dired][Dired]]), it is convenient to have the menus for filtering and sorting bound as well. Listed below shows an example of binding ~casual-ibuffer-filter-tmenu~ and ~casual-ibuffer-sortby-tmenu~ to ~F~ and ~s~ respectively.
 
 #+begin_src elisp :lexical no
   (keymap-set ibuffer-mode-map "F" #'casual-ibuffer-filter-tmenu)

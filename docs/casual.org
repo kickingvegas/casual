@@ -126,9 +126,9 @@ For Transient menus that offer setting different values, the following bindings 
 #+TEXINFO: @subsubheading References
 
 - [[info:transient#Aborting and Resuming Transients]]
-  
+
 - [[info:transient#Saving Values]]
-  
+
 * Requirements
 #+CINDEX: Requirements
 
@@ -147,7 +147,14 @@ Standard installation of the ~casual~ package can be done from the following dis
 - [[https://melpa.org/#/casual][MELPA]] / [[https://stable.melpa.org/#/casual][MELPA Stable]]
 - [[https://elpa.nongnu.org/nongnu/casual.html][NonGNU ELPA]]
 
-Configuration of a particular Casual user interface is performed per mode. Go to the *Install* section for a mode of interest below for guidance on its configuration.
+Given installation via ~package-install~ ([[info:emacs#Package Installation]]), most Casual Transient menus are autoloaded ([[info:elisp#Autoload]]) so they can be invoked without need to modify an Emacs initialization file.
+
+That said, Casual is designed with the intent of using a common keybindings across multiple modes to lower cognitive load. Setting these keybindings requires modification of your Emacs initialization file. These keybindings can be set to user preference. For the purpose of documentation, this document uses the following keybindings:
+
+- Primary binding: {{{kbd(C-o)}}}
+- Secondary binding: {{{kbd(M-m)}}}
+
+Casual is organized into different modules where most of them map to a specific Emacs mode. As such installation is done per module. Go to the *Install* section of a module of interest for guidance on its configuration.
 
 - [[#agenda-install][Agenda]]
 - [[#bibtex-install][BibTeX]]
@@ -199,7 +206,7 @@ Any Casual v1.x packages that have been superseded by this package will be unins
 While not necessary, it is recommended to run ~M-x package-autoremove~ to purge any dangling dependent packages. Cautious readers can choose to audit any packages that are targeted to be removed.
 
 *** If you have used ~use-package~ to configure Casual
-For version 2.x going forward, I (Charles Choi) have decided to not offer any documented guidance on using ~use-package~ to configure Casual due my lack of expertise in using it. I leave it to more skilled readers to determine how to best use ~use-package~ ([[info:use-package#Top]]) for their configuration. Please also note that this is not a prohibition on using ~use-package~ with Casual. I am simply admitting that I don't know how to use it. 
+For version 2.x going forward, I (Charles Choi) have decided to not offer any documented guidance on using ~use-package~ to configure Casual due my lack of expertise in using it. I leave it to more skilled readers to determine how to best use ~use-package~ ([[info:use-package#Top]]) for their configuration. Please also note that this is not a prohibition on using ~use-package~ with Casual. I am simply admitting that I don't know how to use it.
 
 That said, if you have used ~:ensure t~ to install a superseded package, you /must/ remove that configuration. After doing so, please follow the above instructions for installing ~casual~.
 
@@ -232,7 +239,7 @@ If ~casual-lib-use-unicode~ is set to ~t~, it is also recommended that the varia
 
 #+TEXINFO: @subsubheading Common Key Bindings
 
-Listed below are keybindings which are common among Casual menus. 
+Listed below are keybindings which are common among Casual menus.
 
 - {{{kbd(J)}}} Jump to Bookmark…
 
@@ -267,7 +274,7 @@ Casual annotates menu labels with the following conventions:
 
 #+TEXINFO: @subsubheading Menu Naming Conventions
 
-To distinguish Transient menu (prefix) definitions from existing Emacs menu definitions using keymaps ([[info:elisp#Menu Keymaps][elisp#Menu Keymaps]]), Casual uses the naming suffix  ~-tmenu~. 
+To distinguish Transient menu (prefix) definitions from existing Emacs menu definitions using keymaps ([[info:elisp#Menu Keymaps][elisp#Menu Keymaps]]), Casual uses the naming suffix  ~-tmenu~.
 
 * Casual Modes
 #+CINDEX: Casual Modes
@@ -304,7 +311,7 @@ The following modes are supported by Casual:
 #+INCLUDE: "./org.org" :minlevel 2
 #+INCLUDE: "./re-builder.org" :minlevel 2
 #+INCLUDE: "./timezone.org" :minlevel 2
-  
+
 * Customization
 #+CINDEX: Customization
 
