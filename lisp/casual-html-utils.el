@@ -25,6 +25,17 @@
 (require 'sgml-mode)
 (require 'casual-lib)
 
+(defgroup casual-html nil
+  "Settings for Casual HTML."
+  :group 'casual)
+
+(defcustom casual-html-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-html-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-html)
+
 (defconst casual-html-unicode-db
   '((:previous . '("↑" "Previous"))
     (:next . '("↓" "Next")))

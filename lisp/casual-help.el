@@ -20,33 +20,53 @@
 
 ;;; Commentary:
 
-;; This library provides a Transient-based user interface for `help-mode'.
+;; Casual Help is a Transient user interface for the Help library.
 
 ;; INSTALLATION
 
-;; In your initialization file, bind the Transient `casual-help-tmenu' to your
-;; key binding of preference.
+;; By default, `casual-init' will setup Casual Help by running the hook
+;; function `casual-help-init'.
 
-;; (require 'casual-help) ; optional if using autoloaded menu
-;; (keymap-set help-mode-map "C-o" #'casual-help-tmenu)
+;; Ensure that `casual-help-init' is included in the customizable hook
+;; variable `casual-init-hook'.
 
-;; The following keybindings are recommended to support consistent behavior
-;; between `help-mode' and `casual-help-tmenu'.
-
-;; (keymap-set help-mode-map "M-[" #'help-go-back)
-;; (keymap-set help-mode-map "M-]" #'help-go-forward)
-;; (keymap-set help-mode-map "p" #'casual-lib-browse-backward-paragraph)
-;; (keymap-set help-mode-map "n" #'casual-lib-browse-forward-paragraph)
-;; (keymap-set help-mode-map "P" #'help-goto-previous-page)
-;; (keymap-set help-mode-map "N" #'help-goto-next-page)
-;; (keymap-set help-mode-map "j" #'forward-button)
-;; (keymap-set help-mode-map "k" #'backward-button)
+;; Consult the Info node `(casual) Help Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'bookmark)
 (require 'button)
 (require 'casual-help-settings)
 (require 'casual-help-utils)
+
+;;;###autoload (autoload 'casual-help-init "casual-help" nil t)
+(defun casual-help-init ()
+  "Initialize and configure Casual Help.
+
+This hook binds `casual-help-tmenu' to `casual-keybinding-primary'.
+
+If `casual-help-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-help-setup' will be set."
+  (add-hook 'help-mode-hook #'casual-help-setup))
+
+(defun casual-help-setup ()
+  "Setup `help-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set help-mode-map casual-keybinding-primary #'casual-help-tmenu)
+
+  (when casual-help-add-extra-keybindings
+    (keymap-set help-mode-map "M-[" #'help-go-back)
+    (keymap-set help-mode-map "M-]" #'help-go-forward)
+    ;; Bind p and n to paragraph navigation
+    (keymap-set help-mode-map "p" #'casual-lib-browse-backward-paragraph)
+    (keymap-set help-mode-map "n" #'casual-lib-browse-forward-paragraph)
+    (keymap-set help-mode-map "P" #'help-goto-previous-page)
+    (keymap-set help-mode-map "N" #'help-goto-next-page)
+    (keymap-set help-mode-map "j" #'forward-button)
+    (keymap-set help-mode-map "k" #'backward-button)))
+
 
 ;;;###autoload (autoload 'casual-help-tmenu "casual-help" nil t)
 (transient-define-prefix casual-help-tmenu ()

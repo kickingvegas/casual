@@ -20,14 +20,18 @@
 
 ;;; Commentary:
 
-;; This library provides a Transient-based user interface for `emacs-lisp-mode'.
+;; Casual Elisp is a Transient user interface for the Emacs Lisp library.
 
-;; INSTALL
+;; INSTALLATION
 
-;; In your initialization file, bind the Transient `casual-elisp-tmenu' to
-;; your key binding of preference.
+;; By default, `casual-init' will setup Casual Elisp by running the hook
+;; function `casual-elisp-init'.
 
-;; (keymap-set emacs-lisp-mode-map "M-m" #'casual-elisp-tmenu)
+;; Ensure that `casual-elisp-init' is included in the customizable hook
+;; variable `casual-init-hook'.
+
+;; Consult the Info node `(casual) Elisp Install' for more detail on
+;; installation.
 
 ;;; Code:
 
@@ -35,6 +39,23 @@
 (require 'find-func)
 (require 'casual-elisp-settings)
 (require 'casual-elisp-utils)
+
+;;;###autoload (autoload 'casual-elisp-init "casual-elisp" nil t)
+(defun casual-elisp-init ()
+  "Initialize and configure Casual Elisp.
+
+This hook binds `casual-elisp-tmenu' to `casual-keybinding-secondary'.
+
+If `casual-elisp-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-elisp-setup' will be set."
+  (add-hook 'emacs-lisp-mode-hook #'casual-elisp-setup))
+
+(defun casual-elisp-setup ()
+  "Setup `emacs-lisp-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set emacs-lisp-mode-map casual-keybinding-secondary #'casual-elisp-tmenu))
 
 ;;;###autoload (autoload 'casual-elisp-tmenu "casual-elisp" nil t)
 (transient-define-prefix casual-elisp-tmenu ()

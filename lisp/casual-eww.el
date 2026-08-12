@@ -20,47 +20,65 @@
 
 ;;; Commentary:
 
-;; This library provides a Transient-based user interface for EWW, a web browser
-;; for GNU Emacs.
+;; Casual EWW is a Transient user interface for the EWW library.
 
 ;; INSTALLATION
 
-;; In your initialization file, bind the Transient `casual-eww-tmenu' to your
-;; key binding of preference.
+;; By default, `casual-init' will setup Casual EWW by running the hook
+;; function `casual-eww-init'.
 
-;; (require 'casual-eww) ; optional if using autoloaded menu
-;; (keymap-set eww-mode-map "C-o" #'casual-eww-tmenu)
+;; Ensure that `casual-eww-init' is included in the customizable hook
+;; variable `casual-init-hook'.
 
-;; Do so similarly to access `casual-eww-bookmarks-tmenu' in the EWW bookmarks
-;; list.
+;; Consult the Info node `(casual) EWW Install' for more detail on
+;; installation.
 
-;; (keymap-set eww-bookmark-mode-map "C-o" #'casual-eww-bookmarks-tmenu)
-
-;; While not mandatory, the following bindings can make the EWW keymaps
-;; consistent with those used by Casual.
-
-;; (keymap-set eww-mode-map "C-o" #'casual-eww-tmenu)
-;; (keymap-set eww-mode-map "C-c C-o" #'eww-browse-with-external-browser)
-;; (keymap-set eww-mode-map "j" #'shr-next-link)
-;; (keymap-set eww-mode-map "k" #'shr-previous-link)
-;; (keymap-set eww-mode-map "[" #'eww-previous-url)
-;; (keymap-set eww-mode-map "]" #'eww-next-url)
-;; (keymap-set eww-mode-map "M-]" #'eww-forward-url)
-;; (keymap-set eww-mode-map "M-[" #'eww-back-url)
-;; (keymap-set eww-mode-map "n" #'casual-lib-browse-forward-paragraph)
-;; (keymap-set eww-mode-map "p" #'casual-lib-browse-backward-paragraph)
-;; (keymap-set eww-mode-map "P" #'casual-eww-backward-paragraph-link)
-;; (keymap-set eww-mode-map "N" #'casual-eww-forward-paragraph-link)
-;; (keymap-set eww-mode-map "M-l" #'eww)
-;; (keymap-set eww-bookmark-mode-map "C-o" #'casual-eww-bookmarks-tmenu)
-;; (keymap-set eww-bookmark-mode-map "p" #'previous-line)
-;; (keymap-set eww-bookmark-mode-map "n" #'next-line)
-;; (keymap-set eww-bookmark-mode-map "<double-mouse-1>" #'eww-bookmark-browse)
 
 ;;; Code:
 (require 'bookmark)
 (require 'casual-eww-settings)
 (require 'casual-eww-utils)
+
+;;;###autoload (autoload 'casual-eww-init "casual-eww" nil t)
+(defun casual-eww-init ()
+  "Initialize and configure Casual EWW.
+
+This hook binds `casual-eww-tmenu' to `casual-keybinding-primary'.
+
+If `casual-eww-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-eww-setup' will be set."
+  (add-hook 'eww-mode-hook #'casual-eww-setup)
+  (add-hook 'eww-bookmark-mode-hook #'casual-eww-bookmarks-setup))
+
+(defun casual-eww-setup ()
+  "Setup `eww-mode' and `eww-bookmark-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set eww-mode-map casual-keybinding-primary #'casual-eww-tmenu)
+  (keymap-set eww-bookmark-mode-map casual-keybinding-primary #'casual-eww-tmenu)
+
+  (when casual-eww-add-extra-keybindings
+    (keymap-set eww-mode-map "C-c C-o" #'eww-browse-with-external-browser)
+    (keymap-set eww-mode-map "j" #'shr-next-link)
+    (keymap-set eww-mode-map "k" #'shr-previous-link)
+    (keymap-set eww-mode-map "[" #'eww-previous-url)
+    (keymap-set eww-mode-map "]" #'eww-next-url)
+    (keymap-set eww-mode-map "M-]" #'eww-forward-url)
+    (keymap-set eww-mode-map "M-[" #'eww-back-url)
+    (keymap-set eww-mode-map "n" #'casual-lib-browse-forward-paragraph)
+    (keymap-set eww-mode-map "p" #'casual-lib-browse-backward-paragraph)
+    (keymap-set eww-mode-map "N" #'casual-eww-forward-paragraph-link)
+    (keymap-set eww-mode-map "P" #'casual-eww-backward-paragraph-link)
+    (keymap-set eww-mode-map "M-l" #'eww)))
+
+(defun casual-eww-bookmarks-setup ()
+  "Casual EWW Bookmarks setup."
+  (keymap-set eww-bookmark-mode-map casual-keybinding-primary #'casual-eww-bookmarks-tmenu)
+
+  (when casual-eww-add-extra-keybindings
+    (keymap-set eww-bookmark-mode-map "p" #'previous-line)
+    (keymap-set eww-bookmark-mode-map "n" #'next-line)))
 
 ;;;###autoload (autoload 'casual-eww-tmenu "casual-eww" nil t)
 (transient-define-prefix casual-eww-tmenu ()

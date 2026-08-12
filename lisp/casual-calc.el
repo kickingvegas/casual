@@ -20,18 +20,18 @@
 
 ;;; Commentary:
 
-;; Casual Calc is an opinionated Transient-based user interface for Emacs Calc.
+;; Casual Calc is a Transient user interface for the Calc library.
 
 ;; INSTALLATION
-;; (require 'casual-calc) ; optional if using autoloaded menu
-;; (keymap-set calc-mode-map "C-o" #'casual-calc-tmenu)
-;; (keymap-set calc-alg-map "C-o" #'casual-calc-tmenu)
 
-;; If you are using Emacs ≤ 30.0, you will need to update the built-in package
-;; `transient'. By default, `package.el' will not upgrade a built-in package.
-;; Set the customizable variable `package-install-upgrade-built-in' to `t' to
-;; override this. For more details, please refer to the "Install" section on
-;; this project's repository web page.
+;; By default, `casual-init' will setup Casual Calc by running the hook
+;; function `casual-calc-init'.
+
+;; Ensure that `casual-calc-init' is included in the customizable hook
+;; variable `casual-init-hook'.
+
+;; Consult the Info node `(casual) Calc Install' for more detail on
+;; installation.
 
 ;;; Code:
 
@@ -59,6 +59,27 @@
 (require 'casual-calc-financial)
 (require 'casual-calc-symbolic)
 (require 'casual-calc-variables)
+
+;;;###autoload (autoload 'casual-calc-init "casual-calc" nil t)
+(defun casual-calc-init ()
+  "Initialize and configure Casual Calc.
+
+This hook binds `casual-calc-tmenu' to `casual-keybinding-primary'.
+
+If `casual-calc-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-calc-setup' will be set."
+  (add-hook 'calc-mode-hook #'casual-calc-setup))
+
+(defun casual-calc-setup ()
+  "Setup `calc-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set calc-mode-map casual-keybinding-primary #'casual-calc-tmenu)
+  ;; (keymap-set calc-alg-map casual-keybinding-primary #'casual-calc-tmenu)
+  ;; (when casual-calc-add-extra-keybindings
+  ;;   )
+  )
 
 ;; Menus
 ;;;###autoload (autoload 'casual-calc-tmenu "casual-calc" nil t)

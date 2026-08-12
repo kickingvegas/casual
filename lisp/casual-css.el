@@ -20,25 +20,51 @@
 
 ;;; Commentary:
 
-;; This library provides a Transient-based user interface for `css-mode'.
+;; Casual CSS is a Transient user interface for the CSS library.
 
 ;; INSTALLATION
 
-;; In your initialization file, bind the Transient `casual-css-tmenu' to your
-;; key binding of preference.
+;; By default, `casual-init' will setup Casual CSS by running the hook
+;; function `casual-css-init'.
 
-;; (require 'casual-css) ; optional if using autoloaded menu
-;; (keymap-set css-mode-map "M-m" #'casual-css-tmenu)
+;; Ensure that `casual-css-init' is included in the customizable hook
+;; variable `casual-init-hook'.
 
-;; Note that `casual-css-tmenu' is intended to work with
-;; `casual-editkit-main-tmenu' so is given a different binding.
-
-;; It is recommended that Tree-sitter support for CSS is enabled.
+;; Consult the Info node `(casual) CSS Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'casual-css-settings)
 (require 'casual-css-utils)
 (require 'hl-line)
+
+
+;;;###autoload (autoload 'casual-css-init "casual-css" nil t)
+(defun casual-css-init ()
+  "Initialize and configure Casual CSS.
+
+This hook binds `casual-css-tmenu' to `casual-keybinding-secondary'.
+
+If `casual-css-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-css-setup' will be set."
+  (add-hook 'css-mode-hook #'casual-css-setup)
+  (add-hook 'css-ts-mode-hook #'casual-css-ts-setup))
+
+(defun casual-css-setup ()
+  "Setup `css-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set css-mode-map casual-keybinding-secondary #'casual-css-tmenu))
+
+
+(defun casual-css-ts-setup ()
+  "Setup `css-ts-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set css-ts-mode-map casual-keybinding-secondary #'casual-css-tmenu))
+
 
 ;;;###autoload (autoload 'casual-css-tmenu "casual-css" nil t)
 (transient-define-prefix casual-css-tmenu ()

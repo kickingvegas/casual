@@ -20,25 +20,46 @@
 
 ;;; Commentary:
 
-;; Casual Agenda is an opinionated Transient user interface for Org Agenda.
+;; Casual Agenda is a Transient user interface for the Org Agenda library.
 
 ;; INSTALLATION
-;; (require 'casual-agenda) ; optional if using autoloaded menu
-;; (keymap-set org-agenda-mode-map "C-o" #'casual-agenda-tmenu)
-;; (keymap-set org-agenda-mode-map "M-j" #'org-agenda-clock-goto) ; optional
-;; (keymap-set org-agenda-mode-map "J" #'bookmark-jump) ; optional
 
-;; If you are using Emacs ≤ 30.0, you will need to update the built-in package
-;; `transient'. By default, `package.el' will not upgrade a built-in package.
-;; Set the customizable variable `package-install-upgrade-built-in' to `t' to
-;; override this. For more details, please refer to the "Install" section on
-;; this project's repository web page.
+;; By default, `casual-init' will setup Casual Agenda by running the hook
+;; function `casual-agenda-init'.
+
+;; Ensure that `casual-agenda-init' is included in the customizable hook
+;; variable `casual-init-hook'.
+
+;; Consult the Info node `(casual) Agenda Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'org-agenda)
 (require 'bookmark)
 (require 'casual-agenda-utils)
 (require 'casual-agenda-settings)
+
+;;;###autoload (autoload 'casual-agenda-init "casual-agenda" nil t)
+(defun casual-agenda-init ()
+  "Initialize and configure Casual Agenda.
+
+This hook binds `casual-agenda-tmenu' to `casual-keybinding-primary'.
+
+If `casual-agenda-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-agenda-setup' will be set."
+  (add-hook 'org-agenda-mode-hook #'casual-agenda-setup))
+
+(defun casual-agenda-setup ()
+  "Setup `org-agenda-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set org-agenda-mode-map casual-keybinding-primary #'casual-agenda-tmenu)
+
+  (when casual-agenda-add-extra-keybindings
+    (keymap-set org-agenda-mode-map "M-j" #'org-agenda-clock-goto)
+    (keymap-set org-agenda-mode-map "J" #'bookmark-jump)
+    (keymap-set org-agenda-mode-map "." #'casual-agenda-goto-now)))
 
 ;;;###autoload (autoload 'casual-agenda-tmenu "casual-agenda" nil t)
 (transient-define-prefix casual-agenda-tmenu ()

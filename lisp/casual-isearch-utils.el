@@ -26,6 +26,17 @@
 (require 'isearch)
 (require 'casual-lib)
 
+(defgroup casual-isearch nil
+  "Settings for Casual I-Search."
+  :group 'casual)
+
+(defcustom casual-isearch-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-isearch-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-isearch)
+
 (defconst casual-isearch-unicode-db
   '((:first . '("⤒" "First"))
     (:last . '("⤓" "Last"))

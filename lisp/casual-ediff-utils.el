@@ -1,6 +1,6 @@
 ;;; casual-ediff-utils.el --- Casual Eshell Utils -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025, 2026 Charles Y. Choi
+;; Copyright (C) 2025-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -38,6 +38,18 @@
 ;; '(ediff-keep-variants nil)
 ;; '(ediff-split-window-function 'split-window-horizontally)
 ;; '(ediff-window-setup-function 'ediff-setup-windows-plain)
+
+
+(defgroup casual-ediff nil
+  "Settings for Casual Ediff."
+  :group 'casual)
+
+(defcustom casual-ediff-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-ediff-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-ediff)
 
 (defconst casual-ediff-unicode-db
   '((:previous . '("↑" "Previous"))

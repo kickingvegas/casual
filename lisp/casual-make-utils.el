@@ -26,6 +26,17 @@
 (require 'make-mode)
 (require 'casual-lib)
 
+(defgroup casual-make nil
+  "Settings for Casual Make."
+  :group 'casual)
+
+(defcustom casual-make-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-make-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-make)
+
 (defconst casual-make-unicode-db
   '((:previous . '("↑" "Previous"))
     (:next . '("↓" "Next")))

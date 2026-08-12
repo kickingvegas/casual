@@ -1,6 +1,6 @@
 ;;; casual-bibtex.el --- Transient UI for BibTeX -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025, 2026  Charles Y. Choi
+;; Copyright (C) 2025-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -20,39 +20,62 @@
 
 ;;; Commentary:
 
-;; This library provides a Transient-based user interface for the `bibtex'
-;; package.
+;; Casual BibTeX is a Transient user interface for the BibTeX library.
 
 ;; INSTALLATION
 
-;; In your initialization file, bind the Transient `casual-bibtex-tmenu' to your
-;; key binding of preference.
+;; By default, `casual-init' will setup Casual BibTeX by running the hook
+;; function `casual-bibtex-init'.
 
-;; (require 'casual-bibtex) ; optional if using autoloaded menu
-;; (keymap-set bibtex-mode-map "M-m" #'casual-bibtex-tmenu)
+;; Ensure that `casual-bibtex-init' is included in the customizable hook
+;; variable `casual-init-hook'.
 
-;; It is highly recommended to modify the bindings in `bibtex-mode-map' to be
-;; compatible with the bindings used in `casual-bibtex-tmenu':
-
-;; (keymap-set bibtex-mode-map "<TAB>" #'bibtex-next-field)
-;; (keymap-set bibtex-mode-map "<backtab>" #'previous-line)
-;; (keymap-set bibtex-mode-map "C-n" #'bibtex-next-field)
-;; (keymap-set bibtex-mode-map "M-n" #'bibtex-next-entry)
-;; (keymap-set bibtex-mode-map "M-p" #'bibtex-previous-entry)
-;; (keymap-set bibtex-mode-map "<prior>" #'bibtex-previous-entry)
-;; (keymap-set bibtex-mode-map "<next>" #'bibtex-next-entry)
-;; (keymap-set bibtex-mode-map "C-c C-o" #'bibtex-url)
-;; (keymap-set bibtex-mode-map "C-a" #'casual-bibtex-beginning-of-field)
-;; (keymap-set bibtex-mode-map "C-e" #'casual-bibtex-end-of-field)
-;; (keymap-set bibtex-mode-map "<clear>" #'bibtex-empty-field)
-;; (keymap-set bibtex-mode-map "M-<clear>" #'bibtex-kill-field)
-;; (keymap-set bibtex-mode-map "M-DEL" #'bibtex-kill-field)
+;; Consult the Info node `(casual) BibTeX Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'bookmark)
 (require 'replace)
 (require 'casual-bibtex-settings)
 (require 'casual-bibtex-utils)
+
+;;;###autoload (autoload 'casual-bibtex-init "casual-bibtex" nil t)
+(defun casual-bibtex-init ()
+  "Initialize and configure Casual BibTeX.
+
+This hook binds `casual-bibtex-tmenu' to `casual-keybinding-secondary'.
+
+If `casual-bibtex-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-bibtex-setup' will be set."
+  (add-hook 'bibtex-mode-hook #'casual-bibtex-setup))
+
+(defun casual-bibtex-setup ()
+  "Setup `bibtex-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set bibtex-mode-map casual-keybinding-secondary #'casual-bibtex-tmenu)
+
+  (when casual-bibtex-add-extra-keybindings
+    (keymap-set bibtex-mode-map "<TAB>" #'bibtex-next-field)
+    (keymap-set bibtex-mode-map "<backtab>" #'previous-line)
+
+    (keymap-set bibtex-mode-map "C-n" #'bibtex-next-field)
+    (keymap-set bibtex-mode-map "M-n" #'bibtex-next-entry)
+    (keymap-set bibtex-mode-map "M-p" #'bibtex-previous-entry)
+
+    (keymap-set bibtex-mode-map "<prior>" #'bibtex-previous-entry)
+    (keymap-set bibtex-mode-map "<next>" #'bibtex-next-entry)
+
+    (keymap-set bibtex-mode-map "C-c C-o" #'bibtex-url)
+
+    (keymap-set bibtex-mode-map "C-a" #'casual-bibtex-beginning-of-field)
+    (keymap-set bibtex-mode-map "C-e" #'casual-bibtex-end-of-field))
+
+    (keymap-set bibtex-mode-map "<clear>" #'bibtex-empty-field)
+    (keymap-set bibtex-mode-map "M-<clear>" #'bibtex-kill-field)
+    (keymap-set bibtex-mode-map "M-DEL" #'bibtex-kill-field))
+
 
 ;;;###autoload (autoload 'casual-bibtex-tmenu "casual-bibtex" nil t)
 (transient-define-prefix casual-bibtex-tmenu ()

@@ -80,7 +80,7 @@ Copyright © 2024-2025 Charles Y. Choi
 
   While Casual is *mostly* in alignment with Emacs command naming, there are cases where it will make an opinionated change if the name is deemed too vague or idiomatic.
 
-- No intention is made by Casual to help on-board users to the existing default bindings of a mode, nor  cater to users who already know them.
+- No intention is made by Casual to help on-board users to the existing default bindings of a mode, nor cater to users who already know them.
 
   That said, many existing default Emacs bindings are replicated in Casual. Such correspondence should be considered incidental.
 
@@ -140,21 +140,63 @@ Certain menus require more installed software:
 - Casual Image: ImageMagick 6+
 
 * Install
+:PROPERTIES:
+:CUSTOM_ID: install
+:END:
 #+CINDEX: Install
+#+VINDEX: casual-init
+#+VINDEX: casual-init-hook
+#+VINDEX: casual-keybinding-primary
+#+VINDEX: casual-keybinding-secondary
 
 Standard installation of the ~casual~ package can be done from the following distribution sites:
 
 - [[https://melpa.org/#/casual][MELPA]] / [[https://stable.melpa.org/#/casual][MELPA Stable]]
 - [[https://elpa.nongnu.org/nongnu/casual.html][NonGNU ELPA]]
 
-Given installation via ~package-install~ ([[info:emacs#Package Installation]]), most Casual Transient menus are autoloaded ([[info:elisp#Autoload]]) so they can be invoked without need to modify an Emacs initialization file.
+Given installation via ~package-install~ ([[info:emacs#Package Installation]]), most Casual Transient menus are autoloaded ([[info:elisp#Autoload]]) so they can be invoked without need to load the library they are defined in.
 
-That said, Casual is designed with the intent of using a common keybindings across multiple modes to lower cognitive load. Setting these keybindings requires modification of your Emacs initialization file. These keybindings can be set to user preference. For the purpose of documentation, this document uses the following keybindings:
+#+TEXINFO: @subsubheading Simplified Install
 
-- Primary binding: {{{kbd(C-o)}}}
-- Secondary binding: {{{kbd(M-m)}}}
+Casual versions 3.0 or greater offer a simplified installation with command ~casual-init~. Run this via ~extended-execute-command~ ({{{kbd(M-x)}}}) or add this to your Emacs initialization file.
 
-Casual is organized into different modules where most of them map to a specific Emacs mode. As such installation is done per module. Go to the *Install* section of a module of interest for guidance on its configuration.
+#+begin_src elisp :lexical no
+  (casual-init)
+#+end_src
+
+By default ~casual-init~ will setup keybindings for all modules ([[#casual-modules][Casual Modules]]) supported by Casual. Configure the customizable hook variable ~casual-init-hook~ to control which modules to enable.
+
+#+begin_example
+  M-x customize-variable casual-init-hook
+#+end_example
+
+Users can choose any or all of the user interfaces made available by Casual at their pleasure.
+
+To lower cognitive load, Casual uses the convention of re-using the same keybinding to invoke a mode-specific main menu. For this purpose, Casual uses two customizable variables to specify what keybinding to bind to a Transient menu for a mode.
+
+- ~casual-keybinding-primary~ ({{{kbd(C-o)}}}) - used for a main menu
+- ~casual-keybinding-secondary~ ({{{kbd(M-m)}}}) - used for an auxiliary menu
+
+Modify these variables to preference.
+
+Casual makes opinionated design decisions ([[#motivations][Motivations]]) on menu keybindings that do not necessarily align with existing default bindings of a mode. Each hook function in ~casual-init-hook~ honors a module specific variable to make additional keybindings that reconcile Transient menu bindings with that of a specific mode map. These variables are of the form ~casual-<module>-add-extra-keybindings~ and by default are set to ~t~. Users wishing to disable them can do so via ~customize-variable~.
+
+Note that ~casual-init~ will only work if Casual is installed via ~package-install~.
+
+Users of Casual version 2.x do /not/ have to change their existing setup. That said, migrating to ~casual-init~ offers significant convenience by requiring less configuration.
+
+#+TEXINFO: @subsubheading Configuration
+
+Casual is designed to be configured via the Emacs customize interface. To configure Casual, invoke the following:
+
+#+begin_example
+  M-x customize-group casual
+#+end_example
+
+
+#+TEXINFO: @subsubheading Individual Module Install
+
+If individual installation of a Casual module is preferred, then the *Install* section for each module is enumerated below.
 
 - [[#agenda-install][Agenda]]
 - [[#bibtex-install][BibTeX]]
@@ -276,14 +318,19 @@ Casual annotates menu labels with the following conventions:
 
 To distinguish Transient menu (prefix) definitions from existing Emacs menu definitions using keymaps ([[info:elisp#Menu Keymaps][elisp#Menu Keymaps]]), Casual uses the naming suffix  ~-tmenu~.
 
-* Casual Modes
-#+CINDEX: Casual Modes
+* Casual Modules
+:PROPERTIES:
+:CUSTOM_ID: casual-modules
+:END:
+#+CINDEX: Casual Modules
 
-Casual employs the convention of using the same keybinding to invoke a mode-specific main menu. This keybinding is re-used for each mode-specific keymap. The document recommends the default keybinding ~C-o~ for this purpose. Users who prefer a different binding are always free to use another.
+Casual organizes itself in to different /modules/ using the naming convention of ~casual-<module>~.  Support for a specific Emacs mode in Casual is done on an module basis. That said, there are Casual modules such as EditKit and Timezone that have no particular relation to an Emacs mode.
 
-Casual is organized into different libraries typically using the naming convention of ~casual-<mode name>~. Each library has within it a "main menu" which serves as the top level interface to access functions related to that mode. All main menus are auto-loaded, which means that it is not necessary to include a ~require~ call to load that library.
+To lower cognitive load, Casual uses the convention of using the same keybinding to invoke a mode-specific main menu. This keybinding is re-used for each mode-specific keymap.
 
-The following modes are supported by Casual:
+Each module has within it a "main menu" which serves as the top level interface to access functions related to that mode. All main menus are auto-loaded, which means that it is not necessary to include a ~require~ call to load that library.
+
+Refer to the menu below for all modules offered by Casual.
 
 #+INCLUDE: "./agenda.org" :minlevel 2
 #+INCLUDE: "./bibtex.org" :minlevel 2
