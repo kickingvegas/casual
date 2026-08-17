@@ -42,6 +42,7 @@ Certain menus require more installed software:
 Casual versions 3.0 or greater offer a simplified installation with command ~casual-init~. Run this via ~extended-execute-command~ (~M-x~) or add this to your Emacs initialization file.
 
 #+begin_src elisp :lexical no
+  (require 'casual)
   (casual-init)
 #+end_src
 
