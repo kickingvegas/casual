@@ -29,6 +29,17 @@
 (require 'image-crop)
 (require 'casual-lib)
 
+(defgroup casual-image nil
+  "Settings for Casual Image."
+  :group 'casual)
+
+(defcustom casual-image-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-image-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-image)
+
 (defconst casual-image-unicode-db
   '((:rotate . '("Rotate ⟳90°𝑥…" "Rotate Clockwise 90°x…"))
     (:scroll-up . '("↑" "Up"))

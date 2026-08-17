@@ -20,25 +20,41 @@
 
 ;;; Commentary:
 
-;; Provides a Transient menu interface to a subset of isearch functions.
-;; Said functions are grouped as follows in the following sections:
-;; - Edit Search String
-;; - Replace
-;; - Toggle
-;; - Misc
-;; - Navigation
+;; Casual I-Search is a Transient user interface for the I-Search library.
 
 ;; INSTALLATION
-;; Enter the code below into your init file to load and install
-;; `casual-isearch-tmenu'. Tune the keybinding to your taste.
 
-;; (require 'casual-isearch) ; optional if using autoloaded menu
-;; (keymap-set isearch-mode-map "C-o" #'casual-isearch-tmenu)
+;; By default, `casual-init' will setup Casual I-Search by running the hook
+;; function `casual-isearch-init'.
+
+;; Ensure that `casual-isearch-init' is included in the customizable hook
+;; variable `casual-init-hook'.
+
+;; Consult the Info node `(casual) I-Search Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'casual-lib)
 (require 'casual-isearch-utils)
 (require 'casual-isearch-settings)
+
+;;;###autoload (autoload 'casual-isearch-init "casual-isearch" nil t)
+(defun casual-isearch-init ()
+  "Initialize and configure Casual I-Search.
+
+This hook binds `casual-isearch-tmenu' to `casual-keybinding-primary'.
+
+If `casual-isearch-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-isearch-setup' will be set."
+  (add-hook 'isearch-mode-hook #'casual-isearch-setup))
+
+(defun casual-isearch-setup ()
+  "Setup `isearch-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set isearch-mode-map casual-keybinding-primary #'casual-isearch-tmenu))
+
 
 ;;;###autoload (autoload 'casual-isearch-tmenu "casual-isearch" nil t)
 (transient-define-prefix casual-isearch-tmenu ()

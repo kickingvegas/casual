@@ -29,6 +29,17 @@
 (require 'org-element-ast)
 (require 'casual-lib)
 
+(defgroup casual-org nil
+  "Settings for Casual Org."
+  :group 'casual)
+
+(defcustom casual-org-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-org-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-org)
+
 (defconst casual-org-unicode-db
   '((:previous . '("↑" "Previous"))
     (:next . '("↓" "Next"))

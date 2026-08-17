@@ -23,21 +23,24 @@
 ;; Casual EditKit is a Transient user interface toolkit for Emacs editing.
 
 ;; INSTALLATION
-;; (require 'casual-editkit) ; optional if using autoloaded menu
-;; (keymap-global-set "C-o" #'casual-editkit-main-tmenu)
 
-;; Alternate bindings to consider are "M-o" and "F10". Choose whatever binding
-;; best suits you.
+;; By default, `casual-init' will setup Casual EditKit by running the hook
+;; function `casual-editkit-init'.
 
-;; If you are using Emacs ≤ 30.0, you will need to update the built-in package
-;; `transient'. By default, `package.el' will not upgrade a built-in package.
-;; Set the customizable variable `package-install-upgrade-built-in' to `t' to
-;; override this. For more details, please refer to the "Install" section on
-;; this project's repository web page.
+;; Ensure that `casual-editkit-init' is included in the customizable hook
+;; variable `casual-init-hook'.
+
+;; Consult the Info node `(casual) EditKit Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'casual-editkit-utils)
 (require 'casual-ispell)
+
+;;;###autoload (autoload 'casual-editkit-init "casual-editkit" nil t)
+(defun casual-editkit-init ()
+  "Initialize and configure Casual EditKit."
+  (keymap-global-set casual-keybinding-primary #'casual-editkit-main-tmenu))
 
 ;;;###autoload (autoload 'casual-editkit-main-tmenu "casual-editkit" nil t)
 (transient-define-prefix casual-editkit-main-tmenu ()

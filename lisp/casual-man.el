@@ -20,35 +20,50 @@
 
 ;;; Commentary:
 
-;; This library provides a Transient-based user interface for `Man-mode'.
+;; Casual Man is a Transient user interface for the Man library.
 
 ;; INSTALLATION
 
-;; In your initialization file, bind the Transient `casual-man-tmenu' to your
-;; key binding of preference.
+;; By default, `casual-init' will setup Casual Man by running the hook
+;; function `casual-man-init'.
 
-;; (require 'casual-man) ; optional if using autoloaded menu
-;; (keymap-set Man-mode-map "C-o" #'casual-man-tmenu)
+;; Ensure that `casual-man-init' is included in the customizable hook
+;; variable `casual-init-hook'.
 
-;; `casual-man-tmenu' uses bindings that are consistent with Casual Dired and
-;; IBuffer by using "[" and "]" for section navigation.
-
-;; The following keybindings are recommended to support consistent behavior
-;; between `Man-mode' and `casual-man-tmenu'.
-
-;; (keymap-set Man-mode-map "n" #'casual-lib-browse-forward-paragraph)
-;; (keymap-set Man-mode-map "p" #'casual-lib-browse-backward-paragraph)
-;; (keymap-set Man-mode-map "[" #'Man-previous-section)
-;; (keymap-set Man-mode-map "]" #'Man-next-section)
-;; (keymap-set Man-mode-map "j" #'next-line)
-;; (keymap-set Man-mode-map "k" #'previous-line)
-;; (keymap-set Man-mode-map "K" #'Man-kill)
-;; (keymap-set Man-mode-map "o" #'casual-man-occur-options)
+;; Consult the Info node `(casual) Man Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'bookmark)
 (require 'casual-man-settings)
 (require 'casual-man-utils)
+
+;;;###autoload (autoload 'casual-man-init "casual-man" nil t)
+(defun casual-man-init ()
+  "Initialize and configure Casual Man.
+
+This hook binds `casual-man-tmenu' to `casual-keybinding-primary'.
+
+If `casual-man-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-man-setup' will be set."
+  (add-hook 'Man-mode-hook #'casual-man-setup))
+
+(defun casual-man-setup ()
+  "Setup `Man-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set Man-mode-map casual-keybinding-primary #'casual-man-tmenu)
+
+  (when casual-man-add-extra-keybindings
+    (keymap-set Man-mode-map "n" #'casual-lib-browse-forward-paragraph)
+    (keymap-set Man-mode-map "p" #'casual-lib-browse-backward-paragraph)
+    (keymap-set Man-mode-map "[" #'Man-previous-section)
+    (keymap-set Man-mode-map "]" #'Man-next-section)
+    (keymap-set Man-mode-map "j" #'next-line)
+    (keymap-set Man-mode-map "k" #'previous-line)
+    (keymap-set Man-mode-map "K" #'Man-kill)
+    (keymap-set Man-mode-map "o" #'casual-man-occur-options)))
 
 ;;;###autoload (autoload 'casual-man-tmenu "casual-man" nil t)
 (transient-define-prefix casual-man-tmenu ()

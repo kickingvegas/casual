@@ -20,17 +20,18 @@
 
 ;;; Commentary:
 
-;; Casual Info is an opinionated Transient-based porcelain for Emacs Info.
+;; Casual Info is a Transient user interface for the Info library.
 
 ;; INSTALLATION
-;; (require 'casual-info) ; optional if using autoloaded menu
-;; (keymap-set Info-mode-map "C-o" #'casual-info-tmenu)
 
-;; If you are using Emacs ≤ 30.0, you will need to update the built-in package
-;; `transient'. By default, `package.el' will not upgrade a built-in package.
-;; Set the customizable variable `package-install-upgrade-built-in' to `t' to
-;; override this. For more details, please refer to the "Install" section on
-;; this project's repository web page.
+;; By default, `casual-init' will setup Casual Info by running the hook
+;; function `casual-info-init'.
+
+;; Ensure that `casual-info-init' is included in the customizable hook
+;; variable `casual-init-hook'.
+
+;; Consult the Info node `(casual) Info Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'transient)
@@ -40,6 +41,35 @@
 (require 'casual-info-variables)
 (require 'casual-info-settings)
 (require 'casual-info-utils)
+
+;;;###autoload (autoload 'casual-info-init "casual-info" nil t)
+(defun casual-info-init ()
+  "Initialize and configure Casual Info.
+
+This hook binds `casual-info-tmenu' to `casual-keybinding-primary'.
+
+If `casual-info-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-info-setup' will be set."
+  (add-hook 'Info-mode-hook #'casual-info-setup))
+
+(defun casual-info-setup ()
+  "Setup `Info-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set Info-mode-map casual-keybinding-primary #'casual-info-tmenu)
+
+  (when casual-info-add-extra-keybindings
+    (keymap-set Info-mode-map "M-[" #'Info-history-back)
+    (keymap-set Info-mode-map "M-]" #'Info-history-forward)
+    (keymap-set Info-mode-map "p" #'casual-lib-browse-backward-paragraph)
+    (keymap-set Info-mode-map "n" #'casual-lib-browse-forward-paragraph)
+    (keymap-set Info-mode-map "h" #'Info-prev)
+    (keymap-set Info-mode-map "j" #'Info-next-reference)
+    (keymap-set Info-mode-map "k" #'Info-prev-reference)
+    (keymap-set Info-mode-map "l" #'Info-next)
+    (keymap-set Info-mode-map "/" #'Info-search)
+    (keymap-set Info-mode-map "B" #'bookmark-set)))
 
 ;;; Menus
 ;;;###autoload (autoload 'casual-info-tmenu "casual-info" nil t)

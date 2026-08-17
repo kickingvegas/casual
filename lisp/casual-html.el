@@ -23,25 +23,44 @@
 
 ;; INSTALLATION
 
-;; In your initialization file, bind the Transient `casual-html-tmenu' to your
-;; key binding of preference.
+;; Casual HTML is a Transient user interface for the HTML library.
 
-;; (require 'casual-html) ; optional if using autoloaded menu
-;; (keymap-set html-mode-map "M-m" #'casual-html-tmenu)
+;; INSTALLATION
 
-;; A menu dedicated to HTML tags, `casual-html-tags-tmenu', can also be bound.
+;; By default, `casual-init' will setup Casual HTML by running the hook
+;; function `casual-html-init'.
 
-;; (keymap-set html-mode-map "C-c m" #'casual-html-tags-tmenu)
-
-;; Users desiring to use Tree-sitter HTML mode should use the keymap
-;; `html-ts-mode-map' instead of `html-mode-map'.
+;; Ensure that `casual-html-init' is included in the customizable hook
+;; variable `casual-init-hook'.
 
 ;; Note that the menu item for `sgml-delete-tag' is omitted when `html-ts-mode'
 ;; is enabled.
 
+;; Consult the Info node `(casual) HTML Install' for more detail on
+;; installation.
+
 ;;; Code:
 (require 'casual-html-settings)
 (require 'casual-html-utils)
+
+;;;###autoload (autoload 'casual-html-init "casual-html" nil t)
+(defun casual-html-init ()
+  "Initialize and configure Casual HTML.
+
+This hook binds `casual-html-tmenu' to `casual-keybinding-secondary'.
+
+If `casual-html-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-html-setup' will be set."
+  (add-hook 'html-mode-hook #'casual-html-setup))
+
+(defun casual-html-setup ()
+  "Setup `html-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set html-mode-map casual-keybinding-secondary #'casual-html-tmenu)
+  ;; (define-key html-mode-map (kbd "C-c m") #'casual-html-tags-tmenu)
+  )
 
 ;;;###autoload (autoload 'casual-html-tmenu "casual-html" nil t)
 (transient-define-prefix casual-html-tmenu ()

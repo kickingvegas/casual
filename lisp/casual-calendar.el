@@ -20,22 +20,39 @@
 
 ;;; Commentary:
 
-;; Casual Calendar is an opinionated Transient-based user interface for the
-;; Emacs regular expression editor.
+;; Casual Calendar is a Transient user interface for the Calendar library.
 
 ;; INSTALLATION
-;; (require 'casual-calendar) ; optional if using autoloaded menu
-;; (keymap-set calendar-mode-map "C-o" #'casual-calendar)
 
-;; If you are using Emacs ≤ 30.0, you will need to update the built-in package
-;; `transient'. By default, `package.el' will not upgrade a built-in package.
-;; Set the customizable variable `package-install-upgrade-built-in' to `t' to
-;; override this. For more details, please refer to the "Install" section on
-;; this project's repository web page.
+;; By default, `casual-init' will setup Casual Calendar by running the hook
+;; function `casual-calendar-init'.
+
+;; Ensure that `casual-calendar-init' is included in the customizable hook
+;; variable `casual-init-hook'.
+
+;; Consult the Info node `(casual) Calendar Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'casual-calendar-utils)
 (require 'casual-calendar-settings)
+
+;;;###autoload (autoload 'casual-calendar-init "casual-calendar" nil t)
+(defun casual-calendar-init ()
+  "Initialize and configure Casual Calendar.
+
+This hook binds `casual-calendar-tmenu' to `casual-keybinding-primary'.
+
+If `casual-calendar-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-calendar-setup' will be set."
+  (add-hook 'calendar-mode-hook #'casual-calendar-setup))
+
+(defun casual-calendar-setup ()
+  "Setup `calendar-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set calendar-mode-map casual-keybinding-primary #'casual-calendar-tmenu))
 
 ;;;###autoload (autoload 'casual-calendar "casual-calendar" nil t)
 (defun casual-calendar ()

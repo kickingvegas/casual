@@ -72,7 +72,7 @@ It costs money to make@comma{} enhance@comma{} and maintain Casual as ideologica
 * Requirements::
 * Install::
 * UX Conventions::
-* Casual Modes::
+* Casual Modules::
 * Customization::
 * Feedback & Discussion::
 * Sponsorship::
@@ -99,7 +99,7 @@ Upgrading to Casual 1.x to 2.x
 * If you do not use @code{use-package} to configure Casual::
 * If you have used @code{use-package} to configure Casual::
 
-Casual Modes
+Casual Modules
 
 * Agenda::
 * Bib@TeX{}::
@@ -401,7 +401,7 @@ Strict adherence to Emacs command naming.
 While Casual is @strong{mostly} in alignment with Emacs command naming@comma{} there are cases where it will make an opinionated change if the name is deemed too vague or idiomatic.
 
 @item
-No intention is made by Casual to help on-board users to the existing default bindings of a mode@comma{} nor  cater to users who already know them.
+No intention is made by Casual to help on-board users to the existing default bindings of a mode@comma{} nor cater to users who already know them.
 
 That said@comma{} many existing default Emacs bindings are replicated in Casual. Such correspondence should be considered incidental.
 
@@ -487,6 +487,10 @@ Casual Image: ImageMagick 6+
 @chapter Install
 
 @cindex Install
+@vindex casual-init
+@vindex casual-init-hook
+@vindex casual-keybinding-primary
+@vindex casual-keybinding-secondary
 
 Standard installation of the @code{casual} package can be done from the following distribution sites:
 
@@ -497,18 +501,53 @@ Standard installation of the @code{casual} package can be done from the followin
 @uref{https://elpa.nongnu.org/nongnu/casual.html, NonGNU ELPA}
 @end itemize
 
-Given installation via @code{package-install} (@ref{Package Installation,,,emacs,})@comma{} most Casual Transient menus are autoloaded (@ref{Autoload,,,elisp,}) so they can be invoked without need to modify an Emacs initialization file.
+Given installation via @code{package-install} (@ref{Package Installation,,,emacs,})@comma{} most Casual Transient menus are autoloaded (@ref{Autoload,,,elisp,}) so they can be invoked without need to load the library they are defined in.
 
-That said@comma{} Casual is designed with the intent of using a common keybindings across multiple modes to lower cognitive load. Setting these keybindings requires modification of your Emacs initialization file. These keybindings can be set to user preference. For the purpose of documentation@comma{} this document uses the following keybindings:
+@subsubheading Simplified Install
+
+Casual versions 3.0 or greater offer a simplified installation with command @code{casual-init}. Run this via @code{extended-execute-command} (@kbd{M-x}) or add this to your Emacs initialization file.
+
+@lisp
+(casual-init)
+@end lisp
+
+By default @code{casual-init} will setup keybindings for all modules (@ref{Casual Modules, , Casual Modules}) supported by Casual. Configure the customizable hook variable @code{casual-init-hook} to control which modules to enable.
+
+@example
+M-x customize-variable casual-init-hook
+@end example
+
+Users can choose any or all of the user interfaces made available by Casual at their pleasure.
+
+To lower cognitive load@comma{} Casual uses the convention of re-using the same keybinding to invoke a mode-specific main menu. For this purpose@comma{} Casual uses two customizable variables to specify what keybinding to bind to a Transient menu for a mode.
 
 @itemize
 @item
-Primary binding: @kbd{C-o}
+@code{casual-keybinding-primary} (@kbd{C-o}) - used for a main menu
 @item
-Secondary binding: @kbd{M-m}
+@code{casual-keybinding-secondary} (@kbd{M-m}) - used for an auxiliary menu
 @end itemize
 
-Casual is organized into different modules where most of them map to a specific Emacs mode. As such installation is done per module. Go to the @strong{Install} section of a module of interest for guidance on its configuration.
+Modify these variables to preference.
+
+Casual makes opinionated design decisions (@ref{Motivations, , Motivations}) on menu keybindings that do not necessarily align with existing default bindings of a mode. Each hook function in @code{casual-init-hook} honors a module specific variable to make additional keybindings that reconcile Transient menu bindings with that of a specific mode map. These variables are of the form @code{casual-<module>-add-extra-keybindings} and by default are set to @code{t}. Users wishing to disable them can do so via @code{customize-variable}.
+
+Note that @code{casual-init} will only work if Casual is installed via @code{package-install}.
+
+Users of Casual version 2.x do @emph{not} have to change their existing setup. That said@comma{} migrating to @code{casual-init} offers significant convenience by requiring less configuration.
+
+@subsubheading Configuration
+
+Casual is designed to be configured via the Emacs customize interface. To configure Casual@comma{} invoke the following:
+
+@example
+M-x customize-group casual
+@end example
+
+
+@subsubheading Individual Module Install
+
+If individual installation of a Casual module is preferred@comma{} then the @strong{Install} section for each module is enumerated below.
 
 @itemize
 @item
@@ -688,16 +727,18 @@ If the label starts with the glyph ⓘ (CIRCLED LATIN SMALL LETTER I)@comma{} th
 
 To distinguish Transient menu (prefix) definitions from existing Emacs menu definitions using keymaps (@ref{Menu Keymaps,elisp#Menu Keymaps,,elisp,})@comma{} Casual uses the naming suffix  @code{-tmenu}.
 
-@node Casual Modes
-@chapter Casual Modes
+@node Casual Modules
+@chapter Casual Modules
 
-@cindex Casual Modes
+@cindex Casual Modules
 
-Casual employs the convention of using the same keybinding to invoke a mode-specific main menu. This keybinding is re-used for each mode-specific keymap. The document recommends the default keybinding @code{C-o} for this purpose. Users who prefer a different binding are always free to use another.
+Casual organizes itself in to different @emph{modules} using the naming convention of @code{casual-<module>}.  Support for a specific Emacs mode in Casual is done on an module basis. That said@comma{} there are Casual modules such as EditKit and Timezone that have no particular relation to an Emacs mode.
 
-Casual is organized into different libraries typically using the naming convention of @code{casual-<mode name>}. Each library has within it a ``main menu'' which serves as the top level interface to access functions related to that mode. All main menus are auto-loaded@comma{} which means that it is not necessary to include a @code{require} call to load that library.
+To lower cognitive load@comma{} Casual uses the convention of using the same keybinding to invoke a mode-specific main menu. This keybinding is re-used for each mode-specific keymap.
 
-The following modes are supported by Casual:
+Each module has within it a ``main menu'' which serves as the top level interface to access functions related to that mode. All main menus are auto-loaded@comma{} which means that it is not necessary to include a @code{require} call to load that library.
+
+Refer to the menu below for all modules offered by Casual.
 
 @menu
 * Agenda::
@@ -747,6 +788,31 @@ Casual Agenda (library: @code{casual-agenda}) is a user interface for Org Agenda
 @subsection Agenda Install
 
 @cindex Agenda Install
+
+@subsubheading Simplified Install
+@vindex casual-agenda-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for Org Agenda.
+
+By default@comma{} @code{casual-init} will setup support for Org Agenda via the hook function @code{casual-agenda-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-agenda-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Org agenda@comma{} this can be controlled via the customizable variable @code{casual-agenda-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-agenda-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual Agenda is the Transient menu @code{casual-agenda-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-agenda-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -870,6 +936,30 @@ The screenshot below shows the menu for Casual Bib@TeX{}.
 @subsection Bib@TeX{} Install
 
 @cindex BibTeX Install
+@subsubheading Simplified Install
+@vindex casual-bibtex-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for Bib@TeX{}.
+
+By default@comma{} @code{casual-init} will setup support for Bib@TeX{} via the hook function @code{casual-bibtex-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-bibtex-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Bib@TeX{}@comma{} this can be controlled via the customizable variable @code{casual-bibtex-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-bibtex-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual Bib@TeX{} is the Transient menu @code{casual-bibtex-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-bibtex-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -1101,6 +1191,30 @@ Casual Bookmarks (library: @code{casual-bookmarks}) is a user interface for the 
 @subsection Bookmarks Install
 
 @cindex Bookmarks Install
+@subsubheading Simplified Install
+@vindex casual-bookmarks-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for Bookmarks.
+
+By default@comma{} @code{casual-init} will setup support for Bookmarks via the hook function @code{casual-bookmarks-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-bookmarks-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Bookmarks@comma{} this can be controlled via the customizable variable @code{casual-bookmarks-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-bookmarks-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual Bookmarks is the Transient menu @code{casual-bookmarks-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-bookmarks-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -1216,6 +1330,30 @@ Casual Calc (library: @code{casual-calc}) is a user interface for Emacs Calc (@r
 @subsection Calc Install
 
 @cindex Calc Install
+@subsubheading Simplified Install
+@vindex casual-calc-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for Calc.
+
+By default@comma{} @code{casual-init} will setup support for Calc via the hook function @code{casual-calc-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-calc-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Calc@comma{} this can be controlled via the customizable variable @code{casual-calc-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-calc-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual Calc is the Transient menu @code{casual-calc-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-calc-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -1334,6 +1472,31 @@ Casual Calendar (library: @code{casual-calendar}) is a user interface for Emacs 
 @subsection Calendar Install
 
 @cindex Calendar Install
+@subsubheading Simplified Install
+@vindex casual-calendar-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for Calendar.
+
+By default@comma{} @code{casual-init} will setup support for Calendar via the hook function @code{casual-calendar-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-calendar-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Calendar@comma{} this can be controlled via the customizable variable @code{casual-calendar-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-calendar-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
+
 
 The primary interface for Casual Calendar is the command @code{casual-calendar}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-calendar} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -1521,6 +1684,31 @@ The screenshot below shows the menu for Grep results. Note the menu label change
 @subsection Compile Install
 
 @cindex Compile Install
+@subsubheading Simplified Install
+@vindex casual-compile-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for Compile and Grep.
+
+By default@comma{} @code{casual-init} will setup support for Compile via the hook function @code{casual-compile-init} which is included in the customizable variable @code{casual-init-hook}. The same goes for the hook function @code{casual-grep-init}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-compile-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Compile@comma{} this can be controlled via the customizable variable @code{casual-compile-add-extra-keybindings} (default @code{t}). For Grep@comma{} this can be controlled via the customizable variable @code{casual-grep-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-compile-init)
+(casual-grep-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual Compile is the Transient menu @code{casual-compile-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-compile-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -1646,6 +1834,30 @@ Casual also has support for HTML editing (@ref{HTML, , HTML}).
 @subsection CSS Install
 
 @cindex CSS Install
+@subsubheading Simplified Install
+@vindex casual-css-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for CSS@.
+
+By default@comma{} @code{casual-init} will setup support for CSS via the hook function @code{casual-css-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-css-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For CSS@comma{} this can be controlled via the customizable variable @code{casual-css-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-css-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual CSS is the Transient menu @code{casual-css-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-css-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -1733,6 +1945,30 @@ Casual CSV (library: @code{casual-csv}) is a user interface for @code{csv-mode}@
 @subsection CSV Install
 
 @cindex CSV Install
+@subsubheading Simplified Install
+@vindex casual-csv-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for CSV@.
+
+By default@comma{} @code{casual-init} will setup support for CSV via the hook function @code{casual-csv-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-csv-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For CSV@comma{} this can be controlled via the customizable variable @code{casual-csv-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-csv-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual CSV is the Transient menu @code{casual-csv-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-csv-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -1882,6 +2118,30 @@ For users running on Microsoft Windows@comma{} use @uref{https://www.gnu.org/sof
 @subsection Dired Install
 
 @cindex Dired Install
+@subsubheading Simplified Install
+@vindex casual-dired-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for Dired.
+
+By default@comma{} @code{casual-init} will setup support for Dired via the hook function @code{casual-dired-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-dired-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Dired@comma{} this can be controlled via the customizable variable @code{casual-dired-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-dired-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual Dired is the Transient menu @code{casual-dired-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-dired-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -2703,6 +2963,30 @@ Shown below is screenshot of the Casual Ediff in action for a version-controlled
 @subsection Ediff Install
 
 @cindex Ediff Install
+@subsubheading Simplified Install
+@vindex casual-ediff-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for Ediff.
+
+By default@comma{} @code{casual-init} will setup support for Ediff via the hook function @code{casual-ediff-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-ediff-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Ediff@comma{} this can be controlled via the customizable variable @code{casual-ediff-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-ediff-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual Ediff is the Transient menu @code{casual-ediff-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-ediff-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -2862,6 +3146,30 @@ Casual EditKit endeavors to surface the many different editing commands offered 
 @subsection EditKit Install
 
 @cindex EditKit Install
+@subsubheading Simplified Install
+@vindex casual-editkit-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for EditKit.
+
+By default@comma{} @code{casual-init} will setup support for EditKit via the hook function @code{casual-editkit-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-editkit-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For EditKit@comma{} this can be controlled via the customizable variable @code{casual-editkit-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-editkit-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 A reference menu (@code{casual-editkit-main-tmenu}) illustrating nearly all the different menus offered by Casual EditKit is provided. This menu can be used “as-is” with your binding of preference. For consistency with other Casual Packages@comma{} the binding @kbd{C-o} is used in the example below. Other candidate bindings include @kbd{M-o} and @kbd{F10}. To facilitate default access to this menu@comma{} the configuration below sets this binding to be global which can be overridden per mode. This is @emph{not} mandatory and users are free to integrate Casual EditKit into their Emacs configuration however they see fit. 
 
@@ -3202,6 +3510,30 @@ Casual Elisp (library: @code{casual-elisp}) is a user interface for @code{emacs-
 @subsection Elisp Install
 
 @cindex Elisp Install
+@subsubheading Simplified Install
+@vindex casual-elisp-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for Elisp.
+
+By default@comma{} @code{casual-init} will setup support for Elisp via the hook function @code{casual-elisp-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-elisp-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Elisp@comma{} this can be controlled via the customizable variable @code{casual-elisp-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-elisp-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual Elisp is the Transient menu @code{casual-elisp-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-elisp-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -3280,6 +3612,30 @@ Casual Eshell (library: @code{casual-eshell}) is a user interface for @code{Eshe
 @subsection Eshell Install
 
 @cindex Eshell Install
+@subsubheading Simplified Install
+@vindex casual-eshell-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for Eshell.
+
+By default@comma{} @code{casual-init} will setup support for Eshell via the hook function @code{casual-eshell-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-eshell-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Eshell@comma{} this can be controlled via the customizable variable @code{casual-eshell-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-eshell-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual Eshell is the Transient menu @code{casual-eshell-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-eshell-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -3378,6 +3734,30 @@ Casual EWW (library: @code{casual-eww}) is a user interface for Emacs Web Wowser
 @subsection EWW Install
 
 @cindex EWW Install
+@subsubheading Simplified Install
+@vindex casual-eww-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for EWW@.
+
+By default@comma{} @code{casual-init} will setup support for EWW via the hook function @code{casual-eww-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-eww-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For EWW@comma{} this can be controlled via the customizable variable @code{casual-eww-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-eww-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual EWW is the Transient menu @code{casual-eww-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-eww-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -3516,6 +3896,30 @@ Casual Help (library: @code{casual-help}) is a user interface for @code{help-mod
 @subsection Help Install
 
 @cindex Help Install
+@subsubheading Simplified Install
+@vindex casual-help-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for Help.
+
+By default@comma{} @code{casual-init} will setup support for Help via the hook function @code{casual-help-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-help-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Help@comma{} this can be controlled via the customizable variable @code{casual-help-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-help-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual Help is the Transient menu @code{casual-help-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-help-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -3643,6 +4047,30 @@ Casual also has support for CSS editing (@ref{CSS, , CSS}).
 @subsection HTML Install
 
 @cindex HTML Install
+@subsubheading Simplified Install
+@vindex casual-html-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for HTML@.
+
+By default@comma{} @code{casual-init} will setup support for HTML via the hook function @code{casual-html-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-html-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For HTML@comma{} this can be controlled via the customizable variable @code{casual-html-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-html-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual HTML is the Transient menu @code{casual-html-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-html-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -3738,6 +4166,30 @@ IBuffer is a powerful tool for managing Emacs workflows. As Emacs is often compa
 @subsection IBuffer Install
 
 @cindex IBuffer Install
+@subsubheading Simplified Install
+@vindex casual-ibuffer-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for IBuffer.
+
+By default@comma{} @code{casual-init} will setup support for IBuffer via the hook function @code{casual-ibuffer-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-ibuffer-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For IBuffer@comma{} this can be controlled via the customizable variable @code{casual-ibuffer-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-ibuffer-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual IBuffer is the Transient menu @code{casual-ibuffer-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-ibuffer-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -4042,6 +4494,30 @@ Resizing an image is supported if ImageMagick 6 or 7 is installed. This interfac
 @subsection Image Install
 
 @cindex Image Install
+@subsubheading Simplified Install
+@vindex casual-image-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for Image.
+
+By default@comma{} @code{casual-init} will setup support for Image via the hook function @code{casual-image-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-image-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Image@comma{} this can be controlled via the customizable variable @code{casual-image-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-image-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual Image is the Transient menu @code{casual-image-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-image-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -4248,6 +4724,32 @@ Casual Info (library: @code{casual-info}) is a user interface for the Emacs Info
 @node Info Install
 @subsection Info Install
 
+@cindex Info Install
+@subsubheading Simplified Install
+@vindex casual-info-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for Info.
+
+By default@comma{} @code{casual-init} will setup support for Info via the hook function @code{casual-info-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-info-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Info@comma{} this can be controlled via the customizable variable @code{casual-info-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-info-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
+
 The primary interface for Casual Info is the Transient menu @code{casual-info-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-info-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
 That said@comma{} Casual is designed with the intent of using a common (key)binding across multiple modes to lower cognitive load. This document uses the binding @kbd{C-o} for this purpose@comma{} but can be changed to user preference.
@@ -4358,6 +4860,30 @@ Casual I-Search (library: @code{casual-isearch}) is a user interface for Emacs I
 @subsection I-Search Install
 
 @cindex I-Search Install
+@subsubheading Simplified Install
+@vindex casual-isearch-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for I-Search.
+
+By default@comma{} @code{casual-init} will setup support for I-Search via the hook function @code{casual-isearch-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-isearch-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For I-Search@comma{} this can be controlled via the customizable variable @code{casual-isearch-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-isearch-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual I-Search is the Transient menu @code{casual-isearch-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-isearch-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -4443,6 +4969,32 @@ Casual Ispell is a user interface for the Emacs spell checker Ispell (@ref{Spell
 @subsection Ispell Install
 
 @cindex Ispell Install
+@subsubheading Simplified Install
+@vindex casual-ispell-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for Ispell.
+
+By default@comma{} @code{casual-init} will setup support for Ispell via the hook function @code{casual-ispell-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-ispell-init} via a checkbox interface.
+
+@code{casual-init-hook} treats the Transient menu @code{casual-ispell-tmenu} with a tertiary binding specified in the customizable variable @code{casual-ispell-keybinding} (default @kbd{C-c s}). @code{casual-ispell-keybinding} can be reconfigured to preference.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Ispell@comma{} this can be controlled via the customizable variable @code{casual-ispell-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-ispell-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual Ispell is the Transient menu @code{casual-ispell-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-ispell-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -4526,6 +5078,30 @@ Casual Make (library: @code{casual-make}) is a user interface for @code{make-mod
 @subsection Make Install
 
 @cindex Make Install
+@subsubheading Simplified Install
+@vindex casual-make-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for Make.
+
+By default@comma{} @code{casual-init} will setup support for Make via the hook function @code{casual-make-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-make-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Make@comma{} this can be controlled via the customizable variable @code{casual-make-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-make-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual Make is the Transient menu @code{casual-make-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-make-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -4629,6 +5205,30 @@ Casual Man (library: @code{casual-man}) is a user interface for @code{Man-mode}@
 @subsection Man Install
 
 @cindex Man Install
+@subsubheading Simplified Install
+@vindex casual-man-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for Man.
+
+By default@comma{} @code{casual-init} will setup support for Man via the hook function @code{casual-man-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-man-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Man@comma{} this can be controlled via the customizable variable @code{casual-man-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-man-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual Man is the Transient menu @code{casual-man-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-man-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 
@@ -5120,6 +5720,30 @@ Casual RE-Builder (library: @code{casual-re-builder}) is a user interface for RE
 @subsection RE-Builder Install
 
 @cindex RE-Builder Install
+@subsubheading Simplified Install
+@vindex casual-re-builder-init
+
+If Casual is installed using @code{package-install}@comma{} then you can use @code{casual-init} to setup support for RE-Builder.
+
+By default@comma{} @code{casual-init} will setup support for RE-Builder via the hook function @code{casual-re-builder-init} which is included in the customizable variable @code{casual-init-hook}.
+
+Use the command @code{customize-variable} on @code{casual-init-hook} to control inclusion of @code{casual-re-builder-init} via a checkbox interface.
+
+Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For RE-Builder@comma{} this can be controlled via the customizable variable @code{casual-re-builder-add-extra-keybindings} (default @code{t}).
+
+@subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+@lisp
+(casual-re-builder-init)
+@end lisp
+
+@subsubheading Manual Install
+
+For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
 The primary interface for Casual RE-Builder is the Transient menu @code{casual-re-builder-tmenu}. It is autoloaded (@ref{Autoload,,,elisp,}) so if Casual is installed via @code{package-install} (@ref{Package Installation,,,emacs,}) then @code{casual-re-builder-tmenu} can be invoked via @code{execute-extended-command} (@kbd{M-x}) without need for modifying your Emacs initialization file.
 

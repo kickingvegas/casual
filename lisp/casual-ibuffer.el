@@ -20,33 +20,18 @@
 
 ;;; Commentary:
 
-;; Casual IBuffer is an opinionated Transient-based porcelain for Emacs IBuffer.
+;; Casual IBuffer is a Transient user interface for the IBuffer library.
 
 ;; INSTALLATION
-;; (require 'casual-ibuffer) ; optional if using autoloaded menu
-;; (keymap-set ibuffer-mode-map "C-o" #'casual-ibuffer-tmenu)
-;; (keymap-set ibuffer-mode-map "F" #'casual-ibuffer-filter-tmenu)
-;; (keymap-set ibuffer-mode-map "s" #'casual-ibuffer-sortby-tmenu)
 
-;; While optional, this configuration can be used to align the bindings in
-;; `ibuffer-mode-map' with the bindings used by the Casual menus.
-;; (keymap-set ibuffer-mode-map "<double-mouse-1>" #'ibuffer-visit-buffer)
-;; (keymap-set ibuffer-mode-map "M-<double-mouse-1>" #'ibuffer-visit-buffer-other-window)
-;; (keymap-set ibuffer-mode-map "{" #'ibuffer-backwards-next-marked)
-;; (keymap-set ibuffer-mode-map "}" #'ibuffer-forward-next-marked)
-;; (keymap-set ibuffer-mode-map "[" #'ibuffer-backward-filter-group)
-;; (keymap-set ibuffer-mode-map "]" #'ibuffer-forward-filter-group)
-;; (keymap-set ibuffer-mode-map "$" #'ibuffer-toggle-filter-group)
+;; By default, `casual-init' will setup Casual IBuffer by running the hook
+;; function `casual-ibuffer-init'.
 
-;; These are some convenience hooks.
-;; (add-hook 'ibuffer-mode-hook #'hl-line-mode)
-;; (add-hook 'ibuffer-mode-hook #'ibuffer-auto-mode)
+;; Ensure that `casual-ibuffer-init' is included in the customizable hook
+;; variable `casual-init-hook'.
 
-;; If you are using Emacs ≤ 30.0, you will need to update the built-in package
-;; `transient'. By default, `package.el' will not upgrade a built-in package.
-;; Set the customizable variable `package-install-upgrade-built-in' to `t' to
-;; override this. For more details, please refer to the "Install" section on
-;; this project's repository web page.
+;; Consult the Info node `(casual) IBuffer Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'ibuffer)
@@ -55,6 +40,26 @@
 (require 'casual-ibuffer-utils)
 (require 'casual-ibuffer-settings)
 (require 'casual-ibuffer-filter)
+
+;;;###autoload (autoload 'casual-ibuffer-init "casual-ibuffer" nil t)
+(defun casual-ibuffer-init ()
+  "Initialize and configure Casual IBuffer.
+
+This hook binds `casual-ibuffer-tmenu' to `casual-keybinding-primary'.
+
+If `casual-ibuffer-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-ibuffer-setup' will be set."
+  (add-hook 'ibuffer-mode-hook #'casual-ibuffer-setup))
+
+(defun casual-ibuffer-setup ()
+  "Setup `ibuffer-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set ibuffer-mode-map casual-keybinding-primary #'casual-ibuffer-tmenu)
+  (when casual-ibuffer-add-extra-keybindings
+    (keymap-set ibuffer-mode-map "F" #'casual-ibuffer-filter-tmenu)
+    (keymap-set ibuffer-mode-map "s" #'casual-ibuffer-sortby-tmenu)))
 
 ;;;###autoload (autoload 'casual-ibuffer-tmenu "casual-ibuffer" nil t)
 (transient-define-prefix casual-ibuffer-tmenu ()

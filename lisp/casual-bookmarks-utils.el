@@ -1,6 +1,6 @@
 ;;; casual-bookmarks-utils.el --- Casual Bookmarks Utils -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025 Charles Y. Choi
+;; Copyright (C) 2024-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -24,6 +24,17 @@
 ;;; Code:
 (require 'transient)
 (require 'casual-lib)
+
+(defgroup casual-bookmarks nil
+  "Settings for Casual Bookmarks."
+  :group 'casual)
+
+(defcustom casual-bookmarks-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-bookmarks-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-bookmarks)
 
 (defconst casual-bookmarks-unicode-db
   '((:previous . '("↑" "Previous"))

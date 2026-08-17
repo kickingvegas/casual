@@ -20,7 +20,9 @@
 
 ;;; Commentary:
 
-;;
+;; Casual Timezone is a library for working with timezones.
+
+;; Run the menu `casual-timezone-tmenu' to see its offerings.
 
 ;;; Code:
 

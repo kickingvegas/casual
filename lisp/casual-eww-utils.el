@@ -25,6 +25,17 @@
 (require 'eww)
 (require 'casual-lib)
 
+(defgroup casual-eww nil
+  "Settings for Casual EWW."
+  :group 'casual)
+
+(defcustom casual-eww-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-eww-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-eww)
+
 (defconst casual-eww-unicode-db
   '((:history-back . '("❬" "Back"))
     (:history-forward . '("❭" "Forward"))

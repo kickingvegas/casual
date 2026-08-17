@@ -20,20 +20,39 @@
 
 ;;; Commentary:
 
-;; This library provides a Transient-based user interface for `make-mode'.
+;; Casual Make is a Transient user interface for the Make library.
 
-;;
 ;; INSTALLATION
 
-;; In your initialization file, bind the Transient `casual-make-tmenu' to your
-;; key binding of preference. Two suggested bindings are 'M-m' and 'C-c m'.
+;; By default, `casual-init' will setup Casual Make by running the hook
+;; function `casual-make-init'.
 
-;; (require 'casual-make) ; optional if using autoloaded menu
-;; (keymap-set makefile-mode-map "M-m" #'casual-make-tmenu)
+;; Ensure that `casual-make-init' is included in the customizable hook
+;; variable `casual-init-hook'.
+
+;; Consult the Info node `(casual) Make Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'casual-make-utils)
 (require 'casual-make-settings)
+
+;;;###autoload (autoload 'casual-make-init "casual-make" nil t)
+(defun casual-make-init ()
+  "Initialize and configure Casual Make.
+
+This hook binds `casual-make-tmenu' to `casual-keybinding-secondary'.
+
+If `casual-make-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-make-setup' will be set."
+  (add-hook 'makefile-mode-hook #'casual-make-setup))
+
+(defun casual-make-setup ()
+  "Setup `makefile-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set makefile-mode-map casual-keybinding-secondary #'casual-make-tmenu))
 
 ;;;###autoload (autoload 'casual-make-tmenu "casual-make" nil t)
 (transient-define-prefix casual-make-tmenu ()

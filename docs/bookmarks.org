@@ -12,6 +12,30 @@ Casual Bookmarks (library: ~casual-bookmarks~) is a user interface for the Emacs
 :END:
 
 #+CINDEX: Bookmarks Install
+#+TEXINFO: @subsubheading Simplified Install
+#+VINDEX: casual-bookmarks-init
+
+If Casual is installed using ~package-install~, then you can use ~casual-init~ to setup support for Bookmarks.
+
+By default, ~casual-init~ will setup support for Bookmarks via the hook function ~casual-bookmarks-init~ which is included in the customizable variable ~casual-init-hook~.
+
+Use the command ~customize-variable~ on ~casual-init-hook~ to control inclusion of ~casual-bookmarks-init~ via a checkbox interface.
+
+Refer to the Simplified Install ([[#install][Install]]) section for more detail on customizing ~casual-init~.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Bookmarks, this can be controlled via the customizable variable ~casual-bookmarks-add-extra-keybindings~ (default ~t~).
+
+#+TEXINFO: @subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+#+begin_src elisp :lexical no
+  (casual-bookmarks-init)
+#+end_src
+
+#+TEXINFO: @subsubheading Manual Install
+
+For users who have manually installed Casual outside of ~package-install~, the following guidance is offered.
 
 The primary interface for Casual Bookmarks is the Transient menu ~casual-bookmarks-tmenu~. It is autoloaded ([[info:elisp#Autoload]]) so if Casual is installed via ~package-install~ ([[info:emacs#Package Installation]]) then ~casual-bookmarks-tmenu~ can be invoked via ~execute-extended-command~ ({{{kbd(M-x)}}}) without need for modifying your Emacs initialization file.
 

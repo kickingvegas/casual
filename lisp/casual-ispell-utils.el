@@ -27,6 +27,17 @@
 (require 'conf-mode)
 (require 'casual-lib)
 
+(defgroup casual-ispell nil
+  "Settings for Casual Ispell."
+  :group 'casual)
+
+(defcustom casual-ispell-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-ispell-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-ispell)
+
 (defcustom casual-ispell-comment-or-string-predicate
   #'casual-ispell-comment-or-string-p
   "Function for Ispell comment or string predicate.
@@ -35,7 +46,12 @@ By default, the value of this variable is
 `casual-ispell-comment-or-string-p'. If this predicate is insufficient,
 you can override it with different implementation."
   :type 'function
-  :group 'casual)
+  :group 'casual-ispell)
+
+(defcustom casual-ispell-keybinding "C-c s"
+  "Keybinding for Casual Ispell Transient menu `casual-ispell-tmenu'."
+  :type 'string
+  :group 'casual-ispell)
 
 (defun casual-ispell-info ()
   "Open Info for the Emacs spell checker `ispell'."

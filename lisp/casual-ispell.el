@@ -20,26 +20,67 @@
 
 ;;; Commentary:
 
-;; This library provides a Transient-based user interface for the Emacs spell
-;; checker `ispell'.
+;; Casual Ispell is a Transient user interface for the Ispell library.
 
 ;; INSTALLATION
 
-;; If you have `casual-editkit' installed, then access to `casual-ispell-tmenu'
-;; is available from `casual-editkit-main-tmenu'.
+;; By default, `casual-init' will setup Casual Ispell by running the hook
+;; function `casual-ispell-init'.
 
-;; `casual-ispell-tmenu' can also be bound to a mode of preference. Shown below
-;; is a recommended configuration to use in an initialization file.
+;; Ensure that `casual-ispell-init' is included in the customizable hook
+;; variable `casual-init-hook'.
 
-;; (require 'casual-ispell) ; optional if using autoloaded menu
-;; (keymap-set prog-mode-map "C-c s" #'casual-ispell-tmenu)
-;; (keymap-set text-mode-map "C-c s" #'casual-ispell-tmenu)
-;; (keymap-set bibtex-mode-map "C-c s" #'casual-ispell-tmenu)
-;; (keymap-set conf-mode-map "C-c s" #'casual-ispell-tmenu)
+;; Consult the Info node `(casual) Ispell Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'casual-ispell-settings)
 (require 'casual-ispell-utils)
+
+;;;###autoload (autoload 'casual-ispell-init "casual-ispell" nil t)
+(defun casual-ispell-init ()
+  "Initialize and configure Casual Ispell.
+
+This hook binds `casual-ispell-tmenu' to `casual-ispell-keybinding' via
+the functions `casual-ispell-prog-setup' and `casual-ispell-text-setup'.
+
+If `casual-ispell-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-ispell-bibtex-setup' and
+`casual-ispell-conf-setup' will be set."
+  (add-hook 'prog-mode-hook #'casual-ispell-prog-setup)
+  (add-hook 'text-mode-hook #'casual-ispell-text-setup)
+
+  (when casual-ispell-add-extra-keybindings
+    (add-hook 'bibtex-mode-hook #'casual-ispell-bibtex-setup)
+    (add-hook 'conf-mode-hook #'casual-ispell-conf-setup)))
+
+(defun casual-ispell-prog-setup ()
+  "Setup `prog-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set prog-mode-map casual-ispell-keybinding #'casual-ispell-tmenu))
+
+(defun casual-ispell-text-setup ()
+  "Setup `text-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set text-mode-map casual-ispell-keybinding #'casual-ispell-tmenu))
+
+(defun casual-ispell-bibtex-setup ()
+  "Setup `bibtex-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set bibtex-mode-map casual-ispell-keybinding #'casual-ispell-tmenu))
+
+(defun casual-ispell-conf-setup ()
+  "Setup `conf-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set conf-mode-map casual-ispell-keybinding #'casual-ispell-tmenu))
 
 ;;;###autoload (autoload 'casual-ispell-tmenu "casual-ispell" nil t)
 (transient-define-prefix casual-ispell-tmenu ()

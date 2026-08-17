@@ -1,6 +1,6 @@
 ;;; casual-bibtex-utils.el --- Casual BibTeX Utils -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025 Charles Y. Choi
+;; Copyright (C) 2025-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -25,6 +25,17 @@
 
 (require 'bibtex)
 (require 'casual-lib)
+
+(defgroup casual-bibtex nil
+  "Settings for Casual BibTeX."
+  :group 'casual)
+
+(defcustom casual-bibtex-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-bibtex-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-bibtex)
 
 (defconst casual-bibtex-unicode-db
   '((:previous . '("↑" "Previous"))

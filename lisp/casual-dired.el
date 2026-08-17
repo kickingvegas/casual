@@ -20,19 +20,19 @@
 
 ;;; Commentary:
 
-;; Casual Dired is an opinionated Transient-based user interface for Emacs Dired.
+;; Casual Dired is a Transient user interface for the Dired library.
 
 ;; INSTALLATION
-;; (require 'casual-dired) ; optional if using autoloaded menu
-;; (keymap-set dired-mode-map "C-o" #'casual-dired-tmenu)
-;; (keymap-set dired-mode-map "s" #'casual-dired-sort-by-tmenu) ; optional
-;; (keymap-set dired-mode-map "/" #'casual-dired-search-replace-tmenu) ; optional
 
-;; If you are using Emacs ≤ 30.0, you will need to update the built-in package
-;; `transient'. By default, `package.el' will not upgrade a built-in package.
-;; Set the customizable variable `package-install-upgrade-built-in' to `t' to
-;; override this. For more details, please refer to the "Install" section on
-;; this project's repository web page.
+;; By default, `casual-init' will setup Casual Dired by running the hook
+;; function `casual-dired-init'.
+
+;; Ensure that `casual-dired-init' is included in the customizable hook
+;; variable `casual-init-hook'.
+
+;; Consult the Info node `(casual) Dired Install' for more detail on
+;; installation.
+
 
 ;;; Code:
 (require 'dired)
@@ -41,10 +41,39 @@
 (require 'image-dired)
 (require 'casual-lib)
 (require 'casual-dired-sort-by)
-
 (require 'casual-dired-variables)
 (require 'casual-dired-settings)
 (require 'casual-dired-utils)
+
+;;;###autoload (autoload 'casual-dired-init "casual-dired" nil t)
+(defun casual-dired-init ()
+  "Initialize and configure Casual Dired.
+
+This hook binds `casual-dired-tmenu' to `casual-keybinding-primary'.
+
+If `casual-dired-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-dired-setup' will be set."
+  (add-hook 'dired-mode-hook #'casual-dired-setup))
+
+(defun casual-dired-setup ()
+  "Setup `dired-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set dired-mode-map casual-keybinding-primary #'casual-dired-tmenu)
+
+  (when casual-dired-add-extra-keybindings
+    (keymap-set dired-mode-map "s" #'casual-dired-sort-by-tmenu)
+    (keymap-set dired-mode-map "/" #'casual-dired-search-replace-tmenu)
+    (keymap-set dired-mode-map "E" #'wdired-change-to-wdired-mode)
+    (keymap-set dired-mode-map "M-n" #'dired-next-dirline)
+    (keymap-set dired-mode-map "M-p" #'dired-prev-dirline)
+    (keymap-set dired-mode-map "]" #'dired-next-subdir)
+    (keymap-set dired-mode-map "[" #'dired-prev-subdir)
+    (keymap-set dired-mode-map "M-]" #'dired-next-marked-file)
+    (keymap-set dired-mode-map "M-[" #'dired-prev-marked-file)
+    (keymap-set dired-mode-map "M-j" #'dired-goto-subdir)
+    (keymap-set dired-mode-map ";" #'image-dired-dired-toggle-marked-thumbs)))
 
 ;;; Menus
 ;;;###autoload (autoload 'casual-dired-tmenu "casual-dired" nil t)

@@ -25,6 +25,17 @@
 (require 'man)
 (require 'casual-lib)
 
+(defgroup casual-man nil
+  "Settings for Casual Man."
+  :group 'casual)
+
+(defcustom casual-man-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-man-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-man)
+
 (defconst casual-man-unicode-db
   '((:previous . '("↑" "Previous"))
     (:next . '("↓" "Next"))

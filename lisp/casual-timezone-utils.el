@@ -28,6 +28,17 @@
 (require 'casual-lib)
 (require 'iso8601)
 
+(defgroup casual-timezone nil
+  "Settings for Casual Timezone."
+  :group 'casual)
+
+;; (defcustom casual-timezone-add-extra-keybindings t
+;;   "If non-nil then extra module-specific keybindings will be set.
+
+;; See `casual-timezone-setup' for more detail for said keybindings."
+;;   :type 'boolean
+;;   :group 'casual-timezone)
+
 (defconst casual-timezone-unicode-db
   '((:previous . '("↑" "Previous"))
     (:next . '("↓" "Next"))
@@ -53,7 +64,7 @@ plain ASCII-range string."
   "Working hours range.
 The range of hour values are between 0 to 23, inclusive."
   :type '(alist :key-type symbol :value-type natnum)
-  :group 'casual)
+  :group 'casual-timezone)
 
 (defcustom casual-timezone-convert-datestamp-format "%Y-%m-%d %H:%M:%S %Z"
   "Datestamp format used for timezone conversion.
@@ -65,7 +76,7 @@ commands `casual-timezone-local-time-to-remote' and
 The specification of this variable conforms to the format string used by
 `format-time-string' as described in Info node `(elisp) Time Parsing'."
   :type 'string
-  :group 'casual)
+  :group 'casual-timezone)
 
 (defcustom casual-timezone-datestamp-format "%a %b %-e %Y, %l:%M %p"
   "Datestamp format used by `casual-timezone-planner'.
@@ -78,7 +89,7 @@ Parsing'.
 
 If 24 hour clock time is preferred, use ‘%k’ instead of ‘%l’."
   :type 'string
-  :group 'casual)
+  :group 'casual-timezone)
 
 (defcustom casual-timezone-working-hour-glyph "☼"
   "Working hour glyph used by `casual-timezone-planner'.
@@ -86,7 +97,7 @@ If 24 hour clock time is preferred, use ‘%k’ instead of ‘%l’."
 This customizable variable contains the glyph used to annotate a
 working hour in `casual-timezone-planner'."
   :type 'string
-  :group 'casual)
+  :group 'casual-timezone)
 
 (defcustom casual-timezone-zone-info-database
   (file-name-concat (or (getenv "TZDIR") "/usr/share/zoneinfo")
@@ -96,7 +107,7 @@ working hour in `casual-timezone-planner'."
 Defaults to $TZDIR/tzdata.zi when the TZDIR environment variable
 is set and /usr/share/zoneinfo/tzdata.zi otherwise."
   :type 'file
-  :group 'casual)
+  :group 'casual-timezone)
 
 (defface casual-timezone-planner-working-highlight
   '((((type tty) (class color))
@@ -113,7 +124,7 @@ is set and /usr/share/zoneinfo/tzdata.zi otherwise."
      :background "olive" :foreground "black")
     (t :inverse-video t))
   "Casual Timezone Planner working hours highlight."
-  :group 'casual)
+  :group 'casual-timezone)
 
 (defun casual-timezone-zone-info ()
   "List of timezones in zoneinfo database.
