@@ -122,6 +122,7 @@
 ;; Simplified installation is done via the command `casual-init'. Run this via
 ;; extended-execute-command (M-x) or add this to your Emacs initialization file.
 
+;;   (require 'casual)
 ;;   (casual-init)
 
 ;; By default `casual-init' will setup keybindings for all modules supported by
@@ -180,15 +181,6 @@ casual-suite, casual-avy, or casual-symbol-overlay is installed."
                 (package-refresh-contents)))
             pkglist))))
 
-(defun casual-get-package-version (pkg)	;this is an unused, non-interactive function?
-  "Get package version of symbol PKG."
-  (let* ((pkg-name (symbol-name pkg))
-         (pkg-buf (find-library pkg-name))
-         (buflist (list pkg-name)))
-    (with-current-buffer pkg-buf
-      (push (package-get-version) buflist))
-    (kill-buffer pkg-buf)
-    (string-join (reverse buflist) "-")))
 
 ;;;###autoload (autoload 'casual-init "casual" nil t)
 (defun casual-init ()

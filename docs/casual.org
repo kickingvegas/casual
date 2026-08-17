@@ -161,6 +161,7 @@ Given installation via ~package-install~ ([[info:emacs#Package Installation]]), 
 Casual versions 3.0 or greater offer a simplified installation with command ~casual-init~. Run this via ~extended-execute-command~ ({{{kbd(M-x)}}}) or add this to your Emacs initialization file.
 
 #+begin_src elisp :lexical no
+  (require 'casual)
   (casual-init)
 #+end_src
 
