@@ -1,5 +1,5 @@
 /**
- * Copyright 2025 Charles Y. Choi
+ * Copyright 2025-2026 Charles Y. Choi
  */
 
 @media only screen and (max-device-width: 500px) {
@@ -34,6 +34,14 @@
     }
 
     .lisp-preformatted {
+        background-color: #2F2F2F;
+        color: #F0F0F0;
+        font-family: Menlo, Consolas, "Noto Mono", monospace, Monaco, "Courier New", Courier;
+        font-size: 85%;
+        padding: 8pt;
+    }
+
+    .example-preformatted {
         background-color: #2F2F2F;
         color: #F0F0F0;
         font-family: Menlo, Consolas, "Noto Mono", monospace, Monaco, "Courier New", Courier;
