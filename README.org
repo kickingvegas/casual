@@ -30,16 +30,27 @@ Shown below are some screenshots of menus offered by Casual. Many [[https://kick
 
 
 * Requirements
-Casual requires Emacs 30.1+, Transient 0.9.0+, csv-mode 1.27+.
 
-Certain menus require more installed software:
+Casual requires the following software to be installed as baseline:
 
-- Casual Dired: GNU Coreutils
-- Casual Image: ImageMagick 6+
+- [[https://www.gnu.org/savannah-checkouts/gnu/emacs/emacs.html][GNU Emacs]] 29.4+
+- [[https://github.com/magit/transient][Transient]] 0.9+
+
+Versions of GNU Emacs 30.1 or greater will satisfy the above requirements with its built-in version of Transient.
+
+Certain Casual modules require more installed software:
+
+- Casual Dired: [[https://www.gnu.org/software/coreutils/][GNU Core Utilities]] 8.32+
+- Casual Image: [[https://imagemagick.org][ImageMagick]] 6+
+- Casual CSV: [[https://elpa.gnu.org/packages/csv-mode.html][csv-mode]] 1.27+ (installed as a dependency)
+
+Casual has been verified with the following configuration:
+
+- GNU Emacs 31.1 (macOS 15.7, Ubuntu Linux 22.04.5 LTS)
   
 * Install
 
-Casual versions 3.0 or greater offer a simplified installation with command ~casual-init~. Run this via ~extended-execute-command~ (~M-x~) or add this to your Emacs initialization file.
+Casual versions 3.0 or greater offer a simplified installation with the command ~casual-init~. Run this via ~extended-execute-command~ (~M-x~) or add this to your Emacs initialization file.
 
 #+begin_src elisp :lexical no
   (require 'casual)
@@ -70,8 +81,6 @@ Users of Casual version 2.x do /not/ have to change their existing setup. That s
 
 For more detail on installation of different modules refer to the [[https://kickingvegas.github.io/casual/Install.html][Casual User Guide]]. 
 
-* Asks
-As Casual is new, we are looking for early adopters! Your [[https://github.com/kickingvegas/casual/discussions][feedback]] is welcome as it will likely impact Casual's evolution, particularly with regards to UI.
 
 * Development
 For users who wish to help contribute to Casual or personally customize it for their own usage, please read the [[docs/developer.org][developer documentation]].
