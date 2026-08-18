@@ -16,6 +16,30 @@ Casual EditKit endeavors to surface the many different editing commands offered 
 :CUSTOM_ID: editkit-install
 :END:
 #+CINDEX: EditKit Install
+#+TEXINFO: @subsubheading Simplified Install
+#+VINDEX: casual-editkit-init
+
+If Casual is installed using ~package-install~, then you can use ~casual-init~ to setup support for EditKit.
+
+By default, ~casual-init~ will setup support for EditKit via the hook function ~casual-editkit-init~ which is included in the customizable variable ~casual-init-hook~.
+
+Use the command ~customize-variable~ on ~casual-init-hook~ to control inclusion of ~casual-editkit-init~ via a checkbox interface.
+
+Refer to the Simplified Install ([[#install][Install]]) section for more detail on customizing ~casual-init~.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For EditKit, this can be controlled via the customizable variable ~casual-editkit-add-extra-keybindings~ (default ~t~).
+
+#+TEXINFO: @subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
+
+#+begin_src elisp :lexical no
+  (casual-editkit-init)
+#+end_src
+
+#+TEXINFO: @subsubheading Manual Install
+
+For users who have manually installed Casual outside of ~package-install~, the following guidance is offered.
 
 A reference menu (~casual-editkit-main-tmenu~) illustrating nearly all the different menus offered by Casual EditKit is provided. This menu can be used “as-is” with your binding of preference. For consistency with other Casual Packages, the binding {{{kbd(C-o)}}} is used in the example below. Other candidate bindings include {{{kbd(M-o)}}} and {{{kbd(F10)}}}. To facilitate default access to this menu, the configuration below sets this binding to be global which can be overridden per mode. This is /not/ mandatory and users are free to integrate Casual EditKit into their Emacs configuration however they see fit. 
 

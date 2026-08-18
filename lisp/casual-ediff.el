@@ -20,30 +20,40 @@
 
 ;;; Commentary:
 
-;; This library provides a Transient-based user interface for Ediff.
+;; Casual Ediff is a Transient user interface for the Ediff library.
 
 ;; INSTALLATION
 
-;; To install Casual Ediff, the function `casual-ediff-install' should be called
-;; from your Emacs initialization file. You will also need to bind
-;; `casual-ediff-tmenu' to your key binding of preference.
+;; By default, `casual-init' will setup Casual Ediff by running the hook
+;; function `casual-ediff-init'.
 
-;; (require 'casual-ediff) ; optional if using autoloaded menu
-;; (casual-ediff-install) ; run this to enable Casual Ediff
-;; (add-hook 'ediff-keymap-setup-hook
-;;           (lambda ()
-;;             (keymap-set ediff-mode-map "C-o" #'casual-ediff-tmenu)))
+;; Ensure that `casual-ediff-init' is included in the customizable hook
+;; variable `casual-init-hook'.
 
-;; Notes
-;; - `casual-ediff-install' will:
-;;   * override advise the function `ediff-janitor'.
-;;   * in-memory set the variable `ediff-window-setup-function' to plain.
-;; - The way Ediff handles keymaps necessitates the configuration of
-;;   `ediff-keymap-setup-hook' as shown above.
+;; Consult the Info node `(casual) Ediff Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'casual-ediff-settings)
 (require 'casual-ediff-utils)
+
+;;;###autoload (autoload 'casual-ediff-init "casual-ediff" nil t)
+(defun casual-ediff-init ()
+  "Initialize and configure Casual Ediff.
+
+This hook binds `casual-ediff-tmenu' to `casual-keybinding-primary'.
+
+If `casual-ediff-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-ediff-setup' will be set."
+  (casual-ediff-install)
+  (add-hook 'ediff-keymap-setup-hook #'casual-ediff-setup))
+
+(defun casual-ediff-setup ()
+  "Setup `ediff-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set ediff-mode-map casual-keybinding-primary #'casual-ediff-tmenu))
 
 ;;;###autoload (autoload 'casual-ediff-tmenu "casual-ediff" nil t)
 (transient-define-prefix casual-ediff-tmenu ()

@@ -29,6 +29,17 @@
 (require 'tramp)
 (require 'casual-lib)
 
+(defgroup casual-eshell nil
+  "Settings for Casual Eshell."
+  :group 'casual)
+
+(defcustom casual-eshell-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-eshell-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-eshell)
+
 (defconst casual-eshell-unicode-db
   '((:previous . '("↑" "Previous"))
     (:next . '("↓" "Next"))

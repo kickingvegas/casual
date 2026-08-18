@@ -27,6 +27,17 @@
 (require 'org-agenda)
 (require 'casual-lib)
 
+(defgroup casual-agenda nil
+  "Settings for Casual Org Agenda."
+  :group 'casual)
+
+(defcustom casual-agenda-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-agenda-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-agenda)
+
 (defconst casual-agenda-unicode-db
   '((:previous . '("↑" "Prev"))
     (:next . '("↓" "Next"))

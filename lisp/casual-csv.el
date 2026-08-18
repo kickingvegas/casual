@@ -20,31 +20,41 @@
 
 ;;; Commentary:
 
-;; This library provides a Transient-based user interface for `csv-mode'.
+;; Casual CSV is a Transient user interface for the CSV library.
 
 ;; INSTALLATION
 
-;; In your initialization file, bind the Transient `casual-csv-tmenu' to your
-;; key binding of preference.
+;; By default, `casual-init' will setup Casual CSV by running the hook
+;; function `casual-csv-init'.
 
-;; (require 'casual-csv) ; optional if using autoloaded menu
-;; (keymap-set csv-mode-map "M-m" #'casual-csv-tmenu)
+;; Ensure that `casual-csv-init' is included in the customizable hook
+;; variable `casual-init-hook'.
 
-;; While not required, the following configuration is recommended for working
-;; with CSV files.
-
-;; (add-hook 'csv-mode-hook
-;;           (lambda ()
-;;             (visual-line-mode -1)
-;;             (toggle-truncate-lines 1)))
-
-;; (add-hook 'csv-mode-hook #'csv-guess-set-separator)
-;; (add-hook 'csv-mode-hook #'csv-align-mode)
+;; Consult the Info node `(casual) CSV Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'casual-editkit-utils)
 (require 'casual-csv-settings)
 (require 'casual-csv-utils)
+
+;;;###autoload (autoload 'casual-csv-init "casual-csv" nil t)
+(defun casual-csv-init ()
+  "Initialize and configure Casual CSV.
+
+This hook binds `casual-csv-tmenu' to `casual-keybinding-secondary'.
+
+If `casual-csv-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-csv-setup' will be set."
+  (add-hook 'csv-mode-hook #'casual-csv-setup))
+
+(defun casual-csv-setup ()
+  "Setup `csv-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set csv-mode-map casual-keybinding-secondary #'casual-csv-tmenu))
+
 
 ;;;###autoload (autoload 'casual-csv-tmenu "casual-csv" nil t)
 (transient-define-prefix casual-csv-tmenu ()

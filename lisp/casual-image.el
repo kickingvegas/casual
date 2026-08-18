@@ -20,12 +20,40 @@
 
 ;;; Commentary:
 
-;;
+;; Casual Image is a Transient user interface for the Image library.
+
+;; INSTALLATION
+
+;; By default, `casual-init' will setup Casual Image by running the hook
+;; function `casual-image-init'.
+
+;; Ensure that `casual-image-init' is included in the customizable hook
+;; variable `casual-init-hook'.
+
+;; Consult the Info node `(casual) Image Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'dired)
 (require 'casual-image-utils)
 (require 'casual-image-settings)
+
+;;;###autoload (autoload 'casual-image-init "casual-image" nil t)
+(defun casual-image-init ()
+  "Initialize and configure Casual Image.
+
+This hook binds `casual-image-tmenu' to `casual-keybinding-primary'.
+
+If `casual-image-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-image-setup' will be set."
+  (add-hook 'image-mode-hook #'casual-image-setup))
+
+(defun casual-image-setup ()
+  "Setup `image-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set image-mode-map casual-keybinding-primary #'casual-image-tmenu))
 
 ;;;###autoload (autoload 'casual-image-tmenu "casual-image" nil t)
 (transient-define-prefix casual-image-tmenu ()

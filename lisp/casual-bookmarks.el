@@ -20,17 +20,18 @@
 
 ;;; Commentary:
 
-;; Casual Bookmarks is an opinionated Transient-based user interface for Emacs Bookmarks.
+;; Casual Bookmarks is a Transient user interface for the Bookmark library.
 
 ;; INSTALLATION
-;; (require 'casual-bookmarks) ; optional if using autoloaded menu
-;; (keymap-set bookmark-bmenu-mode-map "C-o" #'casual-bookmarks-tmenu)
 
-;; If you are using Emacs ≤ 30.0, you will need to update the built-in package
-;; `transient'. By default, `package.el' will not upgrade a built-in package.
-;; Set the customizable variable `package-install-upgrade-built-in' to `t' to
-;; override this. For more details, please refer to the "Install" section on
-;; this project's repository web page.
+;; By default, `casual-init' will setup Casual Bookmarks by running the hook
+;; function `casual-bookmarks-init'.
+
+;; Ensure that `casual-bookmarks-init' is included in the customizable
+;; hook variable `casual-init-hook'.
+
+;; Consult the Info node `(casual) Bookmarks Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'bookmark)
@@ -39,6 +40,26 @@
 (require 'casual-lib)
 (require 'casual-bookmarks-utils)
 (require 'casual-bookmarks-settings)
+
+;;;###autoload (autoload 'casual-bookmarks-init "casual-bookmarks" nil t)
+(defun casual-bookmarks-init ()
+  "Initialize and configure Casual Bookmarks.
+
+This hook binds `casual-bookmarks-tmenu' to `casual-keybinding-primary'.
+
+If `casual-bookmarks-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-bookmarks-setup' will be set."
+  (add-hook 'bookmark-bmenu-mode-hook #'casual-bookmarks-setup))
+
+(defun casual-bookmarks-setup ()
+  "Setup `bookmark-bmenu-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set bookmark-bmenu-mode-map casual-keybinding-primary #'casual-bookmarks-tmenu)
+  (keymap-set bookmark-bmenu-mode-map "S" #'casual-bookmarks-sortby-tmenu)
+  (when casual-bookmarks-add-extra-keybindings
+    (keymap-set bookmark-bmenu-mode-map "J" #'bookmark-jump)))
 
 ;;;###autoload (autoload 'casual-bookmarks-tmenu "casual-bookmarks" nil t)
 (transient-define-prefix casual-bookmarks-tmenu ()

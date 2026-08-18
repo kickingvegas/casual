@@ -5,7 +5,7 @@
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/casual
 ;; Keywords: tools, wp
-;; Version: 2.17.1
+;; Version: 2.17.2-rc.1
 ;; Package-Requires: ((emacs "30.1") (transient "0.9.0") (csv-mode "1.27"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -119,17 +119,23 @@
 
 ;; INSTALLATION
 
+;; Simplified installation is done via the command `casual-init'. Run this via
+;; extended-execute-command (M-x) or add this to your Emacs initialization file.
+
+;;   (require 'casual)
+;;   (casual-init)
+
+;; By default `casual-init' will setup keybindings for all modules supported by
+;; Casual. Configure the customizable hook variable `casual-init-hook' to control
+;; which modules to enable.
+
+;;   M-x customize-variable casual-init-hook
+
 ;; Users can choose any or all of the user interfaces made available by Casual
 ;; at their pleasure.
 
-;; Configuration of a particular Casual user interface is performed per mode.
-;; For details, refer to the Info node `(casual) Install'.
-
-;; Casual relies on the latest stable release of `transient' which may differ
-;; from the version that is preinstalled as a built-in. By default, `package.el'
-;; will not upgrade a built-in package. Set the customizable variable
-;; `package-install-upgrade-built-in' to `t' to override this. For more details,
-;; please refer to the "Install" section on this project's repository web page.
+;; For details on installation of different modules refer to the Info node
+;; `(casual) Install'.
 
 ;;; Code:
 (require 'package)
@@ -175,15 +181,15 @@ casual-suite, casual-avy, or casual-symbol-overlay is installed."
                 (package-refresh-contents)))
             pkglist))))
 
-(defun casual-get-package-version (pkg)	;this is an unused, non-interactive function?
-  "Get package version of symbol PKG."
-  (let* ((pkg-name (symbol-name pkg))
-         (pkg-buf (find-library pkg-name))
-         (buflist (list pkg-name)))
-    (with-current-buffer pkg-buf
-      (push (package-get-version) buflist))
-    (kill-buffer pkg-buf)
-    (string-join (reverse buflist) "-")))
+
+;;;###autoload (autoload 'casual-init "casual" nil t)
+(defun casual-init ()
+  "Initialize Casual modules in `casual-init-hook'.
+
+This command initializes all Casual modules specified in
+`casual-init-hook'."
+  (interactive)
+  (run-hooks 'casual-init-hook))
 
 (provide 'casual)
 ;;; casual.el ends here

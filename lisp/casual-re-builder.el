@@ -20,19 +20,18 @@
 
 ;;; Commentary:
 
-;; Casual RE-Builder is an opinionated Transient-based porcelain for the Emacs
-;; regular expression editor.
+;; Casual RE-Builder is a Transient user interface for the RE-Builder library.
 
 ;; INSTALLATION
-;; (require 'casual-re-builder) ; optional if using autoloaded menu
-;; (keymap-set reb-mode-map "C-o" #'casual-re-builder-tmenu)
-;; (keymap-set reb-lisp-mode-map "C-o" #'casual-re-builder-tmenu)
 
-;; If you are using Emacs ≤ 30.0, you will need to update the built-in package
-;; `transient'. By default, `package.el' will not upgrade a built-in package.
-;; Set the customizable variable `package-install-upgrade-built-in' to `t' to
-;; override this. For more details, please refer to the "Install" section on
-;; this project's repository web page.
+;; By default, `casual-init' will setup Casual RE-Builder by running the hook
+;; function `casual-re-builder-init'.
+
+;; Ensure that `casual-re-builder-init' is included in the customizable hook
+;; variable `casual-init-hook'.
+
+;; Consult the Info node `(casual) RE-Builder Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 're-builder)
@@ -41,6 +40,24 @@
 (require 'casual-lib)
 (require 'casual-re-builder-utils)
 (require 'casual-re-builder-settings)
+
+;;;###autoload (autoload 'casual-re-builder-init "casual-re-builder" nil t)
+(defun casual-re-builder-init ()
+  "Initialize and configure Casual RE-Builder.
+
+This hook binds `casual-re-builder-tmenu' to `casual-keybinding-primary'.
+
+If `casual-re-builder-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-re-builder-setup' will be set."
+  (add-hook 'reb-mode-hook #'casual-re-builder-setup))
+
+(defun casual-re-builder-setup ()
+  "Setup `reb-mode' (RE-Builder) for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set reb-mode-map casual-keybinding-primary #'casual-re-builder-tmenu)
+  (keymap-set reb-lisp-mode-map casual-keybinding-primary #'casual-re-builder-tmenu))
 
 ;;;###autoload (autoload 'casual-re-builder-tmenu "casual-re-builder" nil t)
 (transient-define-prefix casual-re-builder-tmenu ()

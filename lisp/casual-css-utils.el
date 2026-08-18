@@ -25,6 +25,17 @@
 (require 'css-mode)
 (require 'casual-lib)
 
+(defgroup casual-css nil
+  "Settings for Casual CSS."
+  :group 'casual)
+
+(defcustom casual-css-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-css-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-css)
+
 (defconst casual-css-unicode-db
   '((:previous . '("↑" "Previous"))
     (:next . '("↓" "Next")))

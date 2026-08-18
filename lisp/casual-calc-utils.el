@@ -28,6 +28,17 @@
 (require 'transient)
 (require 'casual-lib)
 
+(defgroup casual-calc nil
+  "Settings for Casual Calc."
+  :group 'casual)
+
+(defcustom casual-calc-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-calc-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-calc)
+
 (defconst casual-calc-unicode-db
   '((:inv . '("1/𝑥" "1/x"))
     (:sqrt . '("√" "sqrt"))

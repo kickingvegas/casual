@@ -17,14 +17,49 @@ Casual also has support for HTML editing ([[#html-top][HTML]]).
 :END:
 
 #+CINDEX: CSS Install
+#+TEXINFO: @subsubheading Simplified Install
+#+VINDEX: casual-css-init
 
-In your initialization file, bind the Transient ~casual-css-tmenu~ to your key binding of preference.
+If Casual is installed using ~package-install~, then you can use ~casual-init~ to setup support for CSS.
+
+By default, ~casual-init~ will setup support for CSS via the hook function ~casual-css-init~ which is included in the customizable variable ~casual-init-hook~.
+
+Use the command ~customize-variable~ on ~casual-init-hook~ to control inclusion of ~casual-css-init~ via a checkbox interface.
+
+Refer to the Simplified Install ([[#install][Install]]) section for more detail on customizing ~casual-init~.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For CSS, this can be controlled via the customizable variable ~casual-css-add-extra-keybindings~ (default ~t~).
+
+#+TEXINFO: @subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
 
 #+begin_src elisp :lexical no
+  (casual-css-init)
+#+end_src
+
+#+TEXINFO: @subsubheading Manual Install
+
+For users who have manually installed Casual outside of ~package-install~, the following guidance is offered.
+
+The primary interface for Casual CSS is the Transient menu ~casual-css-tmenu~. It is autoloaded ([[info:elisp#Autoload]]) so if Casual is installed via ~package-install~ ([[info:emacs#Package Installation]]) then ~casual-css-tmenu~ can be invoked via ~execute-extended-command~ ({{{kbd(M-x)}}}) without need for modifying your Emacs initialization file.
+
+That said, Casual is designed with the intent of using a common (key)bindings across multiple modes to lower cognitive load. This document uses the secondary binding {{{kbd(M-m)}}} for this purpose, but can be changed to user preference. Note that ~casual-css-tmenu~ is intended to be used in conjunction with ~casual-editkit-main-tmenu~. ([[#editkit-install][EditKit Install]]).
+
+There are many ways to configure this binding. Shown below is a straightforward implementation:
+
+#+begin_src elisp :lexical no
+  (require 'casual-css) ; load all dependencies including `css-mode'
   (keymap-set css-mode-map "M-m" #'casual-css-tmenu)
 #+end_src
 
-A different binding ({{{kbd(M-m)}}}) is used as ~casual-css-tmenu~ is intended to work alongside with [[#editkit-install][Casual EditKit]].
+If lazy loading of the ~css~ package is desired then try using ~eval-after-load~:
+
+#+begin_src elisp :lexical no
+  (eval-after-load 'css-mode
+    (keymap-set css-mode-map "M-m" #'casual-css-tmenu))
+#+end_src
+
 
 ** CSS Usage
 #+CINDEX: CSS Usage

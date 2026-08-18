@@ -29,6 +29,17 @@
 (require 'casual-lib)
 (require 'casual-info-variables)
 
+(defgroup casual-info nil
+  "Settings for Casual Info."
+  :group 'casual)
+
+(defcustom casual-info-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-info-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-info)
+
 (defconst casual-info-unicode-db
   '((:history-back . '("⟨" "Prev"))
     (:history-forward . '("⟩" "Next"))

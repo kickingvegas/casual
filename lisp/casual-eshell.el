@@ -20,15 +20,18 @@
 
 ;;; Commentary:
 
-;; This library provides a Transient-based user interface for `eshell-mode'.
+;; Casual Eshell is a Transient user interface for the Eshell library.
 
 ;; INSTALLATION
 
-;; In your initialization file, bind the Transient `casual-eshell-tmenu' to your
-;; key binding of preference.
+;; By default, `casual-init' will setup Casual Eshell by running the hook
+;; function `casual-eshell-init'.
 
-;; (require 'casual-eshell) ; optional if using autoloaded menu
-;; (keymap-set eshell-mode-map "C-o" #'casual-eshell-tmenu)
+;; Ensure that `casual-eshell-init' is included in the customizable hook
+;; variable `casual-init-hook'.
+
+;; Consult the Info node `(casual) Eshell Install' for more detail on
+;; installation.
 
 ;;; Code:
 
@@ -38,6 +41,23 @@
 (require 'esh-arg)
 (require 'em-hist)
 (require 'em-prompt)
+
+;;;###autoload (autoload 'casual-eshell-init "casual-eshell" nil t)
+(defun casual-eshell-init ()
+  "Initialize and configure Casual Eshell.
+
+This hook binds `casual-eshell-tmenu' to `casual-keybinding-primary'.
+
+If `casual-eshell-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-eshell-setup' will be set."
+  (add-hook 'eshell-mode-hook #'casual-eshell-setup))
+
+(defun casual-eshell-setup ()
+  "Setup `eshell-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set eshell-mode-map casual-keybinding-primary #'casual-eshell-tmenu))
 
 ;;;###autoload (autoload 'casual-eshell-tmenu "casual-eshell" nil t)
 (transient-define-prefix casual-eshell-tmenu ()

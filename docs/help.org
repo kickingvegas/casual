@@ -12,12 +12,50 @@ Casual Help (library: ~casual-help~) is a user interface for ~help-mode~, a majo
 :END:
 
 #+CINDEX: Help Install
+#+TEXINFO: @subsubheading Simplified Install
+#+VINDEX: casual-help-init
 
-In your initialization file, bind the Transient ~casual-help-tmenu~ to your key binding of preference.
+If Casual is installed using ~package-install~, then you can use ~casual-init~ to setup support for Help.
+
+By default, ~casual-init~ will setup support for Help via the hook function ~casual-help-init~ which is included in the customizable variable ~casual-init-hook~.
+
+Use the command ~customize-variable~ on ~casual-init-hook~ to control inclusion of ~casual-help-init~ via a checkbox interface.
+
+Refer to the Simplified Install ([[#install][Install]]) section for more detail on customizing ~casual-init~.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Help, this can be controlled via the customizable variable ~casual-help-add-extra-keybindings~ (default ~t~).
+
+#+TEXINFO: @subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
 
 #+begin_src elisp :lexical no
+  (casual-help-init)
+#+end_src
+
+#+TEXINFO: @subsubheading Manual Install
+
+For users who have manually installed Casual outside of ~package-install~, the following guidance is offered.
+
+The primary interface for Casual Help is the Transient menu ~casual-help-tmenu~. It is autoloaded ([[info:elisp#Autoload]]) so if Casual is installed via ~package-install~ ([[info:emacs#Package Installation]]) then ~casual-help-tmenu~ can be invoked via ~execute-extended-command~ ({{{kbd(M-x)}}}) without need for modifying your Emacs initialization file.
+
+That said, Casual is designed with the intent of using a common (key)binding across multiple modes to lower cognitive load. This document uses the binding {{{kbd(C-o)}}} for this purpose, but can be changed to user preference.
+
+There are many ways to configure this binding. Shown below is a straightforward implementation:
+
+#+begin_src elisp :lexical no
+  (require 'casual-help) ; load all dependencies including `help'
   (keymap-set help-mode-map "C-o" #'casual-help-tmenu)
 #+end_src
+
+If lazy loading of the ~help~ package is desired then try using ~eval-after-load~:
+
+#+begin_src elisp :lexical no
+  (eval-after-load 'help
+    (keymap-set help-mode-map "C-o" #'casual-help-tmenu))
+#+end_src
+
+#+TEXINFO: @subsubheading Additional Bindings
 
 ~casual-help-tmenu~ deviates from the default bindings of ~help-mode-map~ as shown in the table below.
 

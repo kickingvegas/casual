@@ -1,6 +1,6 @@
 ;;; casual-compile-utils.el --- Casual Compile Utils -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025, 2026 Charles Y. Choi
+;; Copyright (C) 2025-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -26,6 +26,23 @@
 (require 'grep)
 (require 'compile)
 (require 'casual-lib)
+
+(defgroup casual-compile nil
+  "Settings for Casual Compile."
+  :group 'casual)
+
+(defcustom casual-compile-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-compile-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-compile)
+
+(defcustom casual-grep-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set."
+  :type 'boolean
+  :group 'casual-compile)
+
 
 (defconst casual-compile-unicode-db
   '((:previous . '("↑" "Previous"))

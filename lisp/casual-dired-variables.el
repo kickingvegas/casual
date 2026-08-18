@@ -1,6 +1,6 @@
 ;;; casual-dired-variables.el --- Casual Dired Variables  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -25,6 +25,17 @@
 ;;; Code:
 (require 'dired)
 (require 'casual-lib)
+
+(defgroup casual-dired nil
+  "Settings for Casual Dired."
+  :group 'casual)
+
+(defcustom casual-dired-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-dired-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-dired)
 
 (defcustom casual-dired-listing-switches '("--all"
                                            "--human-readable"
@@ -56,7 +67,7 @@ This variable requires GNU ‘ls’ from coreutils installed.
 
 See the man page `ls(1)' for details."
   :type '(repeat string)
-  :group 'casual)
+  :group 'casual-dired)
 
 (define-obsolete-variable-alias 'casual-dired-use-unicode-symbols
   'casual-lib-use-unicode

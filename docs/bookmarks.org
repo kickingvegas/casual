@@ -12,14 +12,52 @@ Casual Bookmarks (library: ~casual-bookmarks~) is a user interface for the Emacs
 :END:
 
 #+CINDEX: Bookmarks Install
+#+TEXINFO: @subsubheading Simplified Install
+#+VINDEX: casual-bookmarks-init
 
-To install Casual Bookmarks, add the following line to your Emacs initialization file with your binding of preference.
+If Casual is installed using ~package-install~, then you can use ~casual-init~ to setup support for Bookmarks.
+
+By default, ~casual-init~ will setup support for Bookmarks via the hook function ~casual-bookmarks-init~ which is included in the customizable variable ~casual-init-hook~.
+
+Use the command ~customize-variable~ on ~casual-init-hook~ to control inclusion of ~casual-bookmarks-init~ via a checkbox interface.
+
+Refer to the Simplified Install ([[#install][Install]]) section for more detail on customizing ~casual-init~.
+
+Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Bookmarks, this can be controlled via the customizable variable ~casual-bookmarks-add-extra-keybindings~ (default ~t~).
+
+#+TEXINFO: @subsubheading Hook Install
+
+Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
 
 #+begin_src elisp :lexical no
+  (casual-bookmarks-init)
+#+end_src
+
+#+TEXINFO: @subsubheading Manual Install
+
+For users who have manually installed Casual outside of ~package-install~, the following guidance is offered.
+
+The primary interface for Casual Bookmarks is the Transient menu ~casual-bookmarks-tmenu~. It is autoloaded ([[info:elisp#Autoload]]) so if Casual is installed via ~package-install~ ([[info:emacs#Package Installation]]) then ~casual-bookmarks-tmenu~ can be invoked via ~execute-extended-command~ ({{{kbd(M-x)}}}) without need for modifying your Emacs initialization file.
+
+That said, Casual is designed with the intent of using a common (key)binding across multiple modes to lower cognitive load. This document uses the binding {{{kbd(C-o)}}} for this purpose, but can be changed to user preference.
+
+There are many ways to configure this binding. Shown below is a straightforward implementation:
+
+#+begin_src elisp :lexical no
+  (require 'casual-bookmarks) ; load all dependencies including `bookmark'
   (keymap-set bookmark-bmenu-mode-map "C-o" #'casual-bookmarks-tmenu)
 #+end_src
 
-Use these keybindings to configure the bookmark list to be consistent with keybindings used by Casual Bookmarks.
+If lazy loading of the ~bookmark~ package is desired then try using ~eval-after-load~:
+
+#+begin_src elisp :lexical no
+  (eval-after-load 'bookmark
+    (keymap-set bookmark-bmenu-mode-map "C-o" #'casual-bookmarks-tmenu))
+#+end_src
+
+#+TEXINFO: @subsubheading Additional Bindings
+
+Use this keybinding to configure the bookmark list to be consistent with keybindings used by Casual Bookmarks.
 
 #+begin_src elisp :lexical no
   (keymap-set bookmark-bmenu-mode-map "J" #'bookmark-jump)

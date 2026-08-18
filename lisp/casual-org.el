@@ -20,21 +20,41 @@
 
 ;;; Commentary:
 
-;; This library provides a Transient-based user interface for `org-mode'.
+;; Casual Org is a Transient user interface for the Org library.
 
 ;; INSTALLATION
 
-;; In your initialization file, bind the Transient `casual-org-tmenu' to your
-;; key binding of preference.
+;; By default, `casual-init' will setup Casual Org by running the hook
+;; function `casual-org-init'.
 
-;; (require 'casual-org) ; optional if using autoloaded menu
-;; (keymap-set org-mode-map "M-m" #'casual-org-tmenu)
-;; (keymap-set org-table-fedit-map "M-m" #'casual-org-table-fedit-tmenu)
+;; Ensure that `casual-org-init' is included in the customizable hook
+;; variable `casual-init-hook'.
+
+;; Consult the Info node `(casual) Org Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'org)
 (require 'casual-org-settings)
 (require 'casual-org-utils)
+
+;;;###autoload (autoload 'casual-org-init "casual-org" nil t)
+(defun casual-org-init ()
+  "Initialize and configure Casual Org.
+
+This hook binds `casual-org-tmenu' to `casual-keybinding-secondary'.
+
+If `casual-org-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-org-setup' will be set."
+  (add-hook 'org-mode-hook #'casual-org-setup))
+
+(defun casual-org-setup ()
+  "Setup `org-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set org-mode-map casual-keybinding-secondary #'casual-org-tmenu)
+  (keymap-set org-table-fedit-map casual-keybinding-secondary #'casual-org-table-fedit-tmenu))
 
 ;;;###autoload (autoload 'casual-org-tmenu "casual-org" nil t)
 (transient-define-prefix casual-org-tmenu ()

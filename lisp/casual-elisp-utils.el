@@ -1,6 +1,6 @@
 ;;; casual-elisp-utils.el --- Casual Elisp Utils -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025, 2026 Charles Y. Choi
+;; Copyright (C) 2025-2026 Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -25,6 +25,17 @@
 (require 'xref)
 (require 'elisp-mode)
 (require 'casual-lib)
+
+(defgroup casual-elisp nil
+  "Settings for Casual Elisp."
+  :group 'casual)
+
+(defcustom casual-elisp-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-elisp-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-elisp)
 
 (defconst casual-elisp-unicode-db
   '((:backward-char . '("←" "Char"))

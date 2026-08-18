@@ -24,6 +24,17 @@
 ;;; Code:
 (require 'casual-calendar-constants)
 
+(defgroup casual-calendar nil
+  "Settings for Casual Calendar."
+  :group 'casual)
+
+(defcustom casual-calendar-add-extra-keybindings t
+  "If non-nil then extra module-specific keybindings will be set.
+
+See `casual-calendar-setup' for more detail for said keybindings."
+  :type 'boolean
+  :group 'casual-calendar)
+
 (transient-define-prefix casual-calendar-diary-and-goto-tmenu ()
   "Diary Entry Insertion & Goto Date menu.
 

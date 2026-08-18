@@ -55,6 +55,52 @@ Customize Casual user interfaces to hide navigation commands."
   :type 'boolean
   :group 'casual)
 
+(defcustom casual-keybinding-primary "C-o"
+  "Primary keybinding for Casual Transient menus."
+  :type 'string
+  :group 'casual)
+
+(defcustom casual-keybinding-secondary "M-m"
+  "Secondary keybinding for Casual Transient menus."
+  :type 'string
+  :group 'casual)
+
+(defvar casual-lib--init-list
+  '(casual-agenda-init
+    casual-bibtex-init
+    casual-bookmarks-init
+    casual-calc-init
+    casual-calendar-init
+    casual-compile-init
+    casual-grep-init
+    casual-css-init
+    casual-csv-init
+    casual-dired-init
+    casual-ediff-init
+    casual-editkit-init
+    casual-elisp-init
+    casual-eshell-init
+    casual-eww-init
+    casual-help-init
+    casual-html-init
+    casual-ibuffer-init
+    casual-image-init
+    casual-info-init
+    casual-isearch-init
+    casual-ispell-init
+    casual-make-init
+    casual-man-init
+    casual-org-init
+    casual-re-builder-init)
+  "List of module init functions.")
+
+(defcustom casual-init-hook
+  casual-lib--init-list
+  "Hook for Casual module initialization functions in `casual-init'."
+  :type 'hook
+  :options casual-lib--init-list
+  :group 'casual)
+
 (defun casual-lib-customize-casual-lib-use-unicode ()
   "Customize `casual-lib-use-unicode'.
 

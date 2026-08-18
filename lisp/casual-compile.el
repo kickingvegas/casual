@@ -20,52 +20,76 @@
 
 ;;; Commentary:
 
-
 ;; Casual Compile is a user interface for the output of the `compile' command.
 ;; The output buffer's major mode is `compilation-mode' whose commands are
 ;; surfaced by Casual Compile.
 
-;; In similar fashion, output of Emacs-wrapped Grep commands is also supported
+;; In similar fashion, output of Emacs-wrapped Grep commands are also supported
 ;; by Casual Compile. This is because the output of Grep commands use the major
 ;; mode `grep-mode' which is derived from `compilation-mode'.
 
-;; This library provides a Transient-based user interface for
-;; `compilation-mode'.
+;; INSTALLATION
 
-;; INSTALL
+;; By default, `casual-init' will setup Casual Compile and Grep by running the
+;; hook functions `casual-compile-init' and `casual-grep-init', respectively.
 
-;; In your initialization file, bind the Transient `casual-compile-tmenu' to
-;; your key binding of preference. It should be bound in two maps:
-;; `compilation-mode-map' and `grep-mode-map'.
+;; Ensure that `casual-compile-init' and `casual-grep-init' are included in the
+;; customizable hook variable `casual-init-hook'.
 
-;; (keymap-set compilation-mode-map "C-o" #'casual-compile-tmenu)
-;; (keymap-set grep-mode-map "C-o" #'casual-compile-tmenu)
-
-;; `casual-compile-tmenu' deviates from the default bindings of
-;; `compilation-mode-map' as shown in the table below to support using a single
-;; key on an en.US keyboard.
-
-;; The following keybindings are recommended to support consistent behavior
-;; between `compilation-mode-map' and `casual-compile-tmenu'.
-
-;; (keymap-set compilation-mode-map "k" #'compilation-previous-error)
-;; (keymap-set compilation-mode-map "j" #'compilation-next-error)
-;; (keymap-set compilation-mode-map "o" #'compilation-display-error)
-;; (keymap-set compilation-mode-map "[" #'compilation-previous-file)
-;; (keymap-set compilation-mode-map "]" #'compilation-next-file)
-
-;; Similar treatment for `grep-mode-map' can be done.
-
-;; (keymap-set grep-mode-map "k" #'compilation-previous-error)
-;; (keymap-set grep-mode-map "j" #'compilation-next-error)
-;; (keymap-set grep-mode-map "o" #'compilation-display-error)
-;; (keymap-set grep-mode-map "[" #'compilation-previous-file)
-;; (keymap-set grep-mode-map "]" #'compilation-next-file)
+;; Consult the Info node `(casual) Compile Install' for more detail on
+;; installation.
 
 ;;; Code:
 (require 'bookmark)
 (require 'casual-compile-settings)
 (require 'casual-compile-utils)
+
+;;;###autoload (autoload 'casual-compile-init "casual-compile" nil t)
+(defun casual-compile-init ()
+  "Initialize and configure Casual Compile.
+
+This hook binds `casual-compile-tmenu' to `casual-keybinding-primary'.
+
+If `casual-compile-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-compile-setup' will be set."
+  (add-hook 'compilation-mode-hook #'casual-compile-setup))
+
+(defun casual-grep-init ()
+  "Initialize and configure Casual Compile for `grep-mode'.
+
+This hook binds `casual-compile-tmenu' to `casual-keybinding-primary'.
+
+If `casual-compile-add-extra-keybindings' is non-nil, then extra
+keybindings specified in `casual-grep-setup' will be set."
+  (add-hook 'grep-mode-hook #'casual-grep-setup))
+
+(defun casual-compile-setup ()
+  "Setup `compilation-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set compilation-mode-map casual-keybinding-primary #'casual-compile-tmenu)
+
+  (when casual-compile-add-extra-keybindings
+    (keymap-set compilation-mode-map "k" #'compilation-previous-error)
+    (keymap-set compilation-mode-map "j" #'compilation-next-error)
+    (keymap-set compilation-mode-map "o" #'compilation-display-error)
+    (keymap-set compilation-mode-map "[" #'compilation-previous-file)
+    (keymap-set compilation-mode-map "]" #'compilation-next-file)))
+
+(defun casual-grep-setup ()
+  "Setup `grep-mode' for Casual.
+
+To see what keybindings are set by this function, press ‘s’ to view its
+source."
+  (keymap-set grep-mode-map casual-keybinding-primary #'casual-compile-tmenu)
+
+  (when casual-grep-add-extra-keybindings
+    (keymap-set grep-mode-map "k" #'compilation-previous-error)
+    (keymap-set grep-mode-map "j" #'compilation-next-error)
+    (keymap-set grep-mode-map "o" #'compilation-display-error)
+    (keymap-set grep-mode-map "[" #'compilation-previous-file)
+    (keymap-set grep-mode-map "]" #'compilation-next-file)))
 
 ;;;###autoload (autoload 'casual-compile-tmenu "casual-compile" nil t)
 (transient-define-prefix casual-compile-tmenu ()
