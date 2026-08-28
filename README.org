@@ -33,7 +33,7 @@ Shown below are some screenshots of menus offered by Casual. Many [[https://kick
 
 Casual requires the following software to be installed as baseline:
 
-- [[https://www.gnu.org/savannah-checkouts/gnu/emacs/emacs.html][GNU Emacs]] 29.4+
+- [[https://www.gnu.org/savannah-checkouts/gnu/emacs/emacs.html][GNU Emacs]] 30.1+
 - [[https://github.com/magit/transient][Transient]] 0.9+
 
 Versions of GNU Emacs 30.1 or greater will satisfy the above requirements with its built-in version of Transient.
