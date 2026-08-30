@@ -476,7 +476,7 @@ Casual requires the following software to be installed as baseline:
 
 @itemize
 @item
-GNU Emacs 29.4+ (@ref{Top,,,emacs,})
+GNU Emacs 30.1+ (@ref{Top,,,emacs,})
 
 @item
 Transient 0.9+ (@ref{Top,,,transient,})

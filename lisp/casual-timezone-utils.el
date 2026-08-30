@@ -149,15 +149,11 @@ installed."
 
 (defun casual-timezone-map-local-to-timezone (ts remote-tz)
   "Map local TS to REMOTE-TZ."
-  (let* ((parse-ts (string-split (org-read-date nil nil ts)))
-         (datestamp (nth 0 parse-ts))
-         (timestamp (nth 1 parse-ts))
-         (local-tz (nth 1 (current-time-zone))))
-    (format-time-string
+
+  (format-time-string
      "%Y-%m-%d %H:%M:%S %Z"
-     (date-to-time
-      (concat datestamp "T" timestamp ":00" " " local-tz))
-     remote-tz)))
+     (date-to-time ts)
+     remote-tz))
 
 (defun casual-timezone-local-time-to-remote (&optional datestr remote-tz)
   "Convert local date string DATESTR to remote timezone REMOTE-TZ.
