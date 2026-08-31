@@ -1,5 +1,10 @@
-calc		mono	https://www.gnu.org/software/emacs/manual/html_mono/calc.html
-calc		node	https://www.gnu.org/software/emacs/manual/html_node/calc/
-transient       node    https://www.gnu.org/software/emacs/manual/html_node/transient/
-use-package     node    https://www.gnu.org/software/emacs/manual/html_node/use-package/
-magit           node    https://docs.magit.vc/magit/
+calc                  mono https://www.gnu.org/software/emacs/manual/html_mono/calc.html
+calc                  node https://www.gnu.org/software/emacs/manual/html_node/calc/
+transient             node https://www.gnu.org/software/emacs/manual/html_node/transient/
+use-package           node https://www.gnu.org/software/emacs/manual/html_node/use-package/
+magit                 node https://docs.magit.vc/magit/
+casual                node https://kickingvegas.github.io/casual/
+casual-suite          node https://kickingvegas.github.io/casual-suite/
+casual-avy            node https://kickingvegas.github.io/casual-avy/
+casual-symbol-overlay node https://kickingvegas.github.io/casual-symbol-overlay/
+

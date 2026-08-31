@@ -1,6 +1,6 @@
 ;;; casual-help-test-utils.el --- Casual Test Utils       -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Y. Choi
+;; Copyright (C) 2025-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -30,7 +30,7 @@
 (defun casualt-help-setup ()
   "Casual Help setup."
   (describe-symbol 'find-file)
-  (describe-symbol 'apropos-do-all)
+  (describe-symbol 'dired)
   (switch-to-buffer "*Help*"))
 
 (defun casualt-help-breakdown ()

@@ -32,7 +32,7 @@
 (ert-deftest test-casual-eshell-tmenu ()
   (let ()
     (casualt-eshell-setup)
-    (eshell-return-to-prompt)
+    (goto-char (point-max))
     (insert "echo \"yer\"")
     (eshell-send-input)
     (eshell-previous-prompt)
