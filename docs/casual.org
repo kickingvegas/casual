@@ -5,7 +5,7 @@
 #+EMAIL: kickingvegas@gmail.com
 #+OPTIONS: ':t toc:t author:t email:t H:4 f:t
 #+LANGUAGE: en
-#+MACRO: version 3.0.1
+#+MACRO: version 3.0.2-rc.1
 #+MACRO: kbd (eval (org-texinfo-kbd-macro $1))
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_CLASS: casual
@@ -132,12 +132,21 @@ For Transient menus that offer setting different values, the following bindings 
 * Requirements
 #+CINDEX: Requirements
 
-Casual requires Emacs 30.1+, Transient 0.9.0+, csv-mode 1.27+.
+Casual requires the following software to be installed as baseline:
 
-Certain menus require more installed software:
+- GNU Emacs 30.1+ ([[info:emacs#Top]])
 
-- Casual Dired: GNU Coreutils
-- Casual Image: ImageMagick 6+
+- Transient 0.9+ ([[info:transient#Top]])
+
+Versions of GNU Emacs 30.1 or greater will satisfy the above requirements with its built-in version of Transient.
+
+Certain Casual modules require more installed software:
+
+- Casual Dired: GNU Core Utilities 8.32+ ([[info:coreutils#Top][coreutils#Top]])
+
+- Casual Image: [[https://imagemagick.org][ImageMagick]] 6+
+
+- Casual CSV: [[https://elpa.gnu.org/packages/csv-mode.html][csv-mode]] 1.27+ (installed as a dependency)
 
 * Install
 :PROPERTIES:

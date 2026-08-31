@@ -3,7 +3,7 @@
 ;; Copyright (C) 2023-2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
-;; Keywords: wp
+;; Keywords: text
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
