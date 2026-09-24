@@ -42,12 +42,12 @@ See `casual-calc-setup' for more detail for said keybindings."
 (defconst casual-calc-unicode-db
   '((:inv . '("1/𝑥" "1/x"))
     (:sqrt . '("√" "sqrt"))
-    (:change-sign . '("∓" "+/-"))
+    (:change-sign . '("±" "+/-"))
     (:power . '("𝑦ˣ" "y^x"))
     (:abs . '("|𝑥|" "|x|"))
     (:factorial . '(" !" "!"))
     (:percent . '("%" "%"))
-    (:percent-change . '(" Δ%" "% change"))
+    (:percent-change . '(" Δ%" "%chg"))
     (:pi . '("𝜋" "pi"))
     (:e . '("𝑒" "e"))
     (:ln . '("𝑙𝑛" "ln"))
@@ -68,7 +68,9 @@ See `casual-calc-setup' for more detail for said keybindings."
     (:hms . '("ℎ𝑚𝑠" "HMS"))
     (:float . '("𝑓𝑙𝑜𝑎𝑡" "float"))
     (:fraction . '("𝑓𝑟𝑎𝑐𝑡𝑖𝑜𝑛" "fraction"))
-    (:to . '("→" "to")))
+    (:to . '("→" "to"))
+    (:settings . '("⚙︎" "Settings"))
+    (:trail . '("🐾" "Trail")))
   "Unicode symbol DB to use for Calc Transient menus.")
 
 (defun casual-calc-unicode-get (key)
@@ -86,8 +88,7 @@ plain ASCII-range string."
   "Undo stack."
   :transient t
   :key "U"
-  :description (lambda () (format "Undo %s"
-                                  (casual-calc-unicode-get :stack)))
+  :description "UNDO"
   (interactive)
   (call-interactively #'calc-undo))
 
@@ -135,28 +136,28 @@ Invokes command `calc-roll-down'."
 
 (transient-define-group casual-calc-operators-group
   ["Operators"
-   ("+" "add" casual-calc--plus :transient t)
-   ("-" "sub" casual-calc--minus :transient t)
-   ("*" "mul" casual-calc--times :transient t)
-   ("/" "div" casual-calc--divide :transient t)
-   ("%" "mod" casual-calc--mod :transient t)])
+   ("+" "ADD" casual-calc--plus :transient t)
+   ("-" "SUB" casual-calc--minus :transient t)
+   ("*" "MUL" casual-calc--times :transient t)
+   ("/" "DIV" casual-calc--divide :transient t)
+   ("%" "MOD" casual-calc--mod :transient t)])
 
 (transient-define-group casual-calc-operators-group-row
   ["Operators"
    :class transient-row
-   ("+" "add" casual-calc--plus :transient t)
-   ("-" "sub" casual-calc--minus :transient t)
-   ("*" "mul" casual-calc--times :transient t)
-   ("/" "div" casual-calc--divide :transient t)
-   ("%" "mod" casual-calc--mod :transient t)])
+   ("+" "ADD" casual-calc--plus :transient t)
+   ("-" "SUB" casual-calc--minus :transient t)
+   ("*" "MUL" casual-calc--times :transient t)
+   ("/" "DIV" casual-calc--divide :transient t)
+   ("%" "MOD" casual-calc--mod :transient t)])
 
 (transient-define-group casual-calc-basic-operators-group
   ["Operators"
-   ("+" "add" casual-calc--plus :transient t)
-   ("-" "sub" casual-calc--minus :transient t)
-   ("*" "mul" casual-calc--times :transient t)
-   ("/" "div" casual-calc--divide :transient t)
-   ("M" "mod" casual-calc--mod :transient t)])
+   ("+" "ADD" casual-calc--plus :transient t)
+   ("-" "SUB" casual-calc--minus :transient t)
+   ("*" "MUL" casual-calc--times :transient t)
+   ("/" "DIV" casual-calc--divide :transient t)
+   ("M" "MOD" casual-calc--mod :transient t)])
 
 (transient-define-group casual-calc-navigation-group
   [:class transient-row

@@ -155,6 +155,13 @@ Calc
 * Calc Install::
 * Calc Usage::
 
+Calc Usage
+
+* Calc Main Menu::
+* Calc Rounding Menu::
+* Calc Conversions Menu::
+* Calc Time Menu::
+
 Calendar
 
 * Calendar Install::
@@ -1404,24 +1411,6 @@ To launch Calc@comma{} invoke  @code{M-x calc}. When the point is in the Calc wi
 
 For nearly all menus@comma{} algebraic entry via the @kbd{'} binding is available@comma{} as well as basic calculator operations (addition@comma{} subtraction@comma{} multiplication@comma{} division) and stack operations (pop@comma{} enter).
 
-Casual Calc organizes its main menu into the following sections:
-
-@table @asis
-@item Calc
-Commands for common calculator functions.
-@item Constants
-Common math constants.
-@item Operators
-Common math operators.
-@item Stack
-Commands for stack operations.
-@item Arithmetic
-Entry point for sub-menus of commands classified as arithmetic operations.
-@item Functions
-Entry point for sub-menus of commands organized into different classes of functionality.
-@item Settings
-Entry point for sub-menus of commands to configure Calc settings.
-@end table
 
 @subsubheading Calc Basics
 
@@ -1467,6 +1456,234 @@ The top of the stack (1:) can be edited by pressing the @code{`} key.
 @item
 Entering a single quote (') will prompt you for an algebraic entry.
 @end itemize
+
+
+@subsubheading Calc Menus
+
+Menus provided by Casual Calc are listed below.
+
+@menu
+* Calc Main Menu::
+* Calc Rounding Menu::
+* Calc Conversions Menu::
+* Calc Time Menu::
+@end menu
+
+@node Calc Main Menu
+@subsubsection Calc Main Menu
+
+@cindex Calc Main Menu
+@vindex casual-calc-tmenu
+
+@image{images/casual-calc-tmenu,,,,png}
+
+
+The main menu for Casual Calc is @code{casual-calc-tmenu}. It is organized into the following sections:
+
+@table @asis
+@item Calc
+Commands for common calculator functions.
+
+@item Constants
+Common math constants.
+
+@item Operators
+Common math operators.
+
+@item Stack
+Commands for stack operations.
+
+@item Arithmetic
+Entry point for sub-menus of commands classified as arithmetic operations.
+
+@item Functions
+Entry point for sub-menus of commands organized into different classes of functionality.
+
+@item Settings
+Entry point for sub-menus of commands to configure Calc settings.
+@end table
+
+The commands for each section are detailed below. Stack values are noted with the convention n: where n is the stack index.
+
+@subsubheading Calc
+
+@table @asis
+@item @kbd{&} ``1/x''
+Invert 1:
+
+@item @kbd{Q} ``sqrt''
+Square root 1:
+
+@item @kbd{n} ``+/-''
+Change sign 1:
+
+@item @kbd{^} ``y^x''
+Raise 2: to power 1:
+
+@item @kbd{=} ``=''
+Evaluate 1:
+
+@item @kbd{A} ``|x|''
+Absolute value 1:
+
+@item @kbd{!} ``!''
+Factorial 1:
+
+@item @kbd{%} ``ab%''
+Apply percentage b (1:) to value a (2:)
+
+Note this differs from the default @code{calc} behavior of binding @kbd{%} to the modulo command @code{calc-mod} to conform with conventional calculators. This difference however is @emph{only} applied to the menu @code{casual-calc-tmenu}.
+
+@item @kbd{D} ``%chg''
+Compute percentage change from 2: to 1:
+@end table
+
+@subsubheading Constants
+
+@table @asis
+@item @kbd{p} ``pi''
+Insert constant 𝜋 to 1:
+
+@item @kbd{e} ``e''
+Insert constant 𝑒 to 1:
+@end table
+
+
+@subsubheading Operators
+
+@table @asis
+@item @kbd{+} ``ADD''
+Add 1: to 2:
+
+@item @kbd{-} ``SUB''
+Subtract 1: from 2:
+
+@item @kbd{*} ``MUL''
+Multiply 1: and 2:
+
+@item @kbd{/} ``DIV''
+Divide 1: from 2:
+
+@item @kbd{M} ``MOD''
+Modulo 1: from 2:
+
+Note this differs from the default @code{calc} behavior of binding @kbd{%} to the modulo command @code{calc-mod} to conform with conventional calculators. This difference however is @emph{only} applied to the menu @code{casual-calc-tmenu}.
+@end table
+
+
+@subsubheading Stack
+
+@table @asis
+@item @kbd{s} ``SWAP''
+Exchange 1: with 2:
+
+@item @kbd{r} ``ROLL''
+Roll down all elements in stack
+
+@item @kbd{d} ``DROP''
+Remove 1: from stack
+
+@item @kbd{C} ``CLEAR''
+Clear entire stack
+
+@item @kbd{L} ``LAST''
+Push the last arguments popped by the previous command back onto the stack
+
+@item @kbd{w} ``COPY''
+Copy 1: to @code{kill-ring}
+
+@item @kbd{`} ``EDIT''
+Edit 1:
+
+@item @kbd{z} ``VAR›''
+Open menu for managing @code{calc} variables
+@end table
+
+
+@subsubheading Arithmetic
+
+@table @asis
+@item @kbd{o} ``ROUND›''
+@ref{Calc Rounding Menu, , Rounding functions menu}
+
+@item @kbd{c} ``CONV›''
+Conversion functions menu
+
+@item @kbd{T} ``TIME›''
+Time/Date functions menu
+
+@item @kbd{i} ``CPLX›''
+Complex functions menu
+
+@item @kbd{R} ``RAND›''
+Random functions menu
+@end table
+
+
+@subsubheading Functions
+
+@table @asis
+@item @kbd{t} ``TRIG›''
+Trigonometric functions menu
+
+@item @kbd{l} ``LOG›''
+Logarithmic functions menu
+
+@item @kbd{b} ``BIN›''
+Binary functions menu
+
+@item @kbd{v} ``VEC›''
+Vector/Matrix functions menu
+
+@item @kbd{u} ``UNITS›''
+Unit conversions menu
+
+@item @kbd{f} ``FIN›''
+Financial functions menu
+
+@item @kbd{g} ``GRAPH›''
+Plot functions menu
+
+@item @kbd{a} ``ALG›''
+Symbolic algebra menu
+@end table
+
+@subsubheading Settings
+
+@table @asis
+@item @kbd{@comma{}m} ``Settings›''
+Mode@comma{} display@comma{} and misc settings menu
+
+@item @kbd{@comma{}s} ``Stack›''
+Stack settings menu
+
+@item @kbd{@comma{}t} ``Trail›''
+Trail settings menu
+@end table
+
+@node Calc Rounding Menu
+@subsubsection Calc Rounding Menu
+
+@cindex Calc Rounding Menu
+@vindex casual-calc-rounding-tmenu
+
+@image{images/casual-calc-ROUND,,,,png}
+
+@node Calc Conversions Menu
+@subsubsection Calc Conversions Menu
+
+@cindex Calc Conversions Menu
+@vindex casual-calc-conversions-tmenu
+
+@image{images/casual-calc-CONV,,,,png}
+
+@node Calc Time Menu
+@subsubsection Calc Time Menu
+
+@cindex Calc Time Menu
+@vindex casual-calc-time-tmenu
+
+@image{images/casual-calc-TIME,,,,png}
 
 @node Calendar
 @section Calendar

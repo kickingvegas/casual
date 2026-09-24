@@ -69,15 +69,6 @@ To launch Calc, invoke  ~M-x calc~. When the point is in the Calc window, invoke
 
 For nearly all menus, algebraic entry via the {{{kbd(')}}} binding is available, as well as basic calculator operations (addition, subtraction, multiplication, division) and stack operations (pop, enter).
 
-Casual Calc organizes its main menu into the following sections:
-
-- Calc :: Commands for common calculator functions.
-- Constants ::  Common math constants.
-- Operators :: Common math operators.
-- Stack :: Commands for stack operations.
-- Arithmetic :: Entry point for sub-menus of commands classified as arithmetic operations.
-- Functions :: Entry point for sub-menus of commands organized into different classes of functionality.
-- Settings :: Entry point for sub-menus of commands to configure Calc settings.
 
 #+TEXINFO: @subsubheading Calc Basics
 
@@ -100,4 +91,181 @@ It helps to know some basics about Calc.
 - Org-mode active timestamps can be entered into Calc.
 - The top of the stack (1:) can be edited by pressing the ~`~ key.
 - Entering a single quote (') will prompt you for an algebraic entry.
+
+
+#+TEXINFO: @subsubheading Calc Menus
+
+Menus provided by Casual Calc are listed below.
+
+*** Calc Main Menu
+#+CINDEX: Calc Main Menu
+#+VINDEX: casual-calc-tmenu
+
+[[file:images/casual-calc-tmenu.png]]
+
+
+The main menu for Casual Calc is ~casual-calc-tmenu~. It is organized into the following sections:
+
+- Calc :: Commands for common calculator functions.
+    
+- Constants ::  Common math constants.
+  
+- Operators :: Common math operators.
+  
+- Stack :: Commands for stack operations.
+  
+- Arithmetic :: Entry point for sub-menus of commands classified as arithmetic operations.
+  
+- Functions :: Entry point for sub-menus of commands organized into different classes of functionality.
+  
+- Settings :: Entry point for sub-menus of commands to configure Calc settings.
+
+The commands for each section are detailed below. Stack values are noted with the convention n: where n is the stack index.
+
+#+TEXINFO: @subsubheading Calc
+
+- {{{kbd(&)}}} "1/x" :: Invert 1:
+  
+- {{{kbd(Q)}}} "sqrt" :: Square root 1:
+  
+- {{{kbd(n)}}} "+/-" :: Change sign 1:
+  
+- {{{kbd(^)}}} "y^x" :: Raise 2: to power 1:
+
+- {{{kbd(=)}}} "=" :: Evaluate 1:
+
+- {{{kbd(A)}}} "|x|" :: Absolute value 1:
+
+- {{{kbd(!)}}} "!" ::  Factorial 1:
+
+- {{{kbd(%)}}} "ab%" ::  Apply percentage b (1:) to value a (2:)
+
+  Note this differs from the default ~calc~ behavior of binding {{{kbd(%)}}} to the modulo command ~calc-mod~ to conform with conventional calculators. This difference however is /only/ applied to the menu ~casual-calc-tmenu~.
+
+- {{{kbd(D)}}} "%chg" ::  Compute percentage change from 2: to 1:
+  
+#+TEXINFO: @subsubheading Constants
+
+- {{{kbd(p)}}} "pi" ::   Insert constant 𝜋 to 1:
+
+- {{{kbd(e)}}} "e" ::   Insert constant 𝑒 to 1:
+  
+
+#+TEXINFO: @subsubheading Operators
+
+- {{{kbd(+)}}} "ADD" :: Add 1: to 2:
+
+- {{{kbd(-)}}} "SUB" :: Subtract 1: from 2:
+
+- {{{kbd(*)}}} "MUL" :: Multiply 1: and 2:
+
+- {{{kbd(/)}}} "DIV" :: Divide 1: from 2:
+
+- {{{kbd(M)}}} "MOD" :: Modulo 1: from 2:
+
+  Note this differs from the default ~calc~ behavior of binding {{{kbd(%)}}} to the modulo command ~calc-mod~ to conform with conventional calculators. This difference however is /only/ applied to the menu ~casual-calc-tmenu~.
+  
+
+#+TEXINFO: @subsubheading Stack
+
+- {{{kbd(s)}}} "SWAP" :: Exchange 1: with 2:
+
+- {{{kbd(r)}}} "ROLL" :: Roll down all elements in stack
+  
+- {{{kbd(d)}}} "DROP" :: Remove 1: from stack
+
+- {{{kbd(C)}}} "CLEAR" :: Clear entire stack
+
+- {{{kbd(L)}}} "LAST" :: Push the last arguments popped by the previous command back onto the stack
+
+- {{{kbd(w)}}} "COPY" :: Copy 1: to ~kill-ring~
+
+- {{{kbd(`)}}} "EDIT" :: Edit 1:
+
+- {{{kbd(z)}}} "VAR›" :: Open menu for managing ~calc~ variables
+  
+
+#+TEXINFO: @subsubheading Arithmetic
+
+- {{{kbd(o)}}} "ROUND›" :: [[#calc-rounding-menu][Rounding functions menu]]
+
+- {{{kbd(c)}}} "CONV›" :: Conversion functions menu
+
+- {{{kbd(T)}}} "TIME›" :: Time/Date functions menu
+
+- {{{kbd(i)}}} "CPLX›" :: Complex functions menu
+
+- {{{kbd(R)}}} "RAND›" :: Random functions menu
+
+
+#+TEXINFO: @subsubheading Functions
+
+- {{{kbd(t)}}} "TRIG›" :: Trigonometric functions menu
+
+- {{{kbd(l)}}} "LOG›" :: Logarithmic functions menu
+
+- {{{kbd(b)}}} "BIN›" :: Binary functions menu
+
+- {{{kbd(v)}}} "VEC›" :: Vector/Matrix functions menu
+
+- {{{kbd(u)}}} "UNITS›" :: Unit conversions menu
+
+- {{{kbd(f)}}} "FIN›" :: Financial functions menu
+
+- {{{kbd(g)}}} "GRAPH›" :: Plot functions menu
+
+- {{{kbd(a)}}} "ALG›" :: Symbolic algebra menu
+  
+#+TEXINFO: @subsubheading Settings
+
+- {{{kbd(\,m)}}} "Settings›" :: Mode, display, and misc settings menu
+
+- {{{kbd(\,s)}}} "Stack›" :: Stack settings menu
+
+- {{{kbd(\,t)}}} "Trail›" :: Trail settings menu
+
+
+*** Calc Rounding Menu
+:PROPERTIES:
+:CUSTOM_ID: calc-rounding-menu
+:END:
+#+CINDEX: Calc Rounding Menu
+#+VINDEX: casual-calc-rounding-tmenu
+
+[[file:images/casual-calc-ROUND.png]]
+
+
+*** Calc Conversions Menu
+:PROPERTIES:
+:CUSTOM_ID: calc-conversions-menu
+:END:
+#+CINDEX: Calc Conversions Menu
+#+VINDEX: casual-calc-conversions-tmenu
+
+[[file:images/casual-calc-CONV.png]]
+
+
+*** Calc Time Menu
+:PROPERTIES:
+:CUSTOM_ID: calc-time-menu
+:END:
+#+CINDEX: Calc Time Menu
+#+VINDEX: casual-calc-time-tmenu
+
+[[file:images/casual-calc-TIME.png]]
+
+*** Calc Complex Number Menu
+:PROPERTIES:
+:CUSTOM_ID: calc-complex number-menu
+:END:
+#+CINDEX: Calc Complex Number Menu
+#+VINDEX: casual-calc-complex-number-tmenu
+
+[[file:images/casual-calc-CPLX.png]]
+
+
+
+
+
+
 

@@ -92,7 +92,7 @@ source."
     ("Q" "√" casual-calc--sqrt
      :description (lambda () (casual-calc-unicode-get :sqrt))
      :transient t)
-    ("n" "∓" casual-calc--change-sign
+    ("n" "±" casual-calc--change-sign
      :description (lambda () (casual-calc-unicode-get :change-sign))
      :transient t)
     ("^" "𝑦ˣ" casual-calc--power
@@ -121,46 +121,54 @@ source."
    casual-calc-basic-operators-group
 
    ["Stack"
-    ("s" "Swap" casual-calc--stack-swap :transient t)
-    ("r" "Roll" casual-calc--stack-roll-all :transient t)
-    ("d" "Drop" casual-calc--stack-drop :transient t)
-    ("C" "Clear" casual-calc--stack-clear :transient t)]
+    ("s" "SWAP" casual-calc--stack-swap :transient t)
+    ("r" "ROLL" casual-calc--stack-roll-all :transient t)
+    ("d" "DROP" casual-calc--stack-drop :transient t)
+    ("C" "CLEAR" casual-calc--stack-clear :transient t)]
 
    [""
-    ("L" "Last" casual-calc--stack-last :transient t)
-    ("w" "Copy" casual-calc--copy-as-kill :transient nil)
-    ("`" "Edit" calc-edit)
-    ("z" "Variables›" casual-calc-variable-crud-tmenu)]]
+    ("L" "LAST" casual-calc--stack-last :transient t)
+    ("w" "COPY" casual-calc--copy-as-kill :transient nil)
+    ("`" "EDIT" calc-edit)
+    ("z" "VAR›" casual-calc-variable-crud-tmenu)]
 
-  ["Arithmetic"
-   :class transient-row
-   ("o" "Rounding›" casual-calc-rounding-tmenu)
-   ("c" "Conversion›" casual-calc-conversions-tmenu)
-   ("T" "Time›" casual-calc-time-tmenu)
-   ("i" "Complex›" casual-calc-complex-number-tmenu)
-   ("R" "Random›" casual-calc-random-number-tmenu)]
+   ["Settings"
+    (",m" "⚙︎›" casual-calc-modes-tmenu
+     :description (lambda () (format "%s›" (casual-calc-unicode-get :settings))))
+    (",s" "Stack›" casual-calc-stack-display-tmenu
+     :description (lambda () (format "%s›" (casual-calc-unicode-get :stack))))
+    (",t" "🐾›" casual-calc-trail-tmenu
+     :description (lambda () (format "%s›" (casual-calc-unicode-get :trail))))]]
 
-  ["Functions"
-   [("t" "Trigonometric›" casual-calc-trig-tmenu)
-    ("l" "Logarithmic›" casual-calc-logarithmic-tmenu)]
+  [
+   ["Arithmetic"
+    ("o" "ROUND›" casual-calc-rounding-tmenu)
+    ("c" "CONV›" casual-calc-conversions-tmenu)]
 
-   [("b" "Binary›" casual-calc-binary-tmenu)
-    ("v" "Vector/Matrix›" casual-calc-vector-tmenu)]
+   [""
+    ("T" "TIME›" casual-calc-time-tmenu)
+    ("i" "CPLX›" casual-calc-complex-number-tmenu)]
 
-   [("u" "Units›" casual-calc-units-tmenu)
-    ("f" "Financial›" casual-calc-financial-tmenu)]
+   [""
+    ("R" "RAND›" casual-calc-random-number-tmenu)]
 
-   [("g" "Graphics›" casual-calc-plot-tmenu)
-    ("a" "Algebra›" casual-calc-symbolic-tmenu)]]
+   ["Functions"
+    ("t" "TRIG›" casual-calc-trig-tmenu)
+    ("l" "LOG›" casual-calc-logarithmic-tmenu)]
 
-  ["Settings"
-   :class transient-row
-   ("m" "Modes, Displays, Angles›" casual-calc-modes-tmenu)
-   ("S" "Stack›" casual-calc-stack-display-tmenu)
-   ("M-t" "Trail›" casual-calc-trail-tmenu)]
+   [""
+    ("b" "BIN›" casual-calc-binary-tmenu)
+    ("v" "VEC›" casual-calc-vector-tmenu)]
+
+   [""
+    ("u" "UNITS›" casual-calc-units-tmenu)
+    ("f" "FIN›" casual-calc-financial-tmenu)]
+
+   [""
+    ("g" "GRAPH›" casual-calc-plot-tmenu)
+    ("a" "ALG›" casual-calc-symbolic-tmenu)]]
 
   [:class transient-row
-   (casual-lib-quit-one)
    (casual-calc-algebraic-entry)
    (casual-calc-enter)
    (casual-calc-roll-down)
