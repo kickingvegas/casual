@@ -1,6 +1,6 @@
 ;;; test-casual-calc-utils.el --- Casual Calc Utils Tests  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -36,7 +36,7 @@
     (should (string-equal (casual-calc-unicode-get :abs) "|x|"))
     (should (string-equal (casual-calc-unicode-get :factorial) "!"))
     (should (string-equal (casual-calc-unicode-get :percent) "%"))
-    (should (string-equal (casual-calc-unicode-get :percent-change) "% change"))
+    (should (string-equal (casual-calc-unicode-get :percent-change) "%chg"))
     (should (string-equal (casual-calc-unicode-get :pi) "pi"))
     (should (string-equal (casual-calc-unicode-get :e) "e"))
     (should (string-equal (casual-calc-unicode-get :ln) "ln"))
@@ -57,12 +57,14 @@
     (should (string-equal (casual-calc-unicode-get :hms) "HMS"))
     (should (string-equal (casual-calc-unicode-get :float) "float"))
     (should (string-equal (casual-calc-unicode-get :fraction) "fraction"))
-    (should (string-equal (casual-calc-unicode-get :to) "to")))
+    (should (string-equal (casual-calc-unicode-get :to) "to"))
+    (should (string-equal (casual-calc-unicode-get :settings) "Settings"))
+    (should (string-equal (casual-calc-unicode-get :trail) "Trail")))
 
   (let ((casual-lib-use-unicode t))
     (should (string-equal (casual-calc-unicode-get :inv) "1/𝑥"))
     (should (string-equal (casual-calc-unicode-get :sqrt) "√"))
-    (should (string-equal (casual-calc-unicode-get :change-sign) "∓"))
+    (should (string-equal (casual-calc-unicode-get :change-sign) "±"))
     (should (string-equal (casual-calc-unicode-get :power) "𝑦ˣ"))
     (should (string-equal (casual-calc-unicode-get :abs) "|𝑥|"))
     (should (string-equal (casual-calc-unicode-get :factorial) " !"))
@@ -88,7 +90,9 @@
     (should (string-equal (casual-calc-unicode-get :hms) "ℎ𝑚𝑠"))
     (should (string-equal (casual-calc-unicode-get :float) "𝑓𝑙𝑜𝑎𝑡"))
     (should (string-equal (casual-calc-unicode-get :fraction) "𝑓𝑟𝑎𝑐𝑡𝑖𝑜𝑛"))
-    (should (string-equal (casual-calc-unicode-get :to) "→"))))
+    (should (string-equal (casual-calc-unicode-get :to) "→"))
+    (should (string-equal (casual-calc-unicode-get :settings) "⚙︎"))
+    (should (string-equal (casual-calc-unicode-get :trail) "🐾"))))
 
 (provide 'test-casual-calc-utils)
 ;;; test-casual-calc-utils.el ends here
