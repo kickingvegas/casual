@@ -83,8 +83,7 @@ For more detail on installation of different modules refer to the [[https://kick
 
 
 * Development
-For users who wish to help contribute to Casual or personally customize it for their own usage, please read the [[docs/developer.org][developer documentation]].
-
+For users who wish to help contribute to Casual or personally customize it for their own usage, please read the [[file:docs/developer.org][developer documentation]].
 * Sponsorship
 It costs money to make, enhance, and maintain Casual as ideologically free software. If you enjoy using Casual, please buy me a coffee to help support its development and maintenance.
 
