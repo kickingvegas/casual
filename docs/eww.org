@@ -143,3 +143,7 @@ By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casua
 [[file:images/casual-eww-unicode-screenshot.png]]
 
 For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:

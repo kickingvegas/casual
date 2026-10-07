@@ -101,3 +101,7 @@ It helps to know some basics about Calc.
 - The top of the stack (1:) can be edited by pressing the ~`~ key.
 - Entering a single quote (') will prompt you for an algebraic entry.
 
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:

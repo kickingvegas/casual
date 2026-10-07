@@ -113,3 +113,7 @@ By enabling “{{{kbd(u)}}} Use Unicode Settings” from the Settings menu, Casu
 [[file:images/casual-agenda-unicode-screenshot.png]]
 
 For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:

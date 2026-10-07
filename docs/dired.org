@@ -452,3 +452,7 @@ To ensure proper layout and spacing, your default typeface should be fixed-width
 
 For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
 
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:

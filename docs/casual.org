@@ -421,3 +421,7 @@ Index for this user guide.
 :END:
 
 Variables, functions, commands, and menus referenced by this user guide.
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:
