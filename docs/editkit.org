@@ -308,3 +308,7 @@ Those commands will instead apply to the current buffer. The variables listed ab
 [[file:images/casual-editkit-settings-screenshot.png]]
 
 
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:

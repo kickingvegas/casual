@@ -294,3 +294,7 @@ Use the Casual Org Settings menu to gain access to commonly customized Org setti
 #+TEXINFO: @subsubheading Org Unicode Symbol Support
 
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Org will use Unicode symbols as appropriate in its menus.
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:
