@@ -90,6 +90,8 @@ It costs money to make, enhance, and maintain Casual as ideologically free softw
 
 [[https://www.buymeacoffee.com/kickingvegas][file:docs/images/default-yellow.png]]
 
+Please star and share this project to others as well. Thank you!
+
 * See Also
 While the package ~casual~ focuses on user interfaces for built-in Emacs modes, there are other third party packages which receive the “Casual” treatment. Two such packages are:
 

@@ -152,13 +152,10 @@
     (and dst (not (eq dst 0)))))
 
 (ert-deftest test-casual-timezone-remote-time-to-local ()
-  (let* ((read-date (if (in-daylight-saving-time-p)
-                        "2025-05-23 11:00"
-                      "2025-05-23 12:00"))
+  (let* ((read-date "2025-10-30 11:00")
          (remote-tz "Europe/Berlin")
-         (control "2025-05-23 02:00:00 PDT")
+         (control "2025-10-30 03:00:00 PDT")
          (result (casual-timezone-remote-time-to-local read-date remote-tz)))
-
     (should (string-equal control result))))
 
 (ert-deftest test-timezone-sanity-check ()

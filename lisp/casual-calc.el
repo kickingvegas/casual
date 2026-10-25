@@ -121,15 +121,18 @@ source."
    casual-calc-basic-operators-group
 
    ["Stack"
-    ("s" "SWAP" casual-calc--stack-swap :transient t)
-    ("r" "ROLL" casual-calc--stack-roll-all :transient t)
+    :pad-keys t
+    ("S" "SWAP" casual-calc--stack-swap :transient t)
+    ("]" "ROLL" casual-calc--stack-roll-all :transient t)
     ("d" "DROP" casual-calc--stack-drop :transient t)
+    ("s" "STO" casual-calc--store :transient t)
     ("C" "CLEAR" casual-calc--stack-clear :transient t)]
 
    [""
     ("L" "LAST" casual-calc--stack-last :transient t)
     ("w" "COPY" casual-calc--copy-as-kill :transient nil)
     ("`" "EDIT" calc-edit)
+    ("r" "RCL" casual-calc--recall :transient t)
     ("z" "VAR›" casual-calc-variable-crud-tmenu)]
 
    ["Settings"
