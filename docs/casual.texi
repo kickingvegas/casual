@@ -1356,8 +1356,6 @@ Use the command @code{customize-variable} on @code{casual-init-hook} to control 
 
 Refer to the Simplified Install (@ref{Install, , Install}) section for more detail on customizing @code{casual-init}.
 
-Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Calc@comma{} this can be controlled via the customizable variable @code{casual-calc-add-extra-keybindings} (default @code{t}).
-
 @subsubheading Hook Install
 
 Users who want a more granular install of Casual modules can invoke the hook function of interest in their Emacs initialization file.
