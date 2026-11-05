@@ -226,7 +226,7 @@ EditKit Usage
 
 * Register commands::
 * Edit commands::
-* Window management::
+* Window Management::
 * Search & Replace commands::
 * Spell Commands::
 * Open commands::
@@ -3184,7 +3184,7 @@ Users who want a more granular install of Casual modules can invoke the hook fun
 
 For users who have manually installed Casual outside of @code{package-install}@comma{} the following guidance is offered.
 
-A reference menu (@code{casual-editkit-main-tmenu}) illustrating nearly all the different menus offered by Casual EditKit is provided. This menu can be used “as-is” with your binding of preference. For consistency with other Casual Packages@comma{} the binding @kbd{C-o} is used in the example below. Other candidate bindings include @kbd{M-o} and @kbd{F10}. To facilitate default access to this menu@comma{} the configuration below sets this binding to be global which can be overridden per mode. This is @emph{not} mandatory and users are free to integrate Casual EditKit into their Emacs configuration however they see fit. 
+A reference menu (@code{casual-editkit-main-tmenu}) illustrating nearly all the different menus offered by Casual EditKit is provided. This menu can be used “as-is” with your binding of preference. For consistency with other Casual Packages@comma{} the binding @kbd{C-o} is used in the example below. Other candidate bindings include @kbd{M-o} and @kbd{F10}. To facilitate default access to this menu@comma{} the configuration below sets this binding to be global which can be overridden per mode. This is @emph{not} mandatory and users are free to integrate Casual EditKit into their Emacs configuration however they see fit.
 
 @lisp
 (keymap-global-set "C-o" #'casual-editkit-main-tmenu)
@@ -3235,7 +3235,7 @@ Casual EditKit has numerous menus to cover a variety of edit related commands.
 @menu
 * Register commands::
 * Edit commands::
-* Window management::
+* Window Management::
 * Search & Replace commands::
 * Spell Commands::
 * Open commands::
@@ -3266,7 +3266,7 @@ Register commands for saving and recalling text@comma{} point@comma{} window con
 @cindex Edit Commands
 @vindex casual-editkit-edit-tmenu
 
-The menu @code{casual-editkit-edit-tmenu} contains commands and sub-menus related to editing text. 
+The menu @code{casual-editkit-edit-tmenu} contains commands and sub-menus related to editing text.
 
 @image{images/casual-editkit-edit-screenshot,,,,png}
 
@@ -3276,7 +3276,7 @@ Depending on the buffer mode@comma{} text can be operated on with different gran
 @cindex Mark commands
 @vindex casual-editkit-mark-tmenu
 
-Text can be marked with different granularity with this menu. Note that the menu item “@kbd{d} Defun” is only supported for modes derived from @code{prog-mode}. 
+Text can be marked with different granularity with this menu. Note that the menu item “@kbd{d} Defun” is only supported for modes derived from @code{prog-mode}.
 
 @image{images/casual-editkit-mark-screenshot,,,,png}
 
@@ -3315,7 +3315,7 @@ Similar menus for moving a sentence (@code{casual-editkit-move-sentence-tmenu}) 
 @subsubheading Transpose› (casual-editkit-transpose-tmenu)
 @cindex Transpose commands
 @vindex casual-editkit-transpose-tmenu
-Text can be transposed with different granularity with this menu. 
+Text can be transposed with different granularity with this menu.
 
 @image{images/casual-editkit-transpose-screenshot,,,,png}
 
@@ -3352,24 +3352,46 @@ Commands to reformat text such as filling@comma{} centering@comma{} and repunctu
 @cindex Rectangle commands
 @vindex casual-editkit-rectangle-tmenu
 
-This menu offers all the rectangle commands. It is packaged as a sub-menu of @code{casual-editkit-edit-tmenu}. 
+This menu offers all the rectangle commands. It is packaged as a sub-menu of @code{casual-editkit-edit-tmenu}.
 
 @image{images/casual-editkit-rectangle-screenshot,,,,png}
 
 Users wishing more direct access to this menu can bind @code{casual-editkit-rectangle-tmenu} as shown in the @ref{EditKit Install, , install section}.
 
-@node Window management
-@subsubsection Window management
+@node Window Management
+@subsubsection Window Management
 
-@cindex Window management
+@cindex Window Management
 @vindex casual-editkit-windows-tmenu
 The menu @code{casual-editkit-windows-tmenu} provides support for different Emacs window management commands. Note that in Emacs@comma{} a window (@ref{Basic Windows,,,elisp,}) is defined differently than its usage in contemporary graphical user interfaces.
 
 @image{images/casual-editkit-window-screenshot,,,,png}
 
-Note that the section “Transpose” is only available if the package @uref{https://melpa.org/#/transpose-frame, transpose-frame} is installed.
-
 Users wishing more direct access to this menu can bind @code{casual-editkit-windows-tmenu} as shown in the @ref{EditKit Install, , install section}.
+
+This menu is context sensitive in interrogating the layout of windows in a frame with respect to the current window. Only valid menu commands will be displayed given the context.
+
+If Casual v3.1+ is installed on GNU Emacs 31.1+@comma{} support for changing window layouts is provided in the @strong{Layout} section (@ref{Changing Window Layouts,elisp#Changing Window Layouts,,elisp,}). As of Casual v3.1@comma{} the ``(t) Transpose'' menu item uses the built-in @code{window-layout-transpose} command and obsoletes usage of the 3rd party @uref{https://melpa.org/#/transpose-frame, transpose-frame} package.
+
+The organization of the menu divided into the following sections:
+
+@table @asis
+@item Focus
+Window focus commands.
+@item Swap
+Swap window commands.
+@item Split
+Window split commands.
+@item Layout
+Window layout commands (only Emacs 31.1+)
+@item Horizontal
+Resize window horizontally.
+@item Vertical
+Resize window vertically.
+@item Delete
+Delete window commands.
+@end table
+
 
 
 @subsubheading Window Deletion
@@ -3480,7 +3502,7 @@ This menu can be modified (@ref{Modifying Existing Transients,,,transient,}) to 
 
 @cindex Macro commands
 @vindex casual-editkit-macro-tmenu
-Commands for managing macros are provided for by the menu @code{casual-editkit-macro-tmenu}. Note that macro creation commands are @emph{not} supported as they are tightly-bound to keybindings. 
+Commands for managing macros are provided for by the menu @code{casual-editkit-macro-tmenu}. Note that macro creation commands are @emph{not} supported as they are tightly-bound to keybindings.
 
 @image{images/casual-editkit-macro-screenshot,,,,png}
 
