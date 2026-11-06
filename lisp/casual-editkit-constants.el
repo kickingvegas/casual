@@ -41,8 +41,8 @@
 
     (:other-window . '("»" "Other"))
     (:delete-other-windows . '("❏" "Delete other"))
-    (:split-window-below . '("━" "Below"))
-    (:split-window-horizontally . '("┃" "Right"))
+    (:split-window-below . '("↓" "Below"))
+    (:split-window-horizontally . '("→" "Right"))
     (:enlarge . '("+" "Enlarge"))
     (:shrink . '("−" "Shrink"))
     (:horizontal . '("↔︎" "Horizontal"))

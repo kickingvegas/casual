@@ -41,7 +41,7 @@ Users who want a more granular install of Casual modules can invoke the hook fun
 
 For users who have manually installed Casual outside of ~package-install~, the following guidance is offered.
 
-A reference menu (~casual-editkit-main-tmenu~) illustrating nearly all the different menus offered by Casual EditKit is provided. This menu can be used “as-is” with your binding of preference. For consistency with other Casual Packages, the binding {{{kbd(C-o)}}} is used in the example below. Other candidate bindings include {{{kbd(M-o)}}} and {{{kbd(F10)}}}. To facilitate default access to this menu, the configuration below sets this binding to be global which can be overridden per mode. This is /not/ mandatory and users are free to integrate Casual EditKit into their Emacs configuration however they see fit. 
+A reference menu (~casual-editkit-main-tmenu~) illustrating nearly all the different menus offered by Casual EditKit is provided. This menu can be used “as-is” with your binding of preference. For consistency with other Casual Packages, the binding {{{kbd(C-o)}}} is used in the example below. Other candidate bindings include {{{kbd(M-o)}}} and {{{kbd(F10)}}}. To facilitate default access to this menu, the configuration below sets this binding to be global which can be overridden per mode. This is /not/ mandatory and users are free to integrate Casual EditKit into their Emacs configuration however they see fit.
 
 #+begin_src elisp :lexical no
   (keymap-global-set "C-o" #'casual-editkit-main-tmenu)
@@ -95,7 +95,7 @@ Register commands for saving and recalling text, point, window configuration, an
 #+CINDEX: Edit Commands
 #+VINDEX: casual-editkit-edit-tmenu
 
-The menu ~casual-editkit-edit-tmenu~ contains commands and sub-menus related to editing text. 
+The menu ~casual-editkit-edit-tmenu~ contains commands and sub-menus related to editing text.
 
 [[file:images/casual-editkit-edit-screenshot.png]]
 
@@ -105,7 +105,7 @@ Depending on the buffer mode, text can be operated on with different granularity
 #+CINDEX: Mark commands
 #+VINDEX: casual-editkit-mark-tmenu
 
-Text can be marked with different granularity with this menu. Note that the menu item “{{{kbd(d)}}} Defun” is only supported for modes derived from ~prog-mode~. 
+Text can be marked with different granularity with this menu. Note that the menu item “{{{kbd(d)}}} Defun” is only supported for modes derived from ~prog-mode~.
 
 [[file:images/casual-editkit-mark-screenshot.png]]
 
@@ -144,7 +144,7 @@ Similar menus for moving a sentence (~casual-editkit-move-sentence-tmenu~) and b
 #+TEXINFO: @subsubheading Transpose› (casual-editkit-transpose-tmenu)
 #+CINDEX: Transpose commands
 #+VINDEX: casual-editkit-transpose-tmenu
-Text can be transposed with different granularity with this menu. 
+Text can be transposed with different granularity with this menu.
 
 [[file:images/casual-editkit-transpose-screenshot.png]]
 
@@ -181,23 +181,36 @@ Commands to reformat text such as filling, centering, and repunctuating sentence
 #+CINDEX: Rectangle commands
 #+VINDEX: casual-editkit-rectangle-tmenu
 
-This menu offers all the rectangle commands. It is packaged as a sub-menu of ~casual-editkit-edit-tmenu~. 
+This menu offers all the rectangle commands. It is packaged as a sub-menu of ~casual-editkit-edit-tmenu~.
 
 [[file:images/casual-editkit-rectangle-screenshot.png]]
 
 Users wishing more direct access to this menu can bind ~casual-editkit-rectangle-tmenu~ as shown in the [[#editkit-install][install section]].
 
 
-*** Window management
-#+CINDEX: Window management
+*** Window Management
+#+CINDEX: Window Management
 #+VINDEX: casual-editkit-windows-tmenu
 The menu ~casual-editkit-windows-tmenu~ provides support for different Emacs window management commands. Note that in Emacs, a window ([[info:elisp#Basic Windows]]) is defined differently than its usage in contemporary graphical user interfaces.
 
 [[file:images/casual-editkit-window-screenshot.png]]
 
-Note that the section “Transpose” is only available if the package [[https://melpa.org/#/transpose-frame][transpose-frame]] is installed.
-
 Users wishing more direct access to this menu can bind ~casual-editkit-windows-tmenu~ as shown in the [[#editkit-install][install section]].
+
+This menu is context sensitive in interrogating the layout of windows in a frame with respect to the current window. Only valid menu commands will be displayed given the context.
+
+If Casual v3.1+ is installed on GNU Emacs 31.1+, support for changing window layouts is provided in the *Layout* section ([[info:elisp#Changing Window Layouts][elisp#Changing Window Layouts]]). As of Casual v3.1, the "(t) Transpose" menu item uses the built-in ~window-layout-transpose~ command and obsoletes usage of the 3rd party [[https://melpa.org/#/transpose-frame][transpose-frame]] package.
+
+The organization of the menu divided into the following sections:
+
+- Focus :: Window focus commands.
+- Swap :: Swap window commands.
+- Split :: Window split commands.
+- Layout :: Window layout commands (only Emacs 31.1+)
+- Horizontal :: Resize window horizontally.
+- Vertical :: Resize window vertically.
+- Delete :: Delete window commands.
+
 
 
 #+TEXINFO: @subsubheading Window Deletion
@@ -290,7 +303,7 @@ This menu can be modified ([[info:transient#Modifying Existing Transients]]) to 
 *** Macro
 #+CINDEX: Macro commands
 #+VINDEX: casual-editkit-macro-tmenu
-Commands for managing macros are provided for by the menu ~casual-editkit-macro-tmenu~. Note that macro creation commands are /not/ supported as they are tightly-bound to keybindings. 
+Commands for managing macros are provided for by the menu ~casual-editkit-macro-tmenu~. Note that macro creation commands are /not/ supported as they are tightly-bound to keybindings.
 
 [[file:images/casual-editkit-macro-screenshot.png]]
 
