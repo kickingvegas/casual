@@ -583,36 +583,42 @@
                                         '(lambda () (random 5000)))))
     (casualt-editkit-breakdown tmpfile)))
 
-;; (ert-deftest test-casual-editkit-registers-tmenu ()
-;;   (let ((tmpfile "casual-editkit-registers-tmenu.txt"))
-;;     (casualt-editkit-setup tmpfile)
-;;     (cl-letf ((casualt-mock #'point-to-register)
-;;               (casualt-mock #'window-configuration-to-register)
-;;               (casualt-mock #'kmacro-to-register)
-;;               (casualt-mock #'jump-to-register)
-;;               (casualt-mock #'copy-to-register)
-;;               (casualt-mock #'copy-rectangle-to-register)
-;;               (casualt-mock #'append-to-register)
-;;               (casualt-mock #'prepend-to-register)
-;;               (casualt-mock #'insert-register))
+(ert-deftest test-casual-editkit-registers-tmenu ()
+  (let ((tmpfile "casual-editkit-registers-tmenu.txt"))
+    (unwind-protect
+        (cl-letf ((casualt-mock #'point-to-register)
+                  (casualt-mock #'window-configuration-to-register)
+                  (casualt-mock #'frameset-to-register)
+                  (casualt-mock #'kmacro-to-register)
+                  (casualt-mock #'jump-to-register)
+                  (casualt-mock #'copy-to-register)
+                  (casualt-mock #'copy-rectangle-to-register)
+                  (casualt-mock #'append-to-register)
+                  (casualt-mock #'prepend-to-register)
+                  (casualt-mock #'insert-register))
 
-;;       (let ((test-vectors
-;;              '(
-;;                (:binding "p" :command point-to-register)
-;;                (:binding "w" :command window-configuration-to-register)
-;;                (:binding "m" :command kmacro-to-register)
-;;                (:binding "j" :command jump-to-register)
-;;                (:binding "c" :command copy-to-register)
-;;                (:binding "r" :command copy-rectangle-to-register)
-;;                (:binding "a" :command append-to-register)
-;;                (:binding "P" :command prepend-to-register)
-;;                (:binding "i" :command insert-register))))
+          (casualt-editkit-setup tmpfile)
+          (casualt-mock-active-region)
 
-;;         (casualt-mock-active-region)
-;;         (casualt-suffix-testcase-runner test-vectors
-;;                                         #'casual-editkit-registers-tmenu
-;;                                         '(lambda () (random 5000)))))
-;;     (casualt-editkit-breakdown tmpfile)))
+          (let ((test-vectors
+                 '(
+                   (:binding "p1" :command point-to-register)
+                   (:binding "w1" :command window-configuration-to-register)
+                   (:binding "f1" :command frameset-to-register)
+                   ;; (:binding "m1" :command kmacro-to-register)
+                   (:binding "j1" :command jump-to-register)
+                   (:binding "c1" :command copy-to-register)
+                   (:binding "r1" :command copy-rectangle-to-register)
+                   (:binding "a1" :command append-to-register)
+                   (:binding "P1" :command prepend-to-register)
+                   (:binding "i1" :command insert-register))))
+
+
+            (casualt-suffix-testcase-runner test-vectors
+                                            #'casual-editkit-registers-tmenu
+                                            '(lambda () (random 5000)))))
+      (save-buffer)
+      (casualt-editkit-breakdown tmpfile))))
 
 
 (ert-deftest test-casual-editkit-rectangle-tmenu ()
