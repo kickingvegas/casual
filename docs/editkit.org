@@ -86,7 +86,7 @@ Casual EditKit has numerous menus to cover a variety of edit related commands.
 
 Support for register commands ([[info:emacs#Registers]]) is provided by the menu ~casual-editkit-registers-tmenu~. It is available via the menu item “{{{kbd(r)}}} Registers›” in the navigation row at the bottom of ~casual-editkit-main-tmenu~.
 
-Register commands for saving and recalling text, point, window configuration, and keyboard macros are provided by this menu.
+Register commands for saving and recalling text, point, window configuration, frameset, and keyboard macros are provided by this menu.
 
 [[file:images/casual-editkit-registers-screenshot.png]]
 

@@ -733,7 +733,9 @@ Commands pertaining to register operations can be accessed here."
    ["Store"
     ("p" "Point…" point-to-register)
     ("w" "Window Configuration…" window-configuration-to-register)
-    ("m" "Keyboard Macro…" kmacro-to-register)]
+    ("m" "Keyboard Macro…" kmacro-to-register
+     :inapt-if-not (lambda () (and (not defining-kbd-macro) last-kbd-macro)))
+    ("f" "Frameset…" frameset-to-register)]
 
    ["Copy Text"
     :inapt-if-not use-region-p
