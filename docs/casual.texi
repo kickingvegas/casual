@@ -480,7 +480,11 @@ GNU Emacs 30.1+ (@ref{Top,,,emacs,})
 
 @item
 Transient 0.9+ (@ref{Top,,,transient,})
+
+@item
+Org Mode 9.3+ (@ref{Top,,,org,})
 @end itemize
+
 
 Versions of GNU Emacs 30.1 or greater will satisfy the above requirements with its built-in version of Transient.
 
