@@ -138,6 +138,9 @@ Casual requires the following software to be installed as baseline:
 
 - Transient 0.9+ ([[info:transient#Top]])
 
+- Org Mode 9.3+ ([[info:org#Top]])
+
+
 Versions of GNU Emacs 30.1 or greater will satisfy the above requirements with its built-in version of Transient.
 
 Certain Casual modules require more installed software:
