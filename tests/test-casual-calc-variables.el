@@ -33,6 +33,7 @@
   (let ((test-vectors '(("s" . casual-calc--store)
                         ("r" . casual-calc--recall)
                         ("c" . casual-calc--unstore)
+                        ("l" . casual-calc--let)
                         ("e" . casual-calc--edit-variable)
                         ("o" . casual-calc--copy-variable)
                         ("x" . casual-calc--store-exchange)
