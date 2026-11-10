@@ -3881,9 +3881,12 @@ Miscellaneous commands.
 @item URL
 Commands associated with the current web page.
 
-@item EWW Bookmarks
-Commands associated with EWW bookmarks.
+@item Bookmarks
+Commands associated with Emacs bookmarks.
+
+Note that support for EWW bookmarks by Casual EWW is deprecated as web pages rendered in EWW can be saved as a regular Emacs bookmark.
 @end table
+
 
 @subsubheading EWW Settings
 @vindex casual-eww-settings-tmenu
@@ -3901,14 +3904,6 @@ The menu @code{casual-eww-display-tmenu} provides commands to toggle different d
 @image{images/casual-eww-display-screenshot,,,,png}
 
 
-@subsubheading EWW Bookmarks
-@vindex casual-eww-bookmarks-tmenu
-
-The menu @code{casual-eww-bookmarks-tmenu} provides commands for managing the EWW bookmark list.
-
-@image{images/casual-eww-bookmarks-screenshot,,,,png}
-
-Note that the EWW bookmarks list has a very limited feature set.
 
 @subsubheading EWW Unicode Symbol Support
 
@@ -3917,6 +3912,16 @@ By enabling “@kbd{u} Use Unicode Symbols” from the Settings menu@comma{} Cas
 @image{images/casual-eww-unicode-screenshot,,,,png}
 
 For more info on using Unicode symbols@comma{} please refer to @ref{UX Conventions, , UX Conventions}.
+
+
+@subsubheading EWW Bookmarks (Deprecated)
+@vindex casual-eww-bookmarks-tmenu
+
+The menu @code{casual-eww-bookmarks-tmenu} provides commands for managing the EWW bookmark list. Note that support for EWW bookmarks by Casual EWW is deprecated.
+
+@image{images/casual-eww-bookmarks-screenshot,,,,png}
+
+Note that the EWW bookmarks list has a very limited feature set.
 
 @node Help
 @section Help

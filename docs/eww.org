@@ -97,19 +97,22 @@ In an EWW window, invoke ~casual-eww-tmenu~ as shown below.
 The following sections are offered in the menu:
 
 - History :: Commands for historical navigation.
-  
+
 - Document :: Commands for document navigation (~<link rel="">~) provided the HTML pages support it.
   HTML generated from Texinfo ([[info:texinfo#Top]]) supports these commands.
-  
+
 - Navigate :: Commands to navigate within a page.
-  
+
 - Link :: Commands to navigate links within a page.
-  
+
 - Misc :: Miscellaneous commands.
-  
+
 - URL :: Commands associated with the current web page.
-  
-- EWW Bookmarks :: Commands associated with EWW bookmarks.
+
+- Bookmarks :: Commands associated with Emacs bookmarks.
+
+  Note that support for EWW bookmarks by Casual EWW is deprecated as web pages rendered in EWW can be saved as a regular Emacs bookmark.
+
 
 #+TEXINFO: @subsubheading EWW Settings
 #+VINDEX: casual-eww-settings-tmenu
@@ -127,14 +130,6 @@ The menu ~casual-eww-display-tmenu~ provides commands to toggle different displa
 [[file:images/casual-eww-display-screenshot.png]]
 
 
-#+TEXINFO: @subsubheading EWW Bookmarks
-#+VINDEX: casual-eww-bookmarks-tmenu
-
-The menu ~casual-eww-bookmarks-tmenu~ provides commands for managing the EWW bookmark list.
-
-[[file:images/casual-eww-bookmarks-screenshot.png]]
-
-Note that the EWW bookmarks list has a very limited feature set.
 
 #+TEXINFO: @subsubheading EWW Unicode Symbol Support
 
@@ -143,6 +138,17 @@ By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casua
 [[file:images/casual-eww-unicode-screenshot.png]]
 
 For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
+
+
+#+TEXINFO: @subsubheading EWW Bookmarks (Deprecated)
+#+VINDEX: casual-eww-bookmarks-tmenu
+
+The menu ~casual-eww-bookmarks-tmenu~ provides commands for managing the EWW bookmark list. Note that support for EWW bookmarks by Casual EWW is deprecated.
+
+[[file:images/casual-eww-bookmarks-screenshot.png]]
+
+Note that the EWW bookmarks list has a very limited feature set.
+
 
 # Local Variables:
 # burnish-backend: kvtexinfo
