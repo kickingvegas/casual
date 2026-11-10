@@ -3347,7 +3347,9 @@ Sorting operations on different sections of text are supported@comma{} as well a
 @subsubheading Reformat› (casual-editkit-reformat-tmenu)
 @cindex Reformat commands
 @vindex casual-editkit-reformat-tmenu
-Commands to reformat text such as filling@comma{} centering@comma{} and repunctuating sentences are provided here. Press @code{?} or @code{C-h} to get help for a specific command.
+Commands to reformat text are provided here. Press @code{?} or @code{C-h} to get help for a specific command.
+
+This menu is context sensitive to region selection: commands dependent on a region being selected will only be displayed if a region is selected.
 
 @image{images/casual-editkit-reformat-screenshot,,,,png}
 

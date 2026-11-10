@@ -172,7 +172,9 @@ Sorting operations on different sections of text are supported, as well as suppo
 #+TEXINFO: @subsubheading Reformat› (casual-editkit-reformat-tmenu)
 #+CINDEX: Reformat commands
 #+VINDEX: casual-editkit-reformat-tmenu
-Commands to reformat text such as filling, centering, and repunctuating sentences are provided here. Press ~?~ or ~C-h~ to get help for a specific command.
+Commands to reformat text are provided here. Press ~?~ or ~C-h~ to get help for a specific command.
+
+This menu is context sensitive to region selection: commands dependent on a region being selected will only be displayed if a region is selected.
 
 [[file:images/casual-editkit-reformat-screenshot.png]]
 

@@ -849,32 +849,38 @@ Commands pertaining to macro operations can be accessed here."
 Commands pertaining to reformat operations such as refill can be
 accessed here."
 
-
   ["Reformat"
-   ["Fill"
+   ["Paragraph"
     :pad-keys t
-    ("p" "Paragraph" fill-paragraph)
-    ("r" "Region" fill-region
-     :inapt-if-not use-region-p)
-    ("P" "Region as Paragraph" fill-region-as-paragraph
-     :inapt-if-not use-region-p)
-    ("M-p" "Individual Paragraphs" fill-individual-paragraphs
-     :inapt-if-not use-region-p)
-    ("n" "Non-Uniform Paragraphs" fill-nonuniform-paragraphs
-     :inapt-if-not use-region-p)]
+    ("p" "Fill" fill-paragraph)
+    ("s" "Fill ↵" fill-paragraph-semlf
+     :if (lambda () (fboundp 'fill-paragraph-semlf)))
+    ("u" "Unfill" unfill-paragraph
+     :if (lambda () (fboundp 'unfill-paragraph)))]
+
+   ["Region"
+    :pad-keys t
+    :if use-region-p
+    ("r" "Region" fill-region)
+    ("P" "As Paragraph" fill-region-as-paragraph)
+    ("S" "As Paragraph ↵" fill-region-as-paragraph-semlf
+     :if (lambda () (fboundp 'fill-region-as-paragraph-semlf)))
+    ("i" "Individual Paragraphs" fill-individual-paragraphs)
+    ("n" "Non-Uniform Paragraphs" fill-nonuniform-paragraphs)]
 
    ["Center"
     ("C-l" "Line" center-line)
     ("C-r" "Region" center-region
-     :inapt-if-not use-region-p)
+     :if use-region-p)
     ("C-p" "Paragraph" center-paragraph)]
 
    ["Misc"
     ("R" "Repunctuate" repunctuate-sentences)
     ("u" "Untabify" untabify
-     :inapt-if-not use-region-p)]]
+     :if use-region-p)]]
 
   ["Configure"
+   :class transient-row
    ("a" "Auto-fill Mode" auto-fill-mode
     :description (lambda ()
                    (casual-lib-checkbox-label auto-fill-function "Auto-fill Mode")))
