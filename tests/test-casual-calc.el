@@ -1,6 +1,6 @@
 ;;; test-casual-calc.el --- Tests for Casual Calc  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -66,9 +66,9 @@
                         ("*" . casual-calc--times)
                         ("/" . casual-calc--divide)
                         ("M" . casual-calc--mod)
-                        ("m" . casual-calc-modes-tmenu)
-                        ("S" . casual-calc-stack-display-tmenu)
-                        ("ô" . casual-calc-trail-tmenu)
+                        (",m" . casual-calc-modes-tmenu)
+                        (",s" . casual-calc-stack-display-tmenu)
+                        (",t" . casual-calc-trail-tmenu)
                         ("o" . casual-calc-rounding-tmenu)
                         ("c" . casual-calc-conversions-tmenu)
                         ("T" . casual-calc-time-tmenu)
@@ -81,9 +81,11 @@
                         ("u" . casual-calc-units-tmenu)
                         ("f" . casual-calc-financial-tmenu)
                         ("g" . casual-calc-plot-tmenu)
-                        ("s" . casual-calc--stack-swap)
-                        ("r" . casual-calc--stack-roll-all)
+                        ("S" . casual-calc--stack-swap)
+                        ("]" . casual-calc--stack-roll-all)
                         ("d" . casual-calc--stack-drop)
+                        ("s" . casual-calc--store)
+                        ("r" . casual-calc--recall)
                         ("C" . casual-calc--stack-clear)
                         ("L" . casual-calc--stack-last)
                         ("w" . casual-calc--copy-as-kill)

@@ -36,6 +36,7 @@
 
 ;;; Code:
 (require 'bookmark)
+(require 'casual-editkit-utils)
 (require 'casual-eww-settings)
 (require 'casual-eww-utils)
 
@@ -148,22 +149,23 @@ See Info node `(eww)Top' for more information on it."
     ("D" "Display›" casual-eww-display-tmenu)
     ("R" "Readable" eww-readable)]]
 
-  ["URL"
-   :pad-keys t
-   [("M-l" "Open…" eww)
+  [:pad-keys t
+   ["URL"
+    ("M-l" "Open…" eww)
     ("&" "Open External…" eww-browse-with-external-browser)]
-   [("c" "Copy" eww-copy-page-url)
+   [""
+    ("c" "Copy" eww-copy-page-url)
     ("A" "Copy Alt" eww-copy-alternate-url)]
-   [("d" "Download" eww-download)
+   [""
+    ("d" "Download" eww-download)
     ("g" "Reload" eww-reload
-     :description (lambda () (casual-eww-unicode-get :reload)))]]
+     :description (lambda () (casual-eww-unicode-get :reload)))]
 
-  ["EWW Bookmarks"
+   ["Bookmarks"
    :class transient-row
-   ("b" "Add" eww-add-bookmark)
-   ("B" "List" eww-list-bookmarks)
-   ("M-n" "Next" eww-next-bookmark :transient t)
-   ("M-p" "Previous" eww-previous-bookmark :transient t)]
+   ("b" "Add" bookmark-set-no-overwrite)
+   ("B" "List" casual-editkit-list-bookmarks-transient)]]
+
 
   [:class transient-row
    ("C-g" "Back" transient-quit-one

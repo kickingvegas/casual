@@ -65,3 +65,7 @@ All of the above is intended to ensure that Casual releases are of high quality.
 - Menus must not exceed 80 characters in length.
   - Rationale: Casual follows suit with current Elisp format to conform to the line width of an ADM-3A terminal.
 
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:

@@ -35,6 +35,7 @@ Casual requires the following software to be installed as baseline:
 
 - [[https://www.gnu.org/savannah-checkouts/gnu/emacs/emacs.html][GNU Emacs]] 30.1+
 - [[https://github.com/magit/transient][Transient]] 0.9+
+- [[https://orgmode.org/][Org Mode]] 9.3+
 
 Versions of GNU Emacs 30.1 or greater will satisfy the above requirements with its built-in version of Transient.
 
@@ -47,7 +48,7 @@ Certain Casual modules require more installed software:
 Casual has been verified with the following configuration:
 
 - GNU Emacs 31.1 (macOS 15.7, Ubuntu Linux 22.04.5 LTS)
-  
+
 * Install
 
 Casual versions 3.0 or greater offer a simplified installation with the command ~casual-init~. Run this via ~extended-execute-command~ (~M-x~) or add this to your Emacs initialization file.
@@ -79,16 +80,18 @@ Note that ~casual-init~ will only work if Casual is installed via ~package-insta
 
 Users of Casual version 2.x do /not/ have to change their existing setup. That said, migrating to ~casual-init~ offers significant convenience by requiring less configuration.
 
-For more detail on installation of different modules refer to the [[https://kickingvegas.github.io/casual/Install.html][Casual User Guide]]. 
+For more detail on installation of different modules refer to the [[https://kickingvegas.github.io/casual/Install.html][Casual User Guide]].
 
 
 * Development
-For users who wish to help contribute to Casual or personally customize it for their own usage, please read the [[docs/developer.org][developer documentation]].
+# For users who wish to help contribute to Casual or personally customize it for their own usage, please read the [[docs/developer.org][developer documentation]].
 
 * Sponsorship
 It costs money to make, enhance, and maintain Casual as ideologically free software. If you enjoy using Casual, please buy me a coffee to help support its development and maintenance.
 
 [[https://www.buymeacoffee.com/kickingvegas][file:docs/images/default-yellow.png]]
+
+Please star and share this project to others as well. Thank you!
 
 * See Also
 While the package ~casual~ focuses on user interfaces for built-in Emacs modes, there are other third party packages which receive the “Casual” treatment. Two such packages are:
@@ -98,9 +101,13 @@ While the package ~casual~ focuses on user interfaces for built-in Emacs modes, 
 - [[https://github.com/kickingvegas/casual-symbol-overlay][Casual Symbol Overlay]] (Elisp package: ~casual-symbol-overlay~)
   - An interface for the Symbol Overlay package.
 
-Users interested in getting all current and future Casual interfaces for both built-in and third party packages should install [[https://github.com/kickingvegas/casual-suite][Casual Suite]], which includes all of the above packages including ~casual~. 
+Users interested in getting all current and future Casual interfaces for both built-in and third party packages should install [[https://github.com/kickingvegas/casual-suite][Casual Suite]], which includes all of the above packages including ~casual~.
 
 * Acknowledgments
 A heartfelt thanks to all the contributors to [[https://github.com/magit/transient][Transient]], [[https://magit.vc][Magit]], [[https://orgmode.org][Org Mode]], and [[https://www.gnu.org/software/emacs/][Emacs]]. This package would not be possible without your efforts.
 
 #+HTML: <p align='center'>© 2024-2026 Charles Y. Choi</p>
+
+# Local Variables:
+# burnish-backend: html
+# End:

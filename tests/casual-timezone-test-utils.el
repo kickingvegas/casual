@@ -1,6 +1,6 @@
 ;;; casual-timezone-test-utils.el --- Casual Test Utils       -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Y. Choi
+;; Copyright (C) 2025-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -27,7 +27,6 @@
 (require 'casual-lib)
 (require 'kmacro)
 
-
 (defun casualt-timezone-setup ()
   "Casual timezone test setup."
   )
@@ -35,6 +34,11 @@
 (defun casualt-timezone-breakdown ()
   "Casual timezone test breakdown."
   )
+
+(defun casualt-in-dst-p ()
+  "Predicate if DST is in effect."
+  (let ((decoded (decode-time)))
+    (nth 7 decoded)))
 
 (provide 'casual-timezone-test-utils)
 ;;; casual-timezone-test-utils.el ends here

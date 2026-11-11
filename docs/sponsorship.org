@@ -3,3 +3,7 @@ It costs money to make, enhance, and maintain Casual as ideologically free softw
 [[file:images/default-yellow.png]]
 
 [[https://www.buymeacoffee.com/kickingvegas]]
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:

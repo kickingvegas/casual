@@ -1,6 +1,6 @@
 ;;; test-casual-timezone.el --- Casual Make Tests -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  Charles Y. Choi
+;; Copyright (C) 2025-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -34,12 +34,14 @@
     (casualt-timezone-setup)
     (cl-letf ((casualt-mock #'casual-timezone-local-time-to-remote)
               (casualt-mock #'casual-timezone-remote-time-to-local)
-              (casualt-mock #'casual-timezone-planner))
+              (casualt-mock #'casual-timezone-planner)
+              (casualt-mock #'casual-timezone-set-tz))
 
       (let ((test-vectors
              '((:binding "l" :command casual-timezone-local-time-to-remote)
                (:binding "r" :command casual-timezone-remote-time-to-local)
-               (:binding "z" :command casual-timezone-planner))))
+               (:binding "z" :command casual-timezone-planner)
+               (:binding "t" :command casual-timezone-set-tz))))
 
         (casualt-suffix-testcase-runner test-vectors
                                         #'casual-timezone-tmenu

@@ -92,3 +92,7 @@ The modes are determined by the customizable variable ~casual-ispell-comment-or-
 - ~conf-mode~
 
 [[file:images/casual-ispell-prog-screenshot.png]]
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:

@@ -5,7 +5,7 @@
 #+EMAIL: kickingvegas@gmail.com
 #+OPTIONS: ':t toc:t author:t email:t H:4 f:t
 #+LANGUAGE: en
-#+MACRO: version 3.0.2
+#+MACRO: version 3.0.3-rc.1
 #+MACRO: kbd (eval (org-texinfo-kbd-macro $1))
 #+TEXINFO_FILENAME: casual.info
 #+TEXINFO_CLASS: casual
@@ -137,6 +137,9 @@ Casual requires the following software to be installed as baseline:
 - GNU Emacs 30.1+ ([[info:emacs#Top]])
 
 - Transient 0.9+ ([[info:transient#Top]])
+
+- Org Mode 9.3+ ([[info:org#Top]])
+
 
 Versions of GNU Emacs 30.1 or greater will satisfy the above requirements with its built-in version of Transient.
 
@@ -421,3 +424,7 @@ Index for this user guide.
 :END:
 
 Variables, functions, commands, and menus referenced by this user guide.
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:

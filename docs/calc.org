@@ -23,7 +23,7 @@ Use the command ~customize-variable~ on ~casual-init-hook~ to control inclusion 
 
 Refer to the Simplified Install ([[#install][Install]]) section for more detail on customizing ~casual-init~.
 
-Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Calc, this can be controlled via the customizable variable ~casual-calc-add-extra-keybindings~ (default ~t~).
+# Casual makes opinionated decisions on the keybindings used in its menus. Such opinions are extended from said menus to the keymap(s) of a particular mode. For Calc, this can be controlled via the customizable variable ~casual-calc-add-extra-keybindings~ (default ~t~).
 
 #+TEXINFO: @subsubheading Hook Install
 
@@ -101,3 +101,7 @@ It helps to know some basics about Calc.
 - The top of the stack (1:) can be edited by pressing the ~`~ key.
 - Entering a single quote (') will prompt you for an algebraic entry.
 
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:

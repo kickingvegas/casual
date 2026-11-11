@@ -37,7 +37,8 @@ menu."
   ["Variable Operations"
    [("s" "Store (𝟣:)…" casual-calc--store :transient nil)
     ("r" "Recall…" casual-calc--recall :transient nil)
-    ("c" "Clear…" casual-calc--unstore :transient nil)]
+    ("c" "Clear…" casual-calc--unstore :transient nil)
+    ("l" "Let…" casual-calc--let :transient nil)]
    [("e" "Edit…" casual-calc--edit-variable :transient nil)
     ("o" "Copy to other variable…" casual-calc--copy-variable :transient t)
     ("x" "Exchange (𝟣:) to variable…" casual-calc--store-exchange :transient t)]

@@ -144,3 +144,7 @@ The table below shows the mapping between names used by Casual to commands provi
 | Unmark Image          | ~image-mode-unmark-file~            | Unmark the current file in the appropriate Dired buffer(s).                                      |
 | Copy filename         | ~image-mode-copy-file-name-as-kill~ | Push the currently visited file name onto the kill ring.                                         |
 
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:

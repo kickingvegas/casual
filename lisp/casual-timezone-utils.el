@@ -155,6 +155,30 @@ installed."
      (date-to-time ts)
      remote-tz))
 
+(defun casual-timezone-set-tz ()
+  "Set local “TZ” variable to a different timezone.
+
+Interactively set the “TZ” environment variable for the current Emacs
+session.
+
+Typically this value is set to the local timezone as defined in the
+Zoneinfo DB. However, setting this value to a different timezone will
+adjust all clock-related behavior in the Emacs session accordingly.
+
+A common use case for this command is when accessing an Emacs session
+remotely from a different timezone using emacsclient. Setting the
+timezone to match the remote location will adjust all clock behavior in
+the server-side Emacs session to match the local remote time.
+
+This command invokes `setenv' to set the “TZ” variable and will affect
+clock behavior globally for the Emacs session."
+  (interactive)
+  (let* ((tz (getenv "TZ"))
+         (remote-tz (completing-read-default
+                         "Timezone: "
+                         (casual-timezone-zone-info) nil nil tz)))
+    (setenv "TZ" remote-tz)))
+
 (defun casual-timezone-local-time-to-remote (&optional datestr remote-tz)
   "Convert local date string DATESTR to remote timezone REMOTE-TZ.
 

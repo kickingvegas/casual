@@ -118,3 +118,7 @@ Press ‘s’ and configure ~Man-switches~ to have the value "-a" to get all man
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Man will use Unicode symbols as appropriate in its menus.
 
 For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:

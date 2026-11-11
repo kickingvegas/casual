@@ -470,45 +470,76 @@ can be accessed here."
 Commands pertaining to window management operations can be accessed here."
 
   ["Casual Window"
-   :description (lambda () (format "Casual Window: %s" (buffer-name)))
+   :description (lambda () (format "Current Window: %s" (buffer-name)))
    :pad-keys t
    ["Focus"
+    :if-not (lambda () (one-window-p t))
     ("o" "»" other-window
      :description (lambda () (casual-editkit-unicode-get :other-window))
+
      :transient t)]
    [""
+    :if (lambda ()
+          (and
+           (not (one-window-p t))
+           (or (window-in-direction 'above)
+               (window-in-direction 'below))))
     ("p" "↑" windmove-up
      :description (lambda () (casual-editkit-unicode-get :point-up))
+     :if (lambda () (window-in-direction 'above))
      :transient nil)
     ("n" "↓" windmove-down
      :description (lambda () (casual-editkit-unicode-get :point-down))
+     :if (lambda () (window-in-direction 'below))
      :transient nil)]
    [""
+    :if (lambda ()
+          (and
+           (not (one-window-p t))
+           (or (window-in-direction 'left)
+               (window-in-direction 'right))))
     ("b" "←" windmove-left
      :description (lambda () (casual-editkit-unicode-get :point-left))
+     :if (lambda () (window-in-direction 'left))
      :transient nil)
     ("f" "→" windmove-right
      :description (lambda () (casual-editkit-unicode-get :point-right))
+     :if (lambda () (window-in-direction 'right))
      :transient nil)]
 
    ["Swap"
-    ("s" "⇄"
-     window-swap-states
-     :transient t
+    :if-not (lambda () (one-window-p t))
+    ("s" "⇄" window-swap-states
+     :transient nil
      :description (lambda () (casual-editkit-unicode-get :swap)))]
    [""
+    :if (lambda ()
+          (and
+           (not (one-window-p t))
+           (or (window-in-direction 'above)
+               (window-in-direction 'below))))
     ("M-p" "↑" windmove-swap-states-up
      :description (lambda () (casual-editkit-unicode-get :point-up))
+     :if (lambda () (window-in-direction 'above))
      :transient nil)
     ("M-n" "↓" windmove-swap-states-down
      :description (lambda () (casual-editkit-unicode-get :point-down))
+     :if (lambda () (window-in-direction 'below))
      :transient nil)]
    [""
+    :if (lambda ()
+          (and
+           (not (one-window-p t))
+           (or (window-in-direction 'left)
+               (window-in-direction 'right))))
+    :if-not (lambda () (one-window-p t))
     ("M-b" "←" windmove-swap-states-left
      :description (lambda () (casual-editkit-unicode-get :point-left))
+     :if (lambda () (window-in-direction 'left))
      :transient nil)
     ("M-f" "→" windmove-swap-states-right
      :description (lambda () (casual-editkit-unicode-get :point-right))
+     :if (lambda () (window-in-direction 'right))
      :transient nil)]
 
    ["Split"
@@ -520,22 +551,20 @@ Commands pertaining to window management operations can be accessed here."
      :description (lambda ()
                     (casual-editkit-unicode-get :split-window-horizontally)))]]
 
-  [["Delete"
-    :pad-keys t
-    ("1" "Other" delete-other-windows)
-    ("DEL" "Delete›" casual-editkit-windows-delete-tmenu)]
-
-   ["Resize ↕︎"
-    :description (lambda () (casual-editkit-unicode-get :vertical))
-    ("+" "Enlarge" enlarge-window
-     :description (lambda () (casual-editkit-unicode-get :enlarge))
-     :transient t)
-    ("-" "Shrink" shrink-window
-     :description (lambda () (casual-editkit-unicode-get :shrink))
-     :transient t)
-    ]
+  [:if-not (lambda () (one-window-p t))
+   ["Layout"
+    :if (lambda () (and (fboundp 'window-layout-transpose)
+                   (not (one-window-p t))))
+    ("t" "Transpose" window-layout-transpose)
+    ("F" "Flip›" casual-editkit-windows-flip-tmenu)
+    ("R" "Rotate›" casual-editkit-windows-rotate-tmenu)]
 
    ["Resize ↔︎"
+    :if (lambda ()
+          (and
+           (not (one-window-p t))
+           (or (window-in-direction 'left)
+               (window-in-direction 'right))))
     :description (lambda () (casual-editkit-unicode-get :horizontal))
     ("[" "Enlarge" enlarge-window-horizontally
      :description (lambda () (casual-editkit-unicode-get :enlarge))
@@ -544,11 +573,46 @@ Commands pertaining to window management operations can be accessed here."
      :description (lambda () (casual-editkit-unicode-get :shrink))
      :transient t)]
 
-   ["Transpose"
-    :if casual-editkit-package-transpose-frame-installed-p
-    ("t" "Transpose" casual-editkit-transpose-frame)]]
+   ["Resize ↕︎"
+    :if (lambda ()
+          (and
+           (not (one-window-p t))
+           (or (window-in-direction 'above)
+               (window-in-direction 'below))))
+    :description (lambda () (casual-editkit-unicode-get :vertical))
+    ("+" "Enlarge" enlarge-window
+     :description (lambda () (casual-editkit-unicode-get :enlarge))
+     :transient t)
+    ("-" "Shrink" shrink-window
+     :description (lambda () (casual-editkit-unicode-get :shrink))
+     :transient t)]
+
+   ;; ["Transpose"
+   ;;  :if casual-editkit-package-transpose-frame-installed-p
+   ;;  ("t" "Transpose" casual-editkit-transpose-frame)]
+
+   ["Delete"
+    :pad-keys t
+    ("1" "Other" delete-other-windows)
+    ("DEL" "Delete›" casual-editkit-windows-delete-tmenu)]]
 
   casual-editkit-navigation-group)
+
+;;;###autoload (autoload 'casual-editkit-windows-flip-tmenu "casual-editkit-utils" nil t)
+(transient-define-prefix casual-editkit-windows-flip-tmenu ()
+  "Menu for window layout flip commands."
+  ["Flip"
+   ("l" "Left-Right" window-layout-flip-leftright
+    :if (lambda () (or (window-in-direction 'left) (window-in-direction 'right))))
+   ("t" "Top-Down" window-layout-flip-topdown
+    :if (lambda () (or (window-in-direction 'above) (window-in-direction 'below))))])
+
+;;;###autoload (autoload 'casual-editkit-windows-rotate-tmenu "casual-editkit-utils" nil t)
+(transient-define-prefix casual-editkit-windows-rotate-tmenu ()
+  "Menu for window layout rotate commands."
+  ["Rotate"
+   ("c" "Clockwise" window-layout-rotate-clockwise)
+   ("a" "Counter-Clockwise" window-layout-rotate-anticlockwise)])
 
 ;;;###autoload (autoload 'casual-editkit-windows-delete-tmenu "casual-editkit-utils" nil t)
 (transient-define-prefix casual-editkit-windows-delete-tmenu ()
@@ -558,14 +622,18 @@ accessed here."
   ["Delete Window"
    :pad-keys t
    [("b" "To Left" windmove-delete-left
+     :inapt-if-not (lambda () (window-in-direction 'left))
      :description (lambda () (casual-editkit-unicode-get :window-left)))]
 
    [("p" "Above" windmove-delete-up
+     :inapt-if-not (lambda () (window-in-direction 'above))
      :description (lambda () (casual-editkit-unicode-get :window-above)))
     ("n" "Below" windmove-delete-down
+     :inapt-if-not (lambda () (window-in-direction 'below))
      :description (lambda () (casual-editkit-unicode-get :window-below)))]
 
    [("f" "To Right" windmove-delete-right
+     :inapt-if-not (lambda () (window-in-direction 'right))
      :description (lambda () (casual-editkit-unicode-get :window-right)))]]
 
   casual-editkit-navigation-group)
@@ -665,7 +733,9 @@ Commands pertaining to register operations can be accessed here."
    ["Store"
     ("p" "Point…" point-to-register)
     ("w" "Window Configuration…" window-configuration-to-register)
-    ("m" "Keyboard Macro…" kmacro-to-register)]
+    ("m" "Keyboard Macro…" kmacro-to-register
+     :inapt-if-not (lambda () (and (not defining-kbd-macro) last-kbd-macro)))
+    ("f" "Frameset…" frameset-to-register)]
 
    ["Copy Text"
     :inapt-if-not use-region-p
@@ -779,32 +849,38 @@ Commands pertaining to macro operations can be accessed here."
 Commands pertaining to reformat operations such as refill can be
 accessed here."
 
-
   ["Reformat"
-   ["Fill"
+   ["Paragraph"
     :pad-keys t
-    ("p" "Paragraph" fill-paragraph)
-    ("r" "Region" fill-region
-     :inapt-if-not use-region-p)
-    ("P" "Region as Paragraph" fill-region-as-paragraph
-     :inapt-if-not use-region-p)
-    ("M-p" "Individual Paragraphs" fill-individual-paragraphs
-     :inapt-if-not use-region-p)
-    ("n" "Non-Uniform Paragraphs" fill-nonuniform-paragraphs
-     :inapt-if-not use-region-p)]
+    ("p" "Fill" fill-paragraph)
+    ("s" "Fill ↵" fill-paragraph-semlf
+     :if (lambda () (fboundp 'fill-paragraph-semlf)))
+    ("u" "Unfill" unfill-paragraph
+     :if (lambda () (fboundp 'unfill-paragraph)))]
+
+   ["Region"
+    :pad-keys t
+    :if use-region-p
+    ("r" "Region" fill-region)
+    ("P" "As Paragraph" fill-region-as-paragraph)
+    ("S" "As Paragraph ↵" fill-region-as-paragraph-semlf
+     :if (lambda () (fboundp 'fill-region-as-paragraph-semlf)))
+    ("i" "Individual Paragraphs" fill-individual-paragraphs)
+    ("n" "Non-Uniform Paragraphs" fill-nonuniform-paragraphs)]
 
    ["Center"
     ("C-l" "Line" center-line)
     ("C-r" "Region" center-region
-     :inapt-if-not use-region-p)
+     :if use-region-p)
     ("C-p" "Paragraph" center-paragraph)]
 
    ["Misc"
     ("R" "Repunctuate" repunctuate-sentences)
     ("u" "Untabify" untabify
-     :inapt-if-not use-region-p)]]
+     :if use-region-p)]]
 
   ["Configure"
+   :class transient-row
    ("a" "Auto-fill Mode" auto-fill-mode
     :description (lambda ()
                    (casual-lib-checkbox-label auto-fill-function "Auto-fill Mode")))

@@ -92,3 +92,7 @@ The menu ~casual-css-settings-tmenu~ provides access to different ~css-mode~ set
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual CSS will use Unicode symbols as appropriate in its menus.
 
 For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:

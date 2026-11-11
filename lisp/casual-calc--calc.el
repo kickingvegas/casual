@@ -366,6 +366,24 @@ using `casual-calc--store'.
   (interactive)
   (call-interactively #'calc-unstore))
 
+(defun casual-calc--let ()
+  "Evaluate a formula with a temporary assignment of a variable.
+\nStack Arguments:
+2: formula
+1: n
+
+This command will:
+1. Temporarily assign the value ‘n’ to a variable that is set via prompt.
+2. Evaluate ‘formula’ with the temporary value.
+
+This function is a wrapper over `calc-let'.
+
+* References
+- info node `(calc) Let Command'
+- `calc-let'"
+  (interactive)
+  (call-interactively #'calc-let))
+
 (defun casual-calc--edit-variable ()
   "Edits the stored value of a variable.
 \nThe value of the stored variable is modified without putting

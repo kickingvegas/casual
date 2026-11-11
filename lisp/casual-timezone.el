@@ -33,9 +33,10 @@
   "Main menu for Casual Timezone."
 
   ["Casual Timezone"
-   ("l" "Local to Remote…" casual-timezone-local-time-to-remote)
-   ("r" "Remote to Local…" casual-timezone-remote-time-to-local)
-   ("z" "Planner…" casual-timezone-planner)]
+   [("l" "Local to Remote…" casual-timezone-local-time-to-remote)
+    ("r" "Remote to Local…" casual-timezone-remote-time-to-local)]
+   [("z" "Planner…" casual-timezone-planner)
+    ("t" "Set TZ…" casual-timezone-set-tz)]]
 
   [:class transient-row
    (casual-lib-quit-one)

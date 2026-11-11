@@ -395,138 +395,105 @@
 
 
 (ert-deftest test-casual-editkit-windows-tmenu ()
-  (let ()
-    (split-window-horizontally)
-    (split-window-vertically)
-    (cl-letf ((casualt-mock #'other-window)
-              (casualt-mock #'casual-editkit-windows-delete-tmenu)
-              (casualt-mock #'windmove-down)
-              (casualt-mock #'windmove-up)
-              (casualt-mock #'windmove-right)
-              (casualt-mock #'windmove-left)
-              (casualt-mock #'window-swap-states)
-              (casualt-mock #'window-swap-states-left)
-              (casualt-mock #'window-swap-states-right)
-              (casualt-mock #'window-swap-states-up)
-              (casualt-mock #'window-swap-states-down)
+  (let ((tmpfile "casual-editkit-windows-tmenu.txt"))
+    (unwind-protect
+        (save-window-excursion
+          (casualt-editkit-setup tmpfile)
+          (delete-other-windows)
+          (split-window-below)
+          (other-window 1)
+          (split-window-below)
+          (split-window-right)
+          (other-window 1)
+          (split-window-right)
 
-              (casualt-mock #'split-window-below)
-              (casualt-mock #'split-window-horizontally)
-              (casualt-mock #'casual-editkit-windows-delete-tmenu)
-              (casualt-mock #'enlarge-window)
-              (casualt-mock #'shrink-window)
-              (casualt-mock #'enlarge-window-horizontally)
-              (casualt-mock #'shrink-window-horizontally)
-              (casualt-mock #'delete-other-windows))
+          (cl-letf ((casualt-mock #'other-window)
+                    (casualt-mock #'casual-editkit-windows-delete-tmenu)
+                    (casualt-mock #'windmove-down)
+                    (casualt-mock #'windmove-up)
+                    (casualt-mock #'windmove-right)
+                    (casualt-mock #'windmove-left)
+                    (casualt-mock #'window-swap-states)
+                    (casualt-mock #'window-swap-states-left)
+                    (casualt-mock #'window-swap-states-right)
+                    (casualt-mock #'window-swap-states-up)
+                    (casualt-mock #'window-swap-states-down)
+                    (casualt-mock #'split-window-below)
+                    (casualt-mock #'split-window-horizontally)
+                    (casualt-mock #'casual-editkit-windows-delete-tmenu)
+                    (casualt-mock #'enlarge-window)
+                    (casualt-mock #'shrink-window)
+                    (casualt-mock #'enlarge-window-horizontally)
+                    (casualt-mock #'shrink-window-horizontally)
+                    (casualt-mock #'delete-other-windows)
+                    (casualt-mock #'window-layout-transpose)
+                    (casualt-mock #'casual-editkit-windows-flip-tmenu)
+                    (casualt-mock #'casual-editkit-windows-rotate-tmenu))
 
-      (let ((test-vectors
-             '((:binding "o" :command other-window)
-               (:binding "n" :command windmove-down)
-               (:binding "p" :command windmove-up)
-               (:binding "f" :command windmove-right)
-               (:binding "b" :command windmove-left)
-               (:binding "s" :command window-swap-states)
-               (:binding "o" :command other-window)
-               ;;(:binding "M-b" :command window-swap-states-left)
-               ;;(:binding "M-f" :command window-swap-states-right)
-               ;;(:binding "M-p" :command window-swap-states-up)
-               ;;(:binding "M-n" :command window-swap-states-down)
+            (let ((test-vectors
+                   '((:binding "o" :command other-window)
+                     (:binding "n" :command windmove-down)
+                     (:binding "p" :command windmove-up)
+                     (:binding "f" :command windmove-right)
+                     (:binding "b" :command windmove-left)
+                     (:binding "s" :command window-swap-states)
+                     (:binding "o" :command other-window)
+                     ;;(:binding "M-b" :command window-swap-states-left)
+                     ;;(:binding "M-f" :command window-swap-states-right)
+                     ;;(:binding "M-p" :command window-swap-states-up)
+                     ;;(:binding "M-n" :command window-swap-states-down)
 
-               (:binding "2" :command split-window-below)
-               (:binding "3" :command split-window-horizontally)
-               (:binding "DEL" :command casual-editkit-windows-delete-tmenu)
+                     (:binding "2" :command split-window-below)
+                     (:binding "3" :command split-window-horizontally)
+                     (:binding "DEL" :command casual-editkit-windows-delete-tmenu)
 
-               (:binding "+" :command enlarge-window)
-               (:binding "-" :command shrink-window)
+                     (:binding "+" :command enlarge-window)
+                     (:binding "-" :command shrink-window)
 
-               (:binding "[" :command enlarge-window-horizontally)
-               (:binding "]" :command shrink-window-horizontally)
+                     (:binding "t" :command window-layout-transpose)
+                     (:binding "F" :command casual-editkit-windows-flip-tmenu)
+                     (:binding "R" :command casual-editkit-windows-rotate-tmenu)
 
-               (:binding "1" :command delete-other-windows)
-               (:binding "RET" :command transient-quit-all))))
 
-        (casualt-suffix-testcase-runner test-vectors
-                                        #'casual-editkit-windows-tmenu
-                                        '(lambda () (random 5000)))))
+                     (:binding "[" :command enlarge-window-horizontally)
+                     (:binding "]" :command shrink-window-horizontally)
 
-    (delete-other-windows)
-    ;;(casualt-editkit-breakdown)
-    ))
+                     (:binding "1" :command delete-other-windows)
+                     (:binding "RET" :command transient-quit-all))))
 
-;; (ert-deftest test-casual-editkit-windows-tmenu ()
-;;   (let ((tmpfile "casual-editkit-windows-tmenu.txt"))
-;;     (casualt-editkit-setup tmpfile)
-;;     (cl-letf ((casualt-mock #'other-window)
-;;               (casualt-mock #'windmove-up)
-;;               (casualt-mock #'windmove-down)
-;;               (casualt-mock #'windmove-left)
-;;               (casualt-mock #'windmove-right)
+              (casualt-suffix-testcase-runner test-vectors
+                                              #'casual-editkit-windows-tmenu
+                                              '(lambda () (random 5000))))))
+      (casualt-editkit-breakdown tmpfile))))
 
-;;               (casualt-mock #'window-swap-states)
-;;               (casualt-mock #'windmove-swap-states-up)
-;;               (casualt-mock #'windmove-swap-states-down)
-;;               (casualt-mock #'windmove-swap-states-left)
-;;               (casualt-mock #'windmove-swap-states-right)
 
-;;               (casualt-mock #'delete-other-windows)
-;;               (casualt-mock #'split-window-below)
-;;               (casualt-mock #'split-window-horizontally)
-
-;;               (casualt-mock #'transpose-frame)
-
-;;               (casualt-mock #'enlarge-window)
-;;               (casualt-mock #'shrink-window)
-;;               (casualt-mock #'enlarge-window-horizontally)
-;;               (casualt-mock #'shrink-window-horizontally))
-
-;;       (let ((test-vectors
-;;              '((:binding "o" :command other-window)
-;;                (:binding "p" :command windmove-up)
-;;                (:binding "n" :command windmove-down)
-;;                (:binding "b" :command windmove-left)
-;;                (:binding "f" :command windmove-right)
-
-;;                (:binding "s" :command window-swap-states)
-;;                (:binding "M-p" :command windmove-swap-states-up)
-;;                (:binding "M-n" :command windmove-swap-states-down)
-;;                (:binding "M-b" :command windmove-swap-states-left)
-;;                (:binding "M-f" :command windmove-swap-states-right)
-
-;;                (:binding "1" :command delete-other-windows)
-;;                (:binding "2" :command split-window-below)
-;;                (:binding "3" :command split-window-horizontally)
-
-;;                (:binding "t" :command transpose-frame)
-;;                (:binding "d" :command casual-editkit-windows-delete-tmenu)
-
-;;                (:binding "+" :command enlarge-window)
-;;                (:binding "-" :command shrink-window)
-;;                (:binding ">" :command enlarge-window-horizontally)
-;;                (:binding "<" :command shrink-window-horizontally))))
-
-;;         (split-window-below)
-;;         (casualt-suffix-testcase-runner test-vectors
-;;                                         #'casual-editkit-windows-tmenu
-;;                                         '(lambda () (random 5000)))))
-;;     (casualt-editkit-breakdown tmpfile)))
 
 (ert-deftest test-casual-editkit-windows-delete-tmenu ()
   (let ((tmpfile "casual-editkit-windows-delete-tmenu.txt"))
-    (casualt-editkit-setup tmpfile)
-    (cl-letf ((casualt-mock #'windmove-delete-up)
-              (casualt-mock #'windmove-delete-down)
-              (casualt-mock #'windmove-delete-left)
-              (casualt-mock #'windmove-delete-right))
+    (unwind-protect
+        (save-window-excursion
+          (casualt-editkit-setup tmpfile)
+          (split-window-below)
+          (other-window 1)
+          (split-window-below)
+          (split-window-right)
+          (other-window 1)
+          (split-window-right)
 
-      (let ((test-vectors
-             '((:binding "p" :command windmove-delete-up)
-               (:binding "n" :command windmove-delete-down)
-               (:binding "b" :command windmove-delete-left)
-               (:binding "f" :command windmove-delete-right))))
+          (cl-letf ((casualt-mock #'windmove-delete-up)
+                    (casualt-mock #'windmove-delete-down)
+                    (casualt-mock #'windmove-delete-left)
+                    (casualt-mock #'windmove-delete-right))
 
-        (casualt-suffix-testcase-runner test-vectors
-                                        #'casual-editkit-windows-delete-tmenu
-                                        '(lambda () (random 5000)))))
+            (let ((test-vectors
+                   '((:binding "p" :command windmove-delete-up)
+                     (:binding "n" :command windmove-delete-down)
+                     (:binding "b" :command windmove-delete-left)
+                     (:binding "f" :command windmove-delete-right))))
+
+              (casualt-suffix-testcase-runner test-vectors
+                                              #'casual-editkit-windows-delete-tmenu
+                                              '(lambda () (random 5000)))))))
     (casualt-editkit-breakdown tmpfile)))
 
 (ert-deftest test-casual-editkit-bookmarks-tmenu ()
@@ -616,36 +583,42 @@
                                         '(lambda () (random 5000)))))
     (casualt-editkit-breakdown tmpfile)))
 
-;; (ert-deftest test-casual-editkit-registers-tmenu ()
-;;   (let ((tmpfile "casual-editkit-registers-tmenu.txt"))
-;;     (casualt-editkit-setup tmpfile)
-;;     (cl-letf ((casualt-mock #'point-to-register)
-;;               (casualt-mock #'window-configuration-to-register)
-;;               (casualt-mock #'kmacro-to-register)
-;;               (casualt-mock #'jump-to-register)
-;;               (casualt-mock #'copy-to-register)
-;;               (casualt-mock #'copy-rectangle-to-register)
-;;               (casualt-mock #'append-to-register)
-;;               (casualt-mock #'prepend-to-register)
-;;               (casualt-mock #'insert-register))
+(ert-deftest test-casual-editkit-registers-tmenu ()
+  (let ((tmpfile "casual-editkit-registers-tmenu.txt"))
+    (unwind-protect
+        (cl-letf ((casualt-mock #'point-to-register)
+                  (casualt-mock #'window-configuration-to-register)
+                  (casualt-mock #'frameset-to-register)
+                  (casualt-mock #'kmacro-to-register)
+                  (casualt-mock #'jump-to-register)
+                  (casualt-mock #'copy-to-register)
+                  (casualt-mock #'copy-rectangle-to-register)
+                  (casualt-mock #'append-to-register)
+                  (casualt-mock #'prepend-to-register)
+                  (casualt-mock #'insert-register))
 
-;;       (let ((test-vectors
-;;              '(
-;;                (:binding "p" :command point-to-register)
-;;                (:binding "w" :command window-configuration-to-register)
-;;                (:binding "m" :command kmacro-to-register)
-;;                (:binding "j" :command jump-to-register)
-;;                (:binding "c" :command copy-to-register)
-;;                (:binding "r" :command copy-rectangle-to-register)
-;;                (:binding "a" :command append-to-register)
-;;                (:binding "P" :command prepend-to-register)
-;;                (:binding "i" :command insert-register))))
+          (casualt-editkit-setup tmpfile)
+          (casualt-mock-active-region)
 
-;;         (casualt-mock-active-region)
-;;         (casualt-suffix-testcase-runner test-vectors
-;;                                         #'casual-editkit-registers-tmenu
-;;                                         '(lambda () (random 5000)))))
-;;     (casualt-editkit-breakdown tmpfile)))
+          (let ((test-vectors
+                 '(
+                   (:binding "p1" :command point-to-register)
+                   (:binding "w1" :command window-configuration-to-register)
+                   (:binding "f1" :command frameset-to-register)
+                   ;; (:binding "m1" :command kmacro-to-register)
+                   (:binding "j1" :command jump-to-register)
+                   (:binding "c1" :command copy-to-register)
+                   (:binding "r1" :command copy-rectangle-to-register)
+                   (:binding "a1" :command append-to-register)
+                   (:binding "P1" :command prepend-to-register)
+                   (:binding "i1" :command insert-register))))
+
+
+            (casualt-suffix-testcase-runner test-vectors
+                                            #'casual-editkit-registers-tmenu
+                                            '(lambda () (random 5000)))))
+      (save-buffer)
+      (casualt-editkit-breakdown tmpfile))))
 
 
 (ert-deftest test-casual-editkit-rectangle-tmenu ()
@@ -712,42 +685,47 @@
 
 (ert-deftest test-casual-editkit-reformat-tmenu ()
   (let ((tmpfile "casual-editkit-reformat-tmenu.txt"))
-    (casualt-editkit-setup tmpfile)
-    (cl-letf (((symbol-function #'use-region-p) (lambda () t))
-              (casualt-mock #'fill-paragraph)
-              (casualt-mock #'fill-region)
-              (casualt-mock #'fill-region-as-paragraph)
-              (casualt-mock #'fill-individual-paragraphs)
-              (casualt-mock #'fill-nonuniform-paragraphs)
-              (casualt-mock #'center-line)
-              (casualt-mock #'center-region)
-              (casualt-mock #'center-paragraph)
-              (casualt-mock #'repunctuate-sentences)
-              (casualt-mock #'untabify)
-              (casualt-mock #'auto-fill-mode)
-              (casualt-mock #'set-fill-column))
+    (unwind-protect
+        (cl-letf (((symbol-function #'use-region-p) (lambda () t))
+                  (casualt-mock #'fill-paragraph)
+                  (casualt-mock #'fill-paragraph-semlf)
+                  (casualt-mock #'fill-region)
+                  (casualt-mock #'fill-region-as-paragraph)
+                  (casualt-mock #'fill-region-as-paragraph-semlf)
+                  (casualt-mock #'fill-individual-paragraphs)
+                  (casualt-mock #'fill-nonuniform-paragraphs)
+                  (casualt-mock #'center-line)
+                  (casualt-mock #'center-region)
+                  (casualt-mock #'center-paragraph)
+                  (casualt-mock #'repunctuate-sentences)
+                  (casualt-mock #'casual-editkit--customize-sentence-end-double-space)
+                  ;;(casualt-mock #'untabify)
+                  (casualt-mock #'auto-fill-mode)
+                  (casualt-mock #'set-fill-column))
 
-      (let ((test-vectors
-             '((:binding "p" :command fill-paragraph)
-               (:binding "r" :command fill-region)
-               (:binding "P" :command fill-region-as-paragraph)
-               (:binding "M-p" :command fill-individual-paragraphs)
-               (:binding "n" :command fill-nonuniform-paragraphs)
-               (:binding "C-l" :command center-line)
-               (:binding "C-r" :command center-region)
-               (:binding "C-p" :command center-paragraph)
-               (:binding "R" :command repunctuate-sentences)
-               (:binding "u" :command untabify)
-               (:binding "a" :command auto-fill-mode)
-               (:binding "d" :command casual-editkit--customize-sentence-end-double-space)
-               (:binding "C" :command set-fill-column)
+          (casualt-editkit-setup tmpfile)
 
-               )))
-        (set-mark-command nil)
-        (casualt-suffix-testcase-runner test-vectors
-                                        #'casual-editkit-reformat-tmenu
-                                        '(lambda () (random 5000)))))
-    (casualt-editkit-breakdown tmpfile)))
+          (let ((test-vectors
+                 '((:binding "p" :command fill-paragraph)
+                   (:binding "s" :command fill-paragraph-semlf)
+                   (:binding "r" :command fill-region)
+                   (:binding "P" :command fill-region-as-paragraph)
+                   (:binding "S" :command fill-region-as-paragraph-semlf)
+                   (:binding "i" :command fill-individual-paragraphs)
+                   (:binding "n" :command fill-nonuniform-paragraphs)
+                   (:binding "C-l" :command center-line)
+                   (:binding "C-r" :command center-region)
+                   (:binding "C-p" :command center-paragraph)
+                   (:binding "R" :command repunctuate-sentences)
+                   ;; (:binding "u" :command untabify)
+                   (:binding "a" :command auto-fill-mode)
+                   (:binding "d" :command casual-editkit--customize-sentence-end-double-space)
+                   (:binding "C" :command set-fill-column))))
+            (set-mark-command nil)
+            (casualt-suffix-testcase-runner test-vectors
+                                            #'casual-editkit-reformat-tmenu
+                                            '(lambda () (random 5000)))))
+      (casualt-editkit-breakdown tmpfile))))
 
 
 (ert-deftest test-casual-editkit-narrow-tmenu ()

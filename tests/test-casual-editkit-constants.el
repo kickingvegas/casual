@@ -1,6 +1,6 @@
 ;;; test-casual-editkit-constants.el --- Tests for casual-editkit-constants  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2024-2025  Charles Y. Choi
+;; Copyright (C) 2024-2026  Charles Y. Choi
 
 ;; Author: Charles Choi <kickingvegas@gmail.com>
 ;; Keywords: tools
@@ -72,8 +72,8 @@
     (casualt-editkit-unicode-assert :window-right "→")
     (casualt-editkit-unicode-assert :other-window "»")
     (casualt-editkit-unicode-assert :delete-other-windows "❏")
-    (casualt-editkit-unicode-assert :split-window-below "━")
-    (casualt-editkit-unicode-assert :split-window-horizontally "┃")
+    (casualt-editkit-unicode-assert :split-window-below "↓")
+    (casualt-editkit-unicode-assert :split-window-horizontally "→")
     (casualt-editkit-unicode-assert :enlarge "+")
     (casualt-editkit-unicode-assert :shrink "−")
     (casualt-editkit-unicode-assert :horizontal "↔︎")

@@ -121,3 +121,7 @@ Support for sorting the bookmarks list is provided by the menu ~casual-bookmarks
 By enabling “{{{kbd(u)}}} Use Unicode Symbols” from the Settings menu, Casual Bookmarks will use Unicode symbols as appropriate in its menus.
 
 For more info on using Unicode symbols, please refer to [[#ux-conventions][UX Conventions]].
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:
