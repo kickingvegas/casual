@@ -352,6 +352,7 @@ Timezone Usage
 * Timezone Formatting::
 * Planner Configuration::
 * Zoneinfo Database::
+* Set TZ::
 * Timezone Settings::
 * Timezone Unicode Symbol Support::
 
@@ -5920,6 +5921,9 @@ The main menu for Casual Timezone (@code{casual-timezone-tmenu}) offers the foll
 
 @item
 @code{casual-timezone-planner} (menu binding: @code{z}) will generate a table comparing hours between the local and a remote time zone on a certain date. Multiple remote time zones can be specified.
+
+@item
+@code{casual-timezone-set-tz} (menu binding: @code{t}) sets the @code{TZ} environment variable for the current Emacs session.
 @end itemize
 
 
@@ -5938,6 +5942,7 @@ Use the @kbd{T} binding to copy the timestamp under the current point to the @co
 * Timezone Formatting::
 * Planner Configuration::
 * Zoneinfo Database::
+* Set TZ::
 * Timezone Settings::
 * Timezone Unicode Symbol Support::
 @end menu
@@ -6000,6 +6005,23 @@ These variables can be customized via the Transient menu @code{casual-timezone-s
 @vindex casual-timezone-zone-info-database
 
 The variable @code{casual-timezone-zone-info-database} is default set to the path ``/usr/share/zoneinfo/tzdata.zi''. Customize this variable if the zoneinfo database is located at a different path.
+
+@node Set TZ
+@subsubsection Set TZ
+
+@vindex casual-timezone-set-tz
+
+@deffn Command casual-timezone-set-tz
+Set local @code{TZ} environment variable to a different timezone.
+@end deffn
+
+Interactively set the @code{TZ} environment variable for the current Emacs session.
+
+Typically this value is set to the local timezone as defined in the zoneinfo database. However@comma{} setting this value to a different timezone will adjust all clock-related behavior in the Emacs session accordingly.
+
+A common use case for this command is when accessing an Emacs session remotely from a different timezone using emacsclient (@ref{Emacs Server,,,emacs,}). Setting the timezone to match the remote location will adjust all clock behavior in the server-side Emacs session to match the local remote time.
+
+This command invokes @code{setenv} to set the @code{TZ} variable and will affect clock behavior globally for the Emacs session.
 
 @node Timezone Settings
 @subsubsection Timezone Settings
